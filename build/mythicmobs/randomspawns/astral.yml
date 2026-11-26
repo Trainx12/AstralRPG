@@ -2,7 +2,7 @@ spawn_astral_mapache:
   Action: ADD
   Type: astral_mapache
   Worlds: world
-  Chance: 0.06
+  Chance: 0.09
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -15,7 +15,7 @@ spawn_astral_pinguino:
   Action: ADD
   Type: astral_pinguino
   Worlds: world
-  Chance: 0.08
+  Chance: 0.12
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -28,7 +28,7 @@ spawn_astral_espantapajaros:
   Action: ADD
   Type: astral_espantapajaros
   Worlds: world
-  Chance: 0.05
+  Chance: 0.075
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -42,7 +42,7 @@ spawn_astral_espantapajaros_elite:
   Action: ADD
   Type: astral_espantapajaros_elite
   Worlds: world
-  Chance: 0.0075
+  Chance: 0.01125
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -56,7 +56,7 @@ spawn_astral_abejorro:
   Action: ADD
   Type: astral_abejorro
   Worlds: world
-  Chance: 0.04
+  Chance: 0.06
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -68,7 +68,7 @@ spawn_astral_abejorro_elite:
   Action: ADD
   Type: astral_abejorro_elite
   Worlds: world
-  Chance: 0.006
+  Chance: 0.009
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -80,7 +80,7 @@ spawn_astral_arana:
   Action: ADD
   Type: astral_arana
   Worlds: world
-  Chance: 0.05
+  Chance: 0.075
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -94,7 +94,7 @@ spawn_astral_arana_elite:
   Action: ADD
   Type: astral_arana_elite
   Worlds: world
-  Chance: 0.0075
+  Chance: 0.01125
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -108,7 +108,7 @@ spawn_astral_cara:
   Action: ADD
   Type: astral_cara
   Worlds: world
-  Chance: 0.03
+  Chance: 0.045
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -122,7 +122,7 @@ spawn_astral_cara_elite:
   Action: ADD
   Type: astral_cara_elite
   Worlds: world
-  Chance: 0.0045
+  Chance: 0.00675
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -136,7 +136,7 @@ spawn_astral_grillo:
   Action: ADD
   Type: astral_grillo
   Worlds: world
-  Chance: 0.025
+  Chance: 0.0375
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -147,7 +147,7 @@ spawn_astral_chocobo:
   Action: ADD
   Type: astral_chocobo
   Worlds: world
-  Chance: 0.02
+  Chance: 0.03
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -158,7 +158,7 @@ spawn_astral_escarabajo:
   Action: ADD
   Type: astral_escarabajo
   Worlds: world
-  Chance: 0.02
+  Chance: 0.03
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -169,7 +169,7 @@ spawn_astral_lagarto:
   Action: ADD
   Type: astral_lagarto
   Worlds: world
-  Chance: 0.025
+  Chance: 0.0375
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -180,7 +180,7 @@ spawn_astral_ave:
   Action: ADD
   Type: astral_ave
   Worlds: world
-  Chance: 0.01
+  Chance: 0.015
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -192,7 +192,7 @@ spawn_astral_pterodactilo:
   Action: ADD
   Type: astral_pterodactilo
   Worlds: world
-  Chance: 0.008
+  Chance: 0.012
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -204,7 +204,7 @@ spawn_astral_momia:
   Action: ADD
   Type: astral_momia
   Worlds: world
-  Chance: 0.0015
+  Chance: 0.00225
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -222,7 +222,7 @@ spawn_astral_yeti:
   Action: ADD
   Type: astral_yeti
   Worlds: world
-  Chance: 0.0012
+  Chance: 0.0018
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -244,7 +244,7 @@ spawn_astral_golem_forja:
   Action: ADD
   Type: astral_golem_forja
   Worlds: world_nether
-  Chance: 0.002
+  Chance: 0.003
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -266,7 +266,7 @@ spawn_astral_cangrejo:
   Action: ADD
   Type: astral_cangrejo
   Worlds: world
-  Chance: 0.002
+  Chance: 0.003
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -277,7 +277,7 @@ spawn_astral_cangrejo_elite:
   Action: ADD
   Type: astral_cangrejo_elite
   Worlds: world
-  Chance: 0.0003
+  Chance: 0.00045
   Priority: 1
   Reason: NATURAL
   Biomes:
@@ -299,7 +299,7 @@ spawn_astral_chaman:
   Action: ADD
   Type: astral_chaman
   Worlds: world
-  Chance: 0.0015
+  Chance: 0.00225
   Priority: 1
   Reason: NATURAL
   Biomes:

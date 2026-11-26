@@ -50,9 +50,9 @@ class Ruleta(unittest.TestCase):
 
     def test_multiplicadores(self):
         self.assertEqual(E.ruleta_mult('bosque', 1), 1)
-        self.assertEqual(E.ruleta_mult('forja', 5), 40)
-        self.assertEqual(E.ruleta_mult('santuario', 5), 60)
-        self.assertEqual(E.RULETA_MAX['S'] * E.ruleta_mult('santuario', 5), 30_000_000)
+        self.assertEqual(E.ruleta_mult('forja', 5), 12)
+        self.assertEqual(E.ruleta_mult('santuario', 5), 18)
+        self.assertEqual(E.RULETA_MAX['S'] * E.ruleta_mult('santuario', 5), 9_000_000)  # 25/11
 
 
 class Items(unittest.TestCase):

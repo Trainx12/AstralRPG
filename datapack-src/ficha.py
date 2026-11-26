@@ -200,7 +200,12 @@ def weapon_stats(source, level):
 def armor_stats(source, level):
     from items import ARMOR_SETS, ARMOR_VALUES, TOUGHNESS
     data = source['data']
-    tier = ({'stats': {}} if data['set'] in ('carnivora', 'agua', 'minero', 'talador') else ARMOR_SETS[data['set']]['tiers'][data['tier'] - 1])
+    from clases import SETS as CL_SETS, stats as cl_stats
+    if data['set'] in CL_SETS:   # clases nuevas (22/11): solo stats comunes; las propias van como texto
+        tier = {'stats': {k: v for k, v in cl_stats(data['set'], data['tier']).items()
+                          if k in ('hp', 'mana', 'mregen', 'cdr', 'crit', 'spd')}}
+    else:
+        tier = ({'stats': {}} if data['set'] in ('carnivora', 'agua', 'minero', 'talador') else ARMOR_SETS[data['set']]['tiers'][data['tier'] - 1])
     st = tier['stats']
     piece = data['piece']
     q = 4  # cada pieza da 1/4 del bonus del set
@@ -261,7 +266,7 @@ def attr_extra_lines(comps):
 
 
 # Sets con descripcion propia (no estan en SET_BONUS): sus lineas de items van como texto y el "Set completo" como bono.
-SETS_PROPIOS = ('carnivora', 'agua', 'minero', 'talador')
+SETS_PROPIOS = ('carnivora', 'agua', 'minero', 'talador', 'segador', 'invocador', 'asesino')
 
 
 def set_propio_lines(source):

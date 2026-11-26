@@ -147,6 +147,10 @@ COPPER_BLOCKS = ("copper_block", "exposed_copper", "weathered_copper", "oxidized
                  "waxed_copper_block", "waxed_exposed_copper", "waxed_weathered_copper", "waxed_oxidized_copper")
 
 
+# Alto del plano en una pared segun el area (2x1, 2x2, 3x3, 4x4).
+DRILL_HEIGHT = {2: 2, 3: 2, 4: 3, 5: 4}
+
+
 def config():
     lines = [f"    set {{-am.count}} to {len(MINES)}", f"    set {{-am.finalMinutes}} to {FINAL_MINUTES}"]
     lines.append("    delete {-am.copper::*}")
@@ -175,17 +179,22 @@ def config():
     # El script reconoce el area por la descripcion "Rompe en area NxM" (ver AREA_NAMES).
     assert AREA_NAMES == {1: "1x1", 2: "2x1", 3: "2x2", 4: "3x3", 5: "4x4"}, "actualizar am_tool_area en minas.sk"
     lines.append("    delete {-am.off::*}")
+    lines.append("    delete {-am.h::*}")
     for area in range(2, 6):
+        lines.append(f"    set {{-am.h::{area}}} to {DRILL_HEIGHT[area]}")
         offsets = {}
         for face, (forward, right) in FACING.items():
             # Piso o techo: cuadrado horizontal (a lo ancho y hacia adelante) alrededor del bloque.
             horizontal, depth = area_ranges(area, 0, True)
             offsets[f"v{face}"] = [(u * right[0] + v * forward[0], 0, u * right[2] + v * forward[2])
                                    for u in horizontal for v in depth if (u, v) != (0, 0)]
-            for up in (0, 1):
-                horizontal, vertical = area_ranges(area, up, False)
-                offsets[f"{face}{up}"] = [(u * right[0], v, u * right[2])
-                                         for u in horizontal for v in vertical if (u, v) != (0, 0)]
+            # Pared (25/11, dueno): el plano arranca en el piso del jugador. "r<fila>" = fila del
+            # bloque picado contando desde abajo; antes un 4x4 a la altura de la cabeza bajaba 1 bloque.
+            horizontal, _ = area_ranges(area, 0, False)
+            height = DRILL_HEIGHT[area]
+            for row in range(height):
+                offsets[f"{face}r{row}"] = [(u * right[0], v, u * right[2])
+                                           for u in horizontal for v in range(-row, height - row) if (u, v) != (0, 0)]
         for direction, entries in offsets.items():
             for index, (x, y, z) in enumerate(entries, 1):
                 lines.append(f"    set {{-am.off::{area}::{direction}::{index}}} to vector({x}, {y}, {z})")
@@ -203,7 +212,9 @@ RENACER_MAX = 10
 def script(world=WORLD, dim=DIM):
     text = Path(__file__).with_suffix(".sk").read_text(encoding="utf-8")
     from travel_ui import title, PAGE2_SLOTS
-    values = {"RENACER_BONUS": RENACER_BONUS, "RENACER_MAX": RENACER_MAX, "MENU_TITLE": title("minas"), "MENU2_TITLE": title("minas2"),
+    from ventana_renacer import titulo as renacer_titulo   # 25/11: ventana con el diseno del dueno
+    titulos = "\n".join(f'    if {{_n}} is {n}:\n        return "{renacer_titulo(n)}"' for n in range(RENACER_MAX))
+    values = {"RENACER_TITULOS": titulos, "RENACER_BONUS": RENACER_BONUS, "RENACER_MAX": RENACER_MAX, "MENU_TITLE": title("minas"), "MENU2_TITLE": title("minas2"),
               "BOSQUE_SLOTS": _lista(PAGE2_SLOTS["minas2"]["bosque"], "and"),
               "BOSQUE_OR": _lista(PAGE2_SLOTS["minas2"]["bosque"], "or"), "SALE_TITLE": title("minas-venta"), "WORLD": world, "DIM": dim, "SPACING": SPACING, "SPAWN_X": SPAWN[0], "SPAWN_Y": SPAWN[1],
               "SPAWN_Z": SPAWN[2], "MOLD_Y": MOLD_Y, "MOLD_STEP": MOLD_STEP, "RESET_MIN": RESET_MIN,

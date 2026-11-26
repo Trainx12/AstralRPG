@@ -62,10 +62,11 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_seccion_arquero'
   'b1_0':
-    material: BOOK
+    material: IRON_HOE
     slot: 5
     amount: 1
     display_name: '&bSegador'
+    item_model: 'astral:guadana_1'
     lore:
     - '&7Clic para abrir'
     item_flags:
@@ -125,6 +126,7 @@ items:
     slot: 9
     amount: 1
     display_name: '&bInvocador'
+    item_model: 'astral:libro_invocador_1'
     lore:
     - '&7Clic para abrir'
     item_flags:
@@ -180,10 +182,11 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_seccion_invocador'
   'b3_0':
-    material: BOOK
+    material: IRON_SWORD
     slot: 14
     amount: 1
     display_name: '&bAsesino'
+    item_model: 'astral:cuchillo_1'
     lore:
     - '&7Clic para abrir'
     item_flags:

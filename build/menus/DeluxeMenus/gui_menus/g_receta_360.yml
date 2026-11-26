@@ -23,7 +23,7 @@ items:
     - '&7Durabilidad: &f25.500'
     - '&7Tier: 10'
     - ''
-    - '&cRequiere: Defensa 42'
+    - '&cRequiere: Combate 55'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&#b388ff&lASTRAL BOTAS'
     item_flags:
@@ -52,7 +52,7 @@ items:
     - '&7Durabilidad: &f20.825'
     - '&7Tier: 9'
     - ''
-    - '&cRequiere: Defensa 38'
+    - '&cRequiere: Combate 50'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA BOTAS'
     item_flags:

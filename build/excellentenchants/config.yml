@@ -52,17 +52,500 @@ Passive_Enchants:
   # [Default is true]
   AllowForMobs: true
 Disabled:
-  # Put here CUSTOM enchantment names that you want to disable in specific worlds.
-  # To disable all enchantments for a world, use '*' instead of enchantment names.
-  # Enchantment names are equal to their config file names in the '/enchants/' directory.
-  # [*] This setting only disables enchantment effects, not the enchantment distribution there!
   ByWorld:
-    another_world:
-    - ice_aspect
-    - another_enchantment
-    your_world_name:
-    - ice_aspect
-    - enchantment_name
+    arena:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    arenas_tft:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    astral_bosque:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    astral_minas:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    - veinminer
+    battleship:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    bosque:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    bosque_2:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    bosque_3:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    bosque_4:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    bosque_5:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    bosque_6:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    cavernas:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    cavernas_cristal:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    colorescape:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    cumbre:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    cumbre_hielo:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    cumbre_hielo_2:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    cumbre_hielo_3:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    cumbre_hielo_4:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    cumbre_hielo_5:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    cumbre_hielo_6:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    dropper_facil:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    dropper_h4rs:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    exp_desierto:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    exp_hielo:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    exp_nieve:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    exp_santuario:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    forja:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    forja_volcano:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    forja_volcano_2:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    forja_volcano_3:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    forja_volcano_4:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    forja_volcano_5:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    forja_volcano_6:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    fosa:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    fosa_2:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    fosa_3:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    infinita:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    infinita_2:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    infinita_3:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    infinita_4:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    infinita_5:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    infinita_6:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    lobby:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    magmarun:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    mina:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    mina_2:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    mina_3:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    mina_4:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    mina_5:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    mina_6:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    nave:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    nave_2:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    nave_3:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    oceano:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    overworld:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    parkour_paradise3:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    parkour_spiral:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    parkour_spiral2:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    portales_astrales:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    sala_dueno:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    santuario:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    santuario_azeroth:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    santuario_azeroth_2:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    santuario_azeroth_3:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    santuario_azeroth_4:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    santuario_azeroth_5:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    santuario_azeroth_6:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    santuario_freemap9:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    santuario_interstellar:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    the_end:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    the_nether:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    tumba:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    tumba_2:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    tumba_3:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    tumba_4:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    tumba_5:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    tumba_6:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    vacio_estelar:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    world:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    world_nether:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
+    world_the_end:
+    - tunnel
+    - blast_mining
+    - cutter
+    - bomber
+    - ghast
 Anvil:
   # Prevents item from being enchanted using anvil if it already contains specific amount of custom enchantments.
   # [Default is 5]

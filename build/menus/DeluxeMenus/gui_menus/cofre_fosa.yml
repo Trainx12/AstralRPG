@@ -51,12 +51,12 @@
       "display_name": "&e&lRuleta de plata",
       "lore": [
         "&7Al reclamar gira una ruleta invisible:",
-        "&7Nota &6&lS&7: &e16.000$ &7a &e4.000.000$",
-        "&7Nota &d&lA&7: &e16.000$ &7a &e2.000.000$",
-        "&7Nota &a&lB&7: &e16.000$ &7a &e1.200.000$",
-        "&7Nota &b&lC&7: &e16.000$ &7a &e640.000$",
-        "&7Nota &9&lD&7: &e16.000$ &7a &e240.000$",
-        "&7Nota &c&lF&7: &e16.000$ &7a &e40.000$",
+        "&7Nota &6&lS&7: &e10.000$ &7a &e2.500.000$",
+        "&7Nota &d&lA&7: &e10.000$ &7a &e1.250.000$",
+        "&7Nota &a&lB&7: &e10.000$ &7a &e750.000$",
+        "&7Nota &b&lC&7: &e10.000$ &7a &e400.000$",
+        "&7Nota &9&lD&7: &e10.000$ &7a &e150.000$",
+        "&7Nota &c&lF&7: &e10.000$ &7a &e25.000$",
         "&8Siempre puede tocar poco;",
         "&8con mejor nota es mas facil lo alto."
       ],

@@ -811,7 +811,7 @@ public final class AstralEfectos extends JavaPlugin implements Listener, TabExec
     }
 }
 
-/** Limita los paquetes de damage_indicator segun el nivel de efectos de quien los recibe. */
+/** Saca los paquetes de damage_indicator (corazones rojos oscuros al pegar, parecian sangre). */
 final class AstralEfectosParticulas extends com.github.retrooper.packetevents.event.PacketListenerAbstract {
     static void registrar() {
         com.github.retrooper.packetevents.PacketEvents.getAPI().getEventManager().registerListener(new AstralEfectosParticulas());
@@ -820,8 +820,7 @@ final class AstralEfectosParticulas extends com.github.retrooper.packetevents.ev
         if (e.getPacketType() != com.github.retrooper.packetevents.protocol.packettype.PacketType.Play.Server.PARTICLE) return;
         var w = new com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerParticle(e);
         if (w.getParticle().getType() != com.github.retrooper.packetevents.protocol.particle.type.ParticleTypes.DAMAGE_INDICATOR) return;
-        UUID id = e.getUser() == null ? null : e.getUser().getUUID();
-        int tope = AstralEfectos.GOLPE_PARTICULAS[id == null ? 0 : AstralEfectos.NIVEL.getOrDefault(id, AstralEfectos.MEDIO)];
-        if (w.getParticleCount() > tope) { w.setParticleCount(tope); e.markForReEncode(true); }
+        // 23/11: el dueno no quiere que mobs ni jugadores "sangren": los corazones oscuros del golpe no se mandan.
+        e.setCancelled(true);
     }
 }

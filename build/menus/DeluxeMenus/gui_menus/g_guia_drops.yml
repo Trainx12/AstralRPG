@@ -23,7 +23,8 @@ items:
     - '&7Cae de Wither Skeletons.'
     - '&8Material de AstralRPG'
     - ''
-    - '&7&l  Wither Skeleton (8%)'
+    - '&7&l  Wither Skeleton (25%); Piglin Brute'
+    - '&7&l(15%); mobs del Nether (5%)'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS
@@ -84,8 +85,9 @@ items:
     display_name: '&#b07cffCristal Arcano'
     item_model: 'astral:cristal_arcano'
     lore:
-    - '&7Se procesa en 4 fragmentos.'
+    - '&74 forman un Cristal Refinado.'
     - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - ''
     - '&7&l  Enderman (5%)'
     enchantments:
@@ -169,9 +171,8 @@ items:
     display_name: '&#c9a6ffFragmento de Cristal Arcano'
     item_model: 'astral:fragmento_cristal'
     lore:
-    - '&74 forman un Cristal Refinado.'
+    - '&72 forman un Cristal Arcano.'
     - '&8Material de AstralRPG'
-    - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - ''
     - '&7&l  picando end stone en el End (4%)'
     item_flags:

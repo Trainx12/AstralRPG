@@ -26,7 +26,7 @@ items:
     - '&7Durabilidad: &f9.000'
     - '&7Tier: 5'
     - ''
-    - '&cRequiere: Defensa 22'
+    - '&cRequiere: Arqueria 30'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA PECHERA'
     item_flags:
@@ -58,7 +58,7 @@ items:
     - '&7Durabilidad: &f6.500'
     - '&7Tier: 4'
     - ''
-    - '&cRequiere: Defensa 18'
+    - '&cRequiere: Arqueria 25'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA PECHERA'
     item_flags:

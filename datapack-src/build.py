@@ -23,7 +23,7 @@ NS = "astral"
 DATA_FORMAT = 101  # Minecraft 26.1.x
 # Subir este numero cuando cambian los items: los jugadores reciben la version nueva sola
 STACK_VERSION_BASE = 31  # NO CAMBIAR: version inicial de los apilables (25/11); despues cada uno sube solo si cambia (item_versions.json)
-ITEM_VERSION = 28  # 23/11: sin sangrado, nivel minimo en armas especiales, mago/berserker T5<->T6.
+ITEM_VERSION = 31  # 24/11: armadura = nivel del arma de su clase; Carnivora/Agua/oficios con requisito. 30: 23/11: armaduras piden la skill de su clase. 29: requisitos del tier 1 bajados. Antes 28: 23/11: sin sangrado, nivel minimo en armas especiales, mago/berserker T5<->T6.
 
 files = {}
 
@@ -82,7 +82,7 @@ class Dbl:
 def aura_pdc(kind, skill=None, level=None, traits=None):
     """kind: 'armor' o 'item'. traits: lista de (trait, valor, operacion)."""
     pdc = {}
-    if skill:
+    if skill:   # nivel 0 tambien se guarda: AstralProgression lo usa para saber que skill recibe la XP del arma
         pdc[f"auraskills:{kind}_requirements"] = {f"auraskills:{skill}": int(level)}
     if traits:
         pdc[f"auraskills:{kind}_trait_modifiers"] = [
@@ -127,6 +127,8 @@ def add_item(item_id, base, name, color, lore, astral_data, extra=None, pdc=None
 
 
 def req_line(skill, level):
+    if not level:
+        return txt("Requiere: sin nivel", "red")   # mismo texto que usa ficha.py
     return txt(f"Requiere: {SKILLS[skill]} {level}", "red")
 
 
@@ -149,6 +151,9 @@ GEMAS.register(put, fn, add_item, txt)
 # Cavernas de Cristal (7e): Cristal, Geoda, Polvo y funciones cavernas/* (fuente: cavernas.py)
 import cavernas as CAVERNAS
 CAVERNAS.register(put, fn, add_item, txt)
+# Vacio Estelar (7f, 23/11): Fragmento Estelar, Nucleo de Meteorito y vacio/jefe (fuente: vacio.py)
+import vacio as VACIO
+VACIO.register(put, fn, add_item, txt)
 
 # Gancho de escalada
 for mid, (name, color, model, glint, desc) in HISTORY_ITEMS.items():
@@ -508,7 +513,9 @@ for i, d in enumerate(DRILLS):
     rules = [{"blocks": "#minecraft:incorrect_for_netherite_tool", "correct_for_drops": False},
              {"blocks": "#minecraft:mineable/pickaxe", "speed": d["speed"], "correct_for_drops": True},
              {"blocks": "#minecraft:mineable/shovel", "speed": d["speed"], "correct_for_drops": True}]
-    extra = {"minecraft:tool": {"rules": rules, "default_mining_speed": 1.0, "damage_per_block": 1}}
+    # 24/11 (dueno): el taladro no golpea como pico; la broca gira (herramientas3d.py)
+    extra = {"minecraft:tool": {"rules": rules, "default_mining_speed": 1.0, "damage_per_block": 1},
+             "minecraft:swing_animation": {"type": "none"}}
     lore = [txt(f"Taladro {ROMAN_EXT[i]}", d["color"]),
             txt("Mas rapido que un pico de netherita" if d["area"] == 1 else f"Rompe en area {AREA_NAMES[d['area']]}", "gold"),
             txt(f"Velocidad: {d['speed']} (pico de netherita: 9)", "gray"),
@@ -687,6 +694,13 @@ if len(OLD_PREDS) == 2 and {_vers[_i]["v"] for _i in _vers} <= {ITEM_VERSION}:
     # Mientras apilables y no apilables compartan la misma version alcanza un solo chequeo por casilla (menos CPU).
     OLD_PREDS = [f"*[{_ASTRAL},!minecraft:custom_data~{{astral:{{v:{ITEM_VERSION}}}}}]"]
 MESA = prepare_mesa(ITEMS, FICHAS, RECIPES, txt)
+# Armas clonadas (Carnivora, Asura, Agua): no pasan por add_item; la mesa toma el requisito real del item.
+import re as _re
+for _iid, _it in ITEMS.items():
+    if not REQUIREMENTS.get(_iid):
+        _m = _re.search(r'auraskills:(?:item|armor)_requirements"?:\{([^}]*)\}', _it['components']['minecraft:custom_data'])
+        if _m:
+            REQUIREMENTS[_iid] = {k: int(v) for k, v in _re.findall(r'"?(auraskills:\w+)"?:(\d+)', _m.group(1))}
 export_mesa(ITEMS, REQUIREMENTS, RECIPES, os.path.dirname(HERE))
 for iid, it in ITEMS.items():
     put(f"data/{NS}/loot_table/item/{iid}.json", {
@@ -795,6 +809,40 @@ def ing_key(kind, ident, count):
 
 
 # ---------------------------------------------------------------------------
+# Mejora en el lugar (24/11, dueno): al forjar el tier siguiente (taladro, arma, armadura...) la pieza vieja
+# se transforma en la nueva en vez de borrarse; conserva encantamientos, gemas, mejora del Herrero y nombre.
+# ---------------------------------------------------------------------------
+CHAIN = set()  # (resultado, pieza anterior que se transforma)
+INPLACE_SLOTS = (["weapon.mainhand"] + [f"container.{n}" for n in range(36)]
+                 + ["armor.head", "armor.chest", "armor.legs", "armor.feet", "weapon.offhand"])
+
+
+def chain_prev(out, n, ings):
+    kind, prev, count = ings[0]
+    if n != 1 or kind != "c" or count != 1 or prev == out:
+        return None
+    if ITEMS[prev]["kind"] not in ("weapon", "armor") or ITEMS[out]["kind"] != ITEMS[prev]["kind"]:
+        return None
+    return prev
+
+
+def inplace_fn(out, prev):
+    """forge/ip/<out>: busca la pieza anterior y la transforma; forge/ipl/<out> (macro) elige el nivel de mejora."""
+    CHAIN.add((out, prev))
+    sel = f'*[minecraft:custom_data~{{{NS}:{{id:"{prev}"}}}}]'
+    fn(f"forge/ip/{out}/{prev}", [f"execute if items entity @s {slot} {sel} run return run function {NS}:forge/ipl/{out}/{prev} "
+                           f'{{slot:"{slot}"}}' for slot in INPLACE_SLOTS] + ["return 0"])
+    lines = []
+    if ITEMS[out]["mejorable"]:
+        mej = "mejora_armadura" if ITEMS[out]["kind"] == "armor" else "mejora_arma"
+        for L in range(10, 0, -1):
+            lines.append(f"$execute if items entity @s $(slot) *[minecraft:enchantments~[{{enchantments:\"{NS}:{mej}\","
+                         f"levels:{L}}}]] run return run item modify entity @s $(slot) {NS}:forja/{out}/{prev}/{L}")
+    lines.append(f"$return run item modify entity @s $(slot) {NS}:forja/{out}/{prev}/0")
+    fn(f"forge/ipl/{out}/{prev}", lines)
+
+
+# ---------------------------------------------------------------------------
 # ALTAR (Forja Astral)
 # ---------------------------------------------------------------------------
 SUBS = set()
@@ -808,13 +856,21 @@ for (out, n, ings, group) in RECIPES:
     lines = []
     for (k, c, _) in keys:
         lines.append(f"execute unless entity @e[type=minecraft:item,distance=..1.2,predicate={NS}:ing/{k}] run return 0")
-    for (k, c, ident) in keys:
+    prev = chain_prev(out, n, ings)
+    if prev:
+        inplace_fn(out, prev)
+    for i, (k, c, ident) in enumerate(keys):
+        if prev and i == 0:
+            # La pieza anterior se transforma en el lugar (no se borra ni aparece una nueva).
+            lines.append(f"execute as @e[type=minecraft:item,distance=..1.2,predicate={NS}:ing/{k},limit=1,sort=nearest] "
+                         f"run function {NS}:forge/ipl/{out}/{prev} {{slot:\"contents\"}}")
+            continue
         SUBS.add(c)
         lines.append(f"execute as @e[type=minecraft:item,distance=..1.2,predicate={NS}:ing/{k},limit=1,sort=nearest] "
                      f"run item modify entity @s contents {NS}:sub/{c}")
         if ident == "minecraft:lava_bucket":
             lines.append("summon minecraft:item ~ ~0.3 ~ {Item:{id:\"minecraft:bucket\",count:1}}")
-    for _ in range(n):
+    for _ in range(0 if prev else n):
         lines.append(f"loot spawn ~ ~0.3 ~ loot {NS}:item/{out}")
     it = ITEMS[out]
     # Las misiones registran la fabricacion real, no la mera posesion de equipo.
@@ -1056,7 +1112,7 @@ fn("fx/remate", [
     "scoreboard players set @s astral.rem 2",
     f"function {NS}:fx/attacker_tier",
     *[f"execute if score #ht astral.tmp matches {t} run scoreboard players set @s astral.remd {round(15 * FACTOR_ARMA[t])}"
-      for t in range(0, 6)],
+      for t in range(0, TIER_MAX + 1)],
 ])
 fn("fx/remate_tick", [
     "scoreboard players remove @s astral.rem 1",
@@ -1095,12 +1151,15 @@ fn("fx/generic_hit", ["$damage @s $(dmg) minecraft:generic"])
 fn("fx/cleave", [
     "tag @s add astral.src",
     "execute on attacker run tag @s add astral.atk",
-    f"tag @e[{MOB},distance=..2.5,tag=!astral.src,tag=!astral.atk] add astral.tgt",
+    # 26/11: area por caja (toca el cuerpo, sirve para golems y mobs grandes) alrededor del golpeado
+    # y otra caja detras de el, en la direccion en que mira el atacante.
+    f"execute positioned ~-2.5 ~-1 ~-2.5 run tag @e[{MOB},dx=4,dy=3,dz=4,tag=!astral.src,tag=!astral.atk] add astral.tgt",
+    f"execute rotated as @e[tag=astral.atk,limit=1] rotated ~ 0 positioned ^ ^ ^3 positioned ~-2 ~-1 ~-2 run tag @e[{MOB},dx=3,dy=3,dz=3,tag=!astral.src,tag=!astral.atk] add astral.tgt",
     "tag @e[tag=astral.tgt] add astral.nohit",
     "scoreboard players set #ht astral.tmp 0",
     "scoreboard players operation #ht astral.tmp = @e[tag=astral.atk,limit=1] astral.ht",
     *[f"execute if score #ht astral.tmp matches {t} as @e[tag=astral.tgt] at @s run damage @s {round(5 * FACTOR_ARMA[t], 2)} minecraft:player_attack by @e[tag=astral.atk,limit=1]"
-      for t in range(0, 6)],
+      for t in range(0, TIER_MAX + 1)],
     "particle minecraft:sweep_attack ~ ~1 ~ 1 0.2 1 0 5",
     "tag @e[tag=astral.tgt] remove astral.nohit",
     "tag @e[tag=astral.tgt] remove astral.tgt",
@@ -1117,7 +1176,7 @@ fn("fx/cone", [
     "scoreboard players set #ht astral.tmp 0",
     "scoreboard players operation #ht astral.tmp = @e[tag=astral.atk,limit=1] astral.ht",
     *[f"execute if score #ht astral.tmp matches {t} as @e[tag=astral.tgt] at @s run damage @s {round(4 * FACTOR_ARMA[t], 2)} minecraft:player_attack by @e[tag=astral.atk,limit=1]"
-      for t in range(0, 6)],
+      for t in range(0, TIER_MAX + 1)],
     "tag @e[tag=astral.tgt] remove astral.nohit",
     "tag @e[tag=astral.tgt] remove astral.tgt",
     "tag @e[tag=astral.atk] remove astral.atk",
@@ -1294,7 +1353,8 @@ def thr2(red):
     return int(v * v)
 
 
-fn("bow/tag", ["tag @s add astral.bowshot"])
+# #flechas avisa al tick que hay flechas nuevas: sin eso no recorre todas las entidades cada tick (24/11).
+fn("bow/tag", ["tag @s add astral.bowshot", "scoreboard players set #flechas astral.tmp 1"])
 bow = [
     "tag @s remove astral.bowshot",
     "execute on origin run tag @s add astral.shooter",
@@ -1484,8 +1544,15 @@ log_objs = []
 for l in LOGS:
     for v in (f"{l}_log", f"stripped_{l}_log", f"{l}_wood", f"stripped_{l}_wood"):
         log_objs.append((f"astral.m_{v}", f"minecraft.mined:minecraft.{v}"))
+# 23/11: lo que el jugador pone en el End no cuenta (poner y romper el mismo bloque era una granja infinita).
+# astral.p_* = bloques colocados (stat used); en el End suman a la "deuda" astral.dlog / astral.des.
+place_objs = [(f"astral.p_{v}", f"minecraft.used:minecraft.{v}", "astral.dlog") for (_o, c) in log_objs
+              for v in [c.split(".")[-1]]] + [("astral.p_es", "minecraft.used:minecraft.end_stone", "astral.des")]
+fn("mine/placed", [f"execute if dimension minecraft:the_end run scoreboard players operation @s {d} += @s {o}" for (o, _c, d) in place_objs]
+   + [f"scoreboard players reset @s {o}" for (o, _c, _d) in place_objs])
 fn("mine/endstone", [
     "scoreboard players reset @s astral.m_es",
+    "execute if score @s astral.des matches 1.. run return run scoreboard players remove @s astral.des 1",
     f"execute if dimension minecraft:the_end if entity @s[y=-64,dy=114] if predicate {chance(0.04)} run function {NS}:drop/give {{id:\"fragmento_cristal\",name:\"Fragmento de Cristal Arcano\"}}",
 ])
 fn("mine/chorus", [
@@ -1493,6 +1560,7 @@ fn("mine/chorus", [
     f"execute if dimension minecraft:the_end if predicate {chance(0.08)} run function {NS}:drop/give {{id:\"madera_estelar\",name:\"Madera Estelar\"}}",
 ])
 fn("mine/log", [f"scoreboard players reset @s {o}" for (o, _) in log_objs] + [
+    "execute if score @s astral.dlog matches 1.. run return run scoreboard players remove @s astral.dlog 1",
     f"execute if dimension minecraft:the_end if predicate {chance(0.35)} run function {NS}:drop/give {{id:\"madera_estelar\",name:\"Madera Estelar\"}}",
 ])
 
@@ -1501,12 +1569,13 @@ fn("mine/log", [f"scoreboard players reset @s {o}" for (o, _) in log_objs] + [
 # ---------------------------------------------------------------------------
 put(f"data/{NS}/tags/entity_type/hostile.json", {"values": HOSTILE})
 
-# Nivel de equipo del jugador (0-5): el mejor tier Astral que lleva puesto o en la mano
+# Nivel de equipo del jugador (0-5): el mejor tier Astral que lleva puesto o en la mano (sin taladros ni motosierras)
 lvl = ["scoreboard players set @s astral.lvl 0"]
 for t in range(1, TIER_MAX + 1):
     for slot in ("armor.head", "armor.chest", "armor.legs", "armor.feet", "weapon.mainhand", "weapon.offhand"):
         lvl.append(f"execute if score @s astral.lvl matches ..{t - 1} if items entity @s {slot} "
-                   f"*[minecraft:custom_data~{{{NS}:{{tier:{t}}}}}] run scoreboard players set @s astral.lvl {t}")
+                   f"*[minecraft:custom_data~{{{NS}:{{tier:{t}}}}},!minecraft:custom_data~{{{NS}:{{type:\"tool\"}}}}] "
+                   f"run scoreboard players set @s astral.lvl {t}")
 # Escala por tier (escala.py):
 #   astral.ht = tier del arma en la mano; astral.wt = mejor arma Astral del inventario
 #   (los mobs se adaptan a esta); astral.at = mejor armadura puesta (vida mostrada).
@@ -1522,7 +1591,8 @@ for t in range(1, TIER_MAX + 1):
                        f"run scoreboard players set @s astral.wt {t}")
     # Pedido 12/11/2026: los mobs del mundo se adaptan al MEJOR tier del inventario (armas, bastones,
     # armaduras y herramientas Astral, puestas o guardadas), no solo a las armas.
-    for kind in ("armor", "tool"):
+    # 25/11 (dueno): taladros y motosierras (type "tool") NO cuentan: un taladro T5 no sube el tier de los mobs.
+    for kind in ("armor",):
         for slot in ("container.*", "armor.*", "weapon.offhand"):
             lvl.append(f"execute if score @s astral.wt matches ..{t - 1} if items entity @s {slot} "
                        f"*[minecraft:custom_data~{{{NS}:{{type:\"{kind}\",tier:{t}}}}}] run scoreboard players set @s astral.wt {t}")
@@ -1540,8 +1610,31 @@ fn("player/def", [
     "scoreboard players set #d astral.tmp 0",
     f"data modify storage {NS}:tmp eq set value {{}}",
     f"data modify storage {NS}:tmp eq set from entity @s equipment",
+    "scoreboard players set #cien astral.tmp 100",
+    # #pub astral.protdef: 1 = todos, 0 (por defecto) = solo ByTrainx, -1 = apagado.
+    "execute if score #pub astral.protdef matches 1 run tag @s add astral.protdef",
+    "execute if score #pub astral.protdef matches 0 if entity @s[name=ByTrainx] run tag @s add astral.protdef",
+    "execute if score #pub astral.protdef matches -1 run tag @s remove astral.protdef",
+    # #pub astral.filo: lo mismo para el Filo en porcentaje (escala.FILO_PCT).
+    "execute if score #pub astral.filo matches 1 run tag @s add astral.filo",
+    "execute if score #pub astral.filo matches 0 if entity @s[name=ByTrainx] run tag @s add astral.filo",
+    "execute if score #pub astral.filo matches 0 unless entity @s[name=ByTrainx] run tag @s remove astral.filo",
+    "execute if score #pub astral.filo matches -1 run tag @s remove astral.filo",
 ] + [f'execute store result score #p astral.tmp run data get storage {NS}:tmp eq.{slot}.components."minecraft:custom_data".astral.def\n'
-     f"scoreboard players operation #d astral.tmp += #p astral.tmp" for slot in ("head", "chest", "legs", "feet")] + [
+     f"scoreboard players operation #d astral.tmp += #p astral.tmp\n"
+     # Proteccion (escala.PROT_DEF_PCT): nivel x % de la Defensa de esta pieza, solo con astral.protdef.
+     f"execute if entity @s[tag=astral.protdef] if score #p astral.tmp matches 1.. run function {NS}:player/def_prot_{slot}"
+     for slot in ("head", "chest", "legs", "feet")] + [
+    # Armadura vanilla como Defensa (escala.VANILLA_PIEZAS), solo piezas sin atributos propios ni astral.def.
+    "execute if score #pub astral.vandef matches 1 run tag @s add astral.vandef",
+    "execute if score #pub astral.vandef matches 0 if entity @s[name=ByTrainx] run tag @s add astral.vandef",
+    "execute if score #pub astral.vandef matches -1 run tag @s remove astral.vandef",
+    "scoreboard players set #vp astral.tmp 0",
+] + [f'execute if entity @s[tag=astral.vandef] unless data storage {NS}:tmp eq.{slot}.components."minecraft:custom_data".astral.def '
+     f'unless data storage {NS}:tmp eq.{slot}.components."minecraft:attribute_modifiers" run function {NS}:player/def_van_{slot}'
+     for slot in ("head", "chest", "legs", "feet")] + [
+    # Anula la reduccion de Minecraft de esos puntos (modificador negativo); solo se toca cuando cambia.
+    f"execute unless score @s astral.vanp = #vp astral.tmp run function {NS}:player/def_van_mod",
     "execute store result score #v astral.tmp run attribute @s minecraft:armor get 5",
 ] + [f'execute if data storage {NS}:tmp eq.{slot}.components."minecraft:custom_data".astral.def '
      f'run scoreboard players remove #v astral.tmp {bar * 5}'
@@ -1571,6 +1664,94 @@ fn("player/def", [
     "tag @s remove astral.db4", "tag @s remove astral.db5", "tag @s remove astral.db6", "tag @s remove astral.db7",
     "tag @s remove astral.db8", "tag @s remove astral.db9", "tag @s remove astral.db10", "tag @s remove astral.db11",
 ] + ['execute if score #d astral.tmp matches 2048.. run tag @s add astral.db11', 'execute if score #d astral.tmp matches 2048.. run scoreboard players remove #d astral.tmp 2048', 'execute if score #d astral.tmp matches 1024.. run tag @s add astral.db10', 'execute if score #d astral.tmp matches 1024.. run scoreboard players remove #d astral.tmp 1024', 'execute if score #d astral.tmp matches 512.. run tag @s add astral.db9', 'execute if score #d astral.tmp matches 512.. run scoreboard players remove #d astral.tmp 512', 'execute if score #d astral.tmp matches 256.. run tag @s add astral.db8', 'execute if score #d astral.tmp matches 256.. run scoreboard players remove #d astral.tmp 256', 'execute if score #d astral.tmp matches 128.. run tag @s add astral.db7', 'execute if score #d astral.tmp matches 128.. run scoreboard players remove #d astral.tmp 128', 'execute if score #d astral.tmp matches 64.. run tag @s add astral.db6', 'execute if score #d astral.tmp matches 64.. run scoreboard players remove #d astral.tmp 64', 'execute if score #d astral.tmp matches 32.. run tag @s add astral.db5', 'execute if score #d astral.tmp matches 32.. run scoreboard players remove #d astral.tmp 32', 'execute if score #d astral.tmp matches 16.. run tag @s add astral.db4', 'execute if score #d astral.tmp matches 16.. run scoreboard players remove #d astral.tmp 16', 'execute if score #d astral.tmp matches 8.. run tag @s add astral.db3', 'execute if score #d astral.tmp matches 8.. run scoreboard players remove #d astral.tmp 8', 'execute if score #d astral.tmp matches 4.. run tag @s add astral.db2', 'execute if score #d astral.tmp matches 4.. run scoreboard players remove #d astral.tmp 4', 'execute if score #d astral.tmp matches 2.. run tag @s add astral.db1', 'execute if score #d astral.tmp matches 2.. run scoreboard players remove #d astral.tmp 2', 'execute if score #d astral.tmp matches 1.. run tag @s add astral.db0', 'execute if score #d astral.tmp matches 1.. run scoreboard players remove #d astral.tmp 1'])
+from escala import PROT_DEF_PCT as _PROT
+for _slot in ("head", "chest", "legs", "feet"):
+    _lines = ["scoreboard players set #e astral.tmp 0"]
+    for _ench, _pct in _PROT.items():
+        _lines += [f'execute store result score #n astral.tmp run data get storage {NS}:tmp '
+                   f'eq.{_slot}.components."minecraft:enchantments"."minecraft:{_ench}" {_pct}',
+                   "scoreboard players operation #e astral.tmp += #n astral.tmp"]
+    _lines += ["scoreboard players operation #e astral.tmp *= #p astral.tmp",
+               "scoreboard players operation #e astral.tmp /= #cien astral.tmp",
+               "scoreboard players operation #d astral.tmp += #e astral.tmp"]
+    fn(f"player/def_prot_{_slot}", _lines)
+from escala import VANILLA_PIEZAS as _VAN
+_ARMOR_SLOT = {"head": "armor.head", "chest": "armor.chest", "legs": "armor.legs", "feet": "armor.feet"}
+for _slot, _items in _VAN.items():
+    _lines = ["scoreboard players set #p astral.tmp 0", "scoreboard players set #r astral.tmp 0"]
+    for _item, _pts, _def in _items:
+        _lines.append(f"execute if items entity @s {_ARMOR_SLOT[_slot]} {_item} run scoreboard players set #r astral.tmp {_pts}")
+        _lines.append(f"execute if items entity @s {_ARMOR_SLOT[_slot]} {_item} run scoreboard players set #p astral.tmp {_def}")
+    _lines += ["scoreboard players operation #d astral.tmp += #p astral.tmp",
+               "scoreboard players operation #vp astral.tmp += #r astral.tmp",
+               f"execute if entity @s[tag=astral.protdef] if score #p astral.tmp matches 1.. run function {NS}:player/def_prot_{_slot}"]
+    fn(f"player/def_van_{_slot}", _lines)
+fn("player/def_van_mod", [
+    f"attribute @s minecraft:armor modifier remove {NS}:vanilla_def",
+    "scoreboard players operation @s astral.vanp = #vp astral.tmp",
+    f"execute if score #vp astral.tmp matches 1.. store result storage {NS}:tmp van.n int -1 run scoreboard players get #vp astral.tmp",
+    f"execute if score #vp astral.tmp matches 1.. run function {NS}:player/def_van_mod2 with storage {NS}:tmp van",
+])
+fn("player/def_van_mod2", [f"$attribute @s minecraft:armor modifier add {NS}:vanilla_def $(n) add_value"])
+fn("vandef/publico", ["scoreboard players set #pub astral.vandef 1",
+                      'tellraw @s {"text":"Armadura vanilla como Defensa: ABIERTA a todos","color":"green"}'])
+fn("vandef/privado", ["scoreboard players set #pub astral.vandef 0", "tag @a remove astral.vandef",
+                      'tellraw @s {"text":"Armadura vanilla como Defensa: solo ByTrainx","color":"yellow"}'])
+fn("vandef/apagar", ["scoreboard players set #pub astral.vandef -1", "tag @a remove astral.vandef",
+                     'tellraw @s {"text":"Armadura vanilla como Defensa: APAGADA (reduccion de Minecraft)","color":"red"}'])
+# Protecciones de Minecraft: mismo efecto que el original salvo para quien tiene astral.protdef (ahi da Defensa).
+_SIN_PROTDEF = {"condition": "minecraft:inverted", "term": {"condition": "minecraft:entity_properties",
+                "entity": "this", "predicate": {"nbt": '{Tags:["astral.protdef"]}'}}}
+def _prot_vanilla(ench, base, tag, anvil, weight, min_c, max_c, attrs=None):
+    tags = ([{"expected": True, "id": f"minecraft:{tag}"}] if tag else []) + \
+           [{"expected": False, "id": "minecraft:bypasses_invulnerability"}]
+    eff = {"minecraft:damage_protection": [{
+        "effect": {"type": "minecraft:add", "value": {"type": "minecraft:linear", "base": base, "per_level_above_first": base}},
+        "requirements": {"condition": "minecraft:all_of", "terms": [
+            {"condition": "minecraft:damage_source_properties", "predicate": {"tags": tags}}, _SIN_PROTDEF]}}]}
+    if attrs:
+        eff["minecraft:attributes"] = [attrs]
+    put(f"data/minecraft/enchantment/{ench}.json", {
+        "anvil_cost": anvil, "description": {"translate": f"enchantment.minecraft.{ench}"}, "effects": eff,
+        "exclusive_set": "#minecraft:exclusive_set/armor", "max_cost": {"base": max_c[0], "per_level_above_first": max_c[1]},
+        "max_level": 4, "min_cost": {"base": min_c[0], "per_level_above_first": min_c[1]}, "slots": ["armor"],
+        "supported_items": "#minecraft:enchantable/armor", "weight": weight})
+_prot_vanilla("protection", 1.0, None, 1, 10, (1, 11), (12, 11))
+_prot_vanilla("fire_protection", 2.0, "is_fire", 2, 5, (10, 8), (18, 8), {
+    "amount": {"type": "minecraft:linear", "base": -0.15, "per_level_above_first": -0.15},
+    "attribute": "minecraft:burning_time", "id": "minecraft:enchantment.fire_protection", "operation": "add_multiplied_base"})
+_prot_vanilla("blast_protection", 2.0, "is_explosion", 4, 2, (5, 8), (13, 8), {
+    "amount": {"type": "minecraft:linear", "base": 0.15, "per_level_above_first": 0.15},
+    "attribute": "minecraft:explosion_knockback_resistance", "id": "minecraft:enchantment.blast_protection", "operation": "add_value"})
+_prot_vanilla("projectile_protection", 2.0, "is_projectile", 2, 5, (3, 6), (9, 6))
+# Filo de Minecraft (26/11): +FILO_PCT% por nivel para quien tiene astral.filo; el resto, el +1..+3 fijo original.
+from escala import FILO_PCT
+_CON_FILO = {"condition": "minecraft:entity_properties", "entity": "attacker", "predicate": {"nbt": '{Tags:["astral.filo"]}'}}
+put("data/minecraft/enchantment/sharpness.json", {
+    "anvil_cost": 1, "description": {"translate": "enchantment.minecraft.sharpness"},
+    "effects": {"minecraft:damage": [
+        {"effect": {"type": "minecraft:add", "value": {"type": "minecraft:linear", "base": 1.0, "per_level_above_first": 0.5}},
+         "requirements": {"condition": "minecraft:inverted", "term": _CON_FILO}},
+        {"effect": {"type": "minecraft:multiply", "factor": {"type": "minecraft:linear",
+                    "base": 1 + FILO_PCT / 100, "per_level_above_first": FILO_PCT / 100}},
+         "requirements": _CON_FILO}]},
+    "exclusive_set": "#minecraft:exclusive_set/damage", "max_cost": {"base": 21, "per_level_above_first": 11},
+    "max_level": 5, "min_cost": {"base": 1, "per_level_above_first": 11},
+    "primary_items": "#minecraft:enchantable/melee_weapon", "slots": ["mainhand"],
+    "supported_items": "#minecraft:enchantable/sharp_weapon", "weight": 10})
+fn("filo/publico", ["scoreboard players set #pub astral.filo 1",
+                    'tellraw @s {"text":"Filo en porcentaje: ABIERTO a todos (falta /astralmesa filo publico para la ficha)","color":"green"}'])
+fn("filo/privado", ["scoreboard players set #pub astral.filo 0", "tag @a remove astral.filo",
+                    'tellraw @s {"text":"Filo en porcentaje: solo ByTrainx","color":"yellow"}'])
+fn("filo/apagar", ["scoreboard players set #pub astral.filo -1", "tag @a remove astral.filo",
+                   'tellraw @s {"text":"Filo en porcentaje: APAGADO (Filo de Minecraft)","color":"red"}'])
+# /function astral:protdef/publico abre la Proteccion-Defensa a todos; privado la deja solo en ByTrainx.
+fn("protdef/publico", ["scoreboard players set #pub astral.protdef 1",
+                       'tellraw @s {"text":"Proteccion como Defensa: ABIERTA a todos","color":"green"}'])
+fn("protdef/privado", ["scoreboard players set #pub astral.protdef 0", "tag @a remove astral.protdef",
+                       'tellraw @s {"text":"Proteccion como Defensa: solo ByTrainx","color":"yellow"}'])
+fn("protdef/apagar", ["scoreboard players set #pub astral.protdef -1", "tag @a remove astral.protdef",
+                      'tellraw @s {"text":"Proteccion como Defensa: APAGADA (Proteccion de Minecraft para todos)","color":"red"}'])
 # Vida base estilo Hypixel (escala.VIDA_JUGADOR_BASE). La armadura suma VIDA_PIEZA por pieza.
 fn("player/vida_base", [
     f"attribute @s minecraft:max_health base set {VIDA_JUGADOR_BASE}",
@@ -1591,6 +1772,9 @@ put(f"data/{NS}/tags/entity_type/escalable.json",
     {"values": [f"#{NS}:hostile", "minecraft:iron_golem", "minecraft:vex"]})
 from minijuegos import parkour_worlds as _minijuegos
 mob_roll = [
+    # Incendium (Nether) arma sus mobs en su propio tick (Headless Warrior, etc.): esperar a que termine
+    # para que no pise el nombre con tier y vida.
+    "execute if dimension minecraft:the_nether unless entity @s[tag=in.checked] run return 0",
     "tag @s add astral.seen",
     # Espiritus de Incendium: vex invisibles de 1 vida que son solo particulas; sin nombre ni tier.
     "execute if entity @s[type=minecraft:vex,tag=in.spirit] run return 0",
@@ -1611,6 +1795,7 @@ for w, t in TIER_FIJO.items():  # Oceano Astral: tier fijo, sin depender del inv
     mob_roll.append(f"execute if dimension minecraft:{w} run scoreboard players set #mt astral.tmp {t}")
     mob_roll.append(f"execute if dimension minecraft:{w} run scoreboard players set #dg astral.tmp 2")
 mob_roll.append(CAVERNAS.mob_roll_corazon())   # Corazon de las Cavernas: tier 5
+mob_roll.extend(VACIO.mob_roll())                # Vacio Estelar: tier 7/8 lejos del centro
 mob_roll += [
     f"execute if entity @s[tag=ad.vanilla] run function {NS}:mob/tier_mazmorra",
     f"execute if score #dg astral.tmp matches 0 if entity @a[distance=..128,gamemode=!spectator] run function {NS}:mob/tier_mundo",
@@ -1709,6 +1894,8 @@ fn("mob/nombre", nombre + [
     f"data modify storage {NS}:tmp mob.n append value {{text:\" ❤\",color:\"red\"}}",
     f"data modify entity @s CustomName set from storage {NS}:tmp mob.n",
     "data modify entity @s CustomNameVisible set value 1b",
+    # Incendium mete a sus mobs (Headless Warrior, Withered Scientist...) en un equipo que oculta el nombre.
+    "team leave @s[team=in.noname]",
     "tag @s add astral.hpname",
     f"function {NS}:mob/vida",
 ])
@@ -1959,12 +2146,20 @@ for idx, (out, n, ings, group) in enumerate(RECIPES, start=1):
         lines.append(f"execute if score #h astral.tmp matches ..{count - 1} run data modify storage {NS}:tmp forge.missing "
                      f"append value \"{count}x {ing_name(kind, ident)}\"")
     lines.append(f"execute if data storage {NS}:tmp forge.missing[0] run return run function {NS}:forge/missing")
-    for (kind, ident, count) in ings:
+    prev = chain_prev(out, n, ings)
+    if prev:
+        # La pieza anterior se transforma (conserva encantamientos); si no se encuentra en un slot, se fabrica nueva.
+        lines.append(f"execute store result score #ip astral.tmp run function {NS}:forge/ip/{out}/{prev}")
+    for i, (kind, ident, count) in enumerate(ings):
+        if prev and i == 0:
+            lines.append(f"execute unless score #ip astral.tmp matches 1.. run clear @s {ing_pred(kind, ident)} {count}")
+            continue
         lines.append(f"clear @s {ing_pred(kind, ident)} {count}")
         if ident == "minecraft:lava_bucket":
             lines.append("give @s minecraft:bucket 1")
     for _ in range(n):
-        lines.append(f"loot give @s loot {NS}:item/{out}")
+        lines.append((f"execute unless score #ip astral.tmp matches 1.. run " if prev else "")
+                     + f"loot give @s loot {NS}:item/{out}")
     it = ITEMS[out]
     # La guia fabrica desde el inventario; debe notificar igual que el altar.
     for _tier in (1, 5):
@@ -2359,6 +2554,7 @@ KITS = [
     ("gemas_altas", "Gemas Perfecta y Estelar", "light_purple", "minecraft:magenta_shulker_box",
      [GEMAS.item_id(t, q) for t, q in GEMAS.todas() if q >= 4]),
     ("cavernas", "Cavernas de Cristal", "light_purple", "minecraft:purple_shulker_box", list(CAVERNAS.ITEMS)),
+    ("vacio", "Vacio Estelar", "dark_purple", "minecraft:black_shulker_box", list(VACIO.ITEMS)),
     ("historia", "Items del Modo Historia", "gold", "minecraft:orange_shulker_box", list(__import__("historia_items").ITEMS_HISTORIA)),
     # Clases nuevas (clases.py, 22/11)
     ("segador", "Armaduras del Segador", "red", "minecraft:red_shulker_box", [i for i in ITEMS if i.startswith("segador_")]),
@@ -2430,6 +2626,7 @@ fn("tool/broke", [
     *[f'execute if dimension minecraft:{w} run return 0' for w in __import__('gameplay').PROTECTED],
     # Cavernas de Cristal: el area la pica AstralCavernas (rompe todo, como el jugador).
     f"execute if dimension minecraft:{CAVERNAS.WORLD} run return 0",
+    f"execute if dimension minecraft:{VACIO.WORLD} run return 0",   # Vacio Estelar: area de AstralVacio
     "execute if score @s astral.tok matches ..0 run return 0",
     f"execute store result storage {NS}:tmp tool.x int 1 run scoreboard players get @s astral.tx",
     f"execute store result storage {NS}:tmp tool.y int 1 run scoreboard players get @s astral.ty",
@@ -2477,6 +2674,7 @@ fn("tool/mine", [
     *__import__('oceano_items').drill_guard(),
     # Vetas de las Cavernas de Cristal (cavernas.py): taladro tier 4+ y conteo para comisiones.
     *CAVERNAS.tool_mine_lines(),
+    *VACIO.tool_mine_lines(),
     'execute if dimension minecraft:astral_bosque run function astral:tool/bosque_loot',
     'execute unless dimension minecraft:astral_bosque run loot spawn ~0.5 ~0.5 ~0.5 mine ~ ~ ~ mainhand',
     "particle minecraft:poof ~0.5 ~0.5 ~0.5 0.2 0.2 0.2 0.01 2",
@@ -2507,6 +2705,11 @@ for f, (F, R) in FACING.items():
                             d = [u * R[k] + (v if k == 1 else 0) for k in range(3)]
                         lines.append(f"execute positioned ~{d[0]} ~{d[1]} ~{d[2]} if block ~ ~ ~ #{NS}:drillable "
                                      f"run function {NS}:tool/mine")
+                if a == 2 and not vert:
+                    # 24/11 (dueno): 2x1 con el compañero ya vacio (picando un escalon, zanja): rompe el del otro lado.
+                    other = -1 if up else 1
+                    lines = [lines[0].replace(" run function", " run return run function"),
+                             f"execute positioned ~ ~{other} ~ if block ~ ~ ~ #{NS}:drillable run function {NS}:tool/mine"]
                 name = f"tool/d/{f}{a}{'v' if vert else 'h'}{up}"
                 fn(name, lines)
                 cond = f"if score #a astral.tmp matches {a} if score #v astral.tmp matches {vert}"
@@ -2573,6 +2776,8 @@ load = [
     "scoreboard objectives add astral.ty dummy",
     "scoreboard objectives add astral.tz dummy",
 ] + [f"scoreboard objectives add {o} {c}" for (o, c) in log_objs] + [
+    f"scoreboard objectives add {o} {c}" for (o, c, _d) in place_objs] + [
+    "scoreboard objectives add astral.dlog dummy", "scoreboard objectives add astral.des dummy"] + [
     "scoreboard players set #2 astral.const 2",
     "scoreboard players set #3 astral.const 3",
     "scoreboard players set #5 astral.const 5",
@@ -2691,6 +2896,13 @@ for L, (plata, prob, mats) in MEJORAS.items():
 # hacer vuelve a mirar que item tenes en la mano (#k) antes de tocarlo
 fn("mejora/hacer", KIND + ["execute if score #k astral.tmp matches 0 run return 0"] + hacer)
 load.append("scoreboard objectives add astraldef dummy")
+load.append("scoreboard objectives add astral.protdef dummy")
+load.append("execute unless score #pub astral.protdef matches -1..1 run scoreboard players set #pub astral.protdef 0")
+load.append("scoreboard objectives add astral.filo dummy")
+load.append("execute unless score #pub astral.filo matches -1..1 run scoreboard players set #pub astral.filo 0")
+load.append("scoreboard objectives add astral.vandef dummy")
+load.append("scoreboard objectives add astral.vanp dummy")
+load.append("execute unless score #pub astral.vandef matches -1..1 run scoreboard players set #pub astral.vandef 0")
 # Nivel de efectos visuales por jugador (plugin AstralEfectos): 0 Bajo, 1 Medio, 2 Alto.
 load.append("scoreboard objectives add astral.fx dummy")
 load.append("scoreboard objectives add astral.defp dummy")
@@ -2706,7 +2918,10 @@ fn("tick", [
     f"execute as @a[scores={{astral.forja=1..}}] at @s run function {NS}:forge/craft",
     "scoreboard players remove @a[scores={astral.cd=1..}] astral.cd 1",
     f"execute as @a[scores={{astral.grap=1..}}] run function {NS}:grapple/tick",
-    f"execute as @e[type=#minecraft:arrows,tag=astral.bowshot] at @s run function {NS}:bow/norm",
+    # Solo busca flechas si alguna se disparo desde la ultima vez (bow/tag marca #flechas).
+    "execute store success score #flechas_ver astral.tmp if score #flechas astral.tmp matches 1..",
+    "scoreboard players set #flechas astral.tmp 0",
+    f"execute if score #flechas_ver astral.tmp matches 1 as @e[type=#minecraft:arrows,tag=astral.bowshot] at @s run function {NS}:bow/norm",
     "# si soltaste el arco, se reinicia la carga",
     "scoreboard players set @a[tag=!astral.drew,scores={astral.draw=1..}] astral.draw 0",
     "tag @a remove astral.drew",
@@ -2739,6 +2954,7 @@ log_cond = " ".join([])
 t10 = [
     f"execute as @a run function {NS}:player/def",
     f"execute as @a[tag=!astral.vida{VIDA_JUGADOR_BASE}] run function {NS}:player/vida_base",
+    *[f"execute as @a[scores={{{o}=1..}}] at @s run function {NS}:mine/placed" for (o, _c, _d) in place_objs],
     f"execute as @a[scores={{astral.m_es=1..}}] at @s run function {NS}:mine/endstone",
     f"execute as @a[scores={{astral.m_ch=1..}}] at @s run function {NS}:mine/chorus",
 ]
@@ -2789,6 +3005,17 @@ for iid, source in FICHAS.items():
         upgrade = json.loads(files[f'data/{NS}/item_modifier/upgrade/{iid}.json'])
         upgrade[0]['components'].update(render_ficha(source, L))
         put(f'data/{NS}/item_modifier/upgrade/{iid}/{L}.json', upgrade)
+# Forja en el lugar: sale reparada, sin componentes que la pieza nueva no tiene, y conserva encantamientos.
+for _out, _prev in sorted(CHAIN):
+    _gone = {"!minecraft:damage": {}}
+    for _k in ITEMS[_prev]["components"]:
+        if _k not in ITEMS[_out]["components"] and _k != "minecraft:enchantments":
+            _gone["!" + _k] = {}
+    for L in (range(11) if ITEMS[_out]["mejorable"] else [0]):
+        _src = (f'data/{NS}/item_modifier/upgrade/{_out}/{L}.json' if _out in FICHAS
+                else f'data/{NS}/item_modifier/upgrade/{_out}.json')
+        put(f'data/{NS}/item_modifier/forja/{_out}/{_prev}/{L}.json',
+            [{"function": "minecraft:set_components", "components": _gone}] + json.loads(files[_src]))
 from estrella_menu import generate as generate_menu_star
 generate_menu_star(files)
 from special_weapons import generate as generate_special_weapons
@@ -2802,6 +3029,7 @@ generate_tanda4b_world(files)
 from oceano_items import generate as generate_oceano_items
 generate_oceano_items(files)
 CAVERNAS.tabla_note_block(files)
+VACIO.tabla_note_block(files)
 from santuario_azeroth import generate as generate_sanctuary
 generate_sanctuary(files)
 from infinita import generate as generate_infinita

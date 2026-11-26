@@ -324,6 +324,9 @@ files.update(redesigned_item_assets())
 # materiales y materiales de elites en 32x32. Van despues de todo lo anterior para ganarle.
 from iconos_19_11 import assets as iconos_19_11_assets
 files.update(iconos_19_11_assets())
+# Items del Modo Historia (22/11): lamina del dueno pack-source/art/ref_22_11 (historia_arte.py)
+from historia_arte import assets as historia_assets
+files.update(historia_assets())
 # Modelos 3D del 22/11 (piezas3d.py): taladros y motosierras esculpidos, gomera 3D (3 estados) y libros del
 # Invocador. Van al final: reemplazan los modelos planos de iconos_19_11 e historia_arte (las texturas quedan).
 from herramientas3d import assets as herramientas3d_assets
@@ -504,6 +507,8 @@ for _t in BALLESTAS:
 from tanda_xp import assets as xp_assets
 from botones_provisorios import KEYS as XP_BUTTONS
 files.update(xp_assets(XP_BUTTONS))
+from manzanas import pack_assets as manzanas_assets
+files.update(manzanas_assets())  # Manzanas de Mazmorra T2-T10
 from arte_1611 import assets as arte_assets
 files.update(arte_assets())
 # Gemas de la Reforja (gemas.py, 7d): PNG reemplazables en pack-source/assets/astral/textures/item/gemas/
@@ -529,6 +534,10 @@ with zipfile.ZipFile(ATLAS_ROOT / 'build/AstralRPG-Items.zip') as _atlas_data:
     _atlas_icons = json.loads(_atlas_data.read('data/astral/atlas/iconos.json'))
     _atlas_rows = json.loads(_atlas_data.read('data/astral/atlas/bestiario.json'))
 files.update(atlas_assets(files, _atlas_icons, _atlas_rows, ATLAS_ROOT / 'build/models'))
+# Botones de la tienda (shop_ui.py): EconomyShopGUI gratis solo deja elegir material, asi que
+# STRUCTURE_VOID (solo creativo) queda sin dibujo y se ve el boton pintado de la ventana.
+from shop_ui import BOTON_INVISIBLE
+put_json(f'assets/minecraft/items/{BOTON_INVISIBLE.lower()}.json', {"model": {"type": "minecraft:empty"}})
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 archive = _io.BytesIO()
 with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as z:

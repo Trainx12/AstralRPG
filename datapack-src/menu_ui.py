@@ -41,7 +41,7 @@ def title():
 
 # Iconos pintados por Gemini (hojas 12 y 28): ganan sobre el pixel art de reserva.
 GEMINI_ICONS = ('fragmentos', 'duelos', 'cosmeticos', 'mochilas', 'proteccion', 'recetas', 'tren', 'santuario',
-                'configuraciones')
+                'configuraciones', 'party')   # party: emblema Gemini 21/11 (ref del dueno), textura 72x72
 
 
 # Botones con arte de Gemini (pedido 12/11/2026: los dibujitos se veian pobres).
@@ -97,12 +97,37 @@ def icon(key):
     if key in NEW_KEYS and key not in GEMINI_ICONS:
         return painted_icon(key)
     art = illustration('menu_' + (key if key in GEMINI_ICONS else ICON_ART.get(key, key)))
+    if key == 'party':
+        # 21/11: emblema con mucho detalle -> textura a 4x (72x72): el juego la muestra en el mismo lugar de 18 px
+        # pero con los pixeles reales de la pantalla, y se lee como la referencia del dueno.
+        im = art.crop((40, 40, art.width - 40, art.height - 40)).resize((72, 72), Image.Resampling.LANCZOS)
+        ImageDraw.Draw(im).rectangle((0, 0, 71, 71), outline=EDGE, width=4)
+        return im
     im = art.resize((72, 72), Image.Resampling.BOX).resize((18, 18), Image.Resampling.LANCZOS)
     if key == 'configuraciones':
         # Recuperar separacion de los fuegos al reducir, sin redibujar el arte elegido.
         im = ImageEnhance.Color(ImageEnhance.Contrast(im).enhance(1.2)).enhance(1.15)
     d = ImageDraw.Draw(im)
     d.rectangle((0, 0, 17, 17), outline=EDGE)
+    return im
+
+
+# 23/11 pedido del dueno: todos los iconos del Menu Astral a 72x72 como Party (a 18 px quedaban descolocados).
+# El juego los dibuja en la misma casilla, pero con 4x de detalle. Solo cambia la textura de estas teclas;
+# icon() sigue en 18 px para las otras ventanas que pegan estos iconos en su fondo.
+HD_KEYS = tuple(k for k in KEYS if k != 'guia') + ('configuraciones',)
+
+
+def hd_icon(key):
+    if key == 'party':
+        return icon('party')
+    art = illustration('menu_' + (key if key in GEMINI_ICONS else ICON_ART.get(key, key)))
+    side = min(art.size)
+    x0, y0 = (art.width - side) // 2, (art.height - side) // 2
+    im = art.crop((x0, y0, x0 + side, y0 + side)).resize((72, 72), Image.Resampling.LANCZOS)
+    if key == 'configuraciones':
+        im = ImageEnhance.Color(ImageEnhance.Contrast(im).enhance(1.2)).enhance(1.15)
+    ImageDraw.Draw(im).rectangle((0, 0, 71, 71), outline=EDGE, width=4)
     return im
 
 
@@ -306,7 +331,7 @@ def assets():
     providers.append({'type': 'space', 'advances': advances})
     for key in (*KEYS,*EXTRA_KEYS):
         name = 'icon_' + key
-        files[f'assets/astral/textures/item/menu/{name}.png'] = png(icon(key))
+        files[f'assets/astral/textures/item/menu/{name}.png'] = png(hd_icon(key) if key in HD_KEYS else icon(key))
         files[f'assets/astral/models/menu/{name}.json'] = json.dumps({'parent': 'minecraft:item/generated', 'gui_light': 'front',
             'textures': {'layer0': f'astral:item/menu/{name}'}, 'display': {'gui': {'scale': [1.125, 1.125, 1]}}}).encode()
         files[f'assets/astral/items/menu/{name}.json'] = json.dumps({'oversized_in_gui': True,
@@ -319,7 +344,7 @@ def preview(folder, name='menu-astral.png'):
     im = Image.new('RGBA', SIZE, '#22242a'); im.alpha_composite(panel())
     for key, slot in zip(KEYS, SLOTS):
         if key == 'guia': continue
-        im.alpha_composite(icon(key), (31 + slot % 9 * 18, 57 + slot // 9 * 18))
+        im.alpha_composite(icon(key).resize((18, 18), Image.Resampling.LANCZOS), (31 + slot % 9 * 18, 57 + slot // 9 * 18))
     im.alpha_composite(icon('configuraciones'), (31 + EFFECTS_SLOT % 9 * 18, 57 + EFFECTS_SLOT // 9 * 18))
     text(im, 'Inventario', (86, 169), color='#383c40')
     (folder / name).write_bytes(png(im.resize((672, 840), Image.Resampling.NEAREST)))

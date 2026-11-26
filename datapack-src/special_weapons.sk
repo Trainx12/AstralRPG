@@ -138,6 +138,9 @@ function asw_pay(p: player, amount: number) :: boolean:
     if scoreboard tags of {_p} contains "astral.encmagia":
         set {_sabio} to "astral:sabio_arcano" parsed as enchantment
         set {_lv} to enchantment level of {_sabio} on tool of {_p}
+        # Sin el encantamiento el nivel queda vacio y min(5, vacio) daba 5 (20% de descuento gratis).
+        if {_lv} is not set:
+            set {_lv} to 0
         set {_lv} to min(5, {_lv})
         set {_amount} to {_amount} * (1 - 0.04 * {_lv})
     set {_mana} to {-asw.mana::%uuid of {_p}%}

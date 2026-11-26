@@ -1,0 +1,120 @@
+menu_title: '&f&#ffe9a8Mochila de Netherite'
+size: 54
+items:
+  'g3':
+    material: NETHERITE_UPGRADE_SMITHING_TEMPLATE
+    slot: 19
+    amount: 1
+    display_name: '&fPlantilla de mejora de netherite'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'g4':
+    material: PLAYER_HEAD
+    slot: 20
+    amount: 1
+    display_name: '&bMochila de Diamante'
+    item_model: 'astral:mochila_diamond'
+    lore:
+    - '&745 espacios'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'g5':
+    material: NETHERITE_INGOT
+    slot: 21
+    amount: 1
+    display_name: '&fLingote de netherite'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'flecha':
+    material: PAPER
+    slot: 23
+    amount: 1
+    display_name: '&7Mesa de Herreria'
+    item_model: 'astral:mascotas/nav_next'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'resultado':
+    material: PLAYER_HEAD
+    slot: 25
+    amount: 1
+    display_name: '&8Mochila de Netherite'
+    item_model: 'astral:mochila_netherite'
+    lore:
+    - '&754 espacios'
+    - '&7Clic derecho para abrirla'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'como':
+    material: KNOWLEDGE_BOOK
+    slot: 40
+    amount: 1
+    display_name: '&6&lMesa de Herreria'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7En la Mesa de Herreria: plantilla de netherite,'
+    - '&7la Mochila de Diamante y 1 lingote de netherite.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_mochilas'
+  'anterior':
+    material: PAPER
+    slot: 47
+    amount: 1
+    display_name: '&eAnterior'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_mochila_diamond'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

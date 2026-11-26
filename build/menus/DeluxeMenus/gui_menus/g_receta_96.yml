@@ -21,7 +21,7 @@ items:
     - '&7Durabilidad: &f2.401'
     - '&7Tier: 1'
     - ''
-    - '&cRequiere: Defensa 6'
+    - '&cRequiere: Arqueria 8'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN CASCO'
     item_flags:

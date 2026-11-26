@@ -5,6 +5,7 @@ import unittest
 from pathlib import Path
 
 import economia as E
+import minas
 
 ROOT = Path(__file__).resolve().parents[1]
 BUILD = ROOT / 'build'
@@ -37,11 +38,38 @@ class Cobertura(unittest.TestCase):
         import lobby, minas, renacimiento
         self.assertEqual([m for m, _, _ in MEJORAS.values()], E.MEJORAS_PLATA)
         self.assertEqual({k: g['cost'] for k, g in lobby.GACHAS.items()}, E.GACHA_TIRADA)
-        self.assertEqual(minas.MINES[-1][-1], 2_500_000_000)
-        self.assertEqual(minas.PRICES['netherite_block'], 15_000)
-        self.assertEqual(minas.PRICES['diamond_block'], 7_200)
-        self.assertEqual(renacimiento.tope(), 2_500_000_000)
-        self.assertEqual(renacimiento.tope_lite(), 625_000_000)
+        # Recorte del 25/11: Netherita III cuesta 250M (antes 2.500M, que siguen pagando los sin recorte).
+        self.assertEqual(minas.MINES[-1][-1], 250_000_000)
+        self.assertEqual(minas.COSTS_VIEJOS[-1], 2_500_000_000)
+
+    def test_recorte_minas_25_11(self):
+        """La mina mas alta abierta siempre paga mas; Tier I igual que antes; Netherita III ~790 por bloque."""
+        vf = [minas.mine_value(m[1], m[2], m[3], E.MINAS_FORTUNA) for m in minas.MINES]
+        v = [minas.mine_value(m[1], m[2], m[3]) for m in minas.MINES]
+        for r in range(1, len(minas.MINES) + 1):
+            pago = [x * minas.mult(r) for x in vf[:r]]
+            self.assertEqual(max(pago), pago[-1], f'rango {r}: conviene una mina vieja')
+            pago = [x * minas.mult(r) for x in v[:r]]
+            self.assertEqual(max(pago), pago[-1], f'rango {r} sin Fortuna: conviene una mina vieja')
+        paga = [round(vf[r - 1] * minas.mult(r)) for r in range(1, len(vf) + 1)]
+        self.assertEqual(paga, sorted(paga))
+        self.assertTrue(all(minas.mult(r) == 1 for r in range(1, 7)))
+        self.assertLessEqual(paga[-1], 800)
+        self.assertEqual(minas.MINES[4][-1], minas.COSTS_VIEJOS[4])   # Esmeralda I: mismo costo
+        sk = minas.script()
+        self.assertIn('set {-am.mult::13} to', sk)
+        self.assertIn('set {_total} to {_total} * am_mult({_p})', sk)
+
+    def test_pay_limite(self):
+        sk = E.skript()
+        self.assertIn(f'pagolim: {E.GACHA_TIRADA["gacha_rpg"]}', sk)
+        self.assertIn('command is "pay" or "epay" or "essentials:pay" or "essentials:epay"', sk)
+        self.assertIn('{eco.pago.modo} ? "privado"', sk)
+
+    def test_tablas_del_plan_2(self):
+        import renacimiento
+        self.assertEqual(renacimiento.tope(), 250_000_000)
+        self.assertEqual(renacimiento.tope_lite(), 62_500_000)
         self.assertEqual(E.PLATA_MOB_TIER[10], 800_000)
 
 

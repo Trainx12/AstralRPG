@@ -53,6 +53,14 @@ def corto(n):
 PLATA_MOB_TIER = {1: 1_500, 2: 3_000, 3: 6_000, 4: 12_000, 5: 25_000}
 for _t in range(6, 11):
     PLATA_MOB_TIER[_t] = PLATA_MOB_TIER[_t - 1] * 2
+# Mobs vanilla del survival (24/11/2026, pedido del dueno): pagan segun su vida. Un zombi (20 de vida base)
+# paga PLATA_VANILLA_TIER del tier que le toco; los demas en proporcion a su vida base (arana 16 = 0,8x,
+# enderman 40 = 2x; los elites cuentan su vida extra). Un tercio de un mob Astral del mismo tier.
+# No pagan los de spawner (granjas), los criados ni los de comandos/huevos (solo apariciones naturales).
+PLATA_VANILLA_TIER = {t: PLATA_MOB_TIER[t] // 3 // 100 * 100 for t in PLATA_MOB_TIER}
+VANILLA_VIDA_REF = 20      # vida base del zombi
+VANILLA_TOPE = 10          # como mucho 10 zombis por mob (elites Astral, wither, etc.)
+VANILLA_ORIGENES = ('natural', 'jockey', 'reinforce', 'patrol', 'raid', 'trial', 'split', 'drowned', 'chunk')
 # Multiplicador por categoria. 'jefe' = jefes del mundo (Momia, Yeti...): x50 como antes (15 -> 750).
 MULT_MOB = {'hostil': 1, 'elite': 10, 'jefe': 50, 'ancestral': 100}
 
@@ -60,6 +68,13 @@ MULT_MOB = {'hostil': 1, 'elite': 10, 'jefe': 50, 'ancestral': 100}
 # el jefe a cada participante vivo (no espectador) en la sala.
 OLEADA_TIER = {1: 300, 2: 800, 3: 2_000, 4: 4_500, 5: 10_000}
 JEFE_MAZMORRA_TIER = {1: 100_000, 2: 300_000, 3: 800_000, 4: 2_000_000, 5: 5_000_000}
+# 24/11 (dueno): cada mob de oleada paga lo mismo que un mob Astral del Survival de ese tier, y la
+# Mazmorra Infinita paga como los mobs vanilla del Survival (segun su tier y vida). Primero solo para quien
+# tenga MAZMORRA_PLATA_PERMISO (ByTrainx); abrirlo con `lp group default permission set astral.eco.mazmorras true`.
+# 26/11 (dueno): los mobs de mazmorra pagan la MITAD que en el Survival (oleadas y Mazmorra Infinita).
+MAZMORRA_PLATA_FACTOR = 0.5
+OLEADA_TIER_NUEVO = {t: int(PLATA_MOB_TIER[t] * MAZMORRA_PLATA_FACTOR) for t in OLEADA_TIER}
+MAZMORRA_PLATA_PERMISO = 'astral.eco.mazmorras'
 ELITE_OLEADA = 10            # elite dentro de una mazmorra = 10 mobs de oleada
 ECO_SANTUARIO = 3_000_000    # cada eco del Santuario, a cada participante
 RADIO_PARTICIPANTES = 64
@@ -95,8 +110,10 @@ def nota(p):
 RULETA_MIN = 2_000
 RULETA_MAX = {'F': 5_000, 'D': 30_000, 'C': 80_000, 'B': 150_000, 'A': 250_000, 'S': 500_000}   # tier I
 RULETA_K = {'F': 3.0, 'D': 2.5, 'C': 2.0, 'B': 1.8, 'A': 1.6, 'S': 1.4}
-RULETA_MULT_TIER = {1: 1, 2: 3, 3: 8, 4: 18, 5: 40}
-RULETA_MULT_SANTUARIO = 60
+# 25/11 (recorte de las Minas): antes {1: 1, 2: 3, 3: 8, 4: 18, 5: 40} y Santuario 60 (una S en tier 5 daba ~8M
+# de promedio por partida, mas que una hora de Minas). Tier 1-2 igual.
+RULETA_MULT_TIER = {1: 1, 2: 3, 3: 5, 4: 8, 5: 12}
+RULETA_MULT_SANTUARIO = 18
 
 
 def ruleta_mult(key, tier):
@@ -159,6 +176,13 @@ SECRETO_TIRADAS = 2                 # tiradas de premios (con pesos de nota B)
 SECRETO_NOTA_PESOS = 'B'
 
 
+# ------------------------------------------------------------------ misiones del Cronista (24/11/2026)
+# Cifras finales (ya en la escala nueva, sin plata()). Antes eran 30k..1M la historia y 30k/75k/150k las
+# diarias: quedaron por debajo de lo que paga un jefe del mismo tier. Cada capitulo queda cerca del jefe
+# de mazmorra de su tier (Minas T2 = 300k, Tumba T3 = 800k, Cumbre T4 = 2M, Forja T5 = 5M).
+HISTORIA_PLATA = [50_000, 100_000, 200_000, 300_000, 500_000, 1_000_000, 2_500_000, 6_000_000, 10_000_000]
+DIARIA_PLATA = [100_000, 250_000, 600_000]   # facil, media, dificil
+
 # ------------------------------------------------------------------ servicios
 # Mejora del Herrero +1..+10 (mas empinado que x100: late game caro).
 MEJORAS_PLATA = [30_000, 75_000, 150_000, 300_000, 600_000, 1_200_000, 2_500_000, 5_000_000, 10_000_000, 25_000_000]
@@ -173,9 +197,13 @@ GEMA_EXTRAER_MULT = 3
 
 
 # Cavernas de Cristal (plan E5 / 7e, 19/11/2026): venta de las menas propias (por unidad) y premios de comisiones.
-# Objetivo: entre Minas II y Minas III (~20-60M/h con taladro de mitad de juego). Cuenta en cavernas.py (plata_hora).
-CAVERNAS_PRECIO = {'cristal_caverna': 45_000, 'geoda_estelar': 400_000}
-CAVERNAS_COMISION = {'facil': 2_000_000, 'media': 4_000_000, 'dificil': 8_000_000}
+# 25/11 (dueno, junto con el recorte de las Minas): antes 45.000 / 400.000 (~42M/h) y comisiones 2M/4M/8M.
+# Objetivo nuevo: como Restos II - III Carbon de las Minas con taladro 2x2 (~8M/h). Cuenta en cavernas.py (plata_hora).
+CAVERNAS_PRECIO = {'cristal_caverna': 8_500, 'geoda_estelar': 76_000}
+CAVERNAS_COMISION = {'facil': 400_000, 'media': 750_000, 'dificil': 1_500_000}
+# Vacio Estelar (7f): antes 110.000 el Fragmento y 3.000.000 el Nucleo (~72M/h). 25/11: un poco arriba de
+# Netherita III de las Minas (~12M/h buscando vetas). Cuenta en vacio.py (plata_hora).
+VACIO_PRECIO = {'fragmento_estelar': 18_000, 'nucleo_meteorito': 500_000}
 
 
 def gema_costo(tier, calidad, extraer=False):
@@ -184,7 +212,27 @@ def gema_costo(tier, calidad, extraer=False):
 
 # Minas: todo x100 salvo la Netherita III.
 NETHERITA_BLOQUE = 15_000
-NETHERITA_APERTURA = 2_500_000_000
+# 25/11 (dueno): bajo de 2.500M a 250M junto con el recorte de abajo (pide igual 25 h de mineria en Diamante III).
+NETHERITA_APERTURA = 250_000_000
+
+# Minas Astrales, recorte del 25/11/2026 (pedido del dueno): con la plata de las minas altas se compraba toda la
+# tienda y cientos de gachas. Ahora lo que paga cada bloque depende de la MINA MAS ALTA ABIERTA del jugador:
+# la venta rapida multiplica por {-am.mult::rango} (minas.py, mult()). Referencia: las minas Tier I (1-6, con
+# Esmeralda I) pagan igual que antes. De la 7 a la 20 sube poquito por mina hasta MINAS_SUBA veces lo de
+# Diamante I en Netherita III. La cuenta se hace con Fortuna III (MINAS_FORTUNA = mineral promedio por mena), que
+# es lo que usa cualquiera que mina en serio; sin Fortuna las minas II pagan un poco menos y las III igual.
+# Antes Netherita III pagaba 15.000 por bloque y Restos II 4.818; ahora ~790 y ~560.
+# El progreso fuerte de las minas altas lo dan los taladros (1x1 -> 4x4 = 16 veces mas bloques), no el precio.
+# Los minerales de las minas no salen del mundo (AstralMinasLimite), asi que esto no toca la tienda.
+MINAS_SUBA = 2.0
+MINAS_FORTUNA = 2.2
+MINAS_COSTO_FACTOR = 0.85      # abrir la mina N = 85 % de lo que se gana picando los bloques que pide en la N-1
+
+# /pay de un jugador con mina mas alta a uno con mina mas baja (25/11, dueno): como mucho lo de una tirada del
+# Gacha de Armas por hora, sumando lo que le pasen todos (asi no sirve usar varias cuentas).
+PAGO_LIMITE = GACHA_TIRADA['gacha_rpg']
+PAGO_HORAS = 1
+PAGO_PERMISO_LIBRE = 'astral.eco.paylibre'
 
 # ------------------------------------------------------------------ muerte
 PERDIDA_MUERTE = 0.5
@@ -313,11 +361,15 @@ def skript():
          f'    perdida: {PERDIDA_MUERTE}',
          f'    espera: {PERDIDA_ESPERA_SEG}',
          f'    eliteola: {ELITE_OLEADA}',
+         f'    permmaz: {MAZMORRA_PLATA_PERMISO}',
          f'    interes: {BANCO_INTERES}',
          f'    interesmax: {BANCO_INTERES_MAX}',
          f'    horas: {BANCO_HORAS}',
          f'    escala: {ESCALA}',
          f'    titulo: {BANCO_TITULO}',
+         f'    pagolim: {PAGO_LIMITE}',
+         f'    pagoseg: {PAGO_HORAS * 3600}',
+         f'    pagolibre: {PAGO_PERMISO_LIBRE}',
          '',
          'on load:',
          '    delete {-eco.tiermaz::*}', '    delete {-eco.mob::*}', '    delete {-eco.mult::*}',
@@ -327,8 +379,15 @@ def skript():
     L += [f'    set {{-eco.mob::{t}}} to {v}' for t, v in PLATA_MOB_TIER.items()]
     L += [f'    set {{-eco.mult::{c}}} to {v}' for c, v in MULT_MOB.items()]
     L += [f'    set {{-eco.oleada::{t}}} to {v}' for t, v in OLEADA_TIER.items()]
+    L += ['    delete {-eco.oleada2::*}'] + [f'    set {{-eco.oleada2::{t}}} to {v}' for t, v in OLEADA_TIER_NUEVO.items()]
     L += [f'    set {{-eco.jefe::{t}}} to {v}' for t, v in JEFE_MAZMORRA_TIER.items()]
     L += [f'    set {{-eco.santuario}} to {ECO_SANTUARIO}']
+    from tanda5a import PARTY_SPLIT_WORLDS
+    L += ['    delete {-eco.partymundo::*}'] + [f'    set {{-eco.partymundo::{w}}} to true' for w in PARTY_SPLIT_WORLDS]
+    from escala import VIDA_MOB
+    L += ['    delete {-eco.vanilla::*}', '    delete {-eco.vidamob::*}']
+    L += [f'    set {{-eco.vanilla::{t}}} to {v}' for t, v in PLATA_VANILLA_TIER.items()]
+    L += [f'    set {{-eco.vidamob::{t}}} to {VIDA_MOB[t]}' for t in PLATA_VANILLA_TIER]
     L += [f'    set {{-eco.perdida::{w}}} to true' for w in mundos_con_perdida()]
     for i, (nombre, lim, costo) in enumerate(BANCO_NIVELES, 1):
         L += [f'    set {{-eco.banco.nombre::{i}}} to "{nombre}"', f'    set {{-eco.banco.lim::{i}}} to {lim}',
@@ -339,7 +398,9 @@ def skript():
     L += [f'    set {{-eco.banco.max}} to {len(BANCO_NIVELES)}',
           '    if {astral.banco.proximo} is not set:',
           '        set {astral.banco.proximo} to {@horas} hours after now', '']
-    L += [SK_CUERPO]
+    origenes = ', '.join(f'"{o}"' for o in VANILLA_ORIGENES[:-1]) + f' and "{VANILLA_ORIGENES[-1]}"'
+    L += [SK_CUERPO.replace('__ORIGENES__', origenes).replace('__REF__', str(VANILLA_VIDA_REF))
+          .replace('__TOPE__', str(VANILLA_TOPE)).replace('__MAZFACTOR__', str(MAZMORRA_PLATA_FACTOR))]
     return '\n'.join(L) + '\n'
 
 
@@ -370,12 +431,53 @@ function astral_eco_dar(p: player, n: number):
     add {_v} to balance of {_p}
     send action bar "&6+%{_v}%$" to {_p}
 
+# 24/11 (dueno): en mazmorras de party la plata de cada mob se reparte en partes iguales con los companeros
+# del mismo mundo (como la XP de AstralProgression). Mismo permiso: astral.xp.partysplit.
+function astral_eco_repartir(p: player, n: number):
+    set {_l} to {-party.lider::%uuid of {_p}%}
+    set {_solo} to true
+    if {_l} is set:
+        if {-eco.partymundo::%name of world of {_p}%} is set:
+            if {_p} has permission "astral.xp.partysplit":
+                set {_solo} to false
+    if {_solo} is true:
+        astral_eco_dar({_p}, {_n})
+        stop
+    # 25/11: lista por uuid, cada jugador cuenta una sola vez (Matute solo cobraba la mitad).
+    set {_r::%uuid of {_p}%} to {_p}
+    loop all players in world of {_p}:
+        {-party.lider::%uuid of loop-player%} is {_l}
+        gamemode of loop-player is survival or adventure
+        set {_r::%uuid of loop-player%} to loop-player
+    set {_c} to size of {_r::*}
+    loop {_r::*}:
+        astral_eco_dar(loop-value, {_n} / {_c})
+
 function astral_eco_participantes(p: player, n: number):
+    # 25/11: lista por uuid: un mismo jugador no puede contar dos veces (Matute, solo, cobro 50.000 de 100.000).
     loop all players in radius {@radio} around {_p}:
         world of loop-player is world of {_p}
         gamemode of loop-player is survival or adventure
-        astral_eco_dar(loop-player, {_n})
-        send "&6Recompensa del jefe: &e+%{-eco.ultimo::%uuid of loop-player%}%$" to loop-player
+        set {_r::%uuid of loop-player%} to loop-player
+    # 24/11 (dueno): con el reparto prendido el premio del jefe se divide entre los que estan en la pelea.
+    set {_c} to 1
+    if {-eco.partymundo::%name of world of {_p}%} is set:
+        if {_p} has permission "astral.xp.partysplit":
+            # 25/11: antes max(size of {_r::*}, 1): Skript lo lee como el tamano de la lista "{_r::*}, 1"
+            # (uno de mas): solo cobraba la mitad y 3 jugadores un cuarto cada uno.
+            set {_c} to size of {_r::*}
+            if {_c} < 1:
+                set {_c} to 1
+    log "jefe %{_n}% en %name of world of {_p}%: %{_c}% partes entre %{_r::*}%" to "astral_pagos_jefe"
+    loop {_r::*}:
+        astral_eco_dar(loop-value, {_n} / {_c})
+        send "&6Recompensa del jefe: &e+%{-eco.ultimo::%uuid of loop-value%}%$" to loop-value
+
+# Lo que paga un mob de oleada: el valor nuevo (24/11) solo con el permiso, hasta que el dueno lo abra.
+function astral_eco_oleada(p: player, t: number) :: number:
+    if {_p} has permission "{@permmaz}":
+        return {-eco.oleada2::%{_t}%} ? {-eco.oleada::%{_t}%}
+    return {-eco.oleada::%{_t}%}
 
 # Lo llaman los mobs de MythicMobs (mythic.py, mazmorra.py): astralplatamob <jugador> <categoria> [tier]
 # categoria: hostil, elite, jefe, ancestral (o un numero fijo, ya en la escala nueva).
@@ -403,12 +505,12 @@ command /astralplatamob <text> <text> [<text>]:
             if {_c} is "jefe":
                 astral_eco_participantes({_p}, {-eco.jefe::%{_tm}%})
             else if {_c} is "elite":
-                astral_eco_dar({_p}, {-eco.oleada::%{_tm}%} * {@eliteola})
+                astral_eco_repartir({_p}, astral_eco_oleada({_p}, {_tm}) * {@eliteola})
             else:
-                astral_eco_dar({_p}, {-eco.oleada::%{_tm}%})
+                astral_eco_repartir({_p}, astral_eco_oleada({_p}, {_tm}))
             stop
         set {_b} to {-eco.mob::%{_t}%} ? {-eco.mob::1}
-        astral_eco_dar({_p}, {_b} * ({-eco.mult::%{_c}%} ? 1))
+        astral_eco_repartir({_p}, {_b} * ({-eco.mult::%{_c}%} ? 1))
 
 # Mobs vanilla de las oleadas (tag ad.vanilla): antes pagaban 0.
 on death:
@@ -418,9 +520,48 @@ on death:
     set {_tm} to {-eco.tiermaz::%name of world of victim%}
     {_tm} is set
     if scoreboard tags of victim contain "astral.elite":
-        astral_eco_dar(attacker, {-eco.oleada::%{_tm}%} * {@eliteola})
+        astral_eco_repartir(attacker, astral_eco_oleada(attacker, {_tm}) * {@eliteola})
     else:
-        astral_eco_dar(attacker, {-eco.oleada::%{_tm}%})
+        astral_eco_repartir(attacker, astral_eco_oleada(attacker, {_tm}))
+
+# Mobs vanilla del survival (24/11): pagan segun su vida (economia.PLATA_VANILLA_TIER). Solo los que aparecen
+# solos: la marca astral.vpaga se pone al aparecer (sin spawners, crias, comandos ni MythicMobs).
+on spawn of living entity:
+    event-entity is not a player
+    set {_r} to "%spawn reason%"
+    loop __ORIGENES__:
+        if {_r} contains loop-value:
+            add "astral.vpaga" to scoreboard tags of event-entity
+            stop
+
+on death:
+    victim is not a player
+    attacker is a player
+    scoreboard tags of victim contain "astral.vpaga"
+    scoreboard tags of victim do not contain "ad.vanilla"
+    {-eco.tiermaz::%name of world of victim%} is not set
+    astral_eco_dar(attacker, astral_eco_vanilla(victim))
+
+# Mazmorra Infinita (24/11): sus mobs salen por comando (tag inf.mob) y pagan la mitad que los vanilla del Survival (26/11)
+# segun el tier elegido; el +25% de vida de cada subida en X+ tambien suma (con el mismo tope). Con party
+# se reparte como en las demas mazmorras.
+on death:
+    victim is not a player
+    attacker is a player
+    scoreboard tags of victim contain "inf.mob"
+    attacker has permission "{@permmaz}"
+    astral_eco_repartir(attacker, astral_eco_vanilla(victim) * __MAZFACTOR__)
+
+function astral_eco_vanilla(e: entity) :: number:
+    set {_t} to 1
+    loop 10 times:
+        set {_tag} to "astral.mt%loop-number%"
+        if scoreboard tags of {_e} contain {_tag}:
+            set {_t} to loop-number
+    # max health de Skript va en corazones: x2 = vida real; / multiplicador del tier = vida base vanilla.
+    set {_x} to (max health of {_e}) * 2 / ({-eco.vidamob::%{_t}%} ? 1) / __REF__
+    set {_x} to min({_x}, __TOPE__)
+    return {-eco.vanilla::%{_t}%} * {_x}
 
 # ================================================================== perdida al morir
 function astral_eco_perder(p: player):
@@ -723,6 +864,77 @@ command /astraleconomia <text>:
             set {astral.banco.saldo::%loop-index%} to loop-value * {@escala}
             log "%loop-index% banco %loop-value% -> %loop-value * {@escala}%" to "astral-rebase"
         send "[Economia] Rebase x{@escala} listo: %{_n}% jugadores. Log: plugins/Skript/logs/astral-rebase.log" to console
+# ------------------------------------------------------------------ /pay con limite (25/11/2026, dueno)
+# Si el que paga tiene una mina astral mas alta abierta ({am.rank}) que el que recibe, al que recibe le pueden
+# pasar como mucho {@pagolim}$ (una tirada del Gacha de Armas) cada hora, sumando todos los que le pasen.
+# Misma mina o hacia arriba: libre. {eco.pago.modo}: "publico" = todos; "privado" (al empezar) = solo cuando paga
+# ByTrainx (lo prueba el dueno); "apagado". Los que tienen {@pagolibre} no tienen limite en modo publico.
+function astral_pago_aplica(p: player) :: boolean:
+    set {_m} to {eco.pago.modo} ? "privado"
+    if {_m} is "publico":
+        if {_p} has permission "{@pagolibre}":
+            return false
+        return true
+    if {_m} is "privado":
+        if name of {_p} is "ByTrainx":
+            return true
+    return false
+
+on command:
+    sender is a player
+    command is "pay" or "epay" or "essentials:pay" or "essentials:epay"
+    astral_pago_aplica(player) is true
+    set {_args} to "%arguments%"
+    set {_a::*} to {_args} split at " "
+    if {_a::1} is "*" or "**":
+        cancel event
+        send "&cNo se puede pagar a todos a la vez." to player
+        stop
+    set {_o} to {_a::1} parsed as offline player
+    {_o} is set
+    set {_rd} to {am.rank::%uuid of player%} ? 1
+    set {_rr} to {am.rank::%uuid of {_o}%} ? 1
+    {_rd} > {_rr}
+    set {_t} to {_a::2} ? ""
+    replace all "," with "" in {_t}
+    replace all "$" with "" in {_t}
+    set {_n} to {_t} parsed as number
+    if {_n} is not set:
+        cancel event
+        send "&cEscribi la cantidad solo con numeros (sin k ni M). Ej: &f/pay %{_a::1}% 50000" to player
+        stop
+    {_n} > 0
+    set {_id} to uuid of {_o}
+    set {_ahora} to unix timestamp of now
+    if ({eco.pago.desde::%{_id}%} ? 0) + {@pagoseg} <= {_ahora}:
+        set {eco.pago.desde::%{_id}%} to {_ahora}
+        set {eco.pago.monto::%{_id}%} to 0
+    set {_queda} to {@pagolim} - ({eco.pago.monto::%{_id}%} ? 0)
+    if {_n} > {_queda}:
+        cancel event
+        set {_min} to ceil(({eco.pago.desde::%{_id}%} + {@pagoseg} - {_ahora}) / 60)
+        send "&cTenes una mina astral mas alta que &f%{_a::1}%&c: le podes pasar hasta &e{@pagolim}$ &cpor hora entre todos." to player
+        if {_queda} > 0:
+            send "&7En esta hora todavia puede recibir &e%{_queda}%$&7." to player
+        else:
+            send "&7Ya recibio el maximo. Proba de nuevo en &f%{_min}% min&7." to player
+        stop
+    balance of player >= {_n}
+    add {_n} to {eco.pago.monto::%{_id}%}
+    log "%now% %name of player% (mina %{_rd}%) -> %{_a::1}% (mina %{_rr}%) %{_n}%$" to "astral-pagos"
+
+command /astralpago [<text>] [<text>]:
+    permission: astral.eco.admin
+    trigger:
+        if arg-1 is "publico" or "privado" or "apagado":
+            set {eco.pago.modo} to arg-1
+        if arg-1 is "ver":
+            set {_o} to arg-2 parsed as offline player
+            if {_o} is set:
+                send "[Pagos] %arg-2%: recibio %{eco.pago.monto::%uuid of {_o}%} ? 0%$ desde %{eco.pago.desde::%uuid of {_o}%} ? 0% (unix)" to sender
+            stop
+        set {_m} to {eco.pago.modo} ? "privado"
+        send "&eLimite de /pay hacia minas mas bajas: &f%{_m}% &7(/astralpago publico|privado|apagado, /astralpago ver <jugador>)" to sender
 '''
 
 

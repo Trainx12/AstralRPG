@@ -99,7 +99,7 @@ def requisito_plata(costo):
             "\n      - '[sound] ENTITY_VILLAGER_NO'")
 
 
-def gacha_menu(gid, g):
+def gacha_menu(gid, g, volver=('bazar', '&fVolver al Bazar'), menu_cmd=None):
     from market_ui import title, regions
     col, name, n, o = hexc(HOLO_COLOR[gid]), HOLO_NAME[gid], PITY[gid], pity_obj(gid)
     P = "%player_name%"
@@ -133,9 +133,14 @@ def gacha_menu(gid, g):
                   '&7Frasco: poco comun; barril: epico.',
                   '&7Manzana: rara, solo Cosmeticos.',
                   '&7Ver premios muestra chances individuales normales.']))
-    items += item('volver','ARROW',45,'&fVolver al Bazar',extra={'click_commands':['[openguimenu] bazar']})
+    items += item('volver','ARROW',45,volver[1],extra={'click_commands':[f'[openguimenu] {volver[0]}']})
     items += item('cerrar','BARRIER',53,'&cCerrar',extra={'click_commands':['[close]']})
-    return menu(title(gid), f"astralmenu_{gid}", 54, items, update=True)
+    return menu(title(gid), menu_cmd or f"astralmenu_{gid}", 54, items, update=True)
+
+
+# 23/11: la misma gacha abierta desde Cosmeticos o Mascotas vuelve ahi (antes Volver llevaba siempre al Bazar).
+GACHA_DESDE = {'gacha_cosmeticos_cos': ('gacha_cosmeticos', 'cosmeticos', '&fVolver a Cosmeticos'),
+               'gacha_monturas_mas': ('gacha_monturas', 'mascotas', '&fVolver a Mascotas')}
 
 
 def subastas_menu():
@@ -159,15 +164,14 @@ def subastas_menu():
     lines+=item('saldo','GOLD_NUGGET',4,'&6Tu saldo',['&e%vault_eco_balance_formatted%$'],extra={'update':'true'})
     lines+=item('ayuda','BOOK',8,'&eCasa de Subastas',['&7Compra y vende entre jugadores.',
                 '&7Revisa el objeto y su precio antes de comprar.'])
-    lines+=item('volver','ARROW',45,'&fVolver al Bazar',extra={'click_commands':['[openguimenu] bazar']})
+    lines+=item('volver','ARROW',45,'&fVolver',extra={'click_commands':['[openguimenu] subastas_inicio']})
     lines+=item('cerrar','BARRIER',53,'&cCerrar',extra={'click_commands':['[close]']})
     return menu(title('subastas'),'astralmenu_subastas',54,lines,update=True)
 
 
 def subastas_inicio_menu():
     """Lo abre el aldeano de Subastas: elegir Casa de Subastas o Banco Astral (economia.py, 18/11).
-    Fondo con los botones dibujados (diseno Gemini 20/11, ventanas_20_11.py): los items son invisibles encima
-    del martillo + cartel 'Subastas' (11, 19-21), el cofre + cartel 'Banco' (15, 23-25) y la X (22)."""
+    Fondo con las tarjetas dibujadas (Casa de Comercio, Gemini 21/11, ventanas_20_11.py): items invisibles encima."""
     from ventanas_19_11 import titulo
     blank = q('astral:viajes/blank')
     sub = dict(nombre='&e&lCasa de Subastas', lore=['&7Compra y vende objetos entre jugadores.', '', '&eClic para entrar.'],
@@ -175,13 +179,17 @@ def subastas_inicio_menu():
     ban = dict(nombre='&6&lBanco Astral', lore=['&7Guarda y saca tu plata.', '&7Lo del banco no se pierde al morir',
                                                '&7y gana intereses cada dia.', '', '&eClic para entrar.'],
                cmds=['[sound] UI_BUTTON_CLICK', '[close]', '[player] banco<delay=2>'])
+    # 21/11/2026: 'Casa de Comercio' de 6 filas: BANCO columnas 0-3 y SUBASTAS 5-8 (filas 0-4), VOLVER 45-46, X 53.
     lines = []
-    for clave, d, slots in (('subastas', sub, (11, 19, 20, 21)), ('banco', ban, (15, 23, 24, 25))):
-        for i, slot in enumerate(slots):
+    for clave, d, cols in (('banco', ban, range(4)), ('subastas', sub, range(5, 9))):
+        for i, slot in enumerate(r * 9 + c for r in range(5) for c in cols):
             lines += item(clave if i == 0 else f'{clave}_{i}', 'PAPER', slot, d['nombre'], d['lore'],
                           extra={'item_model': blank, 'click_commands': d['cmds']})
-    lines += item('cerrar', 'PAPER', 22, '&cCerrar', extra={'item_model': blank, 'click_commands': ['[close]']})
-    return menu(titulo('subastas_inicio'), 'astralmenu_subastas_inicio', 27, lines)
+    for i, slot in enumerate((45, 46)):
+        lines += item('volver' if i == 0 else 'volver_1', 'PAPER', slot, '&fVolver al Menu Astral',
+                      extra={'item_model': blank, 'click_commands': ['[sound] UI_BUTTON_CLICK', '[openguimenu] principal']})
+    lines += item('cerrar', 'PAPER', 53, '&cCerrar', extra={'item_model': blank, 'click_commands': ['[close]']})
+    return menu(titulo('subastas_inicio'), 'astralmenu_subastas_inicio', 54, lines)
 
 
 def _pet_cards(pairs):
@@ -235,7 +243,7 @@ def mascotas_menu():
                              'click_commands': ['[close]', f'[console] scoreboard players set {P} mascota 98']})
     items += item('gacha', 'PAPER', 8, '&6&lConseguir mas companeros',
                   ['&7La Gacha de Monturas puede dar mascotas.', '&7Los otros retratos indican donde conseguirlas.'],
-                  extra={'item_model': q('astral:mascotas/nav_gacha'), 'click_commands': ['[openguimenu] gacha_monturas']})
+                  extra={'item_model': q('astral:mascotas/nav_gacha'), 'click_commands': ['[openguimenu] gacha_monturas_mas']})
     items += item('volver', 'PAPER', 45, '&fVolver al atlas',
                   extra={'item_model': q('astral:mascotas/nav_back'), 'click_commands': ['[openguimenu] principal']})
     items += item('cerrar', 'PAPER', 53, '&cCerrar',
@@ -260,7 +268,7 @@ def mascotas_extra_menu(page):
                              'click_commands': ['[close]', f'[console] scoreboard players set {P} mascota 98']})
     items += item('gacha', 'PAPER', 8, '&6&lConseguir mas companeros',
                   ['&7La Gacha de Monturas puede dar mascotas.'],
-                  extra={'item_model': q('astral:mascotas/nav_gacha'), 'click_commands': ['[openguimenu] gacha_monturas']})
+                  extra={'item_model': q('astral:mascotas/nav_gacha'), 'click_commands': ['[openguimenu] gacha_monturas_mas']})
     items += item('anterior', 'PAPER', 45, f'&eAnterior &7(pagina {page - 1})', extra={'item_model': q('astral:mascotas/nav_back'),
                   'click_commands': ['[openguimenu] ' + ('mascotas' if page == 2 else f'mascotas_{page - 1}')]})
     if page < LAST_PAGE:
@@ -471,7 +479,7 @@ def configuraciones_menu():
             lore = ['&7' + descripcion, '', '&eClic para desactivar.' if activo else '&eClic para activar.'] + [''] + info
             for col in range(9):
                 modelo = (f'astral:ventanas1911/efecto_{key}' if col == 0 else
-                          f'astral:ventanas1911/interruptor_{"on" if activo else "off"}_{col - 6}' if col >= 6 else 'astral:viajes/blank')
+                          f'astral:ventanas1911/interruptor_{"on" if activo else "off"}_{key}_{col - 6}' if col >= 6 else 'astral:viajes/blank')
                 extra = {'priority': 2 if activo else 1, 'update': 'true', 'item_model': modelo, 'click_commands': cmds}
                 if not activo:
                     extra['view_requirement'] = requisito('astral.fx.' + obj, 0)
@@ -599,9 +607,10 @@ def misiones_menu(current_page=0):
                             function, model=f'{model}_{index}', **scores)
         return lines
 
+    from economia import texto as _txt, HISTORIA_PLATA as _HP, DIARIA_PLATA as _DP
     L = []
-    for page, label, icon, model in [(0, 'Historia', 'BOOK', 'history'), (1, 'Diaria facil - 300$', 'CLOCK', 'easy'),
-                                     (2, 'Diaria media - 750$', 'CLOCK', 'medium'), (3, 'Diaria dificil - 1500$', 'CLOCK', 'hard')]:
+    for page, label, icon, model in [(0, 'Historia', 'BOOK', 'history'), (1, 'Diaria facil - ' + _txt(_DP[0]), 'CLOCK', 'easy'),
+                                     (2, 'Diaria media - ' + _txt(_DP[1]), 'CLOCK', 'medium'), (3, 'Diaria dificil - ' + _txt(_DP[2]), 'CLOCK', 'hard')]:
         L += item(f'tab_{page}', icon, page, f'&b&l{label}', ['&7Abre la tarjeta de esa mision.',
                   '&7Cambiar de pestana no acepta nada.'], extra={'item_model': q('astral:cronista/' + model),
                   'click_commands': action(f'gui/page/{page}')})
@@ -610,23 +619,24 @@ def misiones_menu(current_page=0):
               '&f4. Completa el objetivo y usa &eCOMPROBAR&f.', '&7Las diarias cambian a las 00:00 (Argentina).'],
               extra={'item_model': q('astral:cronista/active')})
 
-    rewards = [300, 500, 1000, 1500, 2000, 2500, 3000, 5000, 10000]
+    rewards = _HP
     progress = {
         1: ['&7Herrero: &f' + SCORE.format('aq.herrero') + '/1', '&7Forja tier I: &f' + SCORE.format('aq.forge1') + '/1'],
         2: ['&7Espantapajaros: &f' + SCORE.format('aq.scare') + '/10', '&7Armored Grubs: &f' + SCORE.format('aq.bee') + '/10', '&7Elites: &f' + SCORE.format('aq.helite') + '/1'],
         3: ['&7Cangrejo: &f' + SCORE.format('aq.f1') + '/1'],
         4: ['&7Caras: &f' + SCORE.format('aq.face') + '/15', '&7Chaman: &f' + SCORE.format('aq.f2') + '/1'],
-        5: ['&7Momia: &f' + SCORE.format('aq.f3') + '/1'], 6: ['&7Minas: &f' + SCORE.format('aq.f4') + '/1'],
+        5: ['&7Minas: &f' + SCORE.format('aq.f4') + '/1'], 6: ['&7Momia: &f' + SCORE.format('aq.f3') + '/1'],
         7: ['&7Yeti: &f' + SCORE.format('aq.f5') + '/1'],
         8: ['&7Forja tier V: &f' + SCORE.format('aq.forge5') + '/1', '&7Golem: &f' + SCORE.format('aq.f6') + '/1'],
     }
     for state in range(10):
         chapter = max(1, state)
         base = ['&f' + line for line in textwrap.wrap(CHAPTERS[chapter - 1], 43)]
-        base += ['', f'&6Recompensa: {rewards[chapter - 1]}$']
+        base += ['', f'&6Recompensa: {_txt(rewards[chapter - 1])}']
         if chapter == 2: base += ['&6+ una pieza de armadura tier I a eleccion']
         if chapter in (5, 7): base += ['&6+ material astral']
         if chapter == 9: base += ['&6+ titulo Portador de la Estrella']
+        base += __import__('historia_items').card_lines(chapter)
         base += [''] + progress.get(chapter, [])
         for active in ((0,) if state == 0 else (0, 1)):
             scores = {'state': state, **({'accepted': active} if state else {})}
@@ -655,7 +665,7 @@ def misiones_menu(current_page=0):
     extras = {11: '&6+ Alma Corrupta', 12: '&6+ Alma Corrupta', 13: '&6+ 25% de Chispa Astral', 14: '&6+ 2 Esencias de Elite'}
     for did, tier, name, counter, goal, desc in DAILIES:
         page = tier + 1
-        base = ['&f' + line for line in textwrap.wrap(desc, 43)] + ['', f'&6Recompensa: {[300, 750, 1500][tier]}$']
+        base = ['&f' + line for line in textwrap.wrap(desc, 43)] + ['', f'&6Recompensa: {_txt(_DP[tier])}']
         if did in extras: base += [extras[did]]
         if counter:
             base += ['', f'&7Progreso: &f{SCORE.format("aq." + counter)}/{goal}' + (' cm (1000 bloques)' if counter == 'ride' else '')]
@@ -718,6 +728,7 @@ def main():
     for obsolete in [*(f"mascota_{pid}" for pid in RETIRADAS), "mascotas_4"]:
         (Path(OUT)/"gui_menus"/(obsolete+".yml")).unlink(missing_ok=True)
     menus = {f"{gid}": gacha_menu(gid, g) for gid, g in GACHAS.items()}
+    menus.update({mid: gacha_menu(gid, GACHAS[gid], (back, label), f"astralmenu_{mid}") for mid, (gid, back, label) in GACHA_DESDE.items()})
     menus.update({"mascotas": mascotas_menu(), "bazar": bazar_menu(), "subastas": subastas_menu(), "subastas_inicio": subastas_inicio_menu(), "principal": principal_menu(), "misiones": misiones_menu(), "comandos": comandos_menu(),
                   "configuraciones": configuraciones_menu()})
     menus.update({mission_menu_id(page): misiones_menu(page) for page in range(1, 5)})
@@ -744,7 +755,7 @@ def main():
     from minijuegos import DROPPERS
     lista += ['  parkour:\n    file: parkour.yml', '  arenas:\n    file: arenas.yml']
     lista += [f'  {g}:\n    file: {g}.yml' for g in DROPPERS]
-    lista += [f'  {n}:\n    file: {n}.yml' for n in ('cosmeticos','cosmeticos_titulos','cosmeticos_sombreros','cosmeticos_espaldas','goblin_mercader')]
+    lista += [f'  {n}:\n    file: {n}.yml' for n in ('cosmeticos','cosmeticos_titulos','cosmeticos_sombreros','goblin_mercader')]
     from infinita_ui import write_menus as write_infinita
     lista += [f'  {n}:\n    file: {n}.yml' for n in write_infinita()]
     from oceano import generate as generate_oceano

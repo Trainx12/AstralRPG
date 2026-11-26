@@ -1,0 +1,393 @@
+{
+ "agresivos": [
+  "bosque",
+  "bosque_2",
+  "bosque_3",
+  "bosque_4",
+  "bosque_5",
+  "bosque_6",
+  "cumbre",
+  "cumbre_hielo",
+  "cumbre_hielo_2",
+  "cumbre_hielo_3",
+  "cumbre_hielo_4",
+  "cumbre_hielo_5",
+  "cumbre_hielo_6",
+  "forja",
+  "forja_volcano",
+  "forja_volcano_2",
+  "forja_volcano_3",
+  "forja_volcano_4",
+  "forja_volcano_5",
+  "forja_volcano_6",
+  "fosa",
+  "fosa_2",
+  "fosa_3",
+  "infinita",
+  "infinita_2",
+  "infinita_3",
+  "infinita_4",
+  "infinita_5",
+  "infinita_6",
+  "mina",
+  "mina_2",
+  "mina_3",
+  "mina_4",
+  "mina_5",
+  "mina_6",
+  "nave",
+  "nave_2",
+  "nave_3",
+  "santuario",
+  "santuario_azeroth",
+  "santuario_azeroth_2",
+  "santuario_azeroth_3",
+  "santuario_azeroth_4",
+  "santuario_azeroth_5",
+  "santuario_azeroth_6",
+  "santuario_interstellar",
+  "tumba",
+  "tumba_2",
+  "tumba_3",
+  "tumba_4",
+  "tumba_5",
+  "tumba_6"
+ ],
+ "agresivos_cfg": {
+  "agua_pct": 35,
+  "busca_radio": 16,
+  "eficiencia_agua": 1.0,
+  "rango_min": 32,
+  "velocidad_pct": 15
+ },
+ "arenas": [
+  "arena",
+  "arenas_tft"
+ ],
+ "asesino": {
+  "espalda_angulo": 70,
+  "espalda_pct": 50,
+  "espalda_pvp_pct": 15,
+  "invis_cd": 20,
+  "invis_seg": 2,
+  "set_kill_mult": 2.0,
+  "set_kill_mult_jefe": 1.5,
+  "set_kill_seg": 10,
+  "veneno_pct": 8,
+  "veneno_seg": 3
+ },
+ "dano_jefe": {
+  "0": 1.0,
+  "1": 22.0,
+  "10": 16000.0,
+  "2": 48.0,
+  "3": 120.0,
+  "4": 280.0,
+  "5": 400.0,
+  "6": 1120.0,
+  "7": 2240.0,
+  "8": 4400.0,
+  "9": 8800.0
+ },
+ "dano_mob": {
+  "0": 1.0,
+  "1": 22.0,
+  "10": 53200.0,
+  "2": 48.0,
+  "3": 120.0,
+  "4": 440.0,
+  "5": 1600.0,
+  "6": 3760.0,
+  "7": 7500.0,
+  "8": 14680.0,
+  "9": 29200.0
+ },
+ "invocador": {
+  "cantidad": {
+   "1": 1,
+   "10": 4,
+   "3": 2,
+   "5": 2,
+   "7": 3,
+   "9": 3
+  },
+  "dano_pct": 30,
+  "distancia_max": 24,
+  "duracion": 20,
+  "jefe_dano": 0.5,
+  "jefe_recibe": 3.0,
+  "mana": {
+   "1": 80,
+   "10": 1400,
+   "3": 180,
+   "5": 400,
+   "7": 650,
+   "9": 1100
+  },
+  "provoca_prob": 0.5,
+  "provoca_radio": 8,
+  "recarga": 30,
+  "set_menos_dano": 10,
+  "stats": {
+   "1": {
+    "dano": 30,
+    "defensa": 50,
+    "vida": 75
+   },
+   "10": {
+    "dano": 58593750,
+    "defensa": 1500,
+    "vida": 25000
+   },
+   "3": {
+    "dano": 750,
+    "defensa": 200,
+    "vida": 250
+   },
+   "5": {
+    "dano": 18750,
+    "defensa": 500,
+    "vida": 2000
+   },
+   "7": {
+    "dano": 468750,
+    "defensa": 800,
+    "vida": 6250
+   },
+   "9": {
+    "dano": 11718750,
+    "defensa": 1250,
+    "vida": 16250
+   }
+  },
+  "vida_pct": 25
+ },
+ "libro_nivel": {
+  "1": 8,
+  "10": 57,
+  "3": 20,
+  "5": 32,
+  "7": 42,
+  "9": 52
+ },
+ "mazmorras": {
+  "bosque": 1,
+  "bosque_2": 1,
+  "bosque_3": 1,
+  "bosque_4": 1,
+  "bosque_5": 1,
+  "bosque_6": 1,
+  "cumbre": 4,
+  "cumbre_hielo": 4,
+  "cumbre_hielo_2": 4,
+  "cumbre_hielo_3": 4,
+  "cumbre_hielo_4": 4,
+  "cumbre_hielo_5": 4,
+  "cumbre_hielo_6": 4,
+  "forja": 5,
+  "forja_volcano": 5,
+  "forja_volcano_2": 5,
+  "forja_volcano_3": 5,
+  "forja_volcano_4": 5,
+  "forja_volcano_5": 5,
+  "forja_volcano_6": 5,
+  "mina": 2,
+  "mina_2": 2,
+  "mina_3": 2,
+  "mina_4": 2,
+  "mina_5": 2,
+  "mina_6": 2,
+  "nave": 5,
+  "nave_2": 5,
+  "nave_3": 5,
+  "santuario": 5,
+  "santuario_azeroth": 5,
+  "santuario_azeroth_2": 5,
+  "santuario_azeroth_3": 5,
+  "santuario_azeroth_4": 5,
+  "santuario_azeroth_5": 5,
+  "santuario_azeroth_6": 5,
+  "santuario_interstellar": 5,
+  "tumba": 3,
+  "tumba_2": 3,
+  "tumba_3": 3,
+  "tumba_4": 3,
+  "tumba_5": 3,
+  "tumba_6": 3
+ },
+ "modelo": "astral_invocacion",
+ "segador": {
+  "angulo": 90,
+  "barrido_max": 8,
+  "barrido_pct": 60,
+  "barrido_pct_set": 80,
+  "carga_min": 0.9,
+  "cura_alma": 0.5,
+  "radio": 3.5
+ },
+ "sets": {
+  "asesino": {
+   "1": {
+    "crit": 4,
+    "critd": 10,
+    "def": -10,
+    "hp": -10,
+    "spd": 3
+   },
+   "10": {
+    "crit": 38,
+    "critd": 100,
+    "def": -10,
+    "hp": -10,
+    "spd": 21
+   },
+   "2": {
+    "crit": 7,
+    "critd": 15,
+    "def": -10,
+    "hp": -10,
+    "spd": 5
+   },
+   "3": {
+    "crit": 10,
+    "critd": 20,
+    "def": -10,
+    "hp": -10,
+    "spd": 7
+   },
+   "4": {
+    "crit": 14,
+    "critd": 30,
+    "def": -10,
+    "hp": -10,
+    "spd": 9
+   },
+   "5": {
+    "crit": 18,
+    "critd": 40,
+    "def": -10,
+    "hp": -10,
+    "spd": 11
+   },
+   "6": {
+    "crit": 22,
+    "critd": 50,
+    "def": -10,
+    "hp": -10,
+    "spd": 13
+   },
+   "7": {
+    "crit": 26,
+    "critd": 60,
+    "def": -10,
+    "hp": -10,
+    "spd": 15
+   },
+   "8": {
+    "crit": 30,
+    "critd": 70,
+    "def": -10,
+    "hp": -10,
+    "spd": 17
+   },
+   "9": {
+    "crit": 34,
+    "critd": 80,
+    "def": -10,
+    "hp": -10,
+    "spd": 19
+   }
+  },
+  "invocador": {
+   "1": {
+    "def": -10,
+    "hp": -5,
+    "idano": 10,
+    "ivida": 10,
+    "mana": 60,
+    "mregen": 0
+   },
+   "10": {
+    "cdr": 15,
+    "def": -10,
+    "hp": -5,
+    "idano": 60,
+    "ivida": 60,
+    "mana": 3120,
+    "mregen": 25
+   },
+   "3": {
+    "def": -10,
+    "hp": -5,
+    "idano": 20,
+    "ivida": 20,
+    "mana": 210,
+    "mregen": 5
+   },
+   "5": {
+    "cdr": 5,
+    "def": -10,
+    "hp": -5,
+    "idano": 30,
+    "ivida": 30,
+    "mana": 690,
+    "mregen": 12
+   },
+   "7": {
+    "cdr": 10,
+    "def": -10,
+    "hp": -5,
+    "idano": 40,
+    "ivida": 40,
+    "mana": 1320,
+    "mregen": 17
+   },
+   "9": {
+    "cdr": 10,
+    "def": -10,
+    "hp": -5,
+    "idano": 50,
+    "ivida": 50,
+    "mana": 2400,
+    "mregen": 22
+   }
+  },
+  "segador": {
+   "1": {
+    "cura": 0,
+    "guadana": 5,
+    "hp": 5,
+    "radio": 0.25,
+    "tajo": 10
+   },
+   "10": {
+    "cura": 40,
+    "guadana": 50,
+    "hp": 50,
+    "radio": 1.5,
+    "tajo": 75
+   },
+   "3": {
+    "cura": 10,
+    "guadana": 15,
+    "hp": 15,
+    "radio": 0.5,
+    "tajo": 20
+   },
+   "5": {
+    "cura": 20,
+    "guadana": 25,
+    "hp": 25,
+    "radio": 0.75,
+    "tajo": 35
+   },
+   "7": {
+    "cura": 30,
+    "guadana": 35,
+    "hp": 35,
+    "radio": 1.0,
+    "tajo": 50
+   }
+  }
+ }
+}

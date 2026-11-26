@@ -191,7 +191,7 @@ astral_cav_golem_onix:
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/polvo_cristal"} @self ~onDeath 0.02
 
 astral_cav_arana:
-  Type: SPIDER
+  Type: ZOGLIN
   Display: '&dArana de Cristal'
   Health: 28
   Damage: 6

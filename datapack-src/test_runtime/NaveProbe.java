@@ -11,7 +11,7 @@ import org.bukkit.potion.*;
  *  Nunca va al server. Los datos (llegadas, centros) vienen por nave-probe.properties. */
 public final class NaveProbe extends JavaPlugin {
     int failures; Player a; World nave;
-    final List<double[]> llegadas = new ArrayList<>(), centros = new ArrayList<>();
+    final List<double[]> llegadas = new ArrayList<>(), centros = new ArrayList<>(), barreras = new ArrayList<>();
     void check(boolean ok, String s) { if (!ok) failures++; getLogger().info("NAVE " + (ok ? "PASS " : "FAIL ") + s); }
     void cmd(String c) { Bukkit.dispatchCommand(Bukkit.getConsoleSender(), c); }
     void later(int ticks, Runnable r) { Bukkit.getScheduler().runTaskLater(this, () -> { try { r.run(); } catch (Throwable t) { check(false, "" + t); t.printStackTrace(); finish(); } }, ticks); }
@@ -22,6 +22,7 @@ public final class NaveProbe extends JavaPlugin {
             var p = new Properties(); p.load(in);
             for (String s : p.getProperty("llegadas").split(";")) llegadas.add(xyz(s));
             for (String s : p.getProperty("centros").split(";")) centros.add(xyz(s));
+            for (String s : p.getProperty("barreras").split(";")) barreras.add(xyz(s));
         } catch (Exception e) { throw new IllegalStateException(e); }
         Bukkit.getScheduler().runTaskLater(this, () -> {
             nave = Bukkit.createWorld(new WorldCreator("nave").generator("AstralOceano:vacio"));
@@ -66,10 +67,13 @@ public final class NaveProbe extends JavaPlugin {
             check(nave.getBlockAt((int) l0[0], (int) l0[1] - 1, (int) l0[2]).getType().isSolid(), "nave pegada: piso en la llegada del Hangar " + nave.getBlockAt((int) l0[0], (int) l0[1] - 1, (int) l0[2]).getType());
             check(nave.getBlockAt((int) l0[0], (int) l0[1], (int) l0[2]).getType().isAir(), "aire en la llegada del Hangar");
             for (int i = 0; i < centros.size(); i++) { double[] c = centros.get(i); check(nave.getBlockAt((int) c[0], (int) c[1] - 1, (int) c[2]).getType().isSolid(), "piso en el centro de la sala " + (i + 1)); }
+            cmd("nave abrir"); cmd("nave barreras");
+            int bar = 0; for (double[] b : barreras) if (nave.getBlockAt((int) b[0], (int) b[1], (int) b[2]).getType() == Material.BARRIER) bar++;
+            check(bar == barreras.size(), "paredes de barrera puestas (" + bar + "/" + barreras.size() + ")");
             a = fake(Bukkit.getWorlds().get(0), "Piloto");
-            later(20, () -> cmd("mazentrar Piloto nave"));
+            later(20, () -> getLogger().info("NAVE tp " + a.teleport(new Location(nave, l0[0] + 0.5, l0[1], l0[2] + 0.5)) + " valido " + a.isValid() + " online " + a.isOnline() + " " + a.getLocation()));   // mazentrar necesita AstralParty (no esta en el ensayo)
             later(60, () -> {
-                check(a.getWorld() == nave, "mazentrar lleva a la nave: " + a.getWorld().getName());
+                check(a.getWorld() == nave, "entra a la nave: " + a.getWorld().getName());
                 check(a.getGameMode() == GameMode.SPECTATOR, "vista desde afuera: espectador (" + a.getGameMode() + ")");
                 check(a.getSpectatorTarget() != null && a.getSpectatorTarget().getScoreboardTags().contains("nave.camara"), "mira por la camara");
                 Location c1 = a.getSpectatorTarget() == null ? null : a.getSpectatorTarget().getLocation();
@@ -83,7 +87,7 @@ public final class NaveProbe extends JavaPlugin {
                     check(cerca(a, llegadas.get(0), 3), "y aparece en la llegada del Hangar: " + a.getLocation());
                     check(tag("nave.camara").isEmpty(), "la camara se borra");
                     // Caida al casco: vuelve a la sala.
-                    a.teleport(new Location(nave, l0[0] + 0.5, 45, l0[2] + 0.5));
+                    a.teleport(new Location(nave, l0[0] + 0.5, l0[1] - 40, l0[2] + 0.5));
                     later(30, () -> { check(cerca(a, llegadas.get(0), 3), "caer al casco hueco devuelve a la llegada"); sala(0); });
                 });
             });
@@ -100,6 +104,13 @@ public final class NaveProbe extends JavaPlugin {
             if (!mobs.isEmpty()) {
                 getLogger().info("NAVE sala " + (i + 1) + " mobs " + tipos);
                 if (i == 0) check(mobs.stream().filter(e -> e instanceof Enderman && e.getTicksLived() > 20).allMatch(e -> e.getScoreboardTags().stream().anyMatch(t -> t.equals("astral.mt4") || t.equals("astral.mt5") || t.equals("astral.mt6"))), "los mobs de la nave son tier 5 (o uno arriba/abajo, como en toda mazmorra)");
+                if (i == 0) {
+                    check(mobs.stream().filter(e -> e instanceof Mob).allMatch(e -> ((Mob) e).getTarget() == a), "todos los mobs van contra el jugador");
+                    Entity v = mobs.get(0); double[] l0 = llegadas.get(0);
+                    v.teleport(new Location(nave, l0[0] + 0.5, l0[1] - 40, l0[2] + 0.5));
+                    later(20, () -> { check(v.getLocation().getY() > l0[1] - 30, "un mob que sale del casco vuelve a la sala: " + v.getLocation().toVector()); mobs.forEach(Entity::remove); sala(i); });
+                    return;
+                }
                 if (i == 4) check(mobs.stream().anyMatch(e -> e instanceof Enderman && e.getName().contains("Timonel")), "Puente de Mando: aparece el Timonel");
                 mobs.forEach(Entity::remove);
                 sala(i);   // puede haber otra oleada

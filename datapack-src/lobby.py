@@ -526,23 +526,47 @@ HOLO_DESC = {"gacha_rpg": "Armas, materiales y talismanes", "gacha_monturas": "M
 # NPC con modelo alto: (titulo, color, subtitulo, altura del cartel sobre los pies).
 # 15/11/2026: Venta, Subastas, Tienda y Forja mas grandes (ESCALA_GRANDE), como los de Mini Juegos y Survival.
 ESCALA_GRANDE = 1.7
+# 23/11/2026: los 5 de adentro (techo a 4 bloques) chocaban con el techo. Ahora van donde estaba el nombre de
+# MythicMobs (justo arriba de la cabeza; modelos de hasta 2,13 bloques) y ese nombre se saco (mythic.NOMBRE_EN_CARTEL).
+ALTO_TECHO = 2.2
 NAME_HOLOS = {
-    "astral_npc_venta": ("Venta Rápida", "#55FF55", "Vendé tus objetos", 2.5),
-    "astral_npc_subastas": ("Subastas y Banco", "#FFAA00", "Comprá, vendé y guardá tu plata", 3.0),
-    "astral_npc_herrero": ("Forja", "#FF8A3D", "Mejorá y repará tu equipo", 3.0),
+    "astral_npc_venta": ("Venta Rápida", "#55FF55", "Vendé tus objetos", ALTO_TECHO),
+    "astral_npc_subastas": ("Subastas y Banco", "#FFAA00", "Comprá, vendé y guardá tu plata", ALTO_TECHO),
+    "astral_npc_herrero": ("Forja", "#FF8A3D", "Mejorá y repará tu equipo", ALTO_TECHO),
     "astral_npc_minas": ("Minas Astrales", "#55FFFF", "Elegí una mina", 2.1),
     "astral_npc_arena": ("Arena PvP", "#FF5555", "Peleá sin perder tu equipo", 3.1),
     "astral_npc_portales": ("Portales Astrales", "#55FFFF", "Elegí tu destino", 2.9),
     "astral_npc_cronista": ("Cronista", "#55FFFF", "Misiones diarias e historia", 2.8),
-    "astral_npc_bazar": ("Bazar del Refugio", "#55FF55", "Mercado y subastas", 2.5),
-    "astral_npc_tienda": ("Tienda", "#FFAA00", "Comprá lo que necesites", 2.5),
+    "astral_npc_bazar": ("Bazar del Refugio", "#55FF55", "Mercado y subastas", ALTO_TECHO),
+    "astral_npc_tienda": ("Tienda", "#FFAA00", "Comprá lo que necesites", ALTO_TECHO),
 }
 GRANDES = {"astral_npc_bazar", "astral_npc_venta", "astral_npc_subastas", "astral_npc_tienda", "astral_npc_herrero"}
+# 23/11/2026 (pedido del dueno): el cartel grande (titulo + subtitulo) va AFUERA, en la entrada de cada puesto,
+# donde estaba el rotulo chico (astral.amb.*, hecho a mano: se borra). Arriba del aldeano queda solo un nombre corto.
+ENTRADA = {  # npc: (rotulo viejo, x, y, z de la entrada)
+    "astral_npc_venta": ("astral.amb.venta", 174.5, 105.5, 163.5),
+    "astral_npc_bazar": ("astral.amb.bazar", 178.637, 105.5, 163.5),
+    "astral_npc_tienda": ("astral.amb.tienda", 182.5, 105.5, 163.5),
+    "astral_npc_subastas": ("astral.amb.subastas", 204.198, 104.4, 186.552),  # donde lo pidio el dueno
+    "astral_npc_herrero": ("astral.amb.herrero", 196.5, 104.3, 181.5),
+}
+NOMBRE_CORTO = {"astral_npc_venta": "Venta rápida", "astral_npc_bazar": "Bazar", "astral_npc_tienda": "Tienda",
+                "astral_npc_subastas": "Subastas y Banco", "astral_npc_herrero": "Forja"}
 # Carteles sueltos (sin NPC), donde los pidio el dueno: (titulo, color, subtitulo, x, y, z).
 CARTELES_SUELTOS = {
     "expediciones": ("Expediciones Astrales", "#FF7BD5", "Habla con el guardian", 178.699, 109.727, 225.649),
     "minijuegos": ("Mini Juegos", "#55FF55", "Parkour, droppers y Color Escape", 136.7, 109.4, 161.7),
     "survival": ("Mundo Survival", "#7ED957", "Tomá el tren", 109.0, 109.8, 191.9),
+}
+# 23/11/2026: textos sueltos pedidos por el dueno: (lineas [(texto, color, negrita)], x, y, z, escala).
+TEXTOS_SUELTOS = {
+    # arriba de las 2 maquinas (arcade y capsulas, MythicMobs puestos a mano en 134.5/138.6, 146.6)
+    "maquinas": ([("Minijuegos", "#55FF55", True)], 136.53, 103.3, 146.58, 1.7),
+    # frente al ranking de la Mazmorra Infinita, donde lo marco el dueno
+    "rankings": ([("Los demás rankings están en sus respectivos lugares:", "#FFD24A", True),
+                  ("Bosque Astral - Mina Astral - Parkour Spiral - Parkour Spiral2 - Parkour Paradise3", "aqua", False),
+                  ("Podés ir a esos lugares y ver el top y sus recompensas semanales", "gray", False)],
+                 139.7, 103.0, 137.974, 0.8),
 }
 
 
@@ -551,6 +575,7 @@ def holo_cmds():
     out = ["# --- carteles flotantes arriba de los cofres (para rehacerlos: primero el kill)",
            f"execute in minecraft:{WORLD} run minecraft:kill @e[type=minecraft:text_display,tag=astral_holo]",
            f'execute in minecraft:{WORLD} run minecraft:kill @e[type=minecraft:text_display,tag=astral.amb.expediciones]']
+    out += [f'execute in minecraft:{WORLD} run minecraft:kill @e[type=minecraft:text_display,tag={e[0]}]' for e in ENTRADA.values()]
     for gid, g in GACHAS.items():
         x, y, z, _ = NPC_POS["astral_npc_" + gid]
         col = HOLO_COLOR[gid]
@@ -569,12 +594,21 @@ def holo_cmds():
     NL = chr(10)
     for npc, (title, color, sub, height) in NAME_HOLOS.items():
         x, y, z, _ = NPC_POS[npc]
+        if npc in ENTRADA:
+            # nombre corto arriba del aldeano (escala normal) + cartel grande afuera, en la entrada
+            corto = json.dumps({"text": "", "extra": [{"text": NOMBRE_CORTO[npc], "color": color, "bold": True}]},
+                               ensure_ascii=False)
+            out.append(f"execute in minecraft:{WORLD} run summon minecraft:text_display {x} {y + height} {z} "
+                       f"{{Tags:[\"astral_holo\"],billboard:\"center\",shadow:1b,background:1073741824,"
+                       f"line_width:200,text:{corto}}}")
+            _, x, y, z = ENTRADA[npc]
+            height = 0
         text = [{"text": title, "color": color, "bold": True}, {"text": NL + sub, "color": "gray"}]
         comp = json.dumps({"text": "", "extra": text}, ensure_ascii=False)
         esc = ESCALA_GRANDE if npc in GRANDES else 1
         tr = (f"transformation:{{translation:[0f,0f,0f],left_rotation:[0f,0f,0f,1f],scale:[{esc}f,{esc}f,{esc}f],"
               f"right_rotation:[0f,0f,0f,1f]}}," if esc != 1 else "")
-        offset = 0.4 if esc != 1 and npc not in {'astral_npc_venta', 'astral_npc_bazar', 'astral_npc_tienda'} else 0
+        offset = 0   # 23/11: sin subida extra (los grandes estan bajo techo)
         out.append(f"execute in minecraft:{WORLD} run summon minecraft:text_display {x} {y + height + offset} {z} "
                    f"{{Tags:[\"astral_holo\"],billboard:\"center\",shadow:1b,background:1073741824,{tr}"
                    f"line_width:200,text:{comp}}}")
@@ -586,6 +620,13 @@ def holo_cmds():
                    f"{{Tags:[\"astral_holo\",\"astral_holo_{key}\"],billboard:\"center\",shadow:1b,background:1073741824,"
                    f"transformation:{{translation:[0f,0f,0f],left_rotation:[0f,0f,0f,1f],scale:[{esc}f,{esc}f,{esc}f],right_rotation:[0f,0f,0f,1f]}},"
                    f"line_width:200,text:{comp}}}")
+    for key, (lineas, x, y, z, esc) in TEXTOS_SUELTOS.items():
+        text = [{"text": (NL if i else "") + t, "color": c, "bold": b} for i, (t, c, b) in enumerate(lineas)]
+        comp = json.dumps({"text": "", "extra": text}, ensure_ascii=False)
+        out.append(f"execute in minecraft:{WORLD} run summon minecraft:text_display {x} {y} {z} "
+                   f"{{Tags:[\"astral_holo\",\"astral_holo_{key}\"],billboard:\"center\",shadow:1b,background:1073741824,"
+                   f"transformation:{{translation:[0f,0f,0f],left_rotation:[0f,0f,0f,1f],scale:[{esc}f,{esc}f,{esc}f],right_rotation:[0f,0f,0f,1f]}},"
+                   f"line_width:260,text:{comp}}}")
     # Cartel de ayuda arriba del Viajero (por encima de su nombre)
     x, y, z = AYUDA_POS
     NL = chr(10)
@@ -651,6 +692,8 @@ def commands():
          "scoreboard objectives add gachatirar trigger",
          "scoreboard objectives add gachaflag dummy",
          "lp group default permission set crazycrates.massopen true",
+         "# shift + clic al cofre: ver premios (sudo crates preview); sin esto CrazyCrates dice 'No tenes permiso'",
+         "lp group default permission set crazycrates.preview true",
          "# --- permisos de jugador",
          "lp group default permission set essentials.spawn true",
          "lp group default permission set essentials.balance true",

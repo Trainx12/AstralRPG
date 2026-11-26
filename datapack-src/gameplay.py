@@ -56,7 +56,16 @@ def apply(files,items,versions,old_preds):
         f'execute unless items entity @s container.* {wand_old} unless items entity @s weapon.offhand {wand_old} run return 0',
     ]+[f'execute if items entity @s {slot} {wand_old} run item modify entity @s {slot} astral:varita_curacion_modelo'
        for slot in slots])
-    fn('upgrade/check',['function astral:upgrade/carnivora_head', 'function astral:upgrade/varita_curacion_modelo']+[
+    # 24/11 (dueno): taladros viejos sin golpe de pico (todo item trae swing_animation por defecto: comparar con none); solo cambia ese componente (no toca encantamientos ni gemas).
+    drill_old='*[minecraft:custom_data~{astral:{tool:"drill"}},!minecraft:swing_animation={type:"none"}]'
+    files['data/astral/item_modifier/taladro_sin_golpe.json']=json.dumps({
+        'function':'minecraft:set_components','components':{'minecraft:swing_animation':{'type':'none'}}})
+    fn('upgrade/taladro_sin_golpe',[
+        f'execute unless items entity @s container.* {drill_old} unless items entity @s weapon.offhand {drill_old} run return 0',
+    ]+[f'execute if items entity @s {slot} {drill_old} run item modify entity @s {slot} astral:taladro_sin_golpe'
+       for slot in slots])
+    fn('upgrade/check',['function astral:upgrade/carnivora_head', 'function astral:upgrade/varita_curacion_modelo',
+                        'function astral:upgrade/taladro_sin_golpe']+[
         f'execute if items entity @s {slot} {old} run function astral:upgrade/slot/{slot.replace(".","_")}'
         for slot in slots for old in old_preds])
     # El impulso lo aplica Skript con velocidad real; el datapack solo valida el objeto y solicita el uso.
@@ -81,7 +90,10 @@ def apply(files,items,versions,old_preds):
             continue  # WorldGuard identifica el nombre Bukkit
         commands += [f'rg flag -w {world} __global__ block-break deny',
                      f'rg flag -w {world} __global__ block-place deny',
-                     f'rg flag -w {world} __global__ build deny']
+                     f'rg flag -w {world} __global__ build deny',
+                     # 26/11/2026: build deny tambien bloqueaba pegarle a jefes IRON_GOLEM (WorldGuard los toma
+                     # como animales): el Coloso Musgoso quedaba con la vida llena.
+                     f'rg flag -w {world} __global__ damage-animals allow']
     for world in arena_worlds():
         commands += [f'rg flag -w {world} __global__ block-break deny',
                      f'rg flag -w {world} __global__ block-place deny',
@@ -329,6 +341,13 @@ on uncancelled damage of living entity with priority monitor:
 
 on load:
     execute console command "minecraft:kill @e[type=minecraft:text_display,tag=astral.dmg]"
+    execute console command "minecraft:scoreboard objectives add astral.dmgedad dummy"
+
+# 23/11: si el server se reinicia antes de los 25 ticks, el "wait" se pierde y el numero queda flotando para
+# siempre (on load no ve los chunks sin cargar). Cada numero cuenta su edad y a los 3 s se borra, aunque sea viejo.
+every 1 second:
+    execute console command "minecraft:execute if entity @e[type=minecraft:text_display,tag=astral.dmg] run scoreboard players add @e[type=minecraft:text_display,tag=astral.dmg] astral.dmgedad 1"
+    execute console command "minecraft:execute if entity @e[type=minecraft:text_display,tag=astral.dmg,scores={astral.dmgedad=3..}] run kill @e[type=minecraft:text_display,tag=astral.dmg,scores={astral.dmgedad=3..}]"
 '''.replace('__FACTORES__', factores)
 
 
@@ -343,6 +362,26 @@ on right click with end crystal:
     distance between location of event-block and location(0, y-coordinate of event-block, 0, world of player) < 12
     cancel event
     send "&5El dragon del End ya no vuelve: &7el portal de salida y los portales a las islas estan abiertos." to player
+'''
+
+# 23/11: las menas propias (vetas de Cavernas = campana, Oceano y Asura = banjo) son bloques de nota. Poner uno sobre
+# oro (campana) o heno (banjo) y afinarlo con clic derecho daba gemas, perlas y corales infinitos.
+ANTI_NOTAS = r'''
+# Menas de bloque de nota (gameplay.py ANTI_NOTAS): no se afinan ni se arman a mano (campana, banjo y campanilla del Vacio).
+on right click on note block:
+    set {_d} to "%block data of event-block%"
+    if {_d} contains "instrument=bell" or "instrument=banjo" or "instrument=chime":
+        cancel event
+
+on place of note block:
+    type of block below event-block is gold block or hay block or packed ice
+    cancel event
+    send "&cNo se puede poner un bloque de nota sobre oro, heno o hielo compactado." to player
+
+on place of gold block or hay block or packed ice:
+    type of block above event-block is note block
+    cancel event
+    send "&cNo se puede poner oro, heno o hielo compactado debajo de un bloque de nota." to player
 '''
 
 
@@ -663,7 +702,8 @@ on quit:
 __INDICADOR__
 __PVP__
 __VIDA__
-__SIN_DRAGON__'''.replace('__SIN_DRAGON__',SIN_DRAGON).replace('__NO_DOUBLE_JUMP__',' or '.join('"'+w+'"' for w in dict.fromkeys(parkour_worlds()+arena_worlds()))).replace('__VIDA__',vida()).replace('__REALISTIC_HOOK__',realistic_hook()).replace('__INDICADOR__',indicador()).replace('__PVP__',pvp()).replace('__WORLDS__',worlds).replace('__PROTECTED__',protected).replace('__ARENAS__',' or '.join('"'+w+'"' for w in arena_worlds())).replace('__RESCUE_OPTIONS__',rescue_options).replace('__RESCUE_LIMITS__',rescue_limits).replace('__SANCT_TP__',' '.join(map(str,SANCTUARY_ARRIVAL))).replace('__SANCT_YAW__',str(SANCTUARY_YAW)).replace('__SANCT_X__',str(SANCTUARY_ARRIVAL[0])).replace('__SANCT_Y__',str(SANCTUARY_ARRIVAL[1])).replace('__SANCT_Z__',str(SANCTUARY_ARRIVAL[2])).replace('__SANCT_SPREAD__',str(SANCTUARY_SPREAD))
+__SIN_DRAGON__
+__ANTI_NOTAS__'''.replace('__SIN_DRAGON__',SIN_DRAGON).replace('__ANTI_NOTAS__',ANTI_NOTAS).replace('__NO_DOUBLE_JUMP__',' or '.join('"'+w+'"' for w in dict.fromkeys(parkour_worlds()+arena_worlds()))).replace('__VIDA__',vida()).replace('__REALISTIC_HOOK__',realistic_hook()).replace('__INDICADOR__',indicador()).replace('__PVP__',pvp()).replace('__WORLDS__',worlds).replace('__PROTECTED__',protected).replace('__ARENAS__',' or '.join('"'+w+'"' for w in arena_worlds())).replace('__RESCUE_OPTIONS__',rescue_options).replace('__RESCUE_LIMITS__',rescue_limits).replace('__SANCT_TP__',' '.join(map(str,SANCTUARY_ARRIVAL))).replace('__SANCT_YAW__',str(SANCTUARY_YAW)).replace('__SANCT_X__',str(SANCTUARY_ARRIVAL[0])).replace('__SANCT_Y__',str(SANCTUARY_ARRIVAL[1])).replace('__SANCT_Z__',str(SANCTUARY_ARRIVAL[2])).replace('__SANCT_SPREAD__',str(SANCTUARY_SPREAD))
 
 
 def realistic_hook():
@@ -815,6 +855,10 @@ def patch_graves(config):
     config['override-keep-inventory']=False
     config['override-keep-level']=False
     config['death-listener-priority']='LOW'
+    config['instant-pickup-only-own']=True
+    config['interact-only-own']=True   # 23/11: con el server publico, solo el dueno abre su tumba
+    # 24/11: la tumba ponia la armadura sin pasar por los requisitos de AuraSkills: todo vuelve al inventario.
+    config['auto-equip-armor']=False
     config['disabled-worlds']=list(dict.fromkeys(config.get('disabled-worlds',[])+list(PROTECTED)))
     return config
 

@@ -392,4 +392,23 @@ def escudero(): return skeleton('escudero')
 def nigromante(): return skeleton('nigromante')
 def espadachin(): return skeleton('espadachin')
 def guardian(): return skeleton('guardian')
-ALL=[arquero,escudero,nigromante,espadachin,guardian,creeper]
+
+
+# Invocacion del Invocador (clases.py, 22/11): el espadachin con ropa violeta y hoja turquesa,
+# para que se note que es de un jugador y no un mob de mazmorra.
+INVOCACION_COLORES = {'#4d441f': '#3b2468', '#43351f': '#291a48', '#67502a': '#4d2d86', '#6d8582': '#6b4fd0',
+                      '#9e8b59': '#c79bff', '#a2a284': '#8e6ad8', '#a89b70': '#c3a6ff', '#c2a365': '#e2c7ff',
+                      '#c6c8a5': '#56e8d6', '#edf0ce': '#cafff6', '#ffe964': '#b46cff', '#fffbd0': '#f0dcff',
+                      '#ffe75b': '#d2a3ff', '#917336': '#7a4fc9', '#b9b28f': '#c9bfe6'}
+
+
+def invocacion():
+    m = skeleton('espadachin')
+    m.name = 'astral_invocacion'
+    for c in m.cubes:
+        col = str(c.get('color', '')).lower()
+        c['color'] = INVOCACION_COLORES.get(col, c['color'])
+    return m
+
+
+ALL=[arquero,escudero,nigromante,espadachin,guardian,creeper,invocacion]

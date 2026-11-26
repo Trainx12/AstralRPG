@@ -22,7 +22,7 @@ items:
     - '&7Durabilidad: &f24.000'
     - '&7Tier: 10'
     - ''
-    - '&cRequiere: Defensa 42'
+    - '&cRequiere: Arqueria 55'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&#b388ff&lASTRAL CASCO'
     enchantments:
@@ -52,7 +52,7 @@ items:
     - '&7Durabilidad: &f19.600'
     - '&7Tier: 9'
     - ''
-    - '&cRequiere: Defensa 38'
+    - '&cRequiere: Arqueria 50'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA CASCO'
     enchantments:

@@ -23,7 +23,7 @@ items:
     - '&7Durabilidad: &f28.500'
     - '&7Tier: 10'
     - ''
-    - '&cRequiere: Defensa 42'
+    - '&cRequiere: Combate 55'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&#b388ff&lASTRAL GREBAS'
     item_flags:
@@ -52,7 +52,7 @@ items:
     - '&7Durabilidad: &f23.275'
     - '&7Tier: 9'
     - ''
-    - '&cRequiere: Defensa 38'
+    - '&cRequiere: Combate 50'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA GREBAS'
     item_flags:

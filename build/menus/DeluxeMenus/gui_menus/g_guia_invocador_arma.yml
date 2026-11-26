@@ -25,7 +25,7 @@ items:
     - '&bCosto: 80 de mana'
     - '&aRecarga: 30 s'
     - '&b+60 de mana en la mano'
-    - '&cRequiere: Hechiceria 8'
+    - '&cRequiere: sin nivel'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - ''
     - '&e» Clic: ver la receta'

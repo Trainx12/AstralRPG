@@ -600,15 +600,20 @@ def metaskills():
     return "\n".join(out) + "\n" + jefe_metaskills()
 
 
+# 25/11: el dueno no veia criaturas astrales; +50% a las normales y elites (los ancestrales quedan igual).
+MULT_APARICION = 1.5
+
+
 def spawns():
     out = []
     for mid, d in MOBS.items():
         s = d.get("spawn")
         if not s:
             continue
-        out += spawn_entry(mid, mid, s, s["chance"])
+        base = s["chance"] * MULT_APARICION
+        out += spawn_entry(mid, mid, s, round(base, 6))
         if mid in ELITES:
-            out += spawn_entry(f"{mid}_elite", f"{mid}_elite", s, round(s["chance"] * 0.15, 5))
+            out += spawn_entry(f"{mid}_elite", f"{mid}_elite", s, round(base * 0.15, 6))
         if mid in ANCESTRALES:
             a = ancestral_def(mid)["spawn"]
             out += spawn_entry(f"{mid}_ancestral", f"{mid}_ancestral", a, a["chance"])

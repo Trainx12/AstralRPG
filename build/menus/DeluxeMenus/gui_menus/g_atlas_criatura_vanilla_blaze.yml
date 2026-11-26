@@ -96,6 +96,21 @@ items:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS
     - HIDE_DYE
+  'c7':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&#b3261eEsencia del Nether'
+    item_model: 'astral:esencia_nether'
+    lore:
+    - '&7Cae de Wither Skeletons.'
+    - '&8Material de AstralRPG'
+    - ''
+    - '&#30241b1 × Esencia del Nether · 5%'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
   'volver':
     material: PAPER
     slot: 45

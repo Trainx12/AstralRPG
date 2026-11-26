@@ -22,7 +22,7 @@ items:
     - '&7Durabilidad: &f3.825'
     - '&7Tier: 3'
     - ''
-    - '&cRequiere: Defensa 14'
+    - '&cRequiere: Arqueria 20'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA BOTAS'
     enchantments:
@@ -52,7 +52,7 @@ items:
     - '&7Durabilidad: &f2.975'
     - '&7Tier: 2'
     - ''
-    - '&cRequiere: Defensa 10'
+    - '&cRequiere: Arqueria 14'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN BOTAS'
     item_flags:

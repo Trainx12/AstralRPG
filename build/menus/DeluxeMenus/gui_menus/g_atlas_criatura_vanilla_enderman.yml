@@ -97,8 +97,9 @@ items:
     display_name: '&#b07cffCristal Arcano'
     item_model: 'astral:cristal_arcano'
     lore:
-    - '&7Se procesa en 4 fragmentos.'
+    - '&74 forman un Cristal Refinado.'
     - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - ''
     - '&#30241b1 × Cristal Arcano · 5%'
     enchantments:

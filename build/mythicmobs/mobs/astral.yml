@@ -29,6 +29,9 @@ astral_mapache:
   - skill{s=AST_MODEL_astral_mapache} @self ~onSpawn
   - skill{s=AST_MODEL_astral_mapache} @self ~onLoad
   - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn
+  - command{c="mm egg give <target.name> astral_mapache 1"} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
+  - message{m="&eLos huevos de monturas y criaturas se usan en el mundo, no en el lobby. Te devolvimos el huevo."} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
+  - remove @self ~onSpawn ?world{w=lobby}
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/cuero_tratado"} @self ~onDeath 0.15
   - skill{s=AST_MUERTE} @self ~onDeath
@@ -64,6 +67,9 @@ astral_pinguino:
   - skill{s=AST_MODEL_astral_pinguino} @self ~onSpawn
   - skill{s=AST_MODEL_astral_pinguino} @self ~onLoad
   - command{c="execute as <caster.uuid> at @s run function astral:mob/roll"} @self ~onSpawn
+  - command{c="mm egg give <target.name> astral_pinguino 1"} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
+  - message{m="&eLos huevos de monturas y criaturas se usan en el mundo, no en el lobby. Te devolvimos el huevo."} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
+  - remove @self ~onSpawn ?world{w=lobby}
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/fragmento_cristal"} @self ~onDeath 0.12
   - command{c="astralchill <trigger.uuid>"} @trigger ~onAttack ?~isplayer
@@ -156,7 +162,7 @@ astral_abejorro:
   - skill{s=AST_PLATA_HOSTIL} @self ~onDeath ?~isplayer
 
 astral_arana:
-  Type: SPIDER
+  Type: ZOGLIN
   Display: '&5Arana Amatista'
   Health: 26
   Damage: 5
@@ -167,6 +173,15 @@ astral_arana:
     Despawn: true
     MovementSpeed: 0.3
     PreventRandomEquipment: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
   Drops:
   - string 1-3 0.9
   - spider_eye 1 0.5
@@ -226,6 +241,9 @@ astral_grillo:
   Skills:
   - skill{s=AST_MODEL_astral_grillo} @self ~onSpawn
   - skill{s=AST_MODEL_astral_grillo} @self ~onLoad
+  - command{c="mm egg give <target.name> astral_grillo 1"} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
+  - message{m="&eLos huevos de monturas y criaturas se usan en el mundo, no en el lobby. Te devolvimos el huevo."} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
+  - remove @self ~onSpawn ?world{w=lobby}
   - command{c="execute as <caster.uuid> run tag @s add astral_grillo"} @self ~onSpawn
   - command{c="execute as <caster.uuid> run tag @s add astral_grillo"} @self ~onLoad
   - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onSpawn
@@ -253,6 +271,9 @@ astral_chocobo:
   Skills:
   - skill{s=AST_MODEL_astral_chocobo} @self ~onSpawn
   - skill{s=AST_MODEL_astral_chocobo} @self ~onLoad
+  - command{c="mm egg give <target.name> astral_chocobo 1"} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
+  - message{m="&eLos huevos de monturas y criaturas se usan en el mundo, no en el lobby. Te devolvimos el huevo."} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
+  - remove @self ~onSpawn ?world{w=lobby}
   - command{c="execute as <caster.uuid> run tag @s add astral_chocobo"} @self ~onSpawn
   - command{c="execute as <caster.uuid> run tag @s add astral_chocobo"} @self ~onLoad
   - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onSpawn
@@ -281,6 +302,9 @@ astral_escarabajo:
   Skills:
   - skill{s=AST_MODEL_astral_escarabajo} @self ~onSpawn
   - skill{s=AST_MODEL_astral_escarabajo} @self ~onLoad
+  - command{c="mm egg give <target.name> astral_escarabajo 1"} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
+  - message{m="&eLos huevos de monturas y criaturas se usan en el mundo, no en el lobby. Te devolvimos el huevo."} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
+  - remove @self ~onSpawn ?world{w=lobby}
   - command{c="execute as <caster.uuid> run tag @s add astral_escarabajo"} @self ~onSpawn
   - command{c="execute as <caster.uuid> run tag @s add astral_escarabajo"} @self ~onLoad
   - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onSpawn
@@ -308,6 +332,9 @@ astral_lagarto:
   Skills:
   - skill{s=AST_MODEL_astral_lagarto} @self ~onSpawn
   - skill{s=AST_MODEL_astral_lagarto} @self ~onLoad
+  - command{c="mm egg give <target.name> astral_lagarto 1"} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
+  - message{m="&eLos huevos de monturas y criaturas se usan en el mundo, no en el lobby. Te devolvimos el huevo."} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
+  - remove @self ~onSpawn ?world{w=lobby}
   - command{c="execute as <caster.uuid> run tag @s add astral_lagarto"} @self ~onSpawn
   - command{c="execute as <caster.uuid> run tag @s add astral_lagarto"} @self ~onLoad
   - command{c="data merge entity <caster.uuid> {Tame:1b}"} @self ~onSpawn
@@ -335,6 +362,9 @@ astral_ave:
   Skills:
   - skill{s=AST_MODEL_astral_ave} @self ~onSpawn
   - skill{s=AST_MODEL_astral_ave} @self ~onLoad
+  - command{c="mm egg give <target.name> astral_ave 1"} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
+  - message{m="&eLos huevos de monturas y criaturas se usan en el mundo, no en el lobby. Te devolvimos el huevo."} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
+  - remove @self ~onSpawn ?world{w=lobby}
   - skill{s=AST_MOUNT_astral_ave} @self ~onSpawn
   - skill{s=AST_SILLA_VER} @self ~onLoad
   - cancelevent @self ~onInteract
@@ -363,6 +393,9 @@ astral_pterodactilo:
   Skills:
   - skill{s=AST_MODEL_astral_pterodactilo} @self ~onSpawn
   - skill{s=AST_MODEL_astral_pterodactilo} @self ~onLoad
+  - command{c="mm egg give <target.name> astral_pterodactilo 1"} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
+  - message{m="&eLos huevos de monturas y criaturas se usan en el mundo, no en el lobby. Te devolvimos el huevo."} @NearestPlayer{r=10} ~onSpawn ?world{w=lobby}
+  - remove @self ~onSpawn ?world{w=lobby}
   - skill{s=AST_MOUNT_astral_pterodactilo} @self ~onSpawn
   - skill{s=AST_SILLA_VER} @self ~onLoad
   - cancelevent @self ~onInteract
@@ -409,6 +442,16 @@ astral_momia:
   - skill{s=AST_MODEL_astral_momia} @self ~onSpawn
   - skill{s=AST_MODEL_astral_momia} @self ~onLoad
   - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 1 run tag @s add astral.pt1"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 2 run tag @s add astral.pt2"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 3 run tag @s add astral.pt3"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 4 run tag @s add astral.pt4"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 5 run tag @s add astral.pt5"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 6 run tag @s add astral.pt6"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 7 run tag @s add astral.pt7"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 8 run tag @s add astral.pt8"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 9 run tag @s add astral.pt9"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 10 run tag @s add astral.pt10"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/chispa_astral"} @self ~onDeath 0.35
@@ -468,6 +511,16 @@ astral_yeti:
   - skill{s=AST_MODEL_astral_yeti} @self ~onSpawn
   - skill{s=AST_MODEL_astral_yeti} @self ~onLoad
   - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 1 run tag @s add astral.pt1"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 2 run tag @s add astral.pt2"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 3 run tag @s add astral.pt3"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 4 run tag @s add astral.pt4"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 5 run tag @s add astral.pt5"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 6 run tag @s add astral.pt6"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 7 run tag @s add astral.pt7"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 8 run tag @s add astral.pt8"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 9 run tag @s add astral.pt9"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 10 run tag @s add astral.pt10"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
@@ -529,6 +582,16 @@ astral_golem_forja:
   - skill{s=AST_MODEL_astral_golem_forja} @self ~onSpawn
   - skill{s=AST_MODEL_astral_golem_forja} @self ~onLoad
   - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 1 run tag @s add astral.pt1"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 2 run tag @s add astral.pt2"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 3 run tag @s add astral.pt3"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 4 run tag @s add astral.pt4"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 5 run tag @s add astral.pt5"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 6 run tag @s add astral.pt6"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 7 run tag @s add astral.pt7"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 8 run tag @s add astral.pt8"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 9 run tag @s add astral.pt9"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 10 run tag @s add astral.pt10"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/nucleo_furia"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/nucleo_furia"} @self ~onDeath 1.0
@@ -553,7 +616,7 @@ astral_golem_forja:
   - skill{s=AST_PLATA_JEFE} @self ~onDeath ?~isplayer
 
 astral_cangrejo:
-  Type: SPIDER
+  Type: ZOGLIN
   Display: '&6&lCangrejo Ermitano Gigante'
   Health: 260
   Damage: 9
@@ -589,6 +652,16 @@ astral_cangrejo:
   - skill{s=AST_MODEL_astral_cangrejo} @self ~onSpawn
   - skill{s=AST_MODEL_astral_cangrejo} @self ~onLoad
   - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 1 run tag @s add astral.pt1"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 2 run tag @s add astral.pt2"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 3 run tag @s add astral.pt3"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 4 run tag @s add astral.pt4"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 5 run tag @s add astral.pt5"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 6 run tag @s add astral.pt6"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 7 run tag @s add astral.pt7"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 8 run tag @s add astral.pt8"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 9 run tag @s add astral.pt9"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 10 run tag @s add astral.pt10"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 0.8
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/corazon_shulker"} @self ~onDeath 0.3
@@ -647,6 +720,16 @@ astral_chaman:
   - skill{s=AST_MODEL_astral_chaman} @self ~onSpawn
   - skill{s=AST_MODEL_astral_chaman} @self ~onLoad
   - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 1 run tag @s add astral.pt1"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 2 run tag @s add astral.pt2"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 3 run tag @s add astral.pt3"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 4 run tag @s add astral.pt4"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 5 run tag @s add astral.pt5"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 6 run tag @s add astral.pt6"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 7 run tag @s add astral.pt7"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 8 run tag @s add astral.pt8"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 9 run tag @s add astral.pt9"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 10 run tag @s add astral.pt10"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
@@ -663,7 +746,6 @@ astral_chaman:
   - skill{s=AST_JEFE_DISPARO_astral_chaman} @PlayersInRing{min=4;max=48} ~onTimer:40
   - settarget @NearestPlayer{r=40} ~onTimer:30
   - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
-  - command{c="execute at <caster.uuid> run function astral:boss/chaman_ice"} @self ~onTimer:5
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/chaman"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_chaman_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_chaman_2_veneno} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
@@ -768,7 +850,7 @@ astral_abejorro_elite:
   - skill{s=AST_PLATA_ELITE} @self ~onDeath ?~isplayer
 
 astral_arana_elite:
-  Type: SPIDER
+  Type: ZOGLIN
   Display: '&3Arana de Cristal Vivo'
   Health: 65
   Damage: 8.0
@@ -782,6 +864,15 @@ astral_arana_elite:
     KnockbackResistance: 0.8
     FollowRange: 40
     PreventRandomEquipment: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  - attacker
+  - players
   Drops:
   - string 1-3 0.9
   - spider_eye 1 0.5
@@ -865,7 +956,7 @@ astral_cara_elite:
   - skill{s=AST_PLATA_ELITE} @self ~onDeath ?~isplayer
 
 astral_cangrejo_elite:
-  Type: SPIDER
+  Type: ZOGLIN
   Display: '&9Cangrejo Abisal'
   Health: 650
   Damage: 14.4
@@ -904,6 +995,16 @@ astral_cangrejo_elite:
   - skill{s=AST_MODEL_astral_cangrejo_elite} @self ~onSpawn
   - skill{s=AST_MODEL_astral_cangrejo_elite} @self ~onLoad
   - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 1 run tag @s add astral.pt1"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 2 run tag @s add astral.pt2"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 3 run tag @s add astral.pt3"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 4 run tag @s add astral.pt4"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 5 run tag @s add astral.pt5"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 6 run tag @s add astral.pt6"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 7 run tag @s add astral.pt7"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 8 run tag @s add astral.pt8"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 9 run tag @s add astral.pt9"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 10 run tag @s add astral.pt10"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
@@ -977,6 +1078,18 @@ astral_momia_ancestral:
   - skill{s=AST_MODEL_astral_momia_ancestral} @self ~onSpawn
   - skill{s=AST_MODEL_astral_momia_ancestral} @self ~onLoad
   - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 1 run tag @s add astral.pt1"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 2 run tag @s add astral.pt2"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 3 run tag @s add astral.pt3"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 4 run tag @s add astral.pt4"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 5 run tag @s add astral.pt5"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 6 run tag @s add astral.pt6"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 7 run tag @s add astral.pt7"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 8 run tag @s add astral.pt8"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 9 run tag @s add astral.pt9"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 10 run tag @s add astral.pt10"} @self ~onSpawn
+  - command{c="minecraft:attribute <caster.uuid> minecraft:max_health modifier add astral:ancestral 4 add_multiplied_total"} @self ~onSpawn
+  - command{c="minecraft:data modify entity <caster.uuid> Health set value 1.0E30f"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
@@ -1009,6 +1122,8 @@ astral_momia_ancestral:
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
   - skill{s=AST_ANCESTRAL_SEVA_astral_momia} @self ~onTimer:12000
+  - skill{s=AST_ANCESTRAL_FUERA_astral_momia} @self ~onTimer:20 ?hastag{tag=astral.ancestral.fuera}
+  - skill{s=AST_ANCESTRAL_FUERA_astral_momia} @self ~onLoad ?hastag{tag=astral.ancestral.fuera}
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &6&lFarao Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_momia} @self ~onTimer:30 ?playerwithin{d=6}
@@ -1072,6 +1187,18 @@ astral_yeti_ancestral:
   - skill{s=AST_MODEL_astral_yeti_ancestral} @self ~onSpawn
   - skill{s=AST_MODEL_astral_yeti_ancestral} @self ~onLoad
   - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 1 run tag @s add astral.pt1"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 2 run tag @s add astral.pt2"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 3 run tag @s add astral.pt3"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 4 run tag @s add astral.pt4"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 5 run tag @s add astral.pt5"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 6 run tag @s add astral.pt6"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 7 run tag @s add astral.pt7"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 8 run tag @s add astral.pt8"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 9 run tag @s add astral.pt9"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 10 run tag @s add astral.pt10"} @self ~onSpawn
+  - command{c="minecraft:attribute <caster.uuid> minecraft:max_health modifier add astral:ancestral 4 add_multiplied_total"} @self ~onSpawn
+  - command{c="minecraft:data modify entity <caster.uuid> Health set value 1.0E30f"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
@@ -1105,6 +1232,8 @@ astral_yeti_ancestral:
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
   - skill{s=AST_ANCESTRAL_SEVA_astral_yeti} @self ~onTimer:12000
+  - skill{s=AST_ANCESTRAL_FUERA_astral_yeti} @self ~onTimer:20 ?hastag{tag=astral.ancestral.fuera}
+  - skill{s=AST_ANCESTRAL_FUERA_astral_yeti} @self ~onLoad ?hastag{tag=astral.ancestral.fuera}
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &b&lYeti Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_yeti} @self ~onTimer:30 ?playerwithin{d=6}
@@ -1169,6 +1298,18 @@ astral_golem_forja_ancestral:
   - skill{s=AST_MODEL_astral_golem_forja_ancestral} @self ~onSpawn
   - skill{s=AST_MODEL_astral_golem_forja_ancestral} @self ~onLoad
   - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 1 run tag @s add astral.pt1"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 2 run tag @s add astral.pt2"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 3 run tag @s add astral.pt3"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 4 run tag @s add astral.pt4"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 5 run tag @s add astral.pt5"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 6 run tag @s add astral.pt6"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 7 run tag @s add astral.pt7"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 8 run tag @s add astral.pt8"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 9 run tag @s add astral.pt9"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 10 run tag @s add astral.pt10"} @self ~onSpawn
+  - command{c="minecraft:attribute <caster.uuid> minecraft:max_health modifier add astral:ancestral 4 add_multiplied_total"} @self ~onSpawn
+  - command{c="minecraft:data modify entity <caster.uuid> Health set value 1.0E30f"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/nucleo_furia"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/nucleo_furia"} @self ~onDeath 1.0
@@ -1202,6 +1343,8 @@ astral_golem_forja_ancestral:
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
   - skill{s=AST_ANCESTRAL_SEVA_astral_golem_forja} @self ~onTimer:12000
+  - skill{s=AST_ANCESTRAL_FUERA_astral_golem_forja} @self ~onTimer:20 ?hastag{tag=astral.ancestral.fuera}
+  - skill{s=AST_ANCESTRAL_FUERA_astral_golem_forja} @self ~onLoad ?hastag{tag=astral.ancestral.fuera}
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &4&lColoso de la Forja Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_golem_forja} @self ~onTimer:30 ?playerwithin{d=6}
@@ -1226,7 +1369,7 @@ astral_golem_forja_ancestral:
   - skill{s=AST_PLATA_ANCESTRAL} @self ~onDeath ?~isplayer
 
 astral_cangrejo_ancestral:
-  Type: SPIDER
+  Type: ZOGLIN
   Display: '&d&lCangrejo Ancestral'
   Health: 1000
   Damage: 14.4
@@ -1265,6 +1408,18 @@ astral_cangrejo_ancestral:
   - skill{s=AST_MODEL_astral_cangrejo_ancestral} @self ~onSpawn
   - skill{s=AST_MODEL_astral_cangrejo_ancestral} @self ~onLoad
   - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 1 run tag @s add astral.pt1"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 2 run tag @s add astral.pt2"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 3 run tag @s add astral.pt3"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 4 run tag @s add astral.pt4"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 5 run tag @s add astral.pt5"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 6 run tag @s add astral.pt6"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 7 run tag @s add astral.pt7"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 8 run tag @s add astral.pt8"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 9 run tag @s add astral.pt9"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 10 run tag @s add astral.pt10"} @self ~onSpawn
+  - command{c="minecraft:attribute <caster.uuid> minecraft:max_health modifier add astral:ancestral 4 add_multiplied_total"} @self ~onSpawn
+  - command{c="minecraft:data modify entity <caster.uuid> Health set value 1.0E30f"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
@@ -1293,6 +1448,8 @@ astral_cangrejo_ancestral:
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
   - skill{s=AST_ANCESTRAL_SEVA_astral_cangrejo} @self ~onTimer:12000
+  - skill{s=AST_ANCESTRAL_FUERA_astral_cangrejo} @self ~onTimer:20 ?hastag{tag=astral.ancestral.fuera}
+  - skill{s=AST_ANCESTRAL_FUERA_astral_cangrejo} @self ~onLoad ?hastag{tag=astral.ancestral.fuera}
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &d&lCangrejo Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_cangrejo} @self ~onTimer:30 ?playerwithin{d=6}
@@ -1358,6 +1515,18 @@ astral_chaman_ancestral:
   - skill{s=AST_MODEL_astral_chaman_ancestral} @self ~onSpawn
   - skill{s=AST_MODEL_astral_chaman_ancestral} @self ~onLoad
   - command{c="execute as <caster.uuid> at @s run function astral:mob/jefe_mundo"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 1 run tag @s add astral.pt1"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 2 run tag @s add astral.pt2"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 3 run tag @s add astral.pt3"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 4 run tag @s add astral.pt4"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 5 run tag @s add astral.pt5"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 6 run tag @s add astral.pt6"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 7 run tag @s add astral.pt7"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 8 run tag @s add astral.pt8"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 9 run tag @s add astral.pt9"} @self ~onSpawn
+  - command{c="execute as <caster.uuid> if score @s astral.mt matches 10 run tag @s add astral.pt10"} @self ~onSpawn
+  - command{c="minecraft:attribute <caster.uuid> minecraft:max_health modifier add astral:ancestral 4 add_multiplied_total"} @self ~onSpawn
+  - command{c="minecraft:data modify entity <caster.uuid> Health set value 1.0E30f"} @self ~onSpawn
   - state{s=attack} @self ~onAttack
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
   - command{c="execute at <caster.uuid> run loot spawn ~ ~0.5 ~ loot astral:item/alma_corrupta"} @self ~onDeath 1.0
@@ -1391,13 +1560,14 @@ astral_chaman_ancestral:
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
   - skill{s=AST_ANCESTRAL_SEVA_astral_chaman} @self ~onTimer:12000
+  - skill{s=AST_ANCESTRAL_FUERA_astral_chaman} @self ~onTimer:20 ?hastag{tag=astral.ancestral.fuera}
+  - skill{s=AST_ANCESTRAL_FUERA_astral_chaman} @self ~onLoad ?hastag{tag=astral.ancestral.fuera}
   - 'message{m="&6&l(!) &e<trigger.name> &7derroto a &2&lGran Chaman Ancestral&7!"} @PlayersOnServer ~onDeath ?isplayer'
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_chaman} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_chaman} @PlayersInRing{min=4;max=48} ~onTimer:40
   - settarget @NearestPlayer{r=40} ~onTimer:30
   - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
-  - command{c="execute at <caster.uuid> run function astral:boss/chaman_ice"} @self ~onTimer:5
   - command{c="execute as <trigger.name> at @s run function astral:quest/event/chaman"} @self ~onDeath ?~isplayer
   - skill{s=AST_FASE_astral_chaman_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_chaman_2_veneno} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
@@ -1508,7 +1678,6 @@ astral_npc_guia_expediciones:
 
 astral_npc_bazar:
   Type: VILLAGER
-  Display: '&6&lBazar &7(mercado y subastas)'
   Health: 100
   Options:
     NoAI: true
@@ -1519,7 +1688,7 @@ astral_npc_bazar:
     Collidable: false
     PreventItemPickup: true
     PreventOtherDrops: true
-    AlwaysShowName: true
+    AlwaysShowName: false
     Profession: CARTOGRAPHER
     VillagerType: PLAINS
   Skills:
@@ -1532,7 +1701,6 @@ astral_npc_bazar:
 
 astral_npc_subastas:
   Type: VILLAGER
-  Display: '&e&lSubastas y Banco'
   Health: 100
   Options:
     NoAI: true
@@ -1543,7 +1711,7 @@ astral_npc_subastas:
     Collidable: false
     PreventItemPickup: true
     PreventOtherDrops: true
-    AlwaysShowName: true
+    AlwaysShowName: false
     Profession: ARMORER
     VillagerType: PLAINS
   Skills:
@@ -1555,7 +1723,6 @@ astral_npc_subastas:
 
 astral_npc_herrero:
   Type: VILLAGER
-  Display: '&6&lHerrero &7- mejorar equipo'
   Health: 100
   Options:
     NoAI: true
@@ -1566,7 +1733,7 @@ astral_npc_herrero:
     Collidable: false
     PreventItemPickup: true
     PreventOtherDrops: true
-    AlwaysShowName: true
+    AlwaysShowName: false
     Profession: WEAPONSMITH
     VillagerType: PLAINS
   Skills:
@@ -1579,7 +1746,6 @@ astral_npc_herrero:
 
 astral_npc_tienda:
   Type: VILLAGER
-  Display: '&6&lTienda'
   Health: 100
   Options:
     NoAI: true
@@ -1590,7 +1756,7 @@ astral_npc_tienda:
     Collidable: false
     PreventItemPickup: true
     PreventOtherDrops: true
-    AlwaysShowName: true
+    AlwaysShowName: false
     Profession: TOOLSMITH
     VillagerType: PLAINS
   Skills:
@@ -1603,7 +1769,6 @@ astral_npc_tienda:
 
 astral_npc_venta:
   Type: VILLAGER
-  Display: '&a&lVenta rapida'
   Health: 100
   Options:
     NoAI: true
@@ -1614,7 +1779,7 @@ astral_npc_venta:
     Collidable: false
     PreventItemPickup: true
     PreventOtherDrops: true
-    AlwaysShowName: true
+    AlwaysShowName: false
     Profession: FARMER
     VillagerType: PLAINS
   Skills:

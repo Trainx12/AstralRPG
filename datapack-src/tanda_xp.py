@@ -7,7 +7,9 @@ from gacha_balance import FACTOR_SUERTE
 ROOT = Path(__file__).resolve().parents[1]
 XP = {'frasco_xp_pequeno': 60, 'frasco_xp_grande': 200, 'frasco_xp_gigante': 550, 'barril_xp': 5500}
 from economia import plata as _x
-PRECIOS = {k: _x(v) for k, v in {'frasco_xp_pequeno': 3000, 'frasco_xp_grande': 9000, 'frasco_xp_gigante': 25000, 'barril_xp': 220000, 'manzana_esmeralda': 60000}.items()}
+# 25/11 (dueno): bajados a ~1/3 con el recorte de las Minas (las minas II-III pagan 2,4 a 19 veces menos).
+# Antes 300k / 900k / 2,5M / 22M / 6M. Barril = ~1 h de taladro 2x2 en Diamante II.
+PRECIOS = {k: _x(v) for k, v in {'frasco_xp_pequeno': 1000, 'frasco_xp_grande': 3000, 'frasco_xp_gigante': 8000, 'barril_xp': 70000, 'manzana_esmeralda': 20000}.items()}
 NOMBRES = {'frasco_xp_pequeno': 'Frasco de Experiencia Pequeno', 'frasco_xp_grande': 'Frasco de Experiencia Grande', 'frasco_xp_gigante': 'Frasco de Experiencia Gigante', 'barril_xp': 'Barril de Experiencia',
            'manzana_esmeralda': 'Manzana de la Suerte'}
 SUERTE_SEGUNDOS = 300

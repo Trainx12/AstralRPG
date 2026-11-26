@@ -89,9 +89,10 @@ def icono_sin_casco(name, main):
             f'assets/astral/items/{iid}.json': js({'model': {'type': 'minecraft:model', 'model': f'astral:item/{iid}'}})}
 
 
-def armaduras():
+def armaduras(visual=None):
+    """visual: {set: {tier: id de armaduras_t6_10}} (por defecto items_t6_10.VISUAL; clases.py usa el suyo)."""
     files = {}
-    for set_id, tiers in VISUAL.items():
+    for set_id, tiers in (VISUAL if visual is None else visual).items():
         for t, vid in tiers.items():
             if not vid:
                 continue  # sin modelo elegido: queda la reserva del pack publico (T5 de la clase)

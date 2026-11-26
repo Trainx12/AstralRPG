@@ -35,7 +35,7 @@ items:
     - '&bCosto: 80 de mana'
     - '&aRecarga: 30 s'
     - '&b+60 de mana en la mano'
-    - '&cRequiere: Hechiceria 8'
+    - '&cRequiere: sin nivel'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     item_flags:
     - HIDE_ATTRIBUTES
@@ -44,8 +44,8 @@ items:
   'material1':
     material: PAPER
     slot: 15
-    amount: 1
-    display_name: '&f1x Gema Luminica'
+    amount: 2
+    display_name: '&f2x Gema Luminica'
     item_model: 'astral:gema_luminica'
     lore:
     - '&7Se encuentra en cofres del Overworld.'
@@ -59,8 +59,8 @@ items:
   'material2':
     material: PAPER
     slot: 16
-    amount: 2
-    display_name: '&f2x Cristal Arcano Refinado'
+    amount: 5
+    display_name: '&f5x Cristal Arcano Refinado'
     item_model: 'astral:cristal_refinado'
     lore:
     - '&7Crafteos magicos medio-alto.'

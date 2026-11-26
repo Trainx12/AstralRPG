@@ -2,8 +2,8 @@
 # Trainx (jefe final), Renacimiento, Deseos y Deseo lite del Cronista.
 
 options:
-    tope: 2500000000
-    topelite: 625000000
+    tope: 250000000
+    topelite: 62500000
 
 # ------------------------------------------------------------------ Trainx
 # MythicMobs (mobs/trainx.py) llama estos comandos desde la consola con el nombre del mundo.
@@ -252,9 +252,9 @@ command /astraldeseo <text> <text>:
         set {-deseo.cat::%uuid of player%} to arg-2
         if arg-2 is "plata":
             if arg-1 is "completo":
-                send "&dEscribi en el chat cuanta plata queres &7(solo el numero, maximo &e2.500.000.000$&7)." to player
+                send "&dEscribi en el chat cuanta plata queres &7(solo el numero, maximo &e250.000.000$&7)." to player
             else:
-                send "&dEscribi en el chat cuanta plata queres &7(solo el numero, maximo &e625.000.000$&7)." to player
+                send "&dEscribi en el chat cuanta plata queres &7(solo el numero, maximo &e62.500.000$&7)." to player
         else:
             send "&dEscribi tu deseo en el chat, bien explicado &7(un solo mensaje)." to player
         send "&7Para volver a la ventana, escribi &fcancelar&7." to player

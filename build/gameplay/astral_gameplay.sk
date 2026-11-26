@@ -644,6 +644,13 @@ on uncancelled damage of living entity with priority monitor:
 
 on load:
     execute console command "minecraft:kill @e[type=minecraft:text_display,tag=astral.dmg]"
+    execute console command "minecraft:scoreboard objectives add astral.dmgedad dummy"
+
+# 23/11: si el server se reinicia antes de los 25 ticks, el "wait" se pierde y el numero queda flotando para
+# siempre (on load no ve los chunks sin cargar). Cada numero cuenta su edad y a los 3 s se borra, aunque sea viejo.
+every 1 second:
+    execute console command "minecraft:execute if entity @e[type=minecraft:text_display,tag=astral.dmg] run scoreboard players add @e[type=minecraft:text_display,tag=astral.dmg] astral.dmgedad 1"
+    execute console command "minecraft:execute if entity @e[type=minecraft:text_display,tag=astral.dmg,scores={astral.dmgedad=3..}] run kill @e[type=minecraft:text_display,tag=astral.dmg,scores={astral.dmgedad=3..}]"
 
 # Arena PvP: stats propias contra jugadores (gameplay.py PVP_PCT). Corre al final, despues de la defensa.
 function astral_pvp_tier(a: player) :: number:
@@ -899,3 +906,20 @@ on right click with end crystal:
     distance between location of event-block and location(0, y-coordinate of event-block, 0, world of player) < 12
     cancel event
     send "&5El dragon del End ya no vuelve: &7el portal de salida y los portales a las islas estan abiertos." to player
+
+
+# Menas de bloque de nota (gameplay.py ANTI_NOTAS): no se afinan ni se arman a mano (campana, banjo y campanilla del Vacio).
+on right click on note block:
+    set {_d} to "%block data of event-block%"
+    if {_d} contains "instrument=bell" or "instrument=banjo" or "instrument=chime":
+        cancel event
+
+on place of note block:
+    type of block below event-block is gold block or hay block or packed ice
+    cancel event
+    send "&cNo se puede poner un bloque de nota sobre oro, heno o hielo compactado." to player
+
+on place of gold block or hay block or packed ice:
+    type of block above event-block is note block
+    cancel event
+    send "&cNo se puede poner oro, heno o hielo compactado debajo de un bloque de nota." to player

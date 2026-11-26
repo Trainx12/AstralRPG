@@ -13,7 +13,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 3'
     - ''
-    - '&cRequiere: sin nivel'
+    - '&cRequiere: Combate 20'
     - '&#5555FF&lRARA ESCUDO'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     item_flags:

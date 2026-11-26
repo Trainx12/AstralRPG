@@ -11,8 +11,8 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 
 
-def run(java, base):
-    work = ROOT / '.local/recetas-probe'
+def run(java, base, work=None, decor=None, steps=None, cycles=2):
+    work = work or ROOT / '.local/recetas-probe'
     server = work / 'paper'
     server.mkdir(parents=True, exist_ok=True)
     for name in ('libraries', 'versions', 'cache'):
@@ -23,7 +23,7 @@ def run(java, base):
     (server / 'server.properties').write_text('server-ip=127.0.0.1\nserver-port=25597\nonline-mode=false\nlevel-name=probe\nlevel-type=minecraft:flat\ngenerator-settings={"layers":[{"block":"minecraft:bedrock","height":1}],"biome":"minecraft:plains"}\ngenerate-structures=false\nspawn-protection=0\nmanagement-server-enabled=false\n')
     plugins = server / 'plugins'
     plugins.mkdir(exist_ok=True)
-    shutil.copy2(ROOT / 'build/runtime/AstralDecor.jar', plugins / 'AstralDecor.jar')
+    shutil.copy2(decor or ROOT / 'build/runtime/AstralDecor.jar', plugins / 'AstralDecor.jar')
     for name in ('nightcore.jar', 'excellentenchants.jar', 'packetevents.jar', 'auraskills.jar'):
         shutil.copy2(base / 'plugins' / name, plugins / name)
     if not (plugins / 'AuraSkills').exists():
@@ -42,7 +42,7 @@ def run(java, base):
         for p in (work / 'astraltest').glob('TableProbe*.class'):
             z.write(p, 'astraltest/' + p.name)
         z.writestr('plugin.yml', "name: TableProbe\nversion: 1\nmain: astraltest.TableProbe\napi-version: '26.1.2'\ndepend: [AstralDecor, AuraSkills]\ncommands:\n  tableprobe: {}\n")
-    for cycle in (1, 2):
+    for cycle in range(1, cycles+1):
         log = work / f'paper-{cycle}.log'
         with log.open('w', encoding='utf8') as out:
             process = subprocess.Popen([str(java), '-Xms512M', '-Xmx2G', '-jar', 'paper.jar', '--nogui'], cwd=server,
@@ -59,7 +59,7 @@ def run(java, base):
                     time.sleep(1)
                 else:
                     raise TimeoutError('Paper no arranco')
-                for step in ('start', 'exact', 'level', 'vanilla', 'shift', 'book', 'migration', 'forge', 'forgecheck', 'result'):
+                for step in steps or ('start', 'exact', 'level', 'vanilla', 'shift', 'book', 'migration', 'migrationcache', 'forge', 'forgecheck', 'result'):
                     cmd('tableprobe ' + step)
                     time.sleep(3)
             finally:
@@ -78,5 +78,10 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--java', type=Path, required=True)
     parser.add_argument('--base', type=Path, required=True)
+    parser.add_argument('--work', type=Path, help='Directorio aislado para conservar ensayos previos')
+    parser.add_argument('--decor', type=Path, help='JAR alternativo para comparar contra el previo')
+    parser.add_argument('--steps', nargs='+', help='Pasos concretos del probe')
+    parser.add_argument('--cycles', type=int, choices=(1, 2), default=2)
     args = parser.parse_args()
-    run(args.java.resolve(), args.base.resolve())
+    run(args.java.resolve(), args.base.resolve(), args.work.resolve() if args.work else None,
+        args.decor.resolve() if args.decor else None, args.steps, args.cycles)

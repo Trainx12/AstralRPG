@@ -63,9 +63,8 @@ items:
     display_name: '&f4x Fragmento de Cristal Arcano'
     item_model: 'astral:fragmento_cristal'
     lore:
-    - '&74 forman un Cristal Refinado.'
+    - '&72 forman un Cristal Arcano.'
     - '&8Material de AstralRPG'
-    - '&7Se fabrica en la mesa de crafteo o en la Forja'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS

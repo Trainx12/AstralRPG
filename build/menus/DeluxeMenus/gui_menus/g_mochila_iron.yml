@@ -1,0 +1,188 @@
+menu_title: '&f&#ffe9a8Mochila de Hierro'
+size: 54
+items:
+  'g0':
+    material: IRON_INGOT
+    slot: 10
+    amount: 1
+    display_name: '&fLingote de hierro'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'g1':
+    material: IRON_INGOT
+    slot: 11
+    amount: 1
+    display_name: '&fLingote de hierro'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'g2':
+    material: IRON_INGOT
+    slot: 12
+    amount: 1
+    display_name: '&fLingote de hierro'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'g3':
+    material: IRON_INGOT
+    slot: 19
+    amount: 1
+    display_name: '&fLingote de hierro'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'g4':
+    material: PLAYER_HEAD
+    slot: 20
+    amount: 1
+    display_name: '&#e0804aMochila de Cobre'
+    item_model: 'astral:mochila_copper'
+    lore:
+    - '&718 espacios'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'g5':
+    material: IRON_INGOT
+    slot: 21
+    amount: 1
+    display_name: '&fLingote de hierro'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'g6':
+    material: IRON_INGOT
+    slot: 28
+    amount: 1
+    display_name: '&fLingote de hierro'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'g7':
+    material: IRON_INGOT
+    slot: 29
+    amount: 1
+    display_name: '&fLingote de hierro'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'g8':
+    material: IRON_INGOT
+    slot: 30
+    amount: 1
+    display_name: '&fLingote de hierro'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'flecha':
+    material: PAPER
+    slot: 23
+    amount: 1
+    display_name: '&7Mesa de Crafteo'
+    item_model: 'astral:mascotas/nav_next'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'resultado':
+    material: PLAYER_HEAD
+    slot: 25
+    amount: 1
+    display_name: '&fMochila de Hierro'
+    item_model: 'astral:mochila_iron'
+    lore:
+    - '&727 espacios'
+    - '&7Clic derecho para abrirla'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'como':
+    material: KNOWLEDGE_BOOK
+    slot: 40
+    amount: 1
+    display_name: '&6&lMesa de Crafteo'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Pone la Mochila de Cobre en el centro'
+    - '&7y rodeala con 8 de lingote de hierro.'
+    - '&7Lo que tenia adentro se conserva.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_mochilas'
+  'anterior':
+    material: PAPER
+    slot: 47
+    amount: 1
+    display_name: '&eAnterior'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_mochila_copper'
+  'siguiente':
+    material: PAPER
+    slot: 51
+    amount: 1
+    display_name: '&eSiguiente'
+    item_model: 'astral:mascotas/nav_next'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_mochila_gold'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

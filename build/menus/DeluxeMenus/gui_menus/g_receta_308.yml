@@ -26,7 +26,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 5'
     - ''
-    - '&cRequiere: Defensa 22'
+    - '&cRequiere: Hechiceria 32'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA BOTAS'
     item_flags:
@@ -57,7 +57,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 3'
     - ''
-    - '&cRequiere: Defensa 14'
+    - '&cRequiere: Hechiceria 20'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA BOTAS'
     item_flags:

@@ -66,7 +66,7 @@ class CorreccionesTests(unittest.TestCase):
         self.assertFalse(any('steal' in s.lower() for s in mob['Skills']))
         self.assertTrue(set(XP)<=set(iid for iid,_,_ in MERCHANT))
         self.assertIn('llave_cosmeticos',MERCHANT_SPECIAL)
-        self.assertIn('cosmetico_balde',MERCHANT_SPECIAL)
+        self.assertNotIn('cosmetico_balde',MERCHANT_SPECIAL)
         with zipfile.ZipFile(ROOT/'build/runtime/AstralDecor.jar') as z:
             data=json.loads(z.read('mercader.json'))
             for iid,price,stock in MERCHANT:

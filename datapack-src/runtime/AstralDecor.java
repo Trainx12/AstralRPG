@@ -88,6 +88,10 @@ public final class AstralDecor extends JavaPlugin implements Listener {
             asuraHeal=b.get("asura_cura").getAsDouble();carnivoraHeal=b.get("carnivora_cura").getAsDouble();
             plushPrice=b.get("peluche").getAsDouble();
         } catch(Exception ex) {throw new IllegalStateException("Balance sin datos",ex);}
+        try(var in=getResource("manzanas.json")) {
+            com.google.gson.JsonParser.parseReader(new java.io.InputStreamReader(in,java.nio.charset.StandardCharsets.UTF_8))
+                .getAsJsonObject().entrySet().forEach(e->dungeonApples.put(e.getKey(),e.getValue().getAsJsonObject()));
+        } catch(Exception ex) {throw new IllegalStateException("Manzanas sin datos",ex);}
         var board=Bukkit.getScoreboardManager().getMainScoreboard();
         if(board.getObjective("astral.suerte")==null)board.registerNewObjective("astral.suerte",org.bukkit.scoreboard.Criteria.DUMMY,net.kyori.adventure.text.Component.text("Suerte"));
     }
@@ -129,6 +133,29 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         p.spawnParticle(Particle.HAPPY_VILLAGER,p.getLocation().add(0,1,0),12,.35,.5,.35,0);
         updateLuck(p);
     }
+    // Manzanas de Mazmorra (manzanas.py): cura fija de su tier, mitad al instante y el resto en unos segundos.
+    private final Map<String,com.google.gson.JsonObject> dungeonApples = new HashMap<>();
+    @EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=true)
+    public void eatDungeonApple(PlayerItemConsumeEvent e) {
+        var data=dungeonApples.get(consumable(e.getItem()));
+        if(data==null)return;
+        Player p=e.getPlayer();
+        double total=data.get("cura").getAsDouble(), now=Math.round(total*data.get("instante").getAsDouble());
+        int seconds=data.get("segundos").getAsInt(), steps=seconds*4;
+        double step=(total-now)/steps;
+        healFlat(p,now);
+        p.sendActionBar(MM.deserialize("<color:"+data.get("color").getAsString()+">❤ +"+String.format(java.util.Locale.GERMANY,"%,.0f",total)+
+            " de vida</color> <gray>("+data.get("nombre").getAsString()+")</gray>"));
+        p.playSound(p.getLocation(),Sound.ENTITY_PLAYER_LEVELUP,.5f,1.6f);
+        p.spawnParticle(Particle.HEART,p.getLocation().add(0,1.8,0),6,.4,.3,.4,0);
+        for(int i=1;i<=steps;i++)Bukkit.getScheduler().runTaskLater(this,()->{
+            if(p.isOnline() && !p.isDead())healFlat(p,step);},i*5L);
+    }
+    private static void healFlat(Player p,double amount) {
+        var max=p.getAttribute(org.bukkit.attribute.Attribute.MAX_HEALTH);
+        if(max==null || amount<=0)return;
+        p.setHealth(Math.min(max.getValue(),p.getHealth()+amount));
+    }
     private static String luckTime(long seconds) {return seconds/60+":"+String.format(java.util.Locale.ROOT,"%02d",seconds%60);}
     private void updateLuck(Player p) {
         var data=p.getPersistentDataContainer();
@@ -162,8 +189,149 @@ public final class AstralDecor extends JavaPlugin implements Listener {
             if(!model.equals(meta.getItemModel())) {meta.setItemModel(model);it.setItemMeta(meta);}
         }
     }
+    // 21/11/2026: la mochila es una cabeza de jugador; puesta en el piso se veia como cabeza plana. Ahora no se
+    // coloca el bloque: queda el modelo 3D (item_display con la misma mochila) y una caja de clic. Clic del dueno
+    // (o de un OP) la devuelve al inventario, con todo lo que tenia.
+    private NamespacedKey mochilaKey(String k) {return new NamespacedKey(this,"mochila_"+k);}
+    private boolean isBackpack(ItemStack it) {
+        return it!=null && it.getType()==Material.PLAYER_HEAD && it.hasItemMeta() && it.getItemMeta().getPersistentDataContainer()
+            .has(NamespacedKey.fromString("expendablebackpacks:backpack_uuid"),PersistentDataType.STRING);
+    }
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true)
+    public void mochilaPoner(BlockPlaceEvent e) {
+        ItemStack it=e.getItemInHand();
+        if(!isBackpack(it))return;
+        e.setCancelled(true);
+        Player p=e.getPlayer();
+        ItemStack copy=it.clone();copy.setAmount(1);
+        if(it.getAmount()>1)it.setAmount(it.getAmount()-1); else p.getInventory().setItem(e.getHand(),null);
+        Block b=e.getBlockPlaced();
+        float yaw=Math.round((p.getLocation().getYaw()+180f)/90f)*90f;
+        Location at=b.getLocation().add(.5,.5,.5);at.setYaw(yaw);at.setPitch(0);
+        ItemDisplay d=b.getWorld().spawn(at,ItemDisplay.class,x->{
+            x.setItemStack(copy);x.setItemDisplayTransform(ItemDisplay.ItemDisplayTransform.NONE);
+            // El modelo va de y -2 a 13,6 y de z 6,9 a 15,2 (frente +z): se apoya en el piso y se centra.
+            x.setTransformation(new Transformation(new Vector3f(0f,.125f,-.19f),new Quaternionf(),new Vector3f(1f,1f,1f),new Quaternionf()));
+            x.getPersistentDataContainer().set(mochilaKey("dueno"),PersistentDataType.STRING,p.getUniqueId().toString());
+        });
+        b.getWorld().spawn(b.getLocation().add(.5,0,.5),Interaction.class,x->{
+            x.setInteractionWidth(.8f);x.setInteractionHeight(.9f);x.setResponsive(true);
+            var pdc=x.getPersistentDataContainer();
+            pdc.set(mochilaKey("display"),PersistentDataType.STRING,d.getUniqueId().toString());
+            pdc.set(mochilaKey("dueno"),PersistentDataType.STRING,p.getUniqueId().toString());
+            pdc.set(mochilaKey("nombre"),PersistentDataType.STRING,p.getName());
+        });
+        b.getWorld().playSound(at,Sound.ITEM_ARMOR_EQUIP_LEATHER,1f,1f);
+    }
+    private boolean mochilaLevantar(Player p,Entity e) {
+        if(!(e instanceof Interaction box))return false;
+        var pdc=box.getPersistentDataContainer();
+        String id=pdc.get(mochilaKey("display"),PersistentDataType.STRING);
+        if(id==null)return false;
+        String owner=pdc.get(mochilaKey("dueno"),PersistentDataType.STRING);
+        if(!p.getUniqueId().toString().equals(owner) && !p.isOp() && !p.hasPermission("astral.admin.mochilas")) {
+            p.sendActionBar(MM.deserialize("<red>Esta mochila es de <white>"+pdc.getOrDefault(mochilaKey("nombre"),PersistentDataType.STRING,"otro jugador")+"</white>.</red>"));
+            return true;
+        }
+        Entity d=Bukkit.getEntity(UUID.fromString(id));
+        box.remove();
+        if(d instanceof ItemDisplay disp) {
+            ItemStack item=disp.getItemStack();disp.remove();
+            if(item!=null && !item.getType().isAir())
+                p.getInventory().addItem(item).values().forEach(rest->p.getWorld().dropItem(p.getLocation(),rest));
+            p.playSound(p.getLocation(),Sound.ENTITY_ITEM_PICKUP,1f,1f);
+        }
+        return true;
+    }
+    @EventHandler(priority=EventPriority.LOW)
+    public void mochilaClic(PlayerInteractEntityEvent e) {
+        if(e.getHand()==EquipmentSlot.HAND && mochilaLevantar(e.getPlayer(),e.getRightClicked()))e.setCancelled(true);
+    }
+    @EventHandler(priority=EventPriority.LOW)
+    public void mochilaGolpe(PrePlayerAttackEntityEvent e) {
+        if(mochilaLevantar(e.getPlayer(),e.getAttacked()))e.setCancelled(true);
+    }
+    // 24/11/2026: ExpendableBackpacks solo frena el clic y el shift-clic; con las teclas 1-9 o la F una mochila
+    // entraba en otra (o en si misma, y desaparecia: le paso a PepeMega312). Se frena toda entrada de mochila.
+    private boolean backpackView(InventoryView v) {
+        String t=v.getTitle();
+        return t!=null && (t.contains("Backpack") || t.contains("Enderpack"));
+    }
+    @EventHandler(priority=EventPriority.LOWEST)
+    public void mochilaEnMochila(InventoryClickEvent e) {
+        if(!backpackView(e.getView()) || !(e.getWhoClicked() instanceof Player p)) return;
+        Inventory top=e.getView().getTopInventory();
+        boolean enTop=top.equals(e.getClickedInventory());
+        boolean mete=(e.isShiftClick() && !enTop && isBackpack(e.getCurrentItem()))
+            || (enTop && isBackpack(e.getCursor()))
+            || (enTop && e.getClick()==ClickType.NUMBER_KEY && isBackpack(p.getInventory().getItem(e.getHotbarButton())))
+            || (enTop && e.getClick()==ClickType.SWAP_OFFHAND && isBackpack(p.getInventory().getItemInOffHand()));
+        if(!mete) return;
+        e.setCancelled(true);
+        p.sendActionBar(MM.deserialize("<red>No se puede guardar una mochila dentro de otra.</red>"));
+    }
+    @EventHandler(priority=EventPriority.LOWEST)
+    public void mochilaEnMochila(InventoryDragEvent e) {
+        if(!backpackView(e.getView()) || !isBackpack(e.getOldCursor())) return;
+        int size=e.getView().getTopInventory().getSize();
+        if(e.getRawSlots().stream().anyMatch(s->s<size)) e.setCancelled(true);
+    }
     @EventHandler public void xpQuit(PlayerQuitEvent e) {xpClickTick.remove(e.getPlayer().getUniqueId());asuraCombo.remove(e.getPlayer().getUniqueId());}
-    @EventHandler public void luckJoin(PlayerJoinEvent e) {updateLuck(e.getPlayer());}
+    @EventHandler public void luckJoin(PlayerJoinEvent e) {
+        Player p=e.getPlayer(); updateLuck(p);
+        Bukkit.getScheduler().runTaskLater(this,()->{if(p.isOnline())checkArmor(p);},100);
+    }
+    // 24/11: AuraSkills solo frena el clic de equipar; tumbas, dispensadores o plugins podian ponerla igual.
+    @EventHandler(priority=EventPriority.MONITOR) public void armorGuard(com.destroystokyo.paper.event.player.PlayerArmorChangeEvent e) {
+        Player p=e.getPlayer();
+        Bukkit.getScheduler().runTask(this,()->{if(p.isOnline())checkArmor(p);});
+    }
+    private void checkArmor(Player p) {
+        if(p.getGameMode()==GameMode.CREATIVE || p.getGameMode()==GameMode.SPECTATOR)return;
+        var inv=p.getInventory();
+        ItemStack[] armor=inv.getArmorContents();
+        List<ItemStack> removed=new ArrayList<>();
+        for(int i=0;i<armor.length;i++) {
+            String falta=armorMissing(p,armor[i]);
+            if(falta==null)continue;
+            removed.add(armor[i]); armor[i]=null;
+            p.sendMessage("§cNecesitas "+falta+" para usar esa armadura: volvio a tu inventario.");
+        }
+        if(removed.isEmpty())return;
+        inv.setArmorContents(armor);
+        for(ItemStack left:inv.addItem(removed.toArray(ItemStack[]::new)).values())
+            p.getWorld().dropItem(p.getLocation(),left).setOwner(p.getUniqueId());
+    }
+    /** Texto del requisito que falta ("Defensa 10"), o null si la pieza se puede usar. */
+    private String armorMissing(Player p,ItemStack item) {
+        if(item==null || !item.hasItemMeta())return null;
+        var req=item.getItemMeta().getPersistentDataContainer().get(NamespacedKey.fromString("auraskills:armor_requirements"),PersistentDataType.TAG_CONTAINER);
+        if(req==null || req.getKeys().isEmpty())return null;
+        var names=Map.of("defense","Defensa","fighting","Combate","sorcery","Hechiceria","forging","Forja","mining","Mineria","foraging","Tala","archery","Arqueria");
+        for(NamespacedKey key:req.getKeys()) {
+            Integer need=req.get(key,PersistentDataType.INTEGER);
+            if(need==null || need<=0)continue;
+            int have=skillLevel(p,key.getKey());
+            if(have<0)return null; // AuraSkills no responde: no sacar nada por error
+            if(have<need)return names.getOrDefault(key.getKey(),key.getKey())+" "+need;
+        }
+        return null;
+    }
+    private int skillLevel(Player player,String skillName) {
+        try {
+            var plugin=Bukkit.getPluginManager().getPlugin("AuraSkills");
+            if(plugin==null || !plugin.isEnabled())return -1;
+            var loader=plugin.getClass().getClassLoader();
+            var api=Class.forName("dev.aurelium.auraskills.api.AuraSkillsApi",true,loader);
+            Object user=api.getMethod("getUser",UUID.class).invoke(api.getMethod("get").invoke(null),player.getUniqueId());
+            var userType=Class.forName("dev.aurelium.auraskills.api.user.SkillsUser",true,loader);
+            // Recien conectado AuraSkills todavia no cargo los niveles (darian 0): no sacar nada.
+            if(user==null || !(boolean)userType.getMethod("isLoaded").invoke(user))return -1;
+            Object skill=Class.forName("dev.aurelium.auraskills.api.skill.Skills",true,loader).getField(skillName.toUpperCase(Locale.ROOT)).get(null);
+            var skillType=Class.forName("dev.aurelium.auraskills.api.skill.Skill",true,loader);
+            return (int)userType.getMethod("getSkillLevel",skillType).invoke(user,skill);
+        } catch(ReflectiveOperationException | RuntimeException ex) {return -1;}
+    }
     private static final class TableRecipe {
         NamespacedKey key;
         final List<ItemStack> ingredients = new ArrayList<>();
@@ -173,13 +341,20 @@ public final class AstralDecor extends JavaPlugin implements Listener {
     private final Map<NamespacedKey,TableRecipe> tableRecipes = new LinkedHashMap<>();
     private final Map<UUID,Long> craftWarnings = new HashMap<>();
     private final List<ItemStack> tableItems = new ArrayList<>();
+    // Instantaneas sin cantidad: cambiar lore/PDC/durabilidad invalida la entrada.
+    // Tambien se cachea "no migrar"; no retiene jugadores ni crece sin limite.
+    private final Map<ItemStack,org.bukkit.inventory.meta.ItemMeta> tableMigrationCache = new LinkedHashMap<>(128,0.75f,true) {
+        @Override protected boolean removeEldestEntry(Map.Entry<ItemStack,org.bukkit.inventory.meta.ItemMeta> entry) {
+            return size()>512;
+        }
+    };
     private ItemStack recipeItem(String id) {
         var table=Bukkit.getLootTable(NamespacedKey.fromString("astral:item/"+id));
         if(table==null)throw new IllegalStateException("Falta loot astral:item/"+id);
         return table.populateLoot(random,new org.bukkit.loot.LootContext.Builder(Bukkit.getWorlds().getFirst().getSpawnLocation()).build()).iterator().next();
     }
     private void loadTableRecipes() {
-        tableRecipes.keySet().forEach(Bukkit::removeRecipe); tableRecipes.clear();tableItems.clear();
+        tableRecipes.keySet().forEach(Bukkit::removeRecipe); tableRecipes.clear();tableItems.clear();tableMigrationCache.clear();
         try(var in=getResource("mesa.json")) {
             var rows=com.google.gson.JsonParser.parseReader(new java.io.InputStreamReader(in,java.nio.charset.StandardCharsets.UTF_8)).getAsJsonArray();
             for(var element:rows) {
@@ -212,33 +387,37 @@ public final class AstralDecor extends JavaPlugin implements Listener {
             discoverTableRecipes();
             getLogger().info("Mesa Astral: "+tableRecipes.size()+" recetas exactas registradas");
         } catch(Exception ex) {
-            tableRecipes.keySet().forEach(Bukkit::removeRecipe);tableRecipes.clear();tableItems.clear();
+            tableRecipes.keySet().forEach(Bukkit::removeRecipe);tableRecipes.clear();tableItems.clear();tableMigrationCache.clear();
             getLogger().log(java.util.logging.Level.SEVERE,"No se pudieron registrar las recetas Astral",ex);
         }
     }
     private void rememberTableItem(ItemStack item) {
         if(tableItems.stream().noneMatch(item::isSimilar))tableItems.add(item);
     }
-    private void discoverTableRecipes() {
-        for(Player p:Bukkit.getOnlinePlayers()) {
-          // Migrar solo lore de items canonicos previos; conservar cantidades y otros componentes.
-          for(var item:p.getInventory().getContents())if(astralIngredient(item)) {
-            for(var canonical:tableItems) {
+    private void migrateTableLore(ItemStack item) {
+        if(item==null || !item.hasItemMeta())return;
+        ItemStack snapshot=item.asOne();
+        if(!tableMigrationCache.containsKey(snapshot)) {
+            org.bukkit.inventory.meta.ItemMeta migrated=null;
+            if(astralIngredient(item))for(var canonical:tableItems) {
                 if(item.getType()!=canonical.getType())continue;
                 if(item.isSimilar(canonical))break;
                 var candidate=item.clone();var meta=candidate.getItemMeta();
                 meta.lore(canonical.getItemMeta().lore());candidate.setItemMeta(meta);
-                if(candidate.isSimilar(canonical)) {item.setItemMeta(meta);break;}
+                if(candidate.isSimilar(canonical)) {migrated=meta;break;}
             }
-          }
-          for(var recipe:tableRecipes.values()) {
-            if(p.hasDiscoveredRecipe(recipe.key))continue;
-            boolean found=false;
-            for(var item:p.getInventory().getContents()) {
-                if(item!=null && recipe.ingredients.stream().anyMatch(ingredient->ingredient.isSimilar(item))) {found=true;break;}
-            }
-            if(found)p.discoverRecipe(recipe.key);
-          }
+            tableMigrationCache.put(snapshot,migrated);
+        }
+        var meta=tableMigrationCache.get(snapshot);
+        if(meta!=null)item.setItemMeta(meta);
+    }
+    private void discoverTableRecipes() {
+        for(Player p:Bukkit.getOnlinePlayers()) {
+          // Migrar solo lore de items canonicos previos; conservar cantidades y otros componentes.
+          for(var item:p.getInventory().getContents())migrateTableLore(item);
+          // 24/11: todas las recetas Astral en el libro desde el principio (antes solo con algun material encima:
+          // sin materiales no se veia ni que existia la Varita de Curacion). Sin materiales salen en rojo.
+          for(var recipe:tableRecipes.values())if(!p.hasDiscoveredRecipe(recipe.key))p.discoverRecipe(recipe.key);
         }
     }
     @EventHandler public void tableReload(org.bukkit.event.server.ServerLoadEvent e) {
@@ -310,10 +489,28 @@ public final class AstralDecor extends JavaPlugin implements Listener {
             }
             return false;
         }
-        return Arrays.stream(inventory.getMatrix()).noneMatch(this::astralIngredient);
+        // 24/11: la mochila lleva nuestro item_model (astral:mochila_*) y se tomaba como ingrediente Astral:
+        // las mejoras de ExpendableBackpacks (mochila + 8 lingotes) quedaban sin resultado.
+        return Arrays.stream(inventory.getMatrix()).noneMatch(i->astralIngredient(i) && !isBackpack(i));
     }
     @EventHandler(priority=EventPriority.HIGHEST) public void prepareTable(PrepareItemCraftEvent e) {
         if(e.getView().getPlayer() instanceof Player p && !allowedTable(p,e.getInventory(),e.getRecipe()))e.getInventory().setResult(null);
+    }
+    // El libro de recetas cuenta talismanes, monedas, etc. como su material base (papel, palo...)
+    // y los mete en la mesa para recetas vanilla. Tras llenar, se devuelven al inventario.
+    @EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=true)
+    public void recipeBookAstral(com.destroystokyo.paper.event.player.PlayerRecipeBookClickEvent e) {
+        if(tableRecipes.containsKey(e.getRecipe()))return;
+        Player p=e.getPlayer();
+        getServer().getScheduler().runTask(this,()->{
+            if(!(p.getOpenInventory().getTopInventory() instanceof CraftingInventory inv))return;
+            ItemStack[] matrix=inv.getMatrix();boolean changed=false;
+            for(int i=0;i<matrix.length;i++)if(astralIngredient(matrix[i])) {
+                ItemStack back=matrix[i];matrix[i]=null;changed=true;
+                p.getInventory().addItem(back).values().forEach(rest->p.getWorld().dropItem(p.getLocation(),rest));
+            }
+            if(changed) {inv.setMatrix(matrix);inv.setResult(null);p.updateInventory();}
+        });
     }
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void takeTable(CraftItemEvent e) {
         if(e.getWhoClicked() instanceof Player p && !allowedTable(p,e.getInventory(),e.getRecipe())) {e.setCancelled(true);e.getInventory().setResult(null);}
@@ -514,14 +711,15 @@ public final class AstralDecor extends JavaPlugin implements Listener {
             if(chosen!=null)chosen.addScoreboardTag("astral.spell.model");
         }
     }
+    // 23/11/2026: la skin ya no se vuelve a aplicar al morir ni al cambiar de mundo (SkinsRestorer la refresca
+    // con un respawn falso y el cliente recargaba todos los chunks). Solo al entrar y al cargar el pack.
     private void removeCosmetics(UUID id) {
-        skinsApplied.remove(id);
         if(hats.remove(id)) {
             Player p=Bukkit.getPlayer(id);
             if(p!=null)showHead(p,p.getInventory().getHelmet());
         }
     }
-    @EventHandler public void leaveCosmetics(PlayerQuitEvent e) { removeCosmetics(e.getPlayer().getUniqueId()); }
+    @EventHandler public void leaveCosmetics(PlayerQuitEvent e) { skinsApplied.remove(e.getPlayer().getUniqueId()); removeCosmetics(e.getPlayer().getUniqueId()); }
     @EventHandler public void deathCosmetics(PlayerDeathEvent e) { removeCosmetics(e.getEntity().getUniqueId()); }
     @EventHandler(ignoreCancelled=true, priority=EventPriority.MONITOR)
     public void teleportCosmetics(PlayerTeleportEvent e) {
@@ -670,7 +868,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         hats.clear(); hats.addAll(active);
     }
     public void onEnable() {
-        new AstralSpell(this);
+        new AstralGomera(this, new AstralSpell(this));
         gacha=new AstralGacha(this);
         mounts=new AstralMounts(this);
         merchant=new AstralMerchant(this);

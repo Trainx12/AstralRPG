@@ -24,7 +24,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 9'
     - ''
-    - '&cRequiere: Defensa 38'
+    - '&cRequiere: Hechiceria 52'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&b&lDIVINA BOTAS'
     enchantments:
@@ -56,7 +56,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 8'
     - ''
-    - '&cRequiere: Defensa 34'
+    - '&cRequiere: Hechiceria 47'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&b&lDIVINA BOTAS'
     enchantments:

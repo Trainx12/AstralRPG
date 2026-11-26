@@ -1883,32 +1883,32 @@ on load:
     set {-pz.cofre::mina::frag} to "Lampara del Minero"
     set {-pz.cofre::tumba::nombre} to "Tumba del Rey de Arena"
     set {-pz.cofre::tumba::tier} to 3
-    set {-pz.cofre::tumba::mult} to 8
+    set {-pz.cofre::tumba::mult} to 5
     set {-pz.cofre::tumba::perm} to "astral.fragmento.arena"
     set {-pz.cofre::tumba::frag} to "Fragmento de la Arena"
     set {-pz.cofre::cumbre::nombre} to "Cumbre Helada"
     set {-pz.cofre::cumbre::tier} to 4
-    set {-pz.cofre::cumbre::mult} to 18
+    set {-pz.cofre::cumbre::mult} to 8
     set {-pz.cofre::cumbre::perm} to "astral.fragmento.hielo"
     set {-pz.cofre::cumbre::frag} to "Fragmento de Hielo"
     set {-pz.cofre::forja::nombre} to "Corazon de la Forja"
     set {-pz.cofre::forja::tier} to 5
-    set {-pz.cofre::forja::mult} to 40
+    set {-pz.cofre::forja::mult} to 12
     set {-pz.cofre::forja::perm} to "astral.fragmento.fuego"
     set {-pz.cofre::forja::frag} to "Fragmento de Fuego"
     set {-pz.cofre::santuario::nombre} to "Santuario Celestial"
     set {-pz.cofre::santuario::tier} to 5
-    set {-pz.cofre::santuario::mult} to 60
+    set {-pz.cofre::santuario::mult} to 18
     set {-pz.cofre::santuario::perm} to "astral.fragmento.corazon"
     set {-pz.cofre::santuario::frag} to "Corazon Astral"
     set {-pz.cofre::fosa::nombre} to "Fosa del Crustaceo"
     set {-pz.cofre::fosa::tier} to 3
-    set {-pz.cofre::fosa::mult} to 8
+    set {-pz.cofre::fosa::mult} to 5
     set {-pz.cofre::fosa::perm} to "astral.fragmento.marea"
     set {-pz.cofre::fosa::frag} to "Fragmento de la Marea"
     set {-pz.cofre::nave::nombre} to "Nave del Vacio"
     set {-pz.cofre::nave::tier} to 5
-    set {-pz.cofre::nave::mult} to 40
+    set {-pz.cofre::nave::mult} to 12
 
 command /mazpuntaje <text> <text>:
     executable by: console

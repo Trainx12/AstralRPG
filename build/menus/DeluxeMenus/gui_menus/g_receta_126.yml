@@ -22,7 +22,7 @@ items:
     - '&7Durabilidad: &f18.525'
     - '&7Tier: 8'
     - ''
-    - '&cRequiere: Defensa 34'
+    - '&cRequiere: Arqueria 45'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA GREBAS'
     enchantments:
@@ -52,7 +52,7 @@ items:
     - '&7Durabilidad: &f14.725'
     - '&7Tier: 7'
     - ''
-    - '&cRequiere: Defensa 30'
+    - '&cRequiere: Arqueria 40'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA GREBAS'
     enchantments:

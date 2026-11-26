@@ -29,7 +29,7 @@ def build(java, server, duels):
         for p in sorted((target / 'astral').glob('AstralDuelos*.class')):
             z.writestr(zipfile.ZipInfo('astral/' + p.name, (2026, 11, 17, 0, 0, 0)), p.read_bytes())
         z.writestr(zipfile.ZipInfo('plugin.yml', (2026, 11, 17, 0, 0, 0)),
-            "name: AstralDuelos\nversion: 1.2.0\nmain: astral.AstralDuelos\napi-version: '26.1.2'\ndepend: [Duels]\ncommands:\n  duelos: {}\n  desafiar: {}\n")
+            "name: AstralDuelos\nversion: 1.2.1\nmain: astral.AstralDuelos\napi-version: '26.1.2'\ndepend: [Duels]\ncommands:\n  duelos: {}\n  desafiar: {}\n")
         import duelos_party_ui   # titulos (glifos) de las ventanas ilustradas de Gemini
         z.writestr(zipfile.ZipInfo('titulos-ui.properties', (2026, 11, 18, 0, 0, 0)), duelos_party_ui.titles_properties())
     return dest

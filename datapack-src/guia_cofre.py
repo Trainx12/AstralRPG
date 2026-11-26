@@ -43,6 +43,9 @@ SHORT = {
     'cocina': ('Cocina', 'manzana_esmeralda'), 'misiones': ('Misiones', 'gema_luminica'),
     'materiales': ('Materiales', 'cristal_arcano'), 'berserker': ('Berserker', 'espada_1'),
     'mago': ('Mago', 'baston_1'), 'arquero': ('Arquero', 'arco_1'), 'lanzas': ('Lanzas', 'lanza_1'),
+    # 23/11 pedido del dueno: las clases nuevas muestran su arma (antes salia un libro vanilla).
+    'segador': ('Segador', 'guadana_1'), 'invocador': ('Invocador', 'libro_invocador_1'),
+    'asesino': ('Asesino', 'cuchillo_1'),
     'talismanes': ('Talismanes', 'corazon_fin'), 'especiales': ('Especiales', 'gancho'),
     'taladros': ('Taladros', 'taladro_diamante'), 'motosierras': ('Sierras', 'motosierra_basica'),
     'carnivora': ('Carnivora', 'carnivora_espada'), 'asura': ('Asura', 'asura_espada'), 'agua': ('Agua', 'agua_espada'),
@@ -820,7 +823,12 @@ def dialog_menus(data):
                 it['amount'] = 1
             if target and target.startswith('atlas/criatura/'):
                 mid = target.split('/')[-1]
-                it.update(material='PAPER', model=f'astral:atlas_ui/mobchico_{mid}')
+                if mid.startswith('vanilla_'):
+                    # 23/11: los mobs vanilla no tienen retrato en el pack (se veian violeta y negro): huevo de spawn.
+                    it.pop('model', None)
+                    it.update(material=mid[len('vanilla_'):].upper() + '_SPAWN_EGG')
+                else:
+                    it.update(material='PAPER', model=f'astral:atlas_ui/mobchico_{mid}')
             buttons.append((it, click(act)))
         if rid and rid in data['recetas']:
             out[name] = recipe_menu(name, caption, data['recetas'][rid], nav, cards)
@@ -893,10 +901,84 @@ def recipe_menu(name, caption, recipe, nav, cards):
     return '\n'.join(lines) + '\n'
 
 
+# 23/11 pedido del dueno: mochilas (ExpendableBackpacks 1.2.0) en la Guia, con su receta real.
+# Recetas sacadas del plugin (BackpackRecipes): cuero = LSL/LCL/LLL; cada mejora = 8 del material
+# alrededor de la mochila anterior; Netherite en la Mesa de Herreria. Se entra desde "Terrenos y mochilas".
+MOCHILAS_MENU = 'g_mochilas'
+MOCHILAS = [('leather', 'Cuero', 9, '&6'), ('copper', 'Cobre', 18, '&#e0804a'), ('iron', 'Hierro', 27, '&f'),
+            ('gold', 'Oro', 36, '&e'), ('diamond', 'Diamante', 45, '&b'), ('netherite', 'Netherite', 54, '&8')]
+MEJORA = {'copper': ('COPPER_INGOT', 'Lingote de cobre'), 'iron': ('IRON_INGOT', 'Lingote de hierro'),
+          'gold': ('GOLD_INGOT', 'Lingote de oro'), 'diamond': ('DIAMOND', 'Diamante')}
+GRILLA = [10, 11, 12, 19, 20, 21, 28, 29, 30]      # mesa 3x3 dibujada sobre el fondo general
+FLECHA, RESULTADO, NOTA = 23, 25, 40
+
+
+def mochila_item(n, lore=None):
+    mat, nombre, espacios, color = MOCHILAS[n]
+    return dict(material='PLAYER_HEAD', model=f'astral:mochila_{mat}', name=f'{color}Mochila de {nombre}',
+                lore=lore if lore is not None else [f'&7{espacios} espacios'])
+
+
+def mochila_menus():
+    out = {}
+    pagina = lambda n: f'g_mochila_{MOCHILAS[n][0]}'
+    # Seccion: explicacion + las 6 mochilas (clic = su receta)
+    lines = [f"menu_title: {q(title(BG_CHARS['general'], 'Mochilas'))}", 'size: 54', 'items:']
+    lines += yaml_item('info', 13, dict(material='KNOWLEDGE_BOOK', model=INFO_MODEL, name='&6&lMochilas', lore=wrap([
+        '&7Una mochila es un objeto: tenela en la mano y hace clic derecho para abrirla.',
+        '&7Se fabrica la de Cuero en la Mesa de Crafteo y se mejora nivel por nivel. Tambien se compran en /shop -> Mochilas.',
+        '&7Si moris, cae a tu tumba con todo lo que tiene adentro. No se puede meter una mochila dentro de otra.'])))
+    for n, slot in enumerate((21, 22, 23, 30, 31, 32)):
+        it = mochila_item(n, [f'&7{MOCHILAS[n][2]} espacios', '', '&e» Clic: ver como se fabrica'])
+        lines += yaml_item(f'm{n}', slot, it, ['[sound] UI_BUTTON_CLICK', f'[openguimenu] {pagina(n)}'])
+    lines += nav_items({'back': ['[openguimenu] g_atlas_seccion_proteccion']}, MOCHILAS_MENU)
+    out[MOCHILAS_MENU] = '\n'.join(lines) + '\n'
+    # Una ventana por mochila con la receta en su lugar real de la mesa 3x3
+    for n, (mat, nombre, espacios, color) in enumerate(MOCHILAS):
+        if mat == 'leather':
+            L, S, C = (dict(material='LEATHER', name='&fCuero'), dict(material='STRING', name='&fHilo'),
+                       dict(material='CHEST', name='&fCofre'))
+            grilla, donde = [L, S, L, L, C, L, L, L, L], 'Mesa de Crafteo'
+            como = ['&77 cuero, 1 hilo y 1 cofre en la Mesa de Crafteo.', '&7El hilo arriba al medio y el cofre en el centro.']
+        elif mat == 'netherite':
+            grilla = [None] * 9
+            grilla[3:6] = [dict(material='NETHERITE_UPGRADE_SMITHING_TEMPLATE', name='&fPlantilla de mejora de netherite'),
+                           mochila_item(n - 1), dict(material='NETHERITE_INGOT', name='&fLingote de netherite')]
+            donde = 'Mesa de Herreria'
+            como = ['&7En la Mesa de Herreria: plantilla de netherite,', '&7la Mochila de Diamante y 1 lingote de netherite.']
+        else:
+            material, ing = MEJORA[mat]
+            M = dict(material=material, name='&f' + ing)
+            grilla, donde = [M, M, M, M, mochila_item(n - 1), M, M, M, M], 'Mesa de Crafteo'
+            como = [f'&7Pone la Mochila de {MOCHILAS[n - 1][1]} en el centro', f'&7y rodeala con 8 de {ing.lower()}.',
+                    '&7Lo que tenia adentro se conserva.']
+        lines = [f"menu_title: {q(title(BG_CHARS['general'], f'Mochila de {nombre}'))}", 'size: 54', 'items:']
+        for k, (slot, it) in enumerate(zip(GRILLA, grilla)):
+            if it:
+                lines += yaml_item(f'g{k}', slot, it)
+        lines += yaml_item('flecha', FLECHA, dict(name=f'&7{donde}', model=NAV_MODELS['next']))
+        lines += yaml_item('resultado', RESULTADO, mochila_item(n, [f'&7{espacios} espacios', '&7Clic derecho para abrirla']))
+        lines += yaml_item('como', NOTA, dict(material='KNOWLEDGE_BOOK', model=INFO_MODEL, name=f'&6&l{donde}', lore=como))
+        nav = {'back': [f'[openguimenu] {MOCHILAS_MENU}']}
+        if n > 0:
+            nav['prev'] = [f'[openguimenu] {pagina(n - 1)}']
+        if n < len(MOCHILAS) - 1:
+            nav['next'] = [f'[openguimenu] {pagina(n + 1)}']
+        lines += nav_items(nav, pagina(n))
+        out[pagina(n)] = '\n'.join(lines) + '\n'
+    return out
+
+
 def menus(data=None):
     data = load() if data is None else data
     out = index_menus(data)
     out.update(dialog_menus(data))
+    # Boton "Mochilas" dentro de Terrenos y mochilas (sin tocar el indice: su fondo trae los nombres dibujados).
+    sec = menu_name('atlas/seccion/proteccion')
+    boton = mochila_item(0, ['&7Como se fabrican y mejoran', '', '&e» Clic para abrir'])
+    boton['name'] = '&bMochilas: recetas'
+    out[sec] += '\n'.join(yaml_item('mochilas', 31, boton, ['[sound] UI_BUTTON_CLICK', f'[openguimenu] {MOCHILAS_MENU}'])) + '\n'
+    out.update(mochila_menus())
     return out
 
 

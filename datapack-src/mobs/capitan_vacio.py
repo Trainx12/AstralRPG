@@ -501,8 +501,11 @@ def vida():
 
 
 def alto_modelo():
-    from tamanos import bounds_data
-    return bounds_data(build().export()[0])[1][1] / 16
+    # 23/11: medir el .bbmodel exportado (lo que dibuja BetterModel). bounds_data(export()) dividia dos veces por 16
+    # y el Capitan salia de ~70 bloques.
+    from tamanos import bounds
+    lo, hi = bounds(MODEL_ID)[1]
+    return hi - lo
 
 
 def modelo_s():

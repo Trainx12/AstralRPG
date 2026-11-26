@@ -54,9 +54,8 @@ def triggers(model):
             # 23/11: a TODOS los jugadores de la sala (no solo al que persigue) y cambia al mas cercano.
             f'skill{{s=AST_JEFE_DISPARO_{model}}} @PlayersInRing{{min={DISPARO_MIN};max={DISPARO_MAX}}} ~onTimer:40',
             'settarget @NearestPlayer{r=40} ~onTimer:30',
-            'skill{s=AST_JEFE_SALTO} @target ~onTimer:40'] + ([
-                'command{c="execute at <caster.uuid> run function astral:boss/chaman_ice"} @self ~onTimer:5'
-            ] if model == 'astral_chaman' else [])
+            'skill{s=AST_JEFE_SALTO} @target ~onTimer:40']
+    # 26/11: el Chaman ya no congela el agua (pedido del dueno).
 
 
 def metaskills():

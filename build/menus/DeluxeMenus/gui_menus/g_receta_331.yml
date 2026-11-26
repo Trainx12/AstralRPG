@@ -23,7 +23,7 @@ items:
     - '&7Durabilidad: &f4.275'
     - '&7Tier: 3'
     - ''
-    - '&cRequiere: Defensa 14'
+    - '&cRequiere: Combate 20'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA GREBAS'
     item_flags:
@@ -52,7 +52,7 @@ items:
     - '&7Durabilidad: &f3.325'
     - '&7Tier: 2'
     - ''
-    - '&cRequiere: Defensa 10'
+    - '&cRequiere: Combate 16'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN GREBAS'
     item_flags:

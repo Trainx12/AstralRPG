@@ -110,8 +110,8 @@ jefes:
     zona: corazon
     nombre: '&8&lCorazón de Ónix'
 precios:
-  cristal_caverna: 45000
-  geoda_estelar: 400000
+  cristal_caverna: 8500
+  geoda_estelar: 76000
 titulo-comisiones: '&f'
 comisiones:
 - clave: amatista
@@ -119,7 +119,7 @@ comisiones:
   tipo: veta
   objetivo: amatista
   cantidad: 60
-  plata: 2000000
+  plata: 400000
   polvo: 1
   icono: astral:gemas/amatista_2
 - clave: jade
@@ -127,7 +127,7 @@ comisiones:
   tipo: veta
   objetivo: jade
   cantidad: 60
-  plata: 2000000
+  plata: 400000
   polvo: 1
   icono: astral:gemas/jade_2
 - clave: rubi
@@ -135,7 +135,7 @@ comisiones:
   tipo: veta
   objetivo: rubi
   cantidad: 50
-  plata: 2000000
+  plata: 400000
   polvo: 1
   icono: astral:gemas/rubi_2
 - clave: topacio
@@ -143,7 +143,7 @@ comisiones:
   tipo: veta
   objetivo: topacio
   cantidad: 50
-  plata: 2000000
+  plata: 400000
   polvo: 1
   icono: astral:gemas/topacio_2
 - clave: zafiro
@@ -151,7 +151,7 @@ comisiones:
   tipo: veta
   objetivo: zafiro
   cantidad: 60
-  plata: 2000000
+  plata: 400000
   polvo: 1
   icono: astral:gemas/zafiro_2
 - clave: opalo
@@ -159,7 +159,7 @@ comisiones:
   tipo: veta
   objetivo: opalo
   cantidad: 40
-  plata: 4000000
+  plata: 750000
   polvo: 2
   icono: astral:gemas/opalo_2
 - clave: onix
@@ -167,7 +167,7 @@ comisiones:
   tipo: veta
   objetivo: onix
   cantidad: 40
-  plata: 4000000
+  plata: 750000
   polvo: 2
   icono: astral:gemas/onix_2
 - clave: cristal
@@ -175,7 +175,7 @@ comisiones:
   tipo: veta
   objetivo: cristal_caverna
   cantidad: 200
-  plata: 4000000
+  plata: 750000
   polvo: 2
   icono: astral:cavernas/cristal_caverna
 - clave: geoda
@@ -183,7 +183,7 @@ comisiones:
   tipo: veta
   objetivo: geoda_estelar
   cantidad: 15
-  plata: 8000000
+  plata: 1500000
   polvo: 3
   icono: astral:cavernas/geoda_estelar
 - clave: golems
@@ -191,7 +191,7 @@ comisiones:
   tipo: matar
   objetivo: golem
   cantidad: 25
-  plata: 2000000
+  plata: 400000
   polvo: 1
   icono: astral:ventanas1911/cristal_violeta
 - clave: aranas
@@ -199,7 +199,7 @@ comisiones:
   tipo: matar
   objetivo: arana
   cantidad: 20
-  plata: 2000000
+  plata: 400000
   polvo: 1
   icono: astral:ventanas1911/cristal_azul
 - clave: corazon
@@ -207,7 +207,7 @@ comisiones:
   tipo: matar
   objetivo: corazon
   cantidad: 15
-  plata: 4000000
+  plata: 750000
   polvo: 2
   icono: astral:ventanas1911/cristal_rojo
 - clave: jefe
@@ -215,6 +215,6 @@ comisiones:
   tipo: jefe
   objetivo: any
   cantidad: 1
-  plata: 8000000
+  plata: 1500000
   polvo: 3
   icono: astral:gemas/onix_5

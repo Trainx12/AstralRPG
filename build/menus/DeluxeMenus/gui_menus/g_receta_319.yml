@@ -26,7 +26,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 10'
     - ''
-    - '&cRequiere: Defensa 42'
+    - '&cRequiere: Hechiceria 57'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&#b388ff&lASTRAL GREBAS'
     item_flags:
@@ -58,7 +58,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 9'
     - ''
-    - '&cRequiere: Defensa 38'
+    - '&cRequiere: Hechiceria 52'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA GREBAS'
     item_flags:

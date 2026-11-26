@@ -1,0 +1,12 @@
+# Vacio Estelar (vacio.py). Con AstralVacio instalado y el server encendido:
+mv create vacio_estelar normal -g AstralVacio --no-adjust-spawn
+vacio crear
+execute in minecraft:vacio_estelar run gamerule minecraft:advance_time false
+execute in minecraft:vacio_estelar run gamerule minecraft:advance_weather false
+execute in minecraft:vacio_estelar run gamerule minecraft:spawn_monsters false
+execute in minecraft:vacio_estelar run gamerule minecraft:spawn_mobs false
+execute in minecraft:vacio_estelar run time set 18000
+execute in minecraft:vacio_estelar run worldborder center 0 0
+execute in minecraft:vacio_estelar run worldborder set 1200
+rg flag -w vacio_estelar __global__ pvp deny
+lp group default permission set astral.vacio.entrar true

@@ -55,13 +55,17 @@
       "display_name": "&5&lVacio Estelar",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Gemas Perfectas y Estelares, meteoritos.",
-        "&dProximamente.",
+        "&7Islas flotantes: gemas Impecables, &dPerfectas",
+        "&7y &bEstelares&7, meteoritos y el Coloso.",
+        "&7Santuario ganado o equipo &ftier 6&7.",
+        "",
+        "&eClic para entrar.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[message] &5Vacio Estelar&7: todavia no abrio. &dProximamente."
+        "[close]",
+        "[player] vacio entrar<delay=3>"
       ]
     },
     "lobby": {
@@ -492,13 +496,17 @@
       "display_name": "&5&lVacio Estelar",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Gemas Perfectas y Estelares, meteoritos.",
-        "&dProximamente.",
+        "&7Islas flotantes: gemas Impecables, &dPerfectas",
+        "&7y &bEstelares&7, meteoritos y el Coloso.",
+        "&7Santuario ganado o equipo &ftier 6&7.",
+        "",
+        "&eClic para entrar.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[message] &5Vacio Estelar&7: todavia no abrio. &dProximamente."
+        "[close]",
+        "[player] vacio entrar<delay=3>"
       ]
     },
     "vacio_16": {
@@ -507,13 +515,17 @@
       "display_name": "&5&lVacio Estelar",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Gemas Perfectas y Estelares, meteoritos.",
-        "&dProximamente.",
+        "&7Islas flotantes: gemas Impecables, &dPerfectas",
+        "&7y &bEstelares&7, meteoritos y el Coloso.",
+        "&7Santuario ganado o equipo &ftier 6&7.",
+        "",
+        "&eClic para entrar.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[message] &5Vacio Estelar&7: todavia no abrio. &dProximamente."
+        "[close]",
+        "[player] vacio entrar<delay=3>"
       ]
     },
     "vacio_17": {
@@ -522,13 +534,17 @@
       "display_name": "&5&lVacio Estelar",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Gemas Perfectas y Estelares, meteoritos.",
-        "&dProximamente.",
+        "&7Islas flotantes: gemas Impecables, &dPerfectas",
+        "&7y &bEstelares&7, meteoritos y el Coloso.",
+        "&7Santuario ganado o equipo &ftier 6&7.",
+        "",
+        "&eClic para entrar.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[message] &5Vacio Estelar&7: todavia no abrio. &dProximamente."
+        "[close]",
+        "[player] vacio entrar<delay=3>"
       ]
     },
     "vacio_25": {
@@ -537,13 +553,17 @@
       "display_name": "&5&lVacio Estelar",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Gemas Perfectas y Estelares, meteoritos.",
-        "&dProximamente.",
+        "&7Islas flotantes: gemas Impecables, &dPerfectas",
+        "&7y &bEstelares&7, meteoritos y el Coloso.",
+        "&7Santuario ganado o equipo &ftier 6&7.",
+        "",
+        "&eClic para entrar.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[message] &5Vacio Estelar&7: todavia no abrio. &dProximamente."
+        "[close]",
+        "[player] vacio entrar<delay=3>"
       ]
     },
     "vacio_26": {
@@ -552,13 +572,17 @@
       "display_name": "&5&lVacio Estelar",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Gemas Perfectas y Estelares, meteoritos.",
-        "&dProximamente.",
+        "&7Islas flotantes: gemas Impecables, &dPerfectas",
+        "&7y &bEstelares&7, meteoritos y el Coloso.",
+        "&7Santuario ganado o equipo &ftier 6&7.",
+        "",
+        "&eClic para entrar.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[message] &5Vacio Estelar&7: todavia no abrio. &dProximamente."
+        "[close]",
+        "[player] vacio entrar<delay=3>"
       ]
     },
     "vacio_34": {
@@ -567,13 +591,17 @@
       "display_name": "&5&lVacio Estelar",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Gemas Perfectas y Estelares, meteoritos.",
-        "&dProximamente.",
+        "&7Islas flotantes: gemas Impecables, &dPerfectas",
+        "&7y &bEstelares&7, meteoritos y el Coloso.",
+        "&7Santuario ganado o equipo &ftier 6&7.",
+        "",
+        "&eClic para entrar.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[message] &5Vacio Estelar&7: todavia no abrio. &dProximamente."
+        "[close]",
+        "[player] vacio entrar<delay=3>"
       ]
     },
     "vacio_35": {
@@ -582,13 +610,17 @@
       "display_name": "&5&lVacio Estelar",
       "item_model": "astral:viajes/blank",
       "lore": [
-        "&7Gemas Perfectas y Estelares, meteoritos.",
-        "&dProximamente.",
+        "&7Islas flotantes: gemas Impecables, &dPerfectas",
+        "&7y &bEstelares&7, meteoritos y el Coloso.",
+        "&7Santuario ganado o equipo &ftier 6&7.",
+        "",
+        "&eClic para entrar.",
         "",
         "&eClic para elegir."
       ],
       "click_commands": [
-        "[message] &5Vacio Estelar&7: todavia no abrio. &dProximamente."
+        "[close]",
+        "[player] vacio entrar<delay=3>"
       ]
     },
     "lobby_46": {

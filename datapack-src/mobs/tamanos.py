@@ -7,7 +7,10 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[2]
 VANILLA={'SKELETON':(.6,1.99),'CREEPER':(.6,1.7),'FOX':(.6,.7),'CHICKEN':(.4,.7),'VEX':(.4,.8),'SPIDER':(1.4,.9),
-         'ZOMBIE':(.6,1.95),'PHANTOM':(.9,.5),'HUSK':(.6,1.95),'RAVAGER':(1.95,2.2),'IRON_GOLEM':(1.4,2.7),'EVOKER':(.6,1.95)}
+         'ZOMBIE':(.6,1.95),'PHANTOM':(.9,.5),'HUSK':(.6,1.95),'RAVAGER':(1.95,2.2),'IRON_GOLEM':(1.4,2.7),'EVOKER':(.6,1.95),
+         # 23/11: aranas y cangrejo pasaron de SPIDER a ZOGLIN (la arana dibuja sus ojos rojos aunque este invisible).
+         # Se deja el alto de la arana para que el modelo se vea igual; AstralTamanos ajusta la caja en el server.
+         'ZOGLIN':(1.4,.9)}
 SPECIAL={'astral_yeti_cumbre':('astral_yeti',2.0),
          'astral_golem_forja_mazmorra':('astral_golem_forja',2.0)}  # como un ancestral (dueno 13/11)
 

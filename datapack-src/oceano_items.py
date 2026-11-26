@@ -62,18 +62,21 @@ def register(items, fichas, recipes, add_item, txt, armor_attrs):
             mods.append({'type': f'minecraft:{attr}', 'id': f'astral:{iid}.{suffix}', 'amount': amount, 'operation': 'add_value', 'slot': SLOT[piece]})
         lore = [txt('Armadura de Agua III'), txt('Nadas y minas mas rapido bajo el agua.', 'aqua')]
         lore.append(txt(f"Set completo: respiras sin limite; nado x{str(__import__('balance_equipo').NADO_FACTOR).replace('.', ',')} y vision nocturna solo bajo el agua.", 'gold'))
+        from requisitos_sin_clase import pdc as req_pdc, linea as req_linea
+        lore.append(req_linea(txt, iid, TIER))
         add_item(iid, 'minecraft:diamond_' + piece, label + ' de Agua', COLOR, lore,
                  {'type': 'armor', 'set': 'agua', 'tier': TIER, 'piece': piece, 'def': defensa_pieza(TIER, piece)},
                  extra={'minecraft:attribute_modifiers': mods,
                         # Casco sin capa plana: en la cabeza se dibuja su modelo 3D con orejas (como el Carnivora).
                         'minecraft:equippable': {'slot': SLOT[piece], **({} if piece == 'helmet' else {'asset_id': 'astral:agua'})}},
-                 model='astral:' + iid, kind='armor')
+                 model='astral:' + iid, kind='armor', pdc=req_pdc('armor', iid, TIER))
     add_item('agua_pico', 'minecraft:diamond_pickaxe', 'Pico de las Mareas', COLOR,
-             [txt('Equipo de Agua III'), txt('Mina rapido bajo el agua.', 'aqua')], {'type': 'utility', 'tier': TIER},
+             [txt('Equipo de Agua III'), txt('Mina rapido bajo el agua.', 'aqua'),
+              __import__('requisitos_sin_clase').linea(txt, 'agua_pico', TIER)], {'type': 'utility', 'tier': TIER},
              extra={'minecraft:enchantments': {'minecraft:efficiency': 4, 'minecraft:unbreaking': 3},
                     'minecraft:attribute_modifiers': [{'type': 'minecraft:submerged_mining_speed', 'id': 'astral:agua_pico.mineria',
                                                        'amount': 0.8, 'operation': 'add_value', 'slot': 'mainhand'}]},
-             model='astral:agua_pico', kind='item')
+             model='astral:agua_pico', kind='item', pdc=__import__('requisitos_sin_clase').pdc('item', 'agua_pico', TIER))
     for iid in [*CLONES, *('agua_' + p for p in PIECES), 'agua_pico']:
         recipes.append((iid, 1, recipe_cost(iid), 'Agua'))
 

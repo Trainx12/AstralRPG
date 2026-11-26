@@ -68,13 +68,28 @@ items:
   'material1':
     material: PAPER
     slot: 15
-    amount: 2
-    display_name: '&f2x Cristal Arcano Refinado'
+    amount: 3
+    display_name: '&f3x Cristal Arcano Refinado'
     item_model: 'astral:cristal_refinado'
     lore:
     - '&7Crafteos magicos medio-alto.'
     - '&8Material de AstralRPG'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&f1x Gema Luminica'
+    item_model: 'astral:gema_luminica'
+    lore:
+    - '&7Se encuentra en cofres del Overworld.'
+    - '&8Material de AstralRPG'
     enchantments:
     - 'unbreaking;1'
     item_flags:

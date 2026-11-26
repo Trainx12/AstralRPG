@@ -68,9 +68,8 @@ items:
     display_name: '&#c9a6ffFragmento de Cristal Arcano'
     item_model: 'astral:fragmento_cristal'
     lore:
-    - '&74 forman un Cristal Refinado.'
+    - '&72 forman un Cristal Arcano.'
     - '&8Material de AstralRPG'
-    - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - ''
     - '&#30241b1 × Fragmento de Cristal Arcano · 15%'
     item_flags:
@@ -84,8 +83,9 @@ items:
     display_name: '&#b07cffCristal Arcano'
     item_model: 'astral:cristal_arcano'
     lore:
-    - '&7Se procesa en 4 fragmentos.'
+    - '&74 forman un Cristal Refinado.'
     - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - ''
     - '&#30241b1 × Cristal Arcano · 3%'
     enchantments:

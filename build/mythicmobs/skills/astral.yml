@@ -10,7 +10,17 @@ AST_PLATA_HOSTIL:
   - command{c="astralplatamob <trigger.name> hostil 8"} @self ?hastag{tag=astral.mt8}
   - command{c="astralplatamob <trigger.name> hostil 9"} @self ?hastag{tag=astral.mt9}
   - command{c="astralplatamob <trigger.name> hostil 10"} @self ?hastag{tag=astral.mt10}
-  - command{c="astralplatamob <trigger.name> hostil 1"} @self ?!hastag{tag=astral.mt1} ?!hastag{tag=astral.mt2} ?!hastag{tag=astral.mt3} ?!hastag{tag=astral.mt4} ?!hastag{tag=astral.mt5} ?!hastag{tag=astral.mt6} ?!hastag{tag=astral.mt7} ?!hastag{tag=astral.mt8} ?!hastag{tag=astral.mt9} ?!hastag{tag=astral.mt10}
+  - command{c="astralplatamob <trigger.name> hostil 1"} @self ?hastag{tag=astral.pt1}
+  - command{c="astralplatamob <trigger.name> hostil 2"} @self ?hastag{tag=astral.pt2}
+  - command{c="astralplatamob <trigger.name> hostil 3"} @self ?hastag{tag=astral.pt3}
+  - command{c="astralplatamob <trigger.name> hostil 4"} @self ?hastag{tag=astral.pt4}
+  - command{c="astralplatamob <trigger.name> hostil 5"} @self ?hastag{tag=astral.pt5}
+  - command{c="astralplatamob <trigger.name> hostil 6"} @self ?hastag{tag=astral.pt6}
+  - command{c="astralplatamob <trigger.name> hostil 7"} @self ?hastag{tag=astral.pt7}
+  - command{c="astralplatamob <trigger.name> hostil 8"} @self ?hastag{tag=astral.pt8}
+  - command{c="astralplatamob <trigger.name> hostil 9"} @self ?hastag{tag=astral.pt9}
+  - command{c="astralplatamob <trigger.name> hostil 10"} @self ?hastag{tag=astral.pt10}
+  - command{c="astralplatamob <trigger.name> hostil 1"} @self ?!hastag{tag=astral.mt1} ?!hastag{tag=astral.pt1} ?!hastag{tag=astral.mt2} ?!hastag{tag=astral.pt2} ?!hastag{tag=astral.mt3} ?!hastag{tag=astral.pt3} ?!hastag{tag=astral.mt4} ?!hastag{tag=astral.pt4} ?!hastag{tag=astral.mt5} ?!hastag{tag=astral.pt5} ?!hastag{tag=astral.mt6} ?!hastag{tag=astral.pt6} ?!hastag{tag=astral.mt7} ?!hastag{tag=astral.pt7} ?!hastag{tag=astral.mt8} ?!hastag{tag=astral.pt8} ?!hastag{tag=astral.mt9} ?!hastag{tag=astral.pt9} ?!hastag{tag=astral.mt10} ?!hastag{tag=astral.pt10}
 
 AST_PLATA_ELITE:
   Skills:
@@ -24,7 +34,17 @@ AST_PLATA_ELITE:
   - command{c="astralplatamob <trigger.name> elite 8"} @self ?hastag{tag=astral.mt8}
   - command{c="astralplatamob <trigger.name> elite 9"} @self ?hastag{tag=astral.mt9}
   - command{c="astralplatamob <trigger.name> elite 10"} @self ?hastag{tag=astral.mt10}
-  - command{c="astralplatamob <trigger.name> elite 1"} @self ?!hastag{tag=astral.mt1} ?!hastag{tag=astral.mt2} ?!hastag{tag=astral.mt3} ?!hastag{tag=astral.mt4} ?!hastag{tag=astral.mt5} ?!hastag{tag=astral.mt6} ?!hastag{tag=astral.mt7} ?!hastag{tag=astral.mt8} ?!hastag{tag=astral.mt9} ?!hastag{tag=astral.mt10}
+  - command{c="astralplatamob <trigger.name> elite 1"} @self ?hastag{tag=astral.pt1}
+  - command{c="astralplatamob <trigger.name> elite 2"} @self ?hastag{tag=astral.pt2}
+  - command{c="astralplatamob <trigger.name> elite 3"} @self ?hastag{tag=astral.pt3}
+  - command{c="astralplatamob <trigger.name> elite 4"} @self ?hastag{tag=astral.pt4}
+  - command{c="astralplatamob <trigger.name> elite 5"} @self ?hastag{tag=astral.pt5}
+  - command{c="astralplatamob <trigger.name> elite 6"} @self ?hastag{tag=astral.pt6}
+  - command{c="astralplatamob <trigger.name> elite 7"} @self ?hastag{tag=astral.pt7}
+  - command{c="astralplatamob <trigger.name> elite 8"} @self ?hastag{tag=astral.pt8}
+  - command{c="astralplatamob <trigger.name> elite 9"} @self ?hastag{tag=astral.pt9}
+  - command{c="astralplatamob <trigger.name> elite 10"} @self ?hastag{tag=astral.pt10}
+  - command{c="astralplatamob <trigger.name> elite 1"} @self ?!hastag{tag=astral.mt1} ?!hastag{tag=astral.pt1} ?!hastag{tag=astral.mt2} ?!hastag{tag=astral.pt2} ?!hastag{tag=astral.mt3} ?!hastag{tag=astral.pt3} ?!hastag{tag=astral.mt4} ?!hastag{tag=astral.pt4} ?!hastag{tag=astral.mt5} ?!hastag{tag=astral.pt5} ?!hastag{tag=astral.mt6} ?!hastag{tag=astral.pt6} ?!hastag{tag=astral.mt7} ?!hastag{tag=astral.pt7} ?!hastag{tag=astral.mt8} ?!hastag{tag=astral.pt8} ?!hastag{tag=astral.mt9} ?!hastag{tag=astral.pt9} ?!hastag{tag=astral.mt10} ?!hastag{tag=astral.pt10}
 
 AST_PLATA_JEFE:
   Skills:
@@ -38,7 +58,17 @@ AST_PLATA_JEFE:
   - command{c="astralplatamob <trigger.name> jefe 8"} @self ?hastag{tag=astral.mt8}
   - command{c="astralplatamob <trigger.name> jefe 9"} @self ?hastag{tag=astral.mt9}
   - command{c="astralplatamob <trigger.name> jefe 10"} @self ?hastag{tag=astral.mt10}
-  - command{c="astralplatamob <trigger.name> jefe 1"} @self ?!hastag{tag=astral.mt1} ?!hastag{tag=astral.mt2} ?!hastag{tag=astral.mt3} ?!hastag{tag=astral.mt4} ?!hastag{tag=astral.mt5} ?!hastag{tag=astral.mt6} ?!hastag{tag=astral.mt7} ?!hastag{tag=astral.mt8} ?!hastag{tag=astral.mt9} ?!hastag{tag=astral.mt10}
+  - command{c="astralplatamob <trigger.name> jefe 1"} @self ?hastag{tag=astral.pt1}
+  - command{c="astralplatamob <trigger.name> jefe 2"} @self ?hastag{tag=astral.pt2}
+  - command{c="astralplatamob <trigger.name> jefe 3"} @self ?hastag{tag=astral.pt3}
+  - command{c="astralplatamob <trigger.name> jefe 4"} @self ?hastag{tag=astral.pt4}
+  - command{c="astralplatamob <trigger.name> jefe 5"} @self ?hastag{tag=astral.pt5}
+  - command{c="astralplatamob <trigger.name> jefe 6"} @self ?hastag{tag=astral.pt6}
+  - command{c="astralplatamob <trigger.name> jefe 7"} @self ?hastag{tag=astral.pt7}
+  - command{c="astralplatamob <trigger.name> jefe 8"} @self ?hastag{tag=astral.pt8}
+  - command{c="astralplatamob <trigger.name> jefe 9"} @self ?hastag{tag=astral.pt9}
+  - command{c="astralplatamob <trigger.name> jefe 10"} @self ?hastag{tag=astral.pt10}
+  - command{c="astralplatamob <trigger.name> jefe 1"} @self ?!hastag{tag=astral.mt1} ?!hastag{tag=astral.pt1} ?!hastag{tag=astral.mt2} ?!hastag{tag=astral.pt2} ?!hastag{tag=astral.mt3} ?!hastag{tag=astral.pt3} ?!hastag{tag=astral.mt4} ?!hastag{tag=astral.pt4} ?!hastag{tag=astral.mt5} ?!hastag{tag=astral.pt5} ?!hastag{tag=astral.mt6} ?!hastag{tag=astral.pt6} ?!hastag{tag=astral.mt7} ?!hastag{tag=astral.pt7} ?!hastag{tag=astral.mt8} ?!hastag{tag=astral.pt8} ?!hastag{tag=astral.mt9} ?!hastag{tag=astral.pt9} ?!hastag{tag=astral.mt10} ?!hastag{tag=astral.pt10}
 
 AST_PLATA_ANCESTRAL:
   Skills:
@@ -52,7 +82,17 @@ AST_PLATA_ANCESTRAL:
   - command{c="astralplatamob <trigger.name> ancestral 8"} @self ?hastag{tag=astral.mt8}
   - command{c="astralplatamob <trigger.name> ancestral 9"} @self ?hastag{tag=astral.mt9}
   - command{c="astralplatamob <trigger.name> ancestral 10"} @self ?hastag{tag=astral.mt10}
-  - command{c="astralplatamob <trigger.name> ancestral 1"} @self ?!hastag{tag=astral.mt1} ?!hastag{tag=astral.mt2} ?!hastag{tag=astral.mt3} ?!hastag{tag=astral.mt4} ?!hastag{tag=astral.mt5} ?!hastag{tag=astral.mt6} ?!hastag{tag=astral.mt7} ?!hastag{tag=astral.mt8} ?!hastag{tag=astral.mt9} ?!hastag{tag=astral.mt10}
+  - command{c="astralplatamob <trigger.name> ancestral 1"} @self ?hastag{tag=astral.pt1}
+  - command{c="astralplatamob <trigger.name> ancestral 2"} @self ?hastag{tag=astral.pt2}
+  - command{c="astralplatamob <trigger.name> ancestral 3"} @self ?hastag{tag=astral.pt3}
+  - command{c="astralplatamob <trigger.name> ancestral 4"} @self ?hastag{tag=astral.pt4}
+  - command{c="astralplatamob <trigger.name> ancestral 5"} @self ?hastag{tag=astral.pt5}
+  - command{c="astralplatamob <trigger.name> ancestral 6"} @self ?hastag{tag=astral.pt6}
+  - command{c="astralplatamob <trigger.name> ancestral 7"} @self ?hastag{tag=astral.pt7}
+  - command{c="astralplatamob <trigger.name> ancestral 8"} @self ?hastag{tag=astral.pt8}
+  - command{c="astralplatamob <trigger.name> ancestral 9"} @self ?hastag{tag=astral.pt9}
+  - command{c="astralplatamob <trigger.name> ancestral 10"} @self ?hastag{tag=astral.pt10}
+  - command{c="astralplatamob <trigger.name> ancestral 1"} @self ?!hastag{tag=astral.mt1} ?!hastag{tag=astral.pt1} ?!hastag{tag=astral.mt2} ?!hastag{tag=astral.pt2} ?!hastag{tag=astral.mt3} ?!hastag{tag=astral.pt3} ?!hastag{tag=astral.mt4} ?!hastag{tag=astral.pt4} ?!hastag{tag=astral.mt5} ?!hastag{tag=astral.pt5} ?!hastag{tag=astral.mt6} ?!hastag{tag=astral.pt6} ?!hastag{tag=astral.mt7} ?!hastag{tag=astral.pt7} ?!hastag{tag=astral.mt8} ?!hastag{tag=astral.pt8} ?!hastag{tag=astral.mt9} ?!hastag{tag=astral.pt9} ?!hastag{tag=astral.mt10} ?!hastag{tag=astral.pt10}
 
 AST_MUERTE:
   Skills:
@@ -568,6 +608,10 @@ AST_ANCESTRAL_SEVA_astral_momia:
   Skills:
   - 'message{m="&7&6&lFarao Ancestral &7se desvanecio... nadie pudo con el."} @PlayersOnServer'
   - remove @self
+AST_ANCESTRAL_FUERA_astral_momia:
+  Skills:
+  - 'message{m="&7&6&lFarao Ancestral &7se desvanecio: el elegido se alejo."} @PlayersOnServer'
+  - remove @self
 AST_MODEL_astral_yeti_ancestral:
   Skills:
   - addtag{tag=astral.seen} @self
@@ -579,6 +623,10 @@ AST_MODEL_astral_yeti_ancestral:
 AST_ANCESTRAL_SEVA_astral_yeti:
   Skills:
   - 'message{m="&7&b&lYeti Ancestral &7se desvanecio... nadie pudo con el."} @PlayersOnServer'
+  - remove @self
+AST_ANCESTRAL_FUERA_astral_yeti:
+  Skills:
+  - 'message{m="&7&b&lYeti Ancestral &7se desvanecio: el elegido se alejo."} @PlayersOnServer'
   - remove @self
 AST_MODEL_astral_golem_forja_ancestral:
   Skills:
@@ -592,6 +640,10 @@ AST_ANCESTRAL_SEVA_astral_golem_forja:
   Skills:
   - 'message{m="&7&4&lColoso de la Forja Ancestral &7se desvanecio... nadie pudo con el."} @PlayersOnServer'
   - remove @self
+AST_ANCESTRAL_FUERA_astral_golem_forja:
+  Skills:
+  - 'message{m="&7&4&lColoso de la Forja Ancestral &7se desvanecio: el elegido se alejo."} @PlayersOnServer'
+  - remove @self
 AST_MODEL_astral_cangrejo_ancestral:
   Skills:
   - addtag{tag=astral.seen} @self
@@ -604,6 +656,10 @@ AST_ANCESTRAL_SEVA_astral_cangrejo:
   Skills:
   - 'message{m="&7&d&lCangrejo Ancestral &7se desvanecio... nadie pudo con el."} @PlayersOnServer'
   - remove @self
+AST_ANCESTRAL_FUERA_astral_cangrejo:
+  Skills:
+  - 'message{m="&7&d&lCangrejo Ancestral &7se desvanecio: el elegido se alejo."} @PlayersOnServer'
+  - remove @self
 AST_MODEL_astral_chaman_ancestral:
   Skills:
   - addtag{tag=astral.seen} @self
@@ -615,6 +671,10 @@ AST_MODEL_astral_chaman_ancestral:
 AST_ANCESTRAL_SEVA_astral_chaman:
   Skills:
   - 'message{m="&7&2&lGran Chaman Ancestral &7se desvanecio... nadie pudo con el."} @PlayersOnServer'
+  - remove @self
+AST_ANCESTRAL_FUERA_astral_chaman:
+  Skills:
+  - 'message{m="&7&2&lGran Chaman Ancestral &7se desvanecio: el elegido se alejo."} @PlayersOnServer'
   - remove @self
 AST_MODEL_astral_espantapajaros_elite:
   Skills:

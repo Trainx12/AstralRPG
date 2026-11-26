@@ -41,7 +41,7 @@ VANILLA = {
     'binding_curse': 'Maldición: no te podés sacar la armadura (salvo al morir).',
     'soul_speed': 'Corrés más rápido sobre arena y tierra de almas.',
     'swift_sneak': 'Te movés más rápido agachado.',
-    'sharpness': 'Más daño a todos los enemigos.',
+    'sharpness': '+3% de daño por nivel a todos los enemigos (Filo V = +15%).',
     'smite': 'Mucho más daño a muertos vivientes (zombis, esqueletos, wither).',
     'bane_of_arthropods': 'Mucho más daño a arañas, abejas y lepismas, y los frena.',
     'knockback': 'Empuja más lejos a quien golpeás.',
@@ -141,9 +141,9 @@ ESPECIALES = {
     'survivalist': 'Los pescados salen ya cocinados.',
     'swiper': 'Chance de robarle XP a los jugadores al golpearlos.',
     'telekinesis': 'Lo que picás va directo a tu inventario.',
-    'temper': 'Más daño cuanta menos vida te queda.',
+    'temper': 'Hasta +10% de daño según la vida que te falta. Solo nivel I.',
     'thrifty': 'Chance de que los mobs suelten su huevo de aparición.',
-    'thunder': 'Chance de llamar un rayo con daño extra al golpear.',
+    'thunder': 'Rayo con daño según tu golpe: 10% de chance y +55% en I, hasta 18% y +115% en V.',
     'treefeller': 'Tala el árbol entero de un golpe.',
     'tunnel': 'Pica varios bloques a la vez (3x3).',
     'vampire': 'Chance de curarte al golpear.',
@@ -295,6 +295,25 @@ def descripciones():
     return d
 
 
+def precio_subasta():
+    import economia
+    mob = economia.PLATA_MOB_TIER
+    return {
+        'activo': True, 'publico': False, 'solo': ['ByTrainx'],
+        'archivo': 'CrazyAuctions/data.yml', 'cada-segundos': 60,
+        # Sugerido = base del tier (arma ~400 mobs Astral de su tier, pieza de armadura ~240)
+        # x (1 + 4% por nivel de encantamiento + 10% por nivel de Mejora del Herrero) + gemas al costo de engarzar.
+        # 26/11 (dueno): antes x20/x12 (arco T5 = 500k) era muy barato: Diamante III da ~2,5M en 15 min.
+        # Ahora arma T5 ~10M (~1 h de minas altas), pieza de armadura T5 ~6M.
+        'base-arma': {t: v * 400 for t, v in mob.items()},
+        'base-armadura': {t: v * 240 for t, v in mob.items()},
+        'por-nivel-encantamiento': 0.04,
+        'por-nivel-herrero': 0.10,
+        'gema-tier': dict(economia.GEMA_PONER_TIER),
+        'gema-calidad': dict(economia.GEMA_CALIDAD_MULT),
+    }
+
+
 def config():
     return {
         'encmagia': {'publico': False},
@@ -302,7 +321,10 @@ def config():
         'particulas': True,
         # astral = mejoras del Herrero (Mejora +N): nunca en la mesa.
         'excluir-namespaces': ['astral'],
-        'excluir': [],
+        # Baneados por el dueno (24/11): Tunel choca con los taladros. 25/11: Mineria Explosiva, Cortador,
+        # Bombardero y Ghast (misma lista que ee_descripciones.BANEADOS).
+        'excluir': ['excellentenchants:tunnel', 'excellentenchants:blast_mining', 'excellentenchants:cutter',
+                    'excellentenchants:bomber', 'excellentenchants:ghast'],
         'excluir-contiene': EXCLUIR_CONTIENE,
         # Niveles que cuesta el nivel maximo de cada uno (si no esta, niveles-maximo).
         'costos': costos(),
@@ -317,11 +339,25 @@ def config():
         'bastones': BASTONES,
         # Texto del libro en la mesa. Si falta uno, el libro sale sin descripcion.
         'descripciones': descripciones(),
+        # 25/11 (dueno): precio de subasta abajo de armas/armaduras Astral, estilo Hypixel. Lo mas barato de
+        # CrazyAuctions (compra directa) para ese mismo equipo; si no hay, precio sugerido. Solo ByTrainx
+        # hasta `astralmesa precios publico`.
+        'precio-subasta': precio_subasta(),
+        # 26/11 (dueno): la linea "Dano: +N (+M)" suma lo fijo: Mejora del Herrero y Filo en porcentaje
+        # (escala.FILO_PCT). Solo a quien tiene la etiqueta astral.filo (la pone el datapack: ByTrainx hasta
+        # /function astral:filo/publico). Lo que depende de algo (Furia, Emboscada, Trueno) no se suma.
+        'dano-real': dano_real(),
     }
 
 
+def dano_real():
+    from escala import FILO_PCT
+    from items import MEJORA_DANO
+    return {'activo': True, 'filo-porcentaje': FILO_PCT, 'mejora': list(MEJORA_DANO)}
+
+
 PLUGIN_YML = """name: AstralMesa
-version: 1.5.0
+version: 1.5.1
 main: astral.AstralMesa
 api-version: '26.1.2'
 description: Mesa de encantamientos con todos los encantamientos (vanilla y de plugins) salvo las mejoras del Herrero

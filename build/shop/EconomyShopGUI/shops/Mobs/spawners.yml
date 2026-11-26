@@ -129,7 +129,7 @@ pages:
       piglin_brute_spawner:
         material: SPAWNER
         spawnertype: PIGLIN_BRUTE
-        buy: 200000000
+        buy: 50000000
         sell: -1
       rabbit_spawner:
         material: SPAWNER

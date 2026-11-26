@@ -8247,7 +8247,7 @@ function ab_world() :: world:
     return world "astral_bosque"
 
 function ab_spawn() :: location:
-    return location(80.5, 88, 218.5, ab_world(), -135, 0)
+    return location(81.93, 87, 227.52, ab_world(), -1.6, 0)
 
 function ab_inside(loc: location) :: boolean:
     if x-coordinate of {_loc} is between 0 and 300:

@@ -25,7 +25,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 10'
     - ''
-    - '&cRequiere: Defensa 42'
+    - '&cRequiere: Combate 57'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&#b388ff&lASTRAL PECHERA'
     item_flags:
@@ -56,7 +56,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 7'
     - ''
-    - '&cRequiere: Defensa 30'
+    - '&cRequiere: Combate 42'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&#ff5fd2&lMÍTICA PECHERA'
     item_flags:

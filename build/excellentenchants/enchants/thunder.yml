@@ -7,7 +7,7 @@ Definition:
   # Enchantment description.
   # [*] Reboot required when changed.
   Description:
-  - '<gray>%enchantment_trigger_chance%% de chance de llamar un rayo con %damage%❤ de daño extra.</gray>'
+  - '<gray>Rayo con daño según tu golpe: 10% de chance y +55% en I, hasta 18% y +115% en V (+2% y +15% por nivel).</gray>'
   # Weight affects the chance of getting an enchantment from enchanting or loots.
   # Value between 1 and 1024 (inclusive).
   # [*] Reboot required when changed.
@@ -96,8 +96,8 @@ Settings:
     Enabled: true
 Probability:
   Trigger_Chance:
-    Base: 5.0
-    Per_Level: 2.0
+    Base: 0.0
+    Per_Level: 0.0
     Capacity: 100.0
     Action: ADD
 Thunder:
@@ -105,7 +105,7 @@ Thunder:
   During_Thunderstorm_Only: false
   # Sets additional damage caused by enchantment's effect.
   Damage_Modifier:
-    Base: 1.25
-    Per_Level: 0.25
+    Base: 0.0
+    Per_Level: 0.0
     Capacity: 1000.0
     Action: ADD

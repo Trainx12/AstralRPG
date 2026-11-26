@@ -1,6 +1,8 @@
 # Generado por mobs/mazmorra.py + mobs/tanda2.py
 FORJA_SALA1_INICIO:
   Skills:
+  - addtag{tag=forja.espera} @self
+  - addtag{tag=forja.sala1.pedida} @self
   - removetag{tag=forja.ready} @self
   - addtag{tag=forja.on} @self
   - addtag{tag=forja.ola1} @self
@@ -9,6 +11,7 @@ FORJA_SALA1_INICIO:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/forja/sala1/wave1"} @self
 FORJA_SALA1_OLA2:
   Skills:
+  - addtag{tag=forja.sala1.pedida} @self
   - addtag{tag=forja.ola2} @self
   - addtag{tag=forja.espera} @self
   - message{m="&8[&7Corazon de la Forja&8] &7Oleada 2/2..."} @PlayersInRadius{r=72}
@@ -42,6 +45,8 @@ FORJA_SALA1_RESET:
   - addtag{tag=forja.ready} @self
 FORJA_SALA2_INICIO:
   Skills:
+  - addtag{tag=forja.espera} @self
+  - addtag{tag=forja.sala2.pedida} @self
   - removetag{tag=forja.ready} @self
   - addtag{tag=forja.on} @self
   - addtag{tag=forja.ola1} @self
@@ -50,6 +55,7 @@ FORJA_SALA2_INICIO:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/forja/sala2/wave1"} @self
 FORJA_SALA2_OLA2:
   Skills:
+  - addtag{tag=forja.sala2.pedida} @self
   - addtag{tag=forja.ola2} @self
   - addtag{tag=forja.espera} @self
   - message{m="&8[&7Corazon de la Forja&8] &7Oleada 2/2..."} @PlayersInRadius{r=56}

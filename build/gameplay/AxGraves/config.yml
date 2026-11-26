@@ -3,7 +3,7 @@ despawn-time-seconds: -1
 drop-items: true
 dropped-item-velocity: true
 enable-instant-pickup: true
-instant-pickup-only-own: false
+instant-pickup-only-own: true
 override-keep-inventory: false
 override-keep-level: false
 hologram-height: 0.5
@@ -12,7 +12,7 @@ rotate-head-360: true
 auto-rotation:
   enabled: false
   speed: 10.0
-interact-only-own: false
+interact-only-own: true
 xp-keep-percentage: 1.0
 store-items: true
 store-xp: true
@@ -20,7 +20,7 @@ grave-item-order:
 - ARMOR
 - HAND
 - OFFHAND
-auto-equip-armor: true
+auto-equip-armor: false
 grave-limit: -1
 despawn-when-empty: true
 save-graves:

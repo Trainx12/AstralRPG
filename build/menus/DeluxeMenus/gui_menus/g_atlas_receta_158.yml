@@ -37,7 +37,7 @@ items:
     - '&7Durabilidad: &f7.201'
     - '&7Tier: 1'
     - ''
-    - '&cRequiere: Combate 12'
+    - '&cRequiere: Combate 4'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN HACHA'
     item_flags:

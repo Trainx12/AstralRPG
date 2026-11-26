@@ -30,8 +30,8 @@ MATERIALS = {
     "madera_estelar": ("Madera Estelar", "#9fd8ff", "minecraft:stripped_warped_stem", False, "Madera de los arboles del End."),
     "palo_reforzado": ("Palo Reforzado", "#8a8a9e", "minecraft:breeze_rod", False, "Mango para armas avanzadas."),
     "cuero_tratado": ("Cuero Tratado", "#c58b52", "minecraft:rabbit_hide", False, "Base de todas las armaduras."),
-    "cristal_arcano": ("Cristal Arcano", "#b07cff", "minecraft:amethyst_cluster", True, "Se procesa en 4 fragmentos."),
-    "fragmento_cristal": ("Fragmento de Cristal Arcano", "#c9a6ff", "minecraft:amethyst_shard", False, "4 forman un Cristal Refinado."),
+    "cristal_arcano": ("Cristal Arcano", "#b07cff", "minecraft:amethyst_cluster", True, "4 forman un Cristal Refinado."),
+    "fragmento_cristal": ("Fragmento de Cristal Arcano", "#c9a6ff", "minecraft:amethyst_shard", False, "2 forman un Cristal Arcano."),
     "cristal_refinado": ("Cristal Arcano Refinado", "#d9b8ff", "minecraft:echo_shard", True, "Crafteos magicos medio-alto."),
     "fragmento_umbrio": ("Fragmento Umbrio", "#4a3360", "minecraft:flint", False, "Cae de Wither Skeletons y Piglin Brutes."),
     "gema_umbria_fragmentada": ("Gema Umbria Fragmentada", "#6b4a8a", "minecraft:coal", False, "Gema oscura inicial."),
@@ -67,10 +67,13 @@ NETHER_MOBS = ["minecraft:blaze", "minecraft:ghast", "minecraft:magma_cube", "mi
                "minecraft:piglin_brute"]
 MOB_DROPS = {
     "wither_skeleton": (["minecraft:wither_skeleton"], [
-        ("esencia_nether", 0.08, None), ("fragmento_umbrio", 0.15, None), ("nucleo_furia", 0.06, None)]),
+        ("esencia_nether", 0.25, None), ("fragmento_umbrio", 0.15, None), ("nucleo_furia", 0.06, None)]),  # 24/11: esencia 8% -> 25%
     "piglin_brute": (["minecraft:piglin_brute"], [
-        ("fragmento_umbrio", 0.15, None), ("nucleo_furia", 0.06, None)]),
+        ("esencia_nether", 0.15, None), ("fragmento_umbrio", 0.15, None), ("nucleo_furia", 0.06, None)]),
     "nether": (NETHER_MOBS, [("gema_umbria", 0.02, None)]),
+    # 24/11: el resto de los mobs del Nether tambien sueltan esencia (poco)
+    "nether_esencia": (["minecraft:blaze", "minecraft:ghast", "minecraft:magma_cube", "minecraft:hoglin",
+                        "minecraft:piglin", "minecraft:zombified_piglin"], [("esencia_nether", 0.05, None)]),
     "enderman": (["minecraft:enderman"], [
         ("cristal_arcano", 0.05, None), ("fragmento_astral", 0.20, "end")]),
     "shulker": (["minecraft:shulker"], [("corazon_shulker", 0.10, None)]),
@@ -88,8 +91,9 @@ MAT_RECIPES = [
     ("shadowsteel", 1, [("v", "minecraft:iron_ingot", 1), ("c", "esencia_nether", 1)]),
     ("cuero_tratado", 2, [("v", "minecraft:leather", 8), ("v", "water_bottle", 1)]),
     ("palo_reforzado", 1, [("c", "shadowsteel", 2), ("v", "minecraft:stick", 1)]),
-    ("fragmento_cristal", 4, [("c", "cristal_arcano", 1)]),
-    ("cristal_refinado", 1, [("c", "fragmento_cristal", 4)]),
+    # Pedido del dueno 24/11: 2 fragmentos -> 1 Cristal Arcano; 4 Cristales -> 1 Refinado (8 fragmentos en total).
+    ("cristal_arcano", 1, [("c", "fragmento_cristal", 2)]),
+    ("cristal_refinado", 1, [("c", "cristal_arcano", 4)]),
     ("gema_umbria_fragmentada", 1, [("c", "fragmento_umbrio", 8), ("v", "minecraft:coal", 1)]),
     ("gema_umbria", 1, [("c", "fragmento_umbrio", 8), ("c", "gema_umbria_fragmentada", 1)]),
     ("nucleo_furia_pura", 1, [("c", "nucleo_furia", 4), ("v", "minecraft:blaze_powder", 4), ("v", "minecraft:lava_bucket", 1)]),
@@ -153,7 +157,7 @@ ARMOR_SETS = {
              "cost": [("c", "cuero_tratado", 3), ("c", "fragmento_cristal", 2)]},
             {"name": "del Hechicero", "mat": "leather", "lvl": 14,
              "stats": {"mana": MANA_SET_MAGO[2], "mdmg": 10, "mregen": 5},
-             "cost": [("c", "cristal_refinado", 1), ("c", "gema_luminica", 1)]},
+             "cost": [("c", "cristal_refinado", 2), ("c", "gema_luminica", 1)]},
             {"name": "del Invocador", "mat": "leather", "lvl": 20,
              "stats": {"mana": MANA_SET_MAGO[3], "mdmg": 18, "mregen": 10, "hp": -10},
              "cost": [("c", "cristal_refinado", 2), ("c", "madera_estelar", 1)]},
@@ -191,39 +195,40 @@ ARMOR_SETS = {
 
 ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
 # Defensa progresa mas lento: requisitos inferiores a las armas de cada tier.
-ARMOR_DEFENSE_LEVELS = (6, 10, 14, 18, 22, 26, 30, 34, 38, 42)
+# 23/11 (dueno): tier 1 mas facil: Defensa 3, Combate 4, Hechiceria 0 (sin baston no se sube Hechiceria).
+ARMOR_DEFENSE_LEVELS = (3, 10, 14, 18, 22, 26, 30, 34, 38, 42)
 # 15/11/2026: 1 punto por golpe (AstralDecor); T1-T2 suben para aguantar ~12 mazmorras (~250 golpes cada una).
 ARMOR_DURABILITY = (3000, 3500, 4500, 6500, 9000, 12000, 15500, 19500, 24500, 30000)
 from items_t6_10 import extend_armor as _extend_armor
 _extend_armor(ARMOR_SETS)
-for _set in ARMOR_SETS.values():
-    _set['skill'] = 'defense'
-    for _index, _tier in enumerate(_set['tiers']):
-        _tier['lvl'] = ARMOR_DEFENSE_LEVELS[_index]
+for _sid, _set in ARMOR_SETS.items():
+    # 23/11 (dueno): las armaduras piden la skill de su clase, no Defensa (dejarse pegar para farmear no es lindo).
+    _set['skill'] = {'berserker': 'fighting', 'mago': 'sorcery', 'arquero': 'archery'}[_sid]
+    # El nivel de cada tier se completa al final del archivo (ARMOR_LEVELS), igual al arma de la clase.
 
 # ---------------------------------------------------------------------------
 # ARMAS
 # ---------------------------------------------------------------------------
 # Espadas Berserker: base, dano total, bonus%, efectos, costo, nivel
 SWORDS = [
-    {"name": "Espada del Saqueador", "base": "minecraft:iron_sword", "dmg": 6, "bonus": 10, "lvl": 12,
+    {"name": "Espada del Saqueador", "base": "minecraft:iron_sword", "dmg": 6, "bonus": 10, "lvl": 4,
      "fx": {"remate": 1}, "cost": [("c", "gema_umbria_fragmentada", 2), ("c", "palo_reforzado", 1)],
      "desc": ["+5% de dano a enemigos con menos del 50% de vida"]},
     {"name": "Espada del Carnicero", "base": "minecraft:iron_sword", "dmg": 6, "bonus": 18, "lvl": 16, "kb_out": -0.5,
-     "fx": {"lifesteal": 2}, "cost": [("c", "shadowsteel", 1), ("c", "netherita_fundida", 1)],
+     "fx": {"lifesteal": 2}, "cost": [("c", "shadowsteel", 1), ("c", "netherita_fundida", 2)],
      "desc": ["Robo de vida", "Empuja menos al enemigo"]},
     {"name": "Espada Ensangrentada", "base": "minecraft:diamond_sword", "dmg": 7, "bonus": 25, "lvl": 20,
-     "fx": {"lifesteal": 3, "furia": 1}, "cost": [("c", "shadowsteel", 1), ("c", "netherita_reforzada", 1)],
+     "fx": {"lifesteal": 3, "furia": 1}, "cost": [("c", "shadowsteel", 1), ("c", "netherita_reforzada", 2)],
      "desc": ["Robo de vida", "Mas dano cuanto menos vida tenes (hasta +15%)"]},
     {"name": "Espada del Coloso", "base": "minecraft:diamond_sword", "dmg": 7, "bonus": 35, "lvl": 25, "kb_res": 1.0,
-     "fx": {"lifesteal": 4}, "cost": [("c", "netherita_reforzada", 1), ("c", "cristal_refinado", 1)],
+     "fx": {"lifesteal": 4}, "cost": [("c", "netherita_reforzada", 2), ("c", "cristal_refinado", 1)],
      "desc": ["Robo de vida", "Inmune al empuje mientras la empunas"]},
     {"name": "Espada del Dios de la Guerra", "base": "minecraft:netherite_sword", "dmg": 8, "bonus": 50, "lvl": 30,
-     "fx": {"lifesteal": 5, "furia": 2}, "cost": [("c", "netherita_reforzada", 1), ("c", "nucleo_furia_pura", 1)],
+     "fx": {"lifesteal": 5, "furia": 2}, "cost": [("c", "netherita_reforzada", 2), ("c", "nucleo_furia_pura", 1)],
      "desc": ["Robo de vida", "+5% de dano por cada 10% de vida perdida"]},
 ]
 AXES = [
-    {"name": "Hacha del Desollador", "base": "minecraft:iron_axe", "dmg": 9, "bonus": 18, "spd": 0.81, "lvl": 12,
+    {"name": "Hacha del Desollador", "base": "minecraft:iron_axe", "dmg": 9, "bonus": 18, "spd": 0.81, "lvl": 4,
      "fx": {}, "cost": [("c", "gema_umbria_fragmentada", 3), ("c", "palo_reforzado", 2)], "desc": []},
     {"name": "Hacha del Verdugo", "base": "minecraft:iron_axe", "dmg": 9, "bonus": 30, "spd": 0.9, "lvl": 16,
      "fx": {"verdugo": 1}, "cost": [("c", "shadowsteel", 2), ("c", "netherita_fundida", 1), ("c", "palo_reforzado", 1)],
@@ -240,19 +245,19 @@ AXES = [
 ]
 # Bastones: mana (AuraSkills), dano magico %, enfriamiento (ticks)
 STAFFS = [
-    {"name": "Baston del Aprendiz", "model": "minecraft:stick", "mana": 20, "mdmg": 5, "spell": 5.0, "cd": 25, "lvl": 8,
+    {"name": "Baston del Aprendiz", "model": "minecraft:stick", "mana": 20, "mdmg": 5, "spell": 5.0, "cd": 25, "lvl": 0,
      "cost": [("c", "fragmento_cristal", 1), ("c", "madera_estelar", 2)], "desc": []},
     {"name": "Baston del Hechicero", "model": "minecraft:blaze_rod", "mana": 40, "mdmg": 10, "mregen": 5, "spell": 6.0, "cd": 24, "lvl": 14,
-     "cost": [("c", "gema_luminica", 1)], "desc": []},
+     "cost": [("c", "gema_luminica", 1), ("c", "cristal_refinado", 2)], "desc": []},  # 23/11: antes solo la gema
     {"name": "Baston del Invocador", "model": "minecraft:end_rod", "mana": 70, "mdmg": 18, "spell": 7.0, "cd": 22, "lvl": 20,
-     "cost": [("c", "cristal_refinado", 2)], "desc": ["Hechizos cuestan menos"]},
+     "cost": [("c", "cristal_refinado", 3), ("c", "gema_luminica", 1)], "desc": ["Hechizos cuestan menos"]},
     {"name": "Baston del Archimago", "model": "minecraft:lightning_rod", "mana": 110, "mdmg": 25, "cdr": 10, "spell": 8.5, "cd": 21, "lvl": 26,
      "cost": [("c", "corazon_shulker", 1), ("c", "cristal_refinado", 1)], "desc": ["-10% de enfriamiento"]},
     {"name": "Baston Astral", "model": "minecraft:trident", "mana": 180, "mdmg": 40, "pierce": 20, "spell": 10.0, "cd": 20, "lvl": 32,
      "cost": [("c", "gema_luminica_perfecta", 1), ("c", "nucleo_astral", 1)], "desc": ["Ignora 20% de resistencia magica"]},
 ]
 SCYTHES = [
-    {"name": "Guadana Umbria Menor", "base": "minecraft:iron_hoe", "dmg": 6, "lvl": 12, "mdmg": 0,
+    {"name": "Guadana Umbria Menor", "base": "minecraft:iron_hoe", "dmg": 6, "lvl": 4, "mdmg": 0,
      "fx": {"lifesteal": 1}, "cost": [("c", "gema_umbria_fragmentada", 2), ("c", "shadowsteel", 1), ("c", "palo_reforzado", 1)],
      "desc": ["Dano magico cuerpo a cuerpo", "Roba vida"]},
     {"name": "Guadana del Ritual", "base": "minecraft:iron_hoe", "dmg": 7, "lvl": 16, "mdmg": 10,
@@ -273,7 +278,7 @@ BOWS = [
     {"name": "Arco del Rastreador", "bonus": 0, "draw": 10, "lvl": 8,
      "cost": [("c", "madera_estelar", 3), ("v", "minecraft:string", 3)], "desc": []},
     {"name": "Arco del Explorador", "bonus": 10, "draw": 25, "lvl": 14,
-     "cost": [("c", "gema_luminica", 3)], "desc": []},
+     "cost": [("c", "gema_luminica", 3), ("c", "cristal_refinado", 1)], "desc": []},
     {"name": "Arco del Francotirador", "bonus": 18, "draw": 45, "lvl": 20, "cooldown": 0.2,
      "cost": [("c", "cristal_refinado", 3)], "desc": ["Mayor precision"]},
     {"name": "Arco del Viento", "bonus": 25, "draw": 65, "lvl": 25, "spd": 10, "cooldown": 0.3,
@@ -347,7 +352,7 @@ TALISMAN_COST = [
 # Mantienen el ataque de lanza vanilla y suman dano con encantamientos.
 # ---------------------------------------------------------------------------
 SPEARS = [
-    {"name": "Lanza del Recluta", "base": "minecraft:iron_spear", "lvl": 10, "bonus": 1,
+    {"name": "Lanza del Recluta", "base": "minecraft:iron_spear", "lvl": 4, "bonus": 1,
      "fx": {}, "cost": [("v", "minecraft:iron_spear", 1), ("c", "esencia_elite", 2), ("c", "palo_reforzado", 1)], "desc": []},
     {"name": "Lanza del Centinela", "base": "minecraft:iron_spear", "lvl": 15, "bonus": 2,
      "fx": {"lifesteal": 1}, "cost": [("c", "esencia_elite", 3), ("c", "shadowsteel", 2)], "desc": ["Robo de vida"]},
@@ -406,3 +411,13 @@ CUCHILLOS = [dict(name=name, lvl=s['lvl'], cost=list(s['cost'])) for name,s in z
     ('Cuchillo de Aprendiz','Cuchillo de Acero','Cuchillo de Zafiro','Cuchillo del Nether',
      'Cuchillo Celeste','Cuchillo del Ocaso','Cuchillo del Eclipse','Cuchillo de Supernova',
      'Cuchillo del Vacio','Cuchillo del Fin'), SWORDS)]
+
+# 24/11 (dueno): armadura y arma del mismo tier piden el MISMO nivel de la skill de la clase
+# (antes la armadura T3 pedia 14 y el arma T2 16: se usaba armadura T3 con arma T1).
+ARMOR_LEVELS = {'berserker': tuple(w['lvl'] for w in SWORDS), 'mago': tuple(w['lvl'] for w in STAFFS),
+                'arquero': tuple(w['lvl'] for w in BOWS)}
+for _sid, _set in ARMOR_SETS.items():
+    for _index, _tier in enumerate(_set['tiers']):
+        _tier['lvl'] = ARMOR_LEVELS[_sid][_index]
+# Sets sin clase (Carnivora, Agua): Combate del arma de su tier.
+ARMOR_LEVEL_SIN_CLASE = {t: SWORDS[t - 1]['lvl'] for t in range(1, 11)}

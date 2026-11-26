@@ -19,7 +19,7 @@ public final class AstralSpell implements Listener {
         } catch (java.io.IOException e) { throw new IllegalStateException(e); }
         Bukkit.getPluginManager().registerEvents(this, plugin);
     }
-    private boolean eligible(LivingEntity e, Player caster) {
+    boolean eligible(LivingEntity e, Player caster) {
         if(e == caster || e.isDead() || e.isInvulnerable() || e instanceof ArmorStand ||
            e instanceof Villager || e instanceof WanderingTrader) return false;
         var tags=e.getScoreboardTags();

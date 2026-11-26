@@ -174,12 +174,12 @@ Crate:
         - "<gray>Rareza: <light_purple>Epico"
         - "<light_purple>★★★★<dark_gray>★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>11.36%"
+        - "<gray>Probabilidad: <yellow><bold>13.46%"
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 11.3636
+      Weight: 13.4615
       Commands:
         - "lp user %player% permission set astral.cosmetico.titulo.campeon true"
         - "tellraw %player% {\"text\":\"Titulo Campeon desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
@@ -202,12 +202,12 @@ Crate:
         - "<gray>Rareza: <light_purple>Epico"
         - "<light_purple>★★★★<dark_gray>★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>11.36%"
+        - "<gray>Probabilidad: <yellow><bold>13.46%"
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 11.3636
+      Weight: 13.4615
       Commands:
         - "lp user %player% permission set astral.cosmetico.titulo.senor_del_abismo true"
         - "tellraw %player% {\"text\":\"Titulo Senor del Abismo desbloqueado. Puedes elegirlo con /cosmeticos sin perder los anteriores.\",\"color\":\"light_purple\"}"
@@ -230,12 +230,12 @@ Crate:
         - "<gray>Rareza: <light_purple>Epico"
         - "<light_purple>★★★★<dark_gray>★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>6.82%"
+        - "<gray>Probabilidad: <yellow><bold>8.08%"
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 6.8182
+      Weight: 8.0769
       Commands:
         - "lp user %player% permission set astral.cosmetico.sombrero.frankenstein true"
         - "tellraw %player% {\"text\":\"Cabeza de Frankenstein desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
@@ -258,12 +258,12 @@ Crate:
         - "<gray>Rareza: <light_purple>Epico"
         - "<light_purple>★★★★<dark_gray>★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>6.82%"
+        - "<gray>Probabilidad: <yellow><bold>8.08%"
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 6.8182
+      Weight: 8.0769
       Commands:
         - "lp user %player% permission set astral.cosmetico.sombrero.bruja true"
         - "tellraw %player% {\"text\":\"Sombrero de Bruja desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
@@ -286,12 +286,12 @@ Crate:
         - "<gray>Rareza: <light_purple>Epico"
         - "<light_purple>★★★★<dark_gray>★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>6.82%"
+        - "<gray>Probabilidad: <yellow><bold>8.08%"
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 6.8182
+      Weight: 8.0769
       Commands:
         - "lp user %player% permission set astral.cosmetico.sombrero.diablo true"
         - "tellraw %player% {\"text\":\"Cuernos de Diablo desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
@@ -314,12 +314,12 @@ Crate:
         - "<gray>Rareza: <light_purple>Epico"
         - "<light_purple>★★★★<dark_gray>★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>6.82%"
+        - "<gray>Probabilidad: <yellow><bold>8.08%"
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 6.8182
+      Weight: 8.0769
       Commands:
         - "lp user %player% permission set astral.cosmetico.sombrero.illusioner true"
         - "tellraw %player% {\"text\":\"Capucha de Ilusionista desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
@@ -342,12 +342,12 @@ Crate:
         - "<gray>Rareza: <light_purple>Epico"
         - "<light_purple>★★★★<dark_gray>★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>6.82%"
+        - "<gray>Probabilidad: <yellow><bold>8.08%"
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 6.8182
+      Weight: 8.0769
       Commands:
         - "lp user %player% permission set astral.cosmetico.sombrero.vindicator true"
         - "tellraw %player% {\"text\":\"Capucha de Vindicador desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
@@ -370,12 +370,12 @@ Crate:
         - "<gray>Rareza: <light_purple>Epico"
         - "<light_purple>★★★★<dark_gray>★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>6.82%"
+        - "<gray>Probabilidad: <yellow><bold>8.08%"
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 6.8182
+      Weight: 8.0769
       Commands:
         - "lp user %player% permission set astral.cosmetico.sombrero.carnivora true"
         - "tellraw %player% {\"text\":\"Sombrero de Carnivora desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
@@ -383,62 +383,6 @@ Crate:
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Sombrero de Carnivora',color:'white'}]"
         - "astralgacha %player% gacha_cosmeticos ack false"
     "11":
-      DisplayName: "<light_purple><bold>Barril Viajero"
-      DisplayItem: "paper"
-      Settings:
-        Custom-Model-Data: -1
-        Model:
-          Namespace: "astral"
-          Id: "cosmeticos/espalda_barrel"
-      DisplayAmount: 1
-      DisplayEnchantments:
-        - "unbreaking:1"
-      DisplayLore:
-        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<gray>Rareza: <light_purple>Epico"
-        - "<light_purple>★★★★<dark_gray>★"
-        - ""
-        - "<gray>Probabilidad: <yellow><bold>6.82%"
-        - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
-        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (50000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 6.8182
-      Commands:
-        - "lp user %player% permission set astral.cosmetico.espalda.barrel true"
-        - "tellraw %player% {\"text\":\"Barril Viajero desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
-        - "scoreboard players set %player% pity_cosmeticos 0"
-        - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Barril Viajero',color:'white'}]"
-        - "astralgacha %player% gacha_cosmeticos ack false"
-    "12":
-      DisplayName: "<light_purple><bold>Rueda de Madera"
-      DisplayItem: "paper"
-      Settings:
-        Custom-Model-Data: -1
-        Model:
-          Namespace: "astral"
-          Id: "cosmeticos/espalda_wooden_wheel"
-      DisplayAmount: 1
-      DisplayEnchantments:
-        - "unbreaking:1"
-      DisplayLore:
-        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<gray>Rareza: <light_purple>Epico"
-        - "<light_purple>★★★★<dark_gray>★"
-        - ""
-        - "<gray>Probabilidad: <yellow><bold>6.82%"
-        - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
-        - "<dark_gray>━━━━━━━━━━━━━━━━━━"
-        - "<dark_gray>Clic al vendedor para tirar (50000$)"
-        - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 6.8182
-      Commands:
-        - "lp user %player% permission set astral.cosmetico.espalda.wooden_wheel true"
-        - "tellraw %player% {\"text\":\"Rueda de Madera desbloqueado. Equipalo desde /cosmeticos.\",\"color\":\"light_purple\"}"
-        - "scoreboard players set %player% pity_cosmeticos 0"
-        - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Rueda de Madera',color:'white'}]"
-        - "astralgacha %player% gacha_cosmeticos ack false"
-    "13":
       DisplayName: "<light_purple><bold>Molde de adorno: silence"
       DisplayItem: "silence_armor_trim_smithing_template"
       Settings:
@@ -454,18 +398,18 @@ Crate:
         - "<gray>Rareza: <light_purple>Epico"
         - "<light_purple>★★★★<dark_gray>★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>6.82%"
+        - "<gray>Probabilidad: <yellow><bold>8.08%"
         - "<light_purple>▮▮▮▮▮▮▮<dark_gray>▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 6.8182
+      Weight: 8.0769
       Commands:
         - "give %player% minecraft:silence_armor_trim_smithing_template 1"
         - "scoreboard players set %player% pity_cosmeticos 0"
         - "minecraft:tellraw @a ['',{text:'(!) ',color:'gold',bold:true},{text:'%player%',color:'yellow'},{text:' saco ',color:'gray'},{text:'Epico',color:'light_purple'},{text:' en la ',color:'gray'},{text:'Gacha de Cosmeticos',color:'#FF7BD5'},{text:': ',color:'gray'},{text:'Molde de adorno: silence',color:'white'}]"
         - "astralgacha %player% gacha_cosmeticos ack false"
-    "14":
+    "12":
       DisplayName: "<light_purple><bold>Barril de Experiencia"
       DisplayItem: "paper"
       Settings:
@@ -481,12 +425,12 @@ Crate:
         - "<gray>Rareza: <light_purple>Epico"
         - "<light_purple>★★★★<dark_gray>★"
         - ""
-        - "<gray>Probabilidad: <yellow><bold>3.41%"
+        - "<gray>Probabilidad: <yellow><bold>4.04%"
         - "<light_purple>▮▮▮▮▮▮<dark_gray>▮▮▮▮"
         - "<dark_gray>━━━━━━━━━━━━━━━━━━"
         - "<dark_gray>Clic al vendedor para tirar (50000$)"
         - "<dark_purple>Garantia: <light_purple>Epico seguro cada 20 tiradas"
-      Weight: 3.4091
+      Weight: 4.0385
       Commands:
         - "loot give %player% loot astral:item/barril_xp"
         - "scoreboard players set %player% pity_cosmeticos 0"

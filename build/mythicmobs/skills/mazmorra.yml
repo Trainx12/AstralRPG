@@ -35,6 +35,8 @@ MINA_GUARDIAN_F3:
   - potion{type=SPEED;duration=999999;level=0} @self
 MINA_SALA1_INICIO:
   Skills:
+  - addtag{tag=mina.espera} @self
+  - addtag{tag=mina.sala1.pedida} @self
   - removetag{tag=mina.ready} @self
   - addtag{tag=mina.on} @self
   - addtag{tag=mina.ola1} @self
@@ -43,6 +45,7 @@ MINA_SALA1_INICIO:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/mina/sala1/wave1"} @self
 MINA_SALA1_OLA2:
   Skills:
+  - addtag{tag=mina.sala1.pedida} @self
   - addtag{tag=mina.ola2} @self
   - addtag{tag=mina.espera} @self
   - message{m="&8[&7Mina&8] &7Oleada 2/2..."} @PlayersInRadius{r=24}
@@ -76,6 +79,8 @@ MINA_SALA1_RESET:
   - addtag{tag=mina.ready} @self
 MINA_SALA2_INICIO:
   Skills:
+  - addtag{tag=mina.espera} @self
+  - addtag{tag=mina.sala2.pedida} @self
   - removetag{tag=mina.ready} @self
   - addtag{tag=mina.on} @self
   - addtag{tag=mina.ola1} @self
@@ -84,6 +89,7 @@ MINA_SALA2_INICIO:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/mina/sala2/wave1"} @self
 MINA_SALA2_OLA2:
   Skills:
+  - addtag{tag=mina.sala2.pedida} @self
   - addtag{tag=mina.ola2} @self
   - addtag{tag=mina.espera} @self
   - message{m="&8[&7Mina&8] &7Oleada 2/2..."} @PlayersInRadius{r=30}
@@ -117,6 +123,8 @@ MINA_SALA2_RESET:
   - addtag{tag=mina.ready} @self
 MINA_SALA3_INICIO:
   Skills:
+  - addtag{tag=mina.espera} @self
+  - addtag{tag=mina.sala3.pedida} @self
   - removetag{tag=mina.ready} @self
   - addtag{tag=mina.on} @self
   - addtag{tag=mina.ola1} @self
@@ -125,6 +133,7 @@ MINA_SALA3_INICIO:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/mina/sala3/wave1"} @self
 MINA_SALA3_OLA2:
   Skills:
+  - addtag{tag=mina.sala3.pedida} @self
   - addtag{tag=mina.ola2} @self
   - addtag{tag=mina.espera} @self
   - message{m="&8[&7Mina&8] &7Oleada 2/2..."} @PlayersInRadius{r=24}

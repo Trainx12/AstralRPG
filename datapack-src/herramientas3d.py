@@ -101,13 +101,20 @@ TALADROS = {
 ARCOIRIS = ('#b05cff', '#7a6cff', '#4a9cff', '#3ad8ff', '#3dffc8', '#5aff7a', '#d8ff5a')
 
 
-def taladro(iid, c):
+# 24/11 (dueno): al picar la broca gira (no golpea como pico). Variantes de la broca giradas de a 22,5 grados;
+# con el click de picar apretado el cliente elige una al azar cada tick (se ve girando). El golpe del brazo se saca
+# con minecraft:swing_animation none en build.py.
+FASES_BROCA = 8
+
+
+def taladro(iid, c, fase=0):
     pal = _paleta(c)
+    giro = fase * 22.5
     ex = c.get('extra', set())
     if 'arcoiris' in ex:
         for i, col in enumerate(ARCOIRIS):
             pal[f'prism_rb{i}'] = (hx(col), 'flow')
-    p = Pieza(iid, c['nombre'], pal, tex_dir='item/herramientas3d')
+    p = Pieza(iid if fase == 0 else f'{iid}_giro{fase}', c['nombre'], pal, tex_dir='item/herramientas3d', tex_name=iid)
     y = Y0
 
     # ---- broca: cono suave de 10 tramos que giran (espiral), dos surcos en helice y punta de cristal
@@ -118,6 +125,9 @@ def taladro(iid, c):
         t = (k + 0.5) / n
         z, h = z0 + (z1 - z0) * t, r0 + (r1 - r0) * t
         a = (0, 22.5, 45, -22.5)[k % 4]
+        if giro:
+            a = (a + giro + 45) % 90 - 45                           # cruz: simetrica cada 90 grados
+            a = 45 if a == -45 else a
         kr = min(6, k * 7 // n)
         fa = f'prism_rb{kr}' if 'arcoiris' in ex else ('prism_fin2' if 'broca2' in c and k % 2 else 'prism_fin')
         fb = f'prism_rb{kr}' if 'arcoiris' in ex else ('prism_fin' if 'broca2' in c and k % 2 else 'prism_fin2' if 'broca2' in c else 'prism_fin')
@@ -128,7 +138,7 @@ def taladro(iid, c):
         for k in range(13):
             t = (k + 0.5) / 13
             z, r = z0 + (z1 - z0) * t, (r0 + (r1 - r0) * t) * 1.0
-            ang = math.radians(hel + k * 42)
+            ang = math.radians(hel + k * 42 + giro)
             sz = 0.75 - 0.35 * t
             p.cen((8 + r * math.cos(ang), y + r * math.sin(ang), z), (sz, sz, 1.15), mat)
     p.gema((8, y, -7.6), 1.3, 'crystal_tip', eje='z', glow=10, largo=1.6)
@@ -459,6 +469,25 @@ def piezas():
     return [taladro(i, c) for i, c in TALADROS.items()] + [motosierra(i, c) for i, c in MOTOSIERRAS.items()]
 
 
+def giros():
+    return [taladro(i, c, f) for i, c in TALADROS.items() for f in range(1, FASES_BROCA)]
+
+
+def _modelo_mano(p):
+    quieto = {'type': 'minecraft:model', 'model': f'astral:item/{p.iid}_3d'}
+    if p.iid not in TALADROS:
+        return quieto
+    fases = [{'threshold': f / FASES_BROCA, 'model': {'type': 'minecraft:model', 'model': f'astral:item/{p.iid}' +
+                                                      ('_3d' if f == 0 else f'_giro{f}_3d')}} for f in range(FASES_BROCA)]
+    girando = {'type': 'minecraft:range_dispatch', 'property': 'minecraft:time', 'source': 'random', 'wobble': False,
+               'entries': fases, 'fallback': quieto}
+    # solo el taladro de uno mismo y con el boton de picar apretado
+    return {'type': 'minecraft:condition', 'property': 'minecraft:keybind_down', 'keybind': 'key.attack',
+            'on_true': {'type': 'minecraft:condition', 'property': 'minecraft:view_entity',
+                        'on_true': girando, 'on_false': quieto},
+            'on_false': quieto}
+
+
 # 23/11 (dueno): en el inventario (y en el piso o marcos) el icono plano de antes (iconos_19_11); 3D solo en la mano.
 PLANO_EN = ('gui', 'ground', 'fixed')
 
@@ -466,7 +495,7 @@ PLANO_EN = ('gui', 'ground', 'fixed')
 def assets():
     import json
     out = {}
-    for ruta, data in P.assets(piezas(), items_json=False).items():
+    for ruta, data in P.assets(piezas() + giros(), items_json=False).items():
         if ruta.startswith('assets/astral/models/item/') and ruta.endswith('.json'):
             ruta = ruta[:-5] + '_3d.json'
         out[ruta] = data
@@ -474,7 +503,7 @@ def assets():
         out[f'assets/astral/items/{p.iid}.json'] = json.dumps({'model': {
             'type': 'minecraft:select', 'property': 'minecraft:display_context',
             'cases': [{'when': list(PLANO_EN), 'model': {'type': 'minecraft:model', 'model': f'astral:item/{p.iid}'}}],
-            'fallback': {'type': 'minecraft:model', 'model': f'astral:item/{p.iid}_3d'}}}, indent=1).encode()
+            'fallback': _modelo_mano(p)}}, indent=1).encode()
     return out
 
 

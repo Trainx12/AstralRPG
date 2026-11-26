@@ -11,13 +11,11 @@ GOLEM_XP = {t: (min(.80,.20+.06*t), min(.55,.05+.045*t), min(.30,.01+.022*t), mi
 MERCHANT = [(iid, round(PRECIOS[iid]*.85), 4 if iid!='barril_xp' else 1) for iid in PRECIOS]
 from economia import plata as _x
 MERCHANT += [(i, _x(p), s) for i, p, s in [('cristal_arcano', 1800, 6), ('cristal_refinado', 6500, 3), ('esencia_elite', 2500, 4),
-                                          ('llave_cosmeticos', 425, 3), ('cosmetico_balde', 12000, 1)]]
+                                          ('llave_cosmeticos', 425, 3)]]
+# 26/11: sin cosmeticos de espalda (retirados); el gacha tampoco los sortea.
 MERCHANT_SPECIAL = {
     'llave_cosmeticos': dict(name='Llave virtual de Gacha de Cosmeticos', model='cosmeticos/nav_gacha',
         command='crates give virtual gacha_cosmeticos 1 %player% -s', plugin='CrazyCrates'),
-    'cosmetico_balde': dict(name='Balde de Madera (cosmetico raro)', model='cosmeticos/espalda_wooden_bucket',
-        command='lp user %player% permission set astral.cosmetico.espalda.wooden_bucket true', plugin='LuckPerms',
-        permission='astral.cosmetico.espalda.wooden_bucket'),
 }
 
 

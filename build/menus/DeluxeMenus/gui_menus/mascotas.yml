@@ -6311,7 +6311,7 @@ items:
     - HIDE_ATTRIBUTES
     item_model: 'astral:mascotas/nav_gacha'
     click_commands:
-    - '[openguimenu] gacha_monturas'
+    - '[openguimenu] gacha_monturas_mas'
   'volver':
     material: PAPER
     slot: 45

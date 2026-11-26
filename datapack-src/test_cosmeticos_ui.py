@@ -37,7 +37,7 @@ class CosmeticsUITests(unittest.TestCase):
             self.assertEqual(entry['slot'],slot)
             self.assertNotIn(slot,occupied);occupied.add(slot)
             self.assertEqual(entry['click_commands'],['[close]','[player] titulo quitar'])
-        self.assertEqual(items['gacha']['click_commands'],['[openguimenu] gacha_cosmeticos'])
+        self.assertEqual(items['gacha']['click_commands'],['[openguimenu] gacha_cosmeticos_cos'])  # 23/11: vuelve a Cosmeticos
         self.assertEqual(items['back']['click_commands'],['[openguimenu] cosmeticos'])
         for key in ('info','gacha','back','close'):self.assertNotIn(items[key]['slot'],occupied)
 

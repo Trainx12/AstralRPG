@@ -43,9 +43,9 @@ def run(java,base):
                     if p.poll() is not None:raise RuntimeError('Paper termino: '+str(log))
                     time.sleep(1)
                 else:raise TimeoutError('Paper no arranco')
-                steps=('start','one','stack','offhand','denied','apple','roll','snapshot','backpacks','result') if cycle==1 else ('start','persist','result')
+                steps=('start','manzanas','manzanas2','one','stack','offhand','denied','apple','roll','snapshot','backpacks','result') if cycle==1 else ('start','persist','result')
                 for step in steps:
-                    cmd('xpprobe '+step);time.sleep(9 if step=='roll' else 2)
+                    cmd('xpprobe '+step);time.sleep(9 if step=='roll' else 6 if step=='manzanas' else 2)
             finally:
                 if p.poll() is None:cmd('stop');p.wait(timeout=60)
         content=log.read_text(encoding='utf8',errors='replace')

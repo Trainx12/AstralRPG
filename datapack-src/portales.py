@@ -66,7 +66,9 @@ def menu_data():
         ('nether', 'OBSIDIAN', 10, '&c&lNether', ['&7Obsidiana, brasas y guardianes.', '&7Viajá a la plataforma del umbral.'], ['[close]', '[player] umbrales nether<delay=3>']),
         ('end', 'END_PORTAL_FRAME', 12, '&e&lEnd', ['&7Una isla al otro lado del vacío.', '&7Viajá a la plataforma del umbral.'], ['[close]', '[player] umbrales end<delay=3>']),
         ('cavernas', 'AMETHYST_CLUSTER', 14, '&d&lCavernas de Cristal', ['&7Vetas de gemas para la Reforja.', '&7Equipo tier 4 o Tumba ganada.'], ['[openguimenu] cavernas_aviso']),
-        ('vacio', 'END_CRYSTAL', 16, '&5&lVacio Estelar', ['&7Gemas Perfectas y Estelares, meteoritos.', '&dProximamente.'], ['[message] &5Vacio Estelar&7: todavia no abrio. &dProximamente.']),
+        # 23/11: abierto (vacio.py / AstralVacio).
+        ('vacio', 'END_CRYSTAL', 16, '&5&lVacio Estelar', ['&7Islas flotantes: gemas Impecables, &dPerfectas', '&7y &bEstelares&7, meteoritos y el Coloso.',
+                   '&7Santuario ganado o equipo &ftier 6&7.', '', '&eClic para entrar.'], ['[close]', '[player] vacio entrar<delay=3>']),
         ('lobby', 'ENDER_PEARL', 22, '&aVolver al lobby', ['&7Volvé al punto de aparición.'], ['[close]', '[player] umbrales lobby<delay=3>']),
         ('cerrar', 'BARRIER', 26, '&cCerrar', ['&7Seguí explorando por tu cuenta.'], ['[close]']),
     ):

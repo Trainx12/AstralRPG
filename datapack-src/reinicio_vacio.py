@@ -17,6 +17,9 @@ Como funciona:
 
 Otros comandos: `reiniciopendiente ver`, `reiniciopendiente quitar`.
 
+26/11 (dueno): APAGADO por defecto. La marca se anota pero no reinicia; los cambios entran en el reinicio
+diario de las 05:00. Prenderlo solo si el dueno lo pide: `reiniciopendiente activar` (apagar: `desactivar`).
+
     python reinicio_vacio.py   ->  build/gameplay/astral_reinicio_vacio.sk  (plugins/Skript/scripts/)
 """
 from pathlib import Path
@@ -34,9 +37,22 @@ command /reiniciopendiente [<text>]:
     permission: op
     trigger:
         if arg-1 is not set:
-            send "&eUso: reiniciopendiente <motivo> | ver | quitar"
+            send "&eUso: reiniciopendiente <motivo> | ver | quitar | activar | desactivar"
+            stop
+        if arg-1 is "activar":
+            set {{astral::reinicio::activo}} to true
+            send "&6[Reinicio] &aActivado: con marca, reinicia tras {MINUTOS} min con el server vacio."
+            stop
+        if arg-1 is "desactivar":
+            delete {{astral::reinicio::activo}}
+            delete {{-astral::reinicio::vacio}}
+            send "&6[Reinicio] &eDesactivado: los cambios esperan al reinicio de las 05:00."
             stop
         if arg-1 is "ver":
+            if {{astral::reinicio::activo}} is true:
+                send "&6[Reinicio] &aReinicio por server vacio: ACTIVADO"
+            else:
+                send "&6[Reinicio] &eReinicio por server vacio: DESACTIVADO (espera a las 05:00)"
             if {{astral::reinicio::pendiente}} is true:
                 send "&6[Reinicio] &ePendiente: &f%{{astral::reinicio::motivos::*}}%"
                 send "&6[Reinicio] &eMinutos vacio: &f%{{-astral::reinicio::vacio}} ? 0%/{MINUTOS}"
@@ -51,7 +67,10 @@ command /reiniciopendiente [<text>]:
             stop
         set {{astral::reinicio::pendiente}} to true
         add "%now% %arg-1%" to {{astral::reinicio::motivos::*}}
-        send "&6[Reinicio] &aAnotado. Se reinicia cuando el server quede vacio {MINUTOS} minutos."
+        if {{astral::reinicio::activo}} is true:
+            send "&6[Reinicio] &aAnotado. Se reinicia cuando el server quede vacio {MINUTOS} minutos."
+        else:
+            send "&6[Reinicio] &eAnotado. Reinicio por server vacio desactivado: entra a las 05:00."
 
 on skript start:
     delete {{astral::reinicio::pendiente}}
@@ -59,6 +78,9 @@ on skript start:
     delete {{-astral::reinicio::vacio}}
 
 every 1 minute:
+    if {{astral::reinicio::activo}} is not true:
+        delete {{-astral::reinicio::vacio}}
+        stop
     if {{astral::reinicio::pendiente}} is not true:
         delete {{-astral::reinicio::vacio}}
         stop

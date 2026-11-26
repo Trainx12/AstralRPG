@@ -403,11 +403,24 @@ def espera_cofre(key):
             f"lp group default permission set astral.{key}.cd false"]
 
 
+# Pasillo de atras del Salon del Guardian (26/11/2026): los jugadores se metian ahi y el Coloso no les llegaba.
+# Se aparece en el hueco de la sala (40.5 24 -225.5); el pasillo (3 de ancho, 2 de largo) queda tapado con barreras.
+PUERTA_JEFE = ((39, 24, -224), (41, 27, -223))
+
+
+def puerta_jefe_commands():
+    from instancias import copias
+    (x1, y1, z1), (x2, y2, z2) = PUERTA_JEFE
+    return ["# --- puerta de atras de la sala del jefe cerrada con barreras (todas las copias)",
+            *(f"execute in minecraft:{w} run fill {x1} {y1} {z1} {x2} {y2} {z2} minecraft:barrier replace minecraft:air"
+              for w in copias(WORLD))]
+
+
 def commands(dungeon=None):
     dungeon = dungeon or MINA
     if dungeon.get('tanda2'):
         from mobs.entrega_tanda2 import upgrade_commands
-        return upgrade_commands(dungeon) + '\n' + '\n'.join(espera_cofre(dungeon['key'])) + '\n' + ('\n'.join(__import__('cofre_mazmorra').lp_defaults())+'\n' if dungeon['key']=='mina' else '')
+        return upgrade_commands(dungeon) + '\n' + '\n'.join(espera_cofre(dungeon['key'])) + '\n' + ('\n'.join(__import__('cofre_mazmorra').lp_defaults() + puerta_jefe_commands())+'\n' if dungeon['key']=='mina' else '')
     if dungeon["key"] != "mina":
         return new_commands(dungeon)
     C = ["# Mazmorra Minas Olvidadas: comandos de consola (sin /). Generado por datapack-src/mobs/mazmorra.py",
@@ -431,6 +444,7 @@ def commands(dungeon=None):
          f"rg flag -w {WORLD} __global__ use deny",
          f"rg flag -w {WORLD} __global__ mob-spawning allow",
          f"rg flag -w {WORLD} __global__ pvp deny",
+         f"rg flag -w {WORLD} __global__ damage-animals allow",  # jefes IRON_GOLEM (26/11)
          *espera_cofre("mina"),
          "# coleccion de Fragmentos Astrales (/fragmentos): false para todos, igual que la espera",
          *__import__("cofre_mazmorra").lp_defaults(),
@@ -444,6 +458,7 @@ def commands(dungeon=None):
         x, y, z = s["centro"]
         C.append(f"mm mobs spawn astral_mina_control_{s['id']} 1 {WORLD},{x},{y},{z}")
     C += [f"execute in minecraft:{WORLD} run forceload remove -80 -300 160 -60",
+          *puerta_jefe_commands(),
           "# --- 4) vendedor de la entrada: parate en el lobby donde lo quieras y (con mob-spawning allow en el lobby):",
           f"#   /mm mobs spawn {LOBBY_NPC}",
           "# --- para reiniciar una sala trabada: mm mobs kill astral_mina_control_salaN y volver a spawnearla"]
@@ -491,6 +506,7 @@ def new_commands(dungeon):
              f'mv gamerule set minecraft:random_tick_speed 0 {w}',
              f'rg flag -w {w} __global__ build deny', f'rg flag -w {w} __global__ chest-access deny',
              f'rg flag -w {w} __global__ pvp deny', f'rg flag -w {w} __global__ mob-spawning allow',
+             f'rg flag -w {w} __global__ damage-animals allow',
              f'rg flag -w {w} __global__ interact allow', f'rg flag -w {w} __global__ use deny',
              *(explosion_commands(w) if dungeon['key'] != 'santuario' else []),
              *espera_cofre(dungeon["key"]),

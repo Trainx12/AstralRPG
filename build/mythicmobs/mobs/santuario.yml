@@ -93,7 +93,7 @@ astral_npc_santuario:
   - 'skill{s=SANTUARIO_ENTRAR} @trigger ~onInteract'
 
 astral_santuario_coloso_musgoso_eco:
-  Type: IRON_GOLEM
+  Type: ZOGLIN
   Display: '&d&lColoso Musgoso Ancestral'
   Health: 7875000
   Damage: 17.3
@@ -160,6 +160,8 @@ astral_santuario_coloso_musgoso_eco:
   - message{m="&6Algo enorme se arrastra por la arena..."} @PlayersInRadius{r=30} ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
+  - skill{s=AST_ANCESTRAL_FUERA_astral_cangrejo} @self ~onTimer:20 ?hastag{tag=astral.ancestral.fuera}
+  - skill{s=AST_ANCESTRAL_FUERA_astral_cangrejo} @self ~onLoad ?hastag{tag=astral.ancestral.fuera}
   - skill{s=AST_JEFE_SLAM_astral_coloso_musgoso} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_coloso_musgoso} @PlayersInRing{min=4;max=48} ~onTimer:40
   - settarget @NearestPlayer{r=40} ~onTimer:30
@@ -246,11 +248,12 @@ astral_santuario_chaman_eco:
   - message{m="&2Un canto extrano sale del pantano..."} @PlayersInRadius{r=40} ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
+  - skill{s=AST_ANCESTRAL_FUERA_astral_chaman} @self ~onTimer:20 ?hastag{tag=astral.ancestral.fuera}
+  - skill{s=AST_ANCESTRAL_FUERA_astral_chaman} @self ~onLoad ?hastag{tag=astral.ancestral.fuera}
   - skill{s=AST_JEFE_SLAM_astral_chaman} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_chaman} @PlayersInRing{min=4;max=48} ~onTimer:40
   - settarget @NearestPlayer{r=40} ~onTimer:30
   - skill{s=AST_JEFE_SALTO} @target ~onTimer:40
-  - command{c="execute at <caster.uuid> run function astral:boss/chaman_ice"} @self ~onTimer:5
   - skill{s=AST_FASE_astral_chaman_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=AST_FASE_astral_chaman_2_veneno} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=AST_FASE_astral_chaman_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
@@ -335,6 +338,8 @@ astral_santuario_momia_eco:
   - message{m="&eLa Momia Ancestral despierta..."} @PlayersInRadius{r=30} ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
+  - skill{s=AST_ANCESTRAL_FUERA_astral_momia} @self ~onTimer:20 ?hastag{tag=astral.ancestral.fuera}
+  - skill{s=AST_ANCESTRAL_FUERA_astral_momia} @self ~onLoad ?hastag{tag=astral.ancestral.fuera}
   - skill{s=AST_JEFE_SLAM_astral_momia} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_momia} @PlayersInRing{min=4;max=48} ~onTimer:40
   - settarget @NearestPlayer{r=40} ~onTimer:30
@@ -425,6 +430,8 @@ astral_santuario_yeti_eco:
   - message{m="&fUn rugido helado retumba en la montana..."} @PlayersInRadius{r=40} ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
+  - skill{s=AST_ANCESTRAL_FUERA_astral_yeti} @self ~onTimer:20 ?hastag{tag=astral.ancestral.fuera}
+  - skill{s=AST_ANCESTRAL_FUERA_astral_yeti} @self ~onLoad ?hastag{tag=astral.ancestral.fuera}
   - skill{s=AST_JEFE_SLAM_astral_yeti} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_yeti} @PlayersInRing{min=4;max=48} ~onTimer:40
   - settarget @NearestPlayer{r=40} ~onTimer:30
@@ -516,6 +523,8 @@ astral_santuario_golem_forja_eco:
   - message{m="&cEl suelo arde, el Golem de la Forja se levanta."} @PlayersInRadius{r=40} ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onSpawn
   - potion{type=RESISTANCE;duration=240;level=0;hasParticles=false} @self ~onTimer:200
+  - skill{s=AST_ANCESTRAL_FUERA_astral_golem_forja} @self ~onTimer:20 ?hastag{tag=astral.ancestral.fuera}
+  - skill{s=AST_ANCESTRAL_FUERA_astral_golem_forja} @self ~onLoad ?hastag{tag=astral.ancestral.fuera}
   - skill{s=AST_JEFE_SLAM_astral_golem_forja} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_golem_forja} @PlayersInRing{min=4;max=48} ~onTimer:40
   - settarget @NearestPlayer{r=40} ~onTimer:30

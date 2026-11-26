@@ -24,7 +24,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 10'
     - ''
-    - '&cRequiere: Defensa 42'
+    - '&cRequiere: Hechiceria 57'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&#b388ff&lASTRAL GREBAS'
     enchantments:
@@ -56,7 +56,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 9'
     - ''
-    - '&cRequiere: Defensa 38'
+    - '&cRequiere: Hechiceria 52'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&b&lDIVINA GREBAS'
     enchantments:

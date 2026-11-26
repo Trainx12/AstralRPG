@@ -24,11 +24,12 @@ W = 224
 BANCO_VISTAS = ('banco', 'depositar', 'retirar', 'mejorar', 'movimiento', 'cuenta')
 VENTANAS = {'cavernas_aviso': 4, 'comisiones': 6, 'efectos': 6, **{f'banco_{v}': 6 for v in BANCO_VISTAS},
             'subastas_inicio': 6, **{f'banco_mejorar{n}': 6 for n in (1, 2, 3, 4)},
-            'oceano_aviso': 6, 'trade': 6}   # 23/11: /trade de AxTrade (ventana_trade.py)
+            'oceano_aviso': 6, 'trade': 6,   # 23/11: /trade de AxTrade (ventana_trade.py)
+            'renacer': 6}   # 25/11: Renacer en las Minas (ventana_renacer.py)
 # Fondos nuevos a doble resolucion (disenos Gemini 20/11, ventanas_20_11.py): reemplazan al armado de aca.
 NUEVAS_2011 = ('comisiones', 'subastas_inicio', *(f'banco_{v}' for v in BANCO_VISTAS),
                *(f'banco_mejorar{n}' for n in (1, 2, 3, 4)),   # Mejorar con el nivel actual remarcado
-               'efectos', 'oceano_aviso', 'trade')   # 21/11: diseno nuevo del dueno (ventanas_20_11.efectos)
+               'efectos', 'oceano_aviso', 'trade', 'renacer')   # 21/11: diseno nuevo del dueno (ventanas_20_11.efectos)
 # Piezas del Banco que ahora estan dibujadas en el fondo (20/11): el item queda invisible (solo nombre y lore).
 BANCO_INVISIBLES = ('b_depositar', 'b_retirar', 'b_mejorar_cuenta', 'b_todo', 'b_mitad', 'b_otra', 'b_atras', 'b_cerrar',
                     'b_confirmar_dep', 'b_confirmar_ret', 'b_mejorar', 'b_volver_banco', 'i_saldo', 'i_encima', 'i_cuenta', 'i_limite')
@@ -432,6 +433,10 @@ def assets():
             files['assets/astral/textures/' + path] = png(part)
             providers.append(dict(type='bitmap', file='astral:' + path, height=part.height, ascent=ascent, chars=[ch[n * 2]]))
             advances[ch[n * 2 + 1]] = -(part.getbbox()[2] + 1)
+    from ventana_renacer import bonus_providers   # 25/11: numero del bonus de Renacer en las Minas
+    f2, p2 = bonus_providers()
+    files.update(f2)
+    providers += p2
     providers.append(dict(type='space', advances=advances))
     for nombre, im in piezas().items():
         ancho = im.width // 2
@@ -479,7 +484,7 @@ def preview(kind, colocar=()):
         p = pz[nombre]
         p = p.resize((p.width // 2, p.height // 2), Image.Resampling.LANCZOS) if p.height in (36, 72) else p.resize((16, 16), Image.Resampling.LANCZOS)
         x, y = _slot(slot)
-        im.alpha_composite(p, (x - (1 if p.height == 18 else 0), y - (1 if p.height == 18 else 0)))
+        im.alpha_composite(p, (x, y))   # 23/11: como en el juego (ventanas_20_11._recorte), sin el -1
     return im.resize((im.width * 3, im.height * 3), Image.Resampling.NEAREST)
 
 
@@ -494,7 +499,7 @@ if __name__ == '__main__':
     preview('cavernas_aviso', [(15, 'entrar', 3), (24, 'volver', 3)]).save(out / 'ventana_cavernas_aviso.png')
     preview('efectos', [(0, 'nivel_bajo', 3), (3, 'nivel_medio_activo', 3), (6, 'nivel_alto', 3)]
             + [(9 * (i + 1), f'efecto_{c}', 1) for i, c in enumerate(EFECTOS_CATEGORIAS)]
-            + [(9 * (i + 1) + 6, 'interruptor_off' if c == 'mascotas' else 'interruptor_on', 3) for i, c in enumerate(EFECTOS_CATEGORIAS)]
+            + [(9 * (i + 1) + 6, f"interruptor_{'off' if c == 'mascotas' else 'on'}_{c}", 3) for i, c in enumerate(EFECTOS_CATEGORIAS)]
             ).save(out / 'ventana_efectos.png')
     hoja = Image.new('RGBA', (672 * 3, 1018 * 2))
     for i, v in enumerate(BANCO_VISTAS):

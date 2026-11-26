@@ -268,7 +268,8 @@ class Adapter:
                 for w in dict.fromkeys([self.world, *self.dims.values()])] if self.players_tag else [])
             + ['# Arranca las tareas repetidas una sola vez, cuando el mundo ya cargo (Multiverse).',
              f'execute unless score #arranco {flag} matches 1 in {world} run function {m}:astral/start']
-            + [f'execute in {world} run function {f}' for f in ticks])
+            # 24/11/2026: con el mundo vacio no corre (el server tiene 1 solo nucleo de CPU).
+            + [f'execute in {world} if entity @a[distance=0..,limit=1] run function {f}' for f in ticks])
         load = [f'# Puntajes que el mapa traia guardados (scoreboard.dat), con prefijo {self.prefix}_.']
         for name in sorted(self.objectives):
             crit = 'trigger' if name in self.triggers else 'dummy'

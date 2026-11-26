@@ -6,7 +6,7 @@ intercambiable. Asi perderlos al morir no bloquea la historia.
 """
 import json
 from pathlib import Path
-from economia import plata
+from economia import texto, HISTORIA_PLATA, DIARIA_PLATA
 
 ROOT = Path(__file__).resolve().parent.parent
 NS = "astral"
@@ -15,8 +15,8 @@ CHAPTERS = [
     "Los campos: mata 10 Espantapajaros, 10 Armored Grubs y 1 elite; entrega 3 Esencias al Cronista.",
     "La marea: derrota al Cangrejo en las playas y volve con el Cronista.",
     "El bosque: mata 15 Caras Voladoras y derrota al Chaman.",
-    "Arena con memoria: derrota a la Momia.",
     "Minas Olvidadas: completa las cuatro salas.",
+    "Arena con memoria: derrota a la Momia.",
     "El silencio blanco: derrota al Yeti.",
     "El corazon de la forja: forja una pieza tier V y derrota al Golem de Forja.",
     "Encender la estrella: habla con el Cronista para reunir los fragmentos.",
@@ -53,12 +53,12 @@ STORY_TEXT = [
     ["El fragmento de la marea esta tranquilo. El siguiente esta en el bosque del pantano.",
      "Las Caras Voladoras cuidan a un Chaman que uso el fragmento para hacer magia oscura.",
      "Mata 15 Caras Voladoras para abrir camino y derrota al Chaman."],
-    ["En el desierto hay una arena vieja que todavia recuerda las peleas de antes.",
-     "Una Momia despierta ahi cada vez que alguien entra. Su fragmento la mantiene viva.",
-     "Vencela y traete el recuerdo de la arena."],
     ["Los mineros del Refugio cavaron demasiado hondo y encontraron un fragmento en las Minas Olvidadas.",
      "Nadie volvio a salir. Dicen que la lampara del jefe minero sigue prendida.",
      "Completa las cuatro salas de las Minas. Anda con equipo bueno y comida."],
+    ["En el desierto hay una arena vieja que todavia recuerda las peleas de antes.",
+     "Una Momia despierta ahi cada vez que alguien entra. Su fragmento la mantiene viva.",
+     "Vencela y traete el recuerdo de la arena."],
     ["Hace frio aca, ¿no? Es porque un fragmento cayo en la nieve.",
      "El Yeti lo encontro y desde entonces la tormenta no para.",
      "Derrota al Yeti y el silencio blanco se va a terminar."],
@@ -71,11 +71,26 @@ STORY_TEXT = [
 ]
 
 
+STORY_MONEY = HISTORIA_PLATA  # economia.py
+STORY_EXTRA = {2: ["una pieza de armadura tier I a eleccion"], 5: ["1 Alma Corrupta"], 7: ["1 Chispa Astral"],
+               9: ["el titulo Portador de la Estrella", "un deseo del Cronista"]}
+
+
+def reward_text(chapter):
+    """Lo que el Cronista promete al dar el capitulo (mismo orden en que lo entrega complete/N)."""
+    from historia_items import REWARDS, CARD
+    parts = [texto(STORY_MONEY[chapter - 1])] + STORY_EXTRA.get(chapter, [])
+    parts += [CARD[iid][1] + " (solo historia)" for iid, _ in REWARDS.get(chapter, [])]
+    return ", ".join(parts[:-1]) + " y " + parts[-1] if len(parts) > 1 else parts[0]
+
+
 def story_dialog(chapter, paragraphs):
     ink = lambda text, color="#30241b", **kw: {"text": text, "color": color, "shadow_color": 0, **kw}
     body = [{"type": "minecraft:plain_message", "contents": ink(p), "width": 300} for p in paragraphs]
     body.append({"type": "minecraft:plain_message", "width": 300,
                  "contents": ink("Objetivo: " + CHAPTERS[chapter - 1], "#1a5cc0")})
+    body.append({"type": "minecraft:plain_message", "width": 300,
+                 "contents": ink("Recompensa: " + reward_text(chapter), "#8a5a00")})
     return {"type": "minecraft:notice", "title": ink(f"El Cronista - Capitulo {chapter}/9", "#7a3a10", bold=True),
             "body": body, "can_close_with_escape": True, "pause": False, "after_action": "close",
             "action": {"label": ink("Entendido", "#1c7d2c", bold=True), "width": 200}}
@@ -83,11 +98,12 @@ def story_dialog(chapter, paragraphs):
 
 COUNTERS = ["hostil", "spider", "elite", "biomes", "pet", "ride", "mine", "boss", "nightmare", "upgrade"]
 STORY = {"cangrejo": (3, 1, "fragmento_marea"), "chaman": (4, 2, "fragmento_pantano"),
-         "momia": (5, 3, "fragmento_arena"), "mina": (6, 4, "lampara_minero"),
+         "momia": (6, 3, "fragmento_arena"), "mina": (5, 4, "lampara_minero"),
          "yeti": (7, 5, "fragmento_hielo"), "golem_forja": (8, 6, "fragmento_fuego")}
 
 
 def generate(files, items):
+    from historia_items import REWARDS as HISTORIA_REWARDS, CARD as HISTORIA_CARD
     def fn(name, lines):
         files[f"data/{NS}/function/quest/{name}.mcfunction"] = "\n".join(lines) + "\n"
 
@@ -150,6 +166,8 @@ def generate(files, items):
         "tag @s add aq.gui",
     ])
     fn("sync", [
+        # Un reset de puntajes deja la marca aq.ready sin aq.state: volver a inicializar.
+        "execute unless score @s aq.state = @s aq.state run tag @s remove aq.ready",
         "execute unless entity @s[tag=aq.ready] run " + call("init"),
         "execute unless entity @s[tag=aq.gui] run " + call("gui/migrate"),
         "execute if score #today aq.clock matches 1.. unless score @s aq.day = #today aq.clock run " + call("new_day"),
@@ -248,9 +266,10 @@ def generate(files, items):
         msg("Mision rechazada o pausada. Conservas tus avances y podes aceptarla mas tarde.", "yellow")])
     for state in range(10):
         chapter = max(1, state)
-        amount = plata([300, 500, 1000, 1500, 2000, 2500, 3000, 5000, 10000][chapter - 1])
+        amount = texto(STORY_MONEY[chapter - 1])
+        bonus = "".join(f" + {HISTORIA_CARD[iid][1]}" for iid, _ in HISTORIA_REWARDS.get(chapter, []))
         fn(f"gui/details/story/{state}", [msg(CHAPTERS[chapter - 1], "aqua"),
-            msg(f"Premio: {amount}$. Acepta la mision, completa el objetivo y usa Comprobar y cobrar.", "gold")])
+            msg(f"Premio: {amount}{bonus}. Acepta la mision, completa el objetivo y usa Comprobar y cobrar.", "gold")])
     for page in range(5):
         fn(f"gui/page/{page}", [call("sync"), f"scoreboard players set @s aq.page {page}"])
     fn("viajero", [call("sync"),
@@ -263,21 +282,28 @@ def generate(files, items):
                     "execute if score @s aq.state matches 1 run " + msg("Herrero: acercate a una mesa de herreria y forja equipo de tier I desde la Guia AstralRPG.", "gold"),
                     "execute if score @s aq.state matches 8 run " + msg("Herrero: el ultimo fragmento esta en mi antiguo golem. Forja tier V y vence al Golem de Forja.", "gold"),
                     call("deliver/herrero")])
-    def complete(state, amount, extra=()):
-        amount = plata(amount)
+    def complete(state, extra=()):
+        amount = STORY_MONEY[state - 1]
+        # Items del Modo Historia (historia_items.py): solo se consiguen aca; se pueden comerciar.
+        # Se vuelven a dar si el jugador renace y repite la historia (pedido del dueno 22/11).
+        for iid, count in HISTORIA_REWARDS.get(state, []):
+            if iid not in items:
+                raise ValueError(f"Premio inexistente: {iid}")
+            extra = list(extra) + [f"loot give @s loot astral:item/{iid}"] * count + [
+                msg(f"El Cronista te entrega: {HISTORIA_CARD[iid][1]}. Solo se consigue en la historia.", "gold")]
         fn(f"complete/{state}", [f"scoreboard players set @s aq.state {state + 1}", "scoreboard players set @s aq.accepted 0", money(amount)] + list(extra)
-           + [msg(f"Capitulo terminado. Recompensa: {amount}$.", "green")]
+           + [msg(f"Capitulo terminado. Recompensa: {texto(amount)}.", "green")]
            + ([msg(CHAPTERS[state], "aqua")] if state < 9 else []))
-    complete(1, 300)
-    complete(2, 500, ["tag @s add aq.choice", msg("Podes elegir una armadura tier I: /trigger aq.reward set N (1-4 Berserker, 5-8 Mago, 9-12 Arquero; casco, pechera, grebas, botas).", "gold")])
-    complete(3, 1000)
-    complete(4, 1500)
-    complete(5, 2000, ["loot give @s loot astral:item/alma_corrupta"])
-    complete(6, 2500)
-    complete(7, 3000, ["loot give @s loot astral:item/chispa_astral"])
-    complete(8, 5000)
+    complete(1)
+    complete(2, ["tag @s add aq.choice", msg("Podes elegir una armadura tier I: /trigger aq.reward set N (1-4 Berserker, 5-8 Mago, 9-12 Arquero; casco, pechera, grebas, botas).", "gold")])
+    complete(3)
+    complete(4)
+    complete(5, ["loot give @s loot astral:item/alma_corrupta"])
+    complete(6)
+    complete(7, ["loot give @s loot astral:item/chispa_astral"])
+    complete(8)
     # aq.deseo_lite: renacimiento.py (Skript) abre el deseo lite del Cronista.
-    complete(9, 10000, ["tag @s add aq.title", "tag @s add aq.deseo_lite", "particle minecraft:firework ~ ~4 ~ 2 3 2 0.1 100", "playsound minecraft:ui.toast.challenge_complete player @s ~ ~ ~ 1 1",
+    complete(9, ["tag @s add aq.title", "tag @s add aq.deseo_lite", "particle minecraft:firework ~ ~4 ~ 2 3 2 0.1 100", "playsound minecraft:ui.toast.challenge_complete player @s ~ ~ ~ 1 1",
                          msg("La Estrella Astral vuelve a brillar. Sos Portador de la Estrella. El Santuario Celestial esta abierto.", "gold")])
     fn("chapter/1", ["execute if score @s aq.herrero matches 1 if score @s aq.forge1 matches 1 run return run " + call("complete/1"), msg(CHAPTERS[0])])
     pred = '*[minecraft:custom_data~{astral:{id:"esencia_elite"}}]'
@@ -326,7 +352,7 @@ def generate(files, items):
     show = [call("sync"), "execute unless score #today aq.clock matches 1.. run return run " + msg("El reloj de diarias no esta conectado. Avisa al administrador.", "yellow")]
     for did, tier, name, counter, goal, desc in DAILIES:
         # Abrir el diario o conversar nunca cobra automaticamente.
-        show.append(f"execute if score @s aq.d{tier} matches {did} run " + msg(f"[{tier + 1}] {name}: {desc}. Premio: {[300,750,1500][tier]}$.", "aqua"))
+        show.append(f"execute if score @s aq.d{tier} matches {did} run " + msg(f"[{tier + 1}] {name}: {desc}. Premio: {texto(DIARIA_PLATA[tier])}.", "aqua"))
         show.append(f'execute if score @s aq.d{tier} matches {did} run tellraw @s [{{"text":"Cobrada (0=no, 1=si): "}},{{"score":{{"name":"@s","objective":"aq.done{tier}"}}}}]')
         claim = [f"execute unless score @s aq.d{tier} matches {did} run return 0",
                  f"execute unless score @s aq.active{tier} matches 1 run return 0",
@@ -335,7 +361,7 @@ def generate(files, items):
             claim += [f'execute unless score @s aq.{counter} matches {goal}.. run return 0']
         claim += [f"scoreboard players set @s aq.done{tier} 1",
                   f"scoreboard players set @s aq.active{tier} 0",
-                  money(plata([300,750,1500][tier])), msg(f"Diaria completada: {name}.", "green")]
+                  money(DIARIA_PLATA[tier]), msg(f"Diaria completada: {name}.", "green")]
         if did in (11,12): claim.append("loot give @s loot astral:item/alma_corrupta")
         if did == 13:
             files["data/astral/predicate/quest/chispa.json"] = json.dumps({"condition":"minecraft:random_chance", "chance":0.25})
@@ -364,7 +390,7 @@ def generate(files, items):
             f"scoreboard players set @s aq.active{tier} 0",
             msg("Diaria rechazada o pausada. Conservas tus avances hasta las 00:00 de Argentina.", "yellow")])
         fn(f"gui/details/daily/{tier}", [call("sync")] + [
-            f"execute if score @s aq.d{tier} matches {did} run " + msg(f"{name}: {desc}. Premio: {[300,750,1500][tier]}$. Consulta los premios extra y el progreso en el menu.", "aqua")
+            f"execute if score @s aq.d{tier} matches {did} run " + msg(f"{name}: {desc}. Premio: {texto(DIARIA_PLATA[tier])}. Consulta los premios extra y el progreso en el menu.", "aqua")
             for did, dtier, name, counter, goal, desc in DAILIES if dtier == tier])
         claim_button = [call("sync"),
             f"execute unless score @s aq.active{tier} matches 1 run return 0"]

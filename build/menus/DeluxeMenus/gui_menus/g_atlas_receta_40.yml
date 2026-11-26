@@ -24,7 +24,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 7'
     - ''
-    - '&cRequiere: Defensa 30'
+    - '&cRequiere: Combate 40'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA CASCO'
     enchantments:
@@ -56,7 +56,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 6'
     - ''
-    - '&cRequiere: Defensa 26'
+    - '&cRequiere: Combate 35'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA CASCO'
     enchantments:

@@ -22,7 +22,7 @@ items:
     - '&7Durabilidad: &f20.825'
     - '&7Tier: 9'
     - ''
-    - '&cRequiere: Defensa 38'
+    - '&cRequiere: Arqueria 50'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA BOTAS'
     enchantments:
@@ -52,7 +52,7 @@ items:
     - '&7Durabilidad: &f16.575'
     - '&7Tier: 8'
     - ''
-    - '&cRequiere: Defensa 34'
+    - '&cRequiere: Arqueria 45'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA BOTAS'
     enchantments:

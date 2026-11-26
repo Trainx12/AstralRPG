@@ -1131,7 +1131,7 @@
         "&7Titulos y gorros nuevos."
       ],
       "click_commands": [
-        "[openguimenu] gacha_cosmeticos"
+        "[openguimenu] gacha_cosmeticos_cos"
       ]
     }
   }

@@ -103,7 +103,7 @@ MOBS = {
     'astral_cav_golem_rubi': ('&cGolem de Rubi', 'ZOMBIE', 'astral_golem_cristal', 1.6, 'FF5A5A', 34, 7, 0.24, ['rubi'], 'golem'),
     'astral_cav_golem_zafiro': ('&9Golem de Zafiro', 'ZOMBIE', 'astral_golem_hielo', 1.6, '', 34, 6, 0.24, ['zafiro'], 'golem'),
     'astral_cav_golem_onix': ('&8Golem de Onix', 'ZOMBIE', 'astral_golem_cristal', 1.8, '4A4060', 40, 7, 0.25, ['corazon'], 'golem'),
-    'astral_cav_arana': ('&dArana de Cristal', 'SPIDER', 'astral_arana', 1.2, 'D9A8FF', 28, 6, 0.32,
+    'astral_cav_arana': ('&dArana de Cristal', 'ZOGLIN', 'astral_arana', 1.2, 'D9A8FF', 28, 6, 0.32,
                          ['amatista', 'jade', 'rubi', 'zafiro', 'corazon'], 'arana'),
 }
 # Mini jefe por zona: id: (nombre, modelo, escala, tinte, zona, barra, [(gema, calidad, chance)])

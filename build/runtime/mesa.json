@@ -100,13 +100,13 @@
     "requirements": {}
   },
   {
-    "output": "fragmento_cristal",
-    "count": 4,
+    "output": "cristal_arcano",
+    "count": 1,
     "ingredients": [
       [
         "c",
-        "cristal_arcano",
-        1
+        "fragmento_cristal",
+        2
       ]
     ],
     "group": "Materiales",
@@ -119,7 +119,7 @@
     "ingredients": [
       [
         "c",
-        "fragmento_cristal",
+        "cristal_arcano",
         4
       ]
     ],
@@ -317,7 +317,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 6
+      "auraskills:fighting": 4
     }
   },
   {
@@ -348,7 +348,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 6
+      "auraskills:fighting": 4
     }
   },
   {
@@ -379,7 +379,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 6
+      "auraskills:fighting": 4
     }
   },
   {
@@ -410,7 +410,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 6
+      "auraskills:fighting": 4
     }
   },
   {
@@ -441,7 +441,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 10
+      "auraskills:fighting": 16
     }
   },
   {
@@ -472,7 +472,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 10
+      "auraskills:fighting": 16
     }
   },
   {
@@ -503,7 +503,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 10
+      "auraskills:fighting": 16
     }
   },
   {
@@ -534,7 +534,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 10
+      "auraskills:fighting": 16
     }
   },
   {
@@ -565,7 +565,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 14
+      "auraskills:fighting": 20
     }
   },
   {
@@ -596,7 +596,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 14
+      "auraskills:fighting": 20
     }
   },
   {
@@ -627,7 +627,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 14
+      "auraskills:fighting": 20
     }
   },
   {
@@ -658,7 +658,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 14
+      "auraskills:fighting": 20
     }
   },
   {
@@ -689,7 +689,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 18
+      "auraskills:fighting": 25
     }
   },
   {
@@ -720,7 +720,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 18
+      "auraskills:fighting": 25
     }
   },
   {
@@ -751,7 +751,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 18
+      "auraskills:fighting": 25
     }
   },
   {
@@ -782,7 +782,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 18
+      "auraskills:fighting": 25
     }
   },
   {
@@ -813,7 +813,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 22
+      "auraskills:fighting": 30
     }
   },
   {
@@ -844,7 +844,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 22
+      "auraskills:fighting": 30
     }
   },
   {
@@ -875,7 +875,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 22
+      "auraskills:fighting": 30
     }
   },
   {
@@ -906,7 +906,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 22
+      "auraskills:fighting": 30
     }
   },
   {
@@ -932,7 +932,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 26
+      "auraskills:fighting": 35
     }
   },
   {
@@ -958,7 +958,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 26
+      "auraskills:fighting": 35
     }
   },
   {
@@ -984,7 +984,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 26
+      "auraskills:fighting": 35
     }
   },
   {
@@ -1010,7 +1010,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 26
+      "auraskills:fighting": 35
     }
   },
   {
@@ -1036,7 +1036,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 30
+      "auraskills:fighting": 40
     }
   },
   {
@@ -1062,7 +1062,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 30
+      "auraskills:fighting": 40
     }
   },
   {
@@ -1088,7 +1088,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 30
+      "auraskills:fighting": 40
     }
   },
   {
@@ -1114,7 +1114,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 30
+      "auraskills:fighting": 40
     }
   },
   {
@@ -1145,7 +1145,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 34
+      "auraskills:fighting": 45
     }
   },
   {
@@ -1176,7 +1176,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 34
+      "auraskills:fighting": 45
     }
   },
   {
@@ -1207,7 +1207,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 34
+      "auraskills:fighting": 45
     }
   },
   {
@@ -1238,7 +1238,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 34
+      "auraskills:fighting": 45
     }
   },
   {
@@ -1269,7 +1269,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 38
+      "auraskills:fighting": 50
     }
   },
   {
@@ -1300,7 +1300,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 38
+      "auraskills:fighting": 50
     }
   },
   {
@@ -1331,7 +1331,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 38
+      "auraskills:fighting": 50
     }
   },
   {
@@ -1362,7 +1362,7 @@
     "group": "Armaduras Berserker",
     "table": true,
     "requirements": {
-      "auraskills:defense": 38
+      "auraskills:fighting": 50
     }
   },
   {
@@ -1393,7 +1393,7 @@
     "group": "Armaduras Berserker",
     "table": false,
     "requirements": {
-      "auraskills:defense": 42
+      "auraskills:fighting": 55
     }
   },
   {
@@ -1424,7 +1424,7 @@
     "group": "Armaduras Berserker",
     "table": false,
     "requirements": {
-      "auraskills:defense": 42
+      "auraskills:fighting": 55
     }
   },
   {
@@ -1455,7 +1455,7 @@
     "group": "Armaduras Berserker",
     "table": false,
     "requirements": {
-      "auraskills:defense": 42
+      "auraskills:fighting": 55
     }
   },
   {
@@ -1486,7 +1486,7 @@
     "group": "Armaduras Berserker",
     "table": false,
     "requirements": {
-      "auraskills:defense": 42
+      "auraskills:fighting": 55
     }
   },
   {
@@ -1512,7 +1512,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 6
+      "auraskills:sorcery": 0
     }
   },
   {
@@ -1538,7 +1538,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 6
+      "auraskills:sorcery": 0
     }
   },
   {
@@ -1564,7 +1564,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 6
+      "auraskills:sorcery": 0
     }
   },
   {
@@ -1590,7 +1590,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 6
+      "auraskills:sorcery": 0
     }
   },
   {
@@ -1605,7 +1605,7 @@
       [
         "c",
         "cristal_refinado",
-        1
+        2
       ],
       [
         "c",
@@ -1616,7 +1616,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 10
+      "auraskills:sorcery": 14
     }
   },
   {
@@ -1631,7 +1631,7 @@
       [
         "c",
         "cristal_refinado",
-        1
+        2
       ],
       [
         "c",
@@ -1642,7 +1642,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 10
+      "auraskills:sorcery": 14
     }
   },
   {
@@ -1657,7 +1657,7 @@
       [
         "c",
         "cristal_refinado",
-        1
+        2
       ],
       [
         "c",
@@ -1668,7 +1668,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 10
+      "auraskills:sorcery": 14
     }
   },
   {
@@ -1683,7 +1683,7 @@
       [
         "c",
         "cristal_refinado",
-        1
+        2
       ],
       [
         "c",
@@ -1694,7 +1694,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 10
+      "auraskills:sorcery": 14
     }
   },
   {
@@ -1720,7 +1720,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 14
+      "auraskills:sorcery": 20
     }
   },
   {
@@ -1746,7 +1746,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 14
+      "auraskills:sorcery": 20
     }
   },
   {
@@ -1772,7 +1772,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 14
+      "auraskills:sorcery": 20
     }
   },
   {
@@ -1798,7 +1798,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 14
+      "auraskills:sorcery": 20
     }
   },
   {
@@ -1824,7 +1824,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 18
+      "auraskills:sorcery": 26
     }
   },
   {
@@ -1850,7 +1850,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 18
+      "auraskills:sorcery": 26
     }
   },
   {
@@ -1876,7 +1876,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 18
+      "auraskills:sorcery": 26
     }
   },
   {
@@ -1902,7 +1902,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 18
+      "auraskills:sorcery": 26
     }
   },
   {
@@ -1928,7 +1928,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 22
+      "auraskills:sorcery": 32
     }
   },
   {
@@ -1954,7 +1954,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 22
+      "auraskills:sorcery": 32
     }
   },
   {
@@ -1980,7 +1980,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 22
+      "auraskills:sorcery": 32
     }
   },
   {
@@ -2006,7 +2006,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 22
+      "auraskills:sorcery": 32
     }
   },
   {
@@ -2032,7 +2032,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 26
+      "auraskills:sorcery": 37
     }
   },
   {
@@ -2058,7 +2058,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 26
+      "auraskills:sorcery": 37
     }
   },
   {
@@ -2084,7 +2084,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 26
+      "auraskills:sorcery": 37
     }
   },
   {
@@ -2110,7 +2110,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 26
+      "auraskills:sorcery": 37
     }
   },
   {
@@ -2136,7 +2136,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 30
+      "auraskills:sorcery": 42
     }
   },
   {
@@ -2162,7 +2162,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 30
+      "auraskills:sorcery": 42
     }
   },
   {
@@ -2188,7 +2188,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 30
+      "auraskills:sorcery": 42
     }
   },
   {
@@ -2214,7 +2214,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 30
+      "auraskills:sorcery": 42
     }
   },
   {
@@ -2245,7 +2245,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 34
+      "auraskills:sorcery": 47
     }
   },
   {
@@ -2276,7 +2276,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 34
+      "auraskills:sorcery": 47
     }
   },
   {
@@ -2307,7 +2307,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 34
+      "auraskills:sorcery": 47
     }
   },
   {
@@ -2338,7 +2338,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 34
+      "auraskills:sorcery": 47
     }
   },
   {
@@ -2369,7 +2369,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 38
+      "auraskills:sorcery": 52
     }
   },
   {
@@ -2400,7 +2400,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 38
+      "auraskills:sorcery": 52
     }
   },
   {
@@ -2431,7 +2431,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 38
+      "auraskills:sorcery": 52
     }
   },
   {
@@ -2462,7 +2462,7 @@
     "group": "Armaduras Mago",
     "table": true,
     "requirements": {
-      "auraskills:defense": 38
+      "auraskills:sorcery": 52
     }
   },
   {
@@ -2493,7 +2493,7 @@
     "group": "Armaduras Mago",
     "table": false,
     "requirements": {
-      "auraskills:defense": 42
+      "auraskills:sorcery": 57
     }
   },
   {
@@ -2524,7 +2524,7 @@
     "group": "Armaduras Mago",
     "table": false,
     "requirements": {
-      "auraskills:defense": 42
+      "auraskills:sorcery": 57
     }
   },
   {
@@ -2555,7 +2555,7 @@
     "group": "Armaduras Mago",
     "table": false,
     "requirements": {
-      "auraskills:defense": 42
+      "auraskills:sorcery": 57
     }
   },
   {
@@ -2586,7 +2586,7 @@
     "group": "Armaduras Mago",
     "table": false,
     "requirements": {
-      "auraskills:defense": 42
+      "auraskills:sorcery": 57
     }
   },
   {
@@ -2612,7 +2612,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 6
+      "auraskills:archery": 8
     }
   },
   {
@@ -2638,7 +2638,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 6
+      "auraskills:archery": 8
     }
   },
   {
@@ -2664,7 +2664,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 6
+      "auraskills:archery": 8
     }
   },
   {
@@ -2690,7 +2690,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 6
+      "auraskills:archery": 8
     }
   },
   {
@@ -2716,7 +2716,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 10
+      "auraskills:archery": 14
     }
   },
   {
@@ -2742,7 +2742,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 10
+      "auraskills:archery": 14
     }
   },
   {
@@ -2768,7 +2768,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 10
+      "auraskills:archery": 14
     }
   },
   {
@@ -2794,7 +2794,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 10
+      "auraskills:archery": 14
     }
   },
   {
@@ -2820,7 +2820,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 14
+      "auraskills:archery": 20
     }
   },
   {
@@ -2846,7 +2846,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 14
+      "auraskills:archery": 20
     }
   },
   {
@@ -2872,7 +2872,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 14
+      "auraskills:archery": 20
     }
   },
   {
@@ -2898,7 +2898,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 14
+      "auraskills:archery": 20
     }
   },
   {
@@ -2924,7 +2924,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 18
+      "auraskills:archery": 25
     }
   },
   {
@@ -2950,7 +2950,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 18
+      "auraskills:archery": 25
     }
   },
   {
@@ -2976,7 +2976,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 18
+      "auraskills:archery": 25
     }
   },
   {
@@ -3002,7 +3002,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 18
+      "auraskills:archery": 25
     }
   },
   {
@@ -3028,7 +3028,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 22
+      "auraskills:archery": 30
     }
   },
   {
@@ -3054,7 +3054,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 22
+      "auraskills:archery": 30
     }
   },
   {
@@ -3080,7 +3080,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 22
+      "auraskills:archery": 30
     }
   },
   {
@@ -3106,7 +3106,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 22
+      "auraskills:archery": 30
     }
   },
   {
@@ -3132,7 +3132,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 26
+      "auraskills:archery": 35
     }
   },
   {
@@ -3158,7 +3158,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 26
+      "auraskills:archery": 35
     }
   },
   {
@@ -3184,7 +3184,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 26
+      "auraskills:archery": 35
     }
   },
   {
@@ -3210,7 +3210,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 26
+      "auraskills:archery": 35
     }
   },
   {
@@ -3236,7 +3236,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 30
+      "auraskills:archery": 40
     }
   },
   {
@@ -3262,7 +3262,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 30
+      "auraskills:archery": 40
     }
   },
   {
@@ -3288,7 +3288,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 30
+      "auraskills:archery": 40
     }
   },
   {
@@ -3314,7 +3314,7 @@
     "group": "Armaduras Arquero",
     "table": true,
     "requirements": {
-      "auraskills:defense": 30
+      "auraskills:archery": 40
     }
   },
   {
@@ -3345,7 +3345,7 @@
     "group": "Armaduras Arquero",
     "table": false,
     "requirements": {
-      "auraskills:defense": 34
+      "auraskills:archery": 45
     }
   },
   {
@@ -3376,7 +3376,7 @@
     "group": "Armaduras Arquero",
     "table": false,
     "requirements": {
-      "auraskills:defense": 34
+      "auraskills:archery": 45
     }
   },
   {
@@ -3407,7 +3407,7 @@
     "group": "Armaduras Arquero",
     "table": false,
     "requirements": {
-      "auraskills:defense": 34
+      "auraskills:archery": 45
     }
   },
   {
@@ -3438,7 +3438,7 @@
     "group": "Armaduras Arquero",
     "table": false,
     "requirements": {
-      "auraskills:defense": 34
+      "auraskills:archery": 45
     }
   },
   {
@@ -3469,7 +3469,7 @@
     "group": "Armaduras Arquero",
     "table": false,
     "requirements": {
-      "auraskills:defense": 38
+      "auraskills:archery": 50
     }
   },
   {
@@ -3500,7 +3500,7 @@
     "group": "Armaduras Arquero",
     "table": false,
     "requirements": {
-      "auraskills:defense": 38
+      "auraskills:archery": 50
     }
   },
   {
@@ -3531,7 +3531,7 @@
     "group": "Armaduras Arquero",
     "table": false,
     "requirements": {
-      "auraskills:defense": 38
+      "auraskills:archery": 50
     }
   },
   {
@@ -3562,7 +3562,7 @@
     "group": "Armaduras Arquero",
     "table": false,
     "requirements": {
-      "auraskills:defense": 38
+      "auraskills:archery": 50
     }
   },
   {
@@ -3593,7 +3593,7 @@
     "group": "Armaduras Arquero",
     "table": false,
     "requirements": {
-      "auraskills:defense": 42
+      "auraskills:archery": 55
     }
   },
   {
@@ -3624,7 +3624,7 @@
     "group": "Armaduras Arquero",
     "table": false,
     "requirements": {
-      "auraskills:defense": 42
+      "auraskills:archery": 55
     }
   },
   {
@@ -3655,7 +3655,7 @@
     "group": "Armaduras Arquero",
     "table": false,
     "requirements": {
-      "auraskills:defense": 42
+      "auraskills:archery": 55
     }
   },
   {
@@ -3686,7 +3686,7 @@
     "group": "Armaduras Arquero",
     "table": false,
     "requirements": {
-      "auraskills:defense": 42
+      "auraskills:archery": 55
     }
   },
   {
@@ -3707,7 +3707,7 @@
     "group": "Armas Berserker",
     "table": true,
     "requirements": {
-      "auraskills:fighting": 12
+      "auraskills:fighting": 4
     }
   },
   {
@@ -3727,7 +3727,7 @@
       [
         "c",
         "netherita_fundida",
-        1
+        2
       ]
     ],
     "group": "Armas Berserker",
@@ -3753,7 +3753,7 @@
       [
         "c",
         "netherita_reforzada",
-        1
+        2
       ]
     ],
     "group": "Armas Berserker",
@@ -3774,7 +3774,7 @@
       [
         "c",
         "netherita_reforzada",
-        1
+        2
       ],
       [
         "c",
@@ -3800,7 +3800,7 @@
       [
         "c",
         "netherita_reforzada",
-        1
+        2
       ],
       [
         "c",
@@ -3976,7 +3976,7 @@
       [
         "c",
         "netherita_fundida",
-        1
+        2
       ]
     ],
     "group": "Armas Berserker",
@@ -4000,10 +4000,10 @@
         1
       ]
     ],
-    "group": "Armas Berserker",
+    "group": "Armas Asesino",
     "table": true,
     "requirements": {
-      "auraskills:fighting": 12
+      "auraskills:fighting": 4
     }
   },
   {
@@ -4023,10 +4023,10 @@
       [
         "c",
         "netherita_fundida",
-        1
+        2
       ]
     ],
-    "group": "Armas Berserker",
+    "group": "Armas Asesino",
     "table": true,
     "requirements": {
       "auraskills:fighting": 16
@@ -4049,10 +4049,10 @@
       [
         "c",
         "netherita_reforzada",
-        1
+        2
       ]
     ],
-    "group": "Armas Berserker",
+    "group": "Armas Asesino",
     "table": true,
     "requirements": {
       "auraskills:fighting": 20
@@ -4070,7 +4070,7 @@
       [
         "c",
         "netherita_reforzada",
-        1
+        2
       ],
       [
         "c",
@@ -4078,7 +4078,7 @@
         1
       ]
     ],
-    "group": "Armas Berserker",
+    "group": "Armas Asesino",
     "table": true,
     "requirements": {
       "auraskills:fighting": 25
@@ -4096,7 +4096,7 @@
       [
         "c",
         "netherita_reforzada",
-        1
+        2
       ],
       [
         "c",
@@ -4104,7 +4104,7 @@
         1
       ]
     ],
-    "group": "Armas Berserker",
+    "group": "Armas Asesino",
     "table": true,
     "requirements": {
       "auraskills:fighting": 30
@@ -4130,7 +4130,7 @@
         1
       ]
     ],
-    "group": "Armas Berserker",
+    "group": "Armas Asesino",
     "table": true,
     "requirements": {
       "auraskills:fighting": 35
@@ -4156,7 +4156,7 @@
         1
       ]
     ],
-    "group": "Armas Berserker",
+    "group": "Armas Asesino",
     "table": true,
     "requirements": {
       "auraskills:fighting": 40
@@ -4187,7 +4187,7 @@
         2
       ]
     ],
-    "group": "Armas Berserker",
+    "group": "Armas Asesino",
     "table": true,
     "requirements": {
       "auraskills:fighting": 45
@@ -4218,7 +4218,7 @@
         2
       ]
     ],
-    "group": "Armas Berserker",
+    "group": "Armas Asesino",
     "table": true,
     "requirements": {
       "auraskills:fighting": 50
@@ -4249,7 +4249,7 @@
         3
       ]
     ],
-    "group": "Armas Berserker",
+    "group": "Armas Asesino",
     "table": false,
     "requirements": {
       "auraskills:fighting": 55
@@ -4273,7 +4273,7 @@
     "group": "Armas Berserker",
     "table": true,
     "requirements": {
-      "auraskills:fighting": 12
+      "auraskills:fighting": 4
     }
   },
   {
@@ -4588,7 +4588,7 @@
     "group": "Armas de Mago",
     "table": true,
     "requirements": {
-      "auraskills:sorcery": 8
+      "auraskills:sorcery": 0
     }
   },
   {
@@ -4604,6 +4604,11 @@
         "c",
         "gema_luminica",
         1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        2
       ]
     ],
     "group": "Armas de Mago",
@@ -4624,7 +4629,12 @@
       [
         "c",
         "cristal_refinado",
-        2
+        3
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
       ]
     ],
     "group": "Armas de Mago",
@@ -4850,10 +4860,10 @@
         1
       ]
     ],
-    "group": "Armas de Mago",
+    "group": "Armas Segador",
     "table": true,
     "requirements": {
-      "auraskills:sorcery": 12
+      "auraskills:fighting": 4
     }
   },
   {
@@ -4876,10 +4886,10 @@
         1
       ]
     ],
-    "group": "Armas de Mago",
+    "group": "Armas Segador",
     "table": true,
     "requirements": {
-      "auraskills:sorcery": 16
+      "auraskills:fighting": 16
     }
   },
   {
@@ -4902,10 +4912,10 @@
         1
       ]
     ],
-    "group": "Armas de Mago",
+    "group": "Armas Segador",
     "table": true,
     "requirements": {
-      "auraskills:sorcery": 20
+      "auraskills:fighting": 20
     }
   },
   {
@@ -4933,10 +4943,10 @@
         1
       ]
     ],
-    "group": "Armas de Mago",
+    "group": "Armas Segador",
     "table": true,
     "requirements": {
-      "auraskills:sorcery": 26
+      "auraskills:fighting": 26
     }
   },
   {
@@ -4959,10 +4969,10 @@
         1
       ]
     ],
-    "group": "Armas de Mago",
+    "group": "Armas Segador",
     "table": true,
     "requirements": {
-      "auraskills:sorcery": 32
+      "auraskills:fighting": 32
     }
   },
   {
@@ -4985,10 +4995,10 @@
         2
       ]
     ],
-    "group": "Armas de Mago",
+    "group": "Armas Segador",
     "table": true,
     "requirements": {
-      "auraskills:sorcery": 37
+      "auraskills:fighting": 37
     }
   },
   {
@@ -5011,10 +5021,10 @@
         2
       ]
     ],
-    "group": "Armas de Mago",
+    "group": "Armas Segador",
     "table": true,
     "requirements": {
-      "auraskills:sorcery": 42
+      "auraskills:fighting": 42
     }
   },
   {
@@ -5042,10 +5052,10 @@
         3
       ]
     ],
-    "group": "Armas de Mago",
+    "group": "Armas Segador",
     "table": false,
     "requirements": {
-      "auraskills:sorcery": 47
+      "auraskills:fighting": 47
     }
   },
   {
@@ -5073,10 +5083,10 @@
         3
       ]
     ],
-    "group": "Armas de Mago",
+    "group": "Armas Segador",
     "table": false,
     "requirements": {
-      "auraskills:sorcery": 52
+      "auraskills:fighting": 52
     }
   },
   {
@@ -5104,10 +5114,10 @@
         4
       ]
     ],
-    "group": "Armas de Mago",
+    "group": "Armas Segador",
     "table": false,
     "requirements": {
-      "auraskills:sorcery": 57
+      "auraskills:fighting": 57
     }
   },
   {
@@ -5144,6 +5154,11 @@
         "c",
         "gema_luminica",
         3
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
       ]
     ],
     "group": "Arcos",
@@ -5460,7 +5475,9 @@
     ],
     "group": "Especiales",
     "table": true,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 20
+    }
   },
   {
     "output": "espada_sombras",
@@ -5484,7 +5501,9 @@
     ],
     "group": "Especiales",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 25
+    }
   },
   {
     "output": "espada_destello",
@@ -5508,7 +5527,9 @@
     ],
     "group": "Especiales",
     "table": true,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 16
+    }
   },
   {
     "output": "hacha_terremoto",
@@ -5532,7 +5553,9 @@
     ],
     "group": "Especiales",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 20
+    }
   },
   {
     "output": "varita_curacion",
@@ -5580,7 +5603,9 @@
     ],
     "group": "Especiales",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:sorcery": 26
+    }
   },
   {
     "output": "guadana_umbria",
@@ -6379,7 +6404,7 @@
     "group": "Lanzas",
     "table": true,
     "requirements": {
-      "auraskills:fighting": 10
+      "auraskills:fighting": 4
     }
   },
   {
@@ -6653,7 +6678,9 @@
     ],
     "group": "Carnivora",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 20
+    }
   },
   {
     "output": "carnivora_hacha",
@@ -6677,7 +6704,9 @@
     ],
     "group": "Carnivora",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 20
+    }
   },
   {
     "output": "carnivora_guadana",
@@ -6701,7 +6730,9 @@
     ],
     "group": "Carnivora",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 20
+    }
   },
   {
     "output": "carnivora_baston",
@@ -6725,7 +6756,9 @@
     ],
     "group": "Carnivora",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:sorcery": 20
+    }
   },
   {
     "output": "carnivora_arco",
@@ -6749,7 +6782,9 @@
     ],
     "group": "Carnivora",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:archery": 20
+    }
   },
   {
     "output": "carnivora_lanza",
@@ -6773,7 +6808,9 @@
     ],
     "group": "Carnivora",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 20
+    }
   },
   {
     "output": "carnivora_martillo",
@@ -6797,7 +6834,9 @@
     ],
     "group": "Carnivora",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 20
+    }
   },
   {
     "output": "carnivora_helmet",
@@ -6821,7 +6860,9 @@
     ],
     "group": "Carnivora",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 20
+    }
   },
   {
     "output": "carnivora_chestplate",
@@ -6845,7 +6886,9 @@
     ],
     "group": "Carnivora",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 20
+    }
   },
   {
     "output": "carnivora_leggings",
@@ -6869,7 +6912,9 @@
     ],
     "group": "Carnivora",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 20
+    }
   },
   {
     "output": "carnivora_boots",
@@ -6893,7 +6938,9 @@
     ],
     "group": "Carnivora",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 20
+    }
   },
   {
     "output": "carnivora_pico",
@@ -6917,7 +6964,9 @@
     ],
     "group": "Carnivora",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:mining": 12
+    }
   },
   {
     "output": "carnivora_pala",
@@ -6941,7 +6990,9 @@
     ],
     "group": "Carnivora",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:mining": 12
+    }
   },
   {
     "output": "carnivora_azada",
@@ -6965,7 +7016,9 @@
     ],
     "group": "Carnivora",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 20
+    }
   },
   {
     "output": "carnivora_cana",
@@ -6989,7 +7042,9 @@
     ],
     "group": "Carnivora",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 20
+    }
   },
   {
     "output": "carnivora_escudo",
@@ -7013,7 +7068,9 @@
     ],
     "group": "Carnivora",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 20
+    }
   },
   {
     "output": "asura_espada",
@@ -7057,7 +7114,9 @@
     ],
     "group": "Asura",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 25
+    }
   },
   {
     "output": "agua_espada",
@@ -7081,7 +7140,9 @@
     ],
     "group": "Agua",
     "table": true,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 20
+    }
   },
   {
     "output": "agua_hacha",
@@ -7105,7 +7166,9 @@
     ],
     "group": "Agua",
     "table": true,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 20
+    }
   },
   {
     "output": "agua_arco",
@@ -7129,7 +7192,9 @@
     ],
     "group": "Agua",
     "table": true,
-    "requirements": {}
+    "requirements": {
+      "auraskills:archery": 20
+    }
   },
   {
     "output": "agua_helmet",
@@ -7153,7 +7218,9 @@
     ],
     "group": "Agua",
     "table": true,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 20
+    }
   },
   {
     "output": "agua_chestplate",
@@ -7177,7 +7244,9 @@
     ],
     "group": "Agua",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 20
+    }
   },
   {
     "output": "agua_leggings",
@@ -7201,7 +7270,9 @@
     ],
     "group": "Agua",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 20
+    }
   },
   {
     "output": "agua_boots",
@@ -7225,7 +7296,9 @@
     ],
     "group": "Agua",
     "table": true,
-    "requirements": {}
+    "requirements": {
+      "auraskills:fighting": 20
+    }
   },
   {
     "output": "agua_pico",
@@ -7249,7 +7322,9 @@
     ],
     "group": "Agua",
     "table": true,
-    "requirements": {}
+    "requirements": {
+      "auraskills:mining": 12
+    }
   },
   {
     "output": "minero_helmet",
@@ -7273,7 +7348,9 @@
     ],
     "group": "Oficios",
     "table": true,
-    "requirements": {}
+    "requirements": {
+      "auraskills:mining": 5
+    }
   },
   {
     "output": "minero_chestplate",
@@ -7297,7 +7374,9 @@
     ],
     "group": "Oficios",
     "table": false,
-    "requirements": {}
+    "requirements": {
+      "auraskills:mining": 5
+    }
   },
   {
     "output": "minero_leggings",
@@ -7316,7 +7395,9 @@
     ],
     "group": "Oficios",
     "table": true,
-    "requirements": {}
+    "requirements": {
+      "auraskills:mining": 5
+    }
   },
   {
     "output": "minero_boots",
@@ -7335,7 +7416,9 @@
     ],
     "group": "Oficios",
     "table": true,
-    "requirements": {}
+    "requirements": {
+      "auraskills:mining": 5
+    }
   },
   {
     "output": "talador_helmet",
@@ -7354,7 +7437,9 @@
     ],
     "group": "Oficios",
     "table": true,
-    "requirements": {}
+    "requirements": {
+      "auraskills:foraging": 5
+    }
   },
   {
     "output": "talador_chestplate",
@@ -7378,7 +7463,9 @@
     ],
     "group": "Oficios",
     "table": true,
-    "requirements": {}
+    "requirements": {
+      "auraskills:foraging": 5
+    }
   },
   {
     "output": "talador_leggings",
@@ -7397,7 +7484,9 @@
     ],
     "group": "Oficios",
     "table": true,
-    "requirements": {}
+    "requirements": {
+      "auraskills:foraging": 5
+    }
   },
   {
     "output": "talador_boots",
@@ -7416,6 +7505,2798 @@
     ],
     "group": "Oficios",
     "table": true,
-    "requirements": {}
+    "requirements": {
+      "auraskills:foraging": 5
+    }
+  },
+  {
+    "output": "segador_1_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_helmet",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        2
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        2
+      ],
+      [
+        "c",
+        "gema_umbria_fragmentada",
+        1
+      ]
+    ],
+    "group": "Armaduras Segador",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 4
+    }
+  },
+  {
+    "output": "segador_1_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_chestplate",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        2
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        2
+      ],
+      [
+        "c",
+        "gema_umbria_fragmentada",
+        1
+      ]
+    ],
+    "group": "Armaduras Segador",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 4
+    }
+  },
+  {
+    "output": "segador_1_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_leggings",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        2
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        2
+      ],
+      [
+        "c",
+        "gema_umbria_fragmentada",
+        1
+      ]
+    ],
+    "group": "Armaduras Segador",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 4
+    }
+  },
+  {
+    "output": "segador_1_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_boots",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        2
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        2
+      ],
+      [
+        "c",
+        "gema_umbria_fragmentada",
+        1
+      ]
+    ],
+    "group": "Armaduras Segador",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 4
+    }
+  },
+  {
+    "output": "segador_3_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "segador_1_helmet",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        7
+      ],
+      [
+        "c",
+        "netherita_fundida",
+        1
+      ],
+      [
+        "c",
+        "esencia_nether",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria",
+        1
+      ]
+    ],
+    "group": "Armaduras Segador",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 20
+    }
+  },
+  {
+    "output": "segador_3_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "segador_1_chestplate",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        7
+      ],
+      [
+        "c",
+        "netherita_fundida",
+        1
+      ],
+      [
+        "c",
+        "esencia_nether",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria",
+        1
+      ]
+    ],
+    "group": "Armaduras Segador",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 20
+    }
+  },
+  {
+    "output": "segador_3_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "segador_1_leggings",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        7
+      ],
+      [
+        "c",
+        "netherita_fundida",
+        1
+      ],
+      [
+        "c",
+        "esencia_nether",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria",
+        1
+      ]
+    ],
+    "group": "Armaduras Segador",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 20
+    }
+  },
+  {
+    "output": "segador_3_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "segador_1_boots",
+        1
+      ],
+      [
+        "c",
+        "shadowsteel",
+        7
+      ],
+      [
+        "c",
+        "netherita_fundida",
+        1
+      ],
+      [
+        "c",
+        "esencia_nether",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria",
+        1
+      ]
+    ],
+    "group": "Armaduras Segador",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 20
+    }
+  },
+  {
+    "output": "segador_5_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "segador_3_helmet",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        5
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ],
+      [
+        "c",
+        "nucleo_furia",
+        1
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Segador",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 32
+    }
+  },
+  {
+    "output": "segador_5_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "segador_3_chestplate",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        5
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ],
+      [
+        "c",
+        "nucleo_furia",
+        1
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Segador",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 32
+    }
+  },
+  {
+    "output": "segador_5_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "segador_3_leggings",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        5
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ],
+      [
+        "c",
+        "nucleo_furia",
+        1
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Segador",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 32
+    }
+  },
+  {
+    "output": "segador_5_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "segador_3_boots",
+        1
+      ],
+      [
+        "c",
+        "netherita_reforzada",
+        5
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ],
+      [
+        "c",
+        "nucleo_furia",
+        1
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        1
+      ],
+      [
+        "c",
+        "gema_umbria_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Segador",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 32
+    }
+  },
+  {
+    "output": "segador_7_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "segador_5_helmet",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        2
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ]
+    ],
+    "group": "Armaduras Segador",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 42
+    }
+  },
+  {
+    "output": "segador_7_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "segador_5_chestplate",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        2
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ]
+    ],
+    "group": "Armaduras Segador",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 42
+    }
+  },
+  {
+    "output": "segador_7_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "segador_5_leggings",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        2
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ]
+    ],
+    "group": "Armaduras Segador",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 42
+    }
+  },
+  {
+    "output": "segador_7_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "segador_5_boots",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        2
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ]
+    ],
+    "group": "Armaduras Segador",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 42
+    }
+  },
+  {
+    "output": "segador_10_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "segador_7_helmet",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        6
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        7
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        6
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ]
+    ],
+    "group": "Armaduras Segador",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 57
+    }
+  },
+  {
+    "output": "segador_10_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "segador_7_chestplate",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        6
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        7
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        6
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ]
+    ],
+    "group": "Armaduras Segador",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 57
+    }
+  },
+  {
+    "output": "segador_10_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "segador_7_leggings",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        6
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        7
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        6
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ]
+    ],
+    "group": "Armaduras Segador",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 57
+    }
+  },
+  {
+    "output": "segador_10_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "segador_7_boots",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        6
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "nucleo_furia_pura",
+        7
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        6
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ]
+    ],
+    "group": "Armaduras Segador",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 57
+    }
+  },
+  {
+    "output": "invocador_1_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_helmet",
+        1
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        3
+      ],
+      [
+        "c",
+        "fragmento_cristal",
+        2
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 0
+    }
+  },
+  {
+    "output": "invocador_1_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_chestplate",
+        1
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        3
+      ],
+      [
+        "c",
+        "fragmento_cristal",
+        2
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 0
+    }
+  },
+  {
+    "output": "invocador_1_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_leggings",
+        1
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        3
+      ],
+      [
+        "c",
+        "fragmento_cristal",
+        2
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 0
+    }
+  },
+  {
+    "output": "invocador_1_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_boots",
+        1
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        3
+      ],
+      [
+        "c",
+        "fragmento_cristal",
+        2
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 0
+    }
+  },
+  {
+    "output": "invocador_3_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "invocador_1_helmet",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        1
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 20
+    }
+  },
+  {
+    "output": "invocador_3_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "invocador_1_chestplate",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        1
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 20
+    }
+  },
+  {
+    "output": "invocador_3_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "invocador_1_leggings",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        1
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 20
+    }
+  },
+  {
+    "output": "invocador_3_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "invocador_1_boots",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        1
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 20
+    }
+  },
+  {
+    "output": "invocador_5_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "invocador_3_helmet",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        3
+      ],
+      [
+        "c",
+        "corazon_shulker",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 32
+    }
+  },
+  {
+    "output": "invocador_5_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "invocador_3_chestplate",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        3
+      ],
+      [
+        "c",
+        "corazon_shulker",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 32
+    }
+  },
+  {
+    "output": "invocador_5_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "invocador_3_leggings",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        3
+      ],
+      [
+        "c",
+        "corazon_shulker",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 32
+    }
+  },
+  {
+    "output": "invocador_5_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "invocador_3_boots",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        3
+      ],
+      [
+        "c",
+        "corazon_shulker",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 32
+    }
+  },
+  {
+    "output": "invocador_7_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "invocador_5_helmet",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        2
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": false,
+    "requirements": {
+      "auraskills:sorcery": 42
+    }
+  },
+  {
+    "output": "invocador_7_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "invocador_5_chestplate",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        2
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": false,
+    "requirements": {
+      "auraskills:sorcery": 42
+    }
+  },
+  {
+    "output": "invocador_7_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "invocador_5_leggings",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        2
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": false,
+    "requirements": {
+      "auraskills:sorcery": 42
+    }
+  },
+  {
+    "output": "invocador_7_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "invocador_5_boots",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        2
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": false,
+    "requirements": {
+      "auraskills:sorcery": 42
+    }
+  },
+  {
+    "output": "invocador_9_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "invocador_7_helmet",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        6
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": false,
+    "requirements": {
+      "auraskills:sorcery": 52
+    }
+  },
+  {
+    "output": "invocador_9_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "invocador_7_chestplate",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        6
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": false,
+    "requirements": {
+      "auraskills:sorcery": 52
+    }
+  },
+  {
+    "output": "invocador_9_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "invocador_7_leggings",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        6
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": false,
+    "requirements": {
+      "auraskills:sorcery": 52
+    }
+  },
+  {
+    "output": "invocador_9_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "invocador_7_boots",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        6
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": false,
+    "requirements": {
+      "auraskills:sorcery": 52
+    }
+  },
+  {
+    "output": "invocador_10_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "invocador_9_helmet",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        3
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": false,
+    "requirements": {
+      "auraskills:sorcery": 57
+    }
+  },
+  {
+    "output": "invocador_10_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "invocador_9_chestplate",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        3
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": false,
+    "requirements": {
+      "auraskills:sorcery": 57
+    }
+  },
+  {
+    "output": "invocador_10_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "invocador_9_leggings",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        3
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": false,
+    "requirements": {
+      "auraskills:sorcery": 57
+    }
+  },
+  {
+    "output": "invocador_10_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "invocador_9_boots",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        3
+      ]
+    ],
+    "group": "Armaduras Invocador",
+    "table": false,
+    "requirements": {
+      "auraskills:sorcery": 57
+    }
+  },
+  {
+    "output": "asesino_1_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_helmet",
+        1
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        3
+      ],
+      [
+        "c",
+        "madera_estelar",
+        1
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 4
+    }
+  },
+  {
+    "output": "asesino_1_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_chestplate",
+        1
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        3
+      ],
+      [
+        "c",
+        "madera_estelar",
+        1
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 4
+    }
+  },
+  {
+    "output": "asesino_1_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_leggings",
+        1
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        3
+      ],
+      [
+        "c",
+        "madera_estelar",
+        1
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 4
+    }
+  },
+  {
+    "output": "asesino_1_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:leather_boots",
+        1
+      ],
+      [
+        "c",
+        "cuero_tratado",
+        3
+      ],
+      [
+        "c",
+        "madera_estelar",
+        1
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 4
+    }
+  },
+  {
+    "output": "asesino_2_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_1_helmet",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 16
+    }
+  },
+  {
+    "output": "asesino_2_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_1_chestplate",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 16
+    }
+  },
+  {
+    "output": "asesino_2_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_1_leggings",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 16
+    }
+  },
+  {
+    "output": "asesino_2_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_1_boots",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica",
+        1
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 16
+    }
+  },
+  {
+    "output": "asesino_3_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_2_helmet",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        3
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 20
+    }
+  },
+  {
+    "output": "asesino_3_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_2_chestplate",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        3
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 20
+    }
+  },
+  {
+    "output": "asesino_3_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_2_leggings",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        3
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 20
+    }
+  },
+  {
+    "output": "asesino_3_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_2_boots",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        3
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 20
+    }
+  },
+  {
+    "output": "asesino_4_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_3_helmet",
+        1
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica",
+        2
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 25
+    }
+  },
+  {
+    "output": "asesino_4_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_3_chestplate",
+        1
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica",
+        2
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 25
+    }
+  },
+  {
+    "output": "asesino_4_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_3_leggings",
+        1
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica",
+        2
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 25
+    }
+  },
+  {
+    "output": "asesino_4_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_3_boots",
+        1
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica",
+        2
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 25
+    }
+  },
+  {
+    "output": "asesino_5_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_4_helmet",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 30
+    }
+  },
+  {
+    "output": "asesino_5_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_4_chestplate",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 30
+    }
+  },
+  {
+    "output": "asesino_5_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_4_leggings",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 30
+    }
+  },
+  {
+    "output": "asesino_5_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_4_boots",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 30
+    }
+  },
+  {
+    "output": "asesino_6_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_5_helmet",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        2
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 35
+    }
+  },
+  {
+    "output": "asesino_6_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_5_chestplate",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        2
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 35
+    }
+  },
+  {
+    "output": "asesino_6_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_5_leggings",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        2
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 35
+    }
+  },
+  {
+    "output": "asesino_6_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_5_boots",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        2
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 35
+    }
+  },
+  {
+    "output": "asesino_7_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_6_helmet",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        2
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 40
+    }
+  },
+  {
+    "output": "asesino_7_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_6_chestplate",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        2
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 40
+    }
+  },
+  {
+    "output": "asesino_7_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_6_leggings",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        2
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 40
+    }
+  },
+  {
+    "output": "asesino_7_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_6_boots",
+        1
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        2
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": true,
+    "requirements": {
+      "auraskills:fighting": 40
+    }
+  },
+  {
+    "output": "asesino_8_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_7_helmet",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        3
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 45
+    }
+  },
+  {
+    "output": "asesino_8_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_7_chestplate",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        3
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 45
+    }
+  },
+  {
+    "output": "asesino_8_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_7_leggings",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        3
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 45
+    }
+  },
+  {
+    "output": "asesino_8_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_7_boots",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        4
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        3
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 45
+    }
+  },
+  {
+    "output": "asesino_9_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_8_helmet",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        3
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 50
+    }
+  },
+  {
+    "output": "asesino_9_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_8_chestplate",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        3
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 50
+    }
+  },
+  {
+    "output": "asesino_9_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_8_leggings",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        3
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 50
+    }
+  },
+  {
+    "output": "asesino_9_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_8_boots",
+        1
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        3
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 50
+    }
+  },
+  {
+    "output": "asesino_10_helmet",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_9_helmet",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        4
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 55
+    }
+  },
+  {
+    "output": "asesino_10_chestplate",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_9_chestplate",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        4
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 55
+    }
+  },
+  {
+    "output": "asesino_10_leggings",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_9_leggings",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        4
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 55
+    }
+  },
+  {
+    "output": "asesino_10_boots",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "asesino_9_boots",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "nucleo_eolico",
+        4
+      ]
+    ],
+    "group": "Armaduras Asesino",
+    "table": false,
+    "requirements": {
+      "auraskills:fighting": 55
+    }
+  },
+  {
+    "output": "libro_invocador_1",
+    "count": 1,
+    "ingredients": [
+      [
+        "v",
+        "minecraft:book",
+        1
+      ],
+      [
+        "c",
+        "fragmento_cristal",
+        1
+      ],
+      [
+        "c",
+        "madera_estelar",
+        2
+      ]
+    ],
+    "group": "Armas Invocador",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 0
+    }
+  },
+  {
+    "output": "libro_invocador_3",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "libro_invocador_1",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica",
+        2
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        5
+      ]
+    ],
+    "group": "Armas Invocador",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 20
+    }
+  },
+  {
+    "output": "libro_invocador_5",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "libro_invocador_3",
+        1
+      ],
+      [
+        "c",
+        "corazon_shulker",
+        1
+      ],
+      [
+        "c",
+        "cristal_refinado",
+        1
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        1
+      ],
+      [
+        "c",
+        "nucleo_astral",
+        1
+      ]
+    ],
+    "group": "Armas Invocador",
+    "table": true,
+    "requirements": {
+      "auraskills:sorcery": 32
+    }
+  },
+  {
+    "output": "libro_invocador_7",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "libro_invocador_5",
+        1
+      ],
+      [
+        "c",
+        "fragmento_ocaso",
+        4
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        2
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        4
+      ]
+    ],
+    "group": "Armas Invocador",
+    "table": false,
+    "requirements": {
+      "auraskills:sorcery": 42
+    }
+  },
+  {
+    "output": "libro_invocador_9",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "libro_invocador_7",
+        1
+      ],
+      [
+        "c",
+        "nucleo_supernova",
+        6
+      ],
+      [
+        "c",
+        "esquirla_eclipse",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        4
+      ]
+    ],
+    "group": "Armas Invocador",
+    "table": false,
+    "requirements": {
+      "auraskills:sorcery": 52
+    }
+  },
+  {
+    "output": "libro_invocador_10",
+    "count": 1,
+    "ingredients": [
+      [
+        "c",
+        "libro_invocador_9",
+        1
+      ],
+      [
+        "c",
+        "corazon_fin",
+        4
+      ],
+      [
+        "c",
+        "esencia_vacio",
+        2
+      ],
+      [
+        "c",
+        "gema_luminica_perfecta",
+        3
+      ]
+    ],
+    "group": "Armas Invocador",
+    "table": false,
+    "requirements": {
+      "auraskills:sorcery": 57
+    }
   }
 ]

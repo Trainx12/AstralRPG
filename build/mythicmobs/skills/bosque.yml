@@ -1,6 +1,8 @@
 # Generado por mobs/mazmorra.py + mobs/tanda2.py
 BOSQUE_SALA1_INICIO:
   Skills:
+  - addtag{tag=bosque.espera} @self
+  - addtag{tag=bosque.sala1.pedida} @self
   - removetag{tag=bosque.ready} @self
   - addtag{tag=bosque.on} @self
   - addtag{tag=bosque.ola1} @self
@@ -9,6 +11,7 @@ BOSQUE_SALA1_INICIO:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala1/wave1"} @self
 BOSQUE_SALA1_OLA2:
   Skills:
+  - addtag{tag=bosque.sala1.pedida} @self
   - addtag{tag=bosque.ola2} @self
   - addtag{tag=bosque.espera} @self
   - message{m="&8[&7Bosque Sombrio&8] &7Oleada 2/3..."} @PlayersInRadius{r=116}
@@ -16,6 +19,7 @@ BOSQUE_SALA1_OLA2:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala1/wave2"} @self
 BOSQUE_SALA1_OLA3:
   Skills:
+  - addtag{tag=bosque.sala1.pedida} @self
   - addtag{tag=bosque.ola3} @self
   - addtag{tag=bosque.espera} @self
   - message{m="&8[&7Bosque Sombrio&8] &7Oleada 3/3..."} @PlayersInRadius{r=116}

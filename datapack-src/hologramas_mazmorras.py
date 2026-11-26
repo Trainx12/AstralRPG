@@ -80,7 +80,32 @@ def commands(hints=None):
     return lines
 
 
+# 23/11: el Oceano se regenera cada 3 dias (borra regiones) y el acertijo desaparecia. Guardia en Skript: cada
+# 30 s, si hay alguien cerca (chunk cargado), lo vuelve a poner si falta. Sirve para cualquier mundo que se regenere.
+GUARDIA = ('astral.acertijo.oceano',)
+
+
+def guardia():
+    L = ['# Generado por hologramas_mazmorras.py (23/11): hologramas que vuelven solos si el mundo se regenera.', '',
+         'every 30 seconds:']
+    for h in RIDDLES + HINTS:
+        if h['tag'] not in GUARDIA:
+            continue
+        world = h.get('world', 'cavernas'); x, y, z = h['pos']
+        summon = [c for c in commands([h]) if ' summon ' in c][0]
+        summon = summon.replace(f'execute in minecraft:{world} unless entity @e[type=minecraft:text_display,tag={h["tag"]}]',
+                                f'execute in minecraft:{world} positioned {x} {y} {z} unless entity @e[type=minecraft:text_display,tag={h["tag"]},distance=..4]')
+        L += [f'    set {{_w}} to world("{world}")', '    if {_w} is set:',
+              f'        set {{_l}} to location({x}, {y}, {z}, {{_w}})', '        set {_cerca} to false',
+              '        loop all players in {_w}:', '            if distance between loop-player and {_l} < 64:',
+              '                set {_cerca} to true',
+              '        if {_cerca} is true:',
+              '            execute console command "' + summon.replace('"', '""') + '"']
+    return chr(10).join(L) + chr(10)
+
+
 if __name__=='__main__':
+    (ROOT/'build/mapas_exploracion/astral_hologramas.sk').write_text(guardia(),encoding='utf-8')
     path=ROOT/'build/mapas_exploracion/pistas-minas.txt'
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text('\n'.join(commands())+'\n',encoding='utf-8')

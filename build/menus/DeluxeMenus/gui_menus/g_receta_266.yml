@@ -23,7 +23,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 3'
     - ''
-    - '&cRequiere: sin nivel'
+    - '&cRequiere: Combate 20'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&#5555FF&lRARA GREBAS'
     item_flags:

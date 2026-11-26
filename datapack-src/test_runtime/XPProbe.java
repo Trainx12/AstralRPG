@@ -110,6 +110,23 @@ public final class XPProbe extends JavaPlugin {
             player.getInventory().setItemInMainHand(item("frasco_xp_gigante",1));click(EquipmentSlot.HAND,true);
             check(player.getTotalExperience()==14300 && player.getInventory().getItemInMainHand().getAmount()==1,"evento denegado no consume ni da XP");
         }
+        case "manzanas" -> {
+            // Manzanas de Mazmorra (manzanas.py): T2 cura 250 = 125 al instante + 125 en 5 s (Paper local topa la vida en 1024).
+            player.addScoreboardTag("astral.vida100");
+            var max=player.getAttribute(org.bukkit.attribute.Attribute.MAX_HEALTH);max.setBaseValue(1000);
+            player.setHealth(100);bars.clear();
+            Bukkit.getPluginManager().callEvent(new PlayerItemConsumeEvent(observed,item("manzana_t2",1),EquipmentSlot.HAND));
+            check(Math.abs(player.getHealth()-225)<0.01,"manzana T2 cura 125 al instante: "+player.getHealth());
+            check(!bars.isEmpty() && bars.getLast().contains("250"),"aviso de cura: "+bars);
+            var it=item("manzana_t5",1);
+            check(it.getItemMeta().hasUseCooldown() && it.getItemMeta().getUseCooldown().getCooldownSeconds()==20f,"enfriamiento de 20 s");
+            Bukkit.getPluginManager().callEvent(new PlayerItemConsumeEvent(observed,item("manzana_esmeralda",1),EquipmentSlot.HAND));
+            check(Math.abs(player.getHealth()-225)<0.01,"la Manzana de la Suerte no cura");
+            player.getPersistentDataContainer().remove(until);player.getPersistentDataContainer().remove(total);
+            sounds=0;particles=0;messages.clear();bars.clear();
+        }
+        case "manzanas2" -> {check(Math.abs(player.getHealth()-350)<1,"manzana T2 cura el resto en 5 s: "+player.getHealth());
+            player.getAttribute(org.bukkit.attribute.Attribute.MAX_HEALTH).setBaseValue(20);player.setHealth(20);}
         case "apple" -> {
             player.getPersistentDataContainer().remove(until);player.getPersistentDataContainer().remove(total);messages.clear();
             var e=new PlayerItemConsumeEvent(observed,item("manzana_esmeralda",1),EquipmentSlot.HAND);Bukkit.getPluginManager().callEvent(e);
@@ -138,16 +155,11 @@ public final class XPProbe extends JavaPlugin {
             check(Bukkit.getPlayerExact("XPProbe")==player,"jugador resuelto por nombre");
             check(Bukkit.getConsoleSender() instanceof org.bukkit.command.ConsoleCommandSender,"consola real");
             check(Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"execute if entity XPProbe run astralgacha XPProbe gacha_rpg 10 true"),"comando de gacha registrado via execute");
-            Bukkit.getScheduler().runTaskLater(this,()->{
-                check(crateCalls.contains("crates forceopen gacha_rpg_garantia_suerte XPProbe"),"garantia usa tabla con suerte");
-                player.getPersistentDataContainer().set(until,PersistentDataType.LONG,System.currentTimeMillis()-1000);
-            },20);
+            // Desde el 17/11 (054db88) la tirada usa la API de CrazyCrates (sin give virtual ni mass-open):
+            // la cubre tools/probar_gachas_paper.py con CrazyCrates real. Aca solo vence la suerte.
+            player.getPersistentDataContainer().set(until,PersistentDataType.LONG,System.currentTimeMillis()-1000);
         }
         case "snapshot" -> {
-            check(crateCalls.contains("crates give virtual gacha_rpg_suerte 9 XPProbe -s"),"resto del lote conserva suerte vencida");
-            check(crateCalls.stream().anyMatch(s->s.contains("mass-open gacha_rpg_suerte virtual 9")),"lote abre mismas llaves");
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"astralgacha XPProbe gacha_rpg 1 false");
-            Bukkit.getScheduler().runTaskLater(this,()->check(crateCalls.contains("crates forceopen gacha_rpg XPProbe"),"siguiente compra sin suerte"),20);
             invoke("updateLuck",player);check(Bukkit.getScoreboardManager().getMainScoreboard().getObjective("astral.suerte").getScore("XPProbe").getScore()==0,"suerte vencida en scoreboard");
         }
         case "backpacks" -> {

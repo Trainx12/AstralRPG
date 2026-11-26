@@ -1,0 +1,12 @@
+# Generado por hologramas_mazmorras.py (23/11): hologramas que vuelven solos si el mundo se regenera.
+
+every 30 seconds:
+    set {_w} to world("oceano")
+    if {_w} is set:
+        set {_l} to location(-2.4, 24.0, 11.7, {_w})
+        set {_cerca} to false
+        loop all players in {_w}:
+            if distance between loop-player and {_l} < 64:
+                set {_cerca} to true
+        if {_cerca} is true:
+            execute console command "execute in minecraft:oceano positioned -2.4 24.0 11.7 unless entity @e[type=minecraft:text_display,tag=astral.acertijo.oceano,distance=..4] run summon minecraft:text_display -2.4 24.0 11.7 {Tags:[""astral.acertijo.oceano""],Pos:[-2.4d,24.0d,11.7d],billboard:""center"",text:[{""text"":""✶ El acertijo del Océano ✶\n"",""color"":""gold"",""bold"":true},{""text"":""Desde el meridiano cero donde convergen los ejes del mundo,\ndesplázate 419 metros hacia donde muere el día\ny proyecta 472 metros hacia la latitud plus\ny encontrarás la plataforma que te lleva al crustáceo gigante."",""color"":""aqua"",""bold"":false,""italic"":true}],line_width:400,alignment:""center"",shadow:0b,see_through:0b,background:1073741824,brightness:{block:15,sky:15},view_range:1.0f,transformation:{translation:[0f,0f,0f],left_rotation:[0f,0f,0f,1f],right_rotation:[0f,0f,0f,1f],scale:[2.0f,2.0f,2.0f]}}"

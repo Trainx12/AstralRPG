@@ -64,11 +64,27 @@ function am_renacer_confirm(p: player):
     if am_renacer_ready({_p}) is false:
         send "&cNecesitas la ultima mina y menos de @RENACER_MAX@ renacimientos." to {_p}
         stop
-    set {_inv} to chest inventory with 3 rows named "&6Renacer en las Minas"
-    set slot 11 of {_inv} to lime wool named "&aSi, renacer" with lore "&7Volves a Carbon I. Bloques y minutos a 0." and "&7Bonus permanente: +10%% por renacimiento." and "&7Conservas inventario, oro y habilidades."
-    set slot 15 of {_inv} to red wool named "&cCancelar"
+    # Ventana con el diseno del dueno (ventana_renacer.py): botones dibujados en la fila 6, items invisibles encima.
+    set {_n} to am_renac({_p})
+    set {_inv} to chest inventory with 6 rows named am_renacer_titulo({_n})
+    set {_a} to {_n} * 10
+    set {_d} to {_a} + 10
+    loop 45, 46, 47 and 48:
+        set slot loop-value of {_inv} to am_renacer_pieza("&a&lRenacer", ("&7Volves a Carbon I. Bloques y minutos a 0.", "&7Plata de minerales: &f+%{_a}%%% &7-> &6+%{_d}%%%", "&7Conservas inventario, oro y habilidades." and "&eClic para renacer."))
+    loop 50, 51, 52 and 53:
+        set slot loop-value of {_inv} to am_renacer_pieza("&c&lCancelar", ("&7Volver al menu de minas."))
     open {_inv} to {_p}
     set {-am.gui::%uuid of {_p}%} to "renacer"
+
+function am_renacer_pieza(label: text, lore: texts) :: item:
+    set {_i} to paper named colored {_label}
+    set item model of {_i} to "astral:ventanas1911/b_cerrar_0"
+    set lore of {_i} to {_lore::*}
+    return {_i}
+
+function am_renacer_titulo(n: number) :: text:
+@RENACER_TITULOS@
+    return "&6Renacer en las Minas"
 
 function am_renacer_do(p: player):
     if am_renacer_ready({_p}) is false:
@@ -441,10 +457,11 @@ on inventory click:
         stop
     set {_slot} to index of event-slot
     if {_gui} is "renacer":
-        close inventory of player
-        if {_slot} is 11:
+        if {_slot} is between 45 and 48:
+            close inventory of player
             am_renacer_do(player)
-        else:
+        else if {_slot} is between 50 and 53:
+            close inventory of player
             am_menu(player)
         stop
     if {_gui} is "menu":
@@ -567,9 +584,42 @@ function am_drill_area(p: player) :: number:
 
 # Auto-recolectado: lo picado va directo al inventario. Si no entra, cae a los pies del jugador.
 function am_give(p: player, items: items):
+    # AstralMinasLimite tira al piso lo que no entra (los minerales marcados no se apilan con los
+    # comunes, por eso no se puede preguntar antes): se cuenta lo que hay en el piso antes y despues.
+    set {_antes::*} to all dropped items in radius 1.5 around location of {_p}
     loop {_items::*}:
         # AstralMinasLimite: PDC invisible, interruptor privado y sobrantes marcados.
         astral mine give loop-value to {_p}
+    set {_despues::*} to all dropped items in radius 1.5 around location of {_p}
+    if size of {_despues::*} > size of {_antes::*}:
+        am_aviso_lleno({_p})
+    else:
+        # Entro todo: hay lugar otra vez, el proximo llenado vuelve a avisar.
+        delete {-am.lleno::%uuid of {_p}%}
+
+# 25/11 (dueno): cartel en pantalla UNA sola vez cuando el inventario se llena picando.
+# No se repite hasta que vuelva a entrar lo picado (vacio el inventario y se lleno de nuevo).
+# Regla del dueno: solo ByTrainx hasta `/invlleno publico`.
+function am_aviso_lleno(p: player):
+    if name of {_p} is not "ByTrainx":
+        {am.invlleno.publico} is true
+    set {_u} to uuid of {_p}
+    {-am.lleno::%{_u}%} is not set
+    set {-am.lleno::%{_u}%} to true
+    send title "&c&lINVENTARIO LLENO" with subtitle "&7Vaciá el inventario: lo que picás cae al piso" to {_p} for 2 seconds with fadein 5 ticks and fadeout 10 ticks
+    play sound "block.note_block.bass" with volume 1 and pitch 0.6 to {_p}
+
+command /invlleno <text>:
+    permission: op
+    trigger:
+        if arg-1 is "publico":
+            set {am.invlleno.publico} to true
+            send "&aAviso de inventario lleno en minas: abierto para todos." to sender
+        else if arg-1 is "privado":
+            delete {am.invlleno.publico}
+            send "&eAviso de inventario lleno en minas: solo ByTrainx." to sender
+        else:
+            send "&7/invlleno publico | privado" to sender
 
 # 25/11 (dueno): los bloques extra del taladro y del Minero de Vetas se borran a mano y AuraSkills
 # no los ve. Se les da la misma XP de Mineria que en plugins/AuraSkills/sources/mining.yml.
@@ -614,6 +664,25 @@ function am_xp_give(p: player, x: number):
         stop
     set {_x} to round({_x} * 10) / 10
     execute console command "skills xp add %{_p}% mining %{_x}% true"
+
+# Cara del bloque por donde entra la mirada (rayo contra el cubo): true = arriba/abajo.
+function am_tcara(e: number, d: number, lo: number) :: number:
+    if {_d} = 0:
+        return -1000000
+    set {_t1} to ({_lo} - {_e}) / {_d}
+    set {_t2} to ({_lo} + 1 - {_e}) / {_d}
+    return min({_t1}, {_t2})
+
+function am_cara_vertical(p: player, b: location) :: boolean:
+    set {_e} to eye location of {_p}
+    set {_d} to vector from yaw (yaw of {_p}) and pitch (pitch of {_p})
+    set {_tx} to am_tcara(x-coordinate of {_e}, x component of {_d}, floor(x-coordinate of {_b}))
+    set {_ty} to am_tcara(y-coordinate of {_e}, y component of {_d}, floor(y-coordinate of {_b}))
+    set {_tz} to am_tcara(z-coordinate of {_e}, z component of {_d}, floor(z-coordinate of {_b}))
+    if {_ty} > {_tx}:
+        if {_ty} > {_tz}:
+            return true
+    return false
 
 function am_drill(p: player, origin: location, area: number, dir: text) :: number:
     set {_i} to am_id({_origin})
@@ -712,19 +781,21 @@ on uncancelled break with priority monitor:
         set {_face} to "e"
     else:
         set {_face} to "s"
-    # Piso (bloque mas abajo que los pies) o techo (mas arriba de la cabeza): cuadrado horizontal
-    # alrededor del bloque apuntado. A la altura del cuerpo: la pared de frente.
+    # 25/11 (dueno): manda la CARA que se pico, no la altura del bloque. Piso o techo (cara de
+    # arriba/abajo): cuadrado horizontal. Pared (cara del costado): plano parado que arranca en el
+    # piso del jugador (antes el 4x4 bajaba 1 bloque y picar arriba hacia una ranura horizontal).
     set {_by} to floor(y-coordinate of event-block)
     set {_py} to floor(y-coordinate of player)
-    if {_by} < {_py}:
-        set {_dir} to "v%{_face}%"
-    else if {_by} > {_py} + 1:
+    if am_cara_vertical(player, location of event-block) is true:
         set {_dir} to "v%{_face}%"
     else:
-        set {_up} to 0
-        if {_by} <= {_py}:
-            set {_up} to 1
-        set {_dir} to "%{_face}%%{_up}%"
+        set {_h} to {-am.h::%{_area}%}
+        set {_up} to {_by} - {_py}
+        if {_up} < 0:
+            set {_up} to 0
+        if {_up} > {_h} - 1:
+            set {_up} to {_h} - 1
+        set {_dir} to "%{_face}%r%{_up}%"
     set {_origin} to location of event-block
     wait 1 tick
     if player is online:
@@ -734,7 +805,7 @@ on uncancelled break with priority monitor:
             if {_area} = 2:
                 if {_up} is set:
                     set {_o} to 1 - {_up}
-                    am_drill(player, {_origin}, {_area}, "%{_face}%%{_o}%")
+                    am_drill(player, {_origin}, {_area}, "%{_face}%r%{_o}%")
         if {_vein} is true:
             am_vein(player, {_origin}, {_vmax}, {_vt})
 
@@ -772,6 +843,7 @@ on quit:
     delete {-am.gui::%uuid of player%}
     delete {-am.active::%uuid of player%}
     delete {-am.sec::%uuid of player%}
+    delete {-am.lleno::%uuid of player%}
 
 # Nadie entra por /tp o /tpa a una mina que no abrio.
 on teleport:
@@ -800,6 +872,10 @@ every 30 seconds:
 every 1 second:
     loop all players in am_world():
         set {_i} to am_id(location of loop-player)
+        if {_i} > 0:
+            set {_ocupada::%{_i}%} to true
+            if am_limpiar_enabled(loop-player) is true:
+                set {_limpia::%{_i}%} to true
         am_regen_sidebar(loop-player, {_i})
         if loop-player's gamemode is creative:
             if loop-player has permission "astral.minas.admin":
@@ -836,6 +912,43 @@ every 1 second:
                             delete {-am.sec::%{_id}%}
                             add 1 to {am.minutes::%{_id}%}
                             am_score(loop-player, "am_minutes", {am.minutes::%{_id}%})
+
+    # Limpieza del piso (ver am_limpiar_enabled): solo minas que estaban vacias el segundo anterior.
+    loop indices of {_limpia::*}:
+        if {-am.ocupada::%loop-value%} is not set:
+            set {-am.limpiar::%loop-value%} to 3
+    delete {-am.ocupada::*}
+    loop indices of {_ocupada::*}:
+        set {-am.ocupada::%loop-value%} to true
+    loop indices of {-am.limpiar::*}:
+        set {_m} to loop-value parsed as number
+        set {_x} to ({_m} - 1) * @SPACING@
+        execute console command "minecraft:execute in @DIM@ run minecraft:kill @e[type=minecraft:item,x=%{_x}%,y=-64,z=-2000,dx=511,dy=448,dz=4000,nbt=!{Age:-32768s}]"
+        set {_n} to {-am.limpiar::%loop-value%} - 1
+        if {_n} > 0:
+            set {_sigue::%loop-value%} to {_n}
+    delete {-am.limpiar::*}
+    loop indices of {_sigue::*}:
+        set {-am.limpiar::%loop-value%} to {_sigue::%loop-value%}
+
+# 25/11 (dueno): cuando alguien entra a una mina VACIA se borran los items que quedaron tirados en el
+# piso de antes. Si ya habia gente adentro no se toca nada (pueden ser cosas recien caidas). Se borra
+# 3 segundos seguidos porque las entidades de los chunks tardan un momento en cargar al llegar.
+# Regla del dueno: solo ByTrainx hasta `/minaslimpiar publico`.
+function am_limpiar_enabled(p: player) :: boolean:
+    if {am.limpiar} is "publico":
+        return true
+    if name of {_p} is "ByTrainx":
+        return true
+    return false
+
+command /minaslimpiar [<text>]:
+    permission: astral.minas.admin
+    trigger:
+        if arg-1 is "publico" or "privado":
+            set {am.limpiar} to arg-1
+        set {_m} to {am.limpiar} ? "privado"
+        send "&eLimpiar items del piso al entrar: &f%{_m}% &7(/minaslimpiar publico|privado)" to sender
 
 # El panel lateral se actualiza cada 3 segundos y solo si cambio el contador.
 every 3 seconds:

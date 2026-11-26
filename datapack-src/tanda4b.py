@@ -52,13 +52,14 @@ def register(items, fichas, recipes, add_item, txt, armor_attrs):
         items[iid] = it
     for piece, label in [('helmet', 'Casco'), ('chestplate', 'Pechera'), ('leggings', 'Grebas'), ('boots', 'Botas')]:
         iid = 'carnivora_' + piece
-        add_item(iid, 'minecraft:diamond_' + piece, label + ' Carnivora', '#bff05a', [txt('Armadura Carnivora III'), txt(f"Set completo: al matar recuperas {__import__('balance_equipo').CARNIVORA_CURA_BAJA*100:g}% de vida maxima.", 'gold')],
+        from requisitos_sin_clase import pdc as req_pdc, linea as req_linea
+        add_item(iid, 'minecraft:diamond_' + piece, label + ' Carnivora', '#bff05a', [txt('Armadura Carnivora III'), txt(f"Set completo: al matar recuperas {__import__('balance_equipo').CARNIVORA_CURA_BAJA*100:g}% de vida maxima.", 'gold'), req_linea(txt, iid, 3)],
                  {'type': 'armor', 'set': 'carnivora', 'tier': 3, 'piece': piece, 'def': defensa_pieza(3, piece, __import__('balance_equipo').CARNIVORA_DEF)},
                  extra={'minecraft:attribute_modifiers': armor_attrs(iid, piece, 'diamond', {}, vida=VIDA_PIEZA[3]),
                         # Sin asset_id en cabeza: usa el modelo Java y su display.head.
                         'minecraft:equippable': {'slot': {'helmet':'head','chestplate':'chest','leggings':'legs','boots':'feet'}[piece],
                                                 **({} if piece == 'helmet' else {'asset_id':'astral:carnivora'})}},
-                 model='astral:' + iid, kind='armor')
+                 model='astral:' + iid, kind='armor', pdc=req_pdc('armor', iid, 3))
     for iid, (name, base, fallback) in SIMPLE.items():
         material = iid == 'colmillo_carnivoro' or iid.startswith('asura_moneda_')
         data = {'type': 'material' if material else 'cosmetic' if iid.endswith('_alas') else 'furniture' if iid.startswith('peluche_') else 'utility'}
@@ -73,8 +74,10 @@ def register(items, fichas, recipes, add_item, txt, armor_attrs):
             extra['minecraft:enchantments'] = {'minecraft:efficiency': 3, 'minecraft:unbreaking': 2}
         add_item(iid, 'minecraft:' + base, name, '#bff05a' if 'carnivor' in iid else 'gold',
                  [txt('Recuerdo de las alas retiradas. Sin efecto al equipar.' if iid.endswith('_alas') else
-                      'Clic derecho en bloque: colocar. Clic izquierdo: recoger.' if iid.startswith('peluche_') else 'Material de forja.' if material else 'Equipo Carnivoro III')],
-                 data, extra=extra, model='astral:' + iid, kind='material' if material else 'item')
+                      'Clic derecho en bloque: colocar. Clic izquierdo: recoger.' if iid.startswith('peluche_') else 'Material de forja.' if material else 'Equipo Carnivoro III')]
+                 + ([__import__('requisitos_sin_clase').linea(txt, iid, 3)] if data['type'] == 'utility' and iid.startswith('carnivora_') else []),
+                 data, extra=extra, model='astral:' + iid, kind='material' if material else 'item',
+                 **(dict(pdc=__import__('requisitos_sin_clase').pdc('item', iid, 3)) if data['type'] == 'utility' and iid.startswith('carnivora_') else {}))
     for iid in list(CLONES) + ['carnivora_' + p for p in ('helmet','chestplate','leggings','boots')] + [i for i in SIMPLE if i.startswith('carnivora_')]:
         if iid == 'asura_espada' or iid.endswith('_alas'):
             continue

@@ -16,9 +16,9 @@ astral_bosque_control_sala1:
   - foreach{s=AST_GOLEM_CONVIERTE_bosque_sala1;sync=true} @EntitiesInRadius{r=140} ~onTimer:5 ?hastag{tag=bosque.on}
   - foreach{s=AST_ESQ_CONVIERTE_bosque_sala1;sync=true} @EntitiesInRadius{r=140} ~onTimer:5 ?hastag{tag=bosque.on}
   - skill{s=BOSQUE_SALA1_INICIO} @self ~onTimer:20 ?playerwithin{d=44} ?!hastag{tag=bosque.on} ?hastag{tag=bosque.ready}
-  - skill{s=BOSQUE_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=bosque.ola1} ?!hastag{tag=bosque.ola2} ?!hastag{tag=bosque.espera} ?!hastag{tag=bosque.sala1.busy}
-  - skill{s=BOSQUE_SALA1_OLA3} @self ~onTimer:20 ?hastag{tag=bosque.ola2} ?!hastag{tag=bosque.ola3} ?!hastag{tag=bosque.espera} ?!hastag{tag=bosque.sala1.busy}
-  - skill{s=BOSQUE_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=bosque.ola3} ?!hastag{tag=bosque.fin} ?!hastag{tag=bosque.espera} ?!hastag{tag=bosque.sala1.busy}
+  - skill{s=BOSQUE_SALA1_OLA2} @self ~onTimer:20 ?hastag{tag=bosque.ola1} ?!hastag{tag=bosque.ola2} ?!hastag{tag=bosque.espera} ?!hastag{tag=bosque.sala1.busy} ?!hastag{tag=bosque.sala1.pedida}
+  - skill{s=BOSQUE_SALA1_OLA3} @self ~onTimer:20 ?hastag{tag=bosque.ola2} ?!hastag{tag=bosque.ola3} ?!hastag{tag=bosque.espera} ?!hastag{tag=bosque.sala1.busy} ?!hastag{tag=bosque.sala1.pedida}
+  - skill{s=BOSQUE_SALA1_LIMPIA} @self ~onTimer:20 ?hastag{tag=bosque.ola3} ?!hastag{tag=bosque.fin} ?!hastag{tag=bosque.espera} ?!hastag{tag=bosque.sala1.busy} ?!hastag{tag=bosque.sala1.pedida}
   - skill{s=BOSQUE_SALA1_RESET} @self ~onTimer:200 ?hastag{tag=bosque.on} ?!playerwithin{d=116}
 astral_bosque_control_sala2:
   Type: ARMOR_STAND
@@ -158,16 +158,15 @@ astral_bosque_chaman:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/bosque/sala2/helpers"} @self ~onTimer:400
   - message{m="&2Un canto extrano sale del pantano..."} @PlayersInRadius{r=40} ~onSpawn
   - teleport @SpawnLocation ~onTimer:100 ?!playerwithin{d=40}
+  - teleport @SpawnLocation ~onTimer:20 ?inblock{m=WATER}
   - skill{s=AST_MUERTE} @self ~onDeath
   - skill{s=AST_JEFE_SLAM_astral_chaman} @self ~onTimer:30 ?playerwithin{d=6}
   - skill{s=AST_JEFE_DISPARO_astral_chaman} @PlayersInRing{min=4;max=48} ~onTimer:40
   - settarget @NearestPlayer{r=40} ~onTimer:30
-  - command{c="execute at <caster.uuid> run function astral:boss/chaman_ice"} @self ~onTimer:5
   - skill{s=TANDA2_bosque_AST_FASE_astral_chaman_2} @self ~onDamaged ?healthpercent{p=<0.6} ?!hastag{tag=astral.fase2}
   - skill{s=TANDA2_bosque_AST_FASE_astral_chaman_2_veneno} @self ~onTimer:120 ?hastag{tag=astral.fase2} ?playerwithin{d=24}
   - skill{s=TANDA2_bosque_AST_FASE_astral_chaman_3} @self ~onDamaged ?healthpercent{p=<0.25} ?!hastag{tag=astral.fase3}
   - skill{s=AST_PLATA_JEFE} @self ~onDeath ?~isplayer
-  - command{c="item replace entity <caster.uuid> armor.feet with minecraft:leather_boots[enchantments={frost_walker:2}]"} @self ~onSpawn
   - glowbone{g=true;c=FFFFFF} @self ~onTimer:20
   - command{c="execute at <caster.uuid> run tag @e[type=armor_stand,distance=..160,name='Control Altar del Chaman'] add bosque.jefe.derrotado"} @self ~onDeath
   - addtag{tag=ad.bosque.sala2} @self ~onSpawn

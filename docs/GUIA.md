@@ -1,3 +1,14 @@
+# Vacio Estelar (7f) y ajustes del 23/11/2026
+
+- Vacio Estelar: fuente `datapack-src/vacio.py`, plugin `runtime/AstralVacio.java` (`/vacio entrar|vender|estado`; admin
+  `meteorito|jefe|regenerar|crear`). Vetas = bloque de nota en campanilla (chime 0-15): no usar ese estado para otra cosa.
+  Pack: `deploy_vacio.py` encima del ultimo FINAL. Ensayo: `tools/probar_vacio_paper.py`. Mundo creado con `build/vacio/comandos.txt`.
+- AstralDueno (`dueno.py`): `/modo admin|jugador` y `/sala` (solo las UUID de `DUENOS`).
+- Gachas desde Cosmeticos/Mascotas: copias `gacha_cosmeticos_cos` y `gacha_monturas_mas` (menus.GACHA_DESDE).
+- Avisos de "update" apagados con `tools/sin_avisos_update.py` (repetir si se reinstala un plugin). Reinicio diario 06:00 AR:
+  Tarea programada del panel (no ClearLag: en Empower un STOP no vuelve a prender solo).
+- Ensayo de clases/invocaciones/mobs de mazmorra/modo/sala: `tools/probar_revision_23_11.py`.
+
 # Cavernas de Cristal (7e) - 19/11/2026
 
 Entrega preparada, sin desplegar: [cavernas-cristal](../build/deploy/cavernas-cristal.md).
@@ -382,7 +393,7 @@ Sirve para probar MythicMobs, BetterModel y el datapack sin tocar el servidor (s
 - **Versiones fijas:** Paper 26.1.2, Stellarity 5.4.2 (la 6.x crashea), ExcellentEnchants 5.4.3 con NightCore 2.16.7. No usar ExcellentCrates (la 7.x no se puede configurar por archivo y la 6.x no anda con este NightCore).
 - **Chat de los OP lleno de "Se ha cambiado la puntuación...":** es la regla `log_admin_commands`; está apagada en los 5 mundos (ver `build/lobby/comandos.txt`). Si se crea un mundo nuevo, apagarla también ahí.
 - **Un comando nuevo de DeluxeMenus sale en rojo en el chat pero funciona:** el juego del jugador no lo conoce hasta que vuelve a entrar.
-- **Los huevos de monturas y mascotas no funcionan en el lobby** (no aparecen mobs ahí): se usan en el mundo.
+- **Los huevos de monturas y criaturas no funcionan en el lobby**: el lobby tiene `mob-spawning allow` (para los vendedores), así que desde el 25/11 cada montura, Mapache y Pingüino que aparece en `lobby` se borra al instante (`mobs/mythic.py`, `?world{w=lobby}`) y el huevo vuelve al jugador más cercano. Igual no se podrían montar ahí: WorldGuard bloquea `ride` porque `build` está en deny.
 - Después de cualquier cambio: revisar la consola. Los avisos `ExampleQuest...` de MythicMobs y los de GeoIP de AuthMe son normales.
 
 ## Estrella del Menu (slot 9)

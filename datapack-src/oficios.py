@@ -25,8 +25,9 @@ ARMOR_SLOT = {'helmet': 'armor.head', 'chestplate': 'armor.chest', 'leggings': '
 SHOP_TITLE = 'Astral - Oficios'
 SHOP_SLOT = 43          # libres en /shop: 1,13,15,21..35 ocupados; 39 Peluches, 40 Proteccion, 41 misc, 42 Mochilas
 from economia import plata as _x
-PRECIO = {k: _x(v) for k, v in {'helmet': 800, 'chestplate': 1200, 'leggings': 1200, 'boots': 800}.items()}
-PRECIO_SET = _x(3500)
+# 25/11 (dueno): a la mitad con el recorte de las Minas (antes 80k/120k y set 350k).
+PRECIO = {k: _x(v) for k, v in {'helmet': 400, 'chestplate': 600, 'leggings': 600, 'boots': 400}.items()}
+PRECIO_SET = _x(1700)
 
 SETS = {
     'minero': {
@@ -81,13 +82,15 @@ def register(items, fichas, recipes, add_item, txt, armor_attrs):
             lore = [txt(f"Ropa de {sdef['label']} {'I' * TIER}")]
             lore += [txt(line, 'aqua') for line in sdef['help'][piece]]
             lore.append(txt(sdef['set'], 'gold'))
+            from requisitos_sin_clase import pdc as req_pdc, linea as req_linea
+            lore.append(req_linea(txt, iid, TIER))
             add_item(iid, 'minecraft:iron_' + piece, sdef['names'][piece], sdef['color'], lore,
                      {'type': 'armor', 'set': sid, 'tier': TIER, 'piece': piece, 'def': defensa_pieza(TIER, piece)},
                      extra={'minecraft:attribute_modifiers': mods,
                             # casco y gorro: sin asset_id, asi se dibuja el modelo 3D del item en la cabeza
                             'minecraft:equippable': {'slot': SLOT[piece],
                                                      **({} if piece == 'helmet' else {'asset_id': 'astral:' + sid})}},
-                     model='astral:' + iid, kind='armor')
+                     model='astral:' + iid, kind='armor', pdc=req_pdc('armor', iid, TIER))
             recipes.append((iid, 1, sdef['recipes'][piece], 'Oficios'))
 
 

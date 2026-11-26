@@ -26,7 +26,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 9'
     - ''
-    - '&cRequiere: Defensa 38'
+    - '&cRequiere: Hechiceria 52'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA BOTAS'
     item_flags:
@@ -58,7 +58,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 7'
     - ''
-    - '&cRequiere: Defensa 30'
+    - '&cRequiere: Hechiceria 42'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&#ff5fd2&lMÍTICA BOTAS'
     item_flags:

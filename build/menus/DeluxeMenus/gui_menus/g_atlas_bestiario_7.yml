@@ -2,11 +2,10 @@ menu_title: '&f�
 size: 54
 items:
   'c0':
-    material: PAPER
+    material: ENDERMAN_SPAWN_EGG
     slot: 3
     amount: 1
     display_name: '&bEnderman'
-    item_model: 'astral:atlas_ui/mobchico_vanilla_enderman'
     lore:
     - '&7Clic para abrir'
     enchantments:
@@ -19,11 +18,10 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_criatura_vanilla_enderman'
   'c1':
-    material: PAPER
+    material: SHULKER_SPAWN_EGG
     slot: 4
     amount: 1
     display_name: '&bShulker'
-    item_model: 'astral:atlas_ui/mobchico_vanilla_shulker'
     lore:
     - '&7Clic para abrir'
     enchantments:
@@ -36,11 +34,10 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_criatura_vanilla_shulker'
   'c2':
-    material: PAPER
+    material: VINDICATOR_SPAWN_EGG
     slot: 5
     amount: 1
     display_name: '&bVindicator'
-    item_model: 'astral:atlas_ui/mobchico_vanilla_vindicator'
     lore:
     - '&7Clic para abrir'
     enchantments:

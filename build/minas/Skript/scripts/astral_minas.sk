@@ -448,54 +448,58 @@ on load:
     set {-am.price::%{_t}%} to 40
     set {-am.pricev::%{_t}%} to 40
     delete {-am.off::*}
+    delete {-am.h::*}
+    set {-am.h::2} to 2
     set {-am.off::2::vn::1} to vector(0, 0, -1)
-    set {-am.off::2::n0::1} to vector(0, -1, 0)
-    set {-am.off::2::n1::1} to vector(0, 1, 0)
+    set {-am.off::2::nr0::1} to vector(0, 1, 0)
+    set {-am.off::2::nr1::1} to vector(0, -1, 0)
     set {-am.off::2::vs::1} to vector(0, 0, 1)
-    set {-am.off::2::s0::1} to vector(0, -1, 0)
-    set {-am.off::2::s1::1} to vector(0, 1, 0)
+    set {-am.off::2::sr0::1} to vector(0, 1, 0)
+    set {-am.off::2::sr1::1} to vector(0, -1, 0)
     set {-am.off::2::ve::1} to vector(1, 0, 0)
-    set {-am.off::2::e0::1} to vector(0, -1, 0)
-    set {-am.off::2::e1::1} to vector(0, 1, 0)
+    set {-am.off::2::er0::1} to vector(0, 1, 0)
+    set {-am.off::2::er1::1} to vector(0, -1, 0)
     set {-am.off::2::vw::1} to vector(-1, 0, 0)
-    set {-am.off::2::w0::1} to vector(0, -1, 0)
-    set {-am.off::2::w1::1} to vector(0, 1, 0)
+    set {-am.off::2::wr0::1} to vector(0, 1, 0)
+    set {-am.off::2::wr1::1} to vector(0, -1, 0)
+    set {-am.h::3} to 2
     set {-am.off::3::vn::1} to vector(0, 0, -1)
     set {-am.off::3::vn::2} to vector(1, 0, 0)
     set {-am.off::3::vn::3} to vector(1, 0, -1)
-    set {-am.off::3::n0::1} to vector(0, -1, 0)
-    set {-am.off::3::n0::2} to vector(1, -1, 0)
-    set {-am.off::3::n0::3} to vector(1, 0, 0)
-    set {-am.off::3::n1::1} to vector(0, 1, 0)
-    set {-am.off::3::n1::2} to vector(1, 0, 0)
-    set {-am.off::3::n1::3} to vector(1, 1, 0)
+    set {-am.off::3::nr0::1} to vector(0, 1, 0)
+    set {-am.off::3::nr0::2} to vector(1, 0, 0)
+    set {-am.off::3::nr0::3} to vector(1, 1, 0)
+    set {-am.off::3::nr1::1} to vector(0, -1, 0)
+    set {-am.off::3::nr1::2} to vector(1, -1, 0)
+    set {-am.off::3::nr1::3} to vector(1, 0, 0)
     set {-am.off::3::vs::1} to vector(0, 0, 1)
     set {-am.off::3::vs::2} to vector(-1, 0, 0)
     set {-am.off::3::vs::3} to vector(-1, 0, 1)
-    set {-am.off::3::s0::1} to vector(0, -1, 0)
-    set {-am.off::3::s0::2} to vector(-1, -1, 0)
-    set {-am.off::3::s0::3} to vector(-1, 0, 0)
-    set {-am.off::3::s1::1} to vector(0, 1, 0)
-    set {-am.off::3::s1::2} to vector(-1, 0, 0)
-    set {-am.off::3::s1::3} to vector(-1, 1, 0)
+    set {-am.off::3::sr0::1} to vector(0, 1, 0)
+    set {-am.off::3::sr0::2} to vector(-1, 0, 0)
+    set {-am.off::3::sr0::3} to vector(-1, 1, 0)
+    set {-am.off::3::sr1::1} to vector(0, -1, 0)
+    set {-am.off::3::sr1::2} to vector(-1, -1, 0)
+    set {-am.off::3::sr1::3} to vector(-1, 0, 0)
     set {-am.off::3::ve::1} to vector(1, 0, 0)
     set {-am.off::3::ve::2} to vector(0, 0, 1)
     set {-am.off::3::ve::3} to vector(1, 0, 1)
-    set {-am.off::3::e0::1} to vector(0, -1, 0)
-    set {-am.off::3::e0::2} to vector(0, -1, 1)
-    set {-am.off::3::e0::3} to vector(0, 0, 1)
-    set {-am.off::3::e1::1} to vector(0, 1, 0)
-    set {-am.off::3::e1::2} to vector(0, 0, 1)
-    set {-am.off::3::e1::3} to vector(0, 1, 1)
+    set {-am.off::3::er0::1} to vector(0, 1, 0)
+    set {-am.off::3::er0::2} to vector(0, 0, 1)
+    set {-am.off::3::er0::3} to vector(0, 1, 1)
+    set {-am.off::3::er1::1} to vector(0, -1, 0)
+    set {-am.off::3::er1::2} to vector(0, -1, 1)
+    set {-am.off::3::er1::3} to vector(0, 0, 1)
     set {-am.off::3::vw::1} to vector(-1, 0, 0)
     set {-am.off::3::vw::2} to vector(0, 0, -1)
     set {-am.off::3::vw::3} to vector(-1, 0, -1)
-    set {-am.off::3::w0::1} to vector(0, -1, 0)
-    set {-am.off::3::w0::2} to vector(0, -1, -1)
-    set {-am.off::3::w0::3} to vector(0, 0, -1)
-    set {-am.off::3::w1::1} to vector(0, 1, 0)
-    set {-am.off::3::w1::2} to vector(0, 0, -1)
-    set {-am.off::3::w1::3} to vector(0, 1, -1)
+    set {-am.off::3::wr0::1} to vector(0, 1, 0)
+    set {-am.off::3::wr0::2} to vector(0, 0, -1)
+    set {-am.off::3::wr0::3} to vector(0, 1, -1)
+    set {-am.off::3::wr1::1} to vector(0, -1, 0)
+    set {-am.off::3::wr1::2} to vector(0, -1, -1)
+    set {-am.off::3::wr1::3} to vector(0, 0, -1)
+    set {-am.h::4} to 3
     set {-am.off::4::vn::1} to vector(-1, 0, 1)
     set {-am.off::4::vn::2} to vector(-1, 0, 0)
     set {-am.off::4::vn::3} to vector(-1, 0, -1)
@@ -504,22 +508,30 @@ on load:
     set {-am.off::4::vn::6} to vector(1, 0, 1)
     set {-am.off::4::vn::7} to vector(1, 0, 0)
     set {-am.off::4::vn::8} to vector(1, 0, -1)
-    set {-am.off::4::n0::1} to vector(-1, -1, 0)
-    set {-am.off::4::n0::2} to vector(-1, 0, 0)
-    set {-am.off::4::n0::3} to vector(-1, 1, 0)
-    set {-am.off::4::n0::4} to vector(0, -1, 0)
-    set {-am.off::4::n0::5} to vector(0, 1, 0)
-    set {-am.off::4::n0::6} to vector(1, -1, 0)
-    set {-am.off::4::n0::7} to vector(1, 0, 0)
-    set {-am.off::4::n0::8} to vector(1, 1, 0)
-    set {-am.off::4::n1::1} to vector(-1, -1, 0)
-    set {-am.off::4::n1::2} to vector(-1, 0, 0)
-    set {-am.off::4::n1::3} to vector(-1, 1, 0)
-    set {-am.off::4::n1::4} to vector(0, -1, 0)
-    set {-am.off::4::n1::5} to vector(0, 1, 0)
-    set {-am.off::4::n1::6} to vector(1, -1, 0)
-    set {-am.off::4::n1::7} to vector(1, 0, 0)
-    set {-am.off::4::n1::8} to vector(1, 1, 0)
+    set {-am.off::4::nr0::1} to vector(-1, 0, 0)
+    set {-am.off::4::nr0::2} to vector(-1, 1, 0)
+    set {-am.off::4::nr0::3} to vector(-1, 2, 0)
+    set {-am.off::4::nr0::4} to vector(0, 1, 0)
+    set {-am.off::4::nr0::5} to vector(0, 2, 0)
+    set {-am.off::4::nr0::6} to vector(1, 0, 0)
+    set {-am.off::4::nr0::7} to vector(1, 1, 0)
+    set {-am.off::4::nr0::8} to vector(1, 2, 0)
+    set {-am.off::4::nr1::1} to vector(-1, -1, 0)
+    set {-am.off::4::nr1::2} to vector(-1, 0, 0)
+    set {-am.off::4::nr1::3} to vector(-1, 1, 0)
+    set {-am.off::4::nr1::4} to vector(0, -1, 0)
+    set {-am.off::4::nr1::5} to vector(0, 1, 0)
+    set {-am.off::4::nr1::6} to vector(1, -1, 0)
+    set {-am.off::4::nr1::7} to vector(1, 0, 0)
+    set {-am.off::4::nr1::8} to vector(1, 1, 0)
+    set {-am.off::4::nr2::1} to vector(-1, -2, 0)
+    set {-am.off::4::nr2::2} to vector(-1, -1, 0)
+    set {-am.off::4::nr2::3} to vector(-1, 0, 0)
+    set {-am.off::4::nr2::4} to vector(0, -2, 0)
+    set {-am.off::4::nr2::5} to vector(0, -1, 0)
+    set {-am.off::4::nr2::6} to vector(1, -2, 0)
+    set {-am.off::4::nr2::7} to vector(1, -1, 0)
+    set {-am.off::4::nr2::8} to vector(1, 0, 0)
     set {-am.off::4::vs::1} to vector(1, 0, -1)
     set {-am.off::4::vs::2} to vector(1, 0, 0)
     set {-am.off::4::vs::3} to vector(1, 0, 1)
@@ -528,22 +540,30 @@ on load:
     set {-am.off::4::vs::6} to vector(-1, 0, -1)
     set {-am.off::4::vs::7} to vector(-1, 0, 0)
     set {-am.off::4::vs::8} to vector(-1, 0, 1)
-    set {-am.off::4::s0::1} to vector(1, -1, 0)
-    set {-am.off::4::s0::2} to vector(1, 0, 0)
-    set {-am.off::4::s0::3} to vector(1, 1, 0)
-    set {-am.off::4::s0::4} to vector(0, -1, 0)
-    set {-am.off::4::s0::5} to vector(0, 1, 0)
-    set {-am.off::4::s0::6} to vector(-1, -1, 0)
-    set {-am.off::4::s0::7} to vector(-1, 0, 0)
-    set {-am.off::4::s0::8} to vector(-1, 1, 0)
-    set {-am.off::4::s1::1} to vector(1, -1, 0)
-    set {-am.off::4::s1::2} to vector(1, 0, 0)
-    set {-am.off::4::s1::3} to vector(1, 1, 0)
-    set {-am.off::4::s1::4} to vector(0, -1, 0)
-    set {-am.off::4::s1::5} to vector(0, 1, 0)
-    set {-am.off::4::s1::6} to vector(-1, -1, 0)
-    set {-am.off::4::s1::7} to vector(-1, 0, 0)
-    set {-am.off::4::s1::8} to vector(-1, 1, 0)
+    set {-am.off::4::sr0::1} to vector(1, 0, 0)
+    set {-am.off::4::sr0::2} to vector(1, 1, 0)
+    set {-am.off::4::sr0::3} to vector(1, 2, 0)
+    set {-am.off::4::sr0::4} to vector(0, 1, 0)
+    set {-am.off::4::sr0::5} to vector(0, 2, 0)
+    set {-am.off::4::sr0::6} to vector(-1, 0, 0)
+    set {-am.off::4::sr0::7} to vector(-1, 1, 0)
+    set {-am.off::4::sr0::8} to vector(-1, 2, 0)
+    set {-am.off::4::sr1::1} to vector(1, -1, 0)
+    set {-am.off::4::sr1::2} to vector(1, 0, 0)
+    set {-am.off::4::sr1::3} to vector(1, 1, 0)
+    set {-am.off::4::sr1::4} to vector(0, -1, 0)
+    set {-am.off::4::sr1::5} to vector(0, 1, 0)
+    set {-am.off::4::sr1::6} to vector(-1, -1, 0)
+    set {-am.off::4::sr1::7} to vector(-1, 0, 0)
+    set {-am.off::4::sr1::8} to vector(-1, 1, 0)
+    set {-am.off::4::sr2::1} to vector(1, -2, 0)
+    set {-am.off::4::sr2::2} to vector(1, -1, 0)
+    set {-am.off::4::sr2::3} to vector(1, 0, 0)
+    set {-am.off::4::sr2::4} to vector(0, -2, 0)
+    set {-am.off::4::sr2::5} to vector(0, -1, 0)
+    set {-am.off::4::sr2::6} to vector(-1, -2, 0)
+    set {-am.off::4::sr2::7} to vector(-1, -1, 0)
+    set {-am.off::4::sr2::8} to vector(-1, 0, 0)
     set {-am.off::4::ve::1} to vector(-1, 0, -1)
     set {-am.off::4::ve::2} to vector(0, 0, -1)
     set {-am.off::4::ve::3} to vector(1, 0, -1)
@@ -552,22 +572,30 @@ on load:
     set {-am.off::4::ve::6} to vector(-1, 0, 1)
     set {-am.off::4::ve::7} to vector(0, 0, 1)
     set {-am.off::4::ve::8} to vector(1, 0, 1)
-    set {-am.off::4::e0::1} to vector(0, -1, -1)
-    set {-am.off::4::e0::2} to vector(0, 0, -1)
-    set {-am.off::4::e0::3} to vector(0, 1, -1)
-    set {-am.off::4::e0::4} to vector(0, -1, 0)
-    set {-am.off::4::e0::5} to vector(0, 1, 0)
-    set {-am.off::4::e0::6} to vector(0, -1, 1)
-    set {-am.off::4::e0::7} to vector(0, 0, 1)
-    set {-am.off::4::e0::8} to vector(0, 1, 1)
-    set {-am.off::4::e1::1} to vector(0, -1, -1)
-    set {-am.off::4::e1::2} to vector(0, 0, -1)
-    set {-am.off::4::e1::3} to vector(0, 1, -1)
-    set {-am.off::4::e1::4} to vector(0, -1, 0)
-    set {-am.off::4::e1::5} to vector(0, 1, 0)
-    set {-am.off::4::e1::6} to vector(0, -1, 1)
-    set {-am.off::4::e1::7} to vector(0, 0, 1)
-    set {-am.off::4::e1::8} to vector(0, 1, 1)
+    set {-am.off::4::er0::1} to vector(0, 0, -1)
+    set {-am.off::4::er0::2} to vector(0, 1, -1)
+    set {-am.off::4::er0::3} to vector(0, 2, -1)
+    set {-am.off::4::er0::4} to vector(0, 1, 0)
+    set {-am.off::4::er0::5} to vector(0, 2, 0)
+    set {-am.off::4::er0::6} to vector(0, 0, 1)
+    set {-am.off::4::er0::7} to vector(0, 1, 1)
+    set {-am.off::4::er0::8} to vector(0, 2, 1)
+    set {-am.off::4::er1::1} to vector(0, -1, -1)
+    set {-am.off::4::er1::2} to vector(0, 0, -1)
+    set {-am.off::4::er1::3} to vector(0, 1, -1)
+    set {-am.off::4::er1::4} to vector(0, -1, 0)
+    set {-am.off::4::er1::5} to vector(0, 1, 0)
+    set {-am.off::4::er1::6} to vector(0, -1, 1)
+    set {-am.off::4::er1::7} to vector(0, 0, 1)
+    set {-am.off::4::er1::8} to vector(0, 1, 1)
+    set {-am.off::4::er2::1} to vector(0, -2, -1)
+    set {-am.off::4::er2::2} to vector(0, -1, -1)
+    set {-am.off::4::er2::3} to vector(0, 0, -1)
+    set {-am.off::4::er2::4} to vector(0, -2, 0)
+    set {-am.off::4::er2::5} to vector(0, -1, 0)
+    set {-am.off::4::er2::6} to vector(0, -2, 1)
+    set {-am.off::4::er2::7} to vector(0, -1, 1)
+    set {-am.off::4::er2::8} to vector(0, 0, 1)
     set {-am.off::4::vw::1} to vector(1, 0, 1)
     set {-am.off::4::vw::2} to vector(0, 0, 1)
     set {-am.off::4::vw::3} to vector(-1, 0, 1)
@@ -576,22 +604,31 @@ on load:
     set {-am.off::4::vw::6} to vector(1, 0, -1)
     set {-am.off::4::vw::7} to vector(0, 0, -1)
     set {-am.off::4::vw::8} to vector(-1, 0, -1)
-    set {-am.off::4::w0::1} to vector(0, -1, 1)
-    set {-am.off::4::w0::2} to vector(0, 0, 1)
-    set {-am.off::4::w0::3} to vector(0, 1, 1)
-    set {-am.off::4::w0::4} to vector(0, -1, 0)
-    set {-am.off::4::w0::5} to vector(0, 1, 0)
-    set {-am.off::4::w0::6} to vector(0, -1, -1)
-    set {-am.off::4::w0::7} to vector(0, 0, -1)
-    set {-am.off::4::w0::8} to vector(0, 1, -1)
-    set {-am.off::4::w1::1} to vector(0, -1, 1)
-    set {-am.off::4::w1::2} to vector(0, 0, 1)
-    set {-am.off::4::w1::3} to vector(0, 1, 1)
-    set {-am.off::4::w1::4} to vector(0, -1, 0)
-    set {-am.off::4::w1::5} to vector(0, 1, 0)
-    set {-am.off::4::w1::6} to vector(0, -1, -1)
-    set {-am.off::4::w1::7} to vector(0, 0, -1)
-    set {-am.off::4::w1::8} to vector(0, 1, -1)
+    set {-am.off::4::wr0::1} to vector(0, 0, 1)
+    set {-am.off::4::wr0::2} to vector(0, 1, 1)
+    set {-am.off::4::wr0::3} to vector(0, 2, 1)
+    set {-am.off::4::wr0::4} to vector(0, 1, 0)
+    set {-am.off::4::wr0::5} to vector(0, 2, 0)
+    set {-am.off::4::wr0::6} to vector(0, 0, -1)
+    set {-am.off::4::wr0::7} to vector(0, 1, -1)
+    set {-am.off::4::wr0::8} to vector(0, 2, -1)
+    set {-am.off::4::wr1::1} to vector(0, -1, 1)
+    set {-am.off::4::wr1::2} to vector(0, 0, 1)
+    set {-am.off::4::wr1::3} to vector(0, 1, 1)
+    set {-am.off::4::wr1::4} to vector(0, -1, 0)
+    set {-am.off::4::wr1::5} to vector(0, 1, 0)
+    set {-am.off::4::wr1::6} to vector(0, -1, -1)
+    set {-am.off::4::wr1::7} to vector(0, 0, -1)
+    set {-am.off::4::wr1::8} to vector(0, 1, -1)
+    set {-am.off::4::wr2::1} to vector(0, -2, 1)
+    set {-am.off::4::wr2::2} to vector(0, -1, 1)
+    set {-am.off::4::wr2::3} to vector(0, 0, 1)
+    set {-am.off::4::wr2::4} to vector(0, -2, 0)
+    set {-am.off::4::wr2::5} to vector(0, -1, 0)
+    set {-am.off::4::wr2::6} to vector(0, -2, -1)
+    set {-am.off::4::wr2::7} to vector(0, -1, -1)
+    set {-am.off::4::wr2::8} to vector(0, 0, -1)
+    set {-am.h::5} to 4
     set {-am.off::5::vn::1} to vector(-1, 0, 1)
     set {-am.off::5::vn::2} to vector(-1, 0, 0)
     set {-am.off::5::vn::3} to vector(-1, 0, -1)
@@ -607,36 +644,66 @@ on load:
     set {-am.off::5::vn::13} to vector(2, 0, 0)
     set {-am.off::5::vn::14} to vector(2, 0, -1)
     set {-am.off::5::vn::15} to vector(2, 0, -2)
-    set {-am.off::5::n0::1} to vector(-1, -2, 0)
-    set {-am.off::5::n0::2} to vector(-1, -1, 0)
-    set {-am.off::5::n0::3} to vector(-1, 0, 0)
-    set {-am.off::5::n0::4} to vector(-1, 1, 0)
-    set {-am.off::5::n0::5} to vector(0, -2, 0)
-    set {-am.off::5::n0::6} to vector(0, -1, 0)
-    set {-am.off::5::n0::7} to vector(0, 1, 0)
-    set {-am.off::5::n0::8} to vector(1, -2, 0)
-    set {-am.off::5::n0::9} to vector(1, -1, 0)
-    set {-am.off::5::n0::10} to vector(1, 0, 0)
-    set {-am.off::5::n0::11} to vector(1, 1, 0)
-    set {-am.off::5::n0::12} to vector(2, -2, 0)
-    set {-am.off::5::n0::13} to vector(2, -1, 0)
-    set {-am.off::5::n0::14} to vector(2, 0, 0)
-    set {-am.off::5::n0::15} to vector(2, 1, 0)
-    set {-am.off::5::n1::1} to vector(-1, -1, 0)
-    set {-am.off::5::n1::2} to vector(-1, 0, 0)
-    set {-am.off::5::n1::3} to vector(-1, 1, 0)
-    set {-am.off::5::n1::4} to vector(-1, 2, 0)
-    set {-am.off::5::n1::5} to vector(0, -1, 0)
-    set {-am.off::5::n1::6} to vector(0, 1, 0)
-    set {-am.off::5::n1::7} to vector(0, 2, 0)
-    set {-am.off::5::n1::8} to vector(1, -1, 0)
-    set {-am.off::5::n1::9} to vector(1, 0, 0)
-    set {-am.off::5::n1::10} to vector(1, 1, 0)
-    set {-am.off::5::n1::11} to vector(1, 2, 0)
-    set {-am.off::5::n1::12} to vector(2, -1, 0)
-    set {-am.off::5::n1::13} to vector(2, 0, 0)
-    set {-am.off::5::n1::14} to vector(2, 1, 0)
-    set {-am.off::5::n1::15} to vector(2, 2, 0)
+    set {-am.off::5::nr0::1} to vector(-1, 0, 0)
+    set {-am.off::5::nr0::2} to vector(-1, 1, 0)
+    set {-am.off::5::nr0::3} to vector(-1, 2, 0)
+    set {-am.off::5::nr0::4} to vector(-1, 3, 0)
+    set {-am.off::5::nr0::5} to vector(0, 1, 0)
+    set {-am.off::5::nr0::6} to vector(0, 2, 0)
+    set {-am.off::5::nr0::7} to vector(0, 3, 0)
+    set {-am.off::5::nr0::8} to vector(1, 0, 0)
+    set {-am.off::5::nr0::9} to vector(1, 1, 0)
+    set {-am.off::5::nr0::10} to vector(1, 2, 0)
+    set {-am.off::5::nr0::11} to vector(1, 3, 0)
+    set {-am.off::5::nr0::12} to vector(2, 0, 0)
+    set {-am.off::5::nr0::13} to vector(2, 1, 0)
+    set {-am.off::5::nr0::14} to vector(2, 2, 0)
+    set {-am.off::5::nr0::15} to vector(2, 3, 0)
+    set {-am.off::5::nr1::1} to vector(-1, -1, 0)
+    set {-am.off::5::nr1::2} to vector(-1, 0, 0)
+    set {-am.off::5::nr1::3} to vector(-1, 1, 0)
+    set {-am.off::5::nr1::4} to vector(-1, 2, 0)
+    set {-am.off::5::nr1::5} to vector(0, -1, 0)
+    set {-am.off::5::nr1::6} to vector(0, 1, 0)
+    set {-am.off::5::nr1::7} to vector(0, 2, 0)
+    set {-am.off::5::nr1::8} to vector(1, -1, 0)
+    set {-am.off::5::nr1::9} to vector(1, 0, 0)
+    set {-am.off::5::nr1::10} to vector(1, 1, 0)
+    set {-am.off::5::nr1::11} to vector(1, 2, 0)
+    set {-am.off::5::nr1::12} to vector(2, -1, 0)
+    set {-am.off::5::nr1::13} to vector(2, 0, 0)
+    set {-am.off::5::nr1::14} to vector(2, 1, 0)
+    set {-am.off::5::nr1::15} to vector(2, 2, 0)
+    set {-am.off::5::nr2::1} to vector(-1, -2, 0)
+    set {-am.off::5::nr2::2} to vector(-1, -1, 0)
+    set {-am.off::5::nr2::3} to vector(-1, 0, 0)
+    set {-am.off::5::nr2::4} to vector(-1, 1, 0)
+    set {-am.off::5::nr2::5} to vector(0, -2, 0)
+    set {-am.off::5::nr2::6} to vector(0, -1, 0)
+    set {-am.off::5::nr2::7} to vector(0, 1, 0)
+    set {-am.off::5::nr2::8} to vector(1, -2, 0)
+    set {-am.off::5::nr2::9} to vector(1, -1, 0)
+    set {-am.off::5::nr2::10} to vector(1, 0, 0)
+    set {-am.off::5::nr2::11} to vector(1, 1, 0)
+    set {-am.off::5::nr2::12} to vector(2, -2, 0)
+    set {-am.off::5::nr2::13} to vector(2, -1, 0)
+    set {-am.off::5::nr2::14} to vector(2, 0, 0)
+    set {-am.off::5::nr2::15} to vector(2, 1, 0)
+    set {-am.off::5::nr3::1} to vector(-1, -3, 0)
+    set {-am.off::5::nr3::2} to vector(-1, -2, 0)
+    set {-am.off::5::nr3::3} to vector(-1, -1, 0)
+    set {-am.off::5::nr3::4} to vector(-1, 0, 0)
+    set {-am.off::5::nr3::5} to vector(0, -3, 0)
+    set {-am.off::5::nr3::6} to vector(0, -2, 0)
+    set {-am.off::5::nr3::7} to vector(0, -1, 0)
+    set {-am.off::5::nr3::8} to vector(1, -3, 0)
+    set {-am.off::5::nr3::9} to vector(1, -2, 0)
+    set {-am.off::5::nr3::10} to vector(1, -1, 0)
+    set {-am.off::5::nr3::11} to vector(1, 0, 0)
+    set {-am.off::5::nr3::12} to vector(2, -3, 0)
+    set {-am.off::5::nr3::13} to vector(2, -2, 0)
+    set {-am.off::5::nr3::14} to vector(2, -1, 0)
+    set {-am.off::5::nr3::15} to vector(2, 0, 0)
     set {-am.off::5::vs::1} to vector(1, 0, -1)
     set {-am.off::5::vs::2} to vector(1, 0, 0)
     set {-am.off::5::vs::3} to vector(1, 0, 1)
@@ -652,36 +719,66 @@ on load:
     set {-am.off::5::vs::13} to vector(-2, 0, 0)
     set {-am.off::5::vs::14} to vector(-2, 0, 1)
     set {-am.off::5::vs::15} to vector(-2, 0, 2)
-    set {-am.off::5::s0::1} to vector(1, -2, 0)
-    set {-am.off::5::s0::2} to vector(1, -1, 0)
-    set {-am.off::5::s0::3} to vector(1, 0, 0)
-    set {-am.off::5::s0::4} to vector(1, 1, 0)
-    set {-am.off::5::s0::5} to vector(0, -2, 0)
-    set {-am.off::5::s0::6} to vector(0, -1, 0)
-    set {-am.off::5::s0::7} to vector(0, 1, 0)
-    set {-am.off::5::s0::8} to vector(-1, -2, 0)
-    set {-am.off::5::s0::9} to vector(-1, -1, 0)
-    set {-am.off::5::s0::10} to vector(-1, 0, 0)
-    set {-am.off::5::s0::11} to vector(-1, 1, 0)
-    set {-am.off::5::s0::12} to vector(-2, -2, 0)
-    set {-am.off::5::s0::13} to vector(-2, -1, 0)
-    set {-am.off::5::s0::14} to vector(-2, 0, 0)
-    set {-am.off::5::s0::15} to vector(-2, 1, 0)
-    set {-am.off::5::s1::1} to vector(1, -1, 0)
-    set {-am.off::5::s1::2} to vector(1, 0, 0)
-    set {-am.off::5::s1::3} to vector(1, 1, 0)
-    set {-am.off::5::s1::4} to vector(1, 2, 0)
-    set {-am.off::5::s1::5} to vector(0, -1, 0)
-    set {-am.off::5::s1::6} to vector(0, 1, 0)
-    set {-am.off::5::s1::7} to vector(0, 2, 0)
-    set {-am.off::5::s1::8} to vector(-1, -1, 0)
-    set {-am.off::5::s1::9} to vector(-1, 0, 0)
-    set {-am.off::5::s1::10} to vector(-1, 1, 0)
-    set {-am.off::5::s1::11} to vector(-1, 2, 0)
-    set {-am.off::5::s1::12} to vector(-2, -1, 0)
-    set {-am.off::5::s1::13} to vector(-2, 0, 0)
-    set {-am.off::5::s1::14} to vector(-2, 1, 0)
-    set {-am.off::5::s1::15} to vector(-2, 2, 0)
+    set {-am.off::5::sr0::1} to vector(1, 0, 0)
+    set {-am.off::5::sr0::2} to vector(1, 1, 0)
+    set {-am.off::5::sr0::3} to vector(1, 2, 0)
+    set {-am.off::5::sr0::4} to vector(1, 3, 0)
+    set {-am.off::5::sr0::5} to vector(0, 1, 0)
+    set {-am.off::5::sr0::6} to vector(0, 2, 0)
+    set {-am.off::5::sr0::7} to vector(0, 3, 0)
+    set {-am.off::5::sr0::8} to vector(-1, 0, 0)
+    set {-am.off::5::sr0::9} to vector(-1, 1, 0)
+    set {-am.off::5::sr0::10} to vector(-1, 2, 0)
+    set {-am.off::5::sr0::11} to vector(-1, 3, 0)
+    set {-am.off::5::sr0::12} to vector(-2, 0, 0)
+    set {-am.off::5::sr0::13} to vector(-2, 1, 0)
+    set {-am.off::5::sr0::14} to vector(-2, 2, 0)
+    set {-am.off::5::sr0::15} to vector(-2, 3, 0)
+    set {-am.off::5::sr1::1} to vector(1, -1, 0)
+    set {-am.off::5::sr1::2} to vector(1, 0, 0)
+    set {-am.off::5::sr1::3} to vector(1, 1, 0)
+    set {-am.off::5::sr1::4} to vector(1, 2, 0)
+    set {-am.off::5::sr1::5} to vector(0, -1, 0)
+    set {-am.off::5::sr1::6} to vector(0, 1, 0)
+    set {-am.off::5::sr1::7} to vector(0, 2, 0)
+    set {-am.off::5::sr1::8} to vector(-1, -1, 0)
+    set {-am.off::5::sr1::9} to vector(-1, 0, 0)
+    set {-am.off::5::sr1::10} to vector(-1, 1, 0)
+    set {-am.off::5::sr1::11} to vector(-1, 2, 0)
+    set {-am.off::5::sr1::12} to vector(-2, -1, 0)
+    set {-am.off::5::sr1::13} to vector(-2, 0, 0)
+    set {-am.off::5::sr1::14} to vector(-2, 1, 0)
+    set {-am.off::5::sr1::15} to vector(-2, 2, 0)
+    set {-am.off::5::sr2::1} to vector(1, -2, 0)
+    set {-am.off::5::sr2::2} to vector(1, -1, 0)
+    set {-am.off::5::sr2::3} to vector(1, 0, 0)
+    set {-am.off::5::sr2::4} to vector(1, 1, 0)
+    set {-am.off::5::sr2::5} to vector(0, -2, 0)
+    set {-am.off::5::sr2::6} to vector(0, -1, 0)
+    set {-am.off::5::sr2::7} to vector(0, 1, 0)
+    set {-am.off::5::sr2::8} to vector(-1, -2, 0)
+    set {-am.off::5::sr2::9} to vector(-1, -1, 0)
+    set {-am.off::5::sr2::10} to vector(-1, 0, 0)
+    set {-am.off::5::sr2::11} to vector(-1, 1, 0)
+    set {-am.off::5::sr2::12} to vector(-2, -2, 0)
+    set {-am.off::5::sr2::13} to vector(-2, -1, 0)
+    set {-am.off::5::sr2::14} to vector(-2, 0, 0)
+    set {-am.off::5::sr2::15} to vector(-2, 1, 0)
+    set {-am.off::5::sr3::1} to vector(1, -3, 0)
+    set {-am.off::5::sr3::2} to vector(1, -2, 0)
+    set {-am.off::5::sr3::3} to vector(1, -1, 0)
+    set {-am.off::5::sr3::4} to vector(1, 0, 0)
+    set {-am.off::5::sr3::5} to vector(0, -3, 0)
+    set {-am.off::5::sr3::6} to vector(0, -2, 0)
+    set {-am.off::5::sr3::7} to vector(0, -1, 0)
+    set {-am.off::5::sr3::8} to vector(-1, -3, 0)
+    set {-am.off::5::sr3::9} to vector(-1, -2, 0)
+    set {-am.off::5::sr3::10} to vector(-1, -1, 0)
+    set {-am.off::5::sr3::11} to vector(-1, 0, 0)
+    set {-am.off::5::sr3::12} to vector(-2, -3, 0)
+    set {-am.off::5::sr3::13} to vector(-2, -2, 0)
+    set {-am.off::5::sr3::14} to vector(-2, -1, 0)
+    set {-am.off::5::sr3::15} to vector(-2, 0, 0)
     set {-am.off::5::ve::1} to vector(-1, 0, -1)
     set {-am.off::5::ve::2} to vector(0, 0, -1)
     set {-am.off::5::ve::3} to vector(1, 0, -1)
@@ -697,36 +794,66 @@ on load:
     set {-am.off::5::ve::13} to vector(0, 0, 2)
     set {-am.off::5::ve::14} to vector(1, 0, 2)
     set {-am.off::5::ve::15} to vector(2, 0, 2)
-    set {-am.off::5::e0::1} to vector(0, -2, -1)
-    set {-am.off::5::e0::2} to vector(0, -1, -1)
-    set {-am.off::5::e0::3} to vector(0, 0, -1)
-    set {-am.off::5::e0::4} to vector(0, 1, -1)
-    set {-am.off::5::e0::5} to vector(0, -2, 0)
-    set {-am.off::5::e0::6} to vector(0, -1, 0)
-    set {-am.off::5::e0::7} to vector(0, 1, 0)
-    set {-am.off::5::e0::8} to vector(0, -2, 1)
-    set {-am.off::5::e0::9} to vector(0, -1, 1)
-    set {-am.off::5::e0::10} to vector(0, 0, 1)
-    set {-am.off::5::e0::11} to vector(0, 1, 1)
-    set {-am.off::5::e0::12} to vector(0, -2, 2)
-    set {-am.off::5::e0::13} to vector(0, -1, 2)
-    set {-am.off::5::e0::14} to vector(0, 0, 2)
-    set {-am.off::5::e0::15} to vector(0, 1, 2)
-    set {-am.off::5::e1::1} to vector(0, -1, -1)
-    set {-am.off::5::e1::2} to vector(0, 0, -1)
-    set {-am.off::5::e1::3} to vector(0, 1, -1)
-    set {-am.off::5::e1::4} to vector(0, 2, -1)
-    set {-am.off::5::e1::5} to vector(0, -1, 0)
-    set {-am.off::5::e1::6} to vector(0, 1, 0)
-    set {-am.off::5::e1::7} to vector(0, 2, 0)
-    set {-am.off::5::e1::8} to vector(0, -1, 1)
-    set {-am.off::5::e1::9} to vector(0, 0, 1)
-    set {-am.off::5::e1::10} to vector(0, 1, 1)
-    set {-am.off::5::e1::11} to vector(0, 2, 1)
-    set {-am.off::5::e1::12} to vector(0, -1, 2)
-    set {-am.off::5::e1::13} to vector(0, 0, 2)
-    set {-am.off::5::e1::14} to vector(0, 1, 2)
-    set {-am.off::5::e1::15} to vector(0, 2, 2)
+    set {-am.off::5::er0::1} to vector(0, 0, -1)
+    set {-am.off::5::er0::2} to vector(0, 1, -1)
+    set {-am.off::5::er0::3} to vector(0, 2, -1)
+    set {-am.off::5::er0::4} to vector(0, 3, -1)
+    set {-am.off::5::er0::5} to vector(0, 1, 0)
+    set {-am.off::5::er0::6} to vector(0, 2, 0)
+    set {-am.off::5::er0::7} to vector(0, 3, 0)
+    set {-am.off::5::er0::8} to vector(0, 0, 1)
+    set {-am.off::5::er0::9} to vector(0, 1, 1)
+    set {-am.off::5::er0::10} to vector(0, 2, 1)
+    set {-am.off::5::er0::11} to vector(0, 3, 1)
+    set {-am.off::5::er0::12} to vector(0, 0, 2)
+    set {-am.off::5::er0::13} to vector(0, 1, 2)
+    set {-am.off::5::er0::14} to vector(0, 2, 2)
+    set {-am.off::5::er0::15} to vector(0, 3, 2)
+    set {-am.off::5::er1::1} to vector(0, -1, -1)
+    set {-am.off::5::er1::2} to vector(0, 0, -1)
+    set {-am.off::5::er1::3} to vector(0, 1, -1)
+    set {-am.off::5::er1::4} to vector(0, 2, -1)
+    set {-am.off::5::er1::5} to vector(0, -1, 0)
+    set {-am.off::5::er1::6} to vector(0, 1, 0)
+    set {-am.off::5::er1::7} to vector(0, 2, 0)
+    set {-am.off::5::er1::8} to vector(0, -1, 1)
+    set {-am.off::5::er1::9} to vector(0, 0, 1)
+    set {-am.off::5::er1::10} to vector(0, 1, 1)
+    set {-am.off::5::er1::11} to vector(0, 2, 1)
+    set {-am.off::5::er1::12} to vector(0, -1, 2)
+    set {-am.off::5::er1::13} to vector(0, 0, 2)
+    set {-am.off::5::er1::14} to vector(0, 1, 2)
+    set {-am.off::5::er1::15} to vector(0, 2, 2)
+    set {-am.off::5::er2::1} to vector(0, -2, -1)
+    set {-am.off::5::er2::2} to vector(0, -1, -1)
+    set {-am.off::5::er2::3} to vector(0, 0, -1)
+    set {-am.off::5::er2::4} to vector(0, 1, -1)
+    set {-am.off::5::er2::5} to vector(0, -2, 0)
+    set {-am.off::5::er2::6} to vector(0, -1, 0)
+    set {-am.off::5::er2::7} to vector(0, 1, 0)
+    set {-am.off::5::er2::8} to vector(0, -2, 1)
+    set {-am.off::5::er2::9} to vector(0, -1, 1)
+    set {-am.off::5::er2::10} to vector(0, 0, 1)
+    set {-am.off::5::er2::11} to vector(0, 1, 1)
+    set {-am.off::5::er2::12} to vector(0, -2, 2)
+    set {-am.off::5::er2::13} to vector(0, -1, 2)
+    set {-am.off::5::er2::14} to vector(0, 0, 2)
+    set {-am.off::5::er2::15} to vector(0, 1, 2)
+    set {-am.off::5::er3::1} to vector(0, -3, -1)
+    set {-am.off::5::er3::2} to vector(0, -2, -1)
+    set {-am.off::5::er3::3} to vector(0, -1, -1)
+    set {-am.off::5::er3::4} to vector(0, 0, -1)
+    set {-am.off::5::er3::5} to vector(0, -3, 0)
+    set {-am.off::5::er3::6} to vector(0, -2, 0)
+    set {-am.off::5::er3::7} to vector(0, -1, 0)
+    set {-am.off::5::er3::8} to vector(0, -3, 1)
+    set {-am.off::5::er3::9} to vector(0, -2, 1)
+    set {-am.off::5::er3::10} to vector(0, -1, 1)
+    set {-am.off::5::er3::11} to vector(0, 0, 1)
+    set {-am.off::5::er3::12} to vector(0, -3, 2)
+    set {-am.off::5::er3::13} to vector(0, -2, 2)
+    set {-am.off::5::er3::14} to vector(0, -1, 2)
+    set {-am.off::5::er3::15} to vector(0, 0, 2)
     set {-am.off::5::vw::1} to vector(1, 0, 1)
     set {-am.off::5::vw::2} to vector(0, 0, 1)
     set {-am.off::5::vw::3} to vector(-1, 0, 1)
@@ -742,36 +869,66 @@ on load:
     set {-am.off::5::vw::13} to vector(0, 0, -2)
     set {-am.off::5::vw::14} to vector(-1, 0, -2)
     set {-am.off::5::vw::15} to vector(-2, 0, -2)
-    set {-am.off::5::w0::1} to vector(0, -2, 1)
-    set {-am.off::5::w0::2} to vector(0, -1, 1)
-    set {-am.off::5::w0::3} to vector(0, 0, 1)
-    set {-am.off::5::w0::4} to vector(0, 1, 1)
-    set {-am.off::5::w0::5} to vector(0, -2, 0)
-    set {-am.off::5::w0::6} to vector(0, -1, 0)
-    set {-am.off::5::w0::7} to vector(0, 1, 0)
-    set {-am.off::5::w0::8} to vector(0, -2, -1)
-    set {-am.off::5::w0::9} to vector(0, -1, -1)
-    set {-am.off::5::w0::10} to vector(0, 0, -1)
-    set {-am.off::5::w0::11} to vector(0, 1, -1)
-    set {-am.off::5::w0::12} to vector(0, -2, -2)
-    set {-am.off::5::w0::13} to vector(0, -1, -2)
-    set {-am.off::5::w0::14} to vector(0, 0, -2)
-    set {-am.off::5::w0::15} to vector(0, 1, -2)
-    set {-am.off::5::w1::1} to vector(0, -1, 1)
-    set {-am.off::5::w1::2} to vector(0, 0, 1)
-    set {-am.off::5::w1::3} to vector(0, 1, 1)
-    set {-am.off::5::w1::4} to vector(0, 2, 1)
-    set {-am.off::5::w1::5} to vector(0, -1, 0)
-    set {-am.off::5::w1::6} to vector(0, 1, 0)
-    set {-am.off::5::w1::7} to vector(0, 2, 0)
-    set {-am.off::5::w1::8} to vector(0, -1, -1)
-    set {-am.off::5::w1::9} to vector(0, 0, -1)
-    set {-am.off::5::w1::10} to vector(0, 1, -1)
-    set {-am.off::5::w1::11} to vector(0, 2, -1)
-    set {-am.off::5::w1::12} to vector(0, -1, -2)
-    set {-am.off::5::w1::13} to vector(0, 0, -2)
-    set {-am.off::5::w1::14} to vector(0, 1, -2)
-    set {-am.off::5::w1::15} to vector(0, 2, -2)
+    set {-am.off::5::wr0::1} to vector(0, 0, 1)
+    set {-am.off::5::wr0::2} to vector(0, 1, 1)
+    set {-am.off::5::wr0::3} to vector(0, 2, 1)
+    set {-am.off::5::wr0::4} to vector(0, 3, 1)
+    set {-am.off::5::wr0::5} to vector(0, 1, 0)
+    set {-am.off::5::wr0::6} to vector(0, 2, 0)
+    set {-am.off::5::wr0::7} to vector(0, 3, 0)
+    set {-am.off::5::wr0::8} to vector(0, 0, -1)
+    set {-am.off::5::wr0::9} to vector(0, 1, -1)
+    set {-am.off::5::wr0::10} to vector(0, 2, -1)
+    set {-am.off::5::wr0::11} to vector(0, 3, -1)
+    set {-am.off::5::wr0::12} to vector(0, 0, -2)
+    set {-am.off::5::wr0::13} to vector(0, 1, -2)
+    set {-am.off::5::wr0::14} to vector(0, 2, -2)
+    set {-am.off::5::wr0::15} to vector(0, 3, -2)
+    set {-am.off::5::wr1::1} to vector(0, -1, 1)
+    set {-am.off::5::wr1::2} to vector(0, 0, 1)
+    set {-am.off::5::wr1::3} to vector(0, 1, 1)
+    set {-am.off::5::wr1::4} to vector(0, 2, 1)
+    set {-am.off::5::wr1::5} to vector(0, -1, 0)
+    set {-am.off::5::wr1::6} to vector(0, 1, 0)
+    set {-am.off::5::wr1::7} to vector(0, 2, 0)
+    set {-am.off::5::wr1::8} to vector(0, -1, -1)
+    set {-am.off::5::wr1::9} to vector(0, 0, -1)
+    set {-am.off::5::wr1::10} to vector(0, 1, -1)
+    set {-am.off::5::wr1::11} to vector(0, 2, -1)
+    set {-am.off::5::wr1::12} to vector(0, -1, -2)
+    set {-am.off::5::wr1::13} to vector(0, 0, -2)
+    set {-am.off::5::wr1::14} to vector(0, 1, -2)
+    set {-am.off::5::wr1::15} to vector(0, 2, -2)
+    set {-am.off::5::wr2::1} to vector(0, -2, 1)
+    set {-am.off::5::wr2::2} to vector(0, -1, 1)
+    set {-am.off::5::wr2::3} to vector(0, 0, 1)
+    set {-am.off::5::wr2::4} to vector(0, 1, 1)
+    set {-am.off::5::wr2::5} to vector(0, -2, 0)
+    set {-am.off::5::wr2::6} to vector(0, -1, 0)
+    set {-am.off::5::wr2::7} to vector(0, 1, 0)
+    set {-am.off::5::wr2::8} to vector(0, -2, -1)
+    set {-am.off::5::wr2::9} to vector(0, -1, -1)
+    set {-am.off::5::wr2::10} to vector(0, 0, -1)
+    set {-am.off::5::wr2::11} to vector(0, 1, -1)
+    set {-am.off::5::wr2::12} to vector(0, -2, -2)
+    set {-am.off::5::wr2::13} to vector(0, -1, -2)
+    set {-am.off::5::wr2::14} to vector(0, 0, -2)
+    set {-am.off::5::wr2::15} to vector(0, 1, -2)
+    set {-am.off::5::wr3::1} to vector(0, -3, 1)
+    set {-am.off::5::wr3::2} to vector(0, -2, 1)
+    set {-am.off::5::wr3::3} to vector(0, -1, 1)
+    set {-am.off::5::wr3::4} to vector(0, 0, 1)
+    set {-am.off::5::wr3::5} to vector(0, -3, 0)
+    set {-am.off::5::wr3::6} to vector(0, -2, 0)
+    set {-am.off::5::wr3::7} to vector(0, -1, 0)
+    set {-am.off::5::wr3::8} to vector(0, -3, -1)
+    set {-am.off::5::wr3::9} to vector(0, -2, -1)
+    set {-am.off::5::wr3::10} to vector(0, -1, -1)
+    set {-am.off::5::wr3::11} to vector(0, 0, -1)
+    set {-am.off::5::wr3::12} to vector(0, -3, -2)
+    set {-am.off::5::wr3::13} to vector(0, -2, -2)
+    set {-am.off::5::wr3::14} to vector(0, -1, -2)
+    set {-am.off::5::wr3::15} to vector(0, 0, -2)
     if {am.subir} is not set:
         set {am.subir} to "privado"
     loop "am_rank", "am_here", "am_blocks", "am_goal", "am_cost", "am_minutes", "am_regen_m", "am_regen_s", "am_segments", "am_subir" and "am_left":
@@ -829,11 +986,46 @@ function am_renacer_confirm(p: player):
     if am_renacer_ready({_p}) is false:
         send "&cNecesitas la ultima mina y menos de 10 renacimientos." to {_p}
         stop
-    set {_inv} to chest inventory with 3 rows named "&6Renacer en las Minas"
-    set slot 11 of {_inv} to lime wool named "&aSi, renacer" with lore "&7Volves a Carbon I. Bloques y minutos a 0." and "&7Bonus permanente: +10%% por renacimiento." and "&7Conservas inventario, oro y habilidades."
-    set slot 15 of {_inv} to red wool named "&cCancelar"
+    # Ventana con el diseno del dueno (ventana_renacer.py): botones dibujados en la fila 6, items invisibles encima.
+    set {_n} to am_renac({_p})
+    set {_inv} to chest inventory with 6 rows named am_renacer_titulo({_n})
+    set {_a} to {_n} * 10
+    set {_d} to {_a} + 10
+    loop 45, 46, 47 and 48:
+        set slot loop-value of {_inv} to am_renacer_pieza("&a&lRenacer", ("&7Volves a Carbon I. Bloques y minutos a 0.", "&7Plata de minerales: &f+%{_a}%%% &7-> &6+%{_d}%%%", "&7Conservas inventario, oro y habilidades." and "&eClic para renacer."))
+    loop 50, 51, 52 and 53:
+        set slot loop-value of {_inv} to am_renacer_pieza("&c&lCancelar", ("&7Volver al menu de minas."))
     open {_inv} to {_p}
     set {-am.gui::%uuid of {_p}%} to "renacer"
+
+function am_renacer_pieza(label: text, lore: texts) :: item:
+    set {_i} to paper named colored {_label}
+    set item model of {_i} to "astral:ventanas1911/b_cerrar_0"
+    set lore of {_i} to {_lore::*}
+    return {_i}
+
+function am_renacer_titulo(n: number) :: text:
+    if {_n} is 0:
+        return "&f"
+    if {_n} is 1:
+        return "&f"
+    if {_n} is 2:
+        return "&f"
+    if {_n} is 3:
+        return "&f"
+    if {_n} is 4:
+        return "&f"
+    if {_n} is 5:
+        return "&f"
+    if {_n} is 6:
+        return "&f"
+    if {_n} is 7:
+        return "&f"
+    if {_n} is 8:
+        return "&f"
+    if {_n} is 9:
+        return "&f"
+    return "&6Renacer en las Minas"
 
 function am_renacer_do(p: player):
     if am_renacer_ready({_p}) is false:
@@ -1206,10 +1398,11 @@ on inventory click:
         stop
     set {_slot} to index of event-slot
     if {_gui} is "renacer":
-        close inventory of player
-        if {_slot} is 11:
+        if {_slot} is between 45 and 48:
+            close inventory of player
             am_renacer_do(player)
-        else:
+        else if {_slot} is between 50 and 53:
+            close inventory of player
             am_menu(player)
         stop
     if {_gui} is "menu":
@@ -1332,9 +1525,42 @@ function am_drill_area(p: player) :: number:
 
 # Auto-recolectado: lo picado va directo al inventario. Si no entra, cae a los pies del jugador.
 function am_give(p: player, items: items):
+    # AstralMinasLimite tira al piso lo que no entra (los minerales marcados no se apilan con los
+    # comunes, por eso no se puede preguntar antes): se cuenta lo que hay en el piso antes y despues.
+    set {_antes::*} to all dropped items in radius 1.5 around location of {_p}
     loop {_items::*}:
         # AstralMinasLimite: PDC invisible, interruptor privado y sobrantes marcados.
         astral mine give loop-value to {_p}
+    set {_despues::*} to all dropped items in radius 1.5 around location of {_p}
+    if size of {_despues::*} > size of {_antes::*}:
+        am_aviso_lleno({_p})
+    else:
+        # Entro todo: hay lugar otra vez, el proximo llenado vuelve a avisar.
+        delete {-am.lleno::%uuid of {_p}%}
+
+# 25/11 (dueno): cartel en pantalla UNA sola vez cuando el inventario se llena picando.
+# No se repite hasta que vuelva a entrar lo picado (vacio el inventario y se lleno de nuevo).
+# Regla del dueno: solo ByTrainx hasta `/invlleno publico`.
+function am_aviso_lleno(p: player):
+    if name of {_p} is not "ByTrainx":
+        {am.invlleno.publico} is true
+    set {_u} to uuid of {_p}
+    {-am.lleno::%{_u}%} is not set
+    set {-am.lleno::%{_u}%} to true
+    send title "&c&lINVENTARIO LLENO" with subtitle "&7Vaciá el inventario: lo que picás cae al piso" to {_p} for 2 seconds with fadein 5 ticks and fadeout 10 ticks
+    play sound "block.note_block.bass" with volume 1 and pitch 0.6 to {_p}
+
+command /invlleno <text>:
+    permission: op
+    trigger:
+        if arg-1 is "publico":
+            set {am.invlleno.publico} to true
+            send "&aAviso de inventario lleno en minas: abierto para todos." to sender
+        else if arg-1 is "privado":
+            delete {am.invlleno.publico}
+            send "&eAviso de inventario lleno en minas: solo ByTrainx." to sender
+        else:
+            send "&7/invlleno publico | privado" to sender
 
 # 25/11 (dueno): los bloques extra del taladro y del Minero de Vetas se borran a mano y AuraSkills
 # no los ve. Se les da la misma XP de Mineria que en plugins/AuraSkills/sources/mining.yml.
@@ -1379,6 +1605,25 @@ function am_xp_give(p: player, x: number):
         stop
     set {_x} to round({_x} * 10) / 10
     execute console command "skills xp add %{_p}% mining %{_x}% true"
+
+# Cara del bloque por donde entra la mirada (rayo contra el cubo): true = arriba/abajo.
+function am_tcara(e: number, d: number, lo: number) :: number:
+    if {_d} = 0:
+        return -1000000
+    set {_t1} to ({_lo} - {_e}) / {_d}
+    set {_t2} to ({_lo} + 1 - {_e}) / {_d}
+    return min({_t1}, {_t2})
+
+function am_cara_vertical(p: player, b: location) :: boolean:
+    set {_e} to eye location of {_p}
+    set {_d} to vector from yaw (yaw of {_p}) and pitch (pitch of {_p})
+    set {_tx} to am_tcara(x-coordinate of {_e}, x component of {_d}, floor(x-coordinate of {_b}))
+    set {_ty} to am_tcara(y-coordinate of {_e}, y component of {_d}, floor(y-coordinate of {_b}))
+    set {_tz} to am_tcara(z-coordinate of {_e}, z component of {_d}, floor(z-coordinate of {_b}))
+    if {_ty} > {_tx}:
+        if {_ty} > {_tz}:
+            return true
+    return false
 
 function am_drill(p: player, origin: location, area: number, dir: text) :: number:
     set {_i} to am_id({_origin})
@@ -1477,19 +1722,21 @@ on uncancelled break with priority monitor:
         set {_face} to "e"
     else:
         set {_face} to "s"
-    # Piso (bloque mas abajo que los pies) o techo (mas arriba de la cabeza): cuadrado horizontal
-    # alrededor del bloque apuntado. A la altura del cuerpo: la pared de frente.
+    # 25/11 (dueno): manda la CARA que se pico, no la altura del bloque. Piso o techo (cara de
+    # arriba/abajo): cuadrado horizontal. Pared (cara del costado): plano parado que arranca en el
+    # piso del jugador (antes el 4x4 bajaba 1 bloque y picar arriba hacia una ranura horizontal).
     set {_by} to floor(y-coordinate of event-block)
     set {_py} to floor(y-coordinate of player)
-    if {_by} < {_py}:
-        set {_dir} to "v%{_face}%"
-    else if {_by} > {_py} + 1:
+    if am_cara_vertical(player, location of event-block) is true:
         set {_dir} to "v%{_face}%"
     else:
-        set {_up} to 0
-        if {_by} <= {_py}:
-            set {_up} to 1
-        set {_dir} to "%{_face}%%{_up}%"
+        set {_h} to {-am.h::%{_area}%}
+        set {_up} to {_by} - {_py}
+        if {_up} < 0:
+            set {_up} to 0
+        if {_up} > {_h} - 1:
+            set {_up} to {_h} - 1
+        set {_dir} to "%{_face}%r%{_up}%"
     set {_origin} to location of event-block
     wait 1 tick
     if player is online:
@@ -1499,7 +1746,7 @@ on uncancelled break with priority monitor:
             if {_area} = 2:
                 if {_up} is set:
                     set {_o} to 1 - {_up}
-                    am_drill(player, {_origin}, {_area}, "%{_face}%%{_o}%")
+                    am_drill(player, {_origin}, {_area}, "%{_face}%r%{_o}%")
         if {_vein} is true:
             am_vein(player, {_origin}, {_vmax}, {_vt})
 
@@ -1537,6 +1784,7 @@ on quit:
     delete {-am.gui::%uuid of player%}
     delete {-am.active::%uuid of player%}
     delete {-am.sec::%uuid of player%}
+    delete {-am.lleno::%uuid of player%}
 
 # Nadie entra por /tp o /tpa a una mina que no abrio.
 on teleport:
@@ -1565,6 +1813,10 @@ every 30 seconds:
 every 1 second:
     loop all players in am_world():
         set {_i} to am_id(location of loop-player)
+        if {_i} > 0:
+            set {_ocupada::%{_i}%} to true
+            if am_limpiar_enabled(loop-player) is true:
+                set {_limpia::%{_i}%} to true
         am_regen_sidebar(loop-player, {_i})
         if loop-player's gamemode is creative:
             if loop-player has permission "astral.minas.admin":
@@ -1601,6 +1853,43 @@ every 1 second:
                             delete {-am.sec::%{_id}%}
                             add 1 to {am.minutes::%{_id}%}
                             am_score(loop-player, "am_minutes", {am.minutes::%{_id}%})
+
+    # Limpieza del piso (ver am_limpiar_enabled): solo minas que estaban vacias el segundo anterior.
+    loop indices of {_limpia::*}:
+        if {-am.ocupada::%loop-value%} is not set:
+            set {-am.limpiar::%loop-value%} to 3
+    delete {-am.ocupada::*}
+    loop indices of {_ocupada::*}:
+        set {-am.ocupada::%loop-value%} to true
+    loop indices of {-am.limpiar::*}:
+        set {_m} to loop-value parsed as number
+        set {_x} to ({_m} - 1) * 512
+        execute console command "minecraft:execute in minecraft:astral_minas run minecraft:kill @e[type=minecraft:item,x=%{_x}%,y=-64,z=-2000,dx=511,dy=448,dz=4000,nbt=!{Age:-32768s}]"
+        set {_n} to {-am.limpiar::%loop-value%} - 1
+        if {_n} > 0:
+            set {_sigue::%loop-value%} to {_n}
+    delete {-am.limpiar::*}
+    loop indices of {_sigue::*}:
+        set {-am.limpiar::%loop-value%} to {_sigue::%loop-value%}
+
+# 25/11 (dueno): cuando alguien entra a una mina VACIA se borran los items que quedaron tirados en el
+# piso de antes. Si ya habia gente adentro no se toca nada (pueden ser cosas recien caidas). Se borra
+# 3 segundos seguidos porque las entidades de los chunks tardan un momento en cargar al llegar.
+# Regla del dueno: solo ByTrainx hasta `/minaslimpiar publico`.
+function am_limpiar_enabled(p: player) :: boolean:
+    if {am.limpiar} is "publico":
+        return true
+    if name of {_p} is "ByTrainx":
+        return true
+    return false
+
+command /minaslimpiar [<text>]:
+    permission: astral.minas.admin
+    trigger:
+        if arg-1 is "publico" or "privado":
+            set {am.limpiar} to arg-1
+        set {_m} to {am.limpiar} ? "privado"
+        send "&eLimpiar items del piso al entrar: &f%{_m}% &7(/minaslimpiar publico|privado)" to sender
 
 # El panel lateral se actualiza cada 3 segundos y solo si cambio el contador.
 every 3 seconds:

@@ -46,6 +46,55 @@ public final class TableProbe extends JavaPlugin {
         return Bukkit.getLootTable(NamespacedKey.fromString("astral:item/"+id)).populateLoot(new Random(),new org.bukkit.loot.LootContext.Builder(player.getLocation()).build()).iterator().next();
     }
     ShapelessRecipe recipe(String id) {return (ShapelessRecipe)Bukkit.getRecipe(NamespacedKey.fromString("astral:mesa/"+id));}
+    void legacyMigration(ItemStack item,List<ItemStack> canonicals) {
+        if(item==null || !item.hasItemMeta() || !item.getItemMeta().getAsString().contains("astral:"))return;
+        for(var canonical:canonicals) {
+            if(item.getType()!=canonical.getType())continue;
+            if(item.isSimilar(canonical))break;
+            var candidate=item.clone();var meta=candidate.getItemMeta();
+            meta.lore(canonical.getItemMeta().lore());candidate.setItemMeta(meta);
+            if(candidate.isSimilar(canonical)) {item.setItemMeta(meta);break;}
+        }
+    }
+    void migrationCache() throws Exception {
+        var plugin=Bukkit.getPluginManager().getPlugin("AstralDecor");
+        var field=plugin.getClass().getDeclaredField("tableItems");field.setAccessible(true);
+        var canonicals=(List<ItemStack>)field.get(plugin);
+        var method=plugin.getClass().getDeclaredMethod("migrateTableLore",ItemStack.class);method.setAccessible(true);
+        int compared=0;boolean same=true;
+        for(var canonical:canonicals)for(int variant=0;variant<4;variant++) {
+            var input=canonical.clone();input.setAmount(7);
+            var meta=input.getItemMeta();
+            if(variant>0)meta.lore(List.of(net.kyori.adventure.text.Component.text("Anterior")));
+            if(variant==2)meta.getPersistentDataContainer().set(new NamespacedKey("probe","keep"),org.bukkit.persistence.PersistentDataType.INTEGER,42);
+            if(variant==3)meta.displayName(net.kyori.adventure.text.Component.text("Renombrado"));
+            input.setItemMeta(meta);
+            var expected=input.clone();legacyMigration(expected,canonicals);
+            var actual=input.clone();method.invoke(plugin,actual);
+            same &= actual.equals(expected);
+            // Segundo uso prueba tanto aciertos como decisiones negativas guardadas.
+            actual=input.clone();method.invoke(plugin,actual);same &= actual.equals(expected);compared++;
+        }
+        check(same,"cache equivale a migracion anterior en "+compared+" variantes (cantidad, lore, PDC, nombre)");
+        var cacheField=plugin.getClass().getDeclaredField("tableMigrationCache");cacheField.setAccessible(true);
+        var cache=(Map<?,?>)cacheField.get(plugin);
+        check(cache.size()<=512,"cache limitada a 512 entradas");
+        var sample=item("esencia_nether");
+        var meta=sample.getItemMeta();meta.displayName(net.kyori.adventure.text.Component.text("No migrar"));sample.setItemMeta(meta);
+        method.invoke(plugin,sample);
+        var bean=(com.sun.management.ThreadMXBean)java.lang.management.ManagementFactory.getThreadMXBean();
+        long tid=Thread.currentThread().threadId();
+        long before=bean.getThreadAllocatedBytes(tid);
+        for(int i=0;i<100;i++)legacyMigration(sample.clone(),canonicals);
+        long legacy=bean.getThreadAllocatedBytes(tid)-before;
+        before=bean.getThreadAllocatedBytes(tid);
+        for(int i=0;i<100;i++)method.invoke(plugin,sample.clone());
+        long cached=bean.getThreadAllocatedBytes(tid)-before;
+        getLogger().info("TABLE ALLOC legacy="+legacy+" cached="+cached+" bytes/100 revisiones");
+        check(cached<legacy,"cache reduce asignaciones de objeto sin cambios");
+        call("loadTableRecipes");
+        check(!cache.containsKey(sample.asOne()),"recarga invalida decisiones anteriores");
+    }
     CraftingInventory inv() {return (CraftingInventory)player.getOpenInventory().getTopInventory();}
     void open() {
         player.closeInventory();player.openWorkbench(null,true);
@@ -104,7 +153,7 @@ public final class TableProbe extends JavaPlugin {
         case "book" -> {
             inv().setMatrix(new ItemStack[9]);player.getInventory().clear();
             var key=NamespacedKey.fromString("astral:mesa/shadowsteel");player.undiscoverRecipe(key);call("discoverTableRecipes");
-            check(!player.hasDiscoveredRecipe(key),"no desbloquea sin ingrediente");
+            check(player.hasDiscoveredRecipe(key),"todas las recetas visibles incluso sin ingredientes (24/11)");
             player.getInventory().addItem(item("esencia_nether"),new ItemStack(Material.IRON_INGOT));call("discoverTableRecipes");
             check(player.hasDiscoveredRecipe(key),"desbloquea al conseguir material");
             var handle=((CraftPlayer)player).getHandle();var manager=((CraftServer)Bukkit.getServer()).getServer().getRecipeManager();
@@ -117,6 +166,7 @@ public final class TableProbe extends JavaPlugin {
             inv().setMatrix(new ItemStack[9]);player.getInventory().clear();var old=item("esencia_nether");var meta=old.getItemMeta();meta.lore(List.of(net.kyori.adventure.text.Component.text("Lore anterior")));old.setItemMeta(meta);old.setAmount(7);player.getInventory().setItem(0,old);
             call("discoverTableRecipes");check(player.getInventory().getItem(0).isSimilar(item("esencia_nether")) && player.getInventory().getItem(0).getAmount()==7,"migracion de lore conserva cantidad e identidad");
         }
+        case "migrationcache" -> migrationCache();
         case "forge" -> {
             player.closeInventory();player.getInventory().clear();player.getInventory().addItem(item("esencia_nether"),new ItemStack(Material.IRON_INGOT));
             // shadowsteel es la tercera receta de la fuente; resolver el indice desde el JSON empacado.

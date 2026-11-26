@@ -140,3 +140,20 @@ items:
     - HIDE_DYE
     click_commands:
     - '[close]'
+  'mochilas':
+    material: PLAYER_HEAD
+    slot: 31
+    amount: 1
+    display_name: '&bMochilas: recetas'
+    item_model: 'astral:mochila_leather'
+    lore:
+    - '&7Como se fabrican y mejoran'
+    - ''
+    - '&e» Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_mochilas'

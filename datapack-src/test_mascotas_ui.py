@@ -45,7 +45,7 @@ class PetsUITests(unittest.TestCase):
             self.assertEqual(item['slot'],slot)
             self.assertNotIn(slot,cards)
             self.assertEqual(item['click_commands'],['[close]','[console] scoreboard players set %player_name% mascota 98'])
-        self.assertEqual(self.menu['items']['gacha']['click_commands'],['[openguimenu] gacha_monturas'])
+        self.assertEqual(self.menu['items']['gacha']['click_commands'],['[openguimenu] gacha_monturas_mas'])  # 23/11: vuelve a Mascotas
         self.assertEqual(self.menu['items']['volver']['click_commands'],['[openguimenu] principal'])
         for key in ('info','gacha','volver','cerrar'):
             self.assertNotIn(self.menu['items'][key]['slot'],cards|set(REST_SLOTS))

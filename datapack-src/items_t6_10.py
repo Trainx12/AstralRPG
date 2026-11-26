@@ -36,11 +36,12 @@ DROP_MATERIAL = {"comun": 0.012, "elite": 0.12, "jefe": 1.0}
 DROP_OCASO_T5 = {"elite": 0.04, "jefe": 0.5}
 
 # Modelo de armadura elegido (id de armaduras_t6_10.SETS). None = sin modelo: se ve como el T5 de la clase.
+# 23/11: el dueno pidio cambiar el aspecto T5 <-> T6 de Mago y Berserker (el T5 era feo).
 VISUAL = {
-    "mago": {1: "wandering_magician", 2: "netherite_fire_robe", 3: "sanguine_purple", 4: "pyromancer", 5: "dark_cover",
-             6: "glacier_robe", 7: "scarlet_robe", 8: "rimeweave_robe", 9: "nebula", 10: "absolution_robe"},
+    "mago": {1: "wandering_magician", 2: "netherite_fire_robe", 3: "sanguine_purple", 4: "pyromancer", 5: "glacier_robe",
+             6: "dark_cover", 7: "scarlet_robe", 8: "rimeweave_robe", 9: "nebula", 10: "absolution_robe"},
     "berserker": {1: "rogues_berserker", 2: "dead_gladiator", 3: "sunset_wings", 4: "flesh_of_the_feaster",
-                  5: "dark_lord", 6: "spark_of_dawn", 7: "lightbringer_armor", 8: "onslaught_armor",
+                  5: "spark_of_dawn", 6: "dark_lord", 7: "lightbringer_armor", 8: "onslaught_armor",
                   9: "justicar_armor", 10: "destroyer_armor"},
     "arquero": {1: "ranger", 2: "netherite_ranger", 3: "anarchy_thief", 4: "fantasy_thief", 5: "shadowwalker",
                 6: "strider_armor", 7: "riftstalker_armor", 8: "forgotten_trace", 9: "cultist", 10: "deathmantle_armor"},
@@ -153,7 +154,7 @@ def extend_weapons(g):
          "cost": _cost(10, [("c", "nucleo_furia_pura", 3)]),
          "desc": ["Robo de vida", "Furia", "Golpes en area", "Ejecuta enemigos con menos del 20% de vida"]},
     ]
-    axe_fx = {"sangrado": 1, "hendidura": 1, "ejecucion": 1}
+    axe_fx = {"hendidura": 1, "ejecucion": 1}
     A += [
         {"name": "Hacha Doble de Jade", "base": "minecraft:netherite_axe", "dmg": 10, "bonus": 90, "spd": 1.0, "lvl": 35,
          "fx": dict(axe_fx), "cost": _cost(6, [("c", "nucleo_furia_pura", 1), ("c", "palo_reforzado", 1)]),
@@ -198,6 +199,6 @@ def extend_weapons(g):
             ("Lanza de la Fortuna", 7, 35, 1), ("Tridente del Inframundo", 8, 40, 1), ("Lanza del Principe Errante", 9, 45, 2),
             ("Lanza del Heroe Dorado", 10, 50, 2), ("Guja del Dragon Verde", 12, 55, 3)]):
         SP.append({"name": name, "base": "minecraft:netherite_spear", "lvl": lvl, "bonus": bonus,
-                   "fx": {"lifesteal": 3, "sangrado": 1, "hendidura": 1, "ejecucion": 1},
+                   "fx": {"lifesteal": 3, "hendidura": 1, "ejecucion": 1},
                    "cost": _cost(t, [("c", "chispa_astral", n)]),
                    "desc": ["Ejecuta enemigos con menos del 15% de vida"]})

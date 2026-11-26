@@ -59,7 +59,9 @@ public final class AstralDuelos extends JavaPlugin implements Listener {
         if (p == null || !p.isOnline()) return "Desconectado";
         if (duels.getArenaManager().isInMatch(p)) return "En duelo";
         if (duels.getQueueManager().isInQueue(p)) return "En cola";
-        if (p.isDead() || p.isInsideVehicle() || p.getGameMode() != GameMode.SURVIVAL) return "Ocupado";
+        // 26/11: el lobby es modo Aventura; antes cualquiera en el lobby salia "Ocupado".
+        if (p.isDead() || p.isInsideVehicle()) return "Ocupado";
+        if (p.getGameMode() != GameMode.SURVIVAL && p.getGameMode() != GameMode.ADVENTURE) return "En modo " + (p.getGameMode() == GameMode.CREATIVE ? "creativo" : "espectador");
         if (!Set.of("world", "lobby", "arena", "arenas_tft").contains(p.getWorld().getName())) return "En una actividad";
         var u = duels.getUserManager().get(p);
         if (u == null || !duels.getUserManager().isLoaded()) return "Cargando datos";

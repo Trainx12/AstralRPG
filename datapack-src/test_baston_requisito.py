@@ -63,8 +63,13 @@ class RequisitosClic(unittest.TestCase):
                 custom = loot['pools'][0]['entries'][0]['functions'][0]['components']['minecraft:custom_data']
                 req = int(re.search(r'"auraskills:fighting":(\d+)', custom)[1])
                 self.assertIn(f'"fighting", "Combate", {req}', checks)
+            # 23/11 (dueno): las especiales piden nivel tambien al clic derecho; la Varita de Curacion no.
+            from special_weapons import requisito
             for iid in WEAPONS:
-                self.assertNotIn('astral.special.' + iid + '"', checks)
+                if requisito(iid) is None:
+                    self.assertNotIn('astral.special.' + iid + '"', checks)
+                else:
+                    self.assertIn('astral.special.' + iid + '"', checks)
 
 
 if __name__ == '__main__':

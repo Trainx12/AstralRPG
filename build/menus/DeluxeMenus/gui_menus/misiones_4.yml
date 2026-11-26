@@ -24,7 +24,7 @@ items:
     material: CLOCK
     slot: 1
     amount: 1
-    display_name: '&b&lDiaria facil - 300$'
+    display_name: '&b&lDiaria facil - 100.000$'
     lore:
     - '&7Abre la tarjeta de esa mision.'
     - '&7Cambiar de pestana no acepta nada.'
@@ -38,7 +38,7 @@ items:
     material: CLOCK
     slot: 2
     amount: 1
-    display_name: '&b&lDiaria media - 750$'
+    display_name: '&b&lDiaria media - 250.000$'
     lore:
     - '&7Abre la tarjeta de esa mision.'
     - '&7Cambiar de pestana no acepta nada.'
@@ -52,7 +52,7 @@ items:
     material: CLOCK
     slot: 3
     amount: 1
-    display_name: '&b&lDiaria dificil - 1500$'
+    display_name: '&b&lDiaria dificil - 600.000$'
     lore:
     - '&7Abre la tarjeta de esa mision.'
     - '&7Cambiar de pestana no acepta nada.'

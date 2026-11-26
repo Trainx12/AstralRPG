@@ -11,6 +11,7 @@ from unittest.mock import patch
 import menus
 import misiones
 from misiones import DAILIES
+from economia import DIARIA_PLATA
 
 
 def entries(page):
@@ -125,6 +126,7 @@ class AcceptanceTransitions(unittest.TestCase):
                      for name in ['load','loop/t20'] + [f'drop/elite{t}' for t in range(1,6)]}
         items = {f'{c}_1_{p}': {} for c in ('berserker','mago','arquero')
                  for p in ('helmet','chestplate','leggings','boots')}
+        items.update({iid: {} for iid in __import__('historia_items').ITEMS_HISTORIA})
         with patch.object(misiones, 'write_bridge'):
             misiones.generate(cls.files, items)
 
@@ -210,9 +212,9 @@ class AcceptanceTransitions(unittest.TestCase):
         self.run_function('daily/claim/12',scores,effects)
         self.assertEqual(scores['@s','aq.done2'],1)
         self.assertEqual(scores['@s','aq.active2'],0)
-        self.assertEqual(scores['@s','aqmoney'],150000)  # economia E1 (x100)
+        self.assertEqual(scores['@s','aqmoney'],DIARIA_PLATA[2])
         self.run_function('daily/claim/12',scores,effects)
-        self.assertEqual(scores['@s','aqmoney'],150000)
+        self.assertEqual(scores['@s','aqmoney'],DIARIA_PLATA[2])
 
     def test_legacy_journal_does_not_auto_claim_counters(self):
         journal = self.files['data/astral/function/quest/cronista.mcfunction']

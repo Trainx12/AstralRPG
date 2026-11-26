@@ -88,11 +88,15 @@ class Datapack(unittest.TestCase):
 class Economia(unittest.TestCase):
     def test_plata_hora(self):
         sel = C.plata_hora()
-        self.assertTrue(20_000_000 <= sel <= 60_000_000, sel)
+        # 25/11: entre Restos II y Netherita III de las Minas (pago real, con el recorte) con taladro 2x2.
         import minas
-        ii_diamante = next(minas.mine_value(m[1], m[2], m[3]) for m in minas.MINES if m[0].startswith('II') and 'Diamante' in m[0])
+        self.assertTrue(minas.MINAS_VALOR[12] * C.BLOQUES_HORA * 0.8 <= sel <= minas.MINAS_VALOR[-1] * C.BLOQUES_HORA, sel)
         self.assertGreater(C.plata_hora('ciegas'), 0)
-        self.assertLess(C.plata_hora('ciegas'), ii_diamante * C.BLOQUES_HORA)
+        self.assertLess(C.plata_hora('ciegas'), sel)
+
+    def test_vacio_plata_hora(self):
+        import minas, vacio
+        self.assertTrue(minas.MINAS_VALOR[-1] * C.BLOQUES_HORA <= vacio.plata_hora() <= 1.3 * minas.MINAS_VALOR[-1] * C.BLOQUES_HORA)
 
     def test_perdida_al_morir(self):
         self.assertIn(C.WORLD, E.mundos_con_perdida())

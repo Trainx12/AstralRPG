@@ -17,11 +17,14 @@ OUT = ROOT / 'build/rankings'
 
 # ============================ PREMIOS (ajustables) ============================
 from economia import plata as _x
-PLATA = {1: _x(1_000_000), 2: _x(500_000), 3: _x(250_000)}
-TIRADAS = {1: (('gacha_cosmeticos', 10), ('gacha_rpg', 5)), 2: (('gacha_cosmeticos', 5), ('gacha_rpg', 3)),
-           3: (('gacha_cosmeticos', 3), ('gacha_rpg', 1))}
+# 25/11 (dueno: "es mucho"): antes 50M/25M/12,5M por ranking por semana (y son 7 rankings), con las Minas recortadas
+# eran 15 horas de Esmeralda I. Ahora ~1 hora de mina media. Tiradas tambien bajan (antes 10+5 / 5+3 / 3+1).
+PLATA = {1: 3_000_000, 2: 1_500_000, 3: 750_000}
+TIRADAS = {1: (('gacha_cosmeticos', 5), ('gacha_rpg', 2)), 2: (('gacha_cosmeticos', 3), ('gacha_rpg', 1)),
+           3: (('gacha_cosmeticos', 2),)}
 ITEMS = {1: (('chispa_astral', 2),), 2: (('chispa_astral', 1),), 3: (('gema_luminica', 1),)}
-ITEMS = {p: items + ((('barril_xp',1),) if p==1 else ()) + (('frasco_xp_pequeno',8-2*p),('frasco_xp_grande',4-p),('frasco_xp_gigante',4-p),('manzana_esmeralda',1)) for p,items in ITEMS.items()}
+# 25/11: frascos a la mitad (antes 6/4/2 pequenos, 3/2/1 grandes, 3/2/1 gigantes y barril al 1°).
+ITEMS = {p: items + (('frasco_xp_pequeno',4-p),('frasco_xp_grande',2 if p==1 else 1)) + ((('frasco_xp_gigante',1),('manzana_esmeralda',1)) if p==1 else ()) for p,items in ITEMS.items()}
 # 23/11: material raro extra, +XP de skills por 7 dias (AuraSkills: permiso auraskills.multiplier.<porcentaje>),
 # titulo temporal 'Campeon de la Semana' (7 dias) al 1° y cartel de campeones (/ranking cartel campeones).
 EXTRA_ITEMS = {1: (('gema_luminica_perfecta', 1),), 2: (('cristal_refinado', 2),), 3: (('cristal_refinado', 1),)}

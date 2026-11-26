@@ -35,6 +35,8 @@ GROUND = _DATA['spawn'][1]     # piso de la plataforma del spawn
 SPAWN = (_DATA['spawn'][0] + 0.5, GROUND + 1, _DATA['spawn'][2] + 0.5, -135)
 VENDOR = (SPAWN[0] + 3, GROUND + 1, SPAWN[2], 90)
 TRAVEL = (SPAWN[0] - 3, GROUND + 1, SPAWN[2], -90)
+# 21/11/2026: el dueno eligio donde aparecen los jugadores (mirando al sur). La plataforma de los NPC no cambia.
+LLEGADA = (81.93, 87, 227.52, -1.6)
 WOODS = ('oak', 'spruce', 'birch', 'jungle', 'acacia', 'dark_oak', 'cherry', 'mangrove', 'pale_oak')
 
 
@@ -127,7 +129,7 @@ def script():
         f'    return world "{WORLD}"',
         "",
         "function ab_spawn() :: location:",
-        f"    return location({SPAWN[0]}, {SPAWN[1]}, {SPAWN[2]}, ab_world(), {SPAWN[3]}, 0)",
+        f"    return location({LLEGADA[0]}, {LLEGADA[1]}, {LLEGADA[2]}, ab_world(), {LLEGADA[3]}, 0)",
         "",
         "function ab_inside(loc: location) :: boolean:",
         f"    if x-coordinate of {{_loc}} is between 0 and {SIZE}:",

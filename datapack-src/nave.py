@@ -1,12 +1,13 @@
 """Nave del Vacio (evento del End, 22/11/2026): mazmorra tier 5 dentro de la nave con forma de mano, 3 copias.
 
 - Mapa: "spaceship.schem" (TERCEROS: vive solo en .local/nave, nunca en el repo). Se pega con WorldEdit en un
-  mundo vacio en ORIGEN (esquina del schematic). Las salas no se conectan caminando: el recorrido es por
-  compuertas. Al limpiar una sala se abre la compuerta (centro de la sala); pisarla, o esperar ESPERA_COMPUERTA
-  segundos, lleva a todo el grupo a la sala siguiente y la anterior queda cerrada (no se puede volver).
-- Si un jugador cae al casco hueco (sale de los limites de su sala) vuelve a la llegada de esa sala.
-- Salas: 1 Hangar (pasillo largo) -> 2 Dedo Menor -> 3 Dedo Anular -> 4 Punta del Indice -> 5 Puente de Mando
-  (minijefe: Timonel del Vacio) -> 6 Palma (jefe: Capitan del Vacio, mobs/capitan_vacio.py).
+  mundo vacio en ORIGEN (esquina del schematic). Adentro del casco de la mano flotan capsulas redondas: cada sala es
+  una capsula, cerrada con barreras en puertas y ventanas (las pone AstralNave). Al limpiar una sala se abre la
+  compuerta (centro de la sala); pisarla, o esperar ESPERA_COMPUERTA segundos, lleva a todo el grupo a la sala
+  siguiente (no se puede volver). El pulgar queda cerrado.
+- Si un jugador o un mob sale de la capsula de su sala vuelve a la sala.
+- Salas: 1 Hangar (muneca) -> 2 Dedo Menor -> 3 Dedo Anular -> 4 Punta del Indice -> 5 Puente de Mando (dedo
+  mayor, minijefe: Timonel del Vacio) -> 6 Palma (jefe: Capitan del Vacio, mobs/capitan_vacio.py).
 - Oleadas, compuertas y jefe: plugin AstralNave (runtime/AstralNave.java, config generada aca).
 - Tier 5 fijo con vida x1,5 (como el Santuario). Entrada, party y 8 minutos tras el jefe: mazmorras_copias.py.
 
@@ -30,14 +31,17 @@ SCHEM = '.local/nave/spaceship.schem'
 ESPERA_COMPUERTA = 20                         # segundos hasta que la compuerta lleva sola al grupo
 EXTRA_JUGADOR = 0.5                           # +50% de mobs por cada jugador extra (como la Fosa)
 
-# Salas (coordenadas del SCHEMATIC): caja donde buscar el piso, centro (compuerta / jefe) y llegada aproximada.
+# Salas = CAPSULAS de la nave (coordenadas x, y, z del SCHEMATIC). Adentro del casco flotan ~20 capsulas redondas
+# con piso y techo (las salas de verdad); el hueco entre el casco y las capsulas es "afuera" (23/11: el dueno
+# aparecio ahi). capsula = un punto de aire adentro de la capsula; llegada y centro (compuerta / jefe) = (x, z)
+# aproximados sobre su piso. tools/nave_salas.py cierra cada capsula con barreras (puertas y ventanas al vacio).
 SALAS = [
-    dict(id='hangar', nombre='Hangar', caja=(5, 22, 78, 74, 44, 200), centro=(59, 185), llegada=(41, 82)),
-    dict(id='menor', nombre='Dedo Menor', caja=(43, 65, 119, 73, 69, 153), centro=(58, 136), llegada=(70, 136)),
-    dict(id='anular', nombre='Dedo Anular', caja=(66, 68, 72, 88, 76, 117), centro=(77, 106), llegada=(77, 78)),
-    dict(id='indice', nombre='Punta del Indice', caja=(68, 52, 7, 93, 60, 54), centro=(81, 45), llegada=(78, 15)),
-    dict(id='puente', nombre='Puente de Mando', caja=(95, 74, 75, 126, 79, 126), centro=(106, 114), llegada=(115, 85)),
-    dict(id='palma', nombre='Palma', caja=(66, 65, 150, 130, 69, 184), centro=(113, 167), llegada=(72, 167)),
+    dict(id='hangar', nombre='Hangar', capsula=(59, 34, 185), llegada=(59, 194), centro=(59, 176)),       # muneca
+    dict(id='menor', nombre='Dedo Menor', capsula=(134, 59, 143), llegada=(134, 155), centro=(134, 142)),
+    dict(id='anular', nombre='Dedo Anular', capsula=(115, 73, 80), llegada=(115, 93), centro=(115, 79)),
+    dict(id='indice', nombre='Punta del Indice', capsula=(52, 28, 30), llegada=(52, 43), centro=(52, 25)),
+    dict(id='puente', nombre='Puente de Mando', capsula=(83, 70, 136), llegada=(83, 154), centro=(83, 126)),
+    dict(id='palma', nombre='Palma', capsula=(95, 59, 167), llegada=(73, 167), centro=(112, 167)),
 ]
 
 # Oleadas por sala para 1-2 jugadores (cada jugador extra suma EXTRA_JUGADOR). Tipos: vanilla con brillo o mobs de
@@ -55,9 +59,9 @@ JEFE = 'astral_nave_capitan'
 TOPE = 9                                      # mobs vivos a la vez por sala (como la Forja)
 # Vista de la mano desde afuera al entrar (15 s, se saltea agachandose): puntos de la camara y adonde mira
 # (x, y, z, mira x, mira y, mira z), en coordenadas del mundo. La nave ocupa x -80..83, y 40..131, z -100..106.
-INTRO_RUTA = [(0, 170, -170, 0, 85, 0), (-110, 150, -120, 0, 85, 0), (-150, 115, 10, 0, 85, 10),
-              (-115, 95, 130, 0, 85, 30), (-45, 90, 150, -30, 80, 60)]
-INTRO_VISTA = 14                              # chunks que se mandan durante la vista (solo a ese jugador)
+INTRO_RUTA = [(0, 150, -150, 0, 85, -20), (-120, 120, -70, 0, 85, -10), (-140, 100, 30, 0, 85, 20),
+              (-100, 90, 120, 0, 85, 60), (-40, 88, 150, -20, 75, 92)]   # 23/11: a ~60 bloques (view-distance 8)
+INTRO_VISTA = 14                              # chunks durante la vista. 23/11: vista APAGADA (activa: false), el dueno pidio entrar directo
 
 
 def salas():
@@ -71,12 +75,12 @@ def plugin_config():
          f'mundos: [{", ".join(WORLDS)}]',
          f'espera-compuerta: {ESPERA_COMPUERTA}', f'extra-jugador: {EXTRA_JUGADOR}', f'tope: {TOPE}',
          f'jefe: {JEFE}', f'minijefe: {MINIJEFE}', f'escudo: {__import__("mobs.capitan_vacio", fromlist=["x"]).ESCUDO}',
-         'intro:', '  activa: true', f'  distancia-vista: {INTRO_VISTA}',
+         'intro:', '  activa: false', f'  distancia-vista: {INTRO_VISTA}',
          '  ruta: [' + ', '.join('"' + ','.join(str(v) for v in r) + '"' for r in INTRO_RUTA) + ']', 'salas:']
     for s in salas():
         f = lambda c: '"' + ','.join(str(v) for v in c) + '"'
         L += [f'  - id: {s["id"]}', f'    nombre: "{s["nombre"]}"', f'    llegada: {f(s["llegada"])}',
-              f'    centro: {f(s["centro"])}', f'    limites: {f(s["limites"])}',
+              f'    centro: {f(s["centro"])}',
               '    puntos: [' + ', '.join(f(p) for p in s['puntos']) + ']',
               '    oleadas:'] + ['      - "' + ','.join(f'{k}:{v}' for k, v in o.items()) + '"' for o in OLEADAS[s['id']]]
     return '\n'.join(L) + '\n'
@@ -190,9 +194,11 @@ def build_plugin(java):
     with zipfile.ZipFile(dest, 'w', zipfile.ZIP_DEFLATED) as z:
         for p in sorted((target / 'astral').glob('AstralNave*.class')):
             z.writestr(zipfile.ZipInfo('astral/' + p.name, (2026, 11, 22, 0, 0, 0)), p.read_bytes())
-        z.writestr('plugin.yml', "name: AstralNave\nversion: 1.0.0\nmain: astral.AstralNave\napi-version: '26.1.2'\n"
+        z.writestr('plugin.yml', "name: AstralNave\nversion: 1.2.3\nmain: astral.AstralNave\napi-version: '26.1.2'\n"
                                  "depend: [MythicMobs]\ncommands:\n  nave:\n    permission: astral.nave.admin\n")
         z.writestr('config.yml', plugin_config())
+        for nombre in ('nave_zonas.txt', 'nave_barreras.txt'):   # salen de tools/nave_salas.py
+            z.writestr(nombre, (ROOT / 'datapack-src' / nombre).read_text('utf8'))
     return dest
 
 

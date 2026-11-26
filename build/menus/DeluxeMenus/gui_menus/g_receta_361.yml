@@ -15,7 +15,7 @@ items:
     - '&bCosto: 80 de mana'
     - '&aRecarga: 30 s'
     - '&b+60 de mana en la mano'
-    - '&cRequiere: Hechiceria 8'
+    - '&cRequiere: sin nivel'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     item_flags:
     - HIDE_ATTRIBUTES
@@ -37,9 +37,8 @@ items:
     display_name: '&f1x Fragmento de Cristal Arcano'
     item_model: 'astral:fragmento_cristal'
     lore:
-    - '&74 forman un Cristal Refinado.'
+    - '&72 forman un Cristal Arcano.'
     - '&8Material de AstralRPG'
-    - '&7Se fabrica en la mesa de crafteo o en la Forja'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS

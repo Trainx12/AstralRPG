@@ -61,6 +61,25 @@ def fantasy(n):
     return geckolib('fantasy armor/assets/fantasy_armor', f'{n}_armor', f'armor/{n}_armor', f'armor/{n}_armor_overlay')
 
 
+# RPG Style More Weapons (22/11): modelos MCreator compilados, se leen con javap (armaduras_java.py).
+MOREWEAPONS = MODS / 'rpg-more-weapons'
+
+
+def mcreator(clase, letra, mat):
+    cm = MOREWEAPONS / 'net/mcreator/rpgstylemoreweaponsr/client/model'
+    piezas = [cm / f'ModelN{letra}A{p}.class' for p in ('H', 'B', 'L', 'Boo')]
+    return dict(geo=('java', piezas), glow=None, overlay=None,
+                tex=MOREWEAPONS / f'assets/rpg_style_more_weapons_r/textures/entities/new{clase}armor{mat}.png')
+
+
+def paladins(geo, tex):
+    return geckolib('paladins-forge-3.1.3+1.20.1/assets/paladins', geo, f'armor/{tex}')
+
+
+def rogues(geo, tex):
+    return geckolib('rogues-forge-3.1.3+1.20.1/assets/rogues', geo, f'armor/{tex}')
+
+
 def irons(geo, tex, ar=False):
     root = ("new iron spell/Iron's Spells AR v0.1" if ar else 'ireon spell viejo') + '/assets/irons_spellbooks'
     return geckolib(root, geo, f'models/armor/{tex}')
@@ -105,6 +124,28 @@ SETS = [
     ('shadowwalker', 'Caminante de Sombras', 'Arquero', 5, irons('shadowwalker_armor', 'shadowwalker'), {}),
     ('forgotten_trace', 'Rastro Olvidado', 'Arquero', 8, fantasy('forgotten_trace'), {}),
     ('cultist', 'Cultista', 'Arquero', 9, irons('cultist_armor', 'cultist'), {'casco_sin_mascara': True}),
+    # --- 22/11: clases nuevas (Segador T1/3/5/7/10, Invocador T1/3/5/7/9/10, Asesino T1-T10), elegidas por el dueno
+    ('picaro', 'Picaro', 'Segador', 1, rogues('rogue_armor', 'rogue_armor'), {}),
+    ('guardia_niebla', 'Guardia de la Niebla', 'Segador', 3, fantasy('fog_guard'), {}),
+    ('centinela_tumba', 'Centinela de la Tumba', 'Segador', 5, fantasy('grave_sentinel'), {}),
+    ('verdugo_dorado', 'Verdugo Dorado', 'Segador', 7, fantasy('golden_execution'), {'sin_caras': {'armorHead': {0: ['north'], 1: ['north']}}}),
+    ('redentor', 'Redentor', 'Segador', 10, fantasy('redeemer'), {}),
+    ('prior_oscuro', 'Prior Oscuro', 'Invocador', 1, paladins('priest_robes', 'netherite_prior_robe'), {}),
+    ('medico_peste', 'Medico de la Peste', 'Invocador', 3, irons('plagued_armor', 'plagued'), {}),
+    ('kintsugi', 'Kintsugi', 'Invocador', 5, geckolib('anarchyrpg/assets/anarchy_rpg', 'kintsugi', 'armor/kintsugi'), {}),
+    ('brujo_errante', 'Brujo Errante', 'Invocador', 7, fantasy('wandering_wizard'), {}),
+    ('archievocador', 'Archievocador', 'Invocador', 9, irons('archevoker_armor', 'archevoker'), {}),
+    ('prior_dorado', 'Prior Dorado', 'Invocador', 10, paladins('priest_robes', 'prior_robe'), {}),
+    ('asesino', 'Asesino', 'Asesino', 1, rogues('rogue_armor', 'assassin_armor'), {}),
+    ('encapuchado_verde', 'Encapuchado Verde', 'Asesino', 2, mcreator('assassin', 'A', 'iron'), {}),
+    ('asesino_netherita', 'Asesino de Netherita', 'Asesino', 3, rogues('rogue_armor', 'netherite_assassin_armor'), {}),
+    ('dama_cazadora', 'Dama Cazadora', 'Asesino', 4, fantasy('lady_maria'), {}),
+    ('encapuchado_turquesa', 'Encapuchado Turquesa', 'Asesino', 5, mcreator('assassin', 'A', 'diamond'), {}),
+    ('encapuchado_dorado', 'Encapuchado Dorado', 'Asesino', 6, mcreator('assassin', 'A', 'netherite'), {}),
+    ('fantasma_ocaso', 'Fantasma del Ocaso', 'Asesino', 7, fantasy('evening_ghost'), {}),
+    ('ronin', 'Ronin', 'Asesino', 8, fantasy('ronin'), {}),
+    ('valquiria', 'Valquiria', 'Asesino', 9, fantasy('malenia'), {'sin_huesos': ['armorBraid']}),
+    ('caceria_dorada', 'Caceria Dorada', 'Asesino', 10, fantasy('gilded_hunt'), {}),
 ]
 
 K = 4                      # resolucion: textura de equipment 64x32 * K
@@ -566,8 +607,48 @@ def pintar_botas(img, k=None, colores=BOTAS_COLORES):
 
 
 # ------------------------------------------------------------------------------------- main
+def cargar_geo(ref):
+    if isinstance(ref, tuple) and ref[0] == 'java':
+        import armaduras_java
+        return armaduras_java.to_geo([str(p) for p in ref[1]])
+    return G.load_geo(ref)
+
+
+def quitar(geo, opts):
+    """Saca huesos enteros (con sus hijos) y cubos sueltos que el dueno no quiere (pelo, mascaras)."""
+    fuera = set(opts.get('sin_huesos', ()))
+    cambio = True
+    while cambio:
+        cambio = False
+        for b in geo['bones']:
+            if b['name'] not in fuera and b.get('parent') in fuera:
+                fuera.add(b['name'])
+                cambio = True
+    bones = []
+    for b in geo['bones']:
+        b = dict(b)
+        if b['name'] in fuera:
+            b['cubes'] = []
+        caras = opts.get('sin_caras', {}).get(b['name'], {})
+        if caras:   # caras sueltas de un cubo (ej. el frente de la capucha): se pasa la UV a una por cara
+            cs = []
+            for i, c in enumerate(b.get('cubes', [])):
+                if i in caras and not isinstance(c.get('uv'), dict):
+                    s = c['size']
+                    f = G.box_uv(c['uv'][0], c['uv'][1], s[0], s[1], s[2], c.get('mirror', False))
+                    c = dict(c, uv={k: {'uv': [u, v], 'uv_size': [w, h]} for k, (u, v, w, h) in f.items()
+                                    if k not in caras[i]})
+                cs.append(c)
+            b['cubes'] = cs
+        idx = opts.get('sin_cubos', {}).get(b['name'])
+        if idx:
+            b['cubes'] = [c for i, c in enumerate(b.get('cubes', [])) if i not in idx]
+        bones.append(b)
+    return dict(geo, bones=bones)
+
+
 def build(sid, name, cls, tier, src, opts):
-    geo = G.load_geo(src['geo'])
+    geo = quitar(cargar_geo(src['geo']), opts)
     d = geo['description']
     tex_size = (d.get('texture_width', 64), d.get('texture_height', 64))
     tex = G.load_tex(src['tex'], src['glow'])

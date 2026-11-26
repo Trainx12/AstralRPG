@@ -68,11 +68,10 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_criatura_astral_chaman_ancestral'
   'c4':
-    material: PAPER
+    material: WITHER_SKELETON_SPAWN_EGG
     slot: 5
     amount: 1
     display_name: '&bWither Skeleton'
-    item_model: 'astral:atlas_ui/mobchico_vanilla_wither_skeleton'
     lore:
     - '&7Clic para abrir'
     item_flags:
@@ -83,11 +82,10 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_criatura_vanilla_wither_skeleton'
   'c5':
-    material: PAPER
+    material: PIGLIN_BRUTE_SPAWN_EGG
     slot: 6
     amount: 1
     display_name: '&bPiglin Brute'
-    item_model: 'astral:atlas_ui/mobchico_vanilla_piglin_brute'
     lore:
     - '&7Clic para abrir'
     item_flags:

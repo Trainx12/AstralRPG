@@ -322,14 +322,14 @@ public final class AstralOceano extends JavaPlugin implements Listener {
     /** Solo la vision que agregamos nosotros se retira al salir; nunca sustituir una pocion ajena. */
     void waterSet() {
         for(Player p:Bukkit.getOnlinePlayers()) {
-            boolean active=waterPieces(p)==4 && p.isUnderWater();
+            boolean active=p.isUnderWater() && waterPieces(p)==4;
             var effect=p.getPotionEffect(PotionEffectType.NIGHT_VISION);
             if(active && (effect==null || ownVision.contains(p.getUniqueId()))) {
                 if(effect==null || (effect.getAmplifier()==0 && effect.getDuration()<=260 && !effect.hasIcon())) {
                     applyingVision=true;try {p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION,260,0,true,false,false));}finally {applyingVision=false;}ownVision.add(p.getUniqueId());
                 } else ownVision.remove(p.getUniqueId());
             } else if(!active && ownVision.remove(p.getUniqueId()) && effect!=null && effect.getAmplifier()==0 && effect.getDuration()<=260 && !effect.hasIcon())p.removePotionEffect(PotionEffectType.NIGHT_VISION);
-            if(waterPieces(p)==4)p.setRemainingAir(p.getMaximumAir());
+            if(p.getRemainingAir()<p.getMaximumAir() && waterPieces(p)==4)p.setRemainingAir(p.getMaximumAir());
             swimSpeed(p,active);
         }
     }
@@ -339,8 +339,9 @@ public final class AstralOceano extends JavaPlugin implements Listener {
     void swimSpeed(Player p,boolean active) {
         var speed=p.getAttribute(org.bukkit.attribute.Attribute.MOVEMENT_SPEED);
         if(speed==null)return;
+        // Fuera del agua no se toca el atributo: quitar/poner cada tick mandaba un paquete por jugador.
+        if(!active || p.hasPotionEffect(PotionEffectType.DOLPHINS_GRACE)){ if(speed.getModifier(swimKey)!=null)speed.removeModifier(swimKey); return; }
         speed.removeModifier(swimKey);
-        if(!active || p.hasPotionEffect(PotionEffectType.DOLPHINS_GRACE))return;
         double efficiency=p.getAttribute(org.bukkit.attribute.Attribute.WATER_MOVEMENT_EFFICIENCY).getValue()*(p.isOnGround()?1:.5);
         if(efficiency<=0)return;
         double drag=p.isSprinting()?.9:.8;
@@ -350,7 +351,8 @@ public final class AstralOceano extends JavaPlugin implements Listener {
         if(current>0)speed.addTransientModifier(new org.bukkit.attribute.AttributeModifier(swimKey,target/current-1,org.bukkit.attribute.AttributeModifier.Operation.MULTIPLY_SCALAR_1));
     }
     @EventHandler public void swimTick(com.destroystokyo.paper.event.server.ServerTickStartEvent e) {
-        for(Player p:Bukkit.getOnlinePlayers())swimSpeed(p,waterPieces(p)==4 && p.isUnderWater());
+        // isUnderWater primero: leer las 4 piezas como texto es caro y casi nadie esta bajo el agua.
+        for(Player p:Bukkit.getOnlinePlayers())swimSpeed(p,p.isUnderWater() && waterPieces(p)==4);
     }
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true) public void externalVision(EntityPotionEffectEvent e) {
         if(e.getEntity() instanceof Player p && e.getNewEffect()!=null && e.getNewEffect().getType().equals(PotionEffectType.NIGHT_VISION)

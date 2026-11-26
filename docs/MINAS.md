@@ -111,6 +111,36 @@ minerales mezclados detras del aldeano de venta rapida (mascara `//gmask`). Apli
 de las regiones previas en `.local/minas/respaldo-decor-20-11`. Si algun dia se vuelve a copiar la decoracion de
 las minas de Carbon, hay que correr de nuevo estos comandos.
 
+## Recorte de plata (25/11/2026)
+
+Pedido del dueño: con la plata de las minas altas se compraba toda la tienda y cientos de gachas.
+Números en `datapack-src/economia.py` (`MINAS_SUBA`, `MINAS_FORTUNA`, `MINAS_COSTO_FACTOR`, `PAGO_*`) y la cuenta en
+`minas.py` (`MINAS_VALOR`, `mult()`).
+
+- Lo que paga la Venta rápida depende de la **mina más alta abierta** del jugador (`{-am.mult::rango}`), no de la
+  mina donde se pica. Tier I (minas 1-6, con Esmeralda I como referencia) paga igual que antes. De la 7 a la 20
+  sube poquito por mina, hasta 2 veces lo de Diamante I en Netherita III (con Fortuna III): ~415 en II·Carbón,
+  ~560 en Restos II (antes 4.818), ~790 en Netherita III (antes 15.000). Lo fuerte del progreso son los taladros.
+- Los bloques compactos, restos y netherita tienen un valor interno que crece de mina en mina (con y sin Fortuna),
+  así nunca conviene volver a una mina vieja. `test_economia.test_recorte_minas_25_11` lo controla.
+- Costos de apertura recalculados con el pago nuevo (85 %). Netherita III: 250M (antes 2.500M) + 25 h igual.
+  El deseo de plata de Renacimiento sigue al costo de Netherita III: tope 250M (lite 62,5M).
+- Interruptor: `/minasrecorte publico|privado` (`{am.recorte}`). En privado (al subir) solo ByTrainx tiene el
+  recorte; el resto cobra y paga exactamente lo de antes (`{-am.pricev}`, `{-am.valuev}`, `{-am.costv}`).
+- `/pay` (en `astral_economia.sk`): si el que paga tiene una mina más alta que el que recibe, al que recibe le
+  pueden pasar como mucho 100.000 (una tirada del Gacha de Armas) por hora entre todos. `/astralpago
+  publico|privado|apagado`, `/astralpago ver <jugador>`; privado = solo cuando paga ByTrainx. Log `astral-pagos`.
+
+Abierto a todos el 25/11 ~05:05 UTC (`minasrecorte publico`, `astralpago publico`). En la misma tanda se ajustó todo
+lo demás que da plata (`economia.py`, `rankings.py`):
+- Cavernas de Cristal: Cristal 8.500 y Geoda 76.000 (antes 45.000/400.000, ~8M/h), comisiones 400k/750k/1,5M.
+- Vacío Estelar: Fragmento 18.000 y Núcleo 500.000 (antes 110.000/3M, ~12M/h). Las dos leen su `config.yml` al
+  arrancar: se editaron solo los precios en el server y entran en el próximo reinicio.
+- Rankings semanales: 3M/1,5M/750k (antes 50M/25M/12,5M), menos tiradas y frascos.
+- Cofre de mazmorras (ruleta): multiplicador por tier 1/3/5/8/12 y Santuario 18 (antes 1/3/8/18/40 y 60).
+- Sin cambio (revisados): mobs, jefes de mazmorra, Cronista (historia 50k-10M una vez, diarias 100k/250k/600k),
+  Secretos (tope 5M), Bosque, Banco.
+
 ## Renacer de minas (25/11/2026, privado)
 
 Solo ByTrainx hasta `/minasrenacer publico` (permiso `astral.minas.admin`);
@@ -124,6 +154,8 @@ Cada renacimiento suma 10% de plata permanente en Venta rapida de Minas, hasta
 El primero otorga `astral.cosmetico.titulo.minero_renacido`; se equipa en `/titulos`.
 Numeros en `minas.py`: RENACER_BONUS y RENACER_MAX. La insignia usa FINAL privado.
 Entrega y pruebas: `build/deploy/renacer-minas.md`. Despliegue pendiente.
+
+- 25/11: la subasta (CrazyAuctions) no tiene precio maximo (dueno): `Max-Beginning-Sell/Bid-Price` = 9223372036854775807 (el mayor numero que acepta), sale de `traducciones.py`. Impuesto 5% sin cambio.
 
 ## Salir del pozo (25/11/2026, privado)
 

@@ -25,7 +25,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 3'
     - ''
-    - '&cRequiere: Defensa 14'
+    - '&cRequiere: Combate 20'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&#5555FF&lRARA CASCO'
     item_flags:
@@ -56,7 +56,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 1'
     - ''
-    - '&cRequiere: Defensa 6'
+    - '&cRequiere: Combate 4'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&f&lCOMÚN CASCO'
     item_flags:

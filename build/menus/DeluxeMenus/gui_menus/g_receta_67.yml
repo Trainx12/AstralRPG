@@ -24,7 +24,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 3'
     - ''
-    - '&cRequiere: Defensa 14'
+    - '&cRequiere: Hechiceria 20'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#5555FF&lRARA BOTAS'
     enchantments:
@@ -55,7 +55,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 2'
     - ''
-    - '&cRequiere: Defensa 10'
+    - '&cRequiere: Hechiceria 14'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&a&lPOCO COMÚN BOTAS'
     item_flags:

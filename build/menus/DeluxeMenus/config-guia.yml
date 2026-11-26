@@ -1231,3 +1231,17 @@
     file: g_receta_98.yml
   g_receta_99:
     file: g_receta_99.yml
+  g_mochilas:
+    file: g_mochilas.yml
+  g_mochila_leather:
+    file: g_mochila_leather.yml
+  g_mochila_copper:
+    file: g_mochila_copper.yml
+  g_mochila_iron:
+    file: g_mochila_iron.yml
+  g_mochila_gold:
+    file: g_mochila_gold.yml
+  g_mochila_diamond:
+    file: g_mochila_diamond.yml
+  g_mochila_netherite:
+    file: g_mochila_netherite.yml

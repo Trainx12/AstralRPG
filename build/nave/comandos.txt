@@ -21,7 +21,7 @@ mv create nave_3 normal --generator AstralOceano:vacio --no-structures
 //placement pos1
 //paste -a
 # 3) Reglas de cada mundo:
-execute in minecraft:nave run setworldspawn -39 80 -18
+execute in minecraft:nave run setworldspawn -21 72 94
 execute in minecraft:nave run gamerule minecraft:spawn_mobs false
 execute in minecraft:nave run gamerule minecraft:mob_griefing false
 execute in minecraft:nave run gamerule minecraft:advance_time false
@@ -33,7 +33,7 @@ rg flag -w nave __global__ block-place deny
 rg flag -w nave __global__ pvp deny
 rg flag -w nave __global__ enderpearl deny
 rg flag -w nave __global__ chorus-fruit-teleport deny
-execute in minecraft:nave_2 run setworldspawn -39 80 -18
+execute in minecraft:nave_2 run setworldspawn -21 72 94
 execute in minecraft:nave_2 run gamerule minecraft:spawn_mobs false
 execute in minecraft:nave_2 run gamerule minecraft:mob_griefing false
 execute in minecraft:nave_2 run gamerule minecraft:advance_time false
@@ -45,7 +45,7 @@ rg flag -w nave_2 __global__ block-place deny
 rg flag -w nave_2 __global__ pvp deny
 rg flag -w nave_2 __global__ enderpearl deny
 rg flag -w nave_2 __global__ chorus-fruit-teleport deny
-execute in minecraft:nave_3 run setworldspawn -39 80 -18
+execute in minecraft:nave_3 run setworldspawn -21 72 94
 execute in minecraft:nave_3 run gamerule minecraft:spawn_mobs false
 execute in minecraft:nave_3 run gamerule minecraft:mob_griefing false
 execute in minecraft:nave_3 run gamerule minecraft:advance_time false

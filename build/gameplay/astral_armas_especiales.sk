@@ -24,7 +24,7 @@ options:
     mana_baston_8: 360
     mana_baston_9: 430
     mana_baston_10: 500
-    req_baston_1: 8
+    req_baston_1: 0
     req_baston_2: 14
     req_baston_3: 20
     req_baston_4: 26
@@ -170,6 +170,21 @@ function asw_requirement(p: player) :: boolean:
     if scoreboard tags of {_p} contains "astral.water_sword":
         if asw_level({_p}, "fighting", "Combate", 20) is false:
             return false
+    if scoreboard tags of {_p} contains "astral.special.espada_tormenta":
+        if asw_level({_p}, "fighting", "Combate", 20) is false:
+            return false
+    if scoreboard tags of {_p} contains "astral.special.espada_sombras":
+        if asw_level({_p}, "fighting", "Combate", 25) is false:
+            return false
+    if scoreboard tags of {_p} contains "astral.special.espada_destello":
+        if asw_level({_p}, "fighting", "Combate", 16) is false:
+            return false
+    if scoreboard tags of {_p} contains "astral.special.hacha_terremoto":
+        if asw_level({_p}, "fighting", "Combate", 20) is false:
+            return false
+    if scoreboard tags of {_p} contains "astral.special.varita_estallido":
+        if asw_level({_p}, "sorcery", "Hechiceria", 26) is false:
+            return false
     if scoreboard tags of {_p} contains "astral.special.espada_heroe_errante":
         if asw_level({_p}, "fighting", "Combate", 16) is false:
             return false
@@ -177,6 +192,16 @@ function asw_requirement(p: player) :: boolean:
 
 # Usa el mana leido por asw_request en este mismo uso.
 function asw_pay(p: player, amount: number) :: boolean:
+    # El mismo estado que usa la mesa. Sin requisitos nuevos de AuraSkills.
+    execute console command "encmagia_interno sync %name of {_p}%"
+    if scoreboard tags of {_p} contains "astral.encmagia":
+        set {_sabio} to "astral:sabio_arcano" parsed as enchantment
+        set {_lv} to enchantment level of {_sabio} on tool of {_p}
+        # Sin el encantamiento el nivel queda vacio y min(5, vacio) daba 5 (20% de descuento gratis).
+        if {_lv} is not set:
+            set {_lv} to 0
+        set {_lv} to min(5, {_lv})
+        set {_amount} to {_amount} * (1 - 0.04 * {_lv})
     set {_mana} to {-asw.mana::%uuid of {_p}%}
     delete {-asw.mana::%uuid of {_p}%}
     if {_mana} is not set:
@@ -241,7 +266,9 @@ function asw_explode(p: player, center: location):
     set {_eye} to eye location of {_p}
     execute console command "astralfx rayo %{_dimension}% %x-coordinate of {_eye}% %(y-coordinate of {_eye}) - 0.3% %z-coordinate of {_eye}% %x-coordinate of {_center}% %y-coordinate of {_center}% %z-coordinate of {_center}% ff7a1a fuego"
     execute console command "astralfx estallido %{_dimension}% %x-coordinate of {_center}% %y-coordinate of {_center}% %z-coordinate of {_center}% ff7a1a 1.6 fuego"
+    execute console command "encmagia_interno inicio %name of {_p}%"
     asw_area({_p}, {_center}, 2, {@dano_estallido}, "explosion")
+    execute console command "encmagia_interno fin %name of {_p}%"
 
 function asw_dimension(w: world) :: text:
     set {_name} to name of {_w}
@@ -380,10 +407,7 @@ function asw_heal(p: player):
     set {-asw.healcd::%{_id}%} to now
     play sound "entity.player.levelup" with volume 0.5 and pitch 1.8 at {_p}
     execute console command "astralfx estallido %asw_dimension(world of {_p})% %x-coordinate of {_p}% %(y-coordinate of {_p}) + 1% %z-coordinate of {_p}% 5dff7a 1.2 naturaleza"
-    loop all players in radius {@cura_radio} around {_p}:
-        if loop-player is alive:
-            set {-asw.regen::%uuid of loop-player%} to {@cura_segundos}
-            send action bar "&aCuracion: {@cura_segundos} s" to loop-player
+    execute console command "encmagia_interno cura %name of {_p}% {@cura_radio} {@cura_segundos} {@cura_pct}"
 
 function asw_shadow(p: player):
     set {_id} to uuid of {_p}

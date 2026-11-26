@@ -8,11 +8,37 @@ items:
     amount: 1
     display_name: '&aFrasco de Experiencia Pequeno'
     lore:
-    - '&e300,000$'
+    - '&e100,000$'
     - '&7Necesitas un espacio libre.'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:frasco_xp_pequeno'
+    click_requirement:
+      requirements:
+        espacio:
+          type: javascript
+          expression: 'BukkitPlayer.getInventory().firstEmpty() >= 0'
+        plata:
+          type: has money
+          amount: 100000
+      deny_commands:
+      - '[message] &cNo te alcanza: cuesta &e100.000$&c. &7(/balance)'
+      - '[sound] ENTITY_VILLAGER_NO'
+    click_commands:
+    - '[takemoney] 100000'
+    - '[console] loot give %player_name% loot astral:item/frasco_xp_pequeno'
+    - '[close]'
+  'frasco_xp_grande':
+    material: PAPER
+    slot: 12
+    amount: 1
+    display_name: '&aFrasco de Experiencia Grande'
+    lore:
+    - '&e300,000$'
+    - '&7Necesitas un espacio libre.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:frasco_xp_grande'
     click_requirement:
       requirements:
         espacio:
@@ -26,32 +52,6 @@ items:
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
     - '[takemoney] 300000'
-    - '[console] loot give %player_name% loot astral:item/frasco_xp_pequeno'
-    - '[close]'
-  'frasco_xp_grande':
-    material: PAPER
-    slot: 12
-    amount: 1
-    display_name: '&aFrasco de Experiencia Grande'
-    lore:
-    - '&e900,000$'
-    - '&7Necesitas un espacio libre.'
-    item_flags:
-    - HIDE_ATTRIBUTES
-    item_model: 'astral:frasco_xp_grande'
-    click_requirement:
-      requirements:
-        espacio:
-          type: javascript
-          expression: 'BukkitPlayer.getInventory().firstEmpty() >= 0'
-        plata:
-          type: has money
-          amount: 900000
-      deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e900.000$&c. &7(/balance)'
-      - '[sound] ENTITY_VILLAGER_NO'
-    click_commands:
-    - '[takemoney] 900000'
     - '[console] loot give %player_name% loot astral:item/frasco_xp_grande'
     - '[close]'
   'frasco_xp_gigante':
@@ -60,7 +60,7 @@ items:
     amount: 1
     display_name: '&aFrasco de Experiencia Gigante'
     lore:
-    - '&e2,500,000$'
+    - '&e800,000$'
     - '&7Necesitas un espacio libre.'
     item_flags:
     - HIDE_ATTRIBUTES
@@ -72,12 +72,12 @@ items:
           expression: 'BukkitPlayer.getInventory().firstEmpty() >= 0'
         plata:
           type: has money
-          amount: 2500000
+          amount: 800000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e2.500.000$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e800.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
-    - '[takemoney] 2500000'
+    - '[takemoney] 800000'
     - '[console] loot give %player_name% loot astral:item/frasco_xp_gigante'
     - '[close]'
   'barril_xp':
@@ -86,7 +86,7 @@ items:
     amount: 1
     display_name: '&aBarril de Experiencia'
     lore:
-    - '&e22,000,000$'
+    - '&e7,000,000$'
     - '&7Necesitas un espacio libre.'
     item_flags:
     - HIDE_ATTRIBUTES
@@ -98,12 +98,12 @@ items:
           expression: 'BukkitPlayer.getInventory().firstEmpty() >= 0'
         plata:
           type: has money
-          amount: 22000000
+          amount: 7000000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e22.000.000$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e7.000.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
-    - '[takemoney] 22000000'
+    - '[takemoney] 7000000'
     - '[console] loot give %player_name% loot astral:item/barril_xp'
     - '[close]'
   'manzana_esmeralda':
@@ -112,7 +112,7 @@ items:
     amount: 1
     display_name: '&aManzana de la Suerte'
     lore:
-    - '&e6,000,000$'
+    - '&e2,000,000$'
     - '&7Necesitas un espacio libre.'
     item_flags:
     - HIDE_ATTRIBUTES
@@ -124,12 +124,12 @@ items:
           expression: 'BukkitPlayer.getInventory().firstEmpty() >= 0'
         plata:
           type: has money
-          amount: 6000000
+          amount: 2000000
       deny_commands:
-      - '[message] &cNo te alcanza: cuesta &e6.000.000$&c. &7(/balance)'
+      - '[message] &cNo te alcanza: cuesta &e2.000.000$&c. &7(/balance)'
       - '[sound] ENTITY_VILLAGER_NO'
     click_commands:
-    - '[takemoney] 6000000'
+    - '[takemoney] 2000000'
     - '[console] loot give %player_name% loot astral:item/manzana_esmeralda'
     - '[close]'
   'cerrar':

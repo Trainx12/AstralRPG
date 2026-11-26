@@ -1,0 +1,34 @@
+mundo: vacio_estelar
+radio: 600
+celda: 72
+centro-radio: 34
+centro-y: 92
+regenerar-cada-horas: 72
+avisos-minutos:
+- 10
+- 5
+- 1
+proxima-regeneracion: 0
+taladro-tier: 6
+mobs-cerca: 7
+mobs-tope: 90
+mobs-tanda: 2
+meteoro-guardianes: 3
+campamento-radio: 16
+volador: astral_vac_ojo
+meteoro-min: 20
+meteoro-max: 30
+meteoro-dura-seg: 360
+gravedad-pct: -35
+salto-pct: 20
+caida-segura: 8
+mobs:
+- astral_vac_golem
+- astral_vac_acechador
+- astral_vac_ojo
+jefe: astral_vac_coloso
+jefe-vida: 843750000
+permiso-santuario: astral.fragmento.corazon
+precios:
+  fragmento_estelar: 18000
+  nucleo_meteorito: 500000

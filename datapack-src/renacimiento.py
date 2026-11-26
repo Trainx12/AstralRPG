@@ -29,7 +29,7 @@ VENCIDO = 'astral.trainx.vencido'
 
 
 def tope():
-    """Lo que cuesta abrir la ultima mina astral (pedido del dueno)."""
+    """Lo que cuesta abrir la ultima mina astral (pedido del dueno). 25/11: con el recorte de las minas, 250M."""
     from minas import MINES
     return MINES[-1][-1]
 

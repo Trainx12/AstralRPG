@@ -218,9 +218,27 @@ def _texto_pestana(im, caja):
     return Image.fromarray(marco, 'RGBA'), texto
 
 
-def _efectos_fuente(activa):
+# Interruptor de cada fila en la referencia: la de Armaduras (ACTIVADO) y la de Mascotas (DESACTIVADO) se repiten
+# cada 102 px. 23/11: con una sola pieza para todas las filas, las lineas del marco quedaban 1 px corridas en las
+# filas 2-5; ahora cada fila lleva su pieza recortada de su propio fondo.
+E_PILL = (706, 337, 957, 405)
+E_PILL_PASO = 102
+
+
+def _con_interruptores(ref, estado):
+    fila = 0 if estado == 'on' else 3
+    x0, y0, x1, y1 = E_PILL
+    pill = ref.crop((x0, y0 + fila * E_PILL_PASO, x1, y1 + fila * E_PILL_PASO))
+    for i in range(5):
+        ref.paste(pill, (x0, y0 + i * E_PILL_PASO))
+    return ref
+
+
+def _efectos_fuente(activa, interruptores=None):
     """Referencia con la pestana `activa` remarcada (marco dorado de MEDIO) y las otras apagadas (marco de BAJO)."""
     ref = Image.open(EFECTOS_REF).convert('RGBA')
+    if interruptores:
+        ref = _con_interruptores(ref, interruptores)
     marcos = {k: _texto_pestana(ref, c) for k, c in E_TABS.items()}
     on, off = marcos['medio'][0], marcos['bajo'][0]
     out = ref.copy()
@@ -232,8 +250,8 @@ def _efectos_fuente(activa):
     return out.convert('RGB').filter(ImageFilter.GaussianBlur(1.3))
 
 
-def _efectos_deformado(activa='medio'):
-    src = _efectos_fuente(activa)
+def _efectos_deformado(activa='medio', interruptores=None):
+    src = _efectos_fuente(activa, interruptores)
     im = Image.new('RGBA', (W * K, _alto(6) * K))
     ys, yd = E_Y
     _banda(im, src, *E_X, ys[:2], yd[:2])
@@ -258,6 +276,9 @@ def _recorte(im, slot, n=1):
     return im.crop((x, y, x + 18 * n * K, y + 18 * K))
 
 
+EFECTOS_FILAS = ('armaduras', 'armas', 'bastones', 'mascotas', 'jefes')
+
+
 def efectos_piezas():
     """Piezas (x2) para ventanas_19_11.piezas(): pestanas, interruptores e iconos, recortados del dibujo."""
     out = {}
@@ -265,10 +286,11 @@ def efectos_piezas():
         im = _efectos_deformado(activa)
         for i, k in enumerate(E_TABS):
             out[f'nivel_{k}' + ('_activo' if k == activa else '')] = _recorte(im, i * 3, 3)
-    im = _efectos_deformado()
-    out['interruptor_on'] = _recorte(im, 9 + 6, 3)        # Armaduras: ACTIVADO
-    out['interruptor_off'] = _recorte(im, 4 * 9 + 6, 3)   # Mascotas: DESACTIVADO
-    for fila, cat in enumerate(('armaduras', 'armas', 'bastones', 'mascotas', 'jefes'), 1):
+    for estado in ('on', 'off'):
+        im = _efectos_deformado(interruptores=estado)
+        for fila, cat in enumerate(EFECTOS_FILAS, 1):
+            out[f'interruptor_{estado}_{cat}'] = _recorte(im, fila * 9 + 6, 3)
+    for fila, cat in enumerate(EFECTOS_FILAS, 1):
         # el icono ocupa parte de la columna 1: queda dibujado en el fondo y el item es invisible
         out[f'efecto_{cat}'] = Image.new('RGBA', (16 * K, 16 * K))
     return out

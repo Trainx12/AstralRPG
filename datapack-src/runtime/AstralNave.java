@@ -15,14 +15,17 @@ import org.bukkit.util.Vector;
 
 /**
  * Nave del Vacio (generado por datapack-src/nave.py): mazmorra tier 5 en 3 copias.
- * - Vista de la mano desde afuera al entrar: el jugador queda en espectador mirando por una camara (soporte invisible)
- *   que da una vuelta alrededor de la nave. Agacharse la saltea. Despues aparece en la sala del grupo.
+ * - Vista de la mano desde afuera al entrar: el jugador queda en espectador y recorre una ruta alrededor de la nave
+ *   (23/11: antes miraba por un soporte invisible y no cargaba el mapa). Agacharse la saltea. Despues aparece en la sala del grupo.
  * - Salas por compuertas: al limpiar la sala se abre la compuerta (centro); pisarla, o esperar, lleva a todo el grupo
- *   a la sala siguiente. Si alguien cae al casco hueco (fuera de los limites) vuelve a la llegada de su sala.
+ *   a la sala siguiente. Cada sala es una capsula de adentro de la mano, cerrada con barreras en puertas y ventanas
+ *   (nave_barreras.txt, se ponen solas). Quien sale de la zona de su sala vuelve; los mobs tambien.
+ * - Mobs siempre agresivos: cada medio segundo buscan al jugador mas cercano. Sin perlas ni coros (ni se sueltan),
+ *   sin abrir shulkers ni cofres del mapa.
  * - Palma: Capitan del Vacio. Con Ojos Vigias vivos recibe solo el % de "escudo". Al morir: mazfin, cofre y guia.
  */
 public final class AstralNave extends JavaPlugin implements Listener {
-    record Sala(String id, String nombre, double[] llegada, double[] centro, double[] lim, List<double[]> puntos, List<Map<String, Integer>> oleadas) {}
+    record Sala(String id, String nombre, double[] llegada, double[] centro, List<double[]> puntos, List<Map<String, Integer>> oleadas) {}
 
     static final class Estado {
         int sala = 0;        // sala actual (indice)
@@ -62,11 +65,13 @@ public final class AstralNave extends JavaPlugin implements Listener {
                 olas.add(ola);
             }
             salas.add(new Sala(m.get("id").toString(), m.get("nombre").toString(), xyz(m.get("llegada").toString()), xyz(m.get("centro").toString()),
-                xyz(m.get("limites").toString()), pts, olas));
+                pts, olas));
         }
+        cargarZonas();
         getServer().getPluginManager().registerEvents(this, this);
         Bukkit.getScheduler().runTaskTimer(this, this::tick, 40, 10);
         Bukkit.getScheduler().runTaskTimer(this, this::camaras, 1, 1);
+        Bukkit.getScheduler().runTaskLater(this, () -> { for (String m : mundos) barreras(Bukkit.getWorld(m), false); }, 100);
         getLogger().info("Nave del Vacio: " + salas.size() + " salas en " + mundos);
     }
 
@@ -108,6 +113,7 @@ public final class AstralNave extends JavaPlugin implements Listener {
             }
             Sala s = salas.get(st.sala);
             for (Player p : ps) if (fuera(p, s)) { p.teleport(llegada(w, s)); p.setFallDistance(0); msg(p, "&5El vacio te devuelve a la sala."); }
+            mobsSala(w, st, ps);
             if (st.terminado) continue;
             if (st.oleada == 0) {
                 if (st.cuando == 0) { st.cuando = now + 4000; titulo(ps, s.nombre(), "Sala " + (st.sala + 1) + "/" + salas.size()); }
@@ -124,9 +130,80 @@ public final class AstralNave extends JavaPlugin implements Listener {
         }
     }
 
-    boolean fuera(Player p, Sala s) {
-        var l = p.getLocation(); double[] b = s.lim();
-        return l.getX() < b[0] || l.getY() < b[1] || l.getZ() < b[2] || l.getX() > b[3] + 1 || l.getY() > b[4] || l.getZ() > b[5] + 1;
+    boolean fuera(Player p, Sala s) { return !enZona(p.getLocation(), salas.indexOf(s)); }
+
+    // ------------------------------------------------------------------------------------------ zonas y barreras
+    int zx0, zy0, zz0; int[][] zonas = new int[0][];   // [z][3x..3x+2] -> bits de las salas, y min y max del aire de adentro
+    final List<int[]> tiras = new ArrayList<>();  // x0 x1 y z
+    int tirasHash;
+
+    List<String> recurso(String nombre) {
+        try (var in = getResource(nombre)) {
+            if (in == null) return List.of();
+            return new String(in.readAllBytes(), java.nio.charset.StandardCharsets.UTF_8).lines().toList();
+        } catch (java.io.IOException e) { return List.of(); }
+    }
+
+    void cargarZonas() {
+        List<int[]> filas = new ArrayList<>();
+        for (String l : recurso("nave_zonas.txt")) {
+            if (l.startsWith("#")) { var m = java.util.regex.Pattern.compile("z desde (-?\\d+).*x desde (-?\\d+).*y desde (-?\\d+)").matcher(l); if (m.find()) { zz0 = Integer.parseInt(m.group(1)); zx0 = Integer.parseInt(m.group(2)); zy0 = Integer.parseInt(m.group(3)); } continue; }
+            int[] f = new int[l.length() / 2];
+            for (int i = 0; i < f.length; i++) f[i] = Integer.parseInt(l.substring(2 * i, 2 * i + 2), 16);
+            filas.add(f);
+        }
+        zonas = filas.toArray(new int[0][]);
+        List<String> b = recurso("nave_barreras.txt");
+        for (String l : b) {
+            if (l.isBlank() || l.startsWith("#")) continue;
+            String[] p = l.trim().split("\\s+");
+            tiras.add(new int[]{Integer.parseInt(p[0]), Integer.parseInt(p[1]), Integer.parseInt(p[2]), Integer.parseInt(p[3])});
+        }
+        tirasHash = String.join("\n", b).hashCode();
+        getLogger().info("Zonas: " + zonas.length + " filas; barreras: " + tiras.size() + " tiras");
+    }
+
+    /** La columna de esa posicion tiene aire de adentro de la sala i (y no esta metido en un bloque). */
+    boolean enZona(Location l, int i) {
+        if (zonas.length == 0 || i < 0) return true;
+        int z = l.getBlockZ() - zz0, x = l.getBlockX() - zx0;
+        if (z < 0 || z >= zonas.length || x < 0 || 3 * x + 2 >= zonas[z].length) return false;
+        int[] f = zonas[z]; double y = l.getY() - zy0;
+        return (f[3 * x] >> i & 1) == 1 && y >= f[3 * x + 1] - 0.5 && y <= f[3 * x + 2] + 1 && !l.getBlock().getType().isSolid();
+    }
+
+    /** Pone las paredes de barrera (solo donde hay aire). Una vez por version de nave_barreras.txt, o forzado. */
+    int barreras(World w, boolean forzar) {
+        if (w == null || tiras.isEmpty()) return 0;
+        var f = new java.io.File(getDataFolder(), "estado.yml");
+        var est = org.bukkit.configuration.file.YamlConfiguration.loadConfiguration(f);
+        if (!forzar && est.getInt("barreras." + w.getName(), 0) == tirasHash) return 0;
+        int n = 0;
+        for (int[] t : tiras) for (int x = t[0]; x <= t[1]; x++) {
+            var b = w.getBlockAt(x, t[2], t[3]);
+            if (b.getType().isAir()) { b.setType(Material.BARRIER, false); n++; }
+        }
+        est.set("barreras." + w.getName(), tirasHash);
+        try { est.save(f); } catch (java.io.IOException ex) { getLogger().warning("estado.yml: " + ex); }
+        getLogger().info("Barreras de la nave en " + w.getName() + ": " + n + " bloques nuevos");
+        return n;
+    }
+
+    /** Mobs: siempre contra el jugador mas cercano, y de vuelta a la sala si se salen (vex que atraviesan paredes). */
+    void mobsSala(World w, Estado st, List<Player> ps) {
+        Sala s = salas.get(st.sala);
+        Random r = new Random();
+        for (Entity e : mobs(w)) {
+            if (!(e instanceof LivingEntity le)) continue;
+            if (!enZona(le.getEyeLocation(), st.sala) && !enZona(le.getLocation(), st.sala) && !s.puntos().isEmpty()) {
+                double[] pt = s.puntos().get(r.nextInt(s.puntos().size()));
+                le.teleport(loc(w, pt, r.nextFloat() * 360));
+            }
+            if (le instanceof Mob m && !e.getScoreboardTags().contains("nave.ojo")) {
+                var t = m.getTarget();
+                if (!(t instanceof Player tp) || !ps.contains(tp) || tp.isDead()) objetivo(m, ps);
+            }
+        }
     }
 
     void oleada(World w, Estado st, int n, int jugadores) {
@@ -151,7 +228,7 @@ public final class AstralNave extends JavaPlugin implements Listener {
                 Location at = loc(w, pt, r.nextFloat() * 360);
                 Entity mob = w.spawnEntity(at, EntityType.valueOf(tipo.toUpperCase(Locale.ROOT)));
                 mob.addScoreboardTag("nave.mob"); mob.setGlowing(true);
-                if (mob instanceof Mob m) { m.setRemoveWhenFarAway(false); objetivo(m); }
+                if (mob instanceof Mob m) { m.setRemoveWhenFarAway(false); agresivo(m); }
                 puestos++;
             }
         }
@@ -159,10 +236,18 @@ public final class AstralNave extends JavaPlugin implements Listener {
         if (!def.containsKey("jefe") && !def.containsKey("minijefe")) w.getPlayers().forEach(p -> msg(p, "&dOleada &f" + n + "/" + total + " &7(" + s.nombre() + ")"));
     }
 
-    void objetivo(Mob m) {
+    void objetivo(Mob m) { objetivo(m, m.getWorld().getPlayers().stream().filter(p -> pelea(p) && !intros.containsKey(p.getUniqueId())).toList()); }
+    void objetivo(Mob m, List<Player> ps) {
         Player near = null; double best = Double.MAX_VALUE;
-        for (Player p : m.getWorld().getPlayers()) if (pelea(p) && p.getLocation().distanceSquared(m.getLocation()) < best) { best = p.getLocation().distanceSquared(m.getLocation()); near = p; }
+        for (Player p : ps) if (p.getLocation().distanceSquared(m.getLocation()) < best) { best = p.getLocation().distanceSquared(m.getLocation()); near = p; }
         if (near != null) m.setTarget(near);
+    }
+
+    /** Ven a los jugadores desde toda la sala y los persiguen (los endermans dejan de ser neutrales). */
+    void agresivo(Mob m) {
+        try { var a = m.getAttribute(org.bukkit.attribute.Attribute.FOLLOW_RANGE); if (a != null && a.getBaseValue() < 64) a.setBaseValue(64); } catch (Throwable ignored) {}
+        if (m instanceof Enderman en) en.setScreaming(true);
+        objetivo(m);
     }
 
     /** Aparece un mob de MythicMobs por consola y le pone la etiqueta (los que aparecieron ahi y no la tenian). */
@@ -171,7 +256,7 @@ public final class AstralNave extends JavaPlugin implements Listener {
         for (Entity e : w.getEntities()) antes.add(e.getUniqueId());
         consola("mm mobs spawn " + id + " 1 " + w.getName() + "," + (c[0] + 0.5) + "," + c[1] + "," + (c[2] + 0.5));
         for (Entity e : w.getNearbyEntities(new Location(w, c[0] + 0.5, c[1], c[2] + 0.5), 4, 6, 4))
-            if (!(e instanceof Player) && !antes.contains(e.getUniqueId())) { e.addScoreboardTag(tag); if (e instanceof Mob m) { m.setRemoveWhenFarAway(false); objetivo(m); } }
+            if (!(e instanceof Player) && !antes.contains(e.getUniqueId())) { e.addScoreboardTag(tag); if (e instanceof Mob m) { m.setRemoveWhenFarAway(false); agresivo(m); } }
     }
 
     void compuerta(World w, Estado st, List<Player> ps, long now) {
@@ -257,6 +342,31 @@ public final class AstralNave extends JavaPlugin implements Listener {
     @EventHandler(ignoreCancelled = true) public void perla(PlayerTeleportEvent e) {
         if (nave(e.getTo().getWorld()) && (e.getCause() == PlayerTeleportEvent.TeleportCause.ENDER_PEARL || e.getCause() == PlayerTeleportEvent.TeleportCause.CONSUMABLE_EFFECT)) e.setCancelled(true);
     }
+    // Sin perlas ni coros: no se tiran, no se comen y no aparecen en el piso (drops de endermans y otros).
+    static boolean prohibido(org.bukkit.inventory.ItemStack i) { return i != null && (i.getType() == Material.ENDER_PEARL || i.getType() == Material.CHORUS_FRUIT); }
+    @EventHandler(ignoreCancelled = true) public void tirarPerla(ProjectileLaunchEvent e) {
+        if (e.getEntity() instanceof EnderPearl && nave(e.getEntity().getWorld())) e.setCancelled(true);
+    }
+    @EventHandler(ignoreCancelled = true) public void comerCoro(PlayerItemConsumeEvent e) {
+        if (nave(e.getPlayer().getWorld()) && prohibido(e.getItem())) e.setCancelled(true);
+    }
+    @EventHandler public void sinDrops(EntityDeathEvent e) {
+        if (nave(e.getEntity().getWorld()) && !(e.getEntity() instanceof Player)) e.getDrops().removeIf(AstralNave::prohibido);
+    }
+    @EventHandler(ignoreCancelled = true) public void sinItem(ItemSpawnEvent e) {
+        if (nave(e.getEntity().getWorld()) && prohibido(e.getEntity().getItemStack())) e.setCancelled(true);
+    }
+    // Shulkers y cofres del mapa: no se abren (son decoracion).
+    @EventHandler(priority = EventPriority.HIGH) public void abrir(PlayerInteractEvent e) {
+        var b = e.getClickedBlock();
+        if (b == null || e.getAction() != org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK || !nave(b.getWorld()) || constructor(e.getPlayer())) return;
+        if (b.getType().name().endsWith("SHULKER_BOX") || b.getState(false) instanceof org.bukkit.block.Container) e.setUseInteractedBlock(Event.Result.DENY);
+    }
+    @EventHandler(ignoreCancelled = true) public void abrirInv(org.bukkit.event.inventory.InventoryOpenEvent e) {
+        if (!(e.getPlayer() instanceof Player p) || !nave(p.getWorld()) || constructor(p)) return;
+        var h = e.getInventory().getHolder(false);
+        if (h instanceof org.bukkit.block.Container || h instanceof org.bukkit.block.DoubleChest) e.setCancelled(true);
+    }
     // Endermans de las oleadas: no se teletransportan solos (se irian al casco).
     @EventHandler(ignoreCancelled = true) public void enderTp(EntityTeleportEvent e) {
         if (e.getEntity() instanceof Enderman && nave(e.getEntity().getWorld())) e.setCancelled(true);
@@ -264,9 +374,12 @@ public final class AstralNave extends JavaPlugin implements Listener {
 
     // ------------------------------------------------------------------------------------------ vista desde afuera
     /** Recorrido de la camara alrededor de la nave (puntos y adonde mira), en coordenadas del mundo. */
+    // 23/11: sin camara. Antes el jugador miraba por un soporte invisible, pero el server carga y manda el mapa
+    // alrededor del JUGADOR (que quedaba lejos): el dueno veia solo estrellas. Ahora el jugador mismo (espectador)
+    // recorre la ruta, bien cerca de la nave (view-distance del server = 8 chunks).
     final class Intro {
-        final ArmorStand camara; int t = 0; final GameMode antes;
-        Intro(ArmorStand c, GameMode g) { camara = c; antes = g; }
+        int t = -50; final GameMode antes;   // 2,5 s quieto en el primer punto: que llegue el mapa
+        Intro(GameMode g) { antes = g; }
     }
     static final int INTRO_TICKS = 300;   // 15 segundos
     double[][] ruta() {
@@ -295,17 +408,15 @@ public final class AstralNave extends JavaPlugin implements Listener {
         World w = p.getWorld();
         double[] o = punto(r, 0);
         Location at = mirar(new Location(w, o[0], o[1], o[2]), o);
-        ArmorStand cam = w.spawn(at, ArmorStand.class, a -> {
-            a.setInvisible(true); a.setMarker(true); a.setGravity(false); a.setSilent(true); a.setInvulnerable(true);
-            a.setPersistent(false); a.addScoreboardTag("nave.camara"); a.setVisibleByDefault(false);
-        });
         GameMode antes = p.getGameMode() == GameMode.SPECTATOR ? GameMode.SURVIVAL : p.getGameMode();
         p.getPersistentDataContainer().set(introKey, PersistentDataType.STRING, antes.name());
-        intros.put(p.getUniqueId(), new Intro(cam, antes));
+        intros.put(p.getUniqueId(), new Intro(antes));
         try { p.setSendViewDistance(Math.max(8, getConfig().getInt("intro.distancia-vista", 14))); } catch (Throwable ignored) {}
         p.setGameMode(GameMode.SPECTATOR);
+        cargarNave(w, true);
         p.teleport(at);
-        p.setSpectatorTarget(cam);
+        // Afuera es de noche y el casco no tiene luces: sin esto se ve negro contra el cielo (23/11).
+        p.addPotionEffect(new org.bukkit.potion.PotionEffect(org.bukkit.potion.PotionEffectType.NIGHT_VISION, INTRO_TICKS + 60, 0, false, false, false));
         p.playSound(p.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1f, 0.5f);
         titulo(List.of(p), "Nave del Vacio", "Agachate para saltear");
     }
@@ -322,23 +433,30 @@ public final class AstralNave extends JavaPlugin implements Listener {
         for (var en : new ArrayList<>(intros.entrySet())) {
             Player p = Bukkit.getPlayer(en.getKey());
             Intro in = en.getValue();
-            if (p == null || !in.camara.isValid() || !nave(p.getWorld())) { if (p != null) terminarIntro(p, false); else { in.camara.remove(); intros.remove(en.getKey()); } continue; }
+            if (p == null || !nave(p.getWorld())) { if (p != null) terminarIntro(p, false); else intros.remove(en.getKey()); continue; }
             in.t++;
             if (in.t >= INTRO_TICKS) { terminarIntro(p, true); continue; }
-            double[] o = punto(r, in.t / (double) INTRO_TICKS);
-            in.camara.teleport(mirar(new Location(p.getWorld(), o[0], o[1], o[2]), o));
-            if (p.getSpectatorTarget() != in.camara) {
-                if (in.t > 5) { terminarIntro(p, true); continue; }   // se agacho: saltear
-                p.setSpectatorTarget(in.camara);
-            }
+            double[] o = punto(r, Math.max(0, in.t) / (double) INTRO_TICKS);
+            if (p.getGameMode() != GameMode.SPECTATOR) p.setGameMode(GameMode.SPECTATOR);
+            p.teleport(mirar(new Location(p.getWorld(), o[0], o[1], o[2]), o));
             if (in.t == INTRO_TICKS - 30) titulo(List.of(p), "", "Entrando al Hangar...");
+        }
+    }
+
+    /** Toda la nave cargada en el server mientras alguien mira la vista (si no, el mapa llega tarde: 23/11). */
+    void cargarNave(World w, boolean si) {
+        if (w == null) return;
+        if (!si) for (UUID u : intros.keySet()) { Player o = Bukkit.getPlayer(u); if (o != null && o.getWorld().equals(w)) return; }
+        for (int cx = -5; cx <= 5; cx++) for (int cz = -7; cz <= 6; cz++) {
+            if (si) w.addPluginChunkTicket(cx, cz, this); else w.removePluginChunkTicket(cx, cz, this);
         }
     }
 
     void terminarIntro(Player p, boolean llevar) {
         Intro in = intros.remove(p.getUniqueId());
-        if (in != null) in.camara.remove();
-        p.setSpectatorTarget(null);
+        for (String m : mundos) cargarNave(Bukkit.getWorld(m), false);
+        var nv = p.getPotionEffect(org.bukkit.potion.PotionEffectType.NIGHT_VISION);
+        if (nv != null && !nv.hasParticles() && nv.getDuration() <= INTRO_TICKS + 60) p.removePotionEffect(org.bukkit.potion.PotionEffectType.NIGHT_VISION);
         String g = p.getPersistentDataContainer().get(introKey, PersistentDataType.STRING);
         p.getPersistentDataContainer().remove(introKey);
         GameMode modo = in != null ? in.antes : (g != null ? GameMode.valueOf(g) : GameMode.SURVIVAL);
@@ -363,7 +481,6 @@ public final class AstralNave extends JavaPlugin implements Listener {
             }, 2);
             return;
         }
-        if (p.getGameMode() == GameMode.CREATIVE) return;   // los OP que construyen no ven la intro
         Bukkit.getScheduler().runTaskLater(this, () -> { if (p.isOnline() && nave(p.getWorld())) empezarIntro(p); }, 10);
     }
 
@@ -374,8 +491,17 @@ public final class AstralNave extends JavaPlugin implements Listener {
         Bukkit.getScheduler().runTaskLater(this, () -> terminarIntro(p, true), 5);
     }
     @EventHandler public void sale(PlayerQuitEvent e) {
-        Intro in = intros.remove(e.getPlayer().getUniqueId());
-        if (in != null) in.camara.remove();
+        if (intros.remove(e.getPlayer().getUniqueId()) != null) for (String m : mundos) cargarNave(Bukkit.getWorld(m), false);
+    }
+    // Agacharse saltea la vista.
+    @EventHandler public void saltear(PlayerToggleSneakEvent e) {
+        Intro in = intros.get(e.getPlayer().getUniqueId());
+        if (in != null && e.isSneaking() && in.t > -25) terminarIntro(e.getPlayer(), true);
+    }
+    // Durante la vista no se puede mover por su cuenta (la ruta lo lleva).
+    @EventHandler(ignoreCancelled = true) public void quieto(PlayerMoveEvent e) {
+        if (intros.containsKey(e.getPlayer().getUniqueId()) && e.getFrom().distanceSquared(e.getTo()) > 0
+            && !(e instanceof PlayerTeleportEvent)) e.setTo(e.getFrom().setDirection(e.getTo().getDirection()));
     }
 
     // ------------------------------------------------------------------------------------------ comandos de admin
@@ -389,7 +515,7 @@ public final class AstralNave extends JavaPlugin implements Listener {
             if (abierta) for (Player p : Bukkit.getOnlinePlayers()) msg(p, "&5&l✦ &d&lLa Nave del Vacio abrio sus compuertas. &7Entra desde &fPortales&7 (pagina 2).");
             return true;
         }
-        if (a.length == 0) { s.sendMessage("/nave abrir | cerrar | estado | saltar <mundo> | sala <mundo> <n> | intro <jugador> | reiniciar <mundo>"); return true; }
+        if (a.length == 0) { s.sendMessage("/nave abrir | cerrar | estado | saltar <mundo> | sala <mundo> <n> | intro <jugador> | reiniciar <mundo> | barreras"); return true; }
         switch (a[0]) {
             case "estado" -> { s.sendMessage("Nave del Vacio: " + (abierta ? "ABIERTA" : "cerrada (/nave abrir)"));
                 for (String m : mundos) { var st = estado.get(m); s.sendMessage(m + ": " + (st == null ? "libre" : "sala " + (st.sala + 1) + " oleada " + st.oleada + (st.terminado ? " (ganada)" : ""))); } }
@@ -405,6 +531,7 @@ public final class AstralNave extends JavaPlugin implements Listener {
             }
             case "intro" -> { Player p = a.length > 1 ? Bukkit.getPlayer(a[1]) : (s instanceof Player pp ? pp : null); if (p != null && nave(p.getWorld())) empezarIntro(p); else s.sendMessage("El jugador tiene que estar en la nave"); }
             case "reiniciar" -> { World w = a.length > 1 ? Bukkit.getWorld(a[1]) : null; if (nave(w)) { var st = estado.computeIfAbsent(w.getName(), k -> new Estado()); st.terminado = true; reiniciar(w, st); estado.put(w.getName(), new Estado()); s.sendMessage("Reiniciada " + w.getName()); } }
+            case "barreras" -> { int n = 0; for (String m : mundos) n += barreras(Bukkit.getWorld(m), true); s.sendMessage("Barreras puestas: " + n + " bloques nuevos"); }
             default -> s.sendMessage("?");
         }
         return true;

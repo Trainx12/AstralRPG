@@ -1,0 +1,6 @@
+-Xmx5632M
+-XX:MinHeapFreeRatio=15
+-XX:MaxHeapFreeRatio=35
+-XX:G1PeriodicGCInterval=120000
+-jar
+server.jar

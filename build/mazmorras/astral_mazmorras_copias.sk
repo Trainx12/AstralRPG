@@ -132,7 +132,7 @@ function maz_entrar(p: player, key: text):
         set {_mundo::3} to "fosa_3"
     if {_key} is "nave":
         set {_nombre} to "Nave del Vacio"
-        set {_tp} to "-38.5 80 -17.5 -10 0"
+        set {_tp} to "-20.5 72 94.5 180 0"
         set {_dim::1} to "nave"
         set {_mundo::1} to "nave"
         set {_dim::2} to "nave_2"

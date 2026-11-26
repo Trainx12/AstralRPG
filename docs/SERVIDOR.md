@@ -84,7 +84,7 @@ Mismo cobro que LynExp: nivel N de maximo M cuesta la XP de ceil(N/M*30) niveles
 Botella de vidrio en la mesa embotella XP; items de mobs en un conducto dan XP. Config en `plugins/AstralMesa/config.yml` (`astralmesa reload`).
 Cada libro explica que hace el encantamiento (textos en `mesa_encantamientos.py`, VANILLA y ESPECIALES; si se agrega un encantamiento nuevo, sumarle su texto).
 Bastones de mago (carrot_on_a_stick, `w:"staff"`): ademas de los que el juego permite, la lista `BASTONES` (Botin, Wisdom, Nimble, Decapitator, Thrifty, Soulbound, Restore y maldiciones): son los que actuan al matar o son pasivos, porque el hechizo es dano magico.
-Descripciones de ExcellentEnchants en espanol: `datapack-src/ee_descripciones.py <carpeta con enchants/*.yml del server>` -> `build/excellentenchants/enchants/`; subir a `plugins/ExcellentEnchants/enchants/` y reiniciar. Solo cambia `Description`.
+Descripciones de ExcellentEnchants en espanol: `datapack-src/ee_descripciones.py <carpeta con enchants/*.yml del server>` -> `build/excellentenchants/enchants/`; subir a `plugins/ExcellentEnchants/enchants/` y reiniciar. Solo cambia `Description`. Excepcion: `AJUSTES` cambia numeros puntuales (25/11: Temple de EE en 0; el Temple real es `astral_temple.sk` de `encantamientos_balance.py`, +10% por nivel x vida que falta / vida maxima, porque el de EE no tenia tope con la vida escalada).
 Tambien ofrece los de datapacks (Stellarity, Dungeons and Taverns: `DATAPACKS`); los internos (jefes, jinetes, `_technical`) se excluyen con `EXCLUIR_CONTIENE`.
 Precio segun calidad (`costos`): normal 30 niveles (1395 XP), Bueno 40 (2920), Muy bueno 50 (5345), maldiciones 10. No hay limite de cuantos encantamientos lleva un objeto (solo los que chocan entre si).
 Lista estilo Hypixel (por paquetes, con packetevents): en el objeto se ocultan los encantamientos vanilla y arriba del lore va la lista; hasta 4 con su descripcion (numeros en verde), mas de 4 en azul, 3 por linea. Nombres en espanol (`NOMBRES`). Lo que vuelve del cliente en creativo se limpia (marca `astralmesa:tt`). ExcellentEnchants con `Modules.EnchantTooltip: false` (`ee_descripciones.py --config`) para que no se dupliquen.
@@ -214,6 +214,49 @@ El servidor queda prendido las 24 horas. Tarda unos 3 minutos en arrancar (`Done
 - **Nunca usar Upload en la fila world de Worlds: reemplaza el mundo entero.** Asi se perdio el mundo original en Aternos el 28/10/2026.
 - **Respaldos:** El dueno contrato el servicio pago **Respaldos Diarios** de Empower: cada 4 horas, fuera del servidor y administrado por Empower. En el panel hay un respaldo manual bueno del 10/11 (558 MB). Los backups del panel fallan con carpetas que cambian; `.pteroignore` en la raiz excluye `logs`, `cache`, `.cache`, `libraries`, `versions`, `crash-reports`. La tarea programada del panel "Backup diario" fallo en la prueba (0 MB); no contar con ella como respaldo valido.
 - En Paper 26.1 todos los mundos viven dentro de `world/`: `world/dimensions/minecraft/<overworld|the_nether|the_end|lobby>/region`.
+
+## Plata de mobs vanilla del survival (24/11/2026)
+
+`economia.py` (`PLATA_VANILLA_TIER`): un zombi (20 de vida base) paga 500$ en T1, el doble por tier (8.300$ en T5,
+266.600$ en T10). Los demas mobs pagan en proporcion a su vida base (arana 0,8x, enderman 2x; elites con su vida extra),
+con un tope de 10x. Solo pagan los que aparecen solos: la marca `astral.vpaga` se pone al aparecer. No pagan los de spawner,
+las crias, los de comandos ni los MythicMobs. Las mazmorras siguen con su pago de oleada. Subido el 24/11 a las 01:03 para que entre en el
+reinicio de las 05:00. Los mobs que ya estaban vivos antes del reinicio no tienen la marca y no pagan.
+
+## Curacion fuera de pelea (24/11/2026)
+
+`datapack-src/regen_fuera_pelea.py` -> `build/gameplay/astral_regen.sk`. Despues de 20 s sin pegar ni recibir dano, cura
+el 4% de la vida maxima por segundo (se llena en unos 25 s). Mientras tanto la comida no cura ni se gasta.
+En pelea sigue la curacion por comida de `gameplay.py` (`REGEN_COMIDA`). Por la regla del dueno arranca solo para ByTrainx:
+`/regenfuera publico` lo abre a todos y `/regenfuera privado` lo vuelve a cerrar. Subido con `skript reload astral_regen.sk`, sin reinicio. **Abierto a todos el 24/11 a las 01:05 con el OK del dueno** (la variable es persistente: sigue despues de reiniciar).
+Mismo script: si te pegaron hace menos de 5 s, `/spawn` (y `essentials:spawn`/`espawn`) se cancela con un aviso en el chat
+(`SPAWN_ESPERA`). Subido el 24/11 a las 01:16 para que entre en el reinicio de las 05:00 (sin `skript reload` antes).
+`/home` tambien queda bloqueado en pelea, con su propio aviso.
+
+**/sethome y /home (24/11/2026):** antes nadie tenia permiso (solo los OP), aunque el panel de TAB lo anunciaba. Se dio
+`essentials.sethome`, `essentials.home` y `essentials.delhome` al grupo `default` de LuckPerms (en vivo, una casa por jugador).
+`llegada_survival.py`: si entras al Survival con `/home`, te deja en tu casa y no en el "ultimo lugar donde estabas" (en vivo con
+`skript reload astral_llegada.sk` el 24/11 a las 01:25). El bloqueo de `/home` en pelea vive en `astral_regen.sk`, junto con el de `/spawn`, y entra a las 05:00.
+
+## Tope de memoria de Java en Empower (24/11/2026)
+
+El arranque del panel fija `-Xmx6400M` (8000 menos 1/5) y Java se quedaba con casi 8 GB, asi que el panel
+mostraba el cartel de pocos recursos, aunque el juego usaba 3,1 GB despues de cada limpieza (spark). Si en la raiz del
+servidor existe `unix_args.txt`, el panel arranca con `@unix_args.txt` y no con `-jar server.jar`. Los flags de ese archivo van
+despues de los del panel, y el ultimo `-Xmx` es el que vale. Fuente: `build/servidor/unix_args.txt`
+(5,5 GB de tope y devuelve al sistema la memoria que no usa). Tiene que terminar en `-jar` / `server.jar`. Si algun dia
+el server no arranca, borrar `/unix_args.txt` y vuelve al arranque normal. Subido el 24/11 a las 00:10, entra en el reinicio de las 05:00.
+
+## CPU: un solo nucleo (24/11/2026)
+
+spark (`systemStatistics.cpu.threads`) muestra que Empower le da **1 hilo de CPU**; con 3-4 jugadores en el Survival el
+proceso queda al ~85% y el TPS baja a 12-16 (perfil https://spark.lucko.me/BzIDee1cbj). Ajustes:
+- `/bukkit.yml` (se edita en el server, no hay fuente en el repo): `spawn-limits` monsters 70 -> 55, water-ambient 20 -> 10,
+  ambient 15 -> 5; `ticks-per.monster-spawns` 1 -> 2. Entra al reiniciar.
+- Creeper Nuclear: `NUCLEAR_CHANCE` 30 -> 10 (`mobs/tanda3b.py`, `astral_tanda3b.sk`, en vivo).
+- AstralOceano 1.5.1: mira `isUnderWater()` antes de leer la armadura y no toca el atributo de nado fuera del agua
+  (antes leia las 4 piezas como texto 20 veces por segundo por jugador: 4% del hilo principal).
+- Minijuegos (`minijuegos_datapack.py`): el tick de parkour/battleship solo corre si hay alguien en ese mundo.
 
 ## Memoria y lag (revision 02/11/2026, en Aternos)
 

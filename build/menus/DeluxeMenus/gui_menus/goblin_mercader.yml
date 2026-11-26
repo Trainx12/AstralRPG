@@ -7,7 +7,7 @@ items:
     slot: 10
     display_name: '&aFrasco de Experiencia Pequeno'
     lore:
-    - '&e255,000$'
+    - '&e85,000$'
     - '&7Limite por visita: 4'
     - '&7La compra valida cercania y stock.'
     click_commands:
@@ -19,7 +19,7 @@ items:
     slot: 11
     display_name: '&aFrasco de Experiencia Grande'
     lore:
-    - '&e765,000$'
+    - '&e255,000$'
     - '&7Limite por visita: 4'
     - '&7La compra valida cercania y stock.'
     click_commands:
@@ -31,7 +31,7 @@ items:
     slot: 12
     display_name: '&aFrasco de Experiencia Gigante'
     lore:
-    - '&e2,125,000$'
+    - '&e680,000$'
     - '&7Limite por visita: 4'
     - '&7La compra valida cercania y stock.'
     click_commands:
@@ -43,7 +43,7 @@ items:
     slot: 13
     display_name: '&aBarril de Experiencia'
     lore:
-    - '&e18,700,000$'
+    - '&e5,950,000$'
     - '&7Limite por visita: 1'
     - '&7La compra valida cercania y stock.'
     click_commands:
@@ -55,7 +55,7 @@ items:
     slot: 14
     display_name: '&aManzana de la Suerte'
     lore:
-    - '&e5,100,000$'
+    - '&e1,700,000$'
     - '&7Limite por visita: 4'
     - '&7La compra valida cercania y stock.'
     click_commands:
@@ -108,18 +108,6 @@ items:
     - '&7La compra valida cercania y stock.'
     click_commands:
     - '[console] astralmercader %player_name% llave_cosmeticos'
-    - '[close]'
-  cosmetico_balde:
-    material: PAPER
-    item_model: astral:cosmeticos/espalda_wooden_bucket
-    slot: 19
-    display_name: '&aBalde de Madera (cosmetico raro)'
-    lore:
-    - '&e1,200,000$'
-    - '&7Limite por visita: 1'
-    - '&7La compra valida cercania y stock.'
-    click_commands:
-    - '[console] astralmercader %player_name% cosmetico_balde'
     - '[close]'
   close:
     material: PAPER

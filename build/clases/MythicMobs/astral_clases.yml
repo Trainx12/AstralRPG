@@ -1,0 +1,25 @@
+astral_invocacion:
+  Type: ZOMBIE
+  Display: '&5Invocacion'
+  Health: 20
+  Damage: 1
+  Options:
+    Silent: true
+    PreventSunburn: true
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    Despawn: false
+    Persistent: false
+    MovementSpeed: 0.3
+    FollowRange: 24
+    KnockbackResistance: 0.8
+  AIGoalSelectors:
+  - clear
+  - float
+  - meleeattack
+  - randomlookaround
+  AITargetSelectors:
+  - clear
+  Skills:
+  - model{m=astral_invocacion} @self ~onSpawn
+  - effect:particles{p=witch;a=6;hs=0.3;vs=0.6;y=1} @self ~onTimer:20

@@ -20,7 +20,7 @@ RADIO = 600                  # borde del mundo: 1200 x 1200 bloques
 REGENERAR_HORAS = 72         # 3 dias reales
 AVISOS_MIN = (10, 5, 1)
 TIER_MOBS = 2                # oceano abierto (la mazmorra escondida es tier 3)
-VERSION = '1.5.0'
+VERSION = '1.5.1'
 STAMP = (2026, 11, 12, 0, 0, 0)
 
 PLUGIN_YML = f'''name: AstralOceano
@@ -67,17 +67,21 @@ def aviso_menu():
             '', f'&7Monstruos &ftier {TIER_MOBS}&7. Se recomienda ser &ftier 3',
             '&7para minar y explorar.', '',
             f'&8El oceano se regenera cada {REGENERAR_HORAS // 24} dias.', '&8No dejes cosas tuyas ahi.']
-    items = {
-        'info': dict(material='HEART_OF_THE_SEA', slot=13, display_name='&b&lOceano Astral', lore=lore),
-        'entrar': dict(material='LIME_STAINED_GLASS_PANE', slot=11, display_name='&a&lEntrar preparado',
-                       lore=['&7Ya tengo con que respirar.', '', '&eClic para entrar.'],
-                       click_commands=['[close]', '[player] oceano entrar<delay=3>']),
-        'volver': dict(material='RED_STAINED_GLASS_PANE', slot=15, display_name='&c&lVolver',
-                       lore=['&7Volver a los portales.'], click_commands=['[close]']),
-    }
-    from menu_ui import decorate
-    from ventanas_1611 import apply
-    return apply('oceano_aviso', decorate(dict(menu_title='&1&lOceano Astral - Aviso', size=27, items=items)))
+    # 21/11/2026: ventana dibujada (diseno del dueno, ventanas_20_11.oceano): items invisibles sobre el dibujo.
+    blank = 'astral:viajes/blank'
+    items = {}
+    for slot in range(27):        # ilustracion, respiracion y datos: el aviso completo al pasar el mouse
+        items[f'info_{slot}'] = dict(material='PAPER', slot=slot, item_model=blank, display_name='&b&lOceano Astral', lore=lore)
+    for i, slot in enumerate([*range(28, 35), *range(37, 44)]):
+        items[f'entrar_{i}'] = dict(material='PAPER', slot=slot, item_model=blank, display_name='&a&lEntrar al Oceano',
+                                    lore=['&7Ya tengo con que respirar.', '', '&eClic para entrar.'],
+                                    click_commands=['[close]', '[player] oceano entrar<delay=3>'])
+    for i, slot in enumerate((48, 49, 50)):
+        items[f'volver_{i}'] = dict(material='PAPER', slot=slot, item_model=blank, display_name='&c&lVolver',
+                                    lore=['&7Volver a los portales.'], click_commands=['[close]'])
+    from ventanas_19_11 import titulo
+    return dict(menu_title=titulo('oceano_aviso'), size=54, items=items)
+
 
 
 def portales_button():

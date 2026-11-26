@@ -1,8 +1,15 @@
+encmagia:
+  publico: false
 niveles-maximo: 30
 particulas: true
 excluir-namespaces:
 - astral
-excluir: []
+excluir:
+- excellentenchants:tunnel
+- excellentenchants:blast_mining
+- excellentenchants:cutter
+- excellentenchants:bomber
+- excellentenchants:ghast
 excluir-contiene:
 - technical
 - jockey/
@@ -108,6 +115,9 @@ costos:
   excellentenchants:curse_of_mediocrity: 10
   excellentenchants:curse_of_misfortune: 10
   nova_structures:conductivity_curse: 10
+  astral:sabio_arcano: 50
+  astral:eco_arcano: 50
+  astral:escudo_mana: 50
 tooltip:
   activo: true
   con-descripcion-hasta: 4
@@ -217,6 +227,14 @@ nombres:
   nova_structures:traveler: Viajero
   nova_structures:wax_wings: Alas de Cera
   nova_structures:wither_coated: Bañado en Wither
+  astral:poder_arcano: Poder Arcano
+  astral:fluidez: Fluidez
+  astral:sifon_mana: Sifón de Maná
+  astral:marca_arcana: Marca Arcana
+  astral:bendicion: Bendición
+  astral:sabio_arcano: Sabio Arcano
+  astral:eco_arcano: Eco Arcano
+  astral:escudo_mana: Escudo de Maná
 botella:
   costo-xp: 5
 conducto:
@@ -255,7 +273,7 @@ descripciones:
   minecraft:binding_curse: 'Maldición: no te podés sacar la armadura (salvo al morir).'
   minecraft:soul_speed: Corrés más rápido sobre arena y tierra de almas.
   minecraft:swift_sneak: Te movés más rápido agachado.
-  minecraft:sharpness: Más daño a todos los enemigos.
+  minecraft:sharpness: +3% de daño por nivel a todos los enemigos (Filo V = +15%).
   minecraft:smite: Mucho más daño a muertos vivientes (zombis, esqueletos, wither).
   minecraft:bane_of_arthropods: Mucho más daño a arañas, abejas y lepismas, y los
     frena.
@@ -364,9 +382,11 @@ descripciones:
   excellentenchants:survivalist: Los pescados salen ya cocinados.
   excellentenchants:swiper: Chance de robarle XP a los jugadores al golpearlos.
   excellentenchants:telekinesis: Lo que picás va directo a tu inventario.
-  excellentenchants:temper: Más daño cuanta menos vida te queda.
+  excellentenchants:temper: Hasta +10% de daño según la vida que te falta. Solo nivel
+    I.
   excellentenchants:thrifty: Chance de que los mobs suelten su huevo de aparición.
-  excellentenchants:thunder: Chance de llamar un rayo con daño extra al golpear.
+  excellentenchants:thunder: 'Rayo con daño según tu golpe: 10% de chance y +55% en
+    I, hasta 18% y +115% en V.'
   excellentenchants:treefeller: Tala el árbol entero de un golpe.
   excellentenchants:tunnel: Pica varios bloques a la vez (3x3).
   excellentenchants:vampire: Chance de curarte al golpear.
@@ -403,3 +423,78 @@ descripciones:
   nova_structures:wax_wings: La elytra no se gasta... salvo que vueles muy alto de
     día.
   nova_structures:wither_coated: Da efecto wither al golpear (el arma se gasta más).
+  astral:poder_arcano: +4% de daño de hechizo por nivel.
+  astral:fluidez: -5% de recarga de hechizo por nivel.
+  astral:sifon_mana: Recupera 1/2/3% del maná máximo al acertar, una vez por lanzamiento.
+  astral:marca_arcana: El enemigo recibe +5/8/12% de daño de hechizos durante 4 segundos.
+    Renueva, no acumula.
+  astral:bendicion: +10% de curación por nivel. También cura a tu party hasta 2 bloques
+    más lejos.
+  astral:sabio_arcano: -4% de maná por nivel en habilidades que cobran maná (máximo
+    -20%). Definitivo.
+  astral:eco_arcano: 5/10/15% de repetir el hechizo gratis a los 4 ticks con la mitad
+    del daño. Sin Sifón ni otro eco. Definitivo.
+  astral:escudo_mana: 'Paga con maná el 10/20/30% del daño recibido: 1 maná por 1
+    punto de vida. Definitivo.'
+precio-subasta:
+  activo: true
+  publico: false
+  solo:
+  - ByTrainx
+  archivo: CrazyAuctions/data.yml
+  cada-segundos: 60
+  base-arma:
+    1: 600000
+    2: 1200000
+    3: 2400000
+    4: 4800000
+    5: 10000000
+    6: 20000000
+    7: 40000000
+    8: 80000000
+    9: 160000000
+    10: 320000000
+  base-armadura:
+    1: 360000
+    2: 720000
+    3: 1440000
+    4: 2880000
+    5: 6000000
+    6: 12000000
+    7: 24000000
+    8: 48000000
+    9: 96000000
+    10: 192000000
+  por-nivel-encantamiento: 0.04
+  por-nivel-herrero: 0.1
+  gema-tier:
+    1: 10000
+    2: 25000
+    3: 50000
+    4: 100000
+    5: 200000
+    6: 400000
+    7: 700000
+    8: 1200000
+    9: 2000000
+    10: 3500000
+  gema-calidad:
+    1: 1
+    2: 2
+    3: 4
+    4: 8
+    5: 15
+dano-real:
+  activo: true
+  filo-porcentaje: 3
+  mejora:
+  - 1.03
+  - 1.06
+  - 1.09
+  - 1.12
+  - 1.15
+  - 1.19
+  - 1.23
+  - 1.27
+  - 1.32
+  - 1.4

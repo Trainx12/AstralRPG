@@ -23,7 +23,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 5'
     - ''
-    - '&cRequiere: Defensa 22'
+    - '&cRequiere: Hechiceria 32'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&6&lLEGENDARIA BOTAS'
     enchantments:
@@ -55,7 +55,7 @@ items:
     - '&7Velocidad: sin modificación'
     - '&7Tier: 4'
     - ''
-    - '&cRequiere: Defensa 18'
+    - '&cRequiere: Hechiceria 26'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&5&lÉPICA BOTAS'
     enchantments:

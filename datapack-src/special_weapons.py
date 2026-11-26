@@ -53,15 +53,36 @@ for _iid, _weapon in WEAPONS.items():
     _weapon['abilities'] = ABILITIES[_iid]
 
 
+# 23/11 (dueno): nivel minimo segun el dano, igual que el arma normal de ese tier (Combate como las espadas,
+# Hechiceria como los bastones). La Varita de Curacion queda sin requisito.
+SIN_REQUISITO = {'varita_curacion'}
+
+
+def requisito(iid):
+    from items import SWORDS, STAFFS
+    w = WEAPONS[iid]
+    if iid in SIN_REQUISITO:
+        return None
+    if iid == 'varita_estallido':
+        return 'sorcery', STAFFS[w['tier'] - 1]['lvl']
+    return 'fighting', SWORDS[w['tier'] - 1]['lvl']
+
+
 def register(add_item, recipes, txt, weapon_mods):
     from escala import FACTOR_ARMA, TIER_ESPECIAL
+    from items import SKILLS
     for iid, w in WEAPONS.items():
+        req = requisito(iid)
+        pdc = {'auraskills:ignore_interact': True}
+        if req:   # mismo formato que build.aura_pdc / build.req_line
+            pdc['auraskills:item_requirements'] = {f'auraskills:{req[0]}': int(req[1])}
         add_item(iid, 'minecraft:'+w['base'], w['name'], w['color'],
                  [txt('Arma especial - cualquier clase', w['color'])] +
-                 [txt('Habilidades: mobs; jugadores solo en arena PvP.', 'yellow')],
+                 [txt('Habilidades: mobs; jugadores solo en arena PvP.', 'yellow')] +
+                 ([txt(f'Requiere: {SKILLS[req[0]]} {req[1]}', 'red')] if req else []),
                  {'type':'weapon', 'special':iid, 'tier':w['tier']}, model=w.get('model','astral:'+iid),
                  glint=w.get('glint'), kind='weapon',
-                 pdc={'auraskills:ignore_interact':True},
+                 pdc=pdc,
                  extra={'minecraft:max_stack_size':1, 'minecraft:attribute_modifiers':weapon_mods(iid,w['damage_total'],w['speed'])})
         recipes.append((iid,1,w['cost'],'Especiales'))
 

@@ -23,7 +23,7 @@ items:
     - '&7Durabilidad: &f19.500'
     - '&7Tier: 8'
     - ''
-    - '&cRequiere: Defensa 34'
+    - '&cRequiere: Combate 45'
     - '&7Se fabrica solo en la Forja (supera 3x3)'
     - '&b&lDIVINA PECHERA'
     item_flags:
@@ -52,7 +52,7 @@ items:
     - '&7Durabilidad: &f15.500'
     - '&7Tier: 7'
     - ''
-    - '&cRequiere: Defensa 30'
+    - '&cRequiere: Combate 40'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
     - '&#ff5fd2&lMÍTICA PECHERA'
     item_flags:

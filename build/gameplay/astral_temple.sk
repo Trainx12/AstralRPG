@@ -1,0 +1,56 @@
+# Generado por datapack-src/encantamientos_balance.py: no editar a mano.
+# Temple: +10% por nivel x (vida que falta / vida maxima). Reemplaza al de ExcellentEnchants (sin tope).
+
+on damage of living entity:
+    attacker is a player
+    damage cause is entity attack
+    attacker's tool is enchanted with excellentenchants:temper
+    if name of attacker is not "ByTrainx":
+        {astral.temple.publico} is true
+    set {_max} to max health of attacker
+    {_max} > 0
+    set {_falta} to {_max} - health of attacker
+    {_falta} > 0
+    set {_lvl} to level of excellentenchants:temper of attacker's tool
+    if {_lvl} > 1:
+        set {_lvl} to 1
+    set {_bonus} to 10 * {_lvl} * {_falta} / {_max}
+    set damage to damage * (1 + {_bonus} / 100)
+
+# Trueno: rayo con un % del golpe (crece con el tier del arma). El de ExcellentEnchants queda en chance 0.
+on damage of living entity:
+    attacker is a player
+    damage cause is entity attack
+    attacker's tool is enchanted with excellentenchants:thunder
+    if name of attacker is not "ByTrainx":
+        {astral.rayo.publico} is true
+    set {_lvl} to level of excellentenchants:thunder of attacker's tool
+    set {_chance} to 8 + 2 * {_lvl}
+    if chance of {_chance}%:
+        set {_extra} to 40 + 15 * {_lvl}
+        set damage to damage * (1 + {_extra} / 100)
+        strike lightning effect at victim
+
+command /rayo [<text>]:
+    permission: op
+    trigger:
+        if arg-1 is "publico":
+            set {astral.rayo.publico} to true
+            send "&aTrueno nuevo: abierto para todos." to sender
+        else if arg-1 is "privado":
+            delete {astral.rayo.publico}
+            send "&eTrueno nuevo: solo ByTrainx." to sender
+        else:
+            send "&7/rayo publico | privado  (8%%+2%% por nivel de chance, +40%%+15%% del golpe)" to sender
+
+command /temple [<text>]:
+    permission: op
+    trigger:
+        if arg-1 is "publico":
+            set {astral.temple.publico} to true
+            send "&aTemple nuevo: abierto para todos." to sender
+        else if arg-1 is "privado":
+            delete {astral.temple.publico}
+            send "&eTemple nuevo: solo ByTrainx." to sender
+        else:
+            send "&7/temple publico | privado  (+10%% por nivel segun la vida que falta)" to sender

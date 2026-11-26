@@ -501,11 +501,11 @@ items:
     material: ARROW
     slot: 45
     amount: 1
-    display_name: '&fVolver al Bazar'
+    display_name: '&fVolver'
     item_flags:
     - HIDE_ATTRIBUTES
     click_commands:
-    - '[openguimenu] bazar'
+    - '[openguimenu] subastas_inicio'
     item_model: 'astral:menu/icon_back'
   'cerrar':
     material: BARRIER

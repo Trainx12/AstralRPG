@@ -7,7 +7,7 @@ Conserva los numeros de ExcellentEnchants (%...%), asi siempre coinciden con su 
   python ee_descripciones.py <carpeta con los .yml del server>  -> build/excellentenchants/enchants/*.yml
 Despues: subirlos a plugins/ExcellentEnchants/enchants/ y REINICIAR (EE no las toma con reload).
 Con --config <config.yml del server> tambien arma build/excellentenchants/config.yml con su tooltip apagado
-(la lista estilo Hypixel la hace AstralMesa).
+(la lista estilo Hypixel la hace AstralMesa). Con --mundos <lista> apaga los BANEADOS en esos mundos.
 """
 import argparse
 from pathlib import Path
@@ -19,6 +19,30 @@ OUT = ROOT / 'build' / 'excellentenchants' / 'enchants'
 CH = '%enchantment_trigger_chance%%'          # "25%"
 POC = '%enchantment_potion_level% (%enchantment_potion_duration% s)'  # "II (5 s)"
 C = '❤'
+
+# Baneados por el dueno: no salen en mesa, aldeanos, botines ni mobs, y su efecto queda apagado
+# en todos los mundos (los objetos que ya lo tienen no hacen nada). 24/11: Tunel choca con los taladros.
+# 25/11: Mineria Explosiva (rompe en area como los taladros), Cortador (saca armadura en PvP),
+# Bombardero (TNT) y Ghast (bolas de fuego).
+BANEADOS = ['tunnel', 'blast_mining', 'cutter', 'bomber', 'ghast']
+# Apagados solo en algunos mundos. 25/11: en las Minas Astrales Minero de Vetas rompia demasiado;
+# ahi lo reemplaza minas.sk (2 bloques de veta extra, ver am_vein).
+POR_MUNDO = {'astral_minas': ['veinminer']}
+# Numeros cambiados en la config de EE: {archivo: {'Seccion.Sub.Clave': valor}}.
+# 25/11: Temple de EE sumaba 5%/nivel por cada 0,5 de vida perdida SIN TOPE (con 8.000 de vida = x2000).
+# Su efecto queda en 0 y lo reemplaza encantamientos_balance.py (build/gameplay/astral_temple.sk).
+# 26/11: Temple solo nivel I (II-V se sentian iguales). Trueno: el rayo de EE hacia 1,5-2,5 fijo; queda con
+# chance 0 y lo hace astral_temple.sk con un % del golpe (crece con el tier).
+AJUSTES = {
+    'temper': {'Definition.MaxLevel': '1', 'Temper.Damage_Amount.Per_Level': '0.0'},
+    'thunder': {'Probability.Trigger_Chance.Base': '0.0', 'Probability.Trigger_Chance.Per_Level': '0.0',
+                'Thunder.Damage_Modifier.Base': '0.0', 'Thunder.Damage_Modifier.Per_Level': '0.0'},
+}
+DISTRIBUCION_OFF = {
+    'Treasure': 'true', 'Tradeable': 'false', 'On_Mob_Spawn_Equipment': 'false',
+    'On_Traded_Equipment': 'false', 'On_Random_Loot': 'false', 'Discoverable': 'false',
+    'Hide_From_List': 'true',
+}
 
 ES = {
     'auto_reel': 'Recoge la caña sola cuando pica un pez.',
@@ -88,9 +112,11 @@ ES = {
     'survivalist': 'Los pescados salen ya cocinados.',
     'swiper': f'{CH} de chance de robarle %amount% de XP a los jugadores.',
     'telekinesis': 'Lo que picás va directo a tu inventario.',
-    'temper': f'Hace un %amount%% más de daño por cada %radius%{C} de vida que te falta.',
+    # 25/11: Temple lo hace astral_temple.sk (proporcional a la vida maxima); el de EE queda en 0 (AJUSTES).
+    'temper': 'Hasta +10% de daño según la vida que te falta (a media vida, +5%). Solo nivel I.',
     'thrifty': f'{CH} de chance de que los mobs suelten su huevo.',
-    'thunder': f'{CH} de chance de llamar un rayo con %damage%{C} de daño extra.',
+    # 26/11: lo hace astral_temple.sk (el de EE queda en chance 0, AJUSTES).
+    'thunder': 'Rayo con daño según tu golpe: 10% de chance y +55% en I, hasta 18% y +115% en V (+2% y +15% por nivel).',
     'treefeller': 'Tala el árbol entero de un golpe.',
     'tunnel': 'Pica varios bloques a la vez.',
     'vampire': f'{CH} de chance de curarte %amount%{C} al golpear.',
@@ -126,13 +152,55 @@ def traducir(texto, clave):
     return texto[:m.start(2)] + nuevo + texto[m.end(2):]
 
 
-def apagar_tooltip(cfg):
+def banear(texto):
+    for k, v in DISTRIBUCION_OFF.items():
+        texto, n = re.subn(rf'^(\s+{k}:) \S+', lambda m: f'{m.group(1)} {v}', texto, count=1, flags=re.M)
+        if not n:
+            raise SystemExit(f'banear: no encontre {k}')
+    return texto
+
+
+def ajustar(texto, cambios):
+    # Busca la clave siguiendo la sangria (2 espacios por nivel) y cambia solo su valor.
+    lineas = texto.splitlines(keepends=True)
+    for ruta, valor in cambios.items():
+        partes, nivel, i = ruta.split('.'), 0, 0
+        for parte in partes:
+            pre = '  ' * nivel + parte + ':'
+            while i < len(lineas) and not lineas[i].startswith(pre):
+                i += 1
+            if i == len(lineas):
+                raise SystemExit(f'ajustar: no encontre {ruta}')
+            nivel += 1
+        fin = '\r\n' if lineas[i].endswith('\r\n') else '\n'
+        lineas[i] = '  ' * (nivel - 1) + partes[-1] + ': ' + valor + fin
+    return ''.join(lineas)
+
+
+def mundos_baneados(mundos, nl):
+    # Disabled.ByWorld: el efecto de los baneados apagado en cada mundo (EE no tiene un 'todos').
+    lineas = ['Disabled:', '  ByWorld:']
+    for m in mundos:
+        lineas.append(f'    {m}:')
+        lineas += [f'    - {b}' for b in BANEADOS + POR_MUNDO.get(m, [])]
+    return nl.join(lineas) + nl
+
+
+def apagar_tooltip(cfg, mundos=()):
     # La lista de encantamientos estilo Hypixel la arma AstralMesa (con estas mismas descripciones);
     # si EE tambien agrega las suyas, salen dos veces.
     texto = Path(cfg).read_bytes().decode('utf-8')
     nuevo = texto.replace('  EnchantTooltip: true', '  EnchantTooltip: false', 1)
     if nuevo == texto and 'EnchantTooltip: false' not in texto:
         raise SystemExit('config.yml: no encontre Modules.EnchantTooltip')
+    if mundos:
+        nl = '\r\n' if '\r\n' in nuevo else '\n'
+        # Reemplaza todo el bloque Disabled (lineas con sangria o comentario) hasta la proxima clave.
+        m = re.search(r'^Disabled:\r?\n(?:[ #].*\r?\n)*', nuevo, re.M)
+        if not m:
+            raise SystemExit('config.yml: no encontre Disabled')
+        nuevo = nuevo[:m.start()] + mundos_baneados(mundos, nl) + nuevo[m.end():]
+        print(f'  config.yml: {BANEADOS} apagados en {len(mundos)} mundos')
     (OUT.parent / 'config.yml').write_bytes(nuevo.encode('utf-8'))
     print('  config.yml: Modules.EnchantTooltip = false')
 
@@ -146,8 +214,12 @@ def main(src):
         if clave not in ES:
             print('  sin traduccion:', clave)
             continue
-        texto = f.read_bytes().decode('utf-8')
-        (OUT / f.name).write_bytes(traducir(texto, clave).encode('utf-8'))
+        texto = traducir(f.read_bytes().decode('utf-8'), clave)
+        if clave in BANEADOS:
+            texto = banear(texto)
+        if clave in AJUSTES:
+            texto = ajustar(texto, AJUSTES[clave])
+        (OUT / f.name).write_bytes(texto.encode('utf-8'))
         hechos += 1
     faltan = sorted(set(ES) - {f.stem for f in src.glob('*.yml')})
     print(f'ee_descripciones: {hechos} archivos -> {OUT}' + (f' (sin archivo: {faltan})' if faltan else ''))
@@ -157,7 +229,9 @@ if __name__ == '__main__':
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('origen', help='carpeta con los enchants/*.yml bajados del server')
     ap.add_argument('--config', help='plugins/ExcellentEnchants/config.yml bajado del server: apaga su tooltip')
+    ap.add_argument('--mundos', help='archivo con un nombre de mundo por linea: ahi se apagan los BANEADOS')
     a = ap.parse_args()
     main(a.origen)
     if a.config:
-        apagar_tooltip(a.config)
+        mundos = Path(a.mundos).read_text(encoding='utf-8').split() if a.mundos else []
+        apagar_tooltip(a.config, mundos)

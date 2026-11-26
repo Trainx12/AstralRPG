@@ -34,7 +34,7 @@ class PartyGeneration(unittest.TestCase):
         self.assertIn('[player] party<delay=3>',data['items']['party']['click_commands'])
         self.assertEqual(len(menu_ui.SLOTS),len(set(menu_ui.SLOTS)))
         self.assertNotIn(menu_ui.EFFECTS_SLOT,menu_ui.SLOTS)
-        self.assertEqual(menu_ui.icon('party').size,(18,18))
+        self.assertEqual(menu_ui.icon('party').size,(72,72))   # 21/11: emblema a 4x
 
     def test_real_death_infinita_guard(self):
         import infinita

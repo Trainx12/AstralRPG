@@ -19,7 +19,8 @@ HATS += [('illusioner','Capucha de Ilusionista','epic','item/illager_hat_illusio
 WINGS = []  # Retiradas por pedido del dueno; no volver a sortear permisos antiguos.
 
 
-BACKS = [('pitchfork','Horquilla Errante','rare'),('barrel','Barril Viajero','epic'),('wooden_bucket','Balde de Madera','rare'),('wooden_wheel','Rueda de Madera','epic')]
+BACKS_RETIRADAS = [('pitchfork','Horquilla Errante','rare'),('barrel','Barril Viajero','epic'),('wooden_bucket','Balde de Madera','rare'),('wooden_wheel','Rueda de Madera','epic')]
+BACKS = []  # 23/11: retiradas por pedido del dueno (no se veian); permisos viejos se borran con lp bulkupdate
 
 def catalog():
     return [('sombrero', key, name, rarity, 'cosmeticos/sombrero_'+key)

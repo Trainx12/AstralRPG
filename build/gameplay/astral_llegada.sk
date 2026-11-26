@@ -83,6 +83,42 @@ on respawn:
 on join:
     astral_llegada(player)
     astral_vida_base(player, false)
+    astral_vida_salida(player)
+
+# Vida al salir (25/11, pedido del dueno): Minecraft carga la vida antes de sumar la vida de la armadura y la
+# recorta a la vida base (100). Se guarda al salir y se devuelve al entrar, ya con la armadura puesta.
+# Regla del dueno: arranca solo para ByTrainx; `/vidasalida publico` la abre a todos.
+function astral_vidasalida_puede(p: player) :: boolean:
+    if name of {_p} is "ByTrainx":
+        return true
+    if {astral.vidasalida.publico} is true:
+        return true
+    return false
+
+function astral_vida_salida(p: player):
+    set {_u} to uuid of {_p}
+    {astral.vidasalida::%{_u}%} is set
+    set {_h} to {astral.vidasalida::%{_u}%}
+    delete {astral.vidasalida::%{_u}%}
+    astral_vidasalida_puede({_p}) is true
+    wait 10 ticks
+    {_p} is online
+    health of {_p} > 0
+    if {_h} > max health of {_p}:
+        set {_h} to max health of {_p}
+    set health of {_p} to {_h}
+
+command /vidasalida <text>:
+    permission: op
+    trigger:
+        if arg-1 is "publico":
+            set {astral.vidasalida.publico} to true
+            send "&aVida al salir: abierta para todos." to sender
+        else if arg-1 is "privado":
+            delete {astral.vidasalida.publico}
+            send "&eVida al salir: solo ByTrainx." to sender
+        else:
+            send "&7/vidasalida publico | privado" to sender
 
 on damage of player:
     {-astral.llegada::%uuid of victim%} is set
@@ -94,3 +130,6 @@ on damage of player:
 
 on quit:
     delete {-astral.llegada::%uuid of player%}
+    # Muerto (pantalla de muerte) no se guarda: reaparece normal.
+    health of player > 0
+    set {astral.vidasalida::%uuid of player%} to health of player

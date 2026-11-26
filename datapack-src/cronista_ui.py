@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parent
 ART = ROOT / 'pack-source/ref/cronista2-frame.png'   # marco de Gemini (noviembre 2026)
 GEMINI = ROOT / 'pack-source/ref/gemini'
 TITLES = ['Historia', 'Diaria facil', 'Diaria media', 'Diaria dificil', 'Premio de historia']
-STORY_REWARDS = [300, 500, 1000, 1500, 2000, 2500, 3000, 5000, 10000]
+from economia import HISTORIA_PLATA as STORY_REWARDS, DIARIA_PLATA, corto
 
 
 def png(im):
@@ -182,7 +182,7 @@ def card(name, objective, amount, status, scene=False):
         text(im, line, (81, 13 + index * 8), color='#d8eff7')
     d.rectangle((1, 46, 160, 52), fill='#081c30')
     text(im, labels[status], (40, 46), color=colors[status])
-    text(im, f'{amount}$', (135, 46), color='#ffe292')
+    text(im, f'{corto(amount)}$', (135, 46), color='#ffe292')
     return im
 
 
@@ -267,7 +267,7 @@ def assets():
         model(name, clock(color, marker))
     for did, tier, name, counter, goal, desc in DAILIES:
         for status in ('available', 'active', 'done'):
-            tiles(f'daily_{did}_{status}', card(name, desc, [300, 750, 1500][tier], status))
+            tiles(f'daily_{did}_{status}', card(name, desc, DIARIA_PLATA[tier], status))
     for state in range(10):
         chapter = max(1, state)
         for status in ('available', 'active'):

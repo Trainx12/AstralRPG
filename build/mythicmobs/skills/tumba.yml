@@ -1,6 +1,8 @@
 # Generado por mobs/mazmorra.py + mobs/tanda2.py
 TUMBA_SALA1_INICIO:
   Skills:
+  - addtag{tag=tumba.espera} @self
+  - addtag{tag=tumba.sala1.pedida} @self
   - removetag{tag=tumba.ready} @self
   - addtag{tag=tumba.on} @self
   - addtag{tag=tumba.ola1} @self
@@ -9,6 +11,7 @@ TUMBA_SALA1_INICIO:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/tumba/sala1/wave1"} @self
 TUMBA_SALA1_OLA2:
   Skills:
+  - addtag{tag=tumba.sala1.pedida} @self
   - addtag{tag=tumba.ola2} @self
   - addtag{tag=tumba.espera} @self
   - message{m="&8[&7Tumba del Rey de Arena&8] &7Oleada 2/2..."} @PlayersInRadius{r=36}
@@ -42,6 +45,8 @@ TUMBA_SALA1_RESET:
   - addtag{tag=tumba.ready} @self
 TUMBA_SALA2_INICIO:
   Skills:
+  - addtag{tag=tumba.espera} @self
+  - addtag{tag=tumba.sala2.pedida} @self
   - removetag{tag=tumba.ready} @self
   - addtag{tag=tumba.on} @self
   - addtag{tag=tumba.ola1} @self
@@ -50,12 +55,14 @@ TUMBA_SALA2_INICIO:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/tumba/sala2/wave1"} @self
 TUMBA_SALA2_OLA2:
   Skills:
+  - addtag{tag=tumba.sala2.pedida} @self
   - addtag{tag=tumba.ola2} @self
   - addtag{tag=tumba.espera} @self
   - message{m="&8[&7Tumba del Rey de Arena&8] &7Oleada 2/3..."} @PlayersInRadius{r=44}
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/tumba/sala2/wave2"} @self
 TUMBA_SALA2_OLA3:
   Skills:
+  - addtag{tag=tumba.sala2.pedida} @self
   - addtag{tag=tumba.ola3} @self
   - addtag{tag=tumba.espera} @self
   - message{m="&8[&7Tumba del Rey de Arena&8] &7Oleada 3/3..."} @PlayersInRadius{r=44}

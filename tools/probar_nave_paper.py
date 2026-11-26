@@ -60,7 +60,9 @@ def run(java, base):
                     os.pathsep.join(map(str, deps)), '-d', str(work), str(ROOT / 'datapack-src/test_runtime/NaveProbe.java')], check=True)
     salas = nave.salas()
     props = ('llegadas=' + ';'.join(','.join(map(str, s['llegada'])) for s in salas) + '\n'
-             'centros=' + ';'.join(','.join(map(str, s['centro'])) for s in salas) + '\n')
+             'centros=' + ';'.join(','.join(map(str, s['centro'])) for s in salas) + '\n'
+             'barreras=' + ';'.join(','.join(l.split()[i] for i in (0, 2, 3)) for l in
+                                    (ROOT / 'datapack-src/nave_barreras.txt').read_text('utf8').splitlines()[1::400]) + '\n')
     with zipfile.ZipFile(plugins / 'NaveProbe.jar', 'w') as z:
         for f in (work / 'astraltest').glob('NaveProbe*.class'):
             z.write(f, 'astraltest/' + f.name)

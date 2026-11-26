@@ -42,7 +42,13 @@ class SpecialWeaponTests(unittest.TestCase):
                 comp=next(f['components'] for f in loot['pools'][0]['entries'][0]['functions'] if f['function']=='minecraft:set_components')
                 self.assertEqual(comp['minecraft:item_model'],w.get('model', 'astral:'+iid))
                 self.assertIn('"auraskills:ignore_interact":1b',comp['minecraft:custom_data'])
-                self.assertNotIn('requirements',comp['minecraft:custom_data'])
+                # 23/11: nivel minimo segun el tier (la Varita de Curacion sigue sin requisito).
+                from special_weapons import requisito
+                req = requisito(iid)
+                if req:
+                    self.assertIn(f'"auraskills:item_requirements":{{"auraskills:{req[0]}":{req[1]}}}', comp['minecraft:custom_data'])
+                else:
+                    self.assertNotIn('requirements', comp['minecraft:custom_data'])
                 damage=next(m for m in comp['minecraft:attribute_modifiers'] if m['type']=='minecraft:attack_damage')
                 from escala import FACTOR_ARMA, TIER_ESPECIAL
                 self.assertAlmostEqual(damage['amount']+1,w['damage_total'],places=2)

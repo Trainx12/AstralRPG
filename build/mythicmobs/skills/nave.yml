@@ -5,7 +5,7 @@ NAVE_CAP_MODELO:
   - 'addtag{tag=astral.seen} @self'
   - 'addtag{tag=astral.mt5} @self'
   - 'addtag{tag=nave.jefe} @self'
-  - 'model{m=astral_capitan_vacio;s=5.009} @self'
+  - 'model{m=astral_capitan_vacio;s=0.321} @self'
   - 'command{c="attribute <caster.uuid> minecraft:scale base set 2.3"} @self'
   - 'command{c="attribute <caster.uuid> minecraft:step_height base set 2"} @self'
 

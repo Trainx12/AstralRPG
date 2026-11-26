@@ -21,12 +21,14 @@ items:
     material: PAPER
     slot: 14
     amount: 4
-    display_name: '&f4x Fragmento de Cristal Arcano'
-    item_model: 'astral:fragmento_cristal'
+    display_name: '&f4x Cristal Arcano'
+    item_model: 'astral:cristal_arcano'
     lore:
     - '&74 forman un Cristal Refinado.'
     - '&8Material de AstralRPG'
     - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS

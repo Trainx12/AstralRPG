@@ -1,6 +1,8 @@
 # Generado por mobs/mazmorra.py + mobs/tanda2.py
 CUMBRE_SALA1_INICIO:
   Skills:
+  - addtag{tag=cumbre.espera} @self
+  - addtag{tag=cumbre.sala1.pedida} @self
   - removetag{tag=cumbre.ready} @self
   - addtag{tag=cumbre.on} @self
   - addtag{tag=cumbre.ola1} @self
@@ -9,18 +11,21 @@ CUMBRE_SALA1_INICIO:
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/cumbre/sala1/wave1"} @self
 CUMBRE_SALA1_OLA2:
   Skills:
+  - addtag{tag=cumbre.sala1.pedida} @self
   - addtag{tag=cumbre.ola2} @self
   - addtag{tag=cumbre.espera} @self
   - message{m="&8[&7Cumbre Helada&8] &7Oleada 2/4..."} @PlayersInRadius{r=42}
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/cumbre/sala1/wave2"} @self
 CUMBRE_SALA1_OLA3:
   Skills:
+  - addtag{tag=cumbre.sala1.pedida} @self
   - addtag{tag=cumbre.ola3} @self
   - addtag{tag=cumbre.espera} @self
   - message{m="&8[&7Cumbre Helada&8] &7Oleada 3/4..."} @PlayersInRadius{r=42}
   - command{c="execute as <caster.uuid> at @s run function astral:tanda2/cumbre/sala1/wave3"} @self
 CUMBRE_SALA1_OLA4:
   Skills:
+  - addtag{tag=cumbre.sala1.pedida} @self
   - addtag{tag=cumbre.ola4} @self
   - addtag{tag=cumbre.espera} @self
   - message{m="&8[&7Cumbre Helada&8] &7Oleada 4/4..."} @PlayersInRadius{r=42}

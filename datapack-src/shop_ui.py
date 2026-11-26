@@ -11,6 +11,10 @@ from services_ui import title
 ROOT=Path(__file__).resolve().parent.parent
 LOCAL=ROOT/'.local'
 OUT=LOCAL/'shop-ui-deploy'
+# Los botones van pintados en la ventana. El objeto tiene que ser invisible: antes era PAPER y se veia
+# el papel encima (24/11). build_pack.py deja STRUCTURE_VOID sin dibujo (EconomyShopGUI gratis no
+# permite item_model ni CustomModelData en estos botones).
+BOTON_INVISIBLE='STRUCTURE_VOID'
 
 
 def dump(path, data):
@@ -40,9 +44,11 @@ def generate():
                 action=button.get('action','')
                 if action in {'REMOVE1','REMOVE16','REMOVE32','ADD1','ADD16','ADD32'}:
                     button['slot']={'REMOVE1':'10-11','REMOVE16':'19-20','REMOVE32':'28-29','ADD1':'13-14','ADD16':'22-23','ADD32':'31-32'}[action]
-                    button['material']='PAPER'
+                    button['material']=BOTON_INVISIBLE
                     button.pop('stack-size',None)
-                elif action=='CONFIRM_TRANSACTION':button['slot']='42-45'
+                elif action=='CONFIRM_TRANSACTION':
+                    button['slot']='42-45'
+                    button['material']=BOTON_INVISIBLE
                 elif button.get('type')=='SELECTED_ITEM':button['slot']=25
                 elif action in {'OPEN_BUY_STACKS','SELL_ALL'}:button['slot']=38
         patch[key]=block

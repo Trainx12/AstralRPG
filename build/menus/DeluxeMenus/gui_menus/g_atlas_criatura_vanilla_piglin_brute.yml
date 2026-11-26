@@ -82,6 +82,21 @@ items:
     material: PAPER
     slot: 7
     amount: 1
+    display_name: '&#b3261eEsencia del Nether'
+    item_model: 'astral:esencia_nether'
+    lore:
+    - '&7Cae de Wither Skeletons.'
+    - '&8Material de AstralRPG'
+    - ''
+    - '&#30241b1 × Esencia del Nether · 15%'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c7':
+    material: PAPER
+    slot: 12
+    amount: 1
     display_name: '&#4a3360Fragmento Umbrio'
     item_model: 'astral:fragmento_umbrio'
     lore:
@@ -93,9 +108,9 @@ items:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS
     - HIDE_DYE
-  'c7':
+  'c8':
     material: PAPER
-    slot: 12
+    slot: 13
     amount: 1
     display_name: '&#ff3b3bNucleo de Furia'
     item_model: 'astral:nucleo_furia'
@@ -108,9 +123,9 @@ items:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS
     - HIDE_DYE
-  'c8':
+  'c9':
     material: PAPER
-    slot: 13
+    slot: 14
     amount: 1
     display_name: '&#7d3cffGema Umbria'
     item_model: 'astral:gema_umbria'

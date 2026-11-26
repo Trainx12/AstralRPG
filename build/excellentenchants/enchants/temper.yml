@@ -7,7 +7,7 @@ Definition:
   # Enchantment description.
   # [*] Reboot required when changed.
   Description:
-  - '<gray>Hace un %amount%% más de daño por cada %radius%❤ de vida que te falta.</gray>'
+  - '<gray>Hasta +10% de daño según la vida que te falta (a media vida, +5%). Solo nivel I.</gray>'
   # Weight affects the chance of getting an enchantment from enchanting or loots.
   # Value between 1 and 1024 (inclusive).
   # [*] Reboot required when changed.
@@ -15,7 +15,7 @@ Definition:
   # The maximum level of this enchantment.
   # Value between 1 and 255 (inclusive).
   # [*] Reboot required when changed.
-  MaxLevel: 5
+  MaxLevel: 1
   # The minimum possible cost of this enchantment in levels.
   # Explanation: https://minecraft.wiki/w/Enchanting_mechanics#How_enchantments_are_chosen
   # Vanilla costs: https://minecraft.wiki/w/Enchanting/Levels
@@ -106,6 +106,6 @@ Temper:
   # Extra damage (in %)
   Damage_Amount:
     Base: 0.0
-    Per_Level: 5.0
+    Per_Level: 0.0
     Capacity: 100.0
     Action: ADD

@@ -6,7 +6,7 @@ from mobs.tamanos import skills as size_skills
 
 ROOT=Path(__file__).resolve().parents[2]
 WEIGHTS={'arquero':38,'escudero':25,'nigromante':18,'guardian':19}
-NUCLEAR_CHANCE=30
+NUCLEAR_CHANCE=10
 NUCLEAR_DAMAGE=2
 NUCLEAR_POWER=2
 NORMAL_POWER=3

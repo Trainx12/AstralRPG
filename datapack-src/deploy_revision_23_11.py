@@ -87,6 +87,13 @@ def main(extra=None):
         if '/ventanas2011/trade_' in n or '/ventanas1911/trade_' in n:
             files[n] = d
 
+    # 7) Items de historia (historia_arte.py): faltaban en el pack (se veian violeta y negro). La gomera queda en 3D.
+    import historia_arte
+    ids = list(historia_arte.ICONS)
+    for n, d in historia_arte.assets().items():
+        if any(n.endswith(f'/{i}.json') or n.endswith(f'/{i}.png') for i in ids):
+            files[n] = d
+
     if extra:
         files.update(extra)
     out = privado() / OUT

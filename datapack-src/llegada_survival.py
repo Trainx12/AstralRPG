@@ -5,6 +5,8 @@ queda 3 segundos sin recibir dano: habia mobs esperando en la cama que te mataba
 Se cancela todo dano salvo el vacio. Script aparte para no mezclar con astral_gameplay.sk.
 Al volver al Survival lleva al ultimo lugar donde estaba (salvo que haya muerto).
 Tambien repone la vida base (escala.VIDA_JUGADOR_BASE) al reaparecer y al entrar: morir la vuelve a 20.
+25/11: guarda la vida al salir y la devuelve al entrar (antes se recortaba a la base sin la armadura).
+Solo ByTrainx hasta `/vidasalida publico`.
 
     python llegada_survival.py   ->  build/gameplay/astral_llegada.sk  (plugins/Skript/scripts/)
 """
@@ -15,6 +17,8 @@ from portales import PORTALES
 
 ROOT = Path(__file__).resolve().parent
 SEGUNDOS = 3
+PRUEBA = 'ByTrainx'   # vida al salir: solo el dueno hasta `/vidasalida publico`
+ESPERA_VIDA = 10      # ticks al entrar antes de devolver la vida (que ya cuente la armadura)
 MUNDOS = ('world', 'world_nether', 'world_the_end')   # Survival, su Nether y su End
 # El Nether Hub (AstralPortales) esta en world_nether pero NO es Survival: llegar ahi no lleva al
 # ultimo lugar ni se guarda como ultimo lugar (24/11: el portal mandaba a la casa en vez del Hub).
@@ -110,6 +114,42 @@ on respawn:
 on join:
     astral_llegada(player)
     astral_vida_base(player, false)
+    astral_vida_salida(player)
+
+# Vida al salir (25/11, pedido del dueno): Minecraft carga la vida antes de sumar la vida de la armadura y la
+# recorta a la vida base ({VIDA_JUGADOR_BASE}). Se guarda al salir y se devuelve al entrar, ya con la armadura puesta.
+# Regla del dueno: arranca solo para {PRUEBA}; `/vidasalida publico` la abre a todos.
+function astral_vidasalida_puede(p: player) :: boolean:
+    if name of {{_p}} is "{PRUEBA}":
+        return true
+    if {{astral.vidasalida.publico}} is true:
+        return true
+    return false
+
+function astral_vida_salida(p: player):
+    set {{_u}} to uuid of {{_p}}
+    {{astral.vidasalida::%{{_u}}%}} is set
+    set {{_h}} to {{astral.vidasalida::%{{_u}}%}}
+    delete {{astral.vidasalida::%{{_u}}%}}
+    astral_vidasalida_puede({{_p}}) is true
+    wait {ESPERA_VIDA} ticks
+    {{_p}} is online
+    health of {{_p}} > 0
+    if {{_h}} > max health of {{_p}}:
+        set {{_h}} to max health of {{_p}}
+    set health of {{_p}} to {{_h}}
+
+command /vidasalida <text>:
+    permission: op
+    trigger:
+        if arg-1 is "publico":
+            set {{astral.vidasalida.publico}} to true
+            send "&aVida al salir: abierta para todos." to sender
+        else if arg-1 is "privado":
+            delete {{astral.vidasalida.publico}}
+            send "&eVida al salir: solo {PRUEBA}." to sender
+        else:
+            send "&7/vidasalida publico | privado" to sender
 
 on damage of player:
     {{-astral.llegada::%uuid of victim%}} is set
@@ -121,6 +161,9 @@ on damage of player:
 
 on quit:
     delete {{-astral.llegada::%uuid of player%}}
+    # Muerto (pantalla de muerte) no se guarda: reaparece normal.
+    health of player > 0
+    set {{astral.vidasalida::%uuid of player%}} to health of player
 '''
 
 

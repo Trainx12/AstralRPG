@@ -2,7 +2,7 @@
 on spawn of creeper:
     spawn reason is natural
     name of world of event-entity is "world"
-    chance of 30%:
+    chance of 10%:
         set {_loc} to location of event-entity
         cancel event
         execute console command "mm mobs spawn astral_creeper_nuclear 1 world,%x-coordinate of {_loc}%,%y-coordinate of {_loc}%,%z-coordinate of {_loc}%"

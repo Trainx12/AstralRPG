@@ -6,6 +6,10 @@ gui_menus:
     file: gacha_monturas.yml
   gacha_cosmeticos:
     file: gacha_cosmeticos.yml
+  gacha_cosmeticos_cos:
+    file: gacha_cosmeticos_cos.yml
+  gacha_monturas_mas:
+    file: gacha_monturas_mas.yml
   mascotas:
     file: mascotas.yml
   bazar:
@@ -120,8 +124,6 @@ gui_menus:
     file: cosmeticos_titulos.yml
   cosmeticos_sombreros:
     file: cosmeticos_sombreros.yml
-  cosmeticos_espaldas:
-    file: cosmeticos_espaldas.yml
   goblin_mercader:
     file: goblin_mercader.yml
   infinita_tier:
