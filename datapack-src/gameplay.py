@@ -2,6 +2,7 @@
 import json
 from santuario_azeroth import BUKKIT_WORLD as SANCTUARY_BUKKIT_WORLD, ARRIVAL as SANCTUARY_ARRIVAL, ARRIVAL_YAW as SANCTUARY_YAW, ARRIVAL_SPREAD as SANCTUARY_SPREAD
 from pathlib import Path
+from items import mejora_de
 from minijuegos import parkour_worlds, arena_worlds
 
 ROOT=Path(__file__).resolve().parent.parent
@@ -35,7 +36,7 @@ def apply(files,items,versions,old_preds):
         for iid,item in items.items():
             selector=f'*[minecraft:custom_data~{{astral:{{id:"{iid}"}}}},!minecraft:custom_data~{{astral:{{v:{versions[iid]}}}}}]'
             if item.get('mejorable'):
-                mej='mejora_armadura' if item['kind']=='armor' else 'mejora_arma'
+                mej=mejora_de(iid, item['kind'])
                 for level in range(1,11):
                     upgraded=selector[:-1]+f',minecraft:enchantments~[{{enchantments:"astral:{mej}",levels:{level}}}]]'
                     lines.append(f'execute if items entity @s {slot} {upgraded} run return run item modify entity @s {slot} astral:upgrade/{iid}/{level}')

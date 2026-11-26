@@ -122,6 +122,23 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_mochila_netherite'
+  'm6':
+    material: PLAYER_HEAD
+    slot: 40
+    amount: 1
+    display_name: '&3Mochila de Ender'
+    item_model: 'astral:mochila_ender'
+    lore:
+    - '&727 espacios'
+    - ''
+    - '&e» Clic: ver como se fabrica'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_mochila_ender'
   'volver':
     material: PAPER
     slot: 45

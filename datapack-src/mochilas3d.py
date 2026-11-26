@@ -26,13 +26,15 @@ OUT = privado() / 'build/entregas/modelos-3d-efectos'
 PX = 2            # pixeles de textura por unidad del modelo
 ATLAS = 128
 FACES = ('north', 'south', 'east', 'west', 'up', 'down')
-MATERIALES = ('leather', 'copper', 'iron', 'gold', 'diamond', 'netherite')
+MATERIALES = ('leather', 'copper', 'iron', 'gold', 'diamond', 'netherite', 'ender')
 NOMBRE = {'leather': 'Cuero', 'copper': 'Cobre', 'iron': 'Hierro', 'gold': 'Oro', 'diamond': 'Diamante',
-          'netherite': 'Netherite'}
+          'netherite': 'Netherite', 'ender': 'Ender'}
 # Indices de la mochila del mod que se conservan: (indice, zona propia)
 DEL_MOD = ((0, 'cuerpo'), (1, 'lateral'), (2, 'lateral'), (3, 'bolsillo'))
 
 PALETA = {
+    'ender': dict(base='#164c46', luz='#329d88', sombra='#092d30', borde='#071c24', tapa='#1f6f62',
+                  correa='#382449', hebilla='#af82dc', detalle='#8bf2c5', asa='#432b59'),
     'leather': dict(base='#7d4c2b', luz='#9a6238', sombra='#5c3720', borde='#38200f', tapa='#8a5630',
                     correa='#4b2d1a', hebilla='#d9b25c', detalle='#e0bd82', asa='#6b3f22'),
     'copper': dict(base='#c4633a', luz='#e88c55', sombra='#994527', borde='#5c2916', tapa='#d2703f',
@@ -201,6 +203,13 @@ def pintar_cara(mat, zona, face, w, h, seed):
         a[-1, :, :3] = sombra
     if zona == 'cuerpo' and face == 'north':             # espalda: panel acolchado
         a[2:-2, 2:-2, :3] = a[2:-2, 2:-2, :3] * .8 + sombra * .2
+    if mat == 'ender' and zona == 'bolsillo' and face == 'south' and w >= 6 and h >= 5:
+        # Ojo de ender en el bolsillo frontal; misma geometria de las otras mochilas.
+        for yy in range(h):
+            for xx in range(w):
+                dx, dy = (xx-(w-1)/2)/(w*.38), (yy-(h-1)/2)/(h*.3)
+                if abs(dx)+abs(dy) <= 1:
+                    a[yy,xx,:3] = P['detalle'] if abs(dx) > .23 else P['borde']
     a[..., :3] = np.clip(a[..., :3], 0, 255)
     return a.astype(np.uint8)
 
@@ -273,7 +282,7 @@ def _vista(model, tex, modo, lado=230):
 def vistas(vista, ps, pos, destino=None):
     destino = destino or OUT / 'previews'
     destino.mkdir(parents=True, exist_ok=True)
-    sheet = Image.new('RGBA', (6 * 240, 580), (24, 26, 36, 255))
+    sheet = Image.new('RGBA', (len(MATERIALES) * 240, 580), (24, 26, 36, 255))
     d = ImageDraw.Draw(sheet)
     for i, mat in enumerate(MATERIALES):
         m, tex = vista[mat]

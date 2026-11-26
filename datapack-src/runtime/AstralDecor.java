@@ -178,7 +178,7 @@ public final class AstralDecor extends JavaPlugin implements Listener {
     private void backpackModels(Player p) {
         var uuid=NamespacedKey.fromString("expendablebackpacks:backpack_uuid");
         var tierKey=NamespacedKey.fromString("expendablebackpacks:backpack_tier");
-        String[] materials={"leather","copper","iron","gold","diamond","netherite"};
+        String[] materials={"leather","copper","iron","gold","diamond","netherite","ender"};
         for(var it:p.getInventory().getContents()) {
             if(it==null || it.getType()!=Material.PLAYER_HEAD || !it.hasItemMeta())continue;
             var meta=it.getItemMeta();var pdc=meta.getPersistentDataContainer();
@@ -257,24 +257,36 @@ public final class AstralDecor extends JavaPlugin implements Listener {
         String t=v.getTitle();
         return t!=null && (t.contains("Backpack") || t.contains("Enderpack"));
     }
+    private boolean mochilaBloqueada(InventoryView view, Player p, ItemStack item) {
+        if(!isBackpack(item))return false;
+        int tier=item.getItemMeta().getPersistentDataContainer().getOrDefault(
+            NamespacedKey.fromString("expendablebackpacks:backpack_tier"),PersistentDataType.INTEGER,-1);
+        if(!view.getTitle().contains("Enderpack") || tier<0 || tier>6)return true;
+        var objective=Bukkit.getScoreboardManager().getMainScoreboard().getObjective("astral.mochender");
+        return !p.getName().equals("ByTrainx") && (objective==null || objective.getScore("#pub").getScore()!=1);
+    }
+    private void mochilaAviso(Player p) {
+        p.sendActionBar(MM.deserialize("<red>No se puede guardar esta mochila aca. Solo Ender habilitada admite mochilas normales; nunca otra de Ender.</red>"));
+    }
     @EventHandler(priority=EventPriority.LOWEST)
     public void mochilaEnMochila(InventoryClickEvent e) {
         if(!backpackView(e.getView()) || !(e.getWhoClicked() instanceof Player p)) return;
         Inventory top=e.getView().getTopInventory();
         boolean enTop=top.equals(e.getClickedInventory());
-        boolean mete=(e.isShiftClick() && !enTop && isBackpack(e.getCurrentItem()))
-            || (enTop && isBackpack(e.getCursor()))
-            || (enTop && e.getClick()==ClickType.NUMBER_KEY && isBackpack(p.getInventory().getItem(e.getHotbarButton())))
-            || (enTop && e.getClick()==ClickType.SWAP_OFFHAND && isBackpack(p.getInventory().getItemInOffHand()));
+        boolean mete=(e.isShiftClick() && !enTop && mochilaBloqueada(e.getView(),p,e.getCurrentItem()))
+            || (enTop && mochilaBloqueada(e.getView(),p,e.getCursor()))
+            || (enTop && e.getClick()==ClickType.NUMBER_KEY && mochilaBloqueada(e.getView(),p,p.getInventory().getItem(e.getHotbarButton())))
+            || (enTop && e.getClick()==ClickType.SWAP_OFFHAND && mochilaBloqueada(e.getView(),p,p.getInventory().getItemInOffHand()));
         if(!mete) return;
         e.setCancelled(true);
-        p.sendActionBar(MM.deserialize("<red>No se puede guardar una mochila dentro de otra.</red>"));
+        mochilaAviso(p);
     }
     @EventHandler(priority=EventPriority.LOWEST)
     public void mochilaEnMochila(InventoryDragEvent e) {
-        if(!backpackView(e.getView()) || !isBackpack(e.getOldCursor())) return;
+        if(!backpackView(e.getView()) || !(e.getWhoClicked() instanceof Player p)
+            || !mochilaBloqueada(e.getView(),p,e.getOldCursor())) return;
         int size=e.getView().getTopInventory().getSize();
-        if(e.getRawSlots().stream().anyMatch(s->s<size)) e.setCancelled(true);
+        if(e.getRawSlots().stream().anyMatch(s->s<size)) {e.setCancelled(true);mochilaAviso(p);}
     }
     @EventHandler public void xpQuit(PlayerQuitEvent e) {xpClickTick.remove(e.getPlayer().getUniqueId());asuraCombo.remove(e.getPlayer().getUniqueId());}
     @EventHandler public void luckJoin(PlayerJoinEvent e) {

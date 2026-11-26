@@ -37,9 +37,11 @@ def generate(files,items):
         # Bastones (12/11/2026): mejora de arma, igual que build.py.
         'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{astral:{type:"staff"}}] run scoreboard players set #k astral.tmp 1',
         'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{astral:{type:"armor"}}] run scoreboard players set #k astral.tmp 2',
-        'execute if score #k astral.tmp matches 0 run return 0','tag @s add asgui.valid','scoreboard players set #l astral.tmp 0']
+        'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{astral:{type:"tool",tool:"drill"}}] if score #pub astral.mejtal matches 1 run scoreboard players set #k astral.tmp 3',
+        'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{astral:{type:"tool",tool:"drill"}}] if score #pub astral.mejtal matches 0 if entity @s[name=ByTrainx] run scoreboard players set #k astral.tmp 3',
+        'execute if score #k astral.tmp matches 0 run return 0' ,'tag @s add asgui.valid','scoreboard players set #l astral.tmp 0']
     for n in MEJORAS:
-        for enchant in ('mejora_arma','mejora_armadura'):
+        for enchant in ('mejora_arma','mejora_armadura','mejora_taladro'):
             inspect += [f'execute if items entity @s weapon.mainhand *[minecraft:enchantments~[{{enchantments:"astral:{enchant}",levels:{n}}}]] run scoreboard players set #l astral.tmp {n}']
     inspect += ['execute if score #l astral.tmp matches 10.. run return run tag @s add asgui.max',
         'scoreboard players operation #n astral.tmp = #l astral.tmp','scoreboard players add #n astral.tmp 1']

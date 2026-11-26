@@ -106,7 +106,7 @@ class FichaTests(unittest.TestCase):
         self.assertIn('Disparo automático: cada 0,4s',arco)
         tal=list(map(text,self.components('taladro_rubi')['minecraft:lore']))
         self.assertIn('Área de minado: 2x2',tal); self.assertEqual(tal[-1],'RARA TALADRO')
-        self.assertFalse((PACK/'item_modifier/ficha/taladro_rubi/1.json').exists())
+        self.assertTrue((PACK/'item_modifier/ficha/taladro_rubi/1.json').exists())
         saw=list(map(text,self.components('motosierra_astral')['minecraft:lore']))
         self.assertIn('Tala por corte: el árbol entero',saw)
         # Varita de Curacion: habilidad con costo de mana.

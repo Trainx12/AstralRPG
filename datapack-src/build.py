@@ -15,7 +15,7 @@ from escala import (FACTOR_ARMA, FACTOR_MOSTRADO, TIER_ESPECIAL, MANA_BASTON, MA
                     REGEN_POR_MANA, fmt)
 from items import (SKILLS, MATERIALS, HISTORY_ITEMS, MOB_DROPS, MAT_RECIPES, PIECES, PIECE_SLOT, ARMOR_VALUES,
                    TOUGHNESS, ARMOR_SETS, ROMAN, SWORDS, AXES, STAFFS, SCYTHES, BOWS,
-                   SET_BONUS, MEJORAS, MEJORA_DANO, MEJORA_VIDA, ARMOR_DURABILITY)
+                   SET_BONUS, MEJORAS, MEJORA_DANO, MEJORA_VIDA, MEJORA_MINADO, mejora_de, ARMOR_DURABILITY)
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "build", "AstralRPG-Items")
@@ -123,7 +123,7 @@ def add_item(item_id, base, name, color, lore, astral_data, extra=None, pdc=None
         comps.update(utility_render(item_id, name, color, base, lore, astral_data, comps))
     ITEMS[item_id] = {"base": base, "components": comps, "name": name, "color": color, "kind": kind,
                       "ficha": item_id in FICHAS,
-                      "mejorable": item_id in FICHAS and FICHAS[item_id]["kind"] not in ("drill", "saw")}
+                      "mejorable": item_id in FICHAS and FICHAS[item_id]["kind"] not in ("saw",)}
 
 
 def req_line(skill, level):
@@ -724,7 +724,7 @@ for iid, it in ITEMS.items():
            f"!minecraft:custom_data~{{{NS}:{{v:{ITEM_VERSIONS[iid]}}}}}]")
     keep = []
     if it["kind"] in ("armor", "weapon"):
-        mej = "mejora_armadura" if it["kind"] == "armor" else "mejora_arma"
+        mej = mejora_de(iid, it["kind"])
         for L in range(1, 11):
             selL = sel[:-1] + f',minecraft:enchantments~[{{enchantments:"{NS}:{mej}",levels:{L}}}]]'
             keep += [f"execute store result score #c astral.tmp run clear @s {selL}",
@@ -834,7 +834,7 @@ def inplace_fn(out, prev):
                            f'{{slot:"{slot}"}}' for slot in INPLACE_SLOTS] + ["return 0"])
     lines = []
     if ITEMS[out]["mejorable"]:
-        mej = "mejora_armadura" if ITEMS[out]["kind"] == "armor" else "mejora_arma"
+        mej = mejora_de(out, ITEMS[out]["kind"])
         for L in range(10, 0, -1):
             lines.append(f"$execute if items entity @s $(slot) *[minecraft:enchantments~[{{enchantments:\"{NS}:{mej}\","
                          f"levels:{L}}}]] run return run item modify entity @s $(slot) {NS}:forja/{out}/{prev}/{L}")
@@ -1051,6 +1051,14 @@ put(f"data/{NS}/enchantment/mejora_armadura.json", {
     "effects": {"minecraft:attributes": [{"id": f"{NS}:mejora_armadura", "attribute": "minecraft:max_health",
                                           "operation": "add_multiplied_total", "amount": {
         "type": "minecraft:lookup", "values": [v / 100 for v in MEJORA_VIDA], "fallback": MEJORA_VIDA[-1] / 100}}]}})
+
+put(f"data/{NS}/enchantment/mejora_taladro.json", {
+    "description": {"text": "Mejora", "color": "gold"}, "supported_items": ENCH_ITEMS,
+    "weight": 1, "max_level": 10, "min_cost": {"base": 999, "per_level_above_first": 0},
+    "max_cost": {"base": 999, "per_level_above_first": 0}, "anvil_cost": 40, "slots": ["mainhand"],
+    "effects": {"minecraft:attributes": [{"id": f"{NS}:mejora_taladro", "attribute": "minecraft:block_break_speed",
+        "operation": "add_multiplied_base", "amount": {
+            "type": "minecraft:lookup", "values": MEJORA_MINADO, "fallback": MEJORA_MINADO[-1]}}]}})
 
 ench_items = sorted({it["base"] for it in ITEMS.values() if it["kind"] in ("armor", "weapon")} | {"minecraft:carrot_on_a_stick"})
 put(f"data/{NS}/tags/item/enchantable.json", {"values": ench_items})
@@ -2826,19 +2834,25 @@ load.append("scoreboard objectives add astral.kills minecraft.custom:minecraft.m
 # La plata la cobra MythicMobs solo si astralmejok quedo en ese nivel.
 # ---------------------------------------------------------------------------
 load += ["scoreboard objectives add astralmejn dummy", "scoreboard objectives add astralmejok dummy"]
+for _obj in ("astral.mejtal", "astral.mochender"):
+    load += [f"scoreboard objectives add {_obj} dummy",
+             f"execute unless score #pub {_obj} matches 0..1 run scoreboard players set #pub {_obj} 0"]
 HAND = "weapon.mainhand"
 KIND = ["scoreboard players set #k astral.tmp 0",
         f'execute if items entity @s {HAND} *[minecraft:custom_data~{{{NS}:{{type:"weapon"}}}}] '
         f"unless items entity @s {HAND} minecraft:carrot_on_a_stick run scoreboard players set #k astral.tmp 1",
         f'execute if items entity @s {HAND} *[minecraft:custom_data~{{{NS}:{{type:"staff"}}}}] run scoreboard players set #k astral.tmp 1',
         f'execute if items entity @s {HAND} *[minecraft:custom_data~{{{NS}:{{type:"armor"}}}}] run scoreboard players set #k astral.tmp 2']
+KIND += [
+    'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{astral:{type:"tool",tool:"drill"}}] if score #pub astral.mejtal matches 1 run scoreboard players set #k astral.tmp 3',
+    'execute if items entity @s weapon.mainhand *[minecraft:custom_data~{astral:{type:"tool",tool:"drill"}}] if score #pub astral.mejtal matches 0 if entity @s[name=ByTrainx] run scoreboard players set #k astral.tmp 3']
 ver = ["scoreboard players set @s astralmejn 0", "scoreboard players set @s astralmejok 0"] + KIND + [
        "execute if score #k astral.tmp matches 0 run return run tellraw @s " + json.dumps(
            [txt("Herrero: ", "gold"), txt("agarra en la mano un arma o una pieza de armadura de AstralRPG. "
                                           "(Los bastones de Mago no se mejoran aca.)", "gray")]),
        "scoreboard players set #l astral.tmp 0"]
 for L in range(1, 11):
-    for mej in ("mejora_arma", "mejora_armadura"):
+    for mej in ("mejora_arma", "mejora_armadura", "mejora_taladro"):
         ver.append(f'execute if items entity @s {HAND} *[minecraft:enchantments~[{{enchantments:"{NS}:{mej}",levels:{L}}}]] '
                    f"run scoreboard players set #l astral.tmp {L}")
 ver += ["execute if score #l astral.tmp matches 10.. run return run tellraw @s " + json.dumps(
@@ -2852,7 +2866,7 @@ hacer = []
 for L, (plata, prob, mats) in MEJORAS.items():
     pct = int(round(prob * 100))
     costo = ", ".join(f"{n}x {ITEMS[m]['name']}" for m, n in mats)
-    bonus = (f"+{round((MEJORA_DANO[L - 1] - 1) * 100)}% de dano (arma) o +{MEJORA_VIDA[L - 1]:g}% de vida por pieza (armadura)")
+    bonus = (f"+{round((MEJORA_DANO[L - 1] - 1) * 100)}% de dano (arma) o +{MEJORA_VIDA[L - 1]:g}% de vida por pieza (armadura) o +{round(MEJORA_MINADO[L - 1] * 100)}% velocidad de picado (taladro)")
     lines = ["scoreboard players set #falta astral.tmp 0",
              "tellraw @s " + json.dumps([txt("Herrero: ", "gold"), txt(f"mejora a +{L}", "yellow", bold=True),
                                          txt(f" cuesta {plata}$ y {costo}. Exito: {pct}%. ", "gray"),
@@ -2880,6 +2894,8 @@ for L, (plata, prob, mats) in MEJORAS.items():
           f'{{function:"minecraft:set_enchantments",enchantments:{{"{NS}:mejora_arma":{L}}},add:false}}',
           f"execute if score #k astral.tmp matches 2 run item modify entity @s {HAND} "
           f'{{function:"minecraft:set_enchantments",enchantments:{{"{NS}:mejora_armadura":{L}}},add:false}}',
+          f"execute if score #k astral.tmp matches 3 run item modify entity @s {HAND} "
+          f'{{function:"minecraft:set_enchantments",enchantments:{{"{NS}:mejora_taladro":{L}}},add:false}}',
           f"scoreboard players set @s astralmejok {L}",
           "playsound minecraft:block.anvil.use player @s ~ ~ ~ 1 1.2",
           "particle minecraft:totem_of_undying ~ ~1 ~ 0.4 0.6 0.4 0.3 40",

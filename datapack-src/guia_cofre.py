@@ -904,9 +904,10 @@ def recipe_menu(name, caption, recipe, nav, cards):
 # 23/11 pedido del dueno: mochilas (ExpendableBackpacks 1.2.0) en la Guia, con su receta real.
 # Recetas sacadas del plugin (BackpackRecipes): cuero = LSL/LCL/LLL; cada mejora = 8 del material
 # alrededor de la mochila anterior; Netherite en la Mesa de Herreria. Se entra desde "Terrenos y mochilas".
+ENDER_PUBLICO = False
 MOCHILAS_MENU = 'g_mochilas'
 MOCHILAS = [('leather', 'Cuero', 9, '&6'), ('copper', 'Cobre', 18, '&#e0804a'), ('iron', 'Hierro', 27, '&f'),
-            ('gold', 'Oro', 36, '&e'), ('diamond', 'Diamante', 45, '&b'), ('netherite', 'Netherite', 54, '&8')]
+            ('gold', 'Oro', 36, '&e'), ('diamond', 'Diamante', 45, '&b'), ('netherite', 'Netherite', 54, '&8'), ('ender', 'Ender', 27, '&3')]
 MEJORA = {'copper': ('COPPER_INGOT', 'Lingote de cobre'), 'iron': ('IRON_INGOT', 'Lingote de hierro'),
           'gold': ('GOLD_INGOT', 'Lingote de oro'), 'diamond': ('DIAMOND', 'Diamante')}
 GRILLA = [10, 11, 12, 19, 20, 21, 28, 29, 30]      # mesa 3x3 dibujada sobre el fondo general
@@ -927,8 +928,8 @@ def mochila_menus():
     lines += yaml_item('info', 13, dict(material='KNOWLEDGE_BOOK', model=INFO_MODEL, name='&6&lMochilas', lore=wrap([
         '&7Una mochila es un objeto: tenela en la mano y hace clic derecho para abrirla.',
         '&7Se fabrica la de Cuero en la Mesa de Crafteo y se mejora nivel por nivel. Tambien se compran en /shop -> Mochilas.',
-        '&7Si moris, cae a tu tumba con todo lo que tiene adentro. No se puede meter una mochila dentro de otra.'])))
-    for n, slot in enumerate((21, 22, 23, 30, 31, 32)):
+        '&7Si moris, cae a tu tumba con todo lo que tiene adentro. ' + ('Solo la Mochila de Ender puede guardar otras mochilas.' if ENDER_PUBLICO else 'No se puede meter una mochila dentro de otra.')])))
+    for n, slot in enumerate((21, 22, 23, 30, 31, 32, 40)):
         it = mochila_item(n, [f'&7{MOCHILAS[n][2]} espacios', '', '&e» Clic: ver como se fabrica'])
         lines += yaml_item(f'm{n}', slot, it, ['[sound] UI_BUTTON_CLICK', f'[openguimenu] {pagina(n)}'])
     lines += nav_items({'back': ['[openguimenu] g_atlas_seccion_proteccion']}, MOCHILAS_MENU)
@@ -940,6 +941,15 @@ def mochila_menus():
                        dict(material='CHEST', name='&fCofre'))
             grilla, donde = [L, S, L, L, C, L, L, L, L], 'Mesa de Crafteo'
             como = ['&77 cuero, 1 hilo y 1 cofre en la Mesa de Crafteo.', '&7El hilo arriba al medio y el cofre en el centro.']
+        elif mat == 'ender':
+            E = dict(material='ENDER_EYE', name='&fOjo de ender')
+            P = dict(material='ENDER_PEARL', name='&fPerla de ender')
+            grilla = [E, P, E, P, dict(material='CHEST', name='&fCofre'), P,
+                      E, dict(material='IRON_BLOCK', name='&fBloque de hierro'), E]
+            donde = 'Mesa de Crafteo'
+            como = wrap(['&7Todas las copias de la misma Mochila de Ender comparten lo que tiene adentro.',
+                         '&7Copia sin forma: Mochila de Ender + perla de ender.'] +
+                        (['&7Puede guardar mochilas normales, nunca otra de Ender.'] if ENDER_PUBLICO else []))
         elif mat == 'netherite':
             grilla = [None] * 9
             grilla[3:6] = [dict(material='NETHERITE_UPGRADE_SMITHING_TEMPLATE', name='&fPlantilla de mejora de netherite'),

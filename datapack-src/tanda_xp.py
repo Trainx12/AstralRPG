@@ -14,7 +14,7 @@ NOMBRES = {'frasco_xp_pequeno': 'Frasco de Experiencia Pequeno', 'frasco_xp_gran
            'manzana_esmeralda': 'Manzana de la Suerte'}
 SUERTE_SEGUNDOS = 300
 MOCHILAS = dict(leather='#946545', copper='#b66a45', iron='#b9bfca', gold='#e6bb3c',
-                diamond='#42c8cb', netherite='#49424d')
+                diamond='#42c8cb', netherite='#49424d', ender='#1f6f62')
 
 
 def register(add, txt):

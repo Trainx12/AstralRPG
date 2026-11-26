@@ -5,7 +5,7 @@ visibles para conservar los añadidos por yunque. Los números salen de items.py
 """
 import re
 from escala import fmt, REGEN_POR_MANA, HECHIZO_PERFORA
-from items import MEJORA_DANO, MEJORA_VIDA
+from items import MEJORA_DANO, MEJORA_VIDA, MEJORA_MINADO
 
 RAREZA = {1: ('COMÚN', 'white'), 2: ('POCO COMÚN', 'green'),
           3: ('RARA', '#5555FF'), 4: ('ÉPICA', 'dark_purple'), 5: ('LEGENDARIA', 'gold'),
@@ -116,8 +116,8 @@ def prepare(iid, name, base, lore, data, components, pdc):
 
 
 def mejorable(source):
-    """El Herrero mejora armas (bastones incluidos) y armaduras; no herramientas."""
-    return source['kind'] not in ('drill', 'saw', 'talisman')
+    """El Herrero mejora armas (bastones incluidos) y armaduras; taladros incluidos; no motosierras."""
+    return source['kind'] not in ('saw', 'talisman')
 
 
 def enchant_lines(comps):
@@ -305,12 +305,15 @@ def utility_render(iid, name, color, base, lore, data, comps):
     return {'minecraft:item_name': txt(name, color), 'minecraft:lore': out}
 
 
-def tool_stats(source):
+def tool_stats(source, level=0):
     from tools import DRILLS, CHAINSAWS, AREA_NAMES
     lines = []
     if source['kind'] == 'drill':
         d = next(x for x in DRILLS if x['id'] == source['id'])
-        lines.append(stat('Velocidad de minado', f"+{d['speed']}", 'gold'))
+        line = stat('Velocidad de minado', f"+{d['speed']}", 'gold')
+        if level:
+            line.setdefault('extra', []).append(txt(f" (+{round(MEJORA_MINADO[level - 1] * 100)}%)", 'yellow'))
+        lines.append(line)
         lines.append(stat('Área de minado', AREA_NAMES[d['area']], 'gold'))
     else:
         d = next(x for x in CHAINSAWS if x['id'] == source['id'])
@@ -388,7 +391,7 @@ def render(source, level=0):
     if kind in ARMOR_PIECES:
         lore += armor_stats(source, level)
     elif kind in ('drill', 'saw'):
-        lore += tool_stats(source)
+        lore += tool_stats(source, level)
     else:
         lore += weapon_stats(source, level)
     ench = enchant_lines(comps)

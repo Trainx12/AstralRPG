@@ -1245,3 +1245,5 @@
     file: g_mochila_diamond.yml
   g_mochila_netherite:
     file: g_mochila_netherite.yml
+  g_mochila_ender:
+    file: g_mochila_ender.yml

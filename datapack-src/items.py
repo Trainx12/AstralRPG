@@ -400,6 +400,14 @@ MEJORAS = {
     9: (MEJORAS_PLATA[8], 0.5, [("chispa_astral", 3), ("nucleo_astral", 1)]),
     10: (MEJORAS_PLATA[9], 0.4, [("chispa_astral", 5), ("nucleo_astral", 1)]),
 }
+MEJORA_MINADO = [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.36, 0.42, 0.50, 0.60]
+
+
+def mejora_de(iid, kind):
+    from tools import DRILLS
+    return "mejora_armadura" if kind == "armor" else "mejora_taladro" if any(d["id"] == iid for d in DRILLS) else "mejora_arma"
+
+
 MEJORA_DANO = [1.03, 1.06, 1.09, 1.12, 1.15, 1.19, 1.23, 1.27, 1.32, 1.40]   # x dano del arma
 MEJORA_VIDA = [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]                       # % de vida por pieza (4 piezas +10 = +21%)
 
