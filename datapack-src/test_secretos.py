@@ -19,12 +19,19 @@ class Secretos(unittest.TestCase):
         self.assertEqual(self.sk, S.OUT.read_text(encoding='utf-8'))
 
     def test_cifras_de_economia(self):
-        self.assertIn(f'plata_min: {E.SECRETO_PLATA_MIN}', self.sk)
-        self.assertIn(f'plata_max: {E.SECRETO_PLATA_MAX}', self.sk)
-        self.assertEqual((E.SECRETO_PLATA_MIN, E.SECRETO_PLATA_MAX), (10_000, 5_000_000))
-        self.assertEqual(E.SECRETO_PLATA_PCT, (0.05, 0.20))
+        self.assertIn(f'prob_dorado: {E.SECRETO_DORADO_PROB}', self.sk)
+        self.assertIn(f'mult_dorado: {E.SECRETO_DORADO_MULT}', self.sk)
         self.assertLess(E.SECRETO_PROB_EQUIPO, 0.05)                  # muy raro
-        self.assertLess(E.SECRETO_PROB_EQUIPO + E.SECRETO_PROB_PLATA, 1)
+        self.assertEqual(sorted(E.SECRETO_PLATA_TIER), list(range(1, 11)))
+        self.assertEqual(E.SECRETO_PLATA_TIER[1], 450_000)
+        self.assertEqual(E.SECRETO_PLATA_TIER[5], 7_500_000)
+        for t, v in E.SECRETO_PLATA_TIER.items():
+            self.assertIn(f'set {{-sec.plata::{t}}} to {v}', self.sk)
+        self.assertNotIn('balance of {_p} *', self.sk)                # ya no depende de lo que lleva encima
+
+    def test_plata_siempre(self):
+        f = self.sk.split('function sec_reclamar')[1].split('on right click')[0]
+        self.assertLess(f.index('add {_v} to balance'), f.index('if {_r} < {@prob_equipo}:'))
 
     def test_una_vez_por_jugador(self):
         f = self.sk.split('function sec_reclamar')[1]

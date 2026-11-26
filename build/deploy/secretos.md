@@ -46,3 +46,10 @@ Despues: `skript reload astral_secretos` (no `sk reload`: es de AuraSkills).
   variables persistentes), equipo +1 tier que existe en el datapack para tiers 1-10, premios del cofre, comandos y proteccion.
 - `tools/probar_economia_paper.py`: Paper local con los 4 scripts: "All scripts loaded without errors".
 - Falta con cliente: crear un secreto, reclamarlo, ver que no deje dos veces y `/secretos`.
+
+## 26/11/2026: premios de plata mejorados (EN VIVO 26/11 18:43, skript reload OK)
+Pedido del dueno. Ahora cada secreto da plata SIEMPRE segun el tier del jugador (su mejor arma Astral), entre 1x y 2x
+de 300 mobs Astral de ese tier (~1 hora de farmeo): T1 450k-900k, T2 900k-1,8M, T3 1,8M-3,6M, T4 3,6M-7,2M,
+T5 7,5M-15M ... T10 240M-480M. 10% de "secreto dorado" x3 con aviso a todos. Ademas 3% equipo +1 tier o 2 tiradas del cofre.
+Antes: 38% plata (5-20% de lo que llevaba encima, 10k-5M). Subir `build/secretos/astral_secretos.sk` a
+`plugins/Skript/scripts/` y `skript reload astral_secretos` (en vivo, sin reinicio). Anunciar en Discord al quedar en vivo.

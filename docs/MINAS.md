@@ -139,7 +139,7 @@ lo demás que da plata (`economia.py`, `rankings.py`):
 - Rankings semanales: 3M/1,5M/750k (antes 50M/25M/12,5M), menos tiradas y frascos.
 - Cofre de mazmorras (ruleta): multiplicador por tier 1/3/5/8/12 y Santuario 18 (antes 1/3/8/18/40 y 60).
 - Sin cambio (revisados): mobs, jefes de mazmorra, Cronista (historia 50k-10M una vez, diarias 100k/250k/600k),
-  Secretos (tope 5M), Bosque, Banco.
+  Bosque, Banco. Secretos: 26/11 mejorados (plata siempre por tier, ~1 h de farmeo; economia.py).
 
 ## Renacer de minas (25/11/2026, privado)
 

@@ -5,8 +5,8 @@
   muestra la linea para copiar a SECRETOS de este archivo. `/secreto borrar`, `/secreto lista`.
 - Clic derecho en un secreto: lo reclama (una vez por jugador, guardado por UUID). `/secretos`: cuantos encontraste.
 - Premio (ruleta invisible, cifras en economia.py): muy raro equipo de 1 tier mas que tu mejor arma Astral
-  (puntaje astral.wt del datapack; sin equipo = tier I), plata (5-20% de lo que llevas, 10.000 a 5.000.000) o
-  premios del pool de cofres de tu tier (usa pz_tirada de astral_puntaje.sk).
+  (puntaje astral.wt del datapack; sin equipo = tier I) o premios del pool de cofres de tu tier (usa pz_tirada de
+  astral_puntaje.sk). Ademas SIEMPRE plata segun tu tier (26/11: ~1 hora de farmeo, 10% de secreto dorado x3).
 
 python secretos.py -> build/secretos/astral_secretos.sk
 """
@@ -43,7 +43,8 @@ def datos():
               f'        set {{secreto.lista::{sid}}} to "{w}|{sx}|{sy}|{sz}"',
               f'        set {{secreto.pista::{sid}}} to "{pista}"',
               f'        set {{secreto.idx::{w}|{sx}|{sy}|{sz}}} to "{sid}"']
-    L += ['    delete {-sec.eq::*}']
+    L += ['    delete {-sec.eq::*}', '    delete {-sec.plata::*}']
+    L += [f'    set {{-sec.plata::{t}}} to {v}' for t, v in sorted(E.SECRETO_PLATA_TIER.items())]
     for t in range(1, 11):
         eq = E.equipo(min(t + 1, 10))
         L += [f'    set {{-sec.eqn::{t}}} to {len(eq)}']
@@ -77,21 +78,22 @@ function sec_reclamar(p: player, id: text):
     execute console command "execute at %uuid of {_p}% run particle minecraft:end_rod ~ ~1 ~ 0.6 1 0.6 0.05 60"
     set {_r} to random number between 0 and 1
     set {_t} to sec_tier({_p})
+    set {_v} to floor({-sec.plata::%{_t}%} * (random number between 1 and 2))
+    if random number between 0 and 1 < {@prob_dorado}:
+        set {_v} to {_v} * {@mult_dorado}
+        add {_v} to balance of {_p}
+        send "&6&l✦ SECRETO DORADO ✦ &eEl secreto guardaba &6&l+%{_v}%$" to {_p}
+        broadcast "&6&l✦ &e%name of {_p}% &6encontro un &lSECRETO DORADO&6 de Astral y gano &f&l%{_v}%$&6!"
+    else:
+        add {_v} to balance of {_p}
+        send "&dEl secreto guardaba &e&l+%{_v}%$" to {_p}
     if {_r} < {@prob_equipo}:
         set {_n} to random integer between 1 and {-sec.eqn::%{_t}%}
         set {_id2} to {-sec.eq::%{_t}%::%{_n}%}
         execute console command "loot give %name of {_p}% loot astral:item/%{_id2}%"
         broadcast "&d&l✦ &e%name of {_p}% &dencontro un secreto de Astral y gano &f&lequipo de tier superior&d!"
-    else if {_r} < {@prob_equipo} + {@prob_plata}:
-        set {_v} to floor(balance of {_p} * (random number between {@pct_min} and {@pct_max}))
-        if {_v} < {@plata_min}:
-            set {_v} to {@plata_min}
-        if {_v} > {@plata_max}:
-            set {_v} to {@plata_max}
-        add {_v} to balance of {_p}
-        send "&dEl secreto guardaba &e+%{_v}%$" to {_p}
     else:
-        send "&dEl secreto guardaba:" to {_p}
+        send "&dY tambien:" to {_p}
         loop {@tiradas} times:
             pz_tirada({_p}, min({_t}, 5), {@nota}, "un secreto")
     send "&7Secretos encontrados: &f%{secretos.n::%{_u}%}%&7/&f%size of {secreto.lista::*}%" to {_p}
@@ -169,9 +171,8 @@ def script():
     L = ['# Generado por datapack-src/secretos.py (plan E3, 18/11/2026). No editar a mano.',
          '# Usa pz_tirada de astral_puntaje.sk (premios del cofre). Cifras: economia.py.', '',
          'options:',
-         f'    prob_equipo: {E.SECRETO_PROB_EQUIPO}', f'    prob_plata: {E.SECRETO_PROB_PLATA}',
-         f'    pct_min: {E.SECRETO_PLATA_PCT[0]}', f'    pct_max: {E.SECRETO_PLATA_PCT[1]}',
-         f'    plata_min: {E.SECRETO_PLATA_MIN}', f'    plata_max: {E.SECRETO_PLATA_MAX}',
+         f'    prob_equipo: {E.SECRETO_PROB_EQUIPO}',
+         f'    prob_dorado: {E.SECRETO_DORADO_PROB}', f'    mult_dorado: {E.SECRETO_DORADO_MULT}',
          f'    tiradas: {E.SECRETO_TIRADAS}', f'    nota: {E.NOTAS.index(E.SECRETO_NOTA_PESOS) + 1}', '',
          'on load:'] + datos()
     return '\n'.join(L) + '\n' + CUERPO

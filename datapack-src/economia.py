@@ -168,10 +168,16 @@ def pesos(tier, n):
 
 # ------------------------------------------------------------------ Secretos de Astral (plan E3, 18/11)
 # Ruleta invisible al reclamar un secreto: equipo +1 tier (muy raro), plata o premios del cofre.
-SECRETO_PROB_EQUIPO = 0.02
-SECRETO_PROB_PLATA = 0.38           # el resto (60%) son premios del pool de cofres del tier del jugador
-SECRETO_PLATA_PCT = (0.05, 0.20)    # de la plata que lleva encima
-SECRETO_PLATA_MIN, SECRETO_PLATA_MAX = 10_000, 5_000_000
+# 26/11 (dueno: "mejora mucho las recompensas de los secretos"): antes la plata salia solo el 38% de las veces y era
+# un 5-20% de lo que llevabas encima (10.000 a 5M; con el Banco casi siempre tocaba 10.000). Ahora la plata sale
+# SIEMPRE y depende del tier del jugador (su mejor arma Astral): entre 1 y 2 veces SECRETO_PLATA_MOBS mobs Astral
+# de su tier (~1 hora de farmeo: T1 450k-900k, T5 7,5M-15M, T10 240M-480M). SECRETO_DORADO_PROB de "secreto
+# dorado" (x SECRETO_DORADO_MULT, con aviso a todos). Ademas sigue la ruleta: equipo +1 tier o premios del cofre.
+SECRETO_PROB_EQUIPO = 0.03          # el resto son premios del pool de cofres del tier del jugador
+SECRETO_PLATA_MOBS = 300
+SECRETO_PLATA_TIER = {t: PLATA_MOB_TIER[t] * SECRETO_PLATA_MOBS for t in PLATA_MOB_TIER}   # minimo; maximo x2
+SECRETO_DORADO_PROB = 0.10
+SECRETO_DORADO_MULT = 3
 SECRETO_TIRADAS = 2                 # tiradas de premios (con pesos de nota B)
 SECRETO_NOTA_PESOS = 'B'
 
