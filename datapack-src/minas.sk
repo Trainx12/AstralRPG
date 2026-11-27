@@ -583,6 +583,61 @@ function am_drill_area(p: player) :: number:
     return am_tool_area({_p}'s tool)
 
 # Auto-recolectado: lo picado va directo al inventario. Si no entra, cae a los pies del jugador.
+command /am_autoventa_nivel <player> <number>:
+    executable by: console
+    trigger:
+        set {-am.autoventa.nivel::%uuid of arg-1%} to arg-2
+
+command /autoventa <text>:
+    permission: op
+    trigger:
+        if arg-1 is "publico":
+            set {am.autoventa.publico} to true
+            send "&aNucleo de Venta: efecto abierto para todos. La receta sigue desactivada." to sender
+        else if arg-1 is "privado":
+            delete {am.autoventa.publico}
+            send "&eNucleo de Venta: solo ByTrainx." to sender
+        else:
+            send "&7/autoventa publico | privado" to sender
+
+function am_autoventa(p: player) :: number:
+    if name of world of {_p} is not "@WORLD@":
+        return 0
+    if name of {_p} is not "ByTrainx":
+        if {am.autoventa.publico} is not true:
+            return 0
+    set {_u} to uuid of {_p}
+    if {-am.autoventa.uso::%{_u}%} is set:
+        if difference between now and {-am.autoventa.uso::%{_u}%} < 2 seconds:
+            return 0
+    set {-am.autoventa.uso::%{_u}%} to now
+    # Identidad real en custom_data; no alcanza con renombrar un corazon vanilla.
+    execute console command "execute as %name of {_p}% run function astral:autoventa/identify"
+    if scoreboard tags of {_p} does not contain "astral.autoventa":
+        delete {-am.autoventa.aviso::%{_u}%}
+        return 0
+    # Mismo puente sin addons que special_weapons.sk; dato fresco y fallo cerrado.
+    delete {-am.autoventa.nivel::%{_u}%}
+    execute console command "dm execute %name of {_p}% [console] am_autoventa_nivel %name of {_p}% %%auraskills_mining%%"
+    set {_nivel} to {-am.autoventa.nivel::%{_u}%}
+    if {_nivel} is not set:
+        if {-am.autoventa.aviso::%{_u}%} is not set:
+            set {-am.autoventa.aviso::%{_u}%} to true
+            send action bar "&cNo se pudo leer Mineria. Avisale a un administrador." to {_p}
+        return 0
+    if {_nivel} < 100:
+        if {-am.autoventa.aviso::%{_u}%} is not set:
+            set {-am.autoventa.aviso::%{_u}%} to true
+            send action bar "&cNecesitas Mineria 100 para usar el Nucleo de Venta." to {_p}
+        return 0
+    delete {-am.autoventa.aviso::%{_u}%}
+    set {_total} to am_sell_value({_p}, true)
+    if {_total} > 0:
+        add {_total} to {_p}'s balance
+        send action bar "&6Nucleo de Venta: &a+%{_total}% oro" to {_p}
+        play sound "entity.experience_orb.pickup" with volume 0.3 and pitch 1.4 to {_p}
+    return {_total}
+
 function am_give(p: player, items: items):
     # AstralMinasLimite tira al piso lo que no entra (los minerales marcados no se apilan con los
     # comunes, por eso no se puede preguntar antes): se cuenta lo que hay en el piso antes y despues.
@@ -591,8 +646,19 @@ function am_give(p: player, items: items):
         # AstralMinasLimite: PDC invisible, interruptor privado y sobrantes marcados.
         astral mine give loop-value to {_p}
     set {_despues::*} to all dropped items in radius 1.5 around location of {_p}
-    if size of {_despues::*} > size of {_antes::*}:
-        am_aviso_lleno({_p})
+    loop {_despues::*}:
+        if {_antes::*} does not contain loop-value:
+            add loop-value to {_nuevos::*}
+    if size of {_nuevos::*} > 0:
+        if am_autoventa({_p}) > 0:
+            loop {_nuevos::*}:
+                # Recuperar solo este picado, conservando el PDC y sin tocar drops ajenos.
+                set {_drop} to item of loop-value
+                kill loop-value
+                give {_drop} to {_p}
+            delete {-am.lleno::%uuid of {_p}%}
+        else:
+            am_aviso_lleno({_p})
     else:
         # Entro todo: hay lugar otra vez, el proximo llenado vuelve a avisar.
         delete {-am.lleno::%uuid of {_p}%}

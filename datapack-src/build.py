@@ -136,6 +136,10 @@ def req_line(skill, level):
     return txt(f"Requiere: {SKILLS[skill]} {level}", "red")
 
 
+from autoventa import register as register_autoventa
+register_autoventa(add_item, txt, aura_pdc, req_line, fn)
+
+
 # ---------------------------------------------------------------------------
 # MATERIALES
 # ---------------------------------------------------------------------------
@@ -2592,7 +2596,7 @@ for kid, kname, kcolor, box, ids in KITS:
             {"function": "minecraft:set_components", "components": {
                 "minecraft:item_name": txt(f"Kit: {kname}", kcolor)}}]}]}]})
     fn(f"admin/kit_{kid}", [f"loot give @s loot {NS}:kit/{kid}"])
-_missing = [i for i in ITEMS if i not in _kitted]
+_missing = [i for i in ITEMS if i not in _kitted and i != "autoventa"]  # privado: solo loot de admin
 assert not _missing, _missing
 fn("admin/todo", [f"loot give @s loot {NS}:kit/{k[0]}" for k in KITS] + [
     "tellraw @s " + json.dumps(txt(f"Te dimos {len(KITS)} cajas de shulker con todos los items de AstralRPG.", "gray"))])
@@ -3070,7 +3074,7 @@ from encmagia import generate as generate_encmagia
 generate_encmagia(files)
 
 from guia_atlas import generate as generate_guia_atlas
-generate_guia_atlas(files, ITEMS, RID, item_stack, ing_pred, ing_name)
+generate_guia_atlas(files, {i: it for i, it in ITEMS.items() if i != "autoventa"}, RID, item_stack, ing_pred, ing_name)
 
 if os.path.isdir(OUT):
     shutil.rmtree(OUT)

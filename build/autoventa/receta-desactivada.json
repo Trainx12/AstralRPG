@@ -1,0 +1,53 @@
+{
+  "out": "autoventa",
+  "count": 1,
+  "ingredients": [
+    [
+      "c",
+      "cristal_refinado",
+      16
+    ],
+    [
+      "v",
+      "minecraft:netherite_block",
+      64
+    ],
+    [
+      "v",
+      "minecraft:diamond_block",
+      64
+    ],
+    [
+      "c",
+      "esencia_nether",
+      16
+    ],
+    [
+      "v",
+      "minecraft:nether_star",
+      2
+    ],
+    [
+      "v",
+      "minecraft:emerald_block",
+      32
+    ],
+    [
+      "v",
+      "minecraft:ender_eye",
+      16
+    ],
+    [
+      "c",
+      "netherita_reforzada",
+      16
+    ],
+    [
+      "c",
+      "nucleo_furia",
+      16
+    ]
+  ],
+  "group": "Minas",
+  "enabled": false
+}
