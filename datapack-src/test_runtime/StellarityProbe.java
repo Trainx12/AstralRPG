@@ -33,6 +33,41 @@ public final class StellarityProbe extends JavaPlugin implements Listener {
         Player p=Bukkit.getPlayerExact("ByTrainx"), other=Bukkit.getPlayerExact("StellarOther");
         switch(args[0]) {
         case "initial" -> {
+            com.google.gson.JsonObject table;
+            try(var reader=java.nio.file.Files.newBufferedReader(plugin.getDataFolder().toPath().resolve("tiers.json"))) {
+                table=com.google.gson.JsonParser.parseReader(reader).getAsJsonObject();
+            } catch(Exception ex) { throw new RuntimeException(ex); }
+            for(var entry:table.entrySet()) {
+                var row=entry.getValue().getAsJsonObject();
+                if(!row.has("max_attack_speed")) continue;
+                String key=entry.getKey();
+                String path=key.startsWith("shulker_") ? "tool/"+key : "weapon/"+switch(key) {
+                    case "alpha_wooden_sword" -> "ancient_wooden_sword";
+                    case "spirit_dagger" -> "the_beginning_and_the_end";
+                    default -> key;
+                };
+                var source=loot(path);
+                var result=plugin.convert(p,source);
+                double cap=row.get("max_attack_speed").getAsDouble();
+                getLogger().info("STELLAR SPEED CHECK "+key+" "+plugin.attackSpeed(source)+" -> "+plugin.attackSpeed(result)+" cap "+cap+" "+result.getItemMeta().getAttributeModifiers(Attribute.ATTACK_SPEED));
+                check(plugin.attackSpeed(result)<=cap+.000001,"tope velocidad "+entry.getKey());
+                check(Math.abs(plugin.attackSpeed(result)-Math.min(plugin.attackSpeed(source),cap))<.000001,"conserva lentas "+entry.getKey());
+                var restored=plugin.convert(other,result);
+                check(java.util.Objects.equals(restored.getItemMeta().getAttributeModifiers(Attribute.ATTACK_SPEED),source.getItemMeta().getAttributeModifiers(Attribute.ATTACK_SPEED)),"restaura velocidad "+entry.getKey());
+                if(plugin.attackSpeed(source)>cap+.000001) getLogger().info("STELLAR SPEED "+entry.getKey()+" "+plugin.attackSpeed(source)+" -> "+plugin.attackSpeed(result));
+                if(entry.getKey().equals("alpha_wooden_sword")) {
+                    check(Math.abs(plugin.attackSpeed(result)-1.6)<.000001,"Ancient Wooden Sword 1.6/s");
+                    var old=CraftItemStack.asNMSCopy(result);
+                    net.minecraft.world.item.component.CustomData.update(DataComponents.CUSTOM_DATA,old,t -> {
+                        var a=t.getCompoundOrEmpty("astral");a.putInt("stellarity",1);t.put("astral",a);
+                    });
+                    var legacy=CraftItemStack.asBukkitCopy(old);var meta=legacy.getItemMeta();
+                    meta.removeAttributeModifier(Attribute.ATTACK_SPEED);
+                    source.getItemMeta().getAttributeModifiers(Attribute.ATTACK_SPEED).forEach(x -> meta.addAttributeModifier(Attribute.ATTACK_SPEED,x));
+                    legacy.setItemMeta(meta);
+                    check(Math.abs(plugin.attackSpeed(plugin.convert(p,legacy))-1.6)<.000001,"migra velocidad version 1");
+                }
+            }
             var raw=loot("weapon/dragonblade");
             var n=plugin.convert(p,raw);
             check(converted(n),"conversion ByTrainx");

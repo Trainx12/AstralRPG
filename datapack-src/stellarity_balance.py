@@ -1,5 +1,6 @@
 """Compila el complemento propio; no reconstruye ZIPs compartidos ni copia Stellarity."""
 import argparse
+import hashlib
 import json
 import os
 import subprocess
@@ -11,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'build/stellarity'
 STAMP = (2026, 11, 26, 0, 0, 0)
 PLUGIN = '''name: AstralStellarity
-version: 1.0.0
+version: 1.0.1
 main: astral.stellarity.AstralStellarity
 api-version: '26.1.2'
 softdepend: [AuraSkills, AstralMesa]
@@ -71,6 +72,12 @@ def build(jdk, server):
         z.writestr(zipfile.ZipInfo('plugin.yml',STAMP),PLUGIN)
         z.writestr(zipfile.ZipInfo('config.yml',STAMP),'publico: false\n')
         z.writestr(zipfile.ZipInfo('tiers.json',STAMP),(OUT/'tiers.json').read_bytes())
+    manifest = OUT/'manifest.json'
+    if manifest.is_file():
+        data = json.loads(manifest.read_text(encoding='utf8'))
+        for entry in data['archivos']:
+            entry['sha256'] = hashlib.sha256((ROOT/entry['local']).read_bytes()).hexdigest()
+        manifest.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
     return dest
 
 

@@ -4,7 +4,7 @@
     {
       "local": "build/stellarity/AstralStellarity.jar",
       "destino": "plugins/AstralStellarity.jar",
-      "sha256": "e509874ea358c0bdf7eab3921e5ab79630135c1752741439338e2ea1d7ab33e2"
+      "sha256": "d4d0eb39b7a792cf94c2b68fd5b48082e300688262a486d187e10ace6b621731"
     },
     {
       "local": "build/mesa/AstralMesa.jar",
@@ -14,7 +14,7 @@
     {
       "local": "build/stellarity/tiers.json",
       "destino": "plugins/AstralStellarity/tiers.json",
-      "sha256": "a83ed5bf3d2c6965d32cee548f7282d561d3df8bcf3a33e1bb94b50632badb03"
+      "sha256": "369a1260941c1b450e5cb19537bfcfc2b7ab6d7c8f5f4fab5baac5311db8bc70"
     },
     {
       "local": "build/stellarity/config.yml",

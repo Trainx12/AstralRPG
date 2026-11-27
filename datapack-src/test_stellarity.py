@@ -4,6 +4,16 @@ from stellarity_balance import defense_patch
 from mesa_encantamientos import precio_subasta
 
 class StellarityTests(unittest.TestCase):
+    def test_attack_speed_caps(self):
+        for key, (tier, family) in WEAPONS.items():
+            row = rows()[key]
+            self.assertEqual(row['version'], 2)
+            if family in ('bow', 'crossbow'):
+                self.assertNotIn('max_attack_speed', row)
+            else:
+                expected = {'sword': 1.6, 'axe': AXES[tier-1]['spd'],
+                            'scythe': 1.3, 'spear': LANZA_VELOCIDAD}[family]
+                self.assertEqual(row['max_attack_speed'], expected, key)
     def test_catalog_complete(self):
         table=rows()
         self.assertEqual(set(table),set(CATALOG))

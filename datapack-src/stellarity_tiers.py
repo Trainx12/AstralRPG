@@ -5,9 +5,9 @@ from escala import DANO, FACTOR_ARMA, VIDA_PIEZA, defensa_pieza, fmt
 from items import SWORDS, AXES, SCYTHES, SPEARS, BOWS, STAFFS, SKILLS, ARMOR_LEVEL_SIN_CLASE
 from items_t6_10 import PUNTERIA, BALLESTAS
 from tools import DRILLS
-from balance_equipo import LANZA_DANO
+from balance_equipo import LANZA_DANO, LANZA_VELOCIDAD
 
-VERSION = 1
+VERSION = 2
 CATALOG = json.loads(Path(__file__).with_name('guia_stellarity.json').read_text(encoding='utf8'))['items']
 # id de catalogo -> (tier, familia); los ids reales se resuelven por custom_data, nunca por nombre traducido.
 WEAPONS = {
@@ -55,6 +55,9 @@ def rows():
     for key, (tier, family) in WEAPONS.items():
         damage, skill, level = weapon(family, tier)
         out[key] = dict(tier=tier, kind='weapon', family=family, damage=damage, skill=skill, level=level)
+        if family not in ('bow', 'crossbow'):
+            out[key]['max_attack_speed'] = {'sword': 1.6, 'axe': AXES[tier - 1]['spd'],
+                                          'scythe': 1.3, 'spear': LANZA_VELOCIDAD}[family]
     for key, (tier, piece) in ARMOR.items():
         out[key] = dict(tier=tier, kind='armor', piece=piece, defense=defensa_pieza(tier, piece),
                         health=VIDA_PIEZA[tier], skill='fighting', level=ARMOR_LEVEL_SIN_CLASE[tier])

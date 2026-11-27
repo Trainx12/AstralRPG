@@ -7,7 +7,7 @@
     "skill": "archery",
     "level": 20,
     "factor": 285.7142857142857,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 3",
       "Dano: 2.957",
@@ -21,8 +21,9 @@
     "damage": 12500.0,
     "skill": "fighting",
     "level": 25,
+    "max_attack_speed": 1.6,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Dano: 12.500",
@@ -36,8 +37,9 @@
     "damage": 18452.381,
     "skill": "fighting",
     "level": 25,
+    "max_attack_speed": 1.0,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Dano: 18.452",
@@ -51,8 +53,9 @@
     "damage": 11250.0,
     "skill": "fighting",
     "level": 25,
+    "max_attack_speed": 1.1,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Dano: 11.250",
@@ -66,8 +69,9 @@
     "damage": 11250.0,
     "skill": "fighting",
     "level": 25,
+    "max_attack_speed": 1.1,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Dano: 11.250",
@@ -81,8 +85,9 @@
     "damage": 62500.0,
     "skill": "fighting",
     "level": 30,
+    "max_attack_speed": 1.6,
     "factor": 5208.333333333333,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 5",
       "Dano: 62.500",
@@ -96,8 +101,9 @@
     "damage": 62500.0,
     "skill": "fighting",
     "level": 30,
+    "max_attack_speed": 1.6,
     "factor": 5208.333333333333,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 5",
       "Dano: 62.500",
@@ -112,7 +118,7 @@
     "skill": "archery",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 5",
       "Dano: 60.938",
@@ -127,7 +133,7 @@
     "skill": "archery",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 5",
       "Dano: 60.938",
@@ -142,7 +148,7 @@
     "skill": "archery",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 5",
       "Dano: 60.938",
@@ -156,8 +162,9 @@
     "damage": 312500.0,
     "skill": "fighting",
     "level": 35,
+    "max_attack_speed": 1.6,
     "factor": 24414.0625,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 6",
       "Dano: 312.500",
@@ -171,8 +178,9 @@
     "damage": 312500.0,
     "skill": "fighting",
     "level": 35,
+    "max_attack_speed": 1.6,
     "factor": 24414.0625,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 6",
       "Dano: 312.500",
@@ -187,7 +195,7 @@
     "skill": "archery",
     "level": 35,
     "factor": 24414.0625,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 6",
       "Dano: 303.223",
@@ -201,8 +209,9 @@
     "damage": 292968.75,
     "skill": "fighting",
     "level": 37,
+    "max_attack_speed": 1.3,
     "factor": 24414.0625,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 6",
       "Dano: 292.969",
@@ -216,8 +225,9 @@
     "damage": 312500.0,
     "skill": "fighting",
     "level": 35,
+    "max_attack_speed": 1.6,
     "factor": 24414.0625,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 6",
       "Dano: 312.500",
@@ -231,8 +241,9 @@
     "damage": 292968.75,
     "skill": "fighting",
     "level": 37,
+    "max_attack_speed": 1.3,
     "factor": 24414.0625,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 6",
       "Dano: 292.969",
@@ -246,8 +257,9 @@
     "damage": 2355238.971,
     "skill": "fighting",
     "level": 40,
+    "max_attack_speed": 1.0,
     "factor": 114889.70588235295,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 7",
       "Dano: 2.355.239",
@@ -261,8 +273,9 @@
     "damage": 1562500.0,
     "skill": "fighting",
     "level": 40,
+    "max_attack_speed": 1.6,
     "factor": 114889.70588235295,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 7",
       "Dano: 1.562.500",
@@ -276,8 +289,9 @@
     "damage": 1562500.0,
     "skill": "fighting",
     "level": 40,
+    "max_attack_speed": 1.6,
     "factor": 114889.70588235295,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 7",
       "Dano: 1.562.500",
@@ -293,7 +307,7 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Defensa: 52",
@@ -310,7 +324,7 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Defensa: 140",
@@ -327,7 +341,7 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Defensa: 105",
@@ -344,7 +358,7 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Defensa: 52",
@@ -361,7 +375,7 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Defensa: 52",
@@ -378,7 +392,7 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Defensa: 140",
@@ -395,7 +409,7 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Defensa: 105",
@@ -412,7 +426,7 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Defensa: 52",
@@ -429,7 +443,7 @@
     "skill": "fighting",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 5",
       "Defensa: 75",
@@ -446,7 +460,7 @@
     "skill": "fighting",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 5",
       "Defensa: 200",
@@ -463,7 +477,7 @@
     "skill": "fighting",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 5",
       "Defensa: 150",
@@ -480,7 +494,7 @@
     "skill": "fighting",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 5",
       "Defensa: 75",
@@ -497,7 +511,7 @@
     "skill": "fighting",
     "level": 35,
     "factor": 24414.0625,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 6",
       "Defensa: 98",
@@ -514,7 +528,7 @@
     "skill": "fighting",
     "level": 35,
     "factor": 24414.0625,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 6",
       "Defensa: 260",
@@ -531,7 +545,7 @@
     "skill": "fighting",
     "level": 35,
     "factor": 24414.0625,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 6",
       "Defensa: 195",
@@ -548,7 +562,7 @@
     "skill": "fighting",
     "level": 35,
     "factor": 24414.0625,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 6",
       "Defensa: 98",
@@ -565,7 +579,7 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Defensa: 84",
@@ -582,7 +596,7 @@
     "skill": "fighting",
     "level": 35,
     "factor": 24414.0625,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 6",
       "Defensa: 156",
@@ -599,7 +613,7 @@
     "skill": "fighting",
     "level": 35,
     "factor": 24414.0625,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 6",
       "Defensa: 156",
@@ -613,7 +627,7 @@
     "skill": "mining",
     "level": 16,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Requiere: Mineria 16"
@@ -625,7 +639,7 @@
     "skill": "mining",
     "level": 16,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Requiere: Mineria 16"
@@ -637,7 +651,7 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Requiere: Combate 25"
@@ -649,7 +663,7 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Requiere: Combate 25"
@@ -661,7 +675,7 @@
     "skill": "fighting",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 5",
       "Requiere: Combate 30"
@@ -673,7 +687,7 @@
     "skill": "fighting",
     "level": 35,
     "factor": 24414.0625,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 6",
       "Requiere: Combate 35"
@@ -685,7 +699,7 @@
     "skill": "fighting",
     "level": 35,
     "factor": 24414.0625,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 6",
       "Requiere: Combate 35"
@@ -697,7 +711,7 @@
     "skill": "fighting",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 5",
       "Requiere: Combate 30"
@@ -709,7 +723,7 @@
     "skill": "fighting",
     "level": 35,
     "factor": 24414.0625,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 6",
       "Requiere: Combate 35"
@@ -721,7 +735,7 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Requiere: Combate 25"
@@ -733,7 +747,7 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Requiere: Combate 25"
@@ -745,7 +759,7 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Requiere: Combate 25"
@@ -757,7 +771,7 @@
     "skill": "fighting",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 5",
       "Requiere: Combate 30"
@@ -769,7 +783,7 @@
     "skill": "fighting",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 5",
       "Requiere: Combate 30"
@@ -781,7 +795,7 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Requiere: Combate 25"
@@ -793,7 +807,7 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Requiere: Combate 25"
@@ -805,7 +819,7 @@
     "skill": "sorcery",
     "level": 26,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Requiere: Hechiceria 26"
@@ -817,7 +831,7 @@
     "skill": "sorcery",
     "level": 26,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Requiere: Hechiceria 26"
@@ -829,7 +843,7 @@
     "skill": "sorcery",
     "level": 26,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Requiere: Hechiceria 26"
@@ -841,7 +855,7 @@
     "skill": "sorcery",
     "level": 26,
     "factor": 1322.751322751323,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 4",
       "Requiere: Hechiceria 26"
@@ -853,7 +867,7 @@
     "skill": "sorcery",
     "level": 32,
     "factor": 5208.333333333333,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 5",
       "Requiere: Hechiceria 32"
@@ -865,7 +879,7 @@
     "skill": "sorcery",
     "level": 37,
     "factor": 24414.0625,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 6",
       "Requiere: Hechiceria 37"
@@ -875,7 +889,7 @@
     "tier": 5,
     "kind": "horse",
     "factor": 5208.333333333333,
-    "version": 1,
+    "version": 2,
     "lore": [
       "Tier: 5"
     ]
@@ -885,7 +899,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "ashen_froglight": {
@@ -893,7 +907,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "enderite_block": {
@@ -901,7 +915,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "ender_dirt": {
@@ -909,7 +923,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "ender_dirt_path": {
@@ -917,7 +931,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "ender_grass_block": {
@@ -925,7 +939,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "phantom_item_frame": {
@@ -933,7 +947,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "rooted_ender_dirt": {
@@ -941,7 +955,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "endonomicon": {
@@ -949,7 +963,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "chapel_of_light": {
@@ -957,7 +971,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "end_city": {
@@ -965,7 +979,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "floating_treasure": {
@@ -973,7 +987,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "village": {
@@ -981,7 +995,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "candied_chorus_fruit": {
@@ -989,7 +1003,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "chorus_juice": {
@@ -997,7 +1011,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "chorus_pie": {
@@ -1005,7 +1019,7 @@
     "kind": "fixed",
     "price": 10000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "chorus_stew": {
@@ -1013,7 +1027,7 @@
     "kind": "fixed",
     "price": 10000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "enderman_flesh": {
@@ -1021,7 +1035,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "amethyst_budfish": {
@@ -1029,7 +1043,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "bubblefish": {
@@ -1037,7 +1051,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "crimson_tigerfish": {
@@ -1045,7 +1059,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "crystal_heartfish": {
@@ -1053,7 +1067,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "ender_koi": {
@@ -1061,7 +1075,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "flarefin_koi": {
@@ -1069,7 +1083,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "fleshy_piranha": {
@@ -1077,7 +1091,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "frost_minnow": {
@@ -1085,7 +1099,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "goosh": {
@@ -1093,7 +1107,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "overgrown_cod": {
@@ -1101,7 +1115,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "prismite": {
@@ -1109,7 +1123,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "pufferfish": {
@@ -1117,7 +1131,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "fried_chorus_fruit": {
@@ -1125,7 +1139,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "frozen_carpaccio": {
@@ -1133,7 +1147,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "golden_chorus_fruit": {
@@ -1141,7 +1155,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "grilled_enderman_flesh": {
@@ -1149,7 +1163,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "loaf_of_plenty": {
@@ -1157,7 +1171,7 @@
     "kind": "fixed",
     "price": 50000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "pho": {
@@ -1165,7 +1179,7 @@
     "kind": "fixed",
     "price": 30000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "prismatic_sushi": {
@@ -1173,7 +1187,7 @@
     "kind": "fixed",
     "price": 50000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "shepherds_pie": {
@@ -1181,7 +1195,7 @@
     "kind": "fixed",
     "price": 30000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "shulker_body": {
@@ -1189,7 +1203,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "sushi": {
@@ -1197,7 +1211,7 @@
     "kind": "fixed",
     "price": 10000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "absorption": {
@@ -1205,7 +1219,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "levitation": {
@@ -1213,7 +1227,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "strength": {
@@ -1221,7 +1235,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "ender_egg": {
@@ -1229,7 +1243,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "gilded_purpur_key": {
@@ -1237,7 +1251,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "purpur_key": {
@@ -1245,7 +1259,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "winged_key": {
@@ -1253,7 +1267,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "chorus_petal": {
@@ -1261,7 +1275,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "chorus_plating": {
@@ -1269,7 +1283,7 @@
     "kind": "fixed",
     "price": 50000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "empty_enchanted_book": {
@@ -1277,7 +1291,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "enderite_shard": {
@@ -1285,7 +1299,7 @@
     "kind": "fixed",
     "price": 250000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "enderite_smithing_template": {
@@ -1293,7 +1307,7 @@
     "kind": "fixed",
     "price": 500000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "hallowed_ingot": {
@@ -1301,7 +1315,7 @@
     "kind": "fixed",
     "price": 1000000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "sand_rune": {
@@ -1309,7 +1323,7 @@
     "kind": "fixed",
     "price": 50000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "starlight_soot": {
@@ -1317,7 +1331,7 @@
     "kind": "fixed",
     "price": 100000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "music_disc_deviants_light_music_box": {
@@ -1325,7 +1339,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "music_disc_fires_of_hokkai": {
@@ -1333,7 +1347,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "music_disc_precipice_stereo": {
@@ -1341,7 +1355,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "amarene": {
@@ -1349,7 +1363,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "blind_rage_potion": {
@@ -1357,7 +1371,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "blind_rage_potion_ext": {
@@ -1365,7 +1379,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "endurance_potion": {
@@ -1373,7 +1387,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "endurance_potion_ext": {
@@ -1381,7 +1395,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "endurance_potion_ii": {
@@ -1389,7 +1403,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "entanglement_potion": {
@@ -1397,7 +1411,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "entanglement_potion_ext": {
@@ -1405,7 +1419,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "entanglement_potion_ii": {
@@ -1413,7 +1427,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "frost_cloud_potion": {
@@ -1421,7 +1435,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "hellfire_treader_potion": {
@@ -1429,7 +1443,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "hellfire_treader_potion_ext": {
@@ -1437,7 +1451,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "hellfire_treader_potion_ii": {
@@ -1445,7 +1459,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "lifeforce_potion": {
@@ -1453,7 +1467,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "lifeforce_potion_ext": {
@@ -1461,7 +1475,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "lifeforce_potion_ii": {
@@ -1469,7 +1483,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "luck_potion": {
@@ -1477,7 +1491,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "poseidons_nectar": {
@@ -1485,7 +1499,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "red_potion": {
@@ -1493,7 +1507,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "regeneraga": {
@@ -1501,7 +1515,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "regeneraga_ext": {
@@ -1509,7 +1523,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "regeneraga_ii": {
@@ -1517,7 +1531,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "royal_jelly": {
@@ -1525,7 +1539,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "royal_jelly_ii": {
@@ -1533,7 +1547,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "spelunker_potion": {
@@ -1541,7 +1555,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "spelunker_potion_ext": {
@@ -1549,7 +1563,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "spelunker_potion_ii": {
@@ -1557,7 +1571,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "flesh_piglin_spawn_egg": {
@@ -1565,7 +1579,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "voided_skeleton_spawn_egg": {
@@ -1573,7 +1587,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "voided_slime_spawn_egg": {
@@ -1581,7 +1595,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   },
   "voided_zombie_spawn_egg": {
@@ -1589,7 +1603,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 1,
+    "version": 2,
     "lore": []
   }
 }

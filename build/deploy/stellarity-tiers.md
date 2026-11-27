@@ -6,7 +6,7 @@ Claude continua la instalacion mediante navegador autorizado. No usar APIs priva
 
 ## Versiones y alcance
 
-AstralStellarity 1.0.0 + AstralMesa 1.5.3, sobre Stellarity 5.4.2 original
+AstralStellarity 1.0.1 + AstralMesa 1.5.3, sobre Stellarity 5.4.2 original
 (SHA-256 6c42ac245cecd3882ec3fc160d2fdf31a74d88b16a29a6332cd52d3bb8fa498c).
 No reemplazar ese ZIP. No cambia el resource pack; no subir R2 ni cambiar SHA-1.
 No subir el ZIP compartido AstralRPG-Items.zip de este workspace: contiene trabajo anterior ajeno a esta tarea.
@@ -20,6 +20,34 @@ Las herramientas conservan la regla vigente: no elevan el tier del mundo; armas 
 Los libros de esta version no infligen dano fijo: Luz da Regeneracion, proporcional por astral_gameplay.sk.
 Prismember y Starless Scythe calculan su habilidad desde el atributo: no se multiplican otra vez.
 Penetracion Kohara sin atacante directo se atribuye solo si hay UN jugador con kohara.attacker en ese mundo.
+
+## Correccion de velocidad (AstralStellarity 1.0.1 / tabla 2)
+
+Objetos cuya velocidad se reduce (ataques/s del objeto, antes de bonus externos):
+
+| Objeto | Original | Convertido |
+| --- | ---: | ---: |
+| Shulker Sword | 1,76 | 1,6 |
+| Shulker Axe | 1,1 | 1,0 |
+| The End (spirit_dagger) | 2,0 | 1,6 |
+| Ancient Wooden Sword (alpha_wooden_sword) | 2137 teoricos (4 + 2133; atributo limitado a 1024) | 1,6 |
+
+El resto conserva su velocidad. Incluye Dragonblade a 1,0/s y Prismember a 1,6/s;
+se conservan correctamente tambien los atributos predeterminados del material.
+
+Si la entrega anterior e378045 ya esta instalada, esta correccion necesita SOLO:
+
+- `build/stellarity/AstralStellarity.jar` -> `plugins/update/AstralStellarity.jar`.
+- `build/stellarity/tiers.json` -> `plugins/AstralStellarity/tiers.json`.
+
+Los SHA-256 nuevos estan en el manifiesto. Conservar la configuracion privada existente.
+Se pueden preparar ambos archivos encendido; el JAR necesita el siguiente reinicio completo
+aprobado (no hay recarga de JAR segura). Despues comprobar AstralStellarity 1.0.1 en consola,
+ejecutar `stellarity recargar` y `stellarity publico no`, y probar el equipo en /sala.
+Una recarga de tabla sola no instala esta correccion de codigo.
+No hace falta volver a subir Mesa, menus ni el complemento de Defensa para esta correccion.
+Si la entrega anterior aun no esta instalada, usar la lista completa siguiente con el JAR y tabla nuevos.
+No se realizo ninguna instalacion remota ni se publico aviso en Discord.
 
 ## Instalacion exacta
 
@@ -107,16 +135,21 @@ de esta prueba; revisar su aprobacion antes de cambiar astral.guia.ampliacion o 
 El equipo ya convertido usa atributos propios persistentes: conservar el plugin activo para restaurar al
 volver a privado. No desinstalar el JAR mientras haya equipo convertido repartido sin restaurarlo antes.
 
-Atencion de balance para la prueba: Ancient Wooden Sword conserva la velocidad +2133 del autor por instruccion
-del plan. Aunque su dano sea T7, su DPS es extraordinario. No certificar el balance publico de ese objeto sin
-la decision del dueno. Las habilidades originales, criticos, crecimiento de Harvester y efectos de set se
-conservan; requiere prueba visual y de sensacion de juego con el conjunto remoto completo.
+Velocidad de ataque al convertir (tabla VERSION 2): se limita a la familia Astral comparable:
+espada 1,6/s, hacha segun su tier (T4/T7: 1,0/s), guadana 1,3/s y lanza 1,1/s.
+Se conserva la velocidad original si es mas lenta; arcos y ballestas conservan su carga original.
+Se evaluan los modificadores aditivos y porcentuales de la mano principal juntos.
+La version 2 migra tambien equipo ya convertido. Volver a privado restaura la velocidad original.
+Las habilidades, criticos, crecimiento de Harvester y efectos de set conservan su funcionamiento;
+falta la prueba visual y de sensacion de juego con el conjunto remoto completo.
 
 ## Verificaciones locales realizadas
 
-6 tests de tabla/precios y 23 regresiones de Guia aprobados. Compilacion Java 25 aprobada.
-Paper real con Stellarity 5.4.2, AuraSkills, Skript, ExcellentEnchants y PacketEvents:
-conversion privada y restauracion, atributos y velocidad del autor, Prismember T6, dano T5,
+7 tests de tabla/precios/topes y 23 regresiones de Guia aprobados. Compilacion Java 25 aprobada.
+Paper real con Stellarity 5.4.2, AuraSkills, Skript, ExcellentEnchants y PacketEvents: 75 comprobaciones aprobadas.
+Incluye los 14 objetos cuerpo a cuerpo, migracion de VERSION 1 a 2 de la espada antigua y restauracion exacta de velocidades.
+Cobertura adicional:
+conversion privada y restauracion, atributos y topes de velocidad por familia, Prismember T6, dano T5,
 habilidad fija y penetracion Kohara, funcion ORIGINAL de giro Prismember sin doble factor,
 Defensa 200 y etiquetas binarias, vida +1.975, tier del mundo, requisitos y limite PvP de arenas.
 El ensayo de subastas verifica tambien la mezcla de originales y convertidos y la visibilidad privada.

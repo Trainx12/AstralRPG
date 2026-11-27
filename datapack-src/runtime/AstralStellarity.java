@@ -70,6 +70,21 @@ public final class AstralStellarity extends JavaPlugin implements Listener {
         m.addAttributeModifier(a, new AttributeModifier(new NamespacedKey(this, key), value, AttributeModifier.Operation.ADD_NUMBER, slot));
     }
     void remove(ItemMeta m, Attribute a) { m.removeAttributeModifier(a); }
+    public double attackSpeed(ItemStack it) {
+        var meta=it.getItemMeta();
+        var mods=meta.hasAttributeModifiers() ? meta.getAttributeModifiers(Attribute.ATTACK_SPEED)
+            : it.getType().getDefaultAttributeModifiers(EquipmentSlot.HAND).get(Attribute.ATTACK_SPEED);
+        double base=4, scalar=0, multiplier=1;
+        if(mods!=null) for(var m:mods) {
+            if(!m.getSlotGroup().test(EquipmentSlot.HAND)) continue;
+            switch(m.getOperation()) {
+                case ADD_NUMBER -> base+=m.getAmount();
+                case ADD_SCALAR -> scalar+=m.getAmount();
+                case MULTIPLY_SCALAR_1 -> multiplier*=1+m.getAmount();
+            }
+        }
+        return Math.max(0,Math.min(1024,base*(1+scalar)*multiplier));
+    }
     public ItemStack convert(Player p, ItemStack it) {
         JsonObject r = row(it);
         if (!gear(r)) return it; // apilables y caballo intactos, tambien su lore y PDC
@@ -80,7 +95,7 @@ public final class AstralStellarity extends JavaPlugin implements Listener {
             ItemStack base = ItemStack.deserializeBytes(backup);
             var bm = base.getItemMeta();
             // Restaurar solo nuestros atributos y lineas; conservar encantamientos, dano, nombre y datos del autor actuales.
-            for (Attribute a : List.of(Attribute.ATTACK_DAMAGE, Attribute.ARMOR, Attribute.ARMOR_TOUGHNESS, Attribute.MAX_HEALTH)) {
+            for (Attribute a : List.of(Attribute.ATTACK_DAMAGE, Attribute.ATTACK_SPEED, Attribute.ARMOR, Attribute.ARMOR_TOUGHNESS, Attribute.MAX_HEALTH)) {
                 meta.removeAttributeModifier(a);
                 var modifiers = bm.getAttributeModifiers(a);
                 if (modifiers != null) modifiers.forEach(x -> meta.addAttributeModifier(a,x));
@@ -99,6 +114,17 @@ public final class AstralStellarity extends JavaPlugin implements Listener {
         if (str(r,"kind").equals("weapon") && !List.of("bow","crossbow").contains(str(r,"family"))) {
             remove(meta,Attribute.ATTACK_DAMAGE);
             attr(meta,Attribute.ATTACK_DAMAGE,val(r,"damage")-1,"damage",EquipmentSlotGroup.MAINHAND);
+            ItemStack base=backup==null ? it : ItemStack.deserializeBytes(backup);
+            // Reaplicar desde el original tambien al migrar equipo convertido con la tabla anterior.
+            remove(meta,Attribute.ATTACK_SPEED);
+            if(attackSpeed(base)>val(r,"max_attack_speed")) {
+                attr(meta,Attribute.ATTACK_SPEED,val(r,"max_attack_speed")-4,"speed",EquipmentSlotGroup.MAINHAND);
+            } else {
+                var bm=base.getItemMeta();
+                var mods=bm.hasAttributeModifiers() ? bm.getAttributeModifiers(Attribute.ATTACK_SPEED)
+                    : base.getType().getDefaultAttributeModifiers(EquipmentSlot.HAND).get(Attribute.ATTACK_SPEED);
+                if(mods!=null) mods.forEach(x -> meta.addAttributeModifier(Attribute.ATTACK_SPEED,x));
+            }
         }
         if (str(r,"kind").equals("armor")) {
             remove(meta,Attribute.ARMOR); remove(meta,Attribute.ARMOR_TOUGHNESS); remove(meta,Attribute.MAX_HEALTH);
@@ -126,6 +152,7 @@ public final class AstralStellarity extends JavaPlugin implements Listener {
         var m=it.getItemMeta();
         if(m.lore()==null || m.lore().stream().noneMatch(c -> PlainTextComponentSerializer.plainText().serialize(c).equals("Astral | Tier: "+num(r,"tier")))) return false;
         if(str(r,"kind").equals("weapon") && !List.of("bow","crossbow").contains(str(r,"family"))) {
+            if(attackSpeed(it)>val(r,"max_attack_speed")+.000001) return false;
             var mods=m.getAttributeModifiers(Attribute.ATTACK_DAMAGE);
             return mods!=null && mods.stream().anyMatch(x -> mine(x) && Math.abs(x.getAmount()-(val(r,"damage")-1))<.001);
         }
