@@ -11,7 +11,7 @@ import re
 ROOT=Path(__file__).resolve().parents[1]
 
 
-def run(java, source, jar, work, baseline=False):
+def run(java, source, jar, work, baseline=False, reset_bases=False):
     server=work/'paper';server.mkdir(parents=True,exist_ok=True)
     for name in ('libraries','versions','cache'):
         if not (server/name).exists():shutil.copytree(source/name,server/name)
@@ -64,7 +64,7 @@ command /slimemoneyprobe:
         z.writestr('plugin.yml',"name: SlimeSplitProbe\nversion: 1\nmain: astraltest.SlimeSplitProbe\napi-version: '26.1.2'\ndepend: [AstralProgression]\ncommands:\n  slimeprobe: {}\n")
     log=work/'paper.log'
     with log.open('w',encoding='utf8') as out:
-        proc=subprocess.Popen([str(java),'-Xms512M','-Xmx2G','-jar','paper.jar','--nogui'],cwd=server,stdin=subprocess.PIPE,stdout=out,stderr=subprocess.STDOUT,text=True)
+        proc=subprocess.Popen([str(java),'-Xms512M','-Xmx2G',f'-Dslimeprobe.reset={str(reset_bases).lower()}','-jar','paper.jar','--nogui'],cwd=server,stdin=subprocess.PIPE,stdout=out,stderr=subprocess.STDOUT,text=True)
         def command(c):proc.stdin.write(c+'\n');proc.stdin.flush()
         try:
             for _ in range(180):
@@ -85,11 +85,17 @@ command /slimemoneyprobe:
     content=log.read_text(encoding='utf8',errors='replace')
     print('\n'.join(l for l in content.splitlines() if 'SLIME ' in l or 'ERROR' in l))
     if baseline:
-        assert 'max=1.0 health=1.0 seen=true' in content, 'No se reprodujo causa original'
+        if reset_bases:
+            assert 'SLIME INJECT bases=20/1/0.2 max=500.0' in content, 'No se reprodujo 225 -> 500'
+            assert 'SLIME FAIL tick +1' in content and 'SLIME FAIL tick +20' in content, 'Baseline no detecta regresion diferida'
+        else:
+            assert 'SLIME FAIL max inherited' in content and 'SLIME FAIL tick +20' in content, 'No se reprodujo regresion nativa'
     else:
         assert 'SLIME RESULT' in content and 'failures=0' in content and 'SLIME FAIL' not in content
         assert 'ERROR' not in content, str(log)
         assert 'SLIME MONEY PASS' in content and 'SLIME MONEY FAIL' not in content
+        if reset_bases:
+            assert 'SLIME INJECT bases=20/1/0.2 max=500.0' in content
 
 
 if __name__=='__main__':
@@ -97,4 +103,5 @@ if __name__=='__main__':
     p.add_argument('--java',type=Path,required=True);p.add_argument('--source',type=Path,required=True)
     p.add_argument('--jar',type=Path,default=ROOT/'build/runtime/AstralProgression.jar')
     p.add_argument('--work',type=Path,default=ROOT/'.local/slimes-paper');p.add_argument('--baseline',action='store_true')
-    a=p.parse_args();run(a.java.resolve(),a.source.resolve(),a.jar.resolve(),a.work.resolve(),a.baseline)
+    p.add_argument('--reset-bases',action='store_true',help='Simular bases 20/1/0.2 despues de SPLIT, como en el servidor real')
+    a=p.parse_args();run(a.java.resolve(),a.source.resolve(),a.jar.resolve(),a.work.resolve(),a.baseline,a.reset_bases)

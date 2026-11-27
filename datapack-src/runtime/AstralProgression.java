@@ -31,6 +31,45 @@ public final class AstralProgression extends JavaPlugin implements Listener {
     private static final Set<String> SKILLS = Set.of("fighting", "archery", "sorcery");
     private final Set<UUID> tinySplits = new HashSet<>();
     private final Set<String> splitExcludedWorlds = new HashSet<>();
+    private record SplitAttribute(Attribute type, double base,
+            List<org.bukkit.attribute.AttributeModifier> modifiers) {}
+    private final Map<UUID,List<SplitAttribute>> pendingSplits = new HashMap<>();
+    private final Map<UUID,List<SplitAttribute>> dyingSplits = new HashMap<>();
+    @EventHandler(priority=EventPriority.LOWEST,ignoreCancelled=true)
+    public void splitDeath(EntityDeathEvent e) {
+        if(!(e.getEntity() instanceof Slime parent) || parent.getSize()<=1 || !scaledSplit(parent)) return;
+        UUID id=parent.getUniqueId();
+        var snapshot=splitAttributes(parent);
+        dyingSplits.put(id,snapshot);
+        // Cancelled deaths, cancelled transforms and plugins removing a corpse must not leak entries.
+        Bukkit.getScheduler().runTaskLater(this,()->dyingSplits.remove(id,snapshot),100);
+    }
+    private List<SplitAttribute> splitAttributes(Slime parent) {
+        List<SplitAttribute> result=new ArrayList<>();
+        for(Attribute type:List.of(Attribute.MAX_HEALTH,Attribute.ATTACK_DAMAGE,Attribute.MOVEMENT_SPEED,
+                Attribute.ARMOR,Attribute.ARMOR_TOUGHNESS,Attribute.KNOCKBACK_RESISTANCE,Attribute.FOLLOW_RANGE)) {
+            var from=parent.getAttribute(type);
+            if(from!=null) result.add(new SplitAttribute(type,from.getBaseValue(),List.copyOf(from.getModifiers())));
+        }
+        return List.copyOf(result);
+    }
+    private void applySplitAttributes(Slime child,List<SplitAttribute> snapshot) {
+        for(var saved:snapshot) {
+            var to=child.getAttribute(saved.type());
+            if(to==null) continue;
+            for(var modifier:List.copyOf(to.getModifiers())) to.removeModifier(modifier);
+            to.setBaseValue(saved.base());
+            for(var modifier:saved.modifiers()) to.addModifier(modifier);
+        }
+        child.setHealth(child.getAttribute(Attribute.MAX_HEALTH).getValue());
+    }
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true)
+    public void splitSpawn(CreatureSpawnEvent e) {
+        if(e.getSpawnReason()!=CreatureSpawnEvent.SpawnReason.SLIME_SPLIT ||
+                !(e.getEntity() instanceof Slime child)) return;
+        var snapshot=pendingSplits.get(child.getUniqueId());
+        if(snapshot!=null) applySplitAttributes(child,snapshot);
+    }
     public void onEnable() {
         saveDefaultConfig();
         try(var reader=getTextResource("split-excluded-worlds.txt")) {
@@ -60,23 +99,19 @@ public final class AstralProgression extends JavaPlugin implements Listener {
             !splitExcludedWorlds.contains(mob.getWorld().getName());
     }
     // Paper copies entity tags during conversion, then setSize resets health/damage to the small size.
-    // SPLIT is fired after setSize and before CreatureSpawnEvent: no delay or random tier roll.
+    // Insertion/spawn listeners can reset bases after SPLIT. Keep values, not the dying parent,
+    // and restore once more next tick, after insertion and synchronous spawn listeners finish.
     @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true)
     public void slimeSplit(EntityTransformEvent e) {
         if(e.getTransformReason()!=EntityTransformEvent.TransformReason.SPLIT ||
             !(e.getEntity() instanceof Slime parent) || !scaledSplit(parent)) return;
+        var captured=dyingSplits.remove(parent.getUniqueId());
+        var snapshot=captured!=null?captured:splitAttributes(parent);
         for(Entity entity:e.getTransformedEntities()) {
             if(!(entity instanceof Slime child) || child.getType()!=parent.getType() ||
                 child.isInvulnerable() || pet(child)) continue;
-            for(Attribute type:List.of(Attribute.MAX_HEALTH,Attribute.ATTACK_DAMAGE,Attribute.MOVEMENT_SPEED,
-                                       Attribute.ARMOR,Attribute.ARMOR_TOUGHNESS,Attribute.KNOCKBACK_RESISTANCE,
-                                       Attribute.FOLLOW_RANGE)) {
-                var from=parent.getAttribute(type); var to=child.getAttribute(type);
-                if(from==null || to==null) continue;
-                for(var modifier:List.copyOf(to.getModifiers())) to.removeModifier(modifier);
-                to.setBaseValue(from.getBaseValue());
-                for(var modifier:from.getModifiers()) to.addModifier(modifier);
-            }
+            pendingSplits.put(child.getUniqueId(),snapshot);
+            applySplitAttributes(child,snapshot);
             for(String tag:parent.getScoreboardTags()) child.addScoreboardTag(tag);
             child.addScoreboardTag("astral.split");
             var objective=Bukkit.getScoreboardManager().getMainScoreboard().getObjective("astral.mt");
@@ -84,13 +119,14 @@ public final class AstralProgression extends JavaPlugin implements Listener {
                 var score=objective.getScore(parent.getUniqueId().toString());
                 if(score.isScoreSet()) objective.getScore(child.getUniqueId().toString()).setScore(score.getScore());
             }
-            child.setHealth(child.getAttribute(Attribute.MAX_HEALTH).getValue());
             child.addPotionEffects(parent.getActivePotionEffects());
             child.customName(parent.customName());
             child.setCustomNameVisible(parent.isCustomNameVisible());
             // Refresh the health text after insertion (the parent's death label may contain zero).
             Bukkit.getScheduler().runTask(this, () -> {
-                if(!child.isValid()) return;
+                var saved=pendingSplits.remove(child.getUniqueId());
+                if(saved==null || !child.isValid() || child.isDead()) return;
+                applySplitAttributes(child,saved);
                 trackSplit(child);
                 if(child.getScoreboardTags().contains("astral.hpname"))
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"execute as "+child.getUniqueId()+" run function astral:mob/vida");
