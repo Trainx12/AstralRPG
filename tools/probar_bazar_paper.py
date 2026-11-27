@@ -20,8 +20,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def run(java, base):
     with zipfile.ZipFile(ROOT / 'build/bazar/AstralBazar.jar') as jar:
-        if 'version: 1.2.0' not in jar.read('plugin.yml').decode():
-            raise SystemExit('Generar AstralBazar 1.2.0 antes de probar.')
+        if 'version: 1.3.1' not in jar.read('plugin.yml').decode():
+            raise SystemExit('Generar AstralBazar 1.3.1 antes de probar.')
     with socket.socket() as sock:
         sock.bind(('127.0.0.1', 0))
         port = sock.getsockname()[1]
@@ -66,6 +66,7 @@ def run(java, base):
         "c.on('error',e=>console.log(username,e.message));c.on('position',p=>c.write('teleport_confirm',{teleportId:p.teleportId}));}"
         "setTimeout(()=>process.exit(1),240000);\n")
     log = work / 'paper.log'
+    crash_state = plugins / 'AstralBazar/probe/crash.properties'
     for phase in range(2):
         bot = None
         offset = log.stat().st_size if log.exists() else 0
@@ -96,7 +97,9 @@ def run(java, base):
                     bot.kill()
                     bot.wait(timeout=10)
         text = log.read_text(encoding='utf8', errors='replace')
-        if 'BAZ RESULT' in text or 'BAZ CRASH READY' not in text:
+        # halt(0) can drop the asynchronous logger's last line. The probe writes
+        # this durable checkpoint before halting; it is the restart authority.
+        if 'BAZ RESULT' in text or not crash_state.is_file():
             break
     text = log.read_text(encoding='utf8', errors='replace')
     print('\n'.join(line for line in text.splitlines() if 'BAZ FAIL' in line or 'BAZ RESULT' in line or 'BAZ CRASH READY' in line or 'BAZ EXCEPTION' in line or ('AstralBazar' in line and 'BAZ OK' not in line) or 'Exception' in line))
@@ -104,10 +107,10 @@ def run(java, base):
     results = [line for line in text.splitlines() if 'BAZ RESULT' in line]
     if not results or 'failures=0' not in results[-1]:
         raise SystemExit('Ensayo fallido: '+str(log))
-    if 'BAZ CRASH READY' not in text:
+    if not crash_state.is_file():
         raise SystemExit('Falta la prueba de caída y reapertura de JVM.')
     count = int(re.search(r'checks=(\d+)', results[-1])[1])
-    (work / 'resultado.json').write_text(json.dumps({'version': '1.2.0', 'checks': count,
+    (work / 'resultado.json').write_text(json.dumps({'version': '1.3.1', 'checks': count,
         'failures': 0, 'crash_reopen': True, 'players': 2}, indent=2)+'\n', encoding='utf8')
 
 

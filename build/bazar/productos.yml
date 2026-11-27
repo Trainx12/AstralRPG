@@ -2,7 +2,7 @@
   "productos": {
     "netherita_fundida": {
       "nombre": "Netherita Fundida",
-      "categoria": "Mineria",
+      "categoria": "Combate",
       "referencia": 1666.67,
       "calculo": "Horno: 1 lingote netherita; precio venta NPC/Tienda (combustible sin precio = 0)",
       "minimo": 166.67,
@@ -13,7 +13,7 @@
     },
     "netherita_reforzada": {
       "nombre": "Netherita Reforzada",
-      "categoria": "Mineria",
+      "categoria": "Combate",
       "referencia": 1930.67,
       "calculo": "Receta: (1 × netherita_fundida + 4 × minecraft:blaze_powder ($66 NPC/Tienda)) / 1; vanilla sin precio = 0",
       "minimo": 193.07,
@@ -25,10 +25,10 @@
     "shadowsteel": {
       "nombre": "Acero Sombrio",
       "categoria": "Combate",
-      "referencia": 100138.0,
+      "referencia": 11204.67,
       "calculo": "Receta: (1 × minecraft:iron_ingot ($138 NPC/Tienda) + 1 × esencia_nether) / 1; vanilla sin precio = 0",
-      "minimo": 10013.8,
-      "maximo": 2002760.0,
+      "minimo": 1120.47,
+      "maximo": 224093.4,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Acero Sombrio\",color:\"#5b4a6b\",italic:0b},minecraft:lore=[{text:\"Equipamiento de Berserker.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"shadowsteel\",v:31,type:\"material\"}},minecraft:item_model=\"astral:shadowsteel\",minecraft:enchantment_glint_override=1b]"
@@ -36,32 +36,32 @@
     "esencia_nether": {
       "nombre": "Esencia del Nether",
       "categoria": "Combate",
-      "referencia": 100000.0,
-      "calculo": "items.MOB_DROPS/wither_skeleton: PLATA_MOB_TIER[5] / 0.25; tier supuesto (survival adaptable)",
-      "minimo": 10000.0,
-      "maximo": 2000000.0,
+      "referencia": 11066.67,
+      "calculo": "items.MOB_DROPS/wither_skeleton: kill vanilla T5 $8,300 / 3 drops / 0.25",
+      "minimo": 1106.67,
+      "maximo": 221333.4,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Esencia del Nether\",color:\"#b3261e\",italic:0b},minecraft:lore=[{text:\"Cae de Wither Skeletons.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"esencia_nether\",v:31,type:\"material\"}},minecraft:item_model=\"astral:esencia_nether\",minecraft:enchantment_glint_override=0b]"
     },
     "madera_estelar": {
       "nombre": "Madera Estelar",
-      "categoria": "Bosque y pesca",
-      "referencia": 71428.57,
-      "calculo": "build.py chorus End, probabilidad 0.35; supuesto unidad de esfuerzo T5 por bloque/cofre",
-      "minimo": 7142.86,
-      "maximo": 1428571.4,
+      "categoria": "Bosque",
+      "referencia": 2371.43,
+      "calculo": "build.py chorus End, probabilidad 0.35; $830 por bloque/cofre",
+      "minimo": 237.14,
+      "maximo": 47428.6,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Madera Estelar\",color:\"#9fd8ff\",italic:0b},minecraft:lore=[{text:\"Madera de los arboles del End.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"madera_estelar\",v:31,type:\"material\"}},minecraft:item_model=\"astral:madera_estelar\",minecraft:enchantment_glint_override=0b]"
     },
     "palo_reforzado": {
       "nombre": "Palo Reforzado",
-      "categoria": "Bosque y pesca",
-      "referencia": 200291.0,
+      "categoria": "Bosque",
+      "referencia": 22424.34,
       "calculo": "Receta: (2 × shadowsteel + 1 × minecraft:stick ($15 NPC/Tienda)) / 1; vanilla sin precio = 0",
-      "minimo": 20029.1,
-      "maximo": 4005820.0,
+      "minimo": 2242.43,
+      "maximo": 448486.8,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Palo Reforzado\",color:\"#8a8a9e\",italic:0b},minecraft:lore=[{text:\"Mango para armas avanzadas.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"palo_reforzado\",v:31,type:\"material\"}},minecraft:item_model=\"astral:palo_reforzado\",minecraft:enchantment_glint_override=0b]"
@@ -80,10 +80,10 @@
     "cristal_arcano": {
       "nombre": "Cristal Arcano",
       "categoria": "Combate",
-      "referencia": 1250000.0,
+      "referencia": 41500.0,
       "calculo": "Receta: (2 × fragmento_cristal) / 1; vanilla sin precio = 0",
-      "minimo": 125000.0,
-      "maximo": 25000000.0,
+      "minimo": 4150.0,
+      "maximo": 830000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Cristal Arcano\",color:\"#b07cff\",italic:0b},minecraft:lore=[{text:\"4 forman un Cristal Refinado.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"cristal_arcano\",v:31,type:\"material\"}},minecraft:item_model=\"astral:cristal_arcano\",minecraft:enchantment_glint_override=1b]"
@@ -91,10 +91,10 @@
     "fragmento_cristal": {
       "nombre": "Fragmento de Cristal Arcano",
       "categoria": "Combate",
-      "referencia": 625000.0,
-      "calculo": "build.py end stone, probabilidad 0.04; supuesto unidad de esfuerzo T5 por bloque/cofre",
-      "minimo": 62500.0,
-      "maximo": 12500000.0,
+      "referencia": 20750.0,
+      "calculo": "build.py end stone, probabilidad 0.04; $830 por bloque/cofre",
+      "minimo": 2075.0,
+      "maximo": 415000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Fragmento de Cristal Arcano\",color:\"#c9a6ff\",italic:0b},minecraft:lore=[{text:\"2 forman un Cristal Arcano.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"fragmento_cristal\",v:31,type:\"material\"}},minecraft:item_model=\"astral:fragmento_cristal\",minecraft:enchantment_glint_override=0b]"
@@ -102,10 +102,10 @@
     "cristal_refinado": {
       "nombre": "Cristal Arcano Refinado",
       "categoria": "Combate",
-      "referencia": 5000000.0,
+      "referencia": 166000.0,
       "calculo": "Receta: (4 × cristal_arcano) / 1; vanilla sin precio = 0",
-      "minimo": 500000.0,
-      "maximo": 100000000.0,
+      "minimo": 16600.0,
+      "maximo": 3320000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Cristal Arcano Refinado\",color:\"#d9b8ff\",italic:0b},minecraft:lore=[{text:\"Crafteos magicos medio-alto.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"cristal_refinado\",v:31,type:\"material\"}},minecraft:item_model=\"astral:cristal_refinado\",minecraft:enchantment_glint_override=1b]"
@@ -113,10 +113,10 @@
     "fragmento_umbrio": {
       "nombre": "Fragmento Umbrio",
       "categoria": "Combate",
-      "referencia": 166666.67,
-      "calculo": "items.MOB_DROPS/piglin_brute: PLATA_MOB_TIER[5] / 0.15; tier supuesto (survival adaptable)",
-      "minimo": 16666.67,
-      "maximo": 3333333.4,
+      "referencia": 18444.44,
+      "calculo": "items.MOB_DROPS/wither_skeleton: kill vanilla T5 $8,300 / 3 drops / 0.15",
+      "minimo": 1844.44,
+      "maximo": 368888.8,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Fragmento Umbrio\",color:\"#4a3360\",italic:0b},minecraft:lore=[{text:\"Cae de Wither Skeletons y Piglin Brutes.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"fragmento_umbrio\",v:31,type:\"material\"}},minecraft:item_model=\"astral:fragmento_umbrio\",minecraft:enchantment_glint_override=0b]"
@@ -124,10 +124,10 @@
     "gema_umbria_fragmentada": {
       "nombre": "Gema Umbria Fragmentada",
       "categoria": "Combate",
-      "referencia": 1333465.36,
+      "referencia": 147687.52,
       "calculo": "Receta: (8 × fragmento_umbrio + 1 × minecraft:coal ($132 NPC/Tienda)) / 1; vanilla sin precio = 0",
-      "minimo": 133346.54,
-      "maximo": 26669307.2,
+      "minimo": 14768.75,
+      "maximo": 2953750.4,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Gema Umbria Fragmentada\",color:\"#6b4a8a\",italic:0b},minecraft:lore=[{text:\"Gema oscura inicial.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_umbria_fragmentada\",v:31,type:\"material\"}},minecraft:item_model=\"astral:gema_umbria_fragmentada\",minecraft:enchantment_glint_override=0b]"
@@ -135,10 +135,10 @@
     "gema_umbria": {
       "nombre": "Gema Umbria",
       "categoria": "Combate",
-      "referencia": 2666798.72,
+      "referencia": 295243.04,
       "calculo": "Receta: (8 × fragmento_umbrio + 1 × gema_umbria_fragmentada) / 1; vanilla sin precio = 0",
-      "minimo": 266679.87,
-      "maximo": 53335974.4,
+      "minimo": 29524.3,
+      "maximo": 5904860.8,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Gema Umbria\",color:\"#7d3cff\",italic:0b},minecraft:lore=[{text:\"Armas oscuras y mejoras.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_umbria\",v:31,type:\"material\"}},minecraft:item_model=\"astral:gema_umbria\",minecraft:enchantment_glint_override=1b]"
@@ -146,10 +146,10 @@
     "gema_umbria_perfecta": {
       "nombre": "Gema Umbria Perfecta",
       "categoria": "Combate",
-      "referencia": 23001780.44,
+      "referencia": 2547112.76,
       "calculo": "Receta: (8 × gema_umbria + 1 × nucleo_furia_pura) / 1; vanilla sin precio = 0",
-      "minimo": 2300178.04,
-      "maximo": 460035608.8,
+      "minimo": 254711.28,
+      "maximo": 50942255.2,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Gema Umbria Perfecta\",color:\"#a24bff\",italic:0b},minecraft:lore=[{text:\"Endgame Berserker y Mago.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_umbria_perfecta\",v:31,type:\"material\"}},minecraft:item_model=\"astral:gema_umbria_perfecta\",minecraft:enchantment_glint_override=1b]"
@@ -157,10 +157,10 @@
     "gema_luminica": {
       "nombre": "Gema Luminica",
       "categoria": "Combate",
-      "referencia": 100000.0,
-      "calculo": "build.py cofre Overworld, probabilidad 0.25; supuesto unidad de esfuerzo T5 por bloque/cofre",
-      "minimo": 10000.0,
-      "maximo": 2000000.0,
+      "referencia": 66400.0,
+      "calculo": "build.py cofre Overworld, probabilidad 0.25; $16,600 por bloque/cofre",
+      "minimo": 6640.0,
+      "maximo": 1328000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Gema Luminica\",color:\"#ffe066\",italic:0b},minecraft:lore=[{text:\"Se encuentra en cofres del Overworld.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_luminica\",v:31,type:\"material\"}},minecraft:item_model=\"astral:gema_luminica\",minecraft:enchantment_glint_override=1b]"
@@ -168,10 +168,10 @@
     "gema_luminica_perfecta": {
       "nombre": "Gema Luminica Perfecta",
       "categoria": "Combate",
-      "referencia": 23050000.0,
+      "referencia": 1983700.0,
       "calculo": "Receta: (8 × gema_luminica + 1 × nucleo_astral) / 1; vanilla sin precio = 0",
-      "minimo": 2305000.0,
-      "maximo": 461000000.0,
+      "minimo": 198370.0,
+      "maximo": 39674000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Gema Luminica Perfecta\",color:\"#fff3a8\",italic:0b},minecraft:lore=[{text:\"Endgame Arquero y Mago.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_luminica_perfecta\",v:31,type:\"material\"}},minecraft:item_model=\"astral:gema_luminica_perfecta\",minecraft:enchantment_glint_override=1b]"
@@ -179,10 +179,10 @@
     "fragmento_astral": {
       "nombre": "Fragmento Astral",
       "categoria": "Combate",
-      "referencia": 125000.0,
-      "calculo": "items.MOB_DROPS/enderman: PLATA_MOB_TIER[5] / 0.2; tier supuesto (survival adaptable)",
-      "minimo": 12500.0,
-      "maximo": 2500000.0,
+      "referencia": 41500.0,
+      "calculo": "items.MOB_DROPS/enderman: kill vanilla T5 $16,600 / 2 drops / 0.2",
+      "minimo": 4150.0,
+      "maximo": 830000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Fragmento Astral\",color:\"#7ec8ff\",italic:0b},minecraft:lore=[{text:\"Cae de Endermans en el End.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"fragmento_astral\",v:31,type:\"material\"}},minecraft:item_model=\"astral:fragmento_astral\",minecraft:enchantment_glint_override=0b]"
@@ -190,10 +190,10 @@
     "polvo_astral": {
       "nombre": "Polvo Astral",
       "categoria": "Combate",
-      "referencia": 500000.0,
+      "referencia": 166000.0,
       "calculo": "Receta: (8 × fragmento_astral) / 2; vanilla sin precio = 0",
-      "minimo": 50000.0,
-      "maximo": 10000000.0,
+      "minimo": 16600.0,
+      "maximo": 3320000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Polvo Astral\",color:\"#a8dcff\",italic:0b},minecraft:lore=[{text:\"Material de refinado astral.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"polvo_astral\",v:31,type:\"material\"}},minecraft:item_model=\"astral:polvo_astral\",minecraft:enchantment_glint_override=1b]"
@@ -201,10 +201,10 @@
     "nucleo_astral": {
       "nombre": "Nucleo Astral",
       "categoria": "Combate",
-      "referencia": 22250000.0,
+      "referencia": 1452500.0,
       "calculo": "Receta: (4 × polvo_astral + 4 × cristal_refinado + 1 × corazon_shulker) / 1; vanilla sin precio = 0",
-      "minimo": 2225000.0,
-      "maximo": 445000000.0,
+      "minimo": 145250.0,
+      "maximo": 29050000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Nucleo Astral\",color:\"#4fd1ff\",italic:0b},minecraft:lore=[{text:\"Material endgame universal.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"nucleo_astral\",v:31,type:\"material\"}},minecraft:item_model=\"astral:nucleo_astral\",minecraft:enchantment_glint_override=1b]"
@@ -212,10 +212,10 @@
     "nucleo_furia": {
       "nombre": "Nucleo de Furia",
       "categoria": "Combate",
-      "referencia": 416666.67,
-      "calculo": "items.MOB_DROPS/piglin_brute: PLATA_MOB_TIER[5] / 0.06; tier supuesto (survival adaptable)",
-      "minimo": 41666.67,
-      "maximo": 8333333.4,
+      "referencia": 46111.11,
+      "calculo": "items.MOB_DROPS/wither_skeleton: kill vanilla T5 $8,300 / 3 drops / 0.06",
+      "minimo": 4611.11,
+      "maximo": 922222.2,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Nucleo de Furia\",color:\"#ff3b3b\",italic:0b},minecraft:lore=[{text:\"Cae de Piglin Brutes y Wither Skeletons.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"nucleo_furia\",v:31,type:\"material\"}},minecraft:item_model=\"astral:nucleo_furia\",minecraft:enchantment_glint_override=0b]"
@@ -223,10 +223,10 @@
     "nucleo_furia_pura": {
       "nombre": "Nucleo de Furia Pura",
       "categoria": "Combate",
-      "referencia": 1667390.68,
+      "referencia": 185168.44,
       "calculo": "Receta: (4 × nucleo_furia + 4 × minecraft:blaze_powder ($66 NPC/Tienda) + 1 × minecraft:lava_bucket ($460 NPC/Tienda)) / 1; vanilla sin precio = 0",
-      "minimo": 166739.07,
-      "maximo": 33347813.6,
+      "minimo": 18516.84,
+      "maximo": 3703368.8,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Nucleo de Furia Pura\",color:\"#ff1a1a\",italic:0b},minecraft:lore=[{text:\"Endgame Berserker.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"nucleo_furia_pura\",v:31,type:\"material\"}},minecraft:item_model=\"astral:nucleo_furia_pura\",minecraft:enchantment_glint_override=1b]"
@@ -234,10 +234,10 @@
     "corazon_shulker": {
       "nombre": "Corazon de Shulker",
       "categoria": "Combate",
-      "referencia": 250000.0,
-      "calculo": "items.MOB_DROPS/shulker: PLATA_MOB_TIER[5] / 0.1; tier supuesto (survival adaptable)",
-      "minimo": 25000.0,
-      "maximo": 5000000.0,
+      "referencia": 124500.0,
+      "calculo": "items.MOB_DROPS/shulker: kill vanilla T5 $12,450 / 1 drops / 0.1",
+      "minimo": 12450.0,
+      "maximo": 2490000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Corazon de Shulker\",color:\"#c58cff\",italic:0b},minecraft:lore=[{text:\"Cae de Shulkers.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"corazon_shulker\",v:31,type:\"material\"}},minecraft:item_model=\"astral:corazon_shulker\",minecraft:enchantment_glint_override=1b]"
@@ -245,10 +245,10 @@
     "nucleo_eolico": {
       "nombre": "Nucleo Eolico",
       "categoria": "Combate",
-      "referencia": 386314.28,
-      "calculo": "Receta: (4 × minecraft:feather ($150 NPC/Tienda) + 4 × madera_estelar + 1 × gema_luminica) / 1; vanilla sin precio = 0",
-      "minimo": 38631.43,
-      "maximo": 7726285.6,
+      "referencia": 24000.0,
+      "calculo": "items.MOB_DROPS/vindicator: kill vanilla T3 $2,400 / 1 drops / 0.1",
+      "minimo": 2400.0,
+      "maximo": 480000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Nucleo Eolico\",color:\"#bff5e6\",italic:0b},minecraft:lore=[{text:\"Movilidad y arqueros.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"nucleo_eolico\",v:31,type:\"material\"}},minecraft:item_model=\"astral:nucleo_eolico\",minecraft:enchantment_glint_override=1b]"
@@ -256,10 +256,10 @@
     "esencia_elite": {
       "nombre": "Esencia de Elite",
       "categoria": "Combate",
-      "referencia": 3000.0,
-      "calculo": "items.ELITE_DROPS T1: PLATA_MOB_TIER / (0.5 × 1)",
-      "minimo": 300.0,
-      "maximo": 60000.0,
+      "referencia": 5151.1,
+      "calculo": "Elites: amenaza 4, mob T1 $1,500 / 0.2912 por kill",
+      "minimo": 515.11,
+      "maximo": 103022.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Esencia de Elite\",color:\"#7fe0a0\",italic:0b},minecraft:lore=[{text:\"Cae de mobs elite.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"esencia_elite\",v:31,type:\"material\"}},minecraft:item_model=\"astral:esencia_elite\",minecraft:enchantment_glint_override=1b]"
@@ -267,10 +267,10 @@
     "alma_corrupta": {
       "nombre": "Alma Corrupta",
       "categoria": "Combate",
-      "referencia": 17142.86,
-      "calculo": "items.ELITE_DROPS T3: PLATA_MOB_TIER / (0.35 × 1)",
-      "minimo": 1714.29,
-      "maximo": 342857.2,
+      "referencia": 55555.56,
+      "calculo": "Elites: amenaza 6, mob T3 $6,000 / 0.1080 por kill",
+      "minimo": 5555.56,
+      "maximo": 1111111.2,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Alma Corrupta\",color:\"#c04fff\",italic:0b},minecraft:lore=[{text:\"Cae de Campeones y Pesadillas.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"alma_corrupta\",v:31,type:\"material\"}},minecraft:item_model=\"astral:alma_corrupta\",minecraft:enchantment_glint_override=1b]"
@@ -278,10 +278,10 @@
     "chispa_astral": {
       "nombre": "Chispa Astral",
       "categoria": "Combate",
-      "referencia": 41666.67,
-      "calculo": "items.ELITE_DROPS T5: PLATA_MOB_TIER / (0.6 × 1)",
-      "minimo": 4166.67,
-      "maximo": 833333.4,
+      "referencia": 815217.39,
+      "calculo": "Elites: amenaza 8, mob T5 $25,000 / 0.0307 por kill",
+      "minimo": 81521.74,
+      "maximo": 16304347.8,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Chispa Astral\",color:\"#ffe24d\",italic:0b},minecraft:lore=[{text:\"Cae de los mobs Astrales.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"chispa_astral\",v:31,type:\"material\"}},minecraft:item_model=\"astral:chispa_astral\",minecraft:enchantment_glint_override=1b]"
@@ -289,10 +289,10 @@
     "fragmento_ocaso": {
       "nombre": "Fragmento de Ocaso",
       "categoria": "Combate",
-      "referencia": 4166666.67,
-      "calculo": "items_t6_10: T6 / probabilidad común 0.012",
-      "minimo": 416666.67,
-      "maximo": 83333333.4,
+      "referencia": 810635.54,
+      "calculo": "items_t6_10: T6 / (0.012 comun + 46% elites x 0.12)",
+      "minimo": 81063.55,
+      "maximo": 16212710.8,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Fragmento de Ocaso\",color:\"#ff5fd2\",italic:0b},minecraft:lore=[{text:\"Cae de mobs tier 6 o mas (y poco de elites y jefes tier 5).\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"fragmento_ocaso\",v:31,type:\"material\"}},minecraft:item_model=\"astral:fragmento_ocaso\",minecraft:enchantment_glint_override=1b]"
@@ -300,10 +300,10 @@
     "esquirla_eclipse": {
       "nombre": "Esquirla de Eclipse",
       "categoria": "Combate",
-      "referencia": 8333333.33,
-      "calculo": "items_t6_10: T7 / probabilidad común 0.012",
-      "minimo": 833333.33,
-      "maximo": 166666666.6,
+      "referencia": 1621271.08,
+      "calculo": "items_t6_10: T7 / (0.012 comun + 46% elites x 0.12)",
+      "minimo": 162127.11,
+      "maximo": 32425421.6,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Esquirla de Eclipse\",color:\"#5ff0ff\",italic:0b},minecraft:lore=[{text:\"Cae de mobs tier 7 o mas.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"esquirla_eclipse\",v:31,type:\"material\"}},minecraft:item_model=\"astral:esquirla_eclipse\",minecraft:enchantment_glint_override=1b]"
@@ -311,10 +311,10 @@
     "nucleo_supernova": {
       "nombre": "Nucleo de Supernova",
       "categoria": "Combate",
-      "referencia": 16666666.67,
-      "calculo": "items_t6_10: T8 / probabilidad común 0.012",
-      "minimo": 1666666.67,
-      "maximo": 333333333.4,
+      "referencia": 3242542.15,
+      "calculo": "items_t6_10: T8 / (0.012 comun + 46% elites x 0.12)",
+      "minimo": 324254.21,
+      "maximo": 64850843.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Nucleo de Supernova\",color:\"#ff3b3b\",italic:0b},minecraft:lore=[{text:\"Cae de mobs tier 8 o mas.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"nucleo_supernova\",v:31,type:\"material\"}},minecraft:item_model=\"astral:nucleo_supernova\",minecraft:enchantment_glint_override=1b]"
@@ -322,10 +322,10 @@
     "esencia_vacio": {
       "nombre": "Esencia del Vacio",
       "categoria": "Combate",
-      "referencia": 33333333.33,
-      "calculo": "items_t6_10: T9 / probabilidad común 0.012",
-      "minimo": 3333333.33,
-      "maximo": 666666666.6,
+      "referencia": 6485084.31,
+      "calculo": "items_t6_10: T9 / (0.012 comun + 46% elites x 0.12)",
+      "minimo": 648508.43,
+      "maximo": 129701686.2,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Esencia del Vacio\",color:\"#e8e8ff\",italic:0b},minecraft:lore=[{text:\"Cae de mobs tier 9 o mas.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"esencia_vacio\",v:31,type:\"material\"}},minecraft:item_model=\"astral:esencia_vacio\",minecraft:enchantment_glint_override=1b]"
@@ -333,10 +333,10 @@
     "corazon_fin": {
       "nombre": "Corazon del Fin",
       "categoria": "Combate",
-      "referencia": 66666666.67,
-      "calculo": "items_t6_10: T10 / probabilidad común 0.012",
-      "minimo": 6666666.67,
-      "maximo": 1333333333.4,
+      "referencia": 12970168.61,
+      "calculo": "items_t6_10: T10 / (0.012 comun + 46% elites x 0.12)",
+      "minimo": 1297016.86,
+      "maximo": 259403372.2,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Corazon del Fin\",color:\"#b388ff\",italic:0b},minecraft:lore=[{text:\"Cae de mobs tier 10.\",color:\"gray\",italic:0b},{text:\"Material de AstralRPG\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"corazon_fin\",v:31,type:\"material\"}},minecraft:item_model=\"astral:corazon_fin\",minecraft:enchantment_glint_override=1b]"
@@ -443,10 +443,10 @@
     "gema_rubi_1": {
       "nombre": "Rubí Crudo",
       "categoria": "Especiales",
-      "referencia": 16689.85,
-      "calculo": "Veta honda de rubi: CALIDAD 719/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 1668.98,
-      "maximo": 333797.0,
+      "referencia": 11821.97,
+      "calculo": "Veta honda de rubi: CALIDAD 719/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 1182.2,
+      "maximo": 236439.4,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Rubí Crudo\",color:\"#e0204a\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Cruda\",color:\"#e0204a\",italic:0b},{text:\"En arma: +4% daño\",color:\"gray\",italic:0b},{text:\"En armadura: +1,5% vida máxima (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_rubi_1\",v:31,type:\"gema\",gema:\"rubi\",q:1}},minecraft:item_model=\"astral:gemas/rubi_1\",minecraft:enchantment_glint_override=0b]"
@@ -454,10 +454,10 @@
     "gema_rubi_2": {
       "nombre": "Rubí Pulido",
       "categoria": "Especiales",
-      "referencia": 54545.45,
-      "calculo": "Veta honda de rubi: CALIDAD 220/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 5454.55,
-      "maximo": 1090909.0,
+      "referencia": 38636.36,
+      "calculo": "Veta honda de rubi: CALIDAD 220/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 3863.64,
+      "maximo": 772727.2,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Rubí Pulido\",color:\"#e0204a\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Pulida\",color:\"#e0204a\",italic:0b},{text:\"En arma: +7% daño\",color:\"gray\",italic:0b},{text:\"En armadura: +2,5% vida máxima (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_rubi_2\",v:31,type:\"gema\",gema:\"rubi\",q:2}},minecraft:item_model=\"astral:gemas/rubi_2\",minecraft:enchantment_glint_override=0b]"
@@ -465,10 +465,10 @@
     "gema_rubi_3": {
       "nombre": "Rubí Impecable",
       "categoria": "Especiales",
-      "referencia": 218181.82,
-      "calculo": "Veta honda de rubi: CALIDAD 55/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 21818.18,
-      "maximo": 4363636.4,
+      "referencia": 154545.45,
+      "calculo": "Veta honda de rubi: CALIDAD 55/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 15454.55,
+      "maximo": 3090909.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Rubí Impecable\",color:\"#e0204a\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Impecable\",color:\"#e0204a\",italic:0b},{text:\"En arma: +11% daño\",color:\"gray\",italic:0b},{text:\"En armadura: +3,5% vida máxima (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_rubi_3\",v:31,type:\"gema\",gema:\"rubi\",q:3}},minecraft:item_model=\"astral:gemas/rubi_3\",minecraft:enchantment_glint_override=0b]"
@@ -476,10 +476,10 @@
     "gema_rubi_4": {
       "nombre": "Rubí Perfecto",
       "categoria": "Especiales",
-      "referencia": 2400000.0,
-      "calculo": "Veta honda de rubi: CALIDAD 5/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 240000.0,
-      "maximo": 48000000.0,
+      "referencia": 1700000.0,
+      "calculo": "Veta honda de rubi: CALIDAD 5/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 170000.0,
+      "maximo": 34000000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Rubí Perfecto\",color:\"#e0204a\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Perfecta\",color:\"#e0204a\",italic:0b},{text:\"En arma: +16% daño, +1% vida máxima\",color:\"gray\",italic:0b},{text:\"En armadura: +5% vida máxima, +1% daño del arma (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_rubi_4\",v:31,type:\"gema\",gema:\"rubi\",q:4}},minecraft:item_model=\"astral:gemas/rubi_4\",minecraft:enchantment_glint_override=1b]"
@@ -487,10 +487,10 @@
     "gema_rubi_5": {
       "nombre": "Rubí Estelar",
       "categoria": "Especiales",
-      "referencia": 12000000.0,
-      "calculo": "Veta honda de rubi: CALIDAD 1/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 1200000.0,
-      "maximo": 240000000.0,
+      "referencia": 8500000.0,
+      "calculo": "Veta honda de rubi: CALIDAD 1/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 850000.0,
+      "maximo": 170000000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Rubí Estelar\",color:\"#e0204a\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Estelar\",color:\"#e0204a\",italic:0b},{text:\"En arma: +22% daño, +2% vida máxima\",color:\"gray\",italic:0b},{text:\"En armadura: +6,5% vida máxima, +2% daño del arma (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_rubi_5\",v:31,type:\"gema\",gema:\"rubi\",q:5}},minecraft:item_model=\"astral:gemas/rubi_5\",minecraft:enchantment_glint_override=1b]"
@@ -498,10 +498,10 @@
     "gema_zafiro_1": {
       "nombre": "Zafiro Crudo",
       "categoria": "Especiales",
-      "referencia": 16689.85,
-      "calculo": "Veta honda de zafiro: CALIDAD 719/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 1668.98,
-      "maximo": 333797.0,
+      "referencia": 11821.97,
+      "calculo": "Veta honda de zafiro: CALIDAD 719/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 1182.2,
+      "maximo": 236439.4,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Zafiro Crudo\",color:\"#2f6bff\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Cruda\",color:\"#2f6bff\",italic:0b},{text:\"En arma: +4% maná máximo, +5% regeneración de maná\",color:\"gray\",italic:0b},{text:\"En armadura: +3% regeneración de maná (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_zafiro_1\",v:31,type:\"gema\",gema:\"zafiro\",q:1}},minecraft:item_model=\"astral:gemas/zafiro_1\",minecraft:enchantment_glint_override=0b]"
@@ -509,10 +509,10 @@
     "gema_zafiro_2": {
       "nombre": "Zafiro Pulido",
       "categoria": "Especiales",
-      "referencia": 54545.45,
-      "calculo": "Veta honda de zafiro: CALIDAD 220/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 5454.55,
-      "maximo": 1090909.0,
+      "referencia": 38636.36,
+      "calculo": "Veta honda de zafiro: CALIDAD 220/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 3863.64,
+      "maximo": 772727.2,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Zafiro Pulido\",color:\"#2f6bff\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Pulida\",color:\"#2f6bff\",italic:0b},{text:\"En arma: +7% maná máximo, +8% regeneración de maná\",color:\"gray\",italic:0b},{text:\"En armadura: +5% regeneración de maná (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_zafiro_2\",v:31,type:\"gema\",gema:\"zafiro\",q:2}},minecraft:item_model=\"astral:gemas/zafiro_2\",minecraft:enchantment_glint_override=0b]"
@@ -520,10 +520,10 @@
     "gema_zafiro_3": {
       "nombre": "Zafiro Impecable",
       "categoria": "Especiales",
-      "referencia": 218181.82,
-      "calculo": "Veta honda de zafiro: CALIDAD 55/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 21818.18,
-      "maximo": 4363636.4,
+      "referencia": 154545.45,
+      "calculo": "Veta honda de zafiro: CALIDAD 55/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 15454.55,
+      "maximo": 3090909.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Zafiro Impecable\",color:\"#2f6bff\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Impecable\",color:\"#2f6bff\",italic:0b},{text:\"En arma: +11% maná máximo, +12% regeneración de maná\",color:\"gray\",italic:0b},{text:\"En armadura: +8% regeneración de maná (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_zafiro_3\",v:31,type:\"gema\",gema:\"zafiro\",q:3}},minecraft:item_model=\"astral:gemas/zafiro_3\",minecraft:enchantment_glint_override=0b]"
@@ -531,10 +531,10 @@
     "gema_zafiro_4": {
       "nombre": "Zafiro Perfecto",
       "categoria": "Especiales",
-      "referencia": 2400000.0,
-      "calculo": "Veta honda de zafiro: CALIDAD 5/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 240000.0,
-      "maximo": 48000000.0,
+      "referencia": 1700000.0,
+      "calculo": "Veta honda de zafiro: CALIDAD 5/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 170000.0,
+      "maximo": 34000000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Zafiro Perfecto\",color:\"#2f6bff\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Perfecta\",color:\"#2f6bff\",italic:0b},{text:\"En arma: +16% maná máximo, +18% regeneración de maná, +2% daño\",color:\"gray\",italic:0b},{text:\"En armadura: +11% regeneración de maná, +2% maná máximo (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_zafiro_4\",v:31,type:\"gema\",gema:\"zafiro\",q:4}},minecraft:item_model=\"astral:gemas/zafiro_4\",minecraft:enchantment_glint_override=1b]"
@@ -542,10 +542,10 @@
     "gema_zafiro_5": {
       "nombre": "Zafiro Estelar",
       "categoria": "Especiales",
-      "referencia": 12000000.0,
-      "calculo": "Veta honda de zafiro: CALIDAD 1/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 1200000.0,
-      "maximo": 240000000.0,
+      "referencia": 8500000.0,
+      "calculo": "Veta honda de zafiro: CALIDAD 1/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 850000.0,
+      "maximo": 170000000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Zafiro Estelar\",color:\"#2f6bff\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Estelar\",color:\"#2f6bff\",italic:0b},{text:\"En arma: +22% maná máximo, +25% regeneración de maná, +3% daño\",color:\"gray\",italic:0b},{text:\"En armadura: +15% regeneración de maná, +4% maná máximo (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_zafiro_5\",v:31,type:\"gema\",gema:\"zafiro\",q:5}},minecraft:item_model=\"astral:gemas/zafiro_5\",minecraft:enchantment_glint_override=1b]"
@@ -553,10 +553,10 @@
     "gema_jade_1": {
       "nombre": "Jade Crudo",
       "categoria": "Especiales",
-      "referencia": 16689.85,
-      "calculo": "Veta honda de jade: CALIDAD 719/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 1668.98,
-      "maximo": 333797.0,
+      "referencia": 11821.97,
+      "calculo": "Veta honda de jade: CALIDAD 719/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 1182.2,
+      "maximo": 236439.4,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Jade Crudo\",color:\"#2fbf6a\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Cruda\",color:\"#2fbf6a\",italic:0b},{text:\"En arma: +3% velocidad de ataque\",color:\"gray\",italic:0b},{text:\"En armadura: +1% velocidad (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_jade_1\",v:31,type:\"gema\",gema:\"jade\",q:1}},minecraft:item_model=\"astral:gemas/jade_1\",minecraft:enchantment_glint_override=0b]"
@@ -564,10 +564,10 @@
     "gema_jade_2": {
       "nombre": "Jade Pulido",
       "categoria": "Especiales",
-      "referencia": 54545.45,
-      "calculo": "Veta honda de jade: CALIDAD 220/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 5454.55,
-      "maximo": 1090909.0,
+      "referencia": 38636.36,
+      "calculo": "Veta honda de jade: CALIDAD 220/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 3863.64,
+      "maximo": 772727.2,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Jade Pulido\",color:\"#2fbf6a\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Pulida\",color:\"#2fbf6a\",italic:0b},{text:\"En arma: +5% velocidad de ataque\",color:\"gray\",italic:0b},{text:\"En armadura: +1,5% velocidad (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_jade_2\",v:31,type:\"gema\",gema:\"jade\",q:2}},minecraft:item_model=\"astral:gemas/jade_2\",minecraft:enchantment_glint_override=0b]"
@@ -575,10 +575,10 @@
     "gema_jade_3": {
       "nombre": "Jade Impecable",
       "categoria": "Especiales",
-      "referencia": 218181.82,
-      "calculo": "Veta honda de jade: CALIDAD 55/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 21818.18,
-      "maximo": 4363636.4,
+      "referencia": 154545.45,
+      "calculo": "Veta honda de jade: CALIDAD 55/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 15454.55,
+      "maximo": 3090909.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Jade Impecable\",color:\"#2fbf6a\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Impecable\",color:\"#2fbf6a\",italic:0b},{text:\"En arma: +8% velocidad de ataque\",color:\"gray\",italic:0b},{text:\"En armadura: +2% velocidad (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_jade_3\",v:31,type:\"gema\",gema:\"jade\",q:3}},minecraft:item_model=\"astral:gemas/jade_3\",minecraft:enchantment_glint_override=0b]"
@@ -586,10 +586,10 @@
     "gema_jade_4": {
       "nombre": "Jade Perfecto",
       "categoria": "Especiales",
-      "referencia": 2400000.0,
-      "calculo": "Veta honda de jade: CALIDAD 5/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 240000.0,
-      "maximo": 48000000.0,
+      "referencia": 1700000.0,
+      "calculo": "Veta honda de jade: CALIDAD 5/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 170000.0,
+      "maximo": 34000000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Jade Perfecto\",color:\"#2fbf6a\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Perfecta\",color:\"#2fbf6a\",italic:0b},{text:\"En arma: +11% velocidad de ataque, +1% velocidad\",color:\"gray\",italic:0b},{text:\"En armadura: +2,5% velocidad, +1% velocidad de ataque (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_jade_4\",v:31,type:\"gema\",gema:\"jade\",q:4}},minecraft:item_model=\"astral:gemas/jade_4\",minecraft:enchantment_glint_override=1b]"
@@ -597,10 +597,10 @@
     "gema_jade_5": {
       "nombre": "Jade Estelar",
       "categoria": "Especiales",
-      "referencia": 12000000.0,
-      "calculo": "Veta honda de jade: CALIDAD 1/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 1200000.0,
-      "maximo": 240000000.0,
+      "referencia": 8500000.0,
+      "calculo": "Veta honda de jade: CALIDAD 1/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 850000.0,
+      "maximo": 170000000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Jade Estelar\",color:\"#2fbf6a\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Estelar\",color:\"#2fbf6a\",italic:0b},{text:\"En arma: +15% velocidad de ataque, +2% velocidad\",color:\"gray\",italic:0b},{text:\"En armadura: +3,5% velocidad, +2% velocidad de ataque (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_jade_5\",v:31,type:\"gema\",gema:\"jade\",q:5}},minecraft:item_model=\"astral:gemas/jade_5\",minecraft:enchantment_glint_override=1b]"
@@ -608,10 +608,10 @@
     "gema_topacio_1": {
       "nombre": "Topacio Crudo",
       "categoria": "Especiales",
-      "referencia": 16689.85,
-      "calculo": "Veta honda de topacio: CALIDAD 719/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 1668.98,
-      "maximo": 333797.0,
+      "referencia": 11821.97,
+      "calculo": "Veta honda de topacio: CALIDAD 719/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 1182.2,
+      "maximo": 236439.4,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Topacio Crudo\",color:\"#f2b632\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Cruda\",color:\"#f2b632\",italic:0b},{text:\"En arma: +5% plata por baja\",color:\"gray\",italic:0b},{text:\"En armadura: +1% de duplicar drops Astral (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_topacio_1\",v:31,type:\"gema\",gema:\"topacio\",q:1}},minecraft:item_model=\"astral:gemas/topacio_1\",minecraft:enchantment_glint_override=0b]"
@@ -619,10 +619,10 @@
     "gema_topacio_2": {
       "nombre": "Topacio Pulido",
       "categoria": "Especiales",
-      "referencia": 54545.45,
-      "calculo": "Veta honda de topacio: CALIDAD 220/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 5454.55,
-      "maximo": 1090909.0,
+      "referencia": 38636.36,
+      "calculo": "Veta honda de topacio: CALIDAD 220/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 3863.64,
+      "maximo": 772727.2,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Topacio Pulido\",color:\"#f2b632\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Pulida\",color:\"#f2b632\",italic:0b},{text:\"En arma: +8% plata por baja\",color:\"gray\",italic:0b},{text:\"En armadura: +2% de duplicar drops Astral (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_topacio_2\",v:31,type:\"gema\",gema:\"topacio\",q:2}},minecraft:item_model=\"astral:gemas/topacio_2\",minecraft:enchantment_glint_override=0b]"
@@ -630,10 +630,10 @@
     "gema_topacio_3": {
       "nombre": "Topacio Impecable",
       "categoria": "Especiales",
-      "referencia": 218181.82,
-      "calculo": "Veta honda de topacio: CALIDAD 55/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 21818.18,
-      "maximo": 4363636.4,
+      "referencia": 154545.45,
+      "calculo": "Veta honda de topacio: CALIDAD 55/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 15454.55,
+      "maximo": 3090909.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Topacio Impecable\",color:\"#f2b632\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Impecable\",color:\"#f2b632\",italic:0b},{text:\"En arma: +12% plata por baja\",color:\"gray\",italic:0b},{text:\"En armadura: +3% de duplicar drops Astral (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_topacio_3\",v:31,type:\"gema\",gema:\"topacio\",q:3}},minecraft:item_model=\"astral:gemas/topacio_3\",minecraft:enchantment_glint_override=0b]"
@@ -641,10 +641,10 @@
     "gema_topacio_4": {
       "nombre": "Topacio Perfecto",
       "categoria": "Especiales",
-      "referencia": 2400000.0,
-      "calculo": "Veta honda de topacio: CALIDAD 5/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 240000.0,
-      "maximo": 48000000.0,
+      "referencia": 1700000.0,
+      "calculo": "Veta honda de topacio: CALIDAD 5/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 170000.0,
+      "maximo": 34000000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Topacio Perfecto\",color:\"#f2b632\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Perfecta\",color:\"#f2b632\",italic:0b},{text:\"En arma: +17% plata por baja, +1% de duplicar drops Astral\",color:\"gray\",italic:0b},{text:\"En armadura: +4% de duplicar drops Astral, +2% plata por baja (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_topacio_4\",v:31,type:\"gema\",gema:\"topacio\",q:4}},minecraft:item_model=\"astral:gemas/topacio_4\",minecraft:enchantment_glint_override=1b]"
@@ -652,10 +652,10 @@
     "gema_topacio_5": {
       "nombre": "Topacio Estelar",
       "categoria": "Especiales",
-      "referencia": 12000000.0,
-      "calculo": "Veta honda de topacio: CALIDAD 1/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 1200000.0,
-      "maximo": 240000000.0,
+      "referencia": 8500000.0,
+      "calculo": "Veta honda de topacio: CALIDAD 1/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 850000.0,
+      "maximo": 170000000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Topacio Estelar\",color:\"#f2b632\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Estelar\",color:\"#f2b632\",italic:0b},{text:\"En arma: +25% plata por baja, +2% de duplicar drops Astral\",color:\"gray\",italic:0b},{text:\"En armadura: +5% de duplicar drops Astral, +3% plata por baja (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_topacio_5\",v:31,type:\"gema\",gema:\"topacio\",q:5}},minecraft:item_model=\"astral:gemas/topacio_5\",minecraft:enchantment_glint_override=1b]"
@@ -663,10 +663,10 @@
     "gema_amatista_1": {
       "nombre": "Amatista Cruda",
       "categoria": "Especiales",
-      "referencia": 16689.85,
-      "calculo": "Veta honda de amatista: CALIDAD 719/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 1668.98,
-      "maximo": 333797.0,
+      "referencia": 11821.97,
+      "calculo": "Veta honda de amatista: CALIDAD 719/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 1182.2,
+      "maximo": 236439.4,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Amatista Cruda\",color:\"#a35cff\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Cruda\",color:\"#a35cff\",italic:0b},{text:\"En arma: +2% prob. crítica\",color:\"gray\",italic:0b},{text:\"En armadura: +3% daño crítico (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_amatista_1\",v:31,type:\"gema\",gema:\"amatista\",q:1}},minecraft:item_model=\"astral:gemas/amatista_1\",minecraft:enchantment_glint_override=0b]"
@@ -674,10 +674,10 @@
     "gema_amatista_2": {
       "nombre": "Amatista Pulida",
       "categoria": "Especiales",
-      "referencia": 54545.45,
-      "calculo": "Veta honda de amatista: CALIDAD 220/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 5454.55,
-      "maximo": 1090909.0,
+      "referencia": 38636.36,
+      "calculo": "Veta honda de amatista: CALIDAD 220/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 3863.64,
+      "maximo": 772727.2,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Amatista Pulida\",color:\"#a35cff\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Pulida\",color:\"#a35cff\",italic:0b},{text:\"En arma: +3% prob. crítica\",color:\"gray\",italic:0b},{text:\"En armadura: +5% daño crítico (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_amatista_2\",v:31,type:\"gema\",gema:\"amatista\",q:2}},minecraft:item_model=\"astral:gemas/amatista_2\",minecraft:enchantment_glint_override=0b]"
@@ -685,10 +685,10 @@
     "gema_amatista_3": {
       "nombre": "Amatista Impecable",
       "categoria": "Especiales",
-      "referencia": 218181.82,
-      "calculo": "Veta honda de amatista: CALIDAD 55/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 21818.18,
-      "maximo": 4363636.4,
+      "referencia": 154545.45,
+      "calculo": "Veta honda de amatista: CALIDAD 55/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 15454.55,
+      "maximo": 3090909.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Amatista Impecable\",color:\"#a35cff\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Impecable\",color:\"#a35cff\",italic:0b},{text:\"En arma: +5% prob. crítica\",color:\"gray\",italic:0b},{text:\"En armadura: +7% daño crítico (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_amatista_3\",v:31,type:\"gema\",gema:\"amatista\",q:3}},minecraft:item_model=\"astral:gemas/amatista_3\",minecraft:enchantment_glint_override=0b]"
@@ -696,10 +696,10 @@
     "gema_amatista_4": {
       "nombre": "Amatista Perfecta",
       "categoria": "Especiales",
-      "referencia": 2400000.0,
-      "calculo": "Veta honda de amatista: CALIDAD 5/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 240000.0,
-      "maximo": 48000000.0,
+      "referencia": 1700000.0,
+      "calculo": "Veta honda de amatista: CALIDAD 5/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 170000.0,
+      "maximo": 34000000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Amatista Perfecta\",color:\"#a35cff\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Perfecta\",color:\"#a35cff\",italic:0b},{text:\"En arma: +7% prob. crítica, +5% daño crítico\",color:\"gray\",italic:0b},{text:\"En armadura: +10% daño crítico, +0,5% prob. crítica (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_amatista_4\",v:31,type:\"gema\",gema:\"amatista\",q:4}},minecraft:item_model=\"astral:gemas/amatista_4\",minecraft:enchantment_glint_override=1b]"
@@ -707,10 +707,10 @@
     "gema_amatista_5": {
       "nombre": "Amatista Estelar",
       "categoria": "Especiales",
-      "referencia": 12000000.0,
-      "calculo": "Veta honda de amatista: CALIDAD 1/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 1200000.0,
-      "maximo": 240000000.0,
+      "referencia": 8500000.0,
+      "calculo": "Veta honda de amatista: CALIDAD 1/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 850000.0,
+      "maximo": 170000000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Amatista Estelar\",color:\"#a35cff\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Estelar\",color:\"#a35cff\",italic:0b},{text:\"En arma: +10% prob. crítica, +10% daño crítico\",color:\"gray\",italic:0b},{text:\"En armadura: +14% daño crítico, +1% prob. crítica (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_amatista_5\",v:31,type:\"gema\",gema:\"amatista\",q:5}},minecraft:item_model=\"astral:gemas/amatista_5\",minecraft:enchantment_glint_override=1b]"
@@ -718,10 +718,10 @@
     "gema_opalo_1": {
       "nombre": "Ópalo Crudo",
       "categoria": "Especiales",
-      "referencia": 16689.85,
-      "calculo": "Veta honda de opalo: CALIDAD 719/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 1668.98,
-      "maximo": 333797.0,
+      "referencia": 11821.97,
+      "calculo": "Veta honda de opalo: CALIDAD 719/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 1182.2,
+      "maximo": 236439.4,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Ópalo Crudo\",color:\"#b9e6ee\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Cruda\",color:\"#b9e6ee\",italic:0b},{text:\"En arma: +6% daño a élites y jefes\",color:\"gray\",italic:0b},{text:\"En armadura: +3% Defensa de la pieza (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_opalo_1\",v:31,type:\"gema\",gema:\"opalo\",q:1}},minecraft:item_model=\"astral:gemas/opalo_1\",minecraft:enchantment_glint_override=0b]"
@@ -729,10 +729,10 @@
     "gema_opalo_2": {
       "nombre": "Ópalo Pulido",
       "categoria": "Especiales",
-      "referencia": 54545.45,
-      "calculo": "Veta honda de opalo: CALIDAD 220/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 5454.55,
-      "maximo": 1090909.0,
+      "referencia": 38636.36,
+      "calculo": "Veta honda de opalo: CALIDAD 220/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 3863.64,
+      "maximo": 772727.2,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Ópalo Pulido\",color:\"#b9e6ee\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Pulida\",color:\"#b9e6ee\",italic:0b},{text:\"En arma: +10% daño a élites y jefes\",color:\"gray\",italic:0b},{text:\"En armadura: +5% Defensa de la pieza (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_opalo_2\",v:31,type:\"gema\",gema:\"opalo\",q:2}},minecraft:item_model=\"astral:gemas/opalo_2\",minecraft:enchantment_glint_override=0b]"
@@ -740,10 +740,10 @@
     "gema_opalo_3": {
       "nombre": "Ópalo Impecable",
       "categoria": "Especiales",
-      "referencia": 218181.82,
-      "calculo": "Veta honda de opalo: CALIDAD 55/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 21818.18,
-      "maximo": 4363636.4,
+      "referencia": 154545.45,
+      "calculo": "Veta honda de opalo: CALIDAD 55/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 15454.55,
+      "maximo": 3090909.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Ópalo Impecable\",color:\"#b9e6ee\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Impecable\",color:\"#b9e6ee\",italic:0b},{text:\"En arma: +15% daño a élites y jefes\",color:\"gray\",italic:0b},{text:\"En armadura: +8% Defensa de la pieza (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_opalo_3\",v:31,type:\"gema\",gema:\"opalo\",q:3}},minecraft:item_model=\"astral:gemas/opalo_3\",minecraft:enchantment_glint_override=0b]"
@@ -751,10 +751,10 @@
     "gema_opalo_4": {
       "nombre": "Ópalo Perfecto",
       "categoria": "Especiales",
-      "referencia": 2400000.0,
-      "calculo": "Veta honda de opalo: CALIDAD 5/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 240000.0,
-      "maximo": 48000000.0,
+      "referencia": 1700000.0,
+      "calculo": "Veta honda de opalo: CALIDAD 5/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 170000.0,
+      "maximo": 34000000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Ópalo Perfecto\",color:\"#b9e6ee\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Perfecta\",color:\"#b9e6ee\",italic:0b},{text:\"En arma: +21% daño a élites y jefes, +2% daño\",color:\"gray\",italic:0b},{text:\"En armadura: +11% Defensa de la pieza, +5% resistencia al empuje (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_opalo_4\",v:31,type:\"gema\",gema:\"opalo\",q:4}},minecraft:item_model=\"astral:gemas/opalo_4\",minecraft:enchantment_glint_override=1b]"
@@ -762,10 +762,10 @@
     "gema_opalo_5": {
       "nombre": "Ópalo Estelar",
       "categoria": "Especiales",
-      "referencia": 12000000.0,
-      "calculo": "Veta honda de opalo: CALIDAD 1/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 1200000.0,
-      "maximo": 240000000.0,
+      "referencia": 8500000.0,
+      "calculo": "Veta honda de opalo: CALIDAD 1/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 850000.0,
+      "maximo": 170000000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Ópalo Estelar\",color:\"#b9e6ee\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Estelar\",color:\"#b9e6ee\",italic:0b},{text:\"En arma: +28% daño a élites y jefes, +3% daño\",color:\"gray\",italic:0b},{text:\"En armadura: +15% Defensa de la pieza, +10% resistencia al empuje (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_opalo_5\",v:31,type:\"gema\",gema:\"opalo\",q:5}},minecraft:item_model=\"astral:gemas/opalo_5\",minecraft:enchantment_glint_override=1b]"
@@ -773,10 +773,10 @@
     "gema_onix_1": {
       "nombre": "Ónix Crudo",
       "categoria": "Especiales",
-      "referencia": 16689.85,
-      "calculo": "Veta honda de onix: CALIDAD 719/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 1668.98,
-      "maximo": 333797.0,
+      "referencia": 11821.97,
+      "calculo": "Veta honda de onix: CALIDAD 719/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 1182.2,
+      "maximo": 236439.4,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Ónix Crudo\",color:\"#3a3a46\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Cruda\",color:\"#3a3a46\",italic:0b},{text:\"En arma: 40% de curar 1% de tu vida al golpear\",color:\"gray\",italic:0b},{text:\"En armadura: devuelve 0,2% de la vida del atacante (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_onix_1\",v:31,type:\"gema\",gema:\"onix\",q:1}},minecraft:item_model=\"astral:gemas/onix_1\",minecraft:enchantment_glint_override=0b]"
@@ -784,10 +784,10 @@
     "gema_onix_2": {
       "nombre": "Ónix Pulido",
       "categoria": "Especiales",
-      "referencia": 54545.45,
-      "calculo": "Veta honda de onix: CALIDAD 220/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 5454.55,
-      "maximo": 1090909.0,
+      "referencia": 38636.36,
+      "calculo": "Veta honda de onix: CALIDAD 220/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 3863.64,
+      "maximo": 772727.2,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Ónix Pulido\",color:\"#3a3a46\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Pulida\",color:\"#3a3a46\",italic:0b},{text:\"En arma: 40% de curar 1,25% de tu vida al golpear\",color:\"gray\",italic:0b},{text:\"En armadura: devuelve 0,35% de la vida del atacante (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_onix_2\",v:31,type:\"gema\",gema:\"onix\",q:2}},minecraft:item_model=\"astral:gemas/onix_2\",minecraft:enchantment_glint_override=0b]"
@@ -795,10 +795,10 @@
     "gema_onix_3": {
       "nombre": "Ónix Impecable",
       "categoria": "Especiales",
-      "referencia": 218181.82,
-      "calculo": "Veta honda de onix: CALIDAD 55/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 21818.18,
-      "maximo": 4363636.4,
+      "referencia": 154545.45,
+      "calculo": "Veta honda de onix: CALIDAD 55/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 15454.55,
+      "maximo": 3090909.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Ónix Impecable\",color:\"#3a3a46\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Impecable\",color:\"#3a3a46\",italic:0b},{text:\"En arma: 40% de curar 1,5% de tu vida al golpear\",color:\"gray\",italic:0b},{text:\"En armadura: devuelve 0,5% de la vida del atacante (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_onix_3\",v:31,type:\"gema\",gema:\"onix\",q:3}},minecraft:item_model=\"astral:gemas/onix_3\",minecraft:enchantment_glint_override=0b]"
@@ -806,10 +806,10 @@
     "gema_onix_4": {
       "nombre": "Ónix Perfecto",
       "categoria": "Especiales",
-      "referencia": 2400000.0,
-      "calculo": "Veta honda de onix: CALIDAD 5/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 240000.0,
-      "maximo": 48000000.0,
+      "referencia": 1700000.0,
+      "calculo": "Veta honda de onix: CALIDAD 5/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 170000.0,
+      "maximo": 34000000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Ónix Perfecto\",color:\"#3a3a46\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Perfecta\",color:\"#3a3a46\",italic:0b},{text:\"En arma: 40% de curar 2% de tu vida al golpear, +1% vida máxima\",color:\"gray\",italic:0b},{text:\"En armadura: devuelve 0,7% de la vida del atacante, +1% vida máxima (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_onix_4\",v:31,type:\"gema\",gema:\"onix\",q:4}},minecraft:item_model=\"astral:gemas/onix_4\",minecraft:enchantment_glint_override=1b]"
@@ -817,10 +817,10 @@
     "gema_onix_5": {
       "nombre": "Ónix Estelar",
       "categoria": "Especiales",
-      "referencia": 12000000.0,
-      "calculo": "Veta honda de onix: CALIDAD 1/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo",
-      "minimo": 1200000.0,
-      "maximo": 240000000.0,
+      "referencia": 8500000.0,
+      "calculo": "Veta honda de onix: CALIDAD 1/1000; una veta = un Cristal ($8,500), sin polvo",
+      "minimo": 850000.0,
+      "maximo": 170000000.0,
       "piso_server": 0,
       "material": "minecraft:paper",
       "item": "minecraft:paper[minecraft:item_name={text:\"Ónix Estelar\",color:\"#3a3a46\",italic:0b},minecraft:lore=[{text:\"Gema de calidad Estelar\",color:\"#3a3a46\",italic:0b},{text:\"En arma: 40% de curar 2,5% de tu vida al golpear, +2% vida máxima\",color:\"gray\",italic:0b},{text:\"En armadura: devuelve 1% de la vida del atacante, +2% vida máxima (por pieza)\",color:\"gray\",italic:0b},{text:\"Se engarza en la Reforja de gemas (Herrero).\",color:\"dark_gray\",italic:0b}],minecraft:custom_data={astral:{id:\"gema_onix_5\",v:31,type:\"gema\",gema:\"onix\",q:5}},minecraft:item_model=\"astral:gemas/onix_5\",minecraft:enchantment_glint_override=1b]"
@@ -948,7 +948,7 @@
     },
     "perla_abisal": {
       "nombre": "Perla Abisal",
-      "categoria": "Bosque y pesca",
+      "categoria": "Oceano",
       "referencia": 3000,
       "calculo": "Veta Océano (escala.TIER_FIJO=2), 1 unidad; supuesto esfuerzo de un mob T2 por veta",
       "minimo": 300.0,
@@ -959,7 +959,7 @@
     },
     "coral_astral": {
       "nombre": "Coral Astral",
-      "categoria": "Bosque y pesca",
+      "categoria": "Oceano",
       "referencia": 3000,
       "calculo": "Veta Océano (escala.TIER_FIJO=2), 1 unidad; supuesto esfuerzo de un mob T2 por veta",
       "minimo": 300.0,

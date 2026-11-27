@@ -80,7 +80,7 @@ public final class AstralBazar extends JavaPlugin implements Listener {
             if(!item.hasItemMeta()||!item.getItemMeta().getAsComponentString().contains("astral"))throw new IllegalArgumentException("Producto sin marca: "+id);
             long min=cents(Math.max(c.getDouble("minimo"),c.getDouble("piso_server"))),max=cents(c.getDouble("maximo"));
             if(min<1||max<min)throw new IllegalArgumentException("Rango inválido: "+id);
-            products.put(id,new Product(id,c.getString("nombre"),c.getString("categoria"),min,max,item));
+            products.put(id,new Product(id,c.getString("nombre"),category(id,c.getString("categoria")),min,max,item));
         }
         var eq=Objects.requireNonNull(cfg.getConfigurationSection("equipo"));
         for(String id:eq.getKeys(false)){
@@ -166,7 +166,7 @@ public final class AstralBazar extends JavaPlugin implements Listener {
         for(String k:y.getKeys(false))titles.put(k,y.getString(k));
     }
     Screen screen(Player p,String kind,String title,int rows){
-        Screen s=new Screen();s.artwork=design()&&Set.of("confirmar_orden","vender_equipo","confirmar_equipo").contains(kind)&&titles.containsKey(kind);s.inv=Bukkit.createInventory(s,rows*9,s.artwork?titles.get(kind):title);return s;
+        Screen s=new Screen();s.artwork=design()&&titles.containsKey(kind);s.inv=Bukkit.createInventory(s,rows*9,s.artwork?titles.get(kind):title);return s;
     }
     /** Boton dibujado: items invisibles con nombre/lore en todos sus casilleros (sin diseno: un item visible). */
     void hit(Screen s,int[] slots,Material mat,String name,Runnable action,String...lore){
@@ -181,8 +181,17 @@ public final class AstralBazar extends JavaPlugin implements Listener {
         ItemStack item=new ItemStack(mat);var meta=item.getItemMeta();meta.setDisplayName("§e"+name);meta.setLore(Arrays.stream(lore).map(x->"§7"+x).toList());item.setItemMeta(meta);s.inv.setItem(slot,item);if(action!=null)s.actions.put(slot,action);
     }
     void nav(Player p,Screen s,int[] back,int[] close,Runnable action){hit(s,back,Material.ARROW,"Volver",action);if(close!=null)hit(s,close,Material.BARRIER,"Cerrar",p::closeInventory);}
-    static final String[] CATS={"Mineria","Combate","Bosque y pesca","Consumibles","Especiales"};
-    static final String[] CAT_NAMES={"Minería","Combate","Bosque y pesca","Consumibles","Especiales"};
+    static final String[] CATS={"Combate","Bosque","Oceano","Consumibles","Especiales"};
+    static final String[] CAT_NAMES={"Combate","Bosque","Océano","Consumibles","Especiales"};
+    // Older catalogs remain safe to load; orders refer only to product IDs.
+    static String category(String id,String old){
+        return switch(id){
+            case "netherita_fundida","netherita_reforzada" -> "Combate";
+            case "madera_estelar","palo_reforzado" -> "Bosque";
+            case "perla_abisal","coral_astral" -> "Oceano";
+            default -> Arrays.asList(CATS).contains(old)?old:"Especiales";
+        };
+    }
     static final int[][] CAT_SLOTS={{9,10,18,19},{11,12,20,21},{13,22},{14,15,23,24},{16,17,25,26}};
     static final int PAGE=36;
     void open(Player p,Screen s){p.openInventory(s.inv);}
@@ -191,22 +200,24 @@ public final class AstralBazar extends JavaPlugin implements Listener {
     void listing(Player p,String cat,String search,int page){checked(()->{
         List<Product> list=products.values().stream().filter(x->(cat.isEmpty()||cat.equals(x.category))&&(search.isEmpty()||normalize(x.name).contains(normalize(search)))).toList();
         Screen s=screen(p,"productos","Bazar - Inicio",6);int start=page*PRODUCT_SLOTS.length;
-        for(int i=0;i<CATS.length;i++){String c=CATS[i];button(s,i*9,Material.CHEST,(c.equals(cat)?"► ":"")+CAT_NAMES[i],()->listing(p,c,"",0),"Clic para ver productos.");}
+        for(int i=0;i<CATS.length;i++){String c=CATS[i];hit(s,at(i*9,i*9+1),Material.CHEST,(c.equals(cat)?"► ":"")+CAT_NAMES[i],()->listing(p,c,"",0),"Clic para ver productos.");}
         for(int i=0;i<PRODUCT_SLOTS.length&&start+i<list.size();i++){
             Product x=list.get(start+i);ItemStack icon=x.item.clone();icon.setAmount(1);var m=icon.getItemMeta();
             var sell=store.book(x.id,false);var buy=store.book(x.id,true);
             m.setLore(List.of("§7Comprar al instante: "+(sell.isEmpty()?"Sin ofertas":money(sell.getFirst().price())+" c/u"),"§7Vender al instante: "+(buy.isEmpty()?"Sin órdenes":money(buy.getFirst().price())+" c/u"),"§eClic para operar."));
             icon.setItemMeta(m);cleanTooltip(icon);s.inv.setItem(PRODUCT_SLOTS[i],icon);s.actions.put(PRODUCT_SLOTS[i],()->detail(p,x));
         }
-        button(s,45,Material.COMPASS,"Buscar",()->ask(p,"Nombre del producto",text->listing(p,"",text,0)));
-        button(s,46,Material.BOOK,"Mis órdenes",()->orders(p,0));
-        button(s,47,Material.HOPPER,"Vender inventario",()->sellInventory(p),"Vende materiales con órdenes de compra.","No toca equipo.");
-        button(s,48,Material.IRON_SWORD,"Vender equipo al server",()->equipmentScreen(p,"eq-"+UUID.randomUUID()));
-        button(s,49,Material.ARROW,"Anterior",page>0?()->listing(p,cat,search,page-1):null);
-        button(s,50,Material.ARROW,"Siguiente",start+PRODUCT_SLOTS.length<list.size()?()->listing(p,cat,search,page+1):null);
-        pageItem(s,51,page,Math.max(1,(list.size()+34)/35));button(s,53,Material.BARRIER,"Cerrar",p::closeInventory);open(p,s);
+        // 26/11 diseno Gemini: fila de abajo con un boton por casillero (lupa, libro, cofre, remera, <, pagina, >, X).
+        hit(s,at(45),Material.COMPASS,"Buscar",()->ask(p,"Nombre del producto",text->listing(p,"",text,0)));
+        hit(s,at(46),Material.BOOK,"Mis órdenes",()->orders(p,0));
+        hit(s,at(47),Material.HOPPER,"Vender inventario",()->sellInventory(p),"Vende materiales con órdenes de compra.","No toca equipo.");
+        hit(s,at(48),Material.IRON_SWORD,"Vender equipo al server",()->equipmentScreen(p,"eq-"+UUID.randomUUID()));
+        hit(s,at(49),Material.ARROW,"Anterior",page>0?()->listing(p,cat,search,page-1):null);
+        pageItem(s,50,page,Math.max(1,(list.size()+34)/35));
+        hit(s,at(51),Material.ARROW,"Siguiente",start+PRODUCT_SLOTS.length<list.size()?()->listing(p,cat,search,page+1):null);
+        hit(s,at(53),Material.BARRIER,"Cerrar",p::closeInventory);open(p,s);
     });}
-    void pageItem(Screen s,int slot,int page,int pages){button(s,slot,Material.PAPER,"Página "+(page+1)+" de "+pages,null);}
+    void pageItem(Screen s,int slot,int page,int pages){hit(s,at(slot),Material.PAPER,"Página "+(page+1)+" de "+pages,null);}
     static String normalize(String s){return java.text.Normalizer.normalize(s.toLowerCase(Locale.ROOT),java.text.Normalizer.Form.NFD).replaceAll("\\p{M}","");}
     void cleanTooltip(ItemStack item){
         // UI copies only: the canonical trading identity is never modified.
@@ -223,17 +234,28 @@ public final class AstralBazar extends JavaPlugin implements Listener {
     }
     void detail(Player p,Product x){checked(()->{
         Screen s=screen(p,"producto","Bazar - "+x.name,6);
-        hit(s,at(10,11,19,20),Material.GOLD_INGOT,"Comprar al instante",()->amount(p,x,true,true),marketLore(p,x,false,"elegir cantidad"));
-        hit(s,at(14,15,23,24),Material.EMERALD,"Vender al instante",()->choosePrice(p,x,false,true,count(p,x)),marketLore(p,x,true,"vender todo lo que tenés"));
-        hit(s,at(28,29,37,38),Material.WRITABLE_BOOK,"Crear orden de compra",()->amount(p,x,true,false),marketLore(p,x,true,"crear una orden de compra"));
-        hit(s,at(32,33,41,42),Material.WRITABLE_BOOK,"Crear oferta de venta",()->amount(p,x,false,false),marketLore(p,x,false,"crear una oferta de venta"));
-        button(s,45,Material.ARROW,"Volver",()->home(p));button(s,49,Material.BOOK,"Mis órdenes",()->orders(p,0));open(p,s);
+        if(s.artwork){ItemStack icon=x.item.clone();icon.setAmount(1);var im=icon.getItemMeta();im.setLore(List.of("§7Tenés "+count(p,x)+" en el inventario."));icon.setItemMeta(im);cleanTooltip(icon);s.inv.setItem(4,icon);}
+        hit(s,s.artwork?at(9,10,11,12,18,19,20,21):at(10,11,19,20),Material.GOLD_INGOT,"Comprar al instante",()->amount(p,x,true,true),marketLore(p,x,false,"elegir cantidad"));
+        hit(s,s.artwork?at(14,15,16,17,23,24,25,26):at(14,15,23,24),Material.EMERALD,"Vender al instante",()->choosePrice(p,x,false,true,count(p,x)),marketLore(p,x,true,"vender todo lo que tenés"));
+        hit(s,s.artwork?at(27,28,29,30,36,37,38,39):at(28,29,37,38),Material.WRITABLE_BOOK,"Crear orden de compra",()->amount(p,x,true,false),marketLore(p,x,true,"crear una orden de compra"));
+        hit(s,s.artwork?at(32,33,34,35,41,42,43,44):at(32,33,41,42),Material.WRITABLE_BOOK,"Crear oferta de venta",()->amount(p,x,false,false),marketLore(p,x,false,"crear una oferta de venta"));
+        hit(s,s.artwork?at(45,46,47):at(45),Material.ARROW,"Volver",()->home(p));hit(s,s.artwork?at(51,52,53):at(49),Material.BOOK,"Mis órdenes",()->orders(p,0));open(p,s);
     });}
     int count(Player p,Product x){int n=0;for(var it:p.getInventory().getStorageContents())if(it!=null&&x.item.isSimilar(it))n+=it.getAmount();return n;}
     int capacity(Player p,Product x){int n=0,max=x.item.getMaxStackSize();for(var it:p.getInventory().getStorageContents())if(it==null||it.getType().isAir())n+=max;else if(x.item.isSimilar(it))n+=Math.max(0,max-it.getAmount());return n;}
     long best(Product x,boolean buy)throws Exception {var b=store.book(x.id,buy);return b.isEmpty()?(buy?x.min:x.max):b.getFirst().price();}
     void amount(Player p,Product x,boolean buy,boolean instant){
-        Screen s=screen(p,"cantidad","Bazar - Cantidad",5);
+        // 26/11 diseno Gemini: una ventana por caso (las tarjetas traen el numero dibujado).
+        Screen s=screen(p,"cantidad_"+(instant?"i":"o")+(buy?"c":"v"),"Bazar - Cantidad",5);
+        if(s.artwork){
+            int[][] cards={at(9,10,11,18,19,20),at(12,13,14,21,22,23),at(15,16,17,24,25,26)};
+            int[] qs=instant?new int[]{1,x.item.getMaxStackSize()}:buy?new int[]{64,160,1024}:new int[]{64,160};
+            for(int i=0;i<qs.length;i++){int n=qs[i];hit(s,cards[i],Material.PAPER,n+" unidades",()->choosePrice(p,x,buy,instant,n));}
+            if(instant&&buy)hit(s,cards[2],Material.CHEST,"Llenar inventario",()->choosePrice(p,x,true,true,capacity(p,x)));
+            if(!buy)hit(s,cards[2],Material.CHEST,"Todo lo que tengo",()->choosePrice(p,x,false,instant,count(p,x)),"Tenés "+count(p,x)+".");
+            hit(s,at(28,29,30,31,32,33,34),Material.NAME_TAG,"A mano",()->ask(p,"Cantidad (1 a 71680)",text->{int n;try{n=Integer.parseInt(text);}catch(Exception e){throw new IllegalArgumentException("Cantidad inválida.");}choosePrice(p,x,buy,instant,n);}));
+            nav(p,s,at(36,37,38),at(42,43,44),()->detail(p,x));open(p,s);return;
+        }
         int[] quantities=instant?new int[]{1,x.item.getMaxStackSize()}:new int[]{64,160,1024};
         for(int i=0;i<quantities.length;i++){int n=quantities[i];button(s,10+i*2,Material.PAPER,n+" unidades",()->choosePrice(p,x,buy,instant,n));}
         if(instant&&buy)button(s,15,Material.CHEST,"Llenar inventario",()->choosePrice(p,x,true,true,capacity(p,x)));
@@ -253,12 +275,13 @@ public final class AstralBazar extends JavaPlugin implements Listener {
         if(instant){confirm(p,x,buy,true,qty,buy?x.max:x.min);return;}
         checked(()->{
             long b=best(x,buy);Screen s=screen(p,"precio","Bazar - Precio",5);
-            button(s,10,Material.GOLD_NUGGET,"Igual a la mejor: "+money(b),()->confirm(p,x,buy,false,qty,b));
+            boolean a=s.artwork;
+            hit(s,a?at(9,10,18,19,27,28):at(10),Material.GOLD_NUGGET,"Igual a la mejor: "+money(b),()->confirm(p,x,buy,false,qty,b));
             long better=buy?b+10:b-10;
-            button(s,12,Material.GOLD_INGOT,(buy?"Mejor +$0,10: ":"Mejor -$0,10: ")+money(Math.max(0,better)),better>=x.min&&better<=x.max?()->confirm(p,x,buy,false,qty,better):null);
+            hit(s,a?at(11,12,20,21,29,30):at(12),Material.GOLD_INGOT,(buy?"Mejor +$0,10: ":"Mejor -$0,10: ")+money(Math.max(0,better)),better>=x.min&&better<=x.max?()->confirm(p,x,buy,false,qty,better):null);
             long spread=marginPrice(x,buy);
-            button(s,14,Material.EMERALD,"5% del margen",spread>0?()->confirm(p,x,buy,false,qty,spread):null,spread>0?"Precio: "+money(spread):"Necesitás compra y venta con margen positivo.");
-            button(s,16,Material.NAME_TAG,"A mano",()->ask(p,"Precio por unidad",text->confirm(p,x,buy,false,qty,price(text))));
+            hit(s,a?at(14,15,23,24,32,33):at(14),Material.EMERALD,"5% del margen",spread>0?()->confirm(p,x,buy,false,qty,spread):null,spread>0?"Precio: "+money(spread):"Necesitás compra y venta con margen positivo.");
+            hit(s,a?at(16,17,25,26,34,35):at(16),Material.NAME_TAG,"A mano",()->ask(p,"Precio por unidad",text->confirm(p,x,buy,false,qty,price(text))));
             nav(p,s,at(36,37,38),at(42,43,44),()->amount(p,x,buy,false));open(p,s);
         });
     }
@@ -352,10 +375,11 @@ public final class AstralBazar extends JavaPlugin implements Listener {
             button(s,i,x==null?Material.PAPER:x.item.getType(),"#"+o.id()+" "+(o.buy()?"Compra ":"Venta ")+(x==null?o.product():x.name),()->checked(()->{s.actions.clear();collectOrder(p,o.id());orders(p,page);}),"Llenadas "+o.filled()+" / "+o.quantity()+"; restan "+o.remaining(),"Precio: "+money(o.price()),claimable?"Clic para cobrar":"Sin cobros pendientes",o.remaining()>0?"Clic derecho para cancelar y devolver":"Finalizada");
             s.rightActions.put(slot,()->checked(()->{s.actions.clear();s.rightActions.clear();store.cancel(owner(p),o.id());collectOrder(p,o.id());orders(p,page);}));
         }
-        button(s,45,Material.CHEST,"Cobrar todo",()->checked(()->{s.actions.clear();collectAll(p);orders(p,page);}),"Incluye custodia y saldo anteriores a 1.2.0.","Lo que no entra sigue guardado.");
-        button(s,48,Material.ARROW,"Anterior",page>0?()->orders(p,page-1):null);pageItem(s,49,page,pages);
-        button(s,50,Material.ARROW,"Siguiente",(page+1)*45<all.size()?()->orders(p,page+1):null);
-        nav(p,s,at(51),at(53),()->home(p));open(p,s);
+        boolean a=s.artwork;
+        hit(s,a?at(45,46):at(45),Material.CHEST,"Cobrar todo",()->checked(()->{s.actions.clear();collectAll(p);orders(p,page);}),"Incluye custodia y saldo anteriores a 1.2.0.","Lo que no entra sigue guardado.");
+        hit(s,at(a?47:48),Material.ARROW,"Anterior",page>0?()->orders(p,page-1):null);pageItem(s,a?48:49,page,pages);
+        hit(s,at(a?49:50),Material.ARROW,"Siguiente",(page+1)*45<all.size()?()->orders(p,page+1):null);
+        nav(p,s,a?at(50,51):at(51),a?at(52,53):at(53),()->home(p));open(p,s);
     });}
     void orderDetail(Player p,long id){orders(p,0);}
     void withdrawals(Player p,int page){orders(p,page);}
@@ -363,12 +387,12 @@ public final class AstralBazar extends JavaPlugin implements Listener {
         Screen s=screen(p,"inventario","Bazar - Vender inventario",6);var quantities=new LinkedHashMap<Product,Integer>();long total=0;int slot=0;
         for(var x:products.values()){int n=count(p,x);long value=n==0?0:sellQuote(p,x,n);if(value<=0)continue;quantities.put(x,n);total+=value;
             if(slot<45)button(s,slot++,x.item.getType(),x.name+" × "+sellable(p,x,n),null,"De "+n+" en tu inventario; hasta "+money(value),"Solo se vende la cantidad con demanda.");}
-        button(s,49,Material.LIME_WOOL,"Confirmar: hasta "+money(total),()->checked(()->{
+        hit(s,s.artwork?at(48,49,50):at(49),Material.LIME_WOOL,"Confirmar: hasta "+money(total),()->checked(()->{
             s.actions.clear();p.closeInventory();long before=store.wallet(owner(p));int sold=0;
             for(var entry:quantities.entrySet()){Product x=entry.getKey();int n=Math.min(entry.getValue(),count(p,x));if(n==0||sellQuote(p,x,n)<=0)continue;
                 depositProduct(p,x,n);long order=store.create(owner(p),x.id,false,n,1,true);sold+=store.find(order).filled();collectProduct(p,x.id);}
             long earned=store.wallet(owner(p))-before;payAvailable(p);say(p,"Vendiste "+sold+" ítems; cobraste "+money(earned)+".");home(p);
-        }),"Estimado; depende de las órdenes al confirmar.","Impuesto 1,25% incluido.");nav(p,s,at(45),at(53),()->home(p));open(p,s);
+        }),"Estimado; depende de las órdenes al confirmar.","Impuesto 1,25% incluido.");nav(p,s,s.artwork?at(45,46):at(45),s.artwork?at(52,53):at(53),()->home(p));open(p,s);
     });}
     ItemStack claimItem(BazarStore.Claim c){return c.item()!=null?ItemStack.deserializeBytes(c.item()):Objects.requireNonNull(products.get(c.product()),"Producto retirado del catálogo: "+c.product()).item.clone();}
     void equipmentScreen(Player p,String basket){checked(()->{

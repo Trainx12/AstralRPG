@@ -1,29 +1,27 @@
-# AstralBazar 1.2.0 — flujo tipo Hypixel (privado)
+# AstralBazar 1.3.1 — flujo tipo Hypixel (privado)
 
-Entrega local. No se desplegó en Empower ni Aternos. No cambia el resource pack.
+Entrega local. No se desplegó en Empower ni Aternos. Pack y categorías: ver bazar-categorias-27-11.md.
 
 ## Archivos y destinos
 
 | Local | Destino | SHA-256 |
 |---|---|---|
-| `build/bazar/AstralBazar.jar` | `plugins/AstralBazar.jar` | `c214b872e0b8d8cdb88222422d7b4ebf1355935261a331ba768cd65927d53b63` |
+| `build/bazar/AstralBazar.jar` | `plugins/AstralBazar.jar` | `e885c627d0780a3c15db8a7ede43ac751afb7313e150dd26609f12532dbe85dc` |
 | `build/bazar/config.yml` | `plugins/AstralBazar/config.yml` | `4c2a9ddb6d4f5723a140a1804b3382d5f583cd66a6aa327a60f8ab091346a656` |
-| `build/bazar/productos.yml` | `plugins/AstralBazar/productos.yml` | `f2d08e4806bd22aca15ddbd17f55051c986990fe81d6d9f41d732e0232d3388d` |
+| `build/bazar/productos.yml` | `plugins/AstralBazar/productos.yml` | `077451559f4a15557fa3fa13e0fdcca9e3812e036a89242cd5e47cbaef004187` |
 
 `ventanas.yml` va embebido en el JAR; no subir al pack ni reemplazar el existente.
 
 1. `/bazar admin pausar`. Respaldar juntos SQLite/WAL/SHM, carpeta AstralBazar, Essentials y jugadores.
 2. Subir el JAR a `plugins/update/AstralBazar.jar` (si el panel admite update), y productos.yml a su destino. Conservar la config operativa actual: `publico: false`; el config.yml generado es plantilla privada, no sobreescribir permisos/pausa del servidor.
-3. Requiere un reinicio completo; no PlugMan ni reload de JAR. En Empower, cuando todo esté subido: `reiniciopendiente Bazar 1.2.0`. Alternativa: apagar, reemplazar `plugins/AstralBazar.jar` y arrancar con Java 25.
-4. Consola: `Bazar privado listo: 88 productos. publico=false`, versión 1.2.0 sin errores. `/bazar admin reanudar`; probar con ByTrainx en `/modo admin` y `/sala`. Otro jugador sin permiso debe ver Próximamente.
+3. Requiere un reinicio completo; no PlugMan ni reload de JAR. Esperar el reinicio diario; no activar reiniciopendiente ni reiniciar por cuenta propia. Alternativa: apagar, reemplazar `plugins/AstralBazar.jar` y arrancar con Java 25.
+4. Consola: `Bazar privado listo: 88 productos. publico=false`, versión 1.3.1 sin errores. `/bazar admin reanudar`; probar con ByTrainx en `/modo admin` y `/sala`. Otro jugador sin permiso debe ver Próximamente.
 5. Config operativa: `/bazar admin recargar`. Catálogo/JAR requieren reinicio. No borrar IDs existentes ni reemplazar bazar.sqlite; la migración agrega `claims.order_id` y `order_credit` sin eliminar tablas/órdenes.
 Aternos puede impedir instalar JAR propios: no eludir restricciones ni usar APIs privadas. No subir mundos ni usar Worlds > Upload en world.
 
 ## Verificación
 
-Paper 26.1.2 / Java 25 / Vault / Essentials: 634 comprobaciones, 0 fallos, dos bots, caída/reapertura real de JVM. Incluye chat capturado, vencimiento real de 30 s, las 8 combinaciones compra/venta de precios, cobro/cancelación y migración 1.1.0 con custodia/saldo/oferta fuera del mínimo nuevo. Economía: 17 tests OK. py_compile y git diff --check OK.
-
-Publicación bloqueada: el JAR probado incorpora trabajo previo 1.1.0 sin commit. No se creó commit ni se hizo push. Integrar/publicar esa base por separado antes de publicar 1.2.0; no incluirla sin autorización.
+Paper final: 653 comprobaciones, 0 fallos, dos bots, reapertura real JVM; categorias antiguas y desconocidas, saldos y ordenes conservados. Auditoria de terceros aprobada.
 
 SQLite/Vault/inventarios conservan el journal y los recibos durables. Los nuevos cobros tienen relación con su orden. Los cobros 1.1.0 no tienen esa relación: se recuperan con Cobrar todo (también devuelve equipo antiguo). Nunca al piso.
 
@@ -36,35 +34,35 @@ El survival adapta su tier al jugador: se asume T5 para Nether/End y T3 para vin
 |---|---|---|---:|---:|---:|
 | `netherita_fundida` | Netherita Fundida | Horno: 1 lingote netherita; precio venta NPC/Tienda (combustible sin precio = 0) | 1.666,67 | 166,67 | 33.333,40 |
 | `netherita_reforzada` | Netherita Reforzada | Receta: (1 × netherita_fundida + 4 × minecraft:blaze_powder ($66 NPC/Tienda)) / 1; vanilla sin precio = 0 | 1.930,67 | 193,07 | 38.613,40 |
-| `shadowsteel` | Acero Sombrio | Receta: (1 × minecraft:iron_ingot ($138 NPC/Tienda) + 1 × esencia_nether) / 1; vanilla sin precio = 0 | 100.138,00 | 10.013,80 | 2.002.760,00 |
-| `esencia_nether` | Esencia del Nether | items.MOB_DROPS/wither_skeleton: PLATA_MOB_TIER[5] / 0.25; tier supuesto (survival adaptable) | 100.000,00 | 10.000,00 | 2.000.000,00 |
-| `madera_estelar` | Madera Estelar | build.py chorus End, probabilidad 0.35; supuesto unidad de esfuerzo T5 por bloque/cofre | 71.428,57 | 7.142,86 | 1.428.571,40 |
-| `palo_reforzado` | Palo Reforzado | Receta: (2 × shadowsteel + 1 × minecraft:stick ($15 NPC/Tienda)) / 1; vanilla sin precio = 0 | 200.291,00 | 20.029,10 | 4.005.820,00 |
+| `shadowsteel` | Acero Sombrio | Receta: (1 × minecraft:iron_ingot ($138 NPC/Tienda) + 1 × esencia_nether) / 1; vanilla sin precio = 0 | 11.204,67 | 1.120,47 | 224.093,40 |
+| `esencia_nether` | Esencia del Nether | items.MOB_DROPS/wither_skeleton: kill vanilla T5 $8,300 / 3 drops / 0.25 | 11.066,67 | 1.106,67 | 221.333,40 |
+| `madera_estelar` | Madera Estelar | build.py chorus End, probabilidad 0.35; $830 por bloque/cofre | 2.371,43 | 237,14 | 47.428,60 |
+| `palo_reforzado` | Palo Reforzado | Receta: (2 × shadowsteel + 1 × minecraft:stick ($15 NPC/Tienda)) / 1; vanilla sin precio = 0 | 22.424,34 | 2.242,43 | 448.486,80 |
 | `cuero_tratado` | Cuero Tratado | Receta: (8 × minecraft:leather ($840 NPC/Tienda) + 1 × water_bottle ($0 NPC/Tienda)) / 2; vanilla sin precio = 0 | 3.360,00 | 336,00 | 67.200,00 |
-| `cristal_arcano` | Cristal Arcano | Receta: (2 × fragmento_cristal) / 1; vanilla sin precio = 0 | 1.250.000,00 | 125.000,00 | 25.000.000,00 |
-| `fragmento_cristal` | Fragmento de Cristal Arcano | build.py end stone, probabilidad 0.04; supuesto unidad de esfuerzo T5 por bloque/cofre | 625.000,00 | 62.500,00 | 12.500.000,00 |
-| `cristal_refinado` | Cristal Arcano Refinado | Receta: (4 × cristal_arcano) / 1; vanilla sin precio = 0 | 5.000.000,00 | 500.000,00 | 100.000.000,00 |
-| `fragmento_umbrio` | Fragmento Umbrio | items.MOB_DROPS/piglin_brute: PLATA_MOB_TIER[5] / 0.15; tier supuesto (survival adaptable) | 166.666,67 | 16.666,67 | 3.333.333,40 |
-| `gema_umbria_fragmentada` | Gema Umbria Fragmentada | Receta: (8 × fragmento_umbrio + 1 × minecraft:coal ($132 NPC/Tienda)) / 1; vanilla sin precio = 0 | 1.333.465,36 | 133.346,54 | 26.669.307,20 |
-| `gema_umbria` | Gema Umbria | Receta: (8 × fragmento_umbrio + 1 × gema_umbria_fragmentada) / 1; vanilla sin precio = 0 | 2.666.798,72 | 266.679,87 | 53.335.974,40 |
-| `gema_umbria_perfecta` | Gema Umbria Perfecta | Receta: (8 × gema_umbria + 1 × nucleo_furia_pura) / 1; vanilla sin precio = 0 | 23.001.780,44 | 2.300.178,04 | 460.035.608,80 |
-| `gema_luminica` | Gema Luminica | build.py cofre Overworld, probabilidad 0.25; supuesto unidad de esfuerzo T5 por bloque/cofre | 100.000,00 | 10.000,00 | 2.000.000,00 |
-| `gema_luminica_perfecta` | Gema Luminica Perfecta | Receta: (8 × gema_luminica + 1 × nucleo_astral) / 1; vanilla sin precio = 0 | 23.050.000,00 | 2.305.000,00 | 461.000.000,00 |
-| `fragmento_astral` | Fragmento Astral | items.MOB_DROPS/enderman: PLATA_MOB_TIER[5] / 0.2; tier supuesto (survival adaptable) | 125.000,00 | 12.500,00 | 2.500.000,00 |
-| `polvo_astral` | Polvo Astral | Receta: (8 × fragmento_astral) / 2; vanilla sin precio = 0 | 500.000,00 | 50.000,00 | 10.000.000,00 |
-| `nucleo_astral` | Nucleo Astral | Receta: (4 × polvo_astral + 4 × cristal_refinado + 1 × corazon_shulker) / 1; vanilla sin precio = 0 | 22.250.000,00 | 2.225.000,00 | 445.000.000,00 |
-| `nucleo_furia` | Nucleo de Furia | items.MOB_DROPS/piglin_brute: PLATA_MOB_TIER[5] / 0.06; tier supuesto (survival adaptable) | 416.666,67 | 41.666,67 | 8.333.333,40 |
-| `nucleo_furia_pura` | Nucleo de Furia Pura | Receta: (4 × nucleo_furia + 4 × minecraft:blaze_powder ($66 NPC/Tienda) + 1 × minecraft:lava_bucket ($460 NPC/Tienda)) / 1; vanilla sin precio = 0 | 1.667.390,68 | 166.739,07 | 33.347.813,60 |
-| `corazon_shulker` | Corazon de Shulker | items.MOB_DROPS/shulker: PLATA_MOB_TIER[5] / 0.1; tier supuesto (survival adaptable) | 250.000,00 | 25.000,00 | 5.000.000,00 |
-| `nucleo_eolico` | Nucleo Eolico | Receta: (4 × minecraft:feather ($150 NPC/Tienda) + 4 × madera_estelar + 1 × gema_luminica) / 1; vanilla sin precio = 0 | 386.314,28 | 38.631,43 | 7.726.285,60 |
-| `esencia_elite` | Esencia de Elite | items.ELITE_DROPS T1: PLATA_MOB_TIER / (0.5 × 1) | 3.000,00 | 300,00 | 60.000,00 |
-| `alma_corrupta` | Alma Corrupta | items.ELITE_DROPS T3: PLATA_MOB_TIER / (0.35 × 1) | 17.142,86 | 1.714,29 | 342.857,20 |
-| `chispa_astral` | Chispa Astral | items.ELITE_DROPS T5: PLATA_MOB_TIER / (0.6 × 1) | 41.666,67 | 4.166,67 | 833.333,40 |
-| `fragmento_ocaso` | Fragmento de Ocaso | items_t6_10: T6 / probabilidad común 0.012 | 4.166.666,67 | 416.666,67 | 83.333.333,40 |
-| `esquirla_eclipse` | Esquirla de Eclipse | items_t6_10: T7 / probabilidad común 0.012 | 8.333.333,33 | 833.333,33 | 166.666.666,60 |
-| `nucleo_supernova` | Nucleo de Supernova | items_t6_10: T8 / probabilidad común 0.012 | 16.666.666,67 | 1.666.666,67 | 333.333.333,40 |
-| `esencia_vacio` | Esencia del Vacio | items_t6_10: T9 / probabilidad común 0.012 | 33.333.333,33 | 3.333.333,33 | 666.666.666,60 |
-| `corazon_fin` | Corazon del Fin | items_t6_10: T10 / probabilidad común 0.012 | 66.666.666,67 | 6.666.666,67 | 1.333.333.333,40 |
+| `cristal_arcano` | Cristal Arcano | Receta: (2 × fragmento_cristal) / 1; vanilla sin precio = 0 | 41.500,00 | 4.150,00 | 830.000,00 |
+| `fragmento_cristal` | Fragmento de Cristal Arcano | build.py end stone, probabilidad 0.04; $830 por bloque/cofre | 20.750,00 | 2.075,00 | 415.000,00 |
+| `cristal_refinado` | Cristal Arcano Refinado | Receta: (4 × cristal_arcano) / 1; vanilla sin precio = 0 | 166.000,00 | 16.600,00 | 3.320.000,00 |
+| `fragmento_umbrio` | Fragmento Umbrio | items.MOB_DROPS/wither_skeleton: kill vanilla T5 $8,300 / 3 drops / 0.15 | 18.444,44 | 1.844,44 | 368.888,80 |
+| `gema_umbria_fragmentada` | Gema Umbria Fragmentada | Receta: (8 × fragmento_umbrio + 1 × minecraft:coal ($132 NPC/Tienda)) / 1; vanilla sin precio = 0 | 147.687,52 | 14.768,75 | 2.953.750,40 |
+| `gema_umbria` | Gema Umbria | Receta: (8 × fragmento_umbrio + 1 × gema_umbria_fragmentada) / 1; vanilla sin precio = 0 | 295.243,04 | 29.524,30 | 5.904.860,80 |
+| `gema_umbria_perfecta` | Gema Umbria Perfecta | Receta: (8 × gema_umbria + 1 × nucleo_furia_pura) / 1; vanilla sin precio = 0 | 2.547.112,76 | 254.711,28 | 50.942.255,20 |
+| `gema_luminica` | Gema Luminica | build.py cofre Overworld, probabilidad 0.25; $16,600 por bloque/cofre | 66.400,00 | 6.640,00 | 1.328.000,00 |
+| `gema_luminica_perfecta` | Gema Luminica Perfecta | Receta: (8 × gema_luminica + 1 × nucleo_astral) / 1; vanilla sin precio = 0 | 1.983.700,00 | 198.370,00 | 39.674.000,00 |
+| `fragmento_astral` | Fragmento Astral | items.MOB_DROPS/enderman: kill vanilla T5 $16,600 / 2 drops / 0.2 | 41.500,00 | 4.150,00 | 830.000,00 |
+| `polvo_astral` | Polvo Astral | Receta: (8 × fragmento_astral) / 2; vanilla sin precio = 0 | 166.000,00 | 16.600,00 | 3.320.000,00 |
+| `nucleo_astral` | Nucleo Astral | Receta: (4 × polvo_astral + 4 × cristal_refinado + 1 × corazon_shulker) / 1; vanilla sin precio = 0 | 1.452.500,00 | 145.250,00 | 29.050.000,00 |
+| `nucleo_furia` | Nucleo de Furia | items.MOB_DROPS/wither_skeleton: kill vanilla T5 $8,300 / 3 drops / 0.06 | 46.111,11 | 4.611,11 | 922.222,20 |
+| `nucleo_furia_pura` | Nucleo de Furia Pura | Receta: (4 × nucleo_furia + 4 × minecraft:blaze_powder ($66 NPC/Tienda) + 1 × minecraft:lava_bucket ($460 NPC/Tienda)) / 1; vanilla sin precio = 0 | 185.168,44 | 18.516,84 | 3.703.368,80 |
+| `corazon_shulker` | Corazon de Shulker | items.MOB_DROPS/shulker: kill vanilla T5 $12,450 / 1 drops / 0.1 | 124.500,00 | 12.450,00 | 2.490.000,00 |
+| `nucleo_eolico` | Nucleo Eolico | items.MOB_DROPS/vindicator: kill vanilla T3 $2,400 / 1 drops / 0.1 | 24.000,00 | 2.400,00 | 480.000,00 |
+| `esencia_elite` | Esencia de Elite | Elites: amenaza 4, mob T1 $1,500 / 0.2912 por kill | 5.151,10 | 515,11 | 103.022,00 |
+| `alma_corrupta` | Alma Corrupta | Elites: amenaza 6, mob T3 $6,000 / 0.1080 por kill | 55.555,56 | 5.555,56 | 1.111.111,20 |
+| `chispa_astral` | Chispa Astral | Elites: amenaza 8, mob T5 $25,000 / 0.0307 por kill | 815.217,39 | 81.521,74 | 16.304.347,80 |
+| `fragmento_ocaso` | Fragmento de Ocaso | items_t6_10: T6 / (0.012 comun + 46% elites x 0.12) | 810.635,54 | 81.063,55 | 16.212.710,80 |
+| `esquirla_eclipse` | Esquirla de Eclipse | items_t6_10: T7 / (0.012 comun + 46% elites x 0.12) | 1.621.271,08 | 162.127,11 | 32.425.421,60 |
+| `nucleo_supernova` | Nucleo de Supernova | items_t6_10: T8 / (0.012 comun + 46% elites x 0.12) | 3.242.542,15 | 324.254,21 | 64.850.843,00 |
+| `esencia_vacio` | Esencia del Vacio | items_t6_10: T9 / (0.012 comun + 46% elites x 0.12) | 6.485.084,31 | 648.508,43 | 129.701.686,20 |
+| `corazon_fin` | Corazon del Fin | items_t6_10: T10 / (0.012 comun + 46% elites x 0.12) | 12.970.168,61 | 1.297.016,86 | 259.403.372,20 |
 | `manzana_t2` | Manzana Mineral | manzanas.PROB común: T2 / 0.03 | 100.000,00 | 10.000,00 | 2.000.000,00 |
 | `manzana_t3` | Manzana Ancestral | manzanas.PROB común: T3 / 0.03 | 200.000,00 | 20.000,00 | 4.000.000,00 |
 | `manzana_t4` | Manzana Glacial | manzanas.PROB común: T4 / 0.03 | 400.000,00 | 40.000,00 | 8.000.000,00 |
@@ -74,41 +72,41 @@ El survival adapta su tier al jugador: se asume T5 para Nether/End y T3 para vin
 | `manzana_t8` | Manzana Supernova | manzanas.PROB común: T8 / 0.03 | 6.666.666,67 | 666.666,67 | 133.333.333,40 |
 | `manzana_t9` | Manzana del Vacio | manzanas.PROB común: T9 / 0.03 | 13.333.333,33 | 1.333.333,33 | 266.666.666,60 |
 | `manzana_t10` | Manzana del Fin | manzanas.PROB común: T10 / 0.03 | 26.666.666,67 | 2.666.666,67 | 533.333.333,40 |
-| `gema_rubi_1` | Rubí Crudo | Veta honda de rubi: CALIDAD 719/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 16.689,85 | 1.668,98 | 333.797,00 |
-| `gema_rubi_2` | Rubí Pulido | Veta honda de rubi: CALIDAD 220/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 54.545,45 | 5.454,55 | 1.090.909,00 |
-| `gema_rubi_3` | Rubí Impecable | Veta honda de rubi: CALIDAD 55/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 218.181,82 | 21.818,18 | 4.363.636,40 |
-| `gema_rubi_4` | Rubí Perfecto | Veta honda de rubi: CALIDAD 5/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 2.400.000,00 | 240.000,00 | 48.000.000,00 |
-| `gema_rubi_5` | Rubí Estelar | Veta honda de rubi: CALIDAD 1/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 12.000.000,00 | 1.200.000,00 | 240.000.000,00 |
-| `gema_zafiro_1` | Zafiro Crudo | Veta honda de zafiro: CALIDAD 719/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 16.689,85 | 1.668,98 | 333.797,00 |
-| `gema_zafiro_2` | Zafiro Pulido | Veta honda de zafiro: CALIDAD 220/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 54.545,45 | 5.454,55 | 1.090.909,00 |
-| `gema_zafiro_3` | Zafiro Impecable | Veta honda de zafiro: CALIDAD 55/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 218.181,82 | 21.818,18 | 4.363.636,40 |
-| `gema_zafiro_4` | Zafiro Perfecto | Veta honda de zafiro: CALIDAD 5/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 2.400.000,00 | 240.000,00 | 48.000.000,00 |
-| `gema_zafiro_5` | Zafiro Estelar | Veta honda de zafiro: CALIDAD 1/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 12.000.000,00 | 1.200.000,00 | 240.000.000,00 |
-| `gema_jade_1` | Jade Crudo | Veta honda de jade: CALIDAD 719/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 16.689,85 | 1.668,98 | 333.797,00 |
-| `gema_jade_2` | Jade Pulido | Veta honda de jade: CALIDAD 220/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 54.545,45 | 5.454,55 | 1.090.909,00 |
-| `gema_jade_3` | Jade Impecable | Veta honda de jade: CALIDAD 55/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 218.181,82 | 21.818,18 | 4.363.636,40 |
-| `gema_jade_4` | Jade Perfecto | Veta honda de jade: CALIDAD 5/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 2.400.000,00 | 240.000,00 | 48.000.000,00 |
-| `gema_jade_5` | Jade Estelar | Veta honda de jade: CALIDAD 1/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 12.000.000,00 | 1.200.000,00 | 240.000.000,00 |
-| `gema_topacio_1` | Topacio Crudo | Veta honda de topacio: CALIDAD 719/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 16.689,85 | 1.668,98 | 333.797,00 |
-| `gema_topacio_2` | Topacio Pulido | Veta honda de topacio: CALIDAD 220/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 54.545,45 | 5.454,55 | 1.090.909,00 |
-| `gema_topacio_3` | Topacio Impecable | Veta honda de topacio: CALIDAD 55/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 218.181,82 | 21.818,18 | 4.363.636,40 |
-| `gema_topacio_4` | Topacio Perfecto | Veta honda de topacio: CALIDAD 5/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 2.400.000,00 | 240.000,00 | 48.000.000,00 |
-| `gema_topacio_5` | Topacio Estelar | Veta honda de topacio: CALIDAD 1/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 12.000.000,00 | 1.200.000,00 | 240.000.000,00 |
-| `gema_amatista_1` | Amatista Cruda | Veta honda de amatista: CALIDAD 719/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 16.689,85 | 1.668,98 | 333.797,00 |
-| `gema_amatista_2` | Amatista Pulida | Veta honda de amatista: CALIDAD 220/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 54.545,45 | 5.454,55 | 1.090.909,00 |
-| `gema_amatista_3` | Amatista Impecable | Veta honda de amatista: CALIDAD 55/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 218.181,82 | 21.818,18 | 4.363.636,40 |
-| `gema_amatista_4` | Amatista Perfecta | Veta honda de amatista: CALIDAD 5/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 2.400.000,00 | 240.000,00 | 48.000.000,00 |
-| `gema_amatista_5` | Amatista Estelar | Veta honda de amatista: CALIDAD 1/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 12.000.000,00 | 1.200.000,00 | 240.000.000,00 |
-| `gema_opalo_1` | Ópalo Crudo | Veta honda de opalo: CALIDAD 719/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 16.689,85 | 1.668,98 | 333.797,00 |
-| `gema_opalo_2` | Ópalo Pulido | Veta honda de opalo: CALIDAD 220/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 54.545,45 | 5.454,55 | 1.090.909,00 |
-| `gema_opalo_3` | Ópalo Impecable | Veta honda de opalo: CALIDAD 55/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 218.181,82 | 21.818,18 | 4.363.636,40 |
-| `gema_opalo_4` | Ópalo Perfecto | Veta honda de opalo: CALIDAD 5/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 2.400.000,00 | 240.000,00 | 48.000.000,00 |
-| `gema_opalo_5` | Ópalo Estelar | Veta honda de opalo: CALIDAD 1/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 12.000.000,00 | 1.200.000,00 | 240.000.000,00 |
-| `gema_onix_1` | Ónix Crudo | Veta honda de onix: CALIDAD 719/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 16.689,85 | 1.668,98 | 333.797,00 |
-| `gema_onix_2` | Ónix Pulido | Veta honda de onix: CALIDAD 220/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 54.545,45 | 5.454,55 | 1.090.909,00 |
-| `gema_onix_3` | Ónix Impecable | Veta honda de onix: CALIDAD 55/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 218.181,82 | 21.818,18 | 4.363.636,40 |
-| `gema_onix_4` | Ónix Perfecto | Veta honda de onix: CALIDAD 5/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 2.400.000,00 | 240.000,00 | 48.000.000,00 |
-| `gema_onix_5` | Ónix Estelar | Veta honda de onix: CALIDAD 1/1000; supuesto esfuerzo de un mob T4 por veta, sin polvo | 12.000.000,00 | 1.200.000,00 | 240.000.000,00 |
+| `gema_rubi_1` | Rubí Crudo | Veta honda de rubi: CALIDAD 719/1000; una veta = un Cristal ($8,500), sin polvo | 11.821,97 | 1.182,20 | 236.439,40 |
+| `gema_rubi_2` | Rubí Pulido | Veta honda de rubi: CALIDAD 220/1000; una veta = un Cristal ($8,500), sin polvo | 38.636,36 | 3.863,64 | 772.727,20 |
+| `gema_rubi_3` | Rubí Impecable | Veta honda de rubi: CALIDAD 55/1000; una veta = un Cristal ($8,500), sin polvo | 154.545,45 | 15.454,55 | 3.090.909,00 |
+| `gema_rubi_4` | Rubí Perfecto | Veta honda de rubi: CALIDAD 5/1000; una veta = un Cristal ($8,500), sin polvo | 1.700.000,00 | 170.000,00 | 34.000.000,00 |
+| `gema_rubi_5` | Rubí Estelar | Veta honda de rubi: CALIDAD 1/1000; una veta = un Cristal ($8,500), sin polvo | 8.500.000,00 | 850.000,00 | 170.000.000,00 |
+| `gema_zafiro_1` | Zafiro Crudo | Veta honda de zafiro: CALIDAD 719/1000; una veta = un Cristal ($8,500), sin polvo | 11.821,97 | 1.182,20 | 236.439,40 |
+| `gema_zafiro_2` | Zafiro Pulido | Veta honda de zafiro: CALIDAD 220/1000; una veta = un Cristal ($8,500), sin polvo | 38.636,36 | 3.863,64 | 772.727,20 |
+| `gema_zafiro_3` | Zafiro Impecable | Veta honda de zafiro: CALIDAD 55/1000; una veta = un Cristal ($8,500), sin polvo | 154.545,45 | 15.454,55 | 3.090.909,00 |
+| `gema_zafiro_4` | Zafiro Perfecto | Veta honda de zafiro: CALIDAD 5/1000; una veta = un Cristal ($8,500), sin polvo | 1.700.000,00 | 170.000,00 | 34.000.000,00 |
+| `gema_zafiro_5` | Zafiro Estelar | Veta honda de zafiro: CALIDAD 1/1000; una veta = un Cristal ($8,500), sin polvo | 8.500.000,00 | 850.000,00 | 170.000.000,00 |
+| `gema_jade_1` | Jade Crudo | Veta honda de jade: CALIDAD 719/1000; una veta = un Cristal ($8,500), sin polvo | 11.821,97 | 1.182,20 | 236.439,40 |
+| `gema_jade_2` | Jade Pulido | Veta honda de jade: CALIDAD 220/1000; una veta = un Cristal ($8,500), sin polvo | 38.636,36 | 3.863,64 | 772.727,20 |
+| `gema_jade_3` | Jade Impecable | Veta honda de jade: CALIDAD 55/1000; una veta = un Cristal ($8,500), sin polvo | 154.545,45 | 15.454,55 | 3.090.909,00 |
+| `gema_jade_4` | Jade Perfecto | Veta honda de jade: CALIDAD 5/1000; una veta = un Cristal ($8,500), sin polvo | 1.700.000,00 | 170.000,00 | 34.000.000,00 |
+| `gema_jade_5` | Jade Estelar | Veta honda de jade: CALIDAD 1/1000; una veta = un Cristal ($8,500), sin polvo | 8.500.000,00 | 850.000,00 | 170.000.000,00 |
+| `gema_topacio_1` | Topacio Crudo | Veta honda de topacio: CALIDAD 719/1000; una veta = un Cristal ($8,500), sin polvo | 11.821,97 | 1.182,20 | 236.439,40 |
+| `gema_topacio_2` | Topacio Pulido | Veta honda de topacio: CALIDAD 220/1000; una veta = un Cristal ($8,500), sin polvo | 38.636,36 | 3.863,64 | 772.727,20 |
+| `gema_topacio_3` | Topacio Impecable | Veta honda de topacio: CALIDAD 55/1000; una veta = un Cristal ($8,500), sin polvo | 154.545,45 | 15.454,55 | 3.090.909,00 |
+| `gema_topacio_4` | Topacio Perfecto | Veta honda de topacio: CALIDAD 5/1000; una veta = un Cristal ($8,500), sin polvo | 1.700.000,00 | 170.000,00 | 34.000.000,00 |
+| `gema_topacio_5` | Topacio Estelar | Veta honda de topacio: CALIDAD 1/1000; una veta = un Cristal ($8,500), sin polvo | 8.500.000,00 | 850.000,00 | 170.000.000,00 |
+| `gema_amatista_1` | Amatista Cruda | Veta honda de amatista: CALIDAD 719/1000; una veta = un Cristal ($8,500), sin polvo | 11.821,97 | 1.182,20 | 236.439,40 |
+| `gema_amatista_2` | Amatista Pulida | Veta honda de amatista: CALIDAD 220/1000; una veta = un Cristal ($8,500), sin polvo | 38.636,36 | 3.863,64 | 772.727,20 |
+| `gema_amatista_3` | Amatista Impecable | Veta honda de amatista: CALIDAD 55/1000; una veta = un Cristal ($8,500), sin polvo | 154.545,45 | 15.454,55 | 3.090.909,00 |
+| `gema_amatista_4` | Amatista Perfecta | Veta honda de amatista: CALIDAD 5/1000; una veta = un Cristal ($8,500), sin polvo | 1.700.000,00 | 170.000,00 | 34.000.000,00 |
+| `gema_amatista_5` | Amatista Estelar | Veta honda de amatista: CALIDAD 1/1000; una veta = un Cristal ($8,500), sin polvo | 8.500.000,00 | 850.000,00 | 170.000.000,00 |
+| `gema_opalo_1` | Ópalo Crudo | Veta honda de opalo: CALIDAD 719/1000; una veta = un Cristal ($8,500), sin polvo | 11.821,97 | 1.182,20 | 236.439,40 |
+| `gema_opalo_2` | Ópalo Pulido | Veta honda de opalo: CALIDAD 220/1000; una veta = un Cristal ($8,500), sin polvo | 38.636,36 | 3.863,64 | 772.727,20 |
+| `gema_opalo_3` | Ópalo Impecable | Veta honda de opalo: CALIDAD 55/1000; una veta = un Cristal ($8,500), sin polvo | 154.545,45 | 15.454,55 | 3.090.909,00 |
+| `gema_opalo_4` | Ópalo Perfecto | Veta honda de opalo: CALIDAD 5/1000; una veta = un Cristal ($8,500), sin polvo | 1.700.000,00 | 170.000,00 | 34.000.000,00 |
+| `gema_opalo_5` | Ópalo Estelar | Veta honda de opalo: CALIDAD 1/1000; una veta = un Cristal ($8,500), sin polvo | 8.500.000,00 | 850.000,00 | 170.000.000,00 |
+| `gema_onix_1` | Ónix Crudo | Veta honda de onix: CALIDAD 719/1000; una veta = un Cristal ($8,500), sin polvo | 11.821,97 | 1.182,20 | 236.439,40 |
+| `gema_onix_2` | Ónix Pulido | Veta honda de onix: CALIDAD 220/1000; una veta = un Cristal ($8,500), sin polvo | 38.636,36 | 3.863,64 | 772.727,20 |
+| `gema_onix_3` | Ónix Impecable | Veta honda de onix: CALIDAD 55/1000; una veta = un Cristal ($8,500), sin polvo | 154.545,45 | 15.454,55 | 3.090.909,00 |
+| `gema_onix_4` | Ónix Perfecto | Veta honda de onix: CALIDAD 5/1000; una veta = un Cristal ($8,500), sin polvo | 1.700.000,00 | 170.000,00 | 34.000.000,00 |
+| `gema_onix_5` | Ónix Estelar | Veta honda de onix: CALIDAD 1/1000; una veta = un Cristal ($8,500), sin polvo | 8.500.000,00 | 850.000,00 | 170.000.000,00 |
 | `cristal_caverna` | Cristal Astral en bruto | Precio de venta NPC en economia.CAVERNAS_PRECIO/VACIO_PRECIO (piso y referencia) | 8.500,00 | 8.500,00 | 170.000,00 |
 | `geoda_estelar` | Geoda Estelar | Precio de venta NPC en economia.CAVERNAS_PRECIO/VACIO_PRECIO (piso y referencia) | 76.000,00 | 76.000,00 | 1.520.000,00 |
 | `polvo_cristal` | Polvo de Cristal | cavernas.py mob exterior T4 / drop 0.02 | 600.000,00 | 60.000,00 | 12.000.000,00 |
@@ -125,11 +123,11 @@ El survival adapta su tier al jugador: se asume T5 para Nether/End y T3 para vin
 
 ## Fichas para Gemini
 
-Casilleros desde 0, izquierda a derecha. No dibujar nombres/precios/cantidades variables; van en el tooltip. Los espacios no listados quedan libres. Inicio, Producto, Cantidad, Precio, Mis órdenes y Vender inventario usan título simple hasta aprobar arte nuevo.
+Casilleros desde 0, izquierda a derecha. No dibujar nombres/precios/cantidades variables; van en el tooltip. Los espacios no listados quedan libres. Arte y casilleros vigentes del diseño Gemini 1.3.0: ver bazar-ventanas-26-11.md; esta tabla conserva la referencia del modo simple.
 
 | Ventana | Filas | Casilleros / texto |
 |---|---:|---|
-| Inicio | 6 | Columna categorías 0 Minería, 9 Combate, 18 Bosque y pesca, 27 Consumibles, 36 Especiales. Productos: columnas 2–8 de filas 0–4 (35 por página). 45 Buscar, 46 Mis órdenes, 47 Vender inventario, 48 Vender equipo al server, 49 Anterior, 50 Siguiente, 51 Página, 53 Cerrar. |
+| Inicio | 6 | Columna categorías 0 Combate, 9 Bosque, 18 Océano, 27 Consumibles, 36 Especiales. Productos: columnas 2–8 de filas 0–4 (35 por página). 45 Buscar, 46 Mis órdenes, 47 Vender inventario, 48 Vender equipo al server, 49 Anterior, 50 Página, 51 Siguiente, 53 Cerrar. |
 | Producto | 6 | Comprar al instante 10/11/19/20; Vender al instante 14/15/23/24; Crear orden de compra 28/29/37/38; Crear oferta de venta 32/33/41/42; 45 Volver; 49 Mis órdenes. Lore: mejor precio, hasta siete puntas, inventario y clic. |
 | Cantidad | 5 | Instantánea: 10 Una unidad, 12 Un stack, 15 Llenar inventario. Órdenes: 10 64, 12 160, 14 1024; venta: 15 Todo lo que tengo. Siempre: 16 A mano, 36 Volver, 44 Cerrar. |
 | Precio | 5 | 10 Igual a la mejor, 12 Mejor +/-$0,10, 14 5% del margen, 16 A mano. 36 Volver, 44 Cerrar. Sin margen positivo el botón 14 queda deshabilitado y lo explica. |
@@ -140,4 +138,4 @@ Confirmar orden y las dos ventanas de equipo mantienen sus botones del diseño 1
 
 El tooltip oculta atributos/encantamientos en las copias de UI, sin modificar los ítems comerciables. Las líneas avanzadas del cliente (`minecraft:paper`, número de componentes, F3+H) no pueden ocultarse selectivamente desde Paper sin esconder también nombre/lore; desactivar F3+H en el cliente.
 
-El catálogo depende de generadores locales previos no publicados (economía, Clases, Vacío, historia, manzanas); la tarea no autoriza publicar esas fuentes. Recompilar el catálogo versionado con `--solo-compilar` evita ejecutarlas. Arte previo del Bazar también existe sin publicar y debe separarse antes de publicar esta tarea.
+El catálogo depende de generadores locales previos no publicados (economía, Clases, Vacío, historia, manzanas); la tarea no autoriza publicar esas fuentes. Recompilar el catálogo versionado con `--solo-compilar` evita ejecutarlas. La base del Bazar 1.3.0 se incluye por autorización expresa en la tarea de categorías 1.3.1.

@@ -1,6 +1,12 @@
-# Bazar Astral — 1.2.0 privada, 26/11/2026
+# Bazar Astral — 1.3.1 privada, 27/11/2026
 
-La especificación vigente es [bazar-hypixel.md](../build/deploy/bazar-hypixel.md): archivos y destinos,
+La entrega vigente de categorías es [bazar-categorias-27-11.md](../build/deploy/bazar-categorias-27-11.md).
+Combate abre por defecto y reúne ambas Netheritas; Bosque (Madera Estelar/Palo Reforzado)
+y Océano (Perla Abisal/Coral Astral) reemplazan Minería y Bosque y pesca. Consumibles y
+Especiales siguen iguales. Las órdenes guardan ID, no categoría; se conserva SQLite
+sin migración destructiva. El cargador admite el catálogo antiguo y categorías desconocidas.
+
+La especificación de operaciones es [bazar-hypixel.md](../build/deploy/bazar-hypixel.md): archivos y destinos,
 tabla completa de referencias con cálculos/supuestos, fichas para Gemini y resultado del ensayo.
 La entrega histórica de fase 1, citada abajo, describe el flujo anterior.
 
@@ -26,8 +32,9 @@ Conserva órdenes, custodia, wallet y journal; las órdenes anteriores siguen ej
 queden fuera de los límites nuevos. No eliminar ni reemplazar la base al instalar.
 Conservar juntos SQLite/WAL/SHM, Essentials y archivos de jugador para recuperación.
 
-Inicio, Producto, Cantidad, Precio, Mis órdenes y Vender inventario usan ventanas simples.
-Confirmar orden y equipo conservan el diseño previo. Sin cambios al resource pack.
+Inicio, Producto, Cantidad, Precio, Mis órdenes y Vender inventario usan el arte Gemini
+del 26/11. Confirmar orden y equipo conservan el diseño previo. La entrega 1.3.1 cambia
+solo los botones del inicio sobre el FINAL en vivo; no reemplazarlo por el ZIP público.
 F3+H muestra información avanzada del cliente que Paper no permite ocultar selectivamente.
 
 Sigue oculto: `publico: false`, permiso por defecto false y solo ByTrainx autorizado.

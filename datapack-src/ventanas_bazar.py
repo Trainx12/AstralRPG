@@ -382,8 +382,10 @@ if __name__ == '__main__':
 
 
 # ================================================================== glifos (titulo de cada ventana)
-ORDEN = list(FILAS)
-BASE = 0xF600                   # 16 caracteres por ventana: 0xF600 .. 0xF6AF
+# 26/11: Bazar 1.2.0 con el arte Gemini nuevo (ventanas_bazar26.py); confirmar_orden y las de equipo siguen de aca.
+ORDEN = ['productos', 'producto', 'cantidad_ic', 'cantidad_iv', 'cantidad_oc', 'cantidad_ov', 'precio', 'mis_ordenes',
+         'inventario', 'confirmar_orden', 'vender_equipo', 'confirmar_equipo']
+BASE = 0xF600                   # 16 caracteres por ventana: 0xF600 .. 0xF6BF
 
 
 def tiles(kind):

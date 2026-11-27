@@ -60,6 +60,43 @@ public final class BazarProbe {
             s.cancel(u,order.id());b.collectOrder(a,order.id());
         }
     }
+    void categoryMigration()throws Exception {
+        Path catalog=b.getDataFolder().toPath().resolve("productos.yml");byte[] saved=Files.readAllBytes(catalog);
+        var cfg=org.bukkit.configuration.file.YamlConfiguration.loadConfiguration(catalog.toFile());
+        Path db=getDataFolder().toPath().resolve("categorias.sqlite");Files.createDirectories(db.getParent());
+        var defs=new HashMap<String,BazarStore.Product>();
+        for(var p:b.products.values())defs.put(p.id(),new BazarStore.Product(p.id(),p.min(),p.max()));
+        long order;String owner=b.owner(a);var product=b.products.get("netherita_fundida");
+        try(var old=new BazarStore(db,defs)){
+            old.credit(owner,product.min()*3);order=old.create(owner,product.id(),true,2,product.min(),false);
+        }
+        try{
+            cfg.set("productos.netherita_fundida.categoria","Mineria");
+            cfg.set("productos.netherita_reforzada.categoria","Mineria");
+            for(String id:List.of("madera_estelar","palo_reforzado","perla_abisal","coral_astral"))cfg.set("productos."+id+".categoria","Bosque y pesca");
+            cfg.set("productos.fragmento_astral.categoria","Categoria futura desconocida");cfg.save(catalog.toFile());
+            b.products.clear();b.equipment.clear();b.loadCatalog();
+            ok(b.products.get(product.id()).category().equals("Combate"),"catálogo Mineria carga en Combate");
+            ok(b.products.get("fragmento_astral").category().equals("Especiales"),"categoría desconocida carga sin romper catálogo");
+            try(var reopened=new BazarStore(db,defs)){
+                var o=reopened.find(order);
+                ok(o.product().equals(product.id())&&o.remaining()==2&&!o.cancelled(),"orden Mineria conserva ID y cantidad al reabrir SQLite");
+                ok(reopened.wallet(owner)==product.min(),"migración conserva saldo reservado y libre");
+                reopened.cancel(owner,order);ok(reopened.wallet(owner)==product.min()*3,"orden migrada se cancela y devuelve reserva");
+            }
+        }finally{Files.write(catalog,saved);b.products.clear();b.equipment.clear();b.loadCatalog();}
+        ok(Arrays.equals(AstralBazar.CATS,new String[]{"Combate","Bosque","Oceano","Consumibles","Especiales"}),"cinco categorías en orden");
+        for(var entry:Map.of("netherita_fundida","Combate","netherita_reforzada","Combate","madera_estelar","Bosque","palo_reforzado","Bosque","perla_abisal","Oceano","coral_astral","Oceano").entrySet())
+            ok(b.products.get(entry.getKey()).category().equals(entry.getValue()),"categoría nueva "+entry.getKey());
+        b.home(a);var home=(AstralBazar.Screen)a.getOpenInventory().getTopInventory().getHolder();
+        ok(home.inv.getItem(0).getItemMeta().getDisplayName().contains("► Combate"),"Combate seleccionado por defecto");
+        for(int slot:List.of(9,18)){
+            home.actions.get(slot).run();var inv=a.getOpenInventory().getTopInventory();
+            String cat=slot==9?"Bosque":"Oceano";int count=0;
+            for(int i:AstralBazar.PRODUCT_SLOTS)if(inv.getItem(i)!=null){count++;String identity=AstralBazar.identity(inv.getItem(i));ok(b.products.values().stream().anyMatch(p->p.category().equals(cat)&&AstralBazar.identity(p.item()).equals(identity)),"filtro "+cat);}
+            ok(count==2,"dos productos en "+cat);
+        }
+    }
     void run()throws Exception {
         String u=a.getUniqueId().toString(),v=z.getUniqueId().toString();
         Path crash=getDataFolder().toPath().resolve("crash.properties");
@@ -79,6 +116,7 @@ public final class BazarProbe {
         ok(!(z.getOpenInventory().getTopInventory().getHolder() instanceof AstralBazar.Screen),"sin permiso no abre");
         ok(!z.hasPermission("astral.bazar.usar"),"default false incluso sin OP");
         ok(b.products.size()==88,"88 productos canónicos cargados sin errores");
+        categoryMigration();
         var x=b.products.get("fragmento_astral");
         ok(x!=null&&b.product(x.item())==x,"producto canónico");
         ok(b.product(new ItemStack(Material.PAPER))==null,"vanilla rechazado");
@@ -174,7 +212,7 @@ public final class BazarProbe {
         var y=b.products.get("nucleo_furia");long yp=y.min()+1000;
         s.credit(v,100000000000L);s.credit(u,100000000000L);
         b.home(a);var home=(AstralBazar.Screen)a.getOpenInventory().getTopInventory().getHolder();
-        ok(a.getOpenInventory().getTitle().equals("Bazar - Inicio")&&!home.artwork,"inicio simple sin glifo");
+        ok(!a.getOpenInventory().getTitle().equals("Bazar - Inicio")&&home.artwork,"inicio con diseno (glifo)");
         for(int i=0;i<5;i++)ok(home.actions.containsKey(i*9),"categoría columna "+i);
         ok(Arrays.stream(AstralBazar.PRODUCT_SLOTS).anyMatch(i->home.inv.getItem(i)!=null),"inicio ya muestra productos");
         for(int slot:new int[]{45,46,47,48,53})ok(home.actions.containsKey(slot),"inicio acción "+slot);
@@ -183,12 +221,12 @@ public final class BazarProbe {
         ok(icon.getItemMeta().getLore().stream().noneMatch(l->l.contains("Rango")),"producto sin rango");
         ok(icon.getItemMeta().getLore().getFirst().contains("Comprar al instante"),"producto precio instantáneo");
         b.detail(a,y);var detail=(AstralBazar.Screen)a.getOpenInventory().getTopInventory().getHolder();
-        ok(!detail.artwork&&detail.inv.getItem(4)==null&&detail.inv.getItem(16)==null,"producto sin lista de papeles");
-        for(int slot:new int[]{10,14,28,32,45,49})ok(detail.actions.containsKey(slot),"producto cuatro acciones y navegación "+slot);
+        ok(detail.artwork&&detail.inv.getItem(4)!=null&&detail.actions.containsKey(16),"producto con el item arriba y tarjetas anchas");
+        for(int slot:new int[]{10,14,28,32,45,51})ok(detail.actions.containsKey(slot),"producto cuatro acciones y navegación "+slot);
         b.amount(a,y,true,true);var amountUI=(AstralBazar.Screen)a.getOpenInventory().getTopInventory().getHolder();
         for(int slot:new int[]{10,12,15,16})ok(amountUI.actions.containsKey(slot),"cantidad instantánea "+slot);
         b.amount(a,y,true,false);amountUI=(AstralBazar.Screen)a.getOpenInventory().getTopInventory().getHolder();
-        ok(amountUI.inv.getItem(10).getItemMeta().getDisplayName().contains("64")&&amountUI.inv.getItem(12).getItemMeta().getDisplayName().contains("160")&&amountUI.inv.getItem(14).getItemMeta().getDisplayName().contains("1024"),"cantidades de órdenes 64/160/1024");
+        ok(amountUI.inv.getItem(10).getItemMeta().getDisplayName().contains("64")&&amountUI.inv.getItem(13).getItemMeta().getDisplayName().contains("160")&&amountUI.inv.getItem(16).getItemMeta().getDisplayName().contains("1024"),"cantidades de órdenes 64/160/1024");
         ok(b.marginPrice(y,true)==0,"margen deshabilitado sin puntas");
         long bid=s.create(v,y.id(),true,100,yp,false);s.claim(v,y.id(),200,null,"");long ask=s.create(v,y.id(),false,100,yp+2000,false);
         ok(b.marginPrice(y,true)==yp+100&&b.marginPrice(y,false)==yp+1900,"5% desde ambos extremos del margen");
