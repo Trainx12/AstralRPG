@@ -100,7 +100,9 @@ function astral_anc_lanzar(p: player, s: location):
     set {{_mob}} to random element out of {{_mobs::*}}
     set {{_w}} to name of world of {{_s}}
     set {{-astral.anc.lanzando}} to true
+    add "astral.ancestral.target" to scoreboard tags of {{_p}}
     execute console command "mm mobs spawn %{{_mob}}% 1 %{{_w}}%,%x-coordinate of {{_s}} + 0.5%,%y-coordinate of {{_s}}%,%z-coordinate of {{_s}} + 0.5%"
+    remove "astral.ancestral.target" from scoreboard tags of {{_p}}
     wait 3 ticks
     delete {{-astral.anc.lanzando}}
     loop entities in radius 6 of {{_s}}:

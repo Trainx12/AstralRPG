@@ -35,6 +35,19 @@ public final class AstralProgression extends JavaPlugin implements Listener {
             List<org.bukkit.attribute.AttributeModifier> modifiers) {}
     private final Map<UUID,List<SplitAttribute>> pendingSplits = new HashMap<>();
     private final Map<UUID,List<SplitAttribute>> dyingSplits = new HashMap<>();
+    @EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=true)
+    public void worldBossSpawn(CreatureSpawnEvent e) {
+        if(e.getSpawnReason()!=CreatureSpawnEvent.SpawnReason.CUSTOM) return;
+        LivingEntity mob=e.getEntity();
+        // Mythic restores its configured base health after onSpawn commands finish (e.g. 1000 x5).
+        // Run once after insertion, using the tier saved on spawn, never on chunk load or a timer.
+        Bukkit.getScheduler().runTask(this,()->{
+            if(!mob.isValid() || mob.isDead() || !mob.getScoreboardTags().contains("ad.boss.scaled") ||
+                mob.getScoreboardTags().stream().noneMatch(t->t.matches("astral\\.jm(?:[1-9]|10)"))) return;
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"execute as "+mob.getUniqueId()+
+                " at @s run function astral:mob/jefe_vida");
+        });
+    }
     @EventHandler(priority=EventPriority.LOWEST,ignoreCancelled=true)
     public void splitDeath(EntityDeathEvent e) {
         if(!(e.getEntity() instanceof Slime parent) || parent.getSize()<=1 || !scaledSplit(parent)) return;
@@ -106,7 +119,10 @@ public final class AstralProgression extends JavaPlugin implements Listener {
         if(e.getTransformReason()!=EntityTransformEvent.TransformReason.SPLIT ||
             !(e.getEntity() instanceof Slime parent) || !scaledSplit(parent)) return;
         var captured=dyingSplits.remove(parent.getUniqueId());
-        var snapshot=captured!=null?captured:splitAttributes(parent);
+        var original=captured!=null?captured:splitAttributes(parent);
+        // Each generation has half the previous maximum, including elite modifiers.
+        var snapshot=original.stream().map(a -> a.type()==Attribute.MAX_HEALTH
+            ? new SplitAttribute(a.type(),a.base()/2,a.modifiers()) : a).toList();
         for(Entity entity:e.getTransformedEntities()) {
             if(!(entity instanceof Slime child) || child.getType()!=parent.getType() ||
                 child.isInvulnerable() || pet(child)) continue;
@@ -267,6 +283,7 @@ public final class AstralProgression extends JavaPlugin implements Listener {
     public int tier(LivingEntity mob) {
         if(mob instanceof Player || mob.getType()==EntityType.ARMOR_STAND || friendly(mob)) return 0;
         for(int t=10;t>=1;t--) if(mob.getScoreboardTags().contains("astral.mt"+t)) return t;
+        for(int t=10;t>=1;t--) if(mob.getScoreboardTags().contains("astral.jm"+t)) return t;
         String mm=mythic(mob);
         if(!mm.isEmpty()) return getConfig().getInt("mythic."+mm+".tier",0);
         if(!(mob instanceof Monster)) return 0;
@@ -293,12 +310,11 @@ public final class AstralProgression extends JavaPlugin implements Listener {
         int tier=tier(mob);
         if(tier==0) return 0;
         String mm=mythic(mob);
-        if(mob.getScoreboardTags().contains("astral.split"))
-            return getConfig().getDouble("xp."+tier) * getConfig().getDouble("normal-bonus",1);
         boolean boss=getConfig().getBoolean("mythic."+mm+".boss",false);
         boolean elite=getConfig().getBoolean("mythic."+mm+".elite",false) ||
             mob.getScoreboardTags().stream().anyMatch(t->t.startsWith("astral.elite"));
-        return getConfig().getDouble("xp."+tier) * getConfig().getDouble(boss?"boss-bonus":elite?"elite-bonus":"normal-bonus",1);
+        double sizeFactor=mob instanceof Slime slime ? (slime.getSize()==1?0.20:slime.getSize()==2?0.45:1) : 1;
+        return getConfig().getDouble("xp."+tier) * getConfig().getDouble(boss?"boss-bonus":elite?"elite-bonus":"normal-bonus",1) * sizeFactor;
     }
     // 24/11 (dueno): un mob de mas tier que el jugador paga como su vida: x5 por tier de diferencia, tope +2.
     // Tier del jugador = requisitos reales del equipo de la skill acreditada.

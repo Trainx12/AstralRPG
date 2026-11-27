@@ -1,0 +1,945 @@
+# Generado por gameplay.py. Skript 2.17+, Paper 26.1. Sin addons ni permisos de vuelo.
+options:
+    rescate-y-lobby: 60
+    rescate-y-bosque: 0
+    rescate-y-bosque_2: 0
+    rescate-y-bosque_3: 0
+    rescate-y-bosque_4: 0
+    rescate-y-bosque_5: 0
+    rescate-y-bosque_6: 0
+    rescate-y-tumba: 0
+    rescate-y-tumba_2: 0
+    rescate-y-tumba_3: 0
+    rescate-y-tumba_4: 0
+    rescate-y-tumba_5: 0
+    rescate-y-tumba_6: 0
+    rescate-y-mina: -60
+    rescate-y-mina_2: -60
+    rescate-y-mina_3: -60
+    rescate-y-mina_4: -60
+    rescate-y-mina_5: -60
+    rescate-y-mina_6: -60
+    rescate-y-cumbre: 0
+    rescate-y-forja: 0
+    rescate-y-santuario: 0
+    rescate-y-santuario_azeroth: 0
+    rescate-y-santuario_azeroth_2: 0
+    rescate-y-santuario_azeroth_3: 0
+    rescate-y-santuario_azeroth_4: 0
+    rescate-y-santuario_azeroth_5: 0
+    rescate-y-santuario_azeroth_6: 0
+    rescate-y-world_minecraft_santuario_azeroth: 0
+    rescate-y-world_minecraft_santuario_azeroth_2: 0
+    rescate-y-world_minecraft_santuario_azeroth_3: 0
+    rescate-y-world_minecraft_santuario_azeroth_4: 0
+    rescate-y-world_minecraft_santuario_azeroth_5: 0
+    rescate-y-world_minecraft_santuario_azeroth_6: 0
+    rescate-y-infinita: 40
+    rescate-y-infinita_2: 40
+    rescate-y-infinita_3: 40
+    rescate-y-infinita_4: 40
+    rescate-y-infinita_5: 40
+    rescate-y-infinita_6: 40
+
+# Solo lobby y mazmorras. La altura -10000 deja fuera al resto de mundos.
+function astral_rescue_height(w: world) :: number:
+    if name of {_w} is "lobby":
+        return {@rescate-y-lobby}
+    if name of {_w} is "bosque":
+        return {@rescate-y-bosque}
+    if name of {_w} is "bosque_2":
+        return {@rescate-y-bosque_2}
+    if name of {_w} is "bosque_3":
+        return {@rescate-y-bosque_3}
+    if name of {_w} is "bosque_4":
+        return {@rescate-y-bosque_4}
+    if name of {_w} is "bosque_5":
+        return {@rescate-y-bosque_5}
+    if name of {_w} is "bosque_6":
+        return {@rescate-y-bosque_6}
+    if name of {_w} is "tumba":
+        return {@rescate-y-tumba}
+    if name of {_w} is "tumba_2":
+        return {@rescate-y-tumba_2}
+    if name of {_w} is "tumba_3":
+        return {@rescate-y-tumba_3}
+    if name of {_w} is "tumba_4":
+        return {@rescate-y-tumba_4}
+    if name of {_w} is "tumba_5":
+        return {@rescate-y-tumba_5}
+    if name of {_w} is "tumba_6":
+        return {@rescate-y-tumba_6}
+    if name of {_w} is "mina":
+        return {@rescate-y-mina}
+    if name of {_w} is "mina_2":
+        return {@rescate-y-mina_2}
+    if name of {_w} is "mina_3":
+        return {@rescate-y-mina_3}
+    if name of {_w} is "mina_4":
+        return {@rescate-y-mina_4}
+    if name of {_w} is "mina_5":
+        return {@rescate-y-mina_5}
+    if name of {_w} is "mina_6":
+        return {@rescate-y-mina_6}
+    if name of {_w} is "cumbre":
+        return {@rescate-y-cumbre}
+    if name of {_w} is "forja":
+        return {@rescate-y-forja}
+    if name of {_w} is "santuario":
+        return {@rescate-y-santuario}
+    if name of {_w} is "santuario_azeroth":
+        return {@rescate-y-santuario_azeroth}
+    if name of {_w} is "santuario_azeroth_2":
+        return {@rescate-y-santuario_azeroth_2}
+    if name of {_w} is "santuario_azeroth_3":
+        return {@rescate-y-santuario_azeroth_3}
+    if name of {_w} is "santuario_azeroth_4":
+        return {@rescate-y-santuario_azeroth_4}
+    if name of {_w} is "santuario_azeroth_5":
+        return {@rescate-y-santuario_azeroth_5}
+    if name of {_w} is "santuario_azeroth_6":
+        return {@rescate-y-santuario_azeroth_6}
+    if name of {_w} is "world_minecraft_santuario_azeroth":
+        return {@rescate-y-world_minecraft_santuario_azeroth}
+    if name of {_w} is "world_minecraft_santuario_azeroth_2":
+        return {@rescate-y-world_minecraft_santuario_azeroth_2}
+    if name of {_w} is "world_minecraft_santuario_azeroth_3":
+        return {@rescate-y-world_minecraft_santuario_azeroth_3}
+    if name of {_w} is "world_minecraft_santuario_azeroth_4":
+        return {@rescate-y-world_minecraft_santuario_azeroth_4}
+    if name of {_w} is "world_minecraft_santuario_azeroth_5":
+        return {@rescate-y-world_minecraft_santuario_azeroth_5}
+    if name of {_w} is "world_minecraft_santuario_azeroth_6":
+        return {@rescate-y-world_minecraft_santuario_azeroth_6}
+    if name of {_w} is "infinita":
+        return {@rescate-y-infinita}
+    if name of {_w} is "infinita_2":
+        return {@rescate-y-infinita_2}
+    if name of {_w} is "infinita_3":
+        return {@rescate-y-infinita_3}
+    if name of {_w} is "infinita_4":
+        return {@rescate-y-infinita_4}
+    if name of {_w} is "infinita_5":
+        return {@rescate-y-infinita_5}
+    if name of {_w} is "infinita_6":
+        return {@rescate-y-infinita_6}
+    return -10000
+
+# Santuario vuelve a su entrada; el resto conserva su rescate al lobby.
+function astral_rescue(p: player):
+    set velocity of {_p} to vector(0, 0, 0)
+    set fall distance of {_p} to 0
+    if name of world of {_p} contains "santuario_azeroth":
+        # En la misma copia del Santuario donde estaba (instancias.py).
+        execute console command "execute as %name of {_p}% at @s run minecraft:tp @s 256.5 64 281.5 180 0"
+        set fall distance of {_p} to 0
+        send action bar "&eCaiste al vacio: volviste a la entrada del Santuario." to {_p}
+        stop
+    execute console command "spawn %name of {_p}%"
+    send action bar "&eCaiste fuera del mapa: volviste al spawn." to {_p}
+
+# Santuario: si ya hay alguien en la entrada, el que llega queda al costado (2, -2, 4, -4...).
+on world change:
+    if name of player's world contains "santuario_azeroth":
+        wait 2 ticks
+        set {_entrada} to location(256.5, 64, 281.5, world of player, 180, 0)
+        if distance between player and {_entrada} > 1.5:
+            stop
+        set {_n} to 0
+        loop players in world of player:
+            loop-player is not player
+            distance between loop-player and {_entrada} < 10
+            add 1 to {_n}
+        if {_n} > 0:
+            set {_dx} to ceil({_n} / 2) * 2
+            if mod({_n}, 2) is 0:
+                set {_dx} to -1 * {_dx}
+            teleport player to location(256.5 + {_dx}, 64, 281.5, world of player, 180, 0)
+
+function astral_dungeon(w: world) :: boolean:
+    if name of {_w} is "bosque" or "bosque_2" or "bosque_3" or "bosque_4" or "bosque_5" or "bosque_6" or "tumba" or "tumba_2" or "tumba_3" or "tumba_4" or "tumba_5" or "tumba_6" or "mina" or "mina_2" or "mina_3" or "mina_4" or "mina_5" or "mina_6" or "cumbre" or "forja" or "santuario" or "cumbre_hielo" or "cumbre_hielo_2" or "cumbre_hielo_3" or "cumbre_hielo_4" or "cumbre_hielo_5" or "cumbre_hielo_6" or "forja_volcano" or "forja_volcano_2" or "forja_volcano_3" or "forja_volcano_4" or "forja_volcano_5" or "forja_volcano_6" or "santuario_interstellar" or "santuario_azeroth" or "santuario_azeroth_2" or "santuario_azeroth_3" or "santuario_azeroth_4" or "santuario_azeroth_5" or "santuario_azeroth_6" or "world_minecraft_santuario_azeroth" or "world_minecraft_santuario_azeroth_2" or "world_minecraft_santuario_azeroth_3" or "world_minecraft_santuario_azeroth_4" or "world_minecraft_santuario_azeroth_5" or "world_minecraft_santuario_azeroth_6" or "infinita" or "infinita_2" or "infinita_3" or "infinita_4" or "infinita_5" or "infinita_6":
+        return true
+    return false
+
+function astral_builder(p: player) :: boolean:
+    if gamemode of {_p} is creative:
+        if {_p} has permission "astral.mazmorras.editar":
+            return true
+    return false
+
+function astral_forbidden(p: player) :: boolean:
+    loop all items in inventory of {_p}:
+        if loop-item is elytra or ender pearl or chorus fruit or wind charge or water bucket:
+            return true
+        if loop-item is enchanted with riptide:
+            return true
+        if "%type of loop-item%" contains "trapdoor":
+            return true
+        if "%type of loop-item%" contains "boat":
+            return true
+        if "%type of loop-item%" contains "minecart":
+            return true
+    if chestplate of {_p} is elytra:
+        return true
+    if offhand item of {_p} is elytra or ender pearl or chorus fruit or wind charge or water bucket:
+        return true
+    if offhand item of {_p} is enchanted with riptide:
+        return true
+    return false
+
+on teleport:
+    if astral_dungeon(world of event-location) is true:
+        if astral_builder(player) is false:
+            if world of player is not world of event-location:
+                if astral_forbidden(player) is true:
+                    cancel event
+                    send "&cGuarda los objetos de escape antes de entrar: elitras, perlas, chorus, trampillas, cargas de viento, Propulsion, agua, botes y vagonetas." to player
+
+on break:
+    if astral_dungeon(world of player) is true:
+        if astral_builder(player) is false:
+            cancel event
+    # Arenas PvP: no se rompe ni se pone nada (pedido 12/11/2026).
+    if name of world of player is "arena" or "arenas_tft":
+        if astral_builder(player) is false:
+            cancel event
+
+on place:
+    if astral_dungeon(world of player) is true:
+        if astral_builder(player) is false:
+            cancel event
+    if name of world of player is "arena" or "arenas_tft":
+        if astral_builder(player) is false:
+            cancel event
+
+# Arenas PvP intactas (23/11/2026): ademas de romper/poner a mano, nada indirecto las cambia.
+# Cancelar la explosion solo saca los bloques: el dano a jugadores ya se aplico.
+on explode:
+    if name of world of event-location is "arena" or "arenas_tft":
+        cancel event
+
+on bucket empty:
+    if name of world of player is "arena" or "arenas_tft":
+        if astral_builder(player) is false:
+            cancel event
+
+on bucket fill:
+    if name of world of player is "arena" or "arenas_tft":
+        if astral_builder(player) is false:
+            cancel event
+
+on burn:
+    if name of world of event-block is "arena" or "arenas_tft":
+        cancel event
+
+on ignition:
+    if name of world of event-block is "arena" or "arenas_tft":
+        cancel event
+
+on leaves decay:
+    if name of world of event-block is "arena" or "arenas_tft":
+        cancel event
+
+on right click:
+    if astral_dungeon(world of player) is true:
+        if astral_builder(player) is false:
+            if player's tool is ender pearl or chorus fruit or elytra or wind charge or water bucket:
+                cancel event
+            if player's offhand item is ender pearl or chorus fruit or elytra or wind charge or water bucket:
+                cancel event
+            if player's tool is enchanted with riptide:
+                cancel event
+            if player's offhand item is enchanted with riptide:
+                cancel event
+            if "%type of player's tool%" contains "boat" or "minecart":
+                cancel event
+            if "%type of player's offhand item%" contains "boat" or "minecart":
+                cancel event
+            if "%type of event-block%" contains "trapdoor":
+                cancel event
+
+on consume of chorus fruit:
+    if astral_dungeon(world of player) is true:
+        cancel event
+
+on bucket empty:
+    if astral_dungeon(world of player) is true:
+        if astral_builder(player) is false:
+            cancel event
+
+on mount:
+    if event-entity is a player:
+        if astral_dungeon(world of event-entity) is true:
+            if astral_builder(event-entity) is false:
+                cancel event
+
+on death of player:
+    set {_w} to name of world of victim
+    if {_w} is "lobby" or "bosque" or "bosque_2" or "bosque_3" or "bosque_4" or "bosque_5" or "bosque_6" or "tumba" or "tumba_2" or "tumba_3" or "tumba_4" or "tumba_5" or "tumba_6" or "mina" or "mina_2" or "mina_3" or "mina_4" or "mina_5" or "mina_6" or "cumbre" or "forja" or "santuario" or "cumbre_hielo" or "cumbre_hielo_2" or "cumbre_hielo_3" or "cumbre_hielo_4" or "cumbre_hielo_5" or "cumbre_hielo_6" or "forja_volcano" or "forja_volcano_2" or "forja_volcano_3" or "forja_volcano_4" or "forja_volcano_5" or "forja_volcano_6" or "santuario_interstellar" or "santuario_azeroth" or "santuario_azeroth_2" or "santuario_azeroth_3" or "santuario_azeroth_4" or "santuario_azeroth_5" or "santuario_azeroth_6" or "world_minecraft_santuario_azeroth" or "world_minecraft_santuario_azeroth_2" or "world_minecraft_santuario_azeroth_3" or "world_minecraft_santuario_azeroth_4" or "world_minecraft_santuario_azeroth_5" or "world_minecraft_santuario_azeroth_6" or "infinita" or "infinita_2" or "infinita_3" or "infinita_4" or "infinita_5" or "infinita_6" or "cavernas" or "reino" or "exp_desierto" or "exp_hielo" or "exp_santuario" or "parkour_spiral" or "parkour_spiral2" or "parkour_paradise3" or "colorescape" or "magmarun" or "battleship" or "dropper_facil" or "dropper_h4rs" or "arena" or "arenas_tft":
+        keep the inventory and experiences
+        clear drops
+        set {_x} to floor(x-coordinate of victim)
+        set {_y} to floor(y-coordinate of victim)
+        set {_z} to floor(z-coordinate of victim)
+        send "&eMoriste en &f%{_w}%&e: &f%{_x}%, %{_y}%, %{_z}%&e. Conservas tus objetos." to victim
+    else:
+        # Fuera de las zonas protegidas AxGraves deja una tumba: se recuerda donde al reaparecer.
+        set {-astral.tumba::%uuid of victim%} to "&f%{_w}% &e(&f%floor(x-coordinate of victim)%, %floor(y-coordinate of victim)%, %floor(z-coordinate of victim)%&e)"
+    delete {-astral.jump.used::%uuid of victim%}
+    delete {-astral.launch::%uuid of victim%}
+
+on respawn:
+    if {-astral.tumba::%uuid of player%} is set:
+        wait 1 second
+        send "&6&lTus cosas quedaron en una tumba: %{-astral.tumba::%uuid of player%}%" to player
+        send "&7Volve a ese lugar y abrila con clic para recuperarlas." to player
+        delete {-astral.tumba::%uuid of player%}
+
+on jump:
+    set {-astral.jump.armed::%uuid of player%} to true
+    delete {-astral.jump.released::%uuid of player%}
+
+on player jump key release:
+    if {-astral.jump.armed::%uuid of player%} is true:
+        set {-astral.jump.released::%uuid of player%} to true
+
+on player jump key press:
+    if astral_dungeon(world of player) is true:
+        stop
+    if name of world of player is "parkour_spiral" or "parkour_spiral2" or "parkour_paradise3" or "colorescape" or "magmarun" or "battleship" or "dropper_facil" or "dropper_h4rs" or "arena" or "arenas_tft":
+        stop
+    if gamemode of player is not survival:
+        if gamemode of player is not adventure:
+            stop
+    if player is on ground:
+        if y component of velocity of player <= 0:
+            stop
+    if player is swimming:
+        stop
+    if player is flying:
+        stop
+    if {-astral.jump.armed::%uuid of player%} is not true:
+        stop
+    if {-astral.jump.used::%uuid of player%} is true:
+        stop
+    if {-astral.jump.released::%uuid of player%} is not true:
+        stop
+    set {-astral.jump.used::%uuid of player%} to true
+    delete {-astral.jump.armed::%uuid of player%}
+    delete {-astral.jump.released::%uuid of player%}
+    # El server no conoce bien la velocidad lateral del jugador (la mueve el cliente): se usa
+    # cuanto se movio en el ultimo tick, asi el doble salto conserva el impulso y no frena en seco.
+    set {_v} to vector(0, 0.65, 0)
+    set {_move} to {-astral.lastmove::%uuid of player%}
+    if {_move} is set:
+        set {_vx} to x component of {_move}
+        set {_vz} to z component of {_move}
+        set {_h} to sqrt({_vx} * {_vx} + {_vz} * {_vz})
+        if {_h} > 0.6:
+            set {_vx} to {_vx} * 0.6 / {_h}
+            set {_vz} to {_vz} * 0.6 / {_h}
+        set {_v} to vector({_vx} * 1.1, 0.65, {_vz} * 1.1)
+    set velocity of player to {_v}
+    play sound "entity.breeze.jump" with volume 0.4 and pitch 1.4 at player
+
+every tick:
+    loop all players:
+        set {_id} to uuid of loop-player
+        # Movimiento del ultimo tick (posicion actual - la del tick anterior): lo usa el doble
+        # salto para saber hacia donde ibas. El cliente manda el salto antes que su posicion.
+        set {_now} to location of loop-player
+        set {_prev} to {-astral.lastpos::%{_id}%}
+        set {-astral.lastpos::%{_id}%} to {_now}
+        delete {-astral.lastmove::%{_id}%}
+        if {_prev} is set:
+            if world of {_prev} is world of {_now}:
+                set {-astral.lastmove::%{_id}%} to vector from {_prev} to {_now}
+        set {_limit} to astral_rescue_height(world of loop-player)
+        if {_limit} is not -10000:
+            if gamemode of loop-player is survival or adventure:
+                if y-coordinate of loop-player is less than {_limit}:
+                    astral_rescue(loop-player)
+                    continue
+        if astral_dungeon(world of loop-player) is true:
+            if astral_builder(loop-player) is false:
+                # Se puede nadar (pedido del dueno, 08/11/2026: el agua trababa Minas Olvidadas).
+                if chestplate of loop-player is elytra:
+                    execute console command "spawn %name of loop-player%"
+                    send "&cNo puedes equipar elitras dentro de una mazmorra. Conservas el objeto." to loop-player
+                    continue
+        if loop-player is on ground:
+            if y component of velocity of loop-player <= 0:
+                delete {-astral.jump.used::%{_id}%}
+                delete {-astral.jump.armed::%{_id}%}
+                delete {-astral.jump.released::%{_id}%}
+            if {-astral.launch.air::%{_id}%} is true:
+                delete {-astral.launch::%{_id}%}
+                delete {-astral.launch.air::%{_id}%}
+        else:
+            if {-astral.launch::%{_id}%} is set:
+                set {-astral.launch.air::%{_id}%} to true
+        if scoreboard tags of loop-player contains "astral.grapple.request":
+            remove "astral.grapple.request" from scoreboard tags of loop-player
+            if astral_dungeon(world of loop-player) is true:
+                send action bar "&cEl gancho no se puede usar dentro de las mazmorras." to loop-player
+                continue
+            if {-astral.grapple.cd::%{_id}%} is set:
+                if difference between now and {-astral.grapple.cd::%{_id}%} is less than 2 seconds:
+                    continue
+            if gamemode of loop-player is spectator:
+                continue
+            set {-astral.grapple.cd::%{_id}%} to now
+            set {_v} to vector from yaw (yaw of loop-player) and pitch (pitch of loop-player)
+            set x component of {_v} to (x component of {_v}) * 1.25
+            set y component of {_v} to (y component of {_v}) * 1.25
+            set z component of {_v} to (z component of {_v}) * 1.25
+            if y component of {_v} is less than 0.9:
+                set y component of {_v} to 0.9
+            set velocity of loop-player to {_v}
+            set {-astral.launch::%{_id}%} to now
+            delete {-astral.launch.air::%{_id}%}
+            play sound "entity.fishing_bobber.throw" with volume 0.6 and pitch 1.1 at loop-player
+        if {-astral.launch::%{_id}%} is set:
+            if difference between now and {-astral.launch::%{_id}%} is greater than 30 seconds:
+                delete {-astral.launch::%{_id}%}
+                delete {-astral.launch.air::%{_id}%}
+
+on damage of player:
+    if damage cause is fall:
+        if {-astral.launch::%uuid of victim%} is set:
+            cancel event
+            delete {-astral.launch::%uuid of victim%}
+            delete {-astral.launch.air::%uuid of victim%}
+
+
+# FishingHook aplica -0.03 incluso con NoGravity: compensar y fijar el anclaje.
+function astral_hook_clear(p: player):
+    set {_id} to uuid of {_p}
+    set {_hook} to {-astral.realistic::%{_id}%::hook}
+    delete {-astral.realistic::%{_id}%}
+    delete {-astral.realistic::%{_id}%::*}
+    if {_hook} is set:
+        if {_hook} is valid:
+            kill {_hook}
+
+on unload:
+    loop all players:
+        astral_hook_clear(loop-player)
+
+# La boya vanilla rebota en paredes. Detectamos el contacto por sus caras.
+function astral_hook_contact(at: location) :: block:
+    set {_offsets::*} to vector(0, 0, 0), vector(0.18, 0, 0), vector(-0.18, 0, 0), vector(0, 0.28, 0), vector(0, -0.18, 0), vector(0, 0, 0.18) and vector(0, 0, -0.18)
+    loop {_offsets::*}:
+        set {_probe} to {_at} offset by loop-value
+        if block at {_probe} is solid:
+            return block at {_probe}
+
+every tick:
+    loop all players:
+        set {_id} to uuid of loop-player
+        set {_hook} to {-astral.realistic::%{_id}%::hook}
+        if {_hook} is not set:
+            continue
+        if {_hook} is not valid:
+            astral_hook_clear(loop-player)
+            continue
+        if world of {_hook} is not world of loop-player:
+            astral_hook_clear(loop-player)
+            continue
+        if distance between {_hook} and loop-player > 32:
+            astral_hook_clear(loop-player)
+            continue
+        if {-astral.realistic::%{_id}%::anchor} is set:
+            if {-astral.realistic::%{_id}%::block} is not solid:
+                astral_hook_clear(loop-player)
+                send action bar "&7El bloque del anclaje desaparecio." to loop-player
+                continue
+            set gravity of {_hook} to false
+            teleport {_hook} to {-astral.realistic::%{_id}%::anchor}
+            set velocity of {_hook} to vector(0, 0.03, 0)
+            continue
+        set {_block} to astral_hook_contact(location of {_hook})
+        if {_block} is set:
+            # No se engancha al piso bajo los pies al lanzar.
+            if distance between {_hook} and eye location of loop-player < 1.5:
+                continue
+            set {-astral.realistic::%{_id}%::anchor} to location of {_hook}
+            set {-astral.realistic::%{_id}%::block} to {_block}
+            set gravity of {_hook} to false
+            set velocity of {_hook} to vector(0, 0.03, 0)
+            teleport {_hook} to {-astral.realistic::%{_id}%::anchor}
+            play sound "block.chain.hit" with volume 0.6 and pitch 1.4 at {_hook}
+            send action bar "&dGancho anclado. Clic derecho para tirar." to loop-player
+
+# La identidad se valida con custom_data en el momento del evento, no por nombre.
+# Cada lanzamiento pertenece a un jugador y a un anzuelo concreto.
+on fishing state change:
+    set {_id} to uuid of player
+    execute console command "execute as %name of player% run function astral:grapple/realistic_check"
+    set {_real} to false
+    if scoreboard tags of player contains "astral.realistic.held":
+        set {_real} to true
+    remove "astral.realistic.held" from scoreboard tags of player
+    if event-fishing state is fishing line cast:
+        astral_hook_clear(player)
+        if {_real} is false:
+            stop
+        if astral_dungeon(world of player) is true:
+            cancel event
+            send action bar "&cEl gancho no se puede usar dentro de las mazmorras." to player
+            stop
+        if gamemode of player is spectator:
+            cancel event
+            stop
+        set {-astral.realistic::%{_id}%} to uuid of fishing hook
+        set {-astral.realistic::%{_id}%::hook} to fishing hook
+        stop
+    if {-astral.realistic::%{_id}%} is not set:
+        stop
+    if uuid of fishing hook is not {-astral.realistic::%{_id}%}:
+        stop
+    # Mordidas y peces nunca sirven como anclaje ni generan premios de pesca.
+    if event-fishing state is fish bite or fish caught or fish escaped:
+        cancel event
+        stop
+    if event-fishing state is not bobber in ground or entity caught or reel in:
+        stop
+    set {_anchor} to {-astral.realistic::%{_id}%::anchor}
+    set {_block} to {-astral.realistic::%{_id}%::block}
+    if event-fishing state is not reel in:
+        if {_anchor} is not set:
+            set {_anchor} to location of fishing hook
+    if event-fishing state is entity caught:
+        set {_anchor} to location of hooked entity
+    cancel event
+    astral_hook_clear(player)
+    if {_real} is false:
+        stop
+    if astral_dungeon(world of player) is true:
+        stop
+    if gamemode of player is spectator:
+        stop
+    if {_block} is set:
+        if {_block} is not solid:
+            stop
+    if event-fishing state is reel in:
+        if {_anchor} is not set:
+            send action bar "&7El anzuelo no se engancho a nada." to player
+            stop
+    if world of {_anchor} is not world of player:
+        stop
+    set {_distance} to distance between eye location of player and {_anchor}
+    if {_distance} > 32:
+        send action bar "&cEl anclaje esta demasiado lejos (max. 32 bloques)." to player
+        stop
+    if {_distance} < 2:
+        stop
+    set {_v} to vector from eye location of player to {_anchor}
+    set vector length of {_v} to 1.35
+    set velocity of player to {_v}
+    set {-astral.launch::%{_id}%} to now
+    delete {-astral.launch.air::%{_id}%}
+    play sound "entity.fishing_bobber.retrieve" with volume 0.6 and pitch 1.1 at player
+
+on death of player:
+    astral_hook_clear(victim)
+
+on world change:
+    astral_hook_clear(player)
+    delete {-astral.jump.used::%uuid of player%}
+    delete {-astral.jump.armed::%uuid of player%}
+    delete {-astral.jump.released::%uuid of player%}
+
+
+on quit:
+    delete {-astral.lastpos::%uuid of player%}
+    delete {-astral.lastmove::%uuid of player%}
+    delete {-astral.jump.used::%uuid of player%}
+    delete {-astral.jump.armed::%uuid of player%}
+    delete {-astral.jump.released::%uuid of player%}
+    delete {-astral.grapple.cd::%uuid of player%}
+    astral_hook_clear(player)
+    delete {-astral.launch::%uuid of player%}
+    delete {-astral.launch.air::%uuid of player%}
+
+# Indicador de dano: "-2.500" y la vida del mob, en numeros del tier (escala.py).
+function astral_factor(e: entity) :: number:
+    if scoreboard tags of {_e} contains "astral.mt1":
+        return 1.0
+    if scoreboard tags of {_e} contains "astral.mt2":
+        return 1.0
+    if scoreboard tags of {_e} contains "astral.mt3":
+        return 1.0
+    if scoreboard tags of {_e} contains "astral.mt4":
+        return 1.0
+    if scoreboard tags of {_e} contains "astral.mt5":
+        return 1.0
+    if scoreboard tags of {_e} contains "astral.mt6":
+        return 1.0
+    if scoreboard tags of {_e} contains "astral.mt7":
+        return 1.0
+    if scoreboard tags of {_e} contains "astral.mt8":
+        return 1.0
+    if scoreboard tags of {_e} contains "astral.mt9":
+        return 1.0
+    if scoreboard tags of {_e} contains "astral.mt10":
+        return 1.0
+    return 1
+
+function astral_fmt(n: number) :: text:
+    set {_n} to floor({_n})
+    set {_out} to ""
+    while {_n} >= 1000:
+        set {_r} to mod({_n}, 1000)
+        if {_r} < 10:
+            set {_out} to ".00%{_r}%%{_out}%"
+        else if {_r} < 100:
+            set {_out} to ".0%{_r}%%{_out}%"
+        else:
+            set {_out} to ".%{_r}%%{_out}%"
+        set {_n} to floor({_n} / 1000)
+    return "%{_n}%%{_out}%"
+
+function astral_dim(w: world) :: text:
+    set {_name} to name of {_w}
+    if {_name} contains ":":
+        return {_name}
+    if {_name} is "world":
+        return "minecraft:overworld"
+    if {_name} is "world_nether":
+        return "minecraft:the_nether"
+    if {_name} is "world_the_end":
+        return "minecraft:the_end"
+    return "minecraft:%{_name}%"
+
+on uncancelled damage of living entity with priority monitor:
+    victim is not a player
+    attacker is a player
+    set {_f} to astral_factor(victim)
+    set {_real} to final damage * 2
+    if {_real} <= 0:
+        stop
+    set {_vida} to (health of victim * 2) - {_real}
+    if {_vida} < 0:
+        set {_vida} to 0
+    set {_dano} to astral_fmt({_real} * {_f})
+    set {_v} to astral_fmt({_vida} * {_f})
+    set {_max} to astral_fmt(max health of victim * 2 * {_f})
+    set {_color} to "white"
+    if damage cause is lightning:
+        set {_color} to "aqua"
+    else if damage cause is entity explosion or block explosion:
+        set {_color} to "gold"
+    else if damage cause is projectile:
+        set {_color} to "yellow"
+    set {_id} to random integer between 1 and 999999999
+    set {_l} to location of victim
+    set {_x} to x-coordinate of {_l} + random number between -0.4 and 0.4
+    set {_y} to y-coordinate of {_l} + 2.1 + random number between 0 and 0.3
+    set {_z} to z-coordinate of {_l} + random number between -0.4 and 0.4
+    set {_d} to astral_dim(world of victim)
+    execute console command "execute in %{_d}% run summon minecraft:text_display %{_x}% %{_y}% %{_z}% {billboard:""center"",see_through:1b,shadow:1b,background:0,Tags:[""astral.dmg"",""astral.dmg%{_id}%""],text:[{text:""-%{_dano}%"",color:""%{_color}%"",bold:1b},{text:""\n❤ %{_v}% / %{_max}%"",color:""red"",bold:0b}]}"
+    wait 25 ticks
+    execute console command "minecraft:kill @e[type=minecraft:text_display,tag=astral.dmg%{_id}%]"
+
+on load:
+    execute console command "minecraft:kill @e[type=minecraft:text_display,tag=astral.dmg]"
+    execute console command "minecraft:scoreboard objectives add astral.dmgedad dummy"
+
+# 23/11: si el server se reinicia antes de los 25 ticks, el "wait" se pierde y el numero queda flotando para
+# siempre (on load no ve los chunks sin cargar). Cada numero cuenta su edad y a los 3 s se borra, aunque sea viejo.
+every 1 second:
+    execute console command "minecraft:execute if entity @e[type=minecraft:text_display,tag=astral.dmg] run scoreboard players add @e[type=minecraft:text_display,tag=astral.dmg] astral.dmgedad 1"
+    execute console command "minecraft:execute if entity @e[type=minecraft:text_display,tag=astral.dmg,scores={astral.dmgedad=3..}] run kill @e[type=minecraft:text_display,tag=astral.dmg,scores={astral.dmgedad=3..}]"
+
+# Arena PvP: stats propias contra jugadores (gameplay.py PVP_PCT). Corre al final, despues de la defensa.
+function astral_pvp_tier(a: player) :: number:
+    if scoreboard tags of {_a} contains "astral.ht10":
+        return 10
+    if scoreboard tags of {_a} contains "astral.ht9":
+        return 9
+    if scoreboard tags of {_a} contains "astral.ht8":
+        return 8
+    if scoreboard tags of {_a} contains "astral.ht7":
+        return 7
+    if scoreboard tags of {_a} contains "astral.ht6":
+        return 6
+    if scoreboard tags of {_a} contains "astral.ht5":
+        return 5
+    if scoreboard tags of {_a} contains "astral.ht4":
+        return 4
+    if scoreboard tags of {_a} contains "astral.ht3":
+        return 3
+    if scoreboard tags of {_a} contains "astral.ht2":
+        return 2
+    if scoreboard tags of {_a} contains "astral.ht1":
+        return 1
+    return 0
+
+function astral_pvp_armadura(d: number) :: number:
+    if {_d} >= 1350:
+        return 10
+    if {_d} >= 1125:
+        return 9
+    if {_d} >= 900:
+        return 8
+    if {_d} >= 720:
+        return 7
+    if {_d} >= 585:
+        return 6
+    if {_d} >= 450:
+        return 5
+    if {_d} >= 315:
+        return 4
+    if {_d} >= 180:
+        return 3
+    if {_d} >= 90:
+        return 2
+    if {_d} >= 45:
+        return 1
+    return 0
+
+on damage of player with priority highest:
+    attacker is a player
+    name of world of victim is "arena" or "arenas_tft"
+    set {_pct} to 6.0
+    set {_tool} to "%type of attacker's tool%"
+    set {_causa} to "%damage cause%"
+    if {_tool} contains "sword":
+        set {_pct} to 9.0
+    if {_tool} contains "trident":
+        set {_pct} to 9.5
+    if {_tool} contains "axe":
+        if {_tool} does not contain "pickaxe":
+            set {_pct} to 11.0
+    if {_causa} contains "magic":
+        set {_pct} to 8.5
+    if {_causa} contains "projectile":
+        set {_pct} to 7.5
+    set {_dif} to astral_pvp_tier(attacker) - astral_pvp_armadura(astral_defensa(victim))
+    set {_f} to 1.15 ^ {_dif}
+    if {_f} < 0.4:
+        set {_f} to 0.4
+    if {_f} > 2.5:
+        set {_f} to 2.5
+    set {_pct} to {_pct} * {_f}
+    # Asesino por la espalda (AstralClases pone la etiqueta en ese golpe; clases.ASESINO['espalda_pvp_pct']).
+    if scoreboard tags of attacker contains "astral.espalda":
+        set {_pct} to {_pct} * 1.15
+    if {_pct} > 25.0:
+        set {_pct} to 25.0
+    if {_causa} contains "magic":
+        if scoreboard tags of victim contains "astral.spell.hit1":
+            set {_pct} to {_pct} * 1.0
+        if scoreboard tags of victim contains "astral.spell.hit2":
+            set {_pct} to {_pct} * 0.7
+        if scoreboard tags of victim contains "astral.spell.hit3":
+            set {_pct} to {_pct} * 0.7
+    set damage to (max health of victim) * {_pct} / 100
+
+
+# Escala de vida (escala.py, referencia Hypixel): el jugador tiene 100 de vida base y la armadura suma mucho.
+# - Mob con tier (astral.mt#): su golpe, flecha o explosion x DANO_MOB del tier.
+# - Mob sin tier dentro de una mazmorra (jefes de MythicMobs): x DANO_MOB del tier de la mazmorra.
+# - Todo lo demas (caidas, lava, ahogo, mobs sin tier, PvP): x (vida maxima / 20), como en vanilla.
+function astral_dano_tier(e: entity) :: number:
+    if {_e} has scoreboard tag "astral.jm10":
+        return 12500.0
+    if {_e} has scoreboard tag "astral.jm9":
+        return 6855.469
+    if {_e} has scoreboard tag "astral.jm8":
+        return 3437.5
+    if {_e} has scoreboard tag "astral.jm7":
+        return 1757.812
+    if {_e} has scoreboard tag "astral.jm6":
+        return 878.906
+    if {_e} has scoreboard tag "astral.jm5":
+        return 375.0
+    if {_e} has scoreboard tag "astral.jm4":
+        return 105.469
+    if {_e} has scoreboard tag "astral.jm3":
+        return 23.438
+    if {_e} has scoreboard tag "astral.jm2":
+        return 8.594
+    if {_e} has scoreboard tag "astral.jm1":
+        return 3.516
+    if scoreboard tags of {_e} contains "astral.mt10":
+        return 53200.0
+    if scoreboard tags of {_e} contains "astral.mt9":
+        return 29200.0
+    if scoreboard tags of {_e} contains "astral.mt8":
+        return 14680.0
+    if scoreboard tags of {_e} contains "astral.mt7":
+        return 7500.0
+    if scoreboard tags of {_e} contains "astral.mt6":
+        return 3760.0
+    if scoreboard tags of {_e} contains "astral.mt5":
+        return 1600.0
+    if scoreboard tags of {_e} contains "astral.mt4":
+        return 440.0
+    if scoreboard tags of {_e} contains "astral.mt3":
+        return 120.0
+    if scoreboard tags of {_e} contains "astral.mt2":
+        return 48.0
+    if scoreboard tags of {_e} contains "astral.mt1":
+        return 22.0
+    return 0
+
+function astral_dano_mundo(w: world) :: number:
+    set {_n} to name of {_w}
+    if {_n} is "bosque" or "minecraft:bosque" or "world_minecraft_bosque":
+        return 22.0
+    if {_n} is "bosque_2" or "minecraft:bosque_2" or "world_minecraft_bosque_2":
+        return 22.0
+    if {_n} is "bosque_3" or "minecraft:bosque_3" or "world_minecraft_bosque_3":
+        return 22.0
+    if {_n} is "bosque_4" or "minecraft:bosque_4" or "world_minecraft_bosque_4":
+        return 22.0
+    if {_n} is "bosque_5" or "minecraft:bosque_5" or "world_minecraft_bosque_5":
+        return 22.0
+    if {_n} is "bosque_6" or "minecraft:bosque_6" or "world_minecraft_bosque_6":
+        return 22.0
+    if {_n} is "mina" or "minecraft:mina" or "world_minecraft_mina":
+        return 48.0
+    if {_n} is "mina_2" or "minecraft:mina_2" or "world_minecraft_mina_2":
+        return 48.0
+    if {_n} is "mina_3" or "minecraft:mina_3" or "world_minecraft_mina_3":
+        return 48.0
+    if {_n} is "mina_4" or "minecraft:mina_4" or "world_minecraft_mina_4":
+        return 48.0
+    if {_n} is "mina_5" or "minecraft:mina_5" or "world_minecraft_mina_5":
+        return 48.0
+    if {_n} is "mina_6" or "minecraft:mina_6" or "world_minecraft_mina_6":
+        return 48.0
+    if {_n} is "tumba" or "minecraft:tumba" or "world_minecraft_tumba":
+        return 120.0
+    if {_n} is "tumba_2" or "minecraft:tumba_2" or "world_minecraft_tumba_2":
+        return 120.0
+    if {_n} is "tumba_3" or "minecraft:tumba_3" or "world_minecraft_tumba_3":
+        return 120.0
+    if {_n} is "tumba_4" or "minecraft:tumba_4" or "world_minecraft_tumba_4":
+        return 120.0
+    if {_n} is "tumba_5" or "minecraft:tumba_5" or "world_minecraft_tumba_5":
+        return 120.0
+    if {_n} is "tumba_6" or "minecraft:tumba_6" or "world_minecraft_tumba_6":
+        return 120.0
+    if {_n} is "cumbre" or "minecraft:cumbre" or "world_minecraft_cumbre":
+        return 280.0
+    if {_n} is "forja" or "minecraft:forja" or "world_minecraft_forja":
+        return 400.0
+    if {_n} is "santuario" or "minecraft:santuario" or "world_minecraft_santuario":
+        return 400.0
+    if {_n} is "cumbre_hielo" or "minecraft:cumbre_hielo" or "world_minecraft_cumbre_hielo":
+        return 280.0
+    if {_n} is "cumbre_hielo_2" or "minecraft:cumbre_hielo_2" or "world_minecraft_cumbre_hielo_2":
+        return 280.0
+    if {_n} is "cumbre_hielo_3" or "minecraft:cumbre_hielo_3" or "world_minecraft_cumbre_hielo_3":
+        return 280.0
+    if {_n} is "cumbre_hielo_4" or "minecraft:cumbre_hielo_4" or "world_minecraft_cumbre_hielo_4":
+        return 280.0
+    if {_n} is "cumbre_hielo_5" or "minecraft:cumbre_hielo_5" or "world_minecraft_cumbre_hielo_5":
+        return 280.0
+    if {_n} is "cumbre_hielo_6" or "minecraft:cumbre_hielo_6" or "world_minecraft_cumbre_hielo_6":
+        return 280.0
+    if {_n} is "forja_volcano" or "minecraft:forja_volcano" or "world_minecraft_forja_volcano":
+        return 400.0
+    if {_n} is "forja_volcano_2" or "minecraft:forja_volcano_2" or "world_minecraft_forja_volcano_2":
+        return 400.0
+    if {_n} is "forja_volcano_3" or "minecraft:forja_volcano_3" or "world_minecraft_forja_volcano_3":
+        return 400.0
+    if {_n} is "forja_volcano_4" or "minecraft:forja_volcano_4" or "world_minecraft_forja_volcano_4":
+        return 400.0
+    if {_n} is "forja_volcano_5" or "minecraft:forja_volcano_5" or "world_minecraft_forja_volcano_5":
+        return 400.0
+    if {_n} is "forja_volcano_6" or "minecraft:forja_volcano_6" or "world_minecraft_forja_volcano_6":
+        return 400.0
+    if {_n} is "santuario_interstellar" or "minecraft:santuario_interstellar" or "world_minecraft_santuario_interstellar":
+        return 400.0
+    if {_n} is "santuario_azeroth" or "minecraft:santuario_azeroth" or "world_minecraft_santuario_azeroth":
+        return 400.0
+    if {_n} is "santuario_azeroth_2" or "minecraft:santuario_azeroth_2" or "world_minecraft_santuario_azeroth_2":
+        return 400.0
+    if {_n} is "santuario_azeroth_3" or "minecraft:santuario_azeroth_3" or "world_minecraft_santuario_azeroth_3":
+        return 400.0
+    if {_n} is "santuario_azeroth_4" or "minecraft:santuario_azeroth_4" or "world_minecraft_santuario_azeroth_4":
+        return 400.0
+    if {_n} is "santuario_azeroth_5" or "minecraft:santuario_azeroth_5" or "world_minecraft_santuario_azeroth_5":
+        return 400.0
+    if {_n} is "santuario_azeroth_6" or "minecraft:santuario_azeroth_6" or "world_minecraft_santuario_azeroth_6":
+        return 400.0
+    if {_n} is "nave" or "minecraft:nave" or "world_minecraft_nave":
+        return 400.0
+    if {_n} is "nave_2" or "minecraft:nave_2" or "world_minecraft_nave_2":
+        return 400.0
+    if {_n} is "nave_3" or "minecraft:nave_3" or "world_minecraft_nave_3":
+        return 400.0
+    if {_n} is "world_minecraft_santuario_azeroth":
+        return 400.0
+    return 0
+
+# Defensa Astral del jugador (etiquetas astral.db0..db11 del datapack, en binario).
+function astral_defensa(p: player) :: number:
+    set {_d} to 0
+    set {_v} to 1
+    loop 12 times:
+        if scoreboard tags of {_p} contains "astral.db%loop-number - 1%":
+            add {_v} to {_d}
+        set {_v} to {_v} * 2
+    return {_d}
+
+on damage of player with priority high:
+    set {_k} to (max health of victim) / 10
+    if attacker is set:
+        if attacker is not a player:
+            set {_m} to astral_dano_tier(attacker)
+            if {_m} is 0:
+                set {_m} to astral_dano_mundo(world of victim)
+            if {_m} > 0:
+                set {_k} to {_m}
+        # Defensa (Hypixel): golpes, flechas, explosiones y PvP x 100 / (defensa + 100).
+        set {_d} to astral_defensa(victim)
+        if {_k} > 1:
+            set damage to damage * {_k}
+        if {_d} > 0:
+            set damage to damage * 100 / ({_d} + 100)
+        stop
+    if {_k} > 1:
+        set damage to damage * {_k}
+
+# Regeneracion natural, pociones y robo de vida: tambien en proporcion a la vida maxima.
+on heal of player:
+    heal reason is not custom
+    set {_k} to (max health of player) / 10
+    # 15/11/2026: la regeneracion por comida (saturacion) era como vanilla, hasta 10% de la vida por segundo
+    # y con comida el jugador era casi inmortal. Ahora rinde 0.2 de eso (mobs del survival incluidos).
+    if "%heal reason%" contains "satiat":
+        set {_k} to {_k} * 0.2
+    if {_k} > 1:
+        set heal amount to heal amount * {_k}
+
+
+# End sin dragon (gameplay.py SIN_DRAGON): no se puede resucitar.
+on right click with end crystal:
+    name of world of player is "world_the_end"
+    event-block is set
+    event-block is bedrock or obsidian
+    distance between location of event-block and location(0, y-coordinate of event-block, 0, world of player) < 12
+    cancel event
+    send "&5El dragon del End ya no vuelve: &7el portal de salida y los portales a las islas estan abiertos." to player
+
+
+# Menas de bloque de nota (gameplay.py ANTI_NOTAS): no se afinan ni se arman a mano (campana, banjo y campanilla del Vacio).
+on right click on note block:
+    set {_d} to "%block data of event-block%"
+    if {_d} contains "instrument=bell" or "instrument=banjo" or "instrument=chime":
+        cancel event
+
+on place of note block:
+    type of block below event-block is gold block or hay block or packed ice
+    cancel event
+    send "&cNo se puede poner un bloque de nota sobre oro, heno o hielo compactado." to player
+
+on place of gold block or hay block or packed ice:
+    type of block above event-block is note block
+    cancel event
+    send "&cNo se puede poner oro, heno o hielo compactado debajo de un bloque de nota." to player

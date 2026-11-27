@@ -833,6 +833,12 @@ def dialog_menus(data):
                 it['name'] = '&b' + PRIVATE.sub('', label).strip()
                 it['lore'] = ['&7Clic para abrir']
                 it['amount'] = 1
+            if target == 'guia/drops':
+                # Es un acceso a las ubicaciones, no una muestra del primer drop.
+                # Ese material puede usar un modelo invisible en el pack instalado.
+                it.pop('model', None)
+                it.pop('glow', None)
+                it.update(material='CHEST', lore=['&7Consulta donde conseguir los materiales.', '&e» Clic para abrir'])
             if target and target.startswith('atlas/criatura/'):
                 mid = target.split('/')[-1]
                 if mid.startswith('vanilla_'):

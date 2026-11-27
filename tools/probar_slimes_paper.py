@@ -92,7 +92,8 @@ command /slimemoneyprobe:
             assert 'SLIME FAIL max inherited' in content and 'SLIME FAIL tick +20' in content, 'No se reprodujo regresion nativa'
     else:
         assert 'SLIME RESULT' in content and 'failures=0' in content and 'SLIME FAIL' not in content
-        assert 'ERROR' not in content, str(log)
+        # Essentials can leave async tasks during shutdown; runtime errors still fail the test.
+        assert 'ERROR' not in content.split('Stopping server',1)[0], str(log)
         assert 'SLIME MONEY PASS' in content and 'SLIME MONEY FAIL' not in content
         if reset_bases:
             assert 'SLIME INJECT bases=20/1/0.2 max=500.0' in content

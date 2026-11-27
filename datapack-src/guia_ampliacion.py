@@ -121,8 +121,10 @@ def catalog():
 def extend_source(source):
     """Copia: no modifica la captura compartida ni los datos del llamador."""
     data = json.loads(json.dumps(source))
-    removed = {'atlas/seccion/crafteos', 'guia/drops'}
-    data['index'] = [e for e in data['index'] if e.get('dialog') not in removed]
+    removed = {'atlas/seccion/crafteos'}
+    # El indice tiene sus botones dibujados en el pack. Las ubicaciones siguen
+    # accesibles desde Materiales sin agregar un boton nuevo al fondo del indice.
+    data['index'] = [e for e in data['index'] if e.get('dialog') not in removed | {'guia/drops'}]
     for key in list(data['dialogs']):
         if key in removed:
             del data['dialogs'][key]

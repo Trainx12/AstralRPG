@@ -49,13 +49,13 @@ items:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_guia_materiales_2'
   'c3':
-    material: PAPER
+    material: CHEST
     slot: 5
     amount: 1
     display_name: '&bDonde se consiguen'
-    item_model: 'astral:esencia_nether'
     lore:
-    - '&7Clic para abrir'
+    - '&7Consulta donde conseguir los materiales.'
+    - '&e» Clic para abrir'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS

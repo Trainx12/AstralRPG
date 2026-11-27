@@ -1815,6 +1815,9 @@ for w, t in TIER_FIJO.items():  # Oceano Astral: tier fijo, sin depender del inv
 mob_roll.append(CAVERNAS.mob_roll_corazon())   # Corazon de las Cavernas: tier 5
 mob_roll.extend(VACIO.mob_roll())                # Vacio Estelar: tier 7/8 lejos del centro
 mob_roll += [
+    # Slimes naturales: grandes base 16; medianos 8; diminutos 4, antes del tier y elite.
+    *[f'execute if entity @s[type=minecraft:{kind}] if data entity @s {{Size:{size}}} run attribute @s minecraft:max_health base set {hp}'
+      for kind in ('slime', 'magma_cube') for size, hp in ((1, 8), (0, 4))],
     f"execute if entity @s[tag=ad.vanilla] run function {NS}:mob/tier_mazmorra",
     f"execute if score #dg astral.tmp matches 0 if entity @a[distance=..128,gamemode=!spectator] run function {NS}:mob/tier_mundo",
     # 23/11 (dueno): minimo tier 1 en todas las dimensiones (estructuras de datapacks, spawners, jugadores sin arma Astral).
@@ -1853,14 +1856,21 @@ fn('mob/jefe_mundo', [
     # jefes del Survival quedaban con la vida de MythicMobs (Coloso Ancestral 5.000). El predicado no lo exige.
     f'execute if predicate {NS}:in_sanctuary run return 0',
     'scoreboard players set #mt astral.tmp 1',
-    f'execute if entity @a[distance=..128,gamemode=!spectator] run function {NS}:mob/tier_mundo',
+    # Jefes: tier exacto del mejor arma/armadura, sin el azar reservado a mobs comunes.
+    f'execute as @p[distance=..128,gamemode=!spectator] run function {NS}:player/lvl',
+    'execute if entity @a[distance=..128,gamemode=!spectator] run scoreboard players operation #mt astral.tmp = @p[distance=..128,gamemode=!spectator] astral.wt',
+    f'execute as @a[tag=astral.ancestral.target,limit=1] run function {NS}:player/lvl',
+    'execute if entity @a[tag=astral.ancestral.target,limit=1] run scoreboard players operation #mt astral.tmp = @a[tag=astral.ancestral.target,limit=1] astral.wt',
     'execute if score #mt astral.tmp matches ..0 run scoreboard players set #mt astral.tmp 1',
-    *[f'execute if score #mt astral.tmp matches {t} run attribute @s minecraft:max_health base set {25*VIDA_REF[t]}' for t in range(1, TIER_MAX + 1)],
-    'data modify entity @s Health set value 1.0E30f',
     'scoreboard players operation @s astral.mt = #mt astral.tmp',
+    f'function {NS}:mob/jefe_vida',
     # 26/11: dano del jefe segun el tier (escala.DANO_JEFE_MUNDO en astral_gameplay.sk); antes era % de tu vida.
     *[f'execute if score #mt astral.tmp matches {t} run tag @s add astral.jm{t}' for t in range(1, TIER_MAX + 1)],
     'tag @s add ad.boss.scaled',
+])
+fn('mob/jefe_vida', [
+    *[f'execute if score @s astral.mt matches {t} run attribute @s minecraft:max_health base set {25*VIDA_REF[t]}' for t in range(1, TIER_MAX + 1)],
+    'data modify entity @s Health set value 1.0E30f',
 ])
 for t in range(1, TIER_MAX + 1):
     fn(f"mob/t{t}", [
