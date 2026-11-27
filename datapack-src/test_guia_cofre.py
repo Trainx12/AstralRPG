@@ -82,9 +82,9 @@ class GuiaCofreTest(unittest.TestCase):
         for text in ('sin confirmar', 'cuando se habilite', 'Solo ByTrainx', '20%', 'preparada'):
             self.assertNotIn(text, lore(comida) + lore(cnk))
 
-    def test_crafteos_y_drops_retirados_sin_enlaces_rotos(self):
+    def test_crafteos_retirados_sin_enlaces_rotos(self):
         import re as _re
-        for name in ('g_atlas_seccion_crafteos', 'g_guia_drops', 'guia_astral_3_publica', 'g_atlas_seccion_cocina_publica'):
+        for name in ('g_atlas_seccion_crafteos', 'guia_astral_3_publica', 'g_atlas_seccion_cocina_publica'):
             self.assertNotIn(name, self.menus)
         for name, menu in self.menus.items():
             for item in menu['items'].values():
@@ -92,6 +92,20 @@ class GuiaCofreTest(unittest.TestCase):
                     m = _re.match(r'\[openguimenu\] (\S+)', cmd)
                     if m and m.group(1).startswith(('g_', 'guia_astral')):
                         self.assertIn(m.group(1), self.menus, (name, cmd))
+
+    def test_gema_luminica_accesible_desde_materiales(self):
+        materiales = self.menus['g_atlas_seccion_materiales']
+        self.assertTrue(any('[openguimenu] g_guia_drops' in it.get('click_commands', [])
+                            for it in materiales['items'].values()))
+        drops = self.menus['g_guia_drops']
+        gema = next(it for it in drops['items'].values()
+                    if it.get('item_model') == 'astral:gema_luminica')
+        from guia_cofre import plain
+        lore = plain(' '.join(gema['lore']))
+        self.assertIn('cofres de estructuras del', lore)
+        self.assertIn('Overworld (25%)', lore)
+        self.assertTrue(any('[openguimenu] g_guia_materiales' in it.get('click_commands', [])
+                            for it in drops['items'].values()))
 
     def test_old_guide_removed_and_no_esc_buttons(self):
         with zipfile.ZipFile(DATAPACK) as z:
