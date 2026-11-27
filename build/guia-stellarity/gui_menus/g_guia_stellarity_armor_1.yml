@@ -1,0 +1,466 @@
+menu_title: '&f&#ffe9a8Armaduras y alas 1/1'
+size: 54
+open_requirement:
+  requirements:
+    prueba:
+      type: has permission
+      permission: astral.guia.ampliacion
+    dueno:
+      type: string equals
+      input: '%player_name%'
+      output: 'ByTrainx'
+  deny_commands:
+  - '[message] &eEsta ampliacion esta en prueba con el dueno.'
+items:
+  'c0':
+    material: IRON_BOOTS
+    slot: 1
+    amount: 1
+    display_name: '&bChampion Boots'
+    item_model: 'stellarity:champion_boots'
+    lore:
+    - '&7El conjunto completo aumenta el dano'
+    - '&7al encadenar ataques.'
+    - '&7Armadura: +3 (feet).'
+    - '&7Dureza: +2 (feet).'
+    - '&7Resistencia al empuje: +0.08 (feet).'
+    - '&7Dano: +2.5% (feet).'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_champion_boots'
+  'c1':
+    material: IRON_CHESTPLATE
+    slot: 2
+    amount: 1
+    display_name: '&bChorus Champion Chestplate'
+    item_model: 'stellarity:champion_chestplate'
+    lore:
+    - '&7El conjunto completo aumenta el dano'
+    - '&7al encadenar ataques.'
+    - '&7Armadura: +8 (chest).'
+    - '&7Dureza: +2 (chest).'
+    - '&7Resistencia al empuje: +0.08 (chest).'
+    - '&7Dano: +2.5% (chest).'
+    - '&7Velocidad de ataque: +15% (chest).'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_champion_chestplate'
+  'c2':
+    material: IRON_HELMET
+    slot: 3
+    amount: 1
+    display_name: '&bChampion Helmet'
+    item_model: 'stellarity:champion_helmet'
+    lore:
+    - '&7El conjunto completo aumenta el dano'
+    - '&7al encadenar ataques.'
+    - '&7Armadura: +3 (head).'
+    - '&7Dureza: +2 (head).'
+    - '&7Resistencia al empuje: +0.08 (head).'
+    - '&7Dano: +2.5% (head).'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_champion_helmet'
+  'c3':
+    material: IRON_LEGGINGS
+    slot: 4
+    amount: 1
+    display_name: '&bChampion Leggings'
+    item_model: 'stellarity:champion_leggings'
+    lore:
+    - '&7El conjunto completo aumenta el dano'
+    - '&7al encadenar ataques.'
+    - '&7Armadura: +6 (legs).'
+    - '&7Dureza: +2 (legs).'
+    - '&7Resistencia al empuje: +0.08 (legs).'
+    - '&7Dano: +2.5% (legs).'
+    - '&7Sweeping damage ratio: +0.15 (legs).'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_champion_leggings'
+  'c4':
+    material: ELYTRA
+    slot: 5
+    amount: 1
+    display_name: '&bDragon Wings'
+    item_model: 'stellarity:dragon_wings'
+    lore:
+    - '&7Alas con proteccion a cambio de menor'
+    - '&7velocidad de vuelo.'
+    - '&7Armadura: +3 (chest).'
+    - '&7Dureza: +2 (chest).'
+    - '&7Velocidad: -8% (chest).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: ELYTRA
+    slot: 6
+    amount: 1
+    display_name: '&bEmpress Wings'
+    item_model: 'stellarity:empress_wings'
+    lore:
+    - '&7Alas rapidas y agiles, con estela de'
+    - '&7colores.'
+    - '&7Velocidad: +10% (chest).'
+    - '&7Fall damage multiplier: -25% (chest).'
+    - '&7Caida segura: +4 (chest).'
+    - '&7Gravity: -35% (chest).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c6':
+    material: ELYTRA
+    slot: 7
+    amount: 1
+    display_name: '&bPhantom Wings'
+    item_model: 'stellarity:phantom_wings'
+    lore:
+    - '&7Alas de phantom; equipo de vuelo del'
+    - '&7End.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c7':
+    material: IRON_BOOTS
+    slot: 10
+    amount: 1
+    display_name: '&bFloral Boots'
+    item_model: 'stellarity:floral_boots'
+    lore:
+    - '&7El conjunto completo hace florecer'
+    - '&7explosiones al disparar y permite'
+    - '&7camuflarte entre plantas.'
+    - '&7Armadura: +3 (feet).'
+    - '&7Dureza: +3 (feet).'
+    - '&7Resistencia al empuje: +0.1 (feet).'
+    - '&7Dano: -5% (feet).'
+    - '&7Velocidad: +7% (feet).'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_floral_boots'
+  'c8':
+    material: IRON_CHESTPLATE
+    slot: 11
+    amount: 1
+    display_name: '&bFloral Chestplate'
+    item_model: 'stellarity:floral_chestplate'
+    lore:
+    - '&7El conjunto completo hace florecer'
+    - '&7explosiones al disparar y permite'
+    - '&7camuflarte entre plantas.'
+    - '&7Armadura: +8 (chest).'
+    - '&7Dureza: +3 (chest).'
+    - '&7Resistencia al empuje: +0.1 (chest).'
+    - '&7Dano: -5% (chest).'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_floral_chestplate'
+  'c9':
+    material: IRON_HELMET
+    slot: 12
+    amount: 1
+    display_name: '&bFloral Hood'
+    item_model: 'stellarity:floral_helmet'
+    lore:
+    - '&7El conjunto completo hace florecer'
+    - '&7explosiones al disparar y permite'
+    - '&7camuflarte entre plantas.'
+    - '&7Armadura: +3 (head).'
+    - '&7Dureza: +3 (head).'
+    - '&7Resistencia al empuje: +0.1 (head).'
+    - '&7Dano: -5% (head).'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_floral_helmet'
+  'c10':
+    material: IRON_LEGGINGS
+    slot: 13
+    amount: 1
+    display_name: '&bFloral Leggings'
+    item_model: 'stellarity:floral_leggings'
+    lore:
+    - '&7El conjunto completo hace florecer'
+    - '&7explosiones al disparar y permite'
+    - '&7camuflarte entre plantas.'
+    - '&7Armadura: +6 (legs).'
+    - '&7Dureza: +3 (legs).'
+    - '&7Resistencia al empuje: +0.1 (legs).'
+    - '&7Dano: -5% (legs).'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_floral_leggings'
+  'c11':
+    material: IRON_BOOTS
+    slot: 14
+    amount: 1
+    display_name: '&bBotas Sagradas'
+    item_model: 'stellarity:hallowed_boots'
+    lore:
+    - '&7El conjunto completo permite esquivar'
+    - '&7golpes y retroceso.'
+    - '&7Armadura: +3 (feet).'
+    - '&7Dureza: +3 (feet).'
+    - '&7Resistencia al empuje: +0.1 (feet).'
+    - '&7Velocidad: +10% (feet).'
+    - '&7Step height: +0.5 (feet).'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_hallowed_boots'
+  'c12':
+    material: IRON_CHESTPLATE
+    slot: 15
+    amount: 1
+    display_name: '&bPechera Sagrada'
+    item_model: 'stellarity:hallowed_chestplate'
+    lore:
+    - '&7El conjunto completo permite esquivar'
+    - '&7golpes y retroceso.'
+    - '&7Armadura: +8 (chest).'
+    - '&7Dureza: +3 (chest).'
+    - '&7Resistencia al empuje: +0.1 (chest).'
+    - '&7Caida segura: +1 (chest).'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_hallowed_chestplate'
+  'c13':
+    material: IRON_HELMET
+    slot: 16
+    amount: 1
+    display_name: '&bMáscara Sagrada'
+    item_model: 'stellarity:hallowed_helmet'
+    lore:
+    - '&7El conjunto completo permite esquivar'
+    - '&7golpes y retroceso.'
+    - '&7Armadura: +3 (head).'
+    - '&7Dureza: +3 (head).'
+    - '&7Resistencia al empuje: +0.1 (head).'
+    - '&7Caida segura: +1 (head).'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_hallowed_helmet'
+  'c14':
+    material: IRON_LEGGINGS
+    slot: 19
+    amount: 1
+    display_name: '&bMallas Sagradas'
+    item_model: 'stellarity:hallowed_leggings'
+    lore:
+    - '&7El conjunto completo permite esquivar'
+    - '&7golpes y retroceso.'
+    - '&7Armadura: +6 (legs).'
+    - '&7Dureza: +3 (legs).'
+    - '&7Resistencia al empuje: +0.1 (legs).'
+    - '&7Jump strength: +15% (legs).'
+    - '&7Sneaking speed: +25% (legs).'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_hallowed_leggings'
+  'c15':
+    material: LEATHER_HORSE_ARMOR
+    slot: 20
+    amount: 1
+    display_name: '&bReinforced Horse Armor'
+    item_model: 'stellarity:reinforced_horse_armor'
+    lore:
+    - '&7Armadura: +16 (body).'
+    - '&7Dureza: +6 (body).'
+    - '&7Velocidad: +10% (body).'
+    - '&7Movement efficiency: +0.5 (body).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c16':
+    material: IRON_BOOTS
+    slot: 21
+    amount: 1
+    display_name: '&bBotas de Shulker'
+    item_model: 'stellarity:shulker_boots'
+    lore:
+    - '&7Equipo de shulker. El conjunto de'
+    - '&7armadura reduce dano y responde con'
+    - '&7proyectiles.'
+    - '&7Armadura: +3 (feet).'
+    - '&7Dureza: +4 (feet).'
+    - '&7Resistencia al empuje: +0.2 (feet).'
+    - '&7Velocidad de ataque: -3% (feet).'
+    - '&7Velocidad: -3% (feet).'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_shulker_boots'
+  'c17':
+    material: IRON_CHESTPLATE
+    slot: 22
+    amount: 1
+    display_name: '&bPechera de Shulker'
+    item_model: 'stellarity:shulker_chestplate'
+    lore:
+    - '&7Equipo de shulker. El conjunto de'
+    - '&7armadura reduce dano y responde con'
+    - '&7proyectiles.'
+    - '&7Armadura: +8 (chest).'
+    - '&7Dureza: +4 (chest).'
+    - '&7Resistencia al empuje: +0.2 (chest).'
+    - '&7Velocidad de ataque: -3% (chest).'
+    - '&7Velocidad: -3% (chest).'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_shulker_chestplate'
+  'c18':
+    material: IRON_HELMET
+    slot: 23
+    amount: 1
+    display_name: '&bCasco de Shulker'
+    item_model: 'stellarity:shulker_helmet'
+    lore:
+    - '&7Equipo de shulker. El conjunto de'
+    - '&7armadura reduce dano y responde con'
+    - '&7proyectiles.'
+    - '&7Armadura: +3 (head).'
+    - '&7Dureza: +4 (head).'
+    - '&7Resistencia al empuje: +0.2 (head).'
+    - '&7Velocidad de ataque: -3% (head).'
+    - '&7Velocidad: -3% (head).'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_shulker_helmet'
+  'c19':
+    material: IRON_LEGGINGS
+    slot: 24
+    amount: 1
+    display_name: '&bPantalones de Shulker'
+    item_model: 'stellarity:shulker_leggings'
+    lore:
+    - '&7Equipo de shulker. El conjunto de'
+    - '&7armadura reduce dano y responde con'
+    - '&7proyectiles.'
+    - '&7Armadura: +6 (legs).'
+    - '&7Dureza: +4 (legs).'
+    - '&7Resistencia al empuje: +0.2 (legs).'
+    - '&7Velocidad de ataque: -3% (legs).'
+    - '&7Velocidad: -3% (legs).'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_shulker_leggings'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_stellarity'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

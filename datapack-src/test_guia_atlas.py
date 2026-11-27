@@ -55,6 +55,34 @@ class AtlasTest(unittest.TestCase):
         original = self.source['dialogs']['guia'] if 'guia' in self.source['dialogs'] else None
         self.assertGreaterEqual(len(self.source['index']), 21)
 
+    def test_indice_ampliado_y_fuente_preservada(self):
+        from guia_ampliacion import extend_source, catalog
+        raw = json.loads((ROOT / 'build/runtime/guia_fuente.json').read_text(encoding='utf8'))
+        before = json.dumps(raw, sort_keys=True)
+        data = extend_source(raw)
+        self.assertEqual(before, json.dumps(raw, sort_keys=True))
+        self.assertEqual(data, extend_source(data))
+        entries = {e.get('dialog'): e['caption'] for e in data['index']}
+        self.assertEqual(entries['atlas/seccion/cocina'], 'Comida')
+        self.assertEqual(entries['atlas/seccion/crafteos'], 'Crafteos')
+        self.assertEqual(entries['atlas/seccion/stellarity'], 'Stellarity (El End)')
+        self.assertEqual(catalog()['version'], '5.4.2')
+
+    def test_catalogo_cubre_las_recetas_del_original_local(self):
+        import sys
+        sys.path.insert(0, str(ROOT / 'tools'))
+        from inventariar_stellarity import inventory
+        from guia_ampliacion import catalog
+        datapack = ROOT / '.local/dp-server/Stellarity-5.4.2.zip'
+        resource = ROOT / 'datapack-src/pack-source/terceros/Stellarity-6.0.1-RP.zip'
+        if not datapack.exists() or not resource.exists():
+            self.skipTest('Originales privados no disponibles')
+        original, _ = inventory(datapack, resource)
+        self.assertEqual(catalog()['recipes'], original['recipes'])
+        self.assertEqual(set(catalog()['items']), set(original['items']))
+        self.assertEqual(len({r['id'] for r in original['recipes']}), len(original['recipes']))
+        self.assertTrue(any(r.get('warning') for r in original['recipes']))
+
     def test_all_berserker_tiers(self):
         for tier in range(1, 11):
             page = self.pages[f'data/astral/dialog/atlas/catalogo/armadura_{tier}/1.json']

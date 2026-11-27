@@ -1,0 +1,296 @@
+menu_title: '&f&#ffe9a8Explorar el End 1'
+size: 54
+open_requirement:
+  requirements:
+    prueba:
+      type: has permission
+      permission: astral.guia.ampliacion
+    dueno:
+      type: string equals
+      input: '%player_name%'
+      output: 'ByTrainx'
+  deny_commands:
+  - '[message] &eEsta ampliacion esta en prueba con el dueno.'
+items:
+  'c0':
+    material: END_STONE
+    slot: 1
+    amount: 1
+    display_name: '&bBioma: Amethyst Forest'
+    lore:
+    - '&7Bioma propio de Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: END_STONE
+    slot: 2
+    amount: 1
+    display_name: '&bBioma: Ashfall Deltas'
+    lore:
+    - '&7Bioma propio de Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: END_STONE
+    slot: 3
+    amount: 1
+    display_name: '&bBioma: Blazing Dunes'
+    lore:
+    - '&7Bioma propio de Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: END_STONE
+    slot: 4
+    amount: 1
+    display_name: '&bBioma: Crystal Crags'
+    lore:
+    - '&7Bioma propio de Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: END_STONE
+    slot: 5
+    amount: 1
+    display_name: '&bBioma: Dragons Den'
+    lore:
+    - '&7Bioma propio de Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: END_STONE
+    slot: 6
+    amount: 1
+    display_name: '&bBioma: Ender Wastes'
+    lore:
+    - '&7Bioma propio de Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c6':
+    material: END_STONE
+    slot: 7
+    amount: 1
+    display_name: '&bBioma: Endless Dunes'
+    lore:
+    - '&7Bioma propio de Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c7':
+    material: END_STONE
+    slot: 10
+    amount: 1
+    display_name: '&bBioma: End Shrubland'
+    lore:
+    - '&7Bioma propio de Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c8':
+    material: END_STONE
+    slot: 11
+    amount: 1
+    display_name: '&bBioma: End Wilds'
+    lore:
+    - '&7Bioma propio de Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c9':
+    material: END_STONE
+    slot: 12
+    amount: 1
+    display_name: '&bBioma: Fiery Hills'
+    lore:
+    - '&7Bioma propio de Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c10':
+    material: END_STONE
+    slot: 13
+    amount: 1
+    display_name: '&bBioma: Flesh Tundra'
+    lore:
+    - '&7Bioma propio de Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c11':
+    material: END_STONE
+    slot: 14
+    amount: 1
+    display_name: '&bBioma: Frosted Hills'
+    lore:
+    - '&7Bioma propio de Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c12':
+    material: END_STONE
+    slot: 15
+    amount: 1
+    display_name: '&bBioma: Frosted Valley'
+    lore:
+    - '&7Bioma propio de Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c13':
+    material: END_STONE
+    slot: 16
+    amount: 1
+    display_name: '&bBioma: Frozen Marsh'
+    lore:
+    - '&7Bioma propio de Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c14':
+    material: END_STONE
+    slot: 19
+    amount: 1
+    display_name: '&bBioma: Frozen Shrubland'
+    lore:
+    - '&7Bioma propio de Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c15':
+    material: END_STONE
+    slot: 20
+    amount: 1
+    display_name: '&bBioma: Frozen Spikes'
+    lore:
+    - '&7Bioma propio de Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c16':
+    material: END_STONE
+    slot: 21
+    amount: 1
+    display_name: '&bBioma: Hallowed Tundra'
+    lore:
+    - '&7Bioma propio de Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c17':
+    material: END_STONE
+    slot: 22
+    amount: 1
+    display_name: '&bBioma: Prismarine Forest'
+    lore:
+    - '&7Bioma propio de Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c18':
+    material: END_STONE
+    slot: 23
+    amount: 1
+    display_name: '&bBioma: Prismatic Dunes'
+    lore:
+    - '&7Bioma propio de Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c19':
+    material: END_STONE
+    slot: 24
+    amount: 1
+    display_name: '&bBioma: Sculk Growth'
+    lore:
+    - '&7Bioma propio de Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c20':
+    material: END_STONE
+    slot: 25
+    amount: 1
+    display_name: '&bBioma: The Hallow'
+    lore:
+    - '&7Bioma propio de Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_stellarity'
+  'siguiente':
+    material: PAPER
+    slot: 51
+    amount: 1
+    display_name: '&eSiguiente'
+    item_model: 'astral:mascotas/nav_next'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_stellarity_mundo_2'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

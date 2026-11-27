@@ -1,0 +1,287 @@
+# Fusionar dentro de gui_menus; no reemplazar config.yml completo.
+  guia_astral:
+    file: guia_astral.yml
+  guia_astral_3:
+    file: guia_astral_3.yml
+  g_atlas_seccion_cocina:
+    file: g_atlas_seccion_cocina.yml
+  g_guia_comida_cnk:
+    file: g_guia_comida_cnk.yml
+  g_atlas_seccion_crafteos:
+    file: g_atlas_seccion_crafteos.yml
+  g_atlas_seccion_stellarity:
+    file: g_atlas_seccion_stellarity.yml
+  g_guia_stellarity_weapons_1:
+    file: g_guia_stellarity_weapons_1.yml
+  g_guia_stellarity_armor_1:
+    file: g_guia_stellarity_armor_1.yml
+  g_guia_stellarity_books_1:
+    file: g_guia_stellarity_books_1.yml
+  g_guia_stellarity_tools_1:
+    file: g_guia_stellarity_tools_1.yml
+  g_guia_stellarity_trinkets_1:
+    file: g_guia_stellarity_trinkets_1.yml
+  g_guia_stellarity_food_1:
+    file: g_guia_stellarity_food_1.yml
+  g_guia_stellarity_food_2:
+    file: g_guia_stellarity_food_2.yml
+  g_guia_stellarity_potions_1:
+    file: g_guia_stellarity_potions_1.yml
+  g_guia_stellarity_potions_2:
+    file: g_guia_stellarity_potions_2.yml
+  g_guia_stellarity_materials_1:
+    file: g_guia_stellarity_materials_1.yml
+  g_guia_stellarity_materials_2:
+    file: g_guia_stellarity_materials_2.yml
+  g_guia_stellarity_recetas_1:
+    file: g_guia_stellarity_recetas_1.yml
+  g_guia_stellarity_r_minecraft_dispenser:
+    file: g_guia_stellarity_r_minecraft_dispenser.yml
+  g_guia_stellarity_r_minecraft_dropper:
+    file: g_guia_stellarity_r_minecraft_dropper.yml
+  g_guia_stellarity_r_minecraft_end_crystal:
+    file: g_guia_stellarity_r_minecraft_end_crystal.yml
+  g_guia_stellarity_r_minecraft_end_rod:
+    file: g_guia_stellarity_r_minecraft_end_rod.yml
+  g_guia_stellarity_r_minecraft_glass:
+    file: g_guia_stellarity_r_minecraft_glass.yml
+  g_guia_stellarity_r_minecraft_leather:
+    file: g_guia_stellarity_r_minecraft_leather.yml
+  g_guia_stellarity_r_minecraft_lever:
+    file: g_guia_stellarity_r_minecraft_lever.yml
+  g_guia_stellarity_r_minecraft_observer:
+    file: g_guia_stellarity_r_minecraft_observer.yml
+  g_guia_stellarity_r_minecraft_piston:
+    file: g_guia_stellarity_r_minecraft_piston.yml
+  g_guia_stellarity_r_minecraft_purple_dye:
+    file: g_guia_stellarity_r_minecraft_purple_dye.yml
+  g_guia_stellarity_r_minecraft_slime_ball:
+    file: g_guia_stellarity_r_minecraft_slime_ball.yml
+  g_guia_stellarity_r_minecraft_spectral_arrow:
+    file: g_guia_stellarity_r_minecraft_spectral_arrow.yml
+  g_guia_stellarity_r_stellarity_chorus_plant_from_fruit:
+    file: g_guia_stellarity_r_stellarity_chorus_plant_from_fruit.yml
+  g_guia_stellarity_r_stellarity_glass_from_end_stone:
+    file: g_guia_stellarity_r_stellarity_glass_from_end_stone.yml
+  g_guia_stellarity_r_stellarity_gunpowder_from_popped_chorus_blasting:
+    file: g_guia_stellarity_r_stellarity_gunpowder_from_popped_chorus_blasting.yml
+  g_guia_stellarity_r_stellarity_gunpowder_from_popped_chorus_campfire:
+    file: g_guia_stellarity_r_stellarity_gunpowder_from_popped_chorus_campfire.yml
+  g_guia_stellarity_r_stellarity_leather_from_membranes:
+    file: g_guia_stellarity_r_stellarity_leather_from_membranes.yml
+  g_guia_stellarity_r_stellarity_papyrus:
+    file: g_guia_stellarity_r_stellarity_papyrus.yml
+  g_guia_stellarity_r_stellarity_purple_dye_from_chorus_flower:
+    file: g_guia_stellarity_r_stellarity_purple_dye_from_chorus_flower.yml
+  g_guia_stellarity_r_stellarity_slime_ball_from_ender_eye:
+    file: g_guia_stellarity_r_stellarity_slime_ball_from_ender_eye.yml
+  g_guia_stellarity_r_stellarity_spectral_arrow_alt:
+    file: g_guia_stellarity_r_stellarity_spectral_arrow_alt.yml
+  g_guia_stellarity_recetas_2:
+    file: g_guia_stellarity_recetas_2.yml
+  g_guia_stellarity_r_stellarity_sugar_from_chorus_fruit:
+    file: g_guia_stellarity_r_stellarity_sugar_from_chorus_fruit.yml
+  g_guia_stellarity_r_stellarity_suspicious_stew_from_chorus_fruit:
+    file: g_guia_stellarity_r_stellarity_suspicious_stew_from_chorus_fruit.yml
+  g_guia_stellarity_r_stellarity_suspicious_stew_from_pink_petals:
+    file: g_guia_stellarity_r_stellarity_suspicious_stew_from_pink_petals.yml
+  g_guia_stellarity_r_stellarity_suspicious_stew_from_pitcher_pod:
+    file: g_guia_stellarity_r_stellarity_suspicious_stew_from_pitcher_pod.yml
+  g_guia_stellarity_r_altar_hallowed_helmet:
+    file: g_guia_stellarity_r_altar_hallowed_helmet.yml
+  g_guia_stellarity_r_altar_hallowed_chestplate:
+    file: g_guia_stellarity_r_altar_hallowed_chestplate.yml
+  g_guia_stellarity_r_altar_hallowed_leggings:
+    file: g_guia_stellarity_r_altar_hallowed_leggings.yml
+  g_guia_stellarity_r_altar_hallowed_boots:
+    file: g_guia_stellarity_r_altar_hallowed_boots.yml
+  g_guia_stellarity_r_altar_champion_helmet:
+    file: g_guia_stellarity_r_altar_champion_helmet.yml
+  g_guia_stellarity_r_altar_champion_chestplate:
+    file: g_guia_stellarity_r_altar_champion_chestplate.yml
+  g_guia_stellarity_r_altar_champion_leggings:
+    file: g_guia_stellarity_r_altar_champion_leggings.yml
+  g_guia_stellarity_r_altar_champion_boots:
+    file: g_guia_stellarity_r_altar_champion_boots.yml
+  g_guia_stellarity_r_altar_shulker_helmet:
+    file: g_guia_stellarity_r_altar_shulker_helmet.yml
+  g_guia_stellarity_r_altar_shulker_chestplate:
+    file: g_guia_stellarity_r_altar_shulker_chestplate.yml
+  g_guia_stellarity_r_altar_shulker_leggings:
+    file: g_guia_stellarity_r_altar_shulker_leggings.yml
+  g_guia_stellarity_r_altar_shulker_boots:
+    file: g_guia_stellarity_r_altar_shulker_boots.yml
+  g_guia_stellarity_r_altar_floral_helmet:
+    file: g_guia_stellarity_r_altar_floral_helmet.yml
+  g_guia_stellarity_r_altar_floral_chestplate:
+    file: g_guia_stellarity_r_altar_floral_chestplate.yml
+  g_guia_stellarity_r_altar_floral_leggings:
+    file: g_guia_stellarity_r_altar_floral_leggings.yml
+  g_guia_stellarity_r_altar_floral_boots:
+    file: g_guia_stellarity_r_altar_floral_boots.yml
+  g_guia_stellarity_r_altar_endonomicon:
+    file: g_guia_stellarity_r_altar_endonomicon.yml
+  g_guia_stellarity_recetas_3:
+    file: g_guia_stellarity_recetas_3.yml
+  g_guia_stellarity_r_altar_chorus_plating:
+    file: g_guia_stellarity_r_altar_chorus_plating.yml
+  g_guia_stellarity_r_altar_enderite_smithing_template:
+    file: g_guia_stellarity_r_altar_enderite_smithing_template.yml
+  g_guia_stellarity_r_altar_book_of_jinx:
+    file: g_guia_stellarity_r_altar_book_of_jinx.yml
+  g_guia_stellarity_r_altar_book_of_conveyance:
+    file: g_guia_stellarity_r_altar_book_of_conveyance.yml
+  g_guia_stellarity_r_altar_crest_of_the_end:
+    file: g_guia_stellarity_r_altar_crest_of_the_end.yml
+  g_guia_stellarity_r_altar_satchel_of_voids:
+    file: g_guia_stellarity_r_altar_satchel_of_voids.yml
+  g_guia_stellarity_r_altar_shulker_pickaxe:
+    file: g_guia_stellarity_r_altar_shulker_pickaxe.yml
+  g_guia_stellarity_r_altar_shulker_axe:
+    file: g_guia_stellarity_r_altar_shulker_axe.yml
+  g_guia_stellarity_r_altar_shulker_shovel:
+    file: g_guia_stellarity_r_altar_shulker_shovel.yml
+  g_guia_stellarity_r_altar_shulker_hoe:
+    file: g_guia_stellarity_r_altar_shulker_hoe.yml
+  g_guia_stellarity_r_altar_shulker_sword:
+    file: g_guia_stellarity_r_altar_shulker_sword.yml
+  g_guia_stellarity_r_altar_spectral_fury:
+    file: g_guia_stellarity_r_altar_spectral_fury.yml
+  g_guia_stellarity_r_altar_sandstorm_trident:
+    file: g_guia_stellarity_r_altar_sandstorm_trident.yml
+  g_guia_stellarity_r_altar_tamaris:
+    file: g_guia_stellarity_r_altar_tamaris.yml
+  g_guia_stellarity_r_altar_shulker_spear:
+    file: g_guia_stellarity_r_altar_shulker_spear.yml
+  g_guia_stellarity_r_caldero_chorus_stew_57:
+    file: g_guia_stellarity_r_caldero_chorus_stew_57.yml
+  g_guia_stellarity_r_caldero_minecraft_experience_bottle_58:
+    file: g_guia_stellarity_r_caldero_minecraft_experience_bottle_58.yml
+  g_guia_stellarity_r_caldero_golden_chorus_fruit_59:
+    file: g_guia_stellarity_r_caldero_golden_chorus_fruit_59.yml
+  g_guia_stellarity_r_caldero_candied_chorus_fruit_60:
+    file: g_guia_stellarity_r_caldero_candied_chorus_fruit_60.yml
+  g_guia_stellarity_r_caldero_fried_chorus_fruit_61:
+    file: g_guia_stellarity_r_caldero_fried_chorus_fruit_61.yml
+  g_guia_stellarity_r_caldero_grilled_enderman_flesh_62:
+    file: g_guia_stellarity_r_caldero_grilled_enderman_flesh_62.yml
+  g_guia_stellarity_recetas_4:
+    file: g_guia_stellarity_recetas_4.yml
+  g_guia_stellarity_r_caldero_frozen_carpaccio_63:
+    file: g_guia_stellarity_r_caldero_frozen_carpaccio_63.yml
+  g_guia_stellarity_r_caldero_chorus_pie_64:
+    file: g_guia_stellarity_r_caldero_chorus_pie_64.yml
+  g_guia_stellarity_r_caldero_pho_65:
+    file: g_guia_stellarity_r_caldero_pho_65.yml
+  g_guia_stellarity_r_caldero_shepherds_pie_66:
+    file: g_guia_stellarity_r_caldero_shepherds_pie_66.yml
+  g_guia_stellarity_r_caldero_sushi_67:
+    file: g_guia_stellarity_r_caldero_sushi_67.yml
+  g_guia_stellarity_r_caldero_prismatic_sushi_68:
+    file: g_guia_stellarity_r_caldero_prismatic_sushi_68.yml
+  g_guia_stellarity_r_caldero_chorus_juice_69:
+    file: g_guia_stellarity_r_caldero_chorus_juice_69.yml
+  g_guia_stellarity_r_caldero_blind_rage_potion_70:
+    file: g_guia_stellarity_r_caldero_blind_rage_potion_70.yml
+  g_guia_stellarity_r_caldero_blind_rage_potion_ext_71:
+    file: g_guia_stellarity_r_caldero_blind_rage_potion_ext_71.yml
+  g_guia_stellarity_r_caldero_endurance_potion_72:
+    file: g_guia_stellarity_r_caldero_endurance_potion_72.yml
+  g_guia_stellarity_r_caldero_endurance_potion_ext_73:
+    file: g_guia_stellarity_r_caldero_endurance_potion_ext_73.yml
+  g_guia_stellarity_r_caldero_endurance_potion_ii_74:
+    file: g_guia_stellarity_r_caldero_endurance_potion_ii_74.yml
+  g_guia_stellarity_r_caldero_entanglement_potion_75:
+    file: g_guia_stellarity_r_caldero_entanglement_potion_75.yml
+  g_guia_stellarity_r_caldero_entanglement_potion_ext_76:
+    file: g_guia_stellarity_r_caldero_entanglement_potion_ext_76.yml
+  g_guia_stellarity_r_caldero_entanglement_potion_ii_77:
+    file: g_guia_stellarity_r_caldero_entanglement_potion_ii_77.yml
+  g_guia_stellarity_r_caldero_frost_cloud_potion_78:
+    file: g_guia_stellarity_r_caldero_frost_cloud_potion_78.yml
+  g_guia_stellarity_r_caldero_hellfire_treader_potion_79:
+    file: g_guia_stellarity_r_caldero_hellfire_treader_potion_79.yml
+  g_guia_stellarity_r_caldero_hellfire_treader_potion_ext_80:
+    file: g_guia_stellarity_r_caldero_hellfire_treader_potion_ext_80.yml
+  g_guia_stellarity_r_caldero_hellfire_treader_potion_ii_81:
+    file: g_guia_stellarity_r_caldero_hellfire_treader_potion_ii_81.yml
+  g_guia_stellarity_r_caldero_lifeforce_potion_82:
+    file: g_guia_stellarity_r_caldero_lifeforce_potion_82.yml
+  g_guia_stellarity_r_caldero_lifeforce_potion_ext_83:
+    file: g_guia_stellarity_r_caldero_lifeforce_potion_ext_83.yml
+  g_guia_stellarity_recetas_5:
+    file: g_guia_stellarity_recetas_5.yml
+  g_guia_stellarity_r_caldero_lifeforce_potion_ii_84:
+    file: g_guia_stellarity_r_caldero_lifeforce_potion_ii_84.yml
+  g_guia_stellarity_r_caldero_spelunker_potion_85:
+    file: g_guia_stellarity_r_caldero_spelunker_potion_85.yml
+  g_guia_stellarity_r_caldero_spelunker_potion_86:
+    file: g_guia_stellarity_r_caldero_spelunker_potion_86.yml
+  g_guia_stellarity_r_caldero_spelunker_potion_ext_87:
+    file: g_guia_stellarity_r_caldero_spelunker_potion_ext_87.yml
+  g_guia_stellarity_r_caldero_spelunker_potion_ii_88:
+    file: g_guia_stellarity_r_caldero_spelunker_potion_ii_88.yml
+  g_guia_stellarity_r_caldero_luck_potion_89:
+    file: g_guia_stellarity_r_caldero_luck_potion_89.yml
+  g_guia_stellarity_r_caldero_poseidons_nectar_90:
+    file: g_guia_stellarity_r_caldero_poseidons_nectar_90.yml
+  g_guia_stellarity_r_caldero_red_potion_91:
+    file: g_guia_stellarity_r_caldero_red_potion_91.yml
+  g_guia_stellarity_r_caldero_regeneraga_92:
+    file: g_guia_stellarity_r_caldero_regeneraga_92.yml
+  g_guia_stellarity_r_caldero_regeneraga_ii_93:
+    file: g_guia_stellarity_r_caldero_regeneraga_ii_93.yml
+  g_guia_stellarity_r_caldero_royal_jelly_94:
+    file: g_guia_stellarity_r_caldero_royal_jelly_94.yml
+  g_guia_stellarity_r_caldero_royal_jelly_ii_95:
+    file: g_guia_stellarity_r_caldero_royal_jelly_ii_95.yml
+  g_guia_stellarity_r_caldero_ender_dirt_96:
+    file: g_guia_stellarity_r_caldero_ender_dirt_96.yml
+  g_guia_stellarity_r_caldero_rooted_ender_dirt_97:
+    file: g_guia_stellarity_r_caldero_rooted_ender_dirt_97.yml
+  g_guia_stellarity_r_caldero_ender_grass_block_98:
+    file: g_guia_stellarity_r_caldero_ender_grass_block_98.yml
+  g_guia_stellarity_r_elytra_white:
+    file: g_guia_stellarity_r_elytra_white.yml
+  g_guia_stellarity_r_elytra_light_gray:
+    file: g_guia_stellarity_r_elytra_light_gray.yml
+  g_guia_stellarity_r_elytra_gray:
+    file: g_guia_stellarity_r_elytra_gray.yml
+  g_guia_stellarity_r_elytra_black:
+    file: g_guia_stellarity_r_elytra_black.yml
+  g_guia_stellarity_r_elytra_brown:
+    file: g_guia_stellarity_r_elytra_brown.yml
+  g_guia_stellarity_r_elytra_red:
+    file: g_guia_stellarity_r_elytra_red.yml
+  g_guia_stellarity_recetas_6:
+    file: g_guia_stellarity_recetas_6.yml
+  g_guia_stellarity_r_elytra_orange:
+    file: g_guia_stellarity_r_elytra_orange.yml
+  g_guia_stellarity_r_elytra_yellow:
+    file: g_guia_stellarity_r_elytra_yellow.yml
+  g_guia_stellarity_r_elytra_lime:
+    file: g_guia_stellarity_r_elytra_lime.yml
+  g_guia_stellarity_r_elytra_green:
+    file: g_guia_stellarity_r_elytra_green.yml
+  g_guia_stellarity_r_elytra_cyan:
+    file: g_guia_stellarity_r_elytra_cyan.yml
+  g_guia_stellarity_r_elytra_light_blue:
+    file: g_guia_stellarity_r_elytra_light_blue.yml
+  g_guia_stellarity_r_elytra_blue:
+    file: g_guia_stellarity_r_elytra_blue.yml
+  g_guia_stellarity_r_elytra_purple:
+    file: g_guia_stellarity_r_elytra_purple.yml
+  g_guia_stellarity_r_elytra_magenta:
+    file: g_guia_stellarity_r_elytra_magenta.yml
+  g_guia_stellarity_r_elytra_pink:
+    file: g_guia_stellarity_r_elytra_pink.yml
+  g_guia_stellarity_r_elytra_water:
+    file: g_guia_stellarity_r_elytra_water.yml
+  g_guia_stellarity_altares:
+    file: g_guia_stellarity_altares.yml
+  g_guia_stellarity_jefes:
+    file: g_guia_stellarity_jefes.yml
+  g_guia_stellarity_mundo_1:
+    file: g_guia_stellarity_mundo_1.yml
+  g_guia_stellarity_mundo_2:
+    file: g_guia_stellarity_mundo_2.yml

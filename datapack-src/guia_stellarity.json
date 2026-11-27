@@ -1,0 +1,5067 @@
+{
+  "version": "5.4.2",
+  "sha256": "6c42ac245cecd3882ec3fc160d2fdf31a74d88b16a29a6332cd52d3bb8fa498c",
+  "recipes": [
+    {
+      "id": "minecraft_dispenser",
+      "station": "Mesa de crafteo",
+      "grid": [
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        },
+        {
+          "item": "minecraft:bow",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        },
+        {
+          "item": "minecraft:redstone",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:dispenser"
+      },
+      "source": "data/minecraft/recipe/dispenser.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "minecraft_dropper",
+      "station": "Mesa de crafteo",
+      "grid": [
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        },
+        null,
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        },
+        {
+          "item": "minecraft:redstone",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:dropper"
+      },
+      "source": "data/minecraft/recipe/dropper.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "minecraft_end_crystal",
+      "station": "Mesa de crafteo",
+      "grid": [
+        {
+          "item": "#kohara:glass_blocks",
+          "count": 1
+        },
+        {
+          "item": "#kohara:glass_blocks",
+          "count": 1
+        },
+        {
+          "item": "#kohara:glass_blocks",
+          "count": 1
+        },
+        {
+          "item": "#kohara:glass_blocks",
+          "count": 1
+        },
+        {
+          "item": "minecraft:ender_eye",
+          "count": 1
+        },
+        {
+          "item": "#kohara:glass_blocks",
+          "count": 1
+        },
+        {
+          "item": "#kohara:glass_blocks",
+          "count": 1
+        },
+        {
+          "item": [
+            "minecraft:obsidian",
+            "minecraft:crying_obsidian"
+          ],
+          "count": 1
+        },
+        {
+          "item": "#kohara:glass_blocks",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:end_crystal"
+      },
+      "source": "data/minecraft/recipe/end_crystal.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "minecraft_end_rod",
+      "station": "Mesa de crafteo",
+      "grid": [
+        {
+          "item": "minecraft:blaze_rod",
+          "count": 1
+        },
+        null,
+        null,
+        {
+          "item": "minecraft:popped_chorus_fruit",
+          "count": 1
+        },
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "result": {
+        "id": "minecraft:end_rod",
+        "count": 6
+      },
+      "source": "data/minecraft/recipe/end_rod.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "minecraft_glass",
+      "station": "Horno",
+      "grid": [
+        {
+          "item": "#minecraft:smelts_to_glass",
+          "count": 1
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "result": {
+        "id": "minecraft:glass"
+      },
+      "source": "data/minecraft/recipe/glass.json",
+      "seconds": 10.0,
+      "experience": 0.1
+    },
+    {
+      "id": "minecraft_leather",
+      "station": "Mesa de crafteo",
+      "grid": [
+        {
+          "item": "minecraft:rabbit_hide",
+          "count": 1
+        },
+        {
+          "item": "minecraft:rabbit_hide",
+          "count": 1
+        },
+        null,
+        {
+          "item": "minecraft:rabbit_hide",
+          "count": 1
+        },
+        {
+          "item": "minecraft:rabbit_hide",
+          "count": 1
+        },
+        null,
+        null,
+        null,
+        null
+      ],
+      "result": {
+        "id": "minecraft:leather"
+      },
+      "source": "data/minecraft/recipe/leather.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "minecraft_lever",
+      "station": "Mesa de crafteo",
+      "grid": [
+        {
+          "item": "minecraft:stick",
+          "count": 1
+        },
+        null,
+        null,
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        },
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "result": {
+        "id": "minecraft:lever"
+      },
+      "source": "data/minecraft/recipe/lever.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "minecraft_observer",
+      "station": "Mesa de crafteo",
+      "grid": [
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        },
+        {
+          "item": "minecraft:redstone",
+          "count": 1
+        },
+        {
+          "item": "minecraft:redstone",
+          "count": 1
+        },
+        {
+          "item": "minecraft:quartz",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:observer"
+      },
+      "source": "data/minecraft/recipe/observer.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "minecraft_piston",
+      "station": "Mesa de crafteo",
+      "grid": [
+        {
+          "item": "#minecraft:planks",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:planks",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:planks",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        },
+        {
+          "item": "minecraft:iron_ingot",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        },
+        {
+          "item": "minecraft:redstone",
+          "count": 1
+        },
+        {
+          "item": "#minecraft:stone_crafting_materials",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:piston"
+      },
+      "source": "data/minecraft/recipe/piston.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "minecraft_purple_dye",
+      "station": "Mesa sin forma",
+      "grid": [
+        {
+          "item": "minecraft:blue_dye",
+          "count": 1
+        },
+        {
+          "item": "minecraft:red_dye",
+          "count": 1
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "result": {
+        "id": "minecraft:purple_dye",
+        "count": 2
+      },
+      "source": "data/minecraft/recipe/purple_dye.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "minecraft_slime_ball",
+      "station": "Mesa sin forma",
+      "grid": [
+        {
+          "item": "minecraft:slime_block",
+          "count": 1
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "result": {
+        "id": "minecraft:slime_ball",
+        "count": 9
+      },
+      "source": "data/minecraft/recipe/slime_ball.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "minecraft_spectral_arrow",
+      "station": "Mesa sin forma",
+      "grid": [
+        {
+          "item": "minecraft:arrow",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glowstone_dust",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glowstone_dust",
+          "count": 1
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "result": {
+        "id": "minecraft:spectral_arrow",
+        "count": 2
+      },
+      "source": "data/minecraft/recipe/spectral_arrow.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "stellarity_chorus_plant_from_fruit",
+      "station": "Mesa de crafteo",
+      "grid": [
+        {
+          "item": "minecraft:chorus_fruit",
+          "count": 1
+        },
+        {
+          "item": "minecraft:chorus_fruit",
+          "count": 1
+        },
+        null,
+        {
+          "item": "minecraft:chorus_fruit",
+          "count": 1
+        },
+        {
+          "item": "minecraft:chorus_fruit",
+          "count": 1
+        },
+        null,
+        null,
+        null,
+        null
+      ],
+      "result": {
+        "id": "minecraft:chorus_plant",
+        "count": 4
+      },
+      "source": "data/stellarity/recipe/chorus_plant_from_fruit.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "stellarity_glass_from_end_stone",
+      "station": "Mesa sin forma",
+      "grid": [
+        {
+          "item": "minecraft:end_stone",
+          "count": 1
+        },
+        {
+          "item": "minecraft:blaze_powder",
+          "count": 1
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "result": {
+        "id": "minecraft:glass",
+        "count": 3
+      },
+      "source": "data/stellarity/recipe/glass_from_end_stone.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "stellarity_gunpowder_from_popped_chorus_blasting",
+      "station": "Alto horno",
+      "grid": [
+        {
+          "item": "minecraft:popped_chorus_fruit",
+          "count": 1
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "result": {
+        "id": "minecraft:gunpowder"
+      },
+      "source": "data/stellarity/recipe/gunpowder_from_popped_chorus_blasting.json",
+      "seconds": 7.5,
+      "experience": 0.05
+    },
+    {
+      "id": "stellarity_gunpowder_from_popped_chorus_campfire",
+      "station": "Fogata",
+      "grid": [
+        {
+          "item": "minecraft:popped_chorus_fruit",
+          "count": 1
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "result": {
+        "id": "minecraft:gunpowder"
+      },
+      "source": "data/stellarity/recipe/gunpowder_from_popped_chorus_campfire.json",
+      "seconds": 30.0,
+      "experience": 0
+    },
+    {
+      "id": "stellarity_leather_from_membranes",
+      "station": "Mesa de crafteo",
+      "grid": [
+        {
+          "item": "minecraft:phantom_membrane",
+          "count": 1
+        },
+        {
+          "item": "minecraft:phantom_membrane",
+          "count": 1
+        },
+        null,
+        {
+          "item": "minecraft:phantom_membrane",
+          "count": 1
+        },
+        {
+          "item": "minecraft:phantom_membrane",
+          "count": 1
+        },
+        null,
+        null,
+        null,
+        null
+      ],
+      "result": {
+        "id": "minecraft:leather",
+        "count": 2
+      },
+      "source": "data/stellarity/recipe/leather_from_membranes.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "stellarity_papyrus",
+      "station": "Mesa sin forma",
+      "grid": [
+        {
+          "item": "minecraft:chorus_plant",
+          "count": 1
+        },
+        {
+          "item": "minecraft:chorus_plant",
+          "count": 1
+        },
+        {
+          "item": "minecraft:chorus_plant",
+          "count": 1
+        },
+        {
+          "item": "minecraft:water_bucket",
+          "count": 1
+        },
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "result": {
+        "id": "minecraft:paper",
+        "count": 6
+      },
+      "source": "data/stellarity/recipe/papyrus.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "stellarity_purple_dye_from_chorus_flower",
+      "station": "Mesa sin forma",
+      "grid": [
+        {
+          "item": "minecraft:chorus_flower",
+          "count": 1
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "result": {
+        "id": "minecraft:purple_dye",
+        "count": 2
+      },
+      "source": "data/stellarity/recipe/purple_dye_from_chorus_flower.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "stellarity_slime_ball_from_ender_eye",
+      "station": "Mesa sin forma",
+      "grid": [
+        {
+          "item": "minecraft:water_bucket",
+          "count": 1
+        },
+        {
+          "item": "minecraft:ender_eye",
+          "count": 1
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "result": {
+        "id": "minecraft:slime_ball",
+        "count": 3
+      },
+      "source": "data/stellarity/recipe/slime_ball_from_ender_eye.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "stellarity_spectral_arrow_alt",
+      "station": "Mesa sin forma",
+      "grid": [
+        {
+          "item": "minecraft:arrow",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glowstone",
+          "count": 1
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "result": {
+        "id": "minecraft:spectral_arrow",
+        "count": 4
+      },
+      "source": "data/stellarity/recipe/spectral_arrow_alt.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "stellarity_sugar_from_chorus_fruit",
+      "station": "Mesa sin forma",
+      "grid": [
+        {
+          "item": "minecraft:chorus_fruit",
+          "count": 1
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "result": {
+        "id": "minecraft:sugar",
+        "count": 1
+      },
+      "source": "data/stellarity/recipe/sugar_from_chorus_fruit.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "stellarity_suspicious_stew_from_chorus_fruit",
+      "station": "Mesa sin forma",
+      "grid": [
+        {
+          "item": "minecraft:bowl",
+          "count": 1
+        },
+        {
+          "item": "minecraft:red_mushroom",
+          "count": 1
+        },
+        {
+          "item": "minecraft:brown_mushroom",
+          "count": 1
+        },
+        {
+          "item": "minecraft:chorus_fruit",
+          "count": 1
+        },
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "result": {
+        "id": "minecraft:suspicious_stew",
+        "count": 1,
+        "components": {
+          "minecraft:suspicious_stew_effects": [
+            {
+              "id": "minecraft:levitation",
+              "duration": 160
+            }
+          ]
+        }
+      },
+      "source": "data/stellarity/recipe/suspicious_stew/from_chorus_fruit.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "stellarity_suspicious_stew_from_pink_petals",
+      "station": "Mesa sin forma",
+      "grid": [
+        {
+          "item": "minecraft:bowl",
+          "count": 1
+        },
+        {
+          "item": "minecraft:red_mushroom",
+          "count": 1
+        },
+        {
+          "item": "minecraft:brown_mushroom",
+          "count": 1
+        },
+        {
+          "item": "minecraft:pink_petals",
+          "count": 1
+        },
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "result": {
+        "id": "minecraft:suspicious_stew",
+        "count": 1,
+        "components": {
+          "minecraft:suspicious_stew_effects": [
+            {
+              "id": "minecraft:absorption",
+              "duration": 180
+            }
+          ]
+        }
+      },
+      "source": "data/stellarity/recipe/suspicious_stew/from_pink_petals.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "stellarity_suspicious_stew_from_pitcher_pod",
+      "station": "Mesa sin forma",
+      "grid": [
+        {
+          "item": "minecraft:bowl",
+          "count": 1
+        },
+        {
+          "item": "minecraft:red_mushroom",
+          "count": 1
+        },
+        {
+          "item": "minecraft:brown_mushroom",
+          "count": 1
+        },
+        {
+          "item": "minecraft:pitcher_plant",
+          "count": 1
+        },
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "result": {
+        "id": "minecraft:suspicious_stew",
+        "count": 1,
+        "components": {
+          "minecraft:suspicious_stew_effects": [
+            {
+              "id": "minecraft:strength",
+              "duration": 220
+            }
+          ]
+        }
+      },
+      "source": "data/stellarity/recipe/suspicious_stew/from_pitcher_pod.json",
+      "seconds": 0.0,
+      "experience": 0
+    },
+    {
+      "id": "altar_hallowed_helmet",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "stellarity:hallowed_ingot",
+          "count": 4
+        },
+        {
+          "item": "minecraft:netherite_helmet",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "hallowed_helmet",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/armor.mcfunction"
+    },
+    {
+      "id": "altar_hallowed_chestplate",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "stellarity:hallowed_ingot",
+          "count": 4
+        },
+        {
+          "item": "minecraft:netherite_chestplate",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "hallowed_chestplate",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/armor.mcfunction"
+    },
+    {
+      "id": "altar_hallowed_leggings",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:netherite_leggings",
+          "count": 1
+        },
+        {
+          "item": "stellarity:hallowed_ingot",
+          "count": 4
+        }
+      ],
+      "result": {
+        "item": "hallowed_leggings",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/armor.mcfunction"
+    },
+    {
+      "id": "altar_hallowed_boots",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:netherite_boots",
+          "count": 1
+        },
+        {
+          "item": "stellarity:hallowed_ingot",
+          "count": 4
+        }
+      ],
+      "result": {
+        "item": "hallowed_boots",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/armor.mcfunction"
+    },
+    {
+      "id": "altar_champion_helmet",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "stellarity:chorus_plating",
+          "count": 4
+        },
+        {
+          "item": "minecraft:netherite_helmet",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "champion_helmet",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/armor.mcfunction"
+    },
+    {
+      "id": "altar_champion_chestplate",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:netherite_chestplate",
+          "count": 1
+        },
+        {
+          "item": "stellarity:chorus_plating",
+          "count": 4
+        }
+      ],
+      "result": {
+        "item": "champion_chestplate",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/armor.mcfunction"
+    },
+    {
+      "id": "altar_champion_leggings",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:netherite_leggings",
+          "count": 1
+        },
+        {
+          "item": "stellarity:chorus_plating",
+          "count": 4
+        }
+      ],
+      "result": {
+        "item": "champion_leggings",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/armor.mcfunction"
+    },
+    {
+      "id": "altar_champion_boots",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:netherite_boots",
+          "count": 1
+        },
+        {
+          "item": "stellarity:chorus_plating",
+          "count": 4
+        }
+      ],
+      "result": {
+        "item": "champion_boots",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/armor.mcfunction"
+    },
+    {
+      "id": "altar_shulker_helmet",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:shulker_shell",
+          "count": 4
+        },
+        {
+          "item": "minecraft:netherite_helmet",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "shulker_helmet",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/armor.mcfunction"
+    },
+    {
+      "id": "altar_shulker_chestplate",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:shulker_shell",
+          "count": 4
+        },
+        {
+          "item": "minecraft:netherite_chestplate",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "shulker_chestplate",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/armor.mcfunction"
+    },
+    {
+      "id": "altar_shulker_leggings",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:netherite_leggings",
+          "count": 1
+        },
+        {
+          "item": "minecraft:shulker_shell",
+          "count": 4
+        }
+      ],
+      "result": {
+        "item": "shulker_leggings",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/armor.mcfunction"
+    },
+    {
+      "id": "altar_shulker_boots",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:netherite_boots",
+          "count": 1
+        },
+        {
+          "item": "minecraft:shulker_shell",
+          "count": 4
+        }
+      ],
+      "result": {
+        "item": "shulker_boots",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/armor.mcfunction"
+    },
+    {
+      "id": "altar_floral_helmet",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:cherry_leaves",
+          "count": 8
+        },
+        {
+          "item": "minecraft:netherite_helmet",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "floral_helmet",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/armor.mcfunction"
+    },
+    {
+      "id": "altar_floral_chestplate",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:netherite_chestplate",
+          "count": 1
+        },
+        {
+          "item": "minecraft:cherry_leaves",
+          "count": 8
+        }
+      ],
+      "result": {
+        "item": "floral_chestplate",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/armor.mcfunction"
+    },
+    {
+      "id": "altar_floral_leggings",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:netherite_leggings",
+          "count": 1
+        },
+        {
+          "item": "minecraft:cherry_leaves",
+          "count": 8
+        }
+      ],
+      "result": {
+        "item": "floral_leggings",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/armor.mcfunction"
+    },
+    {
+      "id": "altar_floral_boots",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:netherite_boots",
+          "count": 1
+        },
+        {
+          "item": "minecraft:cherry_leaves",
+          "count": 8
+        }
+      ],
+      "result": {
+        "item": "floral_boots",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/armor.mcfunction"
+    },
+    {
+      "id": "altar_endonomicon",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "minecraft:enchanted_book",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "endonomicon",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/general.mcfunction"
+    },
+    {
+      "id": "altar_chorus_plating",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "minecraft:iron_ingot",
+          "count": 1
+        },
+        {
+          "item": "minecraft:popped_chorus_fruit",
+          "count": 2
+        }
+      ],
+      "result": {
+        "item": "chorus_plating",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/general.mcfunction"
+    },
+    {
+      "id": "altar_enderite_smithing_template",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:purpur_block",
+          "count": 9
+        },
+        {
+          "item": "stellarity:enderite_shard",
+          "count": 5
+        }
+      ],
+      "result": {
+        "item": "enderite_smithing_template",
+        "count": 2
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/general.mcfunction"
+    },
+    {
+      "id": "altar_book_of_jinx",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:chorus_plating",
+          "count": 8
+        },
+        {
+          "item": "minecraft:book",
+          "count": 1
+        },
+        {
+          "item": "stellarity:enderite_shard",
+          "count": 10
+        }
+      ],
+      "result": {
+        "item": "book_of_jinx",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/general.mcfunction"
+    },
+    {
+      "id": "altar_book_of_conveyance",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "minecraft:ender_pearl",
+          "count": 16
+        },
+        {
+          "item": "minecraft:book",
+          "count": 1
+        },
+        {
+          "item": "stellarity:enderite_shard",
+          "count": 32
+        }
+      ],
+      "result": {
+        "item": "book_of_conveyance",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/general.mcfunction"
+    },
+    {
+      "id": "altar_crest_of_the_end",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:shield",
+          "count": 1
+        },
+        {
+          "item": "minecraft:netherite_ingot",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "crest_of_the_end",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/general.mcfunction"
+    },
+    {
+      "id": "altar_satchel_of_voids",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "minecraft:bundle",
+          "count": 1
+        },
+        {
+          "item": "stellarity:starlight_soot",
+          "count": 64
+        },
+        {
+          "item": "minecraft:nether_star",
+          "count": 2
+        },
+        {
+          "item": "stellarity:enderite_shard",
+          "count": 64
+        },
+        {
+          "item": "minecraft:netherite_ingot",
+          "count": 4
+        }
+      ],
+      "result": {
+        "item": "satchel_of_voids",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/general.mcfunction"
+    },
+    {
+      "id": "altar_shulker_pickaxe",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:shulker_shell",
+          "count": 4
+        },
+        {
+          "item": "minecraft:netherite_pickaxe",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "shulker_pickaxe",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/tools.mcfunction"
+    },
+    {
+      "id": "altar_shulker_axe",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:netherite_axe",
+          "count": 1
+        },
+        {
+          "item": "minecraft:shulker_shell",
+          "count": 4
+        }
+      ],
+      "result": {
+        "item": "shulker_axe",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/tools.mcfunction"
+    },
+    {
+      "id": "altar_shulker_shovel",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:shulker_shell",
+          "count": 4
+        },
+        {
+          "item": "minecraft:netherite_shovel",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "shulker_shovel",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/tools.mcfunction"
+    },
+    {
+      "id": "altar_shulker_hoe",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:netherite_hoe",
+          "count": 1
+        },
+        {
+          "item": "minecraft:shulker_shell",
+          "count": 4
+        }
+      ],
+      "result": {
+        "item": "shulker_hoe",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/tools.mcfunction"
+    },
+    {
+      "id": "altar_shulker_sword",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:shulker_shell",
+          "count": 4
+        },
+        {
+          "item": "minecraft:netherite_sword",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "shulker_sword",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/weapons.mcfunction"
+    },
+    {
+      "id": "altar_spectral_fury",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:diamond",
+          "count": 3
+        },
+        {
+          "item": "minecraft:phantom_membrane",
+          "count": 8
+        },
+        {
+          "item": "stellarity:sharanga",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "spectral_fury",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/weapons.mcfunction"
+    },
+    {
+      "id": "altar_sandstorm_trident",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "stellarity:sand_rune",
+          "count": 1
+        },
+        {
+          "item": "minecraft:trident",
+          "count": 1
+        },
+        {
+          "item": "minecraft:breeze_rod",
+          "count": 2
+        }
+      ],
+      "result": {
+        "item": "sandstorm_trident",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/weapons.mcfunction"
+    },
+    {
+      "id": "altar_tamaris",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:netherite_sword",
+          "count": 1
+        },
+        {
+          "item": "stellarity:enderite_shard",
+          "count": 8
+        },
+        {
+          "item": "minecraft:wither_skeleton_skull",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "tamaris",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/weapons.mcfunction"
+    },
+    {
+      "id": "altar_shulker_spear",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "stellarity:enderite_smithing_template",
+          "count": 1
+        },
+        {
+          "item": "minecraft:shulker_shell",
+          "count": 4
+        },
+        {
+          "item": "minecraft:netherite_spear",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "shulker_spear",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/items/weapons.mcfunction"
+    },
+    {
+      "id": "caldero_chorus_stew_57",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "minecraft:chorus_fruit",
+          "count": 1
+        },
+        {
+          "item": "minecraft:bowl",
+          "count": 1
+        },
+        {
+          "item": "minecraft:chorus_flower",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "chorus_stew",
+        "count": 1
+      },
+      "breath": 2,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_minecraft_experience_bottle_58",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "minecraft:glass_bottle",
+          "count": 1
+        },
+        {
+          "item": "minecraft:lapis_lazuli",
+          "count": 1
+        },
+        {
+          "item": "minecraft:lapis_lazuli",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:experience_bottle",
+        "count": 1
+      },
+      "breath": 1,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_golden_chorus_fruit_59",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "minecraft:chorus_fruit",
+          "count": 1
+        },
+        {
+          "item": "minecraft:gold_block",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "golden_chorus_fruit",
+        "count": 1
+      },
+      "breath": 3,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_candied_chorus_fruit_60",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "minecraft:chorus_fruit",
+          "count": 1
+        },
+        {
+          "item": "minecraft:sugar",
+          "count": 1
+        },
+        {
+          "item": "minecraft:sugar",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "candied_chorus_fruit",
+        "count": 1
+      },
+      "breath": 1,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_fried_chorus_fruit_61",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "minecraft:chorus_fruit",
+          "count": 1
+        },
+        {
+          "item": "minecraft:wheat",
+          "count": 1
+        },
+        {
+          "item": "minecraft:blaze_powder",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "fried_chorus_fruit",
+        "count": 1
+      },
+      "breath": 1,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_grilled_enderman_flesh_62",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:enderman_flesh",
+          "count": 1
+        },
+        {
+          "item": "minecraft:blaze_powder",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "grilled_enderman_flesh",
+        "count": 1
+      },
+      "breath": 1,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_frozen_carpaccio_63",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:enderman_flesh",
+          "count": 1
+        },
+        {
+          "item": "minecraft:ice",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "frozen_carpaccio",
+        "count": 1
+      },
+      "breath": 1,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_chorus_pie_64",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "minecraft:chorus_fruit",
+          "count": 1
+        },
+        {
+          "item": "minecraft:sugar",
+          "count": 1
+        },
+        {
+          "item": "stellarity:ender_egg",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "chorus_pie",
+        "count": 1
+      },
+      "breath": 2,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_pho_65",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:golden_chorus_fruit",
+          "count": 1
+        },
+        {
+          "item": "minecraft:bowl",
+          "count": 1
+        },
+        {
+          "item": "stellarity:grilled_enderman_flesh",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "pho",
+        "count": 1
+      },
+      "breath": 4,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_shepherds_pie_66",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:shulker_body",
+          "count": 1
+        },
+        {
+          "item": "minecraft:golden_carrot",
+          "count": 1
+        },
+        {
+          "item": "minecraft:baked_potato",
+          "count": 1
+        },
+        {
+          "item": "minecraft:chorus_fruit",
+          "count": 1
+        },
+        {
+          "item": "minecraft:chorus_fruit",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "shepherds_pie",
+        "count": 1
+      },
+      "breath": 5,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_sushi_67",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:ender_koi",
+          "count": 1
+        },
+        {
+          "item": "minecraft:dried_kelp",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "sushi",
+        "count": 1
+      },
+      "breath": 1,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_prismatic_sushi_68",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:prismite",
+          "count": 1
+        },
+        {
+          "item": "minecraft:dried_kelp",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "prismatic_sushi",
+        "count": 1
+      },
+      "breath": 2,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_chorus_juice_69",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "minecraft:chorus_fruit",
+          "count": 1
+        },
+        {
+          "item": "minecraft:chorus_fruit",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glass_bottle",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "chorus_juice",
+        "count": 1
+      },
+      "breath": 2,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_blind_rage_potion_70",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:fleshy_piranha",
+          "count": 1
+        },
+        {
+          "item": "minecraft:nether_wart",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glass_bottle",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glowstone_dust",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "blind_rage_potion",
+        "count": 1
+      },
+      "breath": 2,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_blind_rage_potion_ext_71",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:blind_rage_potion",
+          "count": 1
+        },
+        {
+          "item": "minecraft:redstone",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "blind_rage_potion_ext",
+        "count": 1
+      },
+      "breath": 3,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_endurance_potion_72",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "minecraft:nether_wart",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glass_bottle",
+          "count": 1
+        },
+        {
+          "item": "minecraft:iron_ingot",
+          "count": 1
+        },
+        {
+          "item": "minecraft:popped_chorus_fruit",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "endurance_potion",
+        "count": 1
+      },
+      "breath": 2,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_endurance_potion_ext_73",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:endurance_potion",
+          "count": 1
+        },
+        {
+          "item": "minecraft:redstone",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "endurance_potion_ext",
+        "count": 1
+      },
+      "breath": 3,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_endurance_potion_ii_74",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:endurance_potion",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glowstone_dust",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "endurance_potion_ii",
+        "count": 1
+      },
+      "breath": 3,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_entanglement_potion_75",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "minecraft:nether_wart",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glass_bottle",
+          "count": 1
+        },
+        {
+          "item": "stellarity:overgrown_cod",
+          "count": 1
+        },
+        {
+          "item": "minecraft:gunpowder",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "entanglement_potion",
+        "count": 1
+      },
+      "breath": 2,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_entanglement_potion_ext_76",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:entanglement_potion",
+          "count": 1
+        },
+        {
+          "item": "minecraft:redstone",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "entanglement_potion_ext",
+        "count": 1
+      },
+      "breath": 3,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_entanglement_potion_ii_77",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:entanglement_potion",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glowstone_dust",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "entanglement_potion_ii",
+        "count": 1
+      },
+      "breath": 3,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_frost_cloud_potion_78",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:frost_minnow",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glass_bottle",
+          "count": 1
+        },
+        {
+          "item": "minecraft:packed_ice",
+          "count": 1
+        },
+        {
+          "item": "minecraft:packed_ice",
+          "count": 1
+        },
+        {
+          "item": "minecraft:nether_wart",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "frost_cloud_potion",
+        "count": 1
+      },
+      "breath": 4,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": "La fuente exige 6 objetos pero enumera 5; no se confirma una combinacion funcional."
+    },
+    {
+      "id": "caldero_hellfire_treader_potion_79",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "minecraft:nether_wart",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glass_bottle",
+          "count": 1
+        },
+        {
+          "item": "stellarity:flarefin_koi",
+          "count": 1
+        },
+        {
+          "item": "minecraft:sugar",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "hellfire_treader_potion",
+        "count": 1
+      },
+      "breath": 2,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_hellfire_treader_potion_ext_80",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:hellfire_treader_potion",
+          "count": 1
+        },
+        {
+          "item": "minecraft:redstone",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "hellfire_treader_potion_ext",
+        "count": 1
+      },
+      "breath": 3,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_hellfire_treader_potion_ii_81",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:hellfire_treader_potion",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glowstone_dust",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "hellfire_treader_potion_ii",
+        "count": 1
+      },
+      "breath": 3,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_lifeforce_potion_82",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "minecraft:nether_wart",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glass_bottle",
+          "count": 1
+        },
+        {
+          "item": "stellarity:prismite",
+          "count": 1
+        },
+        {
+          "item": "stellarity:starlight_soot",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "lifeforce_potion",
+        "count": 1
+      },
+      "breath": 3,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_lifeforce_potion_ext_83",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:lifeforce_potion",
+          "count": 1
+        },
+        {
+          "item": "minecraft:redstone",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "lifeforce_potion_ext",
+        "count": 1
+      },
+      "breath": 4,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_lifeforce_potion_ii_84",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:lifeforce_potion",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glowstone_dust",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "lifeforce_potion_ii",
+        "count": 1
+      },
+      "breath": 3,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_spelunker_potion_85",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "minecraft:nether_wart",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glass_bottle",
+          "count": 1
+        },
+        {
+          "item": "minecraft:brown_mushroom",
+          "count": 1
+        },
+        {
+          "item": "minecraft:gold_ingot",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "spelunker_potion",
+        "count": 1
+      },
+      "breath": 2,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_spelunker_potion_86",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "minecraft:nether_wart",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glass_bottle",
+          "count": 1
+        },
+        {
+          "item": "minecraft:red_mushroom",
+          "count": 1
+        },
+        {
+          "item": "minecraft:gold_ingot",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "spelunker_potion",
+        "count": 1
+      },
+      "breath": 2,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_spelunker_potion_ext_87",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:spelunker_potion",
+          "count": 1
+        },
+        {
+          "item": "minecraft:redstone",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "spelunker_potion_ext",
+        "count": 1
+      },
+      "breath": 3,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_spelunker_potion_ii_88",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:spelunker_potion",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glowstone_dust",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "spelunker_potion_ii",
+        "count": 1
+      },
+      "breath": 3,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_luck_potion_89",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "minecraft:nether_wart",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glass_bottle",
+          "count": 1
+        },
+        {
+          "item": "minecraft:short_grass",
+          "count": 1
+        },
+        {
+          "item": "minecraft:short_grass",
+          "count": 1
+        },
+        {
+          "item": "minecraft:diamond",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "luck_potion",
+        "count": 1
+      },
+      "breath": 5,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_poseidons_nectar_90",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:bubblefish",
+          "count": 1
+        },
+        {
+          "item": "minecraft:nautilus_shell",
+          "count": 1
+        },
+        {
+          "item": "minecraft:prismarine_shard",
+          "count": 1
+        },
+        {
+          "item": "minecraft:honey_bottle",
+          "count": 1
+        },
+        {
+          "item": "minecraft:kelp",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "poseidons_nectar",
+        "count": 1
+      },
+      "breath": 6,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_red_potion_91",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "minecraft:wither_rose",
+          "count": 1
+        },
+        {
+          "item": "minecraft:wither_skeleton_skull",
+          "count": 1
+        },
+        {
+          "item": "minecraft:red_dye",
+          "count": 1
+        },
+        {
+          "item": "minecraft:sweet_berries",
+          "count": 1
+        },
+        {
+          "item": "minecraft:nether_wart_block",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glass_bottle",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "red_potion",
+        "count": 1
+      },
+      "breath": 7,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_regeneraga_92",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:crimson_tigerfish",
+          "count": 1
+        },
+        {
+          "item": "stellarity:prismite",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glistering_melon_slice",
+          "count": 1
+        },
+        {
+          "item": "minecraft:ghast_tear",
+          "count": 1
+        },
+        {
+          "item": "minecraft:nether_wart",
+          "count": 1
+        },
+        {
+          "item": "minecraft:glass_bottle",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "regeneraga",
+        "count": 1
+      },
+      "breath": 4,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_regeneraga_ii_93",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:regeneraga",
+          "count": 1
+        },
+        {
+          "item": "stellarity:starlight_soot",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "regeneraga_ii",
+        "count": 1
+      },
+      "breath": 4,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_royal_jelly_94",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "minecraft:honey_bottle",
+          "count": 1
+        },
+        {
+          "item": "stellarity:starlight_soot",
+          "count": 1
+        },
+        {
+          "item": "minecraft:amethyst_shard",
+          "count": 1
+        },
+        {
+          "item": "minecraft:amethyst_shard",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "royal_jelly",
+        "count": 1
+      },
+      "breath": 5,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_royal_jelly_ii_95",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "stellarity:royal_jelly",
+          "count": 1
+        },
+        {
+          "item": "stellarity:starlight_soot",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "royal_jelly_ii",
+        "count": 1
+      },
+      "breath": 3,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_ender_dirt_96",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "minecraft:end_stone",
+          "count": 1
+        },
+        {
+          "item": "minecraft:dirt",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "ender_dirt",
+        "count": 1
+      },
+      "breath": 2,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_rooted_ender_dirt_97",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "minecraft:end_stone",
+          "count": 1
+        },
+        {
+          "item": "minecraft:rooted_dirt",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "rooted_ender_dirt",
+        "count": 1
+      },
+      "breath": 2,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "caldero_ender_grass_block_98",
+      "station": "Caldero de dragon",
+      "grid": [
+        {
+          "item": "minecraft:end_stone",
+          "count": 1
+        },
+        {
+          "item": "minecraft:grass_block",
+          "count": 1
+        }
+      ],
+      "result": {
+        "item": "ender_grass_block",
+        "count": 1
+      },
+      "breath": 2,
+      "source": "data/stellarity/function/mechanic/cauldron_crafting/crafting/checks.mcfunction",
+      "warning": ""
+    },
+    {
+      "id": "elytra_white",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "minecraft:elytra",
+          "count": 1
+        },
+        {
+          "item": "minecraft:white_dye",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:elytra",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/dye_elytra/checks.mcfunction",
+      "note": "Aplica el color white. Conserva el ala."
+    },
+    {
+      "id": "elytra_light_gray",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "minecraft:elytra",
+          "count": 1
+        },
+        {
+          "item": "minecraft:light_gray_dye",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:elytra",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/dye_elytra/checks.mcfunction",
+      "note": "Aplica el color light_gray. Conserva el ala."
+    },
+    {
+      "id": "elytra_gray",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "minecraft:elytra",
+          "count": 1
+        },
+        {
+          "item": "minecraft:gray_dye",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:elytra",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/dye_elytra/checks.mcfunction",
+      "note": "Aplica el color gray. Conserva el ala."
+    },
+    {
+      "id": "elytra_black",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "minecraft:elytra",
+          "count": 1
+        },
+        {
+          "item": "minecraft:black_dye",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:elytra",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/dye_elytra/checks.mcfunction",
+      "note": "Aplica el color black. Conserva el ala."
+    },
+    {
+      "id": "elytra_brown",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "minecraft:elytra",
+          "count": 1
+        },
+        {
+          "item": "minecraft:brown_dye",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:elytra",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/dye_elytra/checks.mcfunction",
+      "note": "Aplica el color brown. Conserva el ala."
+    },
+    {
+      "id": "elytra_red",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "minecraft:elytra",
+          "count": 1
+        },
+        {
+          "item": "minecraft:red_dye",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:elytra",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/dye_elytra/checks.mcfunction",
+      "note": "Aplica el color red. Conserva el ala."
+    },
+    {
+      "id": "elytra_orange",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "minecraft:elytra",
+          "count": 1
+        },
+        {
+          "item": "minecraft:orange_dye",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:elytra",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/dye_elytra/checks.mcfunction",
+      "note": "Aplica el color orange. Conserva el ala."
+    },
+    {
+      "id": "elytra_yellow",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "minecraft:elytra",
+          "count": 1
+        },
+        {
+          "item": "minecraft:yellow_dye",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:elytra",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/dye_elytra/checks.mcfunction",
+      "note": "Aplica el color yellow. Conserva el ala."
+    },
+    {
+      "id": "elytra_lime",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "minecraft:elytra",
+          "count": 1
+        },
+        {
+          "item": "minecraft:lime_dye",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:elytra",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/dye_elytra/checks.mcfunction",
+      "note": "Aplica el color lime. Conserva el ala."
+    },
+    {
+      "id": "elytra_green",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "minecraft:elytra",
+          "count": 1
+        },
+        {
+          "item": "minecraft:green_dye",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:elytra",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/dye_elytra/checks.mcfunction",
+      "note": "Aplica el color green. Conserva el ala."
+    },
+    {
+      "id": "elytra_cyan",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "minecraft:elytra",
+          "count": 1
+        },
+        {
+          "item": "minecraft:cyan_dye",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:elytra",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/dye_elytra/checks.mcfunction",
+      "note": "Aplica el color cyan. Conserva el ala."
+    },
+    {
+      "id": "elytra_light_blue",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "minecraft:elytra",
+          "count": 1
+        },
+        {
+          "item": "minecraft:light_blue_dye",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:elytra",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/dye_elytra/checks.mcfunction",
+      "note": "Aplica el color light_blue. Conserva el ala."
+    },
+    {
+      "id": "elytra_blue",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "minecraft:elytra",
+          "count": 1
+        },
+        {
+          "item": "minecraft:blue_dye",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:elytra",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/dye_elytra/checks.mcfunction",
+      "note": "Aplica el color blue. Conserva el ala."
+    },
+    {
+      "id": "elytra_purple",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "minecraft:elytra",
+          "count": 1
+        },
+        {
+          "item": "minecraft:purple_dye",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:elytra",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/dye_elytra/checks.mcfunction",
+      "note": "Aplica el color purple. Conserva el ala."
+    },
+    {
+      "id": "elytra_magenta",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "minecraft:elytra",
+          "count": 1
+        },
+        {
+          "item": "minecraft:magenta_dye",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:elytra",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/dye_elytra/checks.mcfunction",
+      "note": "Aplica el color magenta. Conserva el ala."
+    },
+    {
+      "id": "elytra_pink",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "minecraft:elytra",
+          "count": 1
+        },
+        {
+          "item": "minecraft:pink_dye",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:elytra",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/dye_elytra/checks.mcfunction",
+      "note": "Aplica el color pink. Conserva el ala."
+    },
+    {
+      "id": "elytra_water",
+      "station": "Altar Maldito",
+      "grid": [
+        {
+          "item": "minecraft:elytra",
+          "count": 1
+        },
+        {
+          "item": "minecraft:water_bucket",
+          "count": 1
+        }
+      ],
+      "result": {
+        "id": "minecraft:elytra",
+        "count": 1
+      },
+      "source": "data/stellarity/function/mechanic/altar_of_the_accursed/crafting/dye_elytra/checks.mcfunction",
+      "note": "Quita el color."
+    }
+  ],
+  "world": {
+    "biome": [
+      "amethyst_forest",
+      "ashfall_deltas",
+      "blazing_dunes",
+      "crystal_crags",
+      "dragons_den",
+      "ender_wastes",
+      "endless_dunes",
+      "end_shrubland",
+      "end_wilds",
+      "fiery_hills",
+      "flesh_tundra",
+      "frosted_hills",
+      "frosted_valley",
+      "frozen_marsh",
+      "frozen_shrubland",
+      "frozen_spikes",
+      "hallowed_tundra",
+      "prismarine_forest",
+      "prismatic_dunes",
+      "sculk_growth",
+      "the_hallow",
+      "the_nest",
+      "the_void",
+      "warped_marsh"
+    ],
+    "structure": [
+      "campsite",
+      "chapel_of_light",
+      "desert_ruin",
+      "fishing_hut",
+      "floating_treasure",
+      "fossil",
+      "obsidian_spike",
+      "old_stronghold",
+      "return_gateway",
+      "shipwreck/dunes",
+      "shipwreck/normal",
+      "village"
+    ]
+  },
+  "items": {
+    "altar_of_the_sacred": {
+      "name": "Altar of The Sacred",
+      "material": "minecraft:chiseled_quartz_block",
+      "model": "stellarity:altar_of_the_sacred",
+      "original_model": "stellarity:altar_of_the_sacred",
+      "group": "materials",
+      "description": [
+        "Altar Sagrado: cambia minerales por bendiciones e invoca jefes con ofrendas."
+      ],
+      "source": "data/stellarity/loot_table/block/altar_of_the_sacred.json"
+    },
+    "ashen_froglight": {
+      "name": "Ashen Froglight",
+      "material": "minecraft:glow_item_frame",
+      "model": "stellarity:ashen_froglight",
+      "original_model": "stellarity:ashen_froglight",
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/block/ashen_froglight.json"
+    },
+    "enderite_block": {
+      "name": "Block of Enderite",
+      "material": "minecraft:glow_item_frame",
+      "model": "stellarity:enderite_block",
+      "original_model": "stellarity:enderite_block",
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/block/enderite_block.json"
+    },
+    "ender_dirt": {
+      "name": "Ender Dirt",
+      "material": "minecraft:glow_item_frame",
+      "model": "stellarity:ender_dirt",
+      "original_model": "stellarity:ender_dirt",
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/block/ender_dirt.json"
+    },
+    "ender_dirt_path": {
+      "name": "Ender Dirt Path",
+      "material": "minecraft:glow_item_frame",
+      "model": "stellarity:ender_dirt_path",
+      "original_model": "stellarity:ender_dirt_path",
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/block/ender_dirt_path.json"
+    },
+    "ender_grass_block": {
+      "name": "Ender Grass Block",
+      "material": "minecraft:glow_item_frame",
+      "model": "stellarity:ender_grass_block",
+      "original_model": "stellarity:ender_grass_block",
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/block/ender_grass_block.json"
+    },
+    "phantom_item_frame": {
+      "name": "Phantom Item Frame",
+      "material": "minecraft:item_frame",
+      "model": "stellarity:phantom_item_frame",
+      "original_model": "stellarity:phantom_item_frame",
+      "group": "materials",
+      "description": [
+        "Se vuelve invisible cuando colocas un objeto dentro."
+      ],
+      "source": "data/stellarity/loot_table/block/phantom_item_frame.json"
+    },
+    "rooted_ender_dirt": {
+      "name": "Rooted Ender Dirt",
+      "material": "minecraft:glow_item_frame",
+      "model": "stellarity:rooted_ender_dirt",
+      "original_model": "stellarity:rooted_ender_dirt",
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/block/rooted_ender_dirt.json"
+    },
+    "champion_boots": {
+      "name": "Champion Boots",
+      "material": "minecraft:iron_boots",
+      "model": "stellarity:champion_boots",
+      "original_model": "stellarity:champion_boots",
+      "group": "armor",
+      "description": [
+        "El conjunto completo aumenta el dano al encadenar ataques.",
+        "Armadura: +3 (feet).",
+        "Dureza: +2 (feet).",
+        "Resistencia al empuje: +0.08 (feet).",
+        "Dano: +2.5% (feet)."
+      ],
+      "source": "data/stellarity/loot_table/item/armor/champion/boots.json"
+    },
+    "champion_chestplate": {
+      "name": "Chorus Champion Chestplate",
+      "material": "minecraft:iron_chestplate",
+      "model": "stellarity:champion_chestplate",
+      "original_model": "stellarity:champion_chestplate",
+      "group": "armor",
+      "description": [
+        "El conjunto completo aumenta el dano al encadenar ataques.",
+        "Armadura: +8 (chest).",
+        "Dureza: +2 (chest).",
+        "Resistencia al empuje: +0.08 (chest).",
+        "Dano: +2.5% (chest).",
+        "Velocidad de ataque: +15% (chest)."
+      ],
+      "source": "data/stellarity/loot_table/item/armor/champion/chestplate.json"
+    },
+    "champion_helmet": {
+      "name": "Champion Helmet",
+      "material": "minecraft:iron_helmet",
+      "model": "stellarity:champion_helmet",
+      "original_model": "stellarity:champion_helmet",
+      "group": "armor",
+      "description": [
+        "El conjunto completo aumenta el dano al encadenar ataques.",
+        "Armadura: +3 (head).",
+        "Dureza: +2 (head).",
+        "Resistencia al empuje: +0.08 (head).",
+        "Dano: +2.5% (head)."
+      ],
+      "source": "data/stellarity/loot_table/item/armor/champion/helmet.json"
+    },
+    "champion_leggings": {
+      "name": "Champion Leggings",
+      "material": "minecraft:iron_leggings",
+      "model": "stellarity:champion_leggings",
+      "original_model": "stellarity:champion_leggings",
+      "group": "armor",
+      "description": [
+        "El conjunto completo aumenta el dano al encadenar ataques.",
+        "Armadura: +6 (legs).",
+        "Dureza: +2 (legs).",
+        "Resistencia al empuje: +0.08 (legs).",
+        "Dano: +2.5% (legs).",
+        "Sweeping damage ratio: +0.15 (legs)."
+      ],
+      "source": "data/stellarity/loot_table/item/armor/champion/leggings.json"
+    },
+    "dragon_wings": {
+      "name": "Dragon Wings",
+      "material": "minecraft:elytra",
+      "model": "stellarity:dragon_wings",
+      "original_model": "stellarity:dragon_wings",
+      "group": "armor",
+      "description": [
+        "Alas con proteccion a cambio de menor velocidad de vuelo.",
+        "Armadura: +3 (chest).",
+        "Dureza: +2 (chest).",
+        "Velocidad: -8% (chest)."
+      ],
+      "source": "data/stellarity/loot_table/item/armor/elytra/dragon_wings.json"
+    },
+    "empress_wings": {
+      "name": "Empress Wings",
+      "material": "minecraft:elytra",
+      "model": "stellarity:empress_wings",
+      "original_model": "stellarity:empress_wings",
+      "group": "armor",
+      "description": [
+        "Alas rapidas y agiles, con estela de colores.",
+        "Velocidad: +10% (chest).",
+        "Fall damage multiplier: -25% (chest).",
+        "Caida segura: +4 (chest).",
+        "Gravity: -35% (chest)."
+      ],
+      "source": "data/stellarity/loot_table/item/armor/elytra/empress_wings.json"
+    },
+    "phantom_wings": {
+      "name": "Phantom Wings",
+      "material": "minecraft:elytra",
+      "model": "stellarity:phantom_wings",
+      "original_model": "stellarity:phantom_wings",
+      "group": "armor",
+      "description": [
+        "Alas de phantom; equipo de vuelo del End."
+      ],
+      "source": "data/stellarity/loot_table/item/armor/elytra/phantom_wings.json"
+    },
+    "floral_boots": {
+      "name": "Floral Boots",
+      "material": "minecraft:iron_boots",
+      "model": "stellarity:floral_boots",
+      "original_model": "stellarity:floral_boots",
+      "group": "armor",
+      "description": [
+        "El conjunto completo hace florecer explosiones al disparar y permite camuflarte entre plantas.",
+        "Armadura: +3 (feet).",
+        "Dureza: +3 (feet).",
+        "Resistencia al empuje: +0.1 (feet).",
+        "Dano: -5% (feet).",
+        "Velocidad: +7% (feet)."
+      ],
+      "source": "data/stellarity/loot_table/item/armor/floral/boots.json"
+    },
+    "floral_chestplate": {
+      "name": "Floral Chestplate",
+      "material": "minecraft:iron_chestplate",
+      "model": "stellarity:floral_chestplate",
+      "original_model": "stellarity:floral_chestplate",
+      "group": "armor",
+      "description": [
+        "El conjunto completo hace florecer explosiones al disparar y permite camuflarte entre plantas.",
+        "Armadura: +8 (chest).",
+        "Dureza: +3 (chest).",
+        "Resistencia al empuje: +0.1 (chest).",
+        "Dano: -5% (chest)."
+      ],
+      "source": "data/stellarity/loot_table/item/armor/floral/chestplate.json"
+    },
+    "floral_helmet": {
+      "name": "Floral Hood",
+      "material": "minecraft:iron_helmet",
+      "model": "stellarity:floral_helmet",
+      "original_model": "stellarity:floral_helmet",
+      "group": "armor",
+      "description": [
+        "El conjunto completo hace florecer explosiones al disparar y permite camuflarte entre plantas.",
+        "Armadura: +3 (head).",
+        "Dureza: +3 (head).",
+        "Resistencia al empuje: +0.1 (head).",
+        "Dano: -5% (head)."
+      ],
+      "source": "data/stellarity/loot_table/item/armor/floral/helmet.json"
+    },
+    "floral_leggings": {
+      "name": "Floral Leggings",
+      "material": "minecraft:iron_leggings",
+      "model": "stellarity:floral_leggings",
+      "original_model": "stellarity:floral_leggings",
+      "group": "armor",
+      "description": [
+        "El conjunto completo hace florecer explosiones al disparar y permite camuflarte entre plantas.",
+        "Armadura: +6 (legs).",
+        "Dureza: +3 (legs).",
+        "Resistencia al empuje: +0.1 (legs).",
+        "Dano: -5% (legs)."
+      ],
+      "source": "data/stellarity/loot_table/item/armor/floral/leggings.json"
+    },
+    "hallowed_boots": {
+      "name": "Botas Sagradas",
+      "material": "minecraft:iron_boots",
+      "model": "stellarity:hallowed_boots",
+      "original_model": "stellarity:hallowed_boots",
+      "group": "armor",
+      "description": [
+        "El conjunto completo permite esquivar golpes y retroceso.",
+        "Armadura: +3 (feet).",
+        "Dureza: +3 (feet).",
+        "Resistencia al empuje: +0.1 (feet).",
+        "Velocidad: +10% (feet).",
+        "Step height: +0.5 (feet)."
+      ],
+      "source": "data/stellarity/loot_table/item/armor/hallowed/boots.json"
+    },
+    "hallowed_chestplate": {
+      "name": "Pechera Sagrada",
+      "material": "minecraft:iron_chestplate",
+      "model": "stellarity:hallowed_chestplate",
+      "original_model": "stellarity:hallowed_chestplate",
+      "group": "armor",
+      "description": [
+        "El conjunto completo permite esquivar golpes y retroceso.",
+        "Armadura: +8 (chest).",
+        "Dureza: +3 (chest).",
+        "Resistencia al empuje: +0.1 (chest).",
+        "Caida segura: +1 (chest)."
+      ],
+      "source": "data/stellarity/loot_table/item/armor/hallowed/chestplate.json"
+    },
+    "hallowed_helmet": {
+      "name": "Máscara Sagrada",
+      "material": "minecraft:iron_helmet",
+      "model": "stellarity:hallowed_helmet",
+      "original_model": "stellarity:hallowed_helmet",
+      "group": "armor",
+      "description": [
+        "El conjunto completo permite esquivar golpes y retroceso.",
+        "Armadura: +3 (head).",
+        "Dureza: +3 (head).",
+        "Resistencia al empuje: +0.1 (head).",
+        "Caida segura: +1 (head)."
+      ],
+      "source": "data/stellarity/loot_table/item/armor/hallowed/helmet.json"
+    },
+    "hallowed_leggings": {
+      "name": "Mallas Sagradas",
+      "material": "minecraft:iron_leggings",
+      "model": "stellarity:hallowed_leggings",
+      "original_model": "stellarity:hallowed_leggings",
+      "group": "armor",
+      "description": [
+        "El conjunto completo permite esquivar golpes y retroceso.",
+        "Armadura: +6 (legs).",
+        "Dureza: +3 (legs).",
+        "Resistencia al empuje: +0.1 (legs).",
+        "Jump strength: +15% (legs).",
+        "Sneaking speed: +25% (legs)."
+      ],
+      "source": "data/stellarity/loot_table/item/armor/hallowed/leggings.json"
+    },
+    "reinforced_horse_armor": {
+      "name": "Reinforced Horse Armor",
+      "material": "minecraft:leather_horse_armor",
+      "model": "stellarity:reinforced_horse_armor",
+      "original_model": "stellarity:reinforced_horse_armor",
+      "group": "armor",
+      "description": [
+        "Armadura: +16 (body).",
+        "Dureza: +6 (body).",
+        "Velocidad: +10% (body).",
+        "Movement efficiency: +0.5 (body)."
+      ],
+      "source": "data/stellarity/loot_table/item/armor/reinforced_horse_armor.json"
+    },
+    "shulker_boots": {
+      "name": "Botas de Shulker",
+      "material": "minecraft:iron_boots",
+      "model": "stellarity:shulker_boots",
+      "original_model": "stellarity:shulker_boots",
+      "group": "armor",
+      "description": [
+        "Equipo de shulker. El conjunto de armadura reduce dano y responde con proyectiles.",
+        "Armadura: +3 (feet).",
+        "Dureza: +4 (feet).",
+        "Resistencia al empuje: +0.2 (feet).",
+        "Velocidad de ataque: -3% (feet).",
+        "Velocidad: -3% (feet)."
+      ],
+      "source": "data/stellarity/loot_table/item/armor/shulker/boots.json"
+    },
+    "shulker_chestplate": {
+      "name": "Pechera de Shulker",
+      "material": "minecraft:iron_chestplate",
+      "model": "stellarity:shulker_chestplate",
+      "original_model": "stellarity:shulker_chestplate",
+      "group": "armor",
+      "description": [
+        "Equipo de shulker. El conjunto de armadura reduce dano y responde con proyectiles.",
+        "Armadura: +8 (chest).",
+        "Dureza: +4 (chest).",
+        "Resistencia al empuje: +0.2 (chest).",
+        "Velocidad de ataque: -3% (chest).",
+        "Velocidad: -3% (chest)."
+      ],
+      "source": "data/stellarity/loot_table/item/armor/shulker/chestplate.json"
+    },
+    "shulker_helmet": {
+      "name": "Casco de Shulker",
+      "material": "minecraft:iron_helmet",
+      "model": "stellarity:shulker_helmet",
+      "original_model": "stellarity:shulker_helmet",
+      "group": "armor",
+      "description": [
+        "Equipo de shulker. El conjunto de armadura reduce dano y responde con proyectiles.",
+        "Armadura: +3 (head).",
+        "Dureza: +4 (head).",
+        "Resistencia al empuje: +0.2 (head).",
+        "Velocidad de ataque: -3% (head).",
+        "Velocidad: -3% (head)."
+      ],
+      "source": "data/stellarity/loot_table/item/armor/shulker/helmet.json"
+    },
+    "shulker_leggings": {
+      "name": "Pantalones de Shulker",
+      "material": "minecraft:iron_leggings",
+      "model": "stellarity:shulker_leggings",
+      "original_model": "stellarity:shulker_leggings",
+      "group": "armor",
+      "description": [
+        "Equipo de shulker. El conjunto de armadura reduce dano y responde con proyectiles.",
+        "Armadura: +6 (legs).",
+        "Dureza: +4 (legs).",
+        "Resistencia al empuje: +0.2 (legs).",
+        "Velocidad de ataque: -3% (legs).",
+        "Velocidad: -3% (legs)."
+      ],
+      "source": "data/stellarity/loot_table/item/armor/shulker/leggings.json"
+    },
+    "endonomicon": {
+      "name": "Endonomicon",
+      "material": "minecraft:warped_fungus_on_a_stick",
+      "model": "stellarity:endonomicon",
+      "original_model": "stellarity:endonomicon",
+      "group": "materials",
+      "description": [
+        "Libro de consulta de Stellarity. La disponibilidad de sus paginas depende de esta version."
+      ],
+      "source": "data/stellarity/loot_table/item/endonomicon/book.json"
+    },
+    "chapel_of_light": {
+      "name": "Chapel Of Light",
+      "material": "minecraft:map",
+      "model": null,
+      "original_model": null,
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/item/explorer_map/chapel_of_light.json"
+    },
+    "end_city": {
+      "name": "End City",
+      "material": "minecraft:map",
+      "model": null,
+      "original_model": null,
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/item/explorer_map/end_city.json"
+    },
+    "floating_treasure": {
+      "name": "Floating Treasure",
+      "material": "minecraft:map",
+      "model": null,
+      "original_model": null,
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/item/explorer_map/floating_treasure.json"
+    },
+    "village": {
+      "name": "Village",
+      "material": "minecraft:map",
+      "model": null,
+      "original_model": null,
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/item/explorer_map/village.json"
+    },
+    "candied_chorus_fruit": {
+      "name": "Fruta chorus confitada",
+      "material": "minecraft:chorus_fruit",
+      "model": "stellarity:candied_chorus_fruit",
+      "original_model": "stellarity:candied_chorus_fruit",
+      "group": "food",
+      "description": [
+        "Hambre: 4 puntos. Saturacion: 2.4.",
+        "Teletransporte aleatorio: diametro 16 bloques.",
+        "Velocidad 1: 14 s."
+      ],
+      "source": "data/stellarity/loot_table/item/food/candied_chorus_fruit.json"
+    },
+    "chorus_juice": {
+      "name": "Jugo de chorus",
+      "material": "minecraft:potion",
+      "model": "stellarity:chorus_juice",
+      "original_model": "stellarity:chorus_juice",
+      "group": "food",
+      "description": [
+        "Velocidad 1: 50 s.",
+        "Salto 1: 50 s."
+      ],
+      "source": "data/stellarity/loot_table/item/food/chorus_juice.json"
+    },
+    "chorus_pie": {
+      "name": "Tarta de chorus",
+      "material": "minecraft:pumpkin_pie",
+      "model": "stellarity:chorus_pie",
+      "original_model": "stellarity:chorus_pie",
+      "group": "food",
+      "description": [
+        "Hambre: 8 puntos. Saturacion: 4.8."
+      ],
+      "source": "data/stellarity/loot_table/item/food/chorus_pie.json"
+    },
+    "chorus_stew": {
+      "name": "Estofado de chorus",
+      "material": "minecraft:mushroom_stew",
+      "model": "stellarity:chorus_stew",
+      "original_model": "stellarity:chorus_stew",
+      "group": "food",
+      "description": [
+        "Hambre: 6 puntos. Saturacion: 7.2."
+      ],
+      "source": "data/stellarity/loot_table/item/food/chorus_stew.json"
+    },
+    "enderman_flesh": {
+      "name": "Carne de Enderman",
+      "material": "minecraft:rotten_flesh",
+      "model": "stellarity:enderman_flesh",
+      "original_model": "stellarity:enderman_flesh",
+      "group": "food",
+      "description": [
+        "Hambre: 4 puntos. Saturacion: 0.8.",
+        "Teletransporte aleatorio: diametro 8 bloques.",
+        "Hambre 1: 42 s."
+      ],
+      "source": "data/stellarity/loot_table/item/food/enderman_flesh.json"
+    },
+    "amethyst_budfish": {
+      "name": "Pez cogollo amatista",
+      "material": "minecraft:cooked_cod",
+      "model": "stellarity:amethyst_budfish",
+      "original_model": "stellarity:amethyst_budfish",
+      "group": "food",
+      "description": [
+        "Pez o comida del End. Tambien puede usarse como ingrediente."
+      ],
+      "source": "data/stellarity/loot_table/item/food/fish/amethyst_budfish.json"
+    },
+    "bubblefish": {
+      "name": "Pez Burbuja",
+      "material": "minecraft:pufferfish",
+      "model": "stellarity:bubblefish",
+      "original_model": "stellarity:bubblefish",
+      "group": "food",
+      "description": [
+        "Respiracion acuatica 1: 19 s."
+      ],
+      "source": "data/stellarity/loot_table/item/food/fish/bubblefish.json"
+    },
+    "crimson_tigerfish": {
+      "name": "Pez tigre carmesí",
+      "material": "minecraft:cooked_cod",
+      "model": "stellarity:crimson_tigerfish",
+      "original_model": "stellarity:crimson_tigerfish",
+      "group": "food",
+      "description": [
+        "Hambre: 1 puntos. Saturacion: 0.2.",
+        "Hambre 1: 30 s.",
+        "Veneno 1: 20 s."
+      ],
+      "source": "data/stellarity/loot_table/item/food/fish/crimson_tigerfish.json"
+    },
+    "crystal_heartfish": {
+      "name": "Crystal Heartfish",
+      "material": "minecraft:cooked_cod",
+      "model": "stellarity:crystal_heartfish",
+      "original_model": "stellarity:crystal_heartfish",
+      "group": "food",
+      "description": [
+        "Al comerlo suma 1 punto de vida maxima; limite propio de 10 puntos adicionales.",
+        "Hambre: 0 puntos. Saturacion: 0."
+      ],
+      "source": "data/stellarity/loot_table/item/food/fish/crystal_heartfish.json"
+    },
+    "ender_koi": {
+      "name": "Koi de Ender",
+      "material": "minecraft:tropical_fish",
+      "model": "stellarity:ender_koi",
+      "original_model": "stellarity:ender_koi",
+      "group": "food",
+      "description": [
+        "Hambre: 1 puntos. Saturacion: 0.6."
+      ],
+      "source": "data/stellarity/loot_table/item/food/fish/ender_koi.json"
+    },
+    "flarefin_koi": {
+      "name": "Koi aleta llamarada",
+      "material": "minecraft:cooked_cod",
+      "model": "stellarity:flarefin_koi",
+      "original_model": "stellarity:flarefin_koi",
+      "group": "food",
+      "description": [
+        "Hambre: 2 puntos. Saturacion: 1.2.",
+        "Resistencia al fuego 1: 16 s."
+      ],
+      "source": "data/stellarity/loot_table/item/food/fish/flarefin_koi.json"
+    },
+    "fleshy_piranha": {
+      "name": "Piraña carnosa",
+      "material": "minecraft:cooked_cod",
+      "model": "stellarity:fleshy_piranha",
+      "original_model": "stellarity:fleshy_piranha",
+      "group": "food",
+      "description": [
+        "Hambre: 1 puntos. Saturacion: 0.2.",
+        "Hambre 1: 30 s.",
+        "Veneno 1: 20 s."
+      ],
+      "source": "data/stellarity/loot_table/item/food/fish/fleshy_piranha.json"
+    },
+    "frost_minnow": {
+      "name": "Pececillo helado",
+      "material": "minecraft:cooked_cod",
+      "model": "stellarity:frost_minnow",
+      "original_model": "stellarity:frost_minnow",
+      "group": "food",
+      "description": [
+        "Hambre: 1 puntos. Saturacion: 0.2.",
+        "Lentitud 1: 20 s."
+      ],
+      "source": "data/stellarity/loot_table/item/food/fish/frost_minnow.json"
+    },
+    "goosh": {
+      "name": "Goosh",
+      "material": "minecraft:slime_ball",
+      "model": "stellarity:goosh",
+      "original_model": "stellarity:goosh",
+      "group": "food",
+      "description": [
+        "Puede reemplazar bolas de slime en recetas compatibles."
+      ],
+      "source": "data/stellarity/loot_table/item/food/fish/goosh.json"
+    },
+    "overgrown_cod": {
+      "name": "Bacalao cubierto de maleza",
+      "material": "minecraft:cooked_cod",
+      "model": "stellarity:overgrown_cod",
+      "original_model": "stellarity:overgrown_cod",
+      "group": "food",
+      "description": [
+        "Hambre: 1 puntos. Saturacion: 0.2.",
+        "Lentitud 4: 4 s."
+      ],
+      "source": "data/stellarity/loot_table/item/food/fish/overgrown_cod.json"
+    },
+    "prismite": {
+      "name": "Prismita",
+      "material": "minecraft:cooked_cod",
+      "model": "stellarity:prismite",
+      "original_model": "stellarity:prismite",
+      "group": "food",
+      "description": [
+        "Hambre: 3 puntos. Saturacion: 1.8.",
+        "Regeneracion 2: 5 s."
+      ],
+      "source": "data/stellarity/loot_table/item/food/fish/prismite.json"
+    },
+    "pufferfish": {
+      "name": "Pufferfish",
+      "material": "minecraft:pufferfish",
+      "model": "stellarity:pufferfish",
+      "original_model": "stellarity:pufferfish",
+      "group": "food",
+      "description": [
+        "Hambre: 1 puntos. Saturacion: 0."
+      ],
+      "source": "data/stellarity/loot_table/item/food/fish/pufferfish.json"
+    },
+    "fried_chorus_fruit": {
+      "name": "Fruta chorus frita",
+      "material": "minecraft:chorus_fruit",
+      "model": "stellarity:fried_chorus_fruit",
+      "original_model": "stellarity:fried_chorus_fruit",
+      "group": "food",
+      "description": [
+        "Hambre: 7 puntos. Saturacion: 11.2.",
+        "Teletransporte aleatorio: diametro 16 bloques."
+      ],
+      "source": "data/stellarity/loot_table/item/food/fried_chorus_fruit.json"
+    },
+    "frozen_carpaccio": {
+      "name": "Carpaccio helado",
+      "material": "minecraft:cooked_beef",
+      "model": "stellarity:frozen_carpaccio",
+      "original_model": "stellarity:frozen_carpaccio",
+      "group": "food",
+      "description": [
+        "Comida con un efecto positivo aleatorio.",
+        "Hambre: 7 puntos. Saturacion: 8.4."
+      ],
+      "source": "data/stellarity/loot_table/item/food/frozen_carpaccio.json"
+    },
+    "golden_chorus_fruit": {
+      "name": "Golden Chorus Fruit",
+      "material": "minecraft:chorus_fruit",
+      "model": "stellarity:golden_chorus_fruit",
+      "original_model": "stellarity:golden_chorus_fruit",
+      "group": "food",
+      "description": [
+        "Hambre: 6 puntos. Saturacion: 14.4.",
+        "Teletransporte aleatorio: diametro 300 bloques."
+      ],
+      "source": "data/stellarity/loot_table/item/food/golden_chorus_fruit.json"
+    },
+    "grilled_enderman_flesh": {
+      "name": "Carne de Enderman a la parrilla",
+      "material": "minecraft:cooked_beef",
+      "model": "stellarity:grilled_enderman_flesh",
+      "original_model": "stellarity:grilled_enderman_flesh",
+      "group": "food",
+      "description": [
+        "Hambre: 6 puntos. Saturacion: 9.6."
+      ],
+      "source": "data/stellarity/loot_table/item/food/grilled_enderman_flesh.json"
+    },
+    "loaf_of_plenty": {
+      "name": "Loaf of Plenty",
+      "material": "minecraft:bread",
+      "model": "stellarity:loaf_of_plenty",
+      "original_model": "stellarity:loaf_of_plenty",
+      "group": "food",
+      "description": [
+        "Pan que vuelve a tu mano despues de comerlo; espera de 10 segundos entre usos.",
+        "Hambre: 5 puntos. Saturacion: 6.",
+        "Espera entre usos: 10 s.",
+        "Objeto especial del autor: figurar en el catalogo no garantiza conseguirlo en survival."
+      ],
+      "source": "data/stellarity/loot_table/item/food/loaf_of_plenty.json"
+    },
+    "pho": {
+      "name": "Pho",
+      "material": "minecraft:mushroom_stew",
+      "model": "stellarity:pho",
+      "original_model": "stellarity:pho",
+      "group": "food",
+      "description": [
+        "Hambre: 13 puntos. Saturacion: 20.",
+        "Regeneracion 1: 32 s.",
+        "Fuerza 1: 150 s.",
+        "Absorcion 1: 150 s."
+      ],
+      "source": "data/stellarity/loot_table/item/food/pho.json"
+    },
+    "prismatic_sushi": {
+      "name": "Sushi prismático",
+      "material": "minecraft:tropical_fish",
+      "model": "stellarity:prismatic_sushi",
+      "original_model": "stellarity:prismatic_sushi",
+      "group": "food",
+      "description": [
+        "Hambre: 4 puntos. Saturacion: 2.4.",
+        "Vida extra 1: 40 s."
+      ],
+      "source": "data/stellarity/loot_table/item/food/prismatic_sushi.json"
+    },
+    "shepherds_pie": {
+      "name": "Shepherds Pie",
+      "material": "minecraft:pumpkin_pie",
+      "model": null,
+      "original_model": "stellarity:shepherds_pie",
+      "group": "food",
+      "description": [
+        "Hambre: 20 puntos. Saturacion: 20.",
+        "Curacion instantanea 3: 0.05 s.",
+        "Regeneracion 2: 64 s."
+      ],
+      "source": "data/stellarity/loot_table/item/food/shepherds_pie.json"
+    },
+    "shulker_body": {
+      "name": "Cuerpo de Shulker",
+      "material": "minecraft:chorus_fruit",
+      "model": "stellarity:shulker_body",
+      "original_model": "stellarity:shulker_body",
+      "group": "food",
+      "description": [
+        "Equipo de shulker. El conjunto de armadura reduce dano y responde con proyectiles.",
+        "Hambre: 4 puntos. Saturacion: 0.8.",
+        "Teletransporte aleatorio: diametro 16 bloques.",
+        "Hambre 1: 40 s."
+      ],
+      "source": "data/stellarity/loot_table/item/food/shulker_body.json"
+    },
+    "sushi": {
+      "name": "Sushi",
+      "material": "minecraft:tropical_fish",
+      "model": "stellarity:sushi",
+      "original_model": "stellarity:sushi",
+      "group": "food",
+      "description": [
+        "Hambre: 4 puntos. Saturacion: 2.4."
+      ],
+      "source": "data/stellarity/loot_table/item/food/sushi.json"
+    },
+    "absorption": {
+      "name": "Absorption",
+      "material": "minecraft:suspicious_stew",
+      "model": null,
+      "original_model": null,
+      "group": "food",
+      "description": [
+        "Pez o comida del End. Tambien puede usarse como ingrediente."
+      ],
+      "source": "data/stellarity/loot_table/item/food/suspicious_stew/absorption.json"
+    },
+    "levitation": {
+      "name": "Levitation",
+      "material": "minecraft:suspicious_stew",
+      "model": null,
+      "original_model": null,
+      "group": "food",
+      "description": [
+        "Pez o comida del End. Tambien puede usarse como ingrediente."
+      ],
+      "source": "data/stellarity/loot_table/item/food/suspicious_stew/levitation.json"
+    },
+    "strength": {
+      "name": "Strength",
+      "material": "minecraft:suspicious_stew",
+      "model": null,
+      "original_model": null,
+      "group": "food",
+      "description": [
+        "Pez o comida del End. Tambien puede usarse como ingrediente."
+      ],
+      "source": "data/stellarity/loot_table/item/food/suspicious_stew/strength.json"
+    },
+    "ender_egg": {
+      "name": "Ender Egg",
+      "material": "minecraft:snowball",
+      "model": "stellarity:ender_egg",
+      "original_model": "stellarity:ender_egg",
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/item/ingredients/ender_egg.json"
+    },
+    "gilded_purpur_key": {
+      "name": "Gilded Purpur Key",
+      "material": "minecraft:ominous_trial_key",
+      "model": "stellarity:gilded_purpur_key",
+      "original_model": "stellarity:gilded_purpur_key",
+      "group": "materials",
+      "description": [
+        "Abre bovedas ominosas de las ciudades del End."
+      ],
+      "source": "data/stellarity/loot_table/item/keys/gilded_purpur_key.json"
+    },
+    "purpur_key": {
+      "name": "Purpur Key",
+      "material": "minecraft:trial_key",
+      "model": "stellarity:purpur_key",
+      "original_model": "stellarity:purpur_key",
+      "group": "materials",
+      "description": [
+        "Abre bovedas de las ciudades del End."
+      ],
+      "source": "data/stellarity/loot_table/item/keys/purpur_key.json"
+    },
+    "winged_key": {
+      "name": "Winged Key",
+      "material": "minecraft:ominous_trial_key",
+      "model": "stellarity:winged_key",
+      "original_model": "stellarity:winged_key",
+      "group": "materials",
+      "description": [
+        "Abre la boveda de elytras de los barcos del End."
+      ],
+      "source": "data/stellarity/loot_table/item/keys/winged_key.json"
+    },
+    "chorus_petal": {
+      "name": "Chorus Petal",
+      "material": "minecraft:popped_chorus_fruit",
+      "model": null,
+      "original_model": "stellarity:chorus_petal",
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/item/material/chorus_petal.json"
+    },
+    "chorus_plating": {
+      "name": "Chapado de Chorus",
+      "material": "minecraft:iron_ingot",
+      "model": "stellarity:chorus_plating",
+      "original_model": "stellarity:chorus_plating",
+      "group": "materials",
+      "description": [
+        "Material para mejorar equipo en el Altar Maldito."
+      ],
+      "source": "data/stellarity/loot_table/item/material/chorus_plating.json"
+    },
+    "empty_enchanted_book": {
+      "name": "Empty Enchanted Book",
+      "material": "minecraft:enchanted_book",
+      "model": null,
+      "original_model": null,
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/item/material/empty_enchanted_book.json"
+    },
+    "enderite_shard": {
+      "name": "Fragmento de Enderita",
+      "material": "minecraft:amethyst_shard",
+      "model": "stellarity:enderite_shard",
+      "original_model": "stellarity:enderite_shard",
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/item/material/enderite_shard.json"
+    },
+    "enderite_smithing_template": {
+      "name": "Plantilla de herrería",
+      "material": "minecraft:jigsaw",
+      "model": "stellarity:enderite_smithing_template",
+      "original_model": "stellarity:enderite_smithing_template",
+      "group": "materials",
+      "description": [
+        "Plantilla para mejoras en el Altar Maldito; no se usa en herreria vanilla."
+      ],
+      "source": "data/stellarity/loot_table/item/material/enderite_smithing_template.json"
+    },
+    "hallowed_ingot": {
+      "name": "Lingote Sagrado",
+      "material": "minecraft:iron_ingot",
+      "model": "stellarity:hallowed_ingot",
+      "original_model": "stellarity:hallowed_ingot",
+      "group": "materials",
+      "description": [
+        "El conjunto completo permite esquivar golpes y retroceso."
+      ],
+      "source": "data/stellarity/loot_table/item/material/hallowed_ingot.json"
+    },
+    "sand_rune": {
+      "name": "Sand Rune",
+      "material": "minecraft:jigsaw",
+      "model": "stellarity:sand_rune",
+      "original_model": "stellarity:sand_rune",
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/item/material/sand_rune.json"
+    },
+    "starlight_soot": {
+      "name": "Starlight Soot",
+      "material": "minecraft:glowstone_dust",
+      "model": "stellarity:starlight_soot",
+      "original_model": "stellarity:starlight_soot",
+      "group": "materials",
+      "description": [
+        "Material para transmutacion en agua y ofrenda para Empress of Light."
+      ],
+      "source": "data/stellarity/loot_table/item/material/starlight_soot.json"
+    },
+    "music_disc_deviants_light_music_box": {
+      "name": "Music Disc Deviants Light Music Box",
+      "material": "minecraft:music_disc_otherside",
+      "model": "stellarity:music_disc_deviants_light_music_box",
+      "original_model": "stellarity:music_disc_deviants_light_music_box",
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/item/music_disc/deviants_light_music_box.json"
+    },
+    "music_disc_fires_of_hokkai": {
+      "name": "Music Disc Fires Of Hokkai",
+      "material": "minecraft:music_disc_otherside",
+      "model": "stellarity:music_disc_fires_of_hokkai",
+      "original_model": "stellarity:music_disc_fires_of_hokkai",
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/item/music_disc/fires_of_hokkai.json"
+    },
+    "music_disc_precipice_stereo": {
+      "name": "Music Disc Precipice Stereo",
+      "material": "minecraft:music_disc_precipice",
+      "model": "stellarity:music_disc_precipice_stereo",
+      "original_model": "stellarity:music_disc_precipice_stereo",
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/item/music_disc/precipice_stereo.json"
+    },
+    "amarene": {
+      "name": "Amarene",
+      "material": "minecraft:potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Velocidad 2: 48 s.",
+        "Regeneracion 1: 48 s.",
+        "Debilidad 1: 48 s.",
+        "Saturation 4: 0.05 s.",
+        "Suerte 1: 240 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/amarene.json"
+    },
+    "blind_rage_potion": {
+      "name": "Blind Rage Potion",
+      "material": "minecraft:potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Fuerza 3: 15 s.",
+        "Darkness 1: 15 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/blind_rage_potion.json"
+    },
+    "blind_rage_potion_ext": {
+      "name": "Blind Rage Potion",
+      "material": "minecraft:potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Fuerza 3: 22.5 s.",
+        "Darkness 1: 22.5 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/blind_rage_potion_ext.json"
+    },
+    "endurance_potion": {
+      "name": "Endurance Potion",
+      "material": "minecraft:potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Resistencia 1: 120 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/endurance_potion.json"
+    },
+    "endurance_potion_ext": {
+      "name": "Endurance Potion",
+      "material": "minecraft:potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Resistencia 1: 240 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/endurance_potion_ext.json"
+    },
+    "endurance_potion_ii": {
+      "name": "Endurance Potion",
+      "material": "minecraft:potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Resistencia 2: 60 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/endurance_potion_ii.json"
+    },
+    "entanglement_potion": {
+      "name": "Entanglement Potion",
+      "material": "minecraft:splash_potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Lentitud 5: 11 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/entanglement_potion.json"
+    },
+    "entanglement_potion_ext": {
+      "name": "Entanglement Potion",
+      "material": "minecraft:splash_potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Lentitud 5: 14 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/entanglement_potion_ext.json"
+    },
+    "entanglement_potion_ii": {
+      "name": "Entanglement Potion",
+      "material": "minecraft:splash_potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Lentitud 6: 8 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/entanglement_potion_ii.json"
+    },
+    "frost_cloud_potion": {
+      "name": "Frost Cloud Potion",
+      "material": "minecraft:lingering_potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Lentitud 100: 6 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/frost_cloud_potion.json"
+    },
+    "hellfire_treader_potion": {
+      "name": "Hellfire Treader Potion",
+      "material": "minecraft:potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Velocidad 1: 240 s.",
+        "Resistencia al fuego 1: 240 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/hellfire_treader_potion.json"
+    },
+    "hellfire_treader_potion_ext": {
+      "name": "Hellfire Treader Potion",
+      "material": "minecraft:potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Velocidad 1: 480 s.",
+        "Resistencia al fuego 1: 480 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/hellfire_treader_potion_ext.json"
+    },
+    "hellfire_treader_potion_ii": {
+      "name": "Hellfire Treader Potion",
+      "material": "minecraft:potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Velocidad 2: 120 s.",
+        "Resistencia al fuego 1: 120 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/hellfire_treader_potion_ii.json"
+    },
+    "lifeforce_potion": {
+      "name": "Lifeforce Potion",
+      "material": "minecraft:potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Vida extra 1: 180 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/lifeforce_potion.json"
+    },
+    "lifeforce_potion_ext": {
+      "name": "Lifeforce Potion",
+      "material": "minecraft:potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Vida extra 1: 360 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/lifeforce_potion_ext.json"
+    },
+    "lifeforce_potion_ii": {
+      "name": "Lifeforce Potion",
+      "material": "minecraft:potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Vida extra 2: 90 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/lifeforce_potion_ii.json"
+    },
+    "luck_potion": {
+      "name": "Luck Potion",
+      "material": "minecraft:potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Pocion del recetario del End."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/luck_potion.json"
+    },
+    "poseidons_nectar": {
+      "name": "Poseidon's Nectar",
+      "material": "minecraft:potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Conduit power 1: 390 s.",
+        "Absorcion 1: 390 s.",
+        "Gracia del delfin 1: 390 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/poseidons_nectar.json"
+    },
+    "red_potion": {
+      "name": "Red Potion",
+      "material": "minecraft:potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Darkness 10: -0.05 s.",
+        "Lentitud 10: -0.05 s.",
+        "Fatiga al minar 10: -0.05 s.",
+        "Nauseas 1: -0.05 s.",
+        "Ceguera 1: -0.05 s.",
+        "Hambre 10: -0.05 s.",
+        "Debilidad 10: -0.05 s.",
+        "Veneno 10: -0.05 s.",
+        "Wither 10: -0.05 s.",
+        "Brillo 1: -0.05 s.",
+        "Unluck 10: -0.05 s.",
+        "Bad omen 10: 60 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/red_potion.json"
+    },
+    "regeneraga": {
+      "name": "Regeneraga",
+      "material": "minecraft:potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Curacion instantanea 2: 0.05 s.",
+        "Regeneracion 3: 7 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/regeneraga.json"
+    },
+    "regeneraga_ext": {
+      "name": "Regeneraga",
+      "material": "minecraft:potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Curacion instantanea 2: 0.05 s.",
+        "Regeneracion 3: 10.5 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/regeneraga_ext.json"
+    },
+    "regeneraga_ii": {
+      "name": "Regeneraga",
+      "material": "minecraft:potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Curacion instantanea 2: 0.05 s.",
+        "Regeneracion 5: 3.5 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/regeneraga_ii.json"
+    },
+    "royal_jelly": {
+      "name": "Royal Jelly",
+      "material": "minecraft:honey_bottle",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Da absorcion y limpia efectos negativos.",
+        "Hambre: 6 puntos. Saturacion: 3.6.",
+        "Absorcion 1: 3 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/royal_jelly.json"
+    },
+    "royal_jelly_ii": {
+      "name": "Royal Jelly",
+      "material": "minecraft:honey_bottle",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Version mejorada: absorcion y limpieza de efectos negativos.",
+        "Hambre: 6 puntos. Saturacion: 3.6.",
+        "Absorcion 2: 1.5 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/royal_jelly_ii.json"
+    },
+    "spelunker_potion": {
+      "name": "Spelunker Potion",
+      "material": "minecraft:potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Vision nocturna 1: 180 s.",
+        "Prisa 1: 180 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/spelunker_potion.json"
+    },
+    "spelunker_potion_ext": {
+      "name": "Spelunker Potion",
+      "material": "minecraft:potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Vision nocturna 1: 360 s.",
+        "Prisa 1: 360 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/spelunker_potion_ext.json"
+    },
+    "spelunker_potion_ii": {
+      "name": "Spelunker Potion",
+      "material": "minecraft:potion",
+      "model": null,
+      "original_model": null,
+      "group": "potions",
+      "description": [
+        "Vision nocturna 1: 90 s.",
+        "Prisa 2: 90 s."
+      ],
+      "source": "data/stellarity/loot_table/item/potion/spelunker_potion_ii.json"
+    },
+    "flesh_piglin_spawn_egg": {
+      "name": "Flesh Piglin Spawn Egg",
+      "material": "minecraft:hoglin_spawn_egg",
+      "model": "stellarity:flesh_piglin_spawn_egg",
+      "original_model": "stellarity:flesh_piglin_spawn_egg",
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/item/spawn_egg/flesh_piglin.json"
+    },
+    "voided_skeleton_spawn_egg": {
+      "name": "Voided Skeleton Spawn Egg",
+      "material": "minecraft:ender_dragon_spawn_egg",
+      "model": "stellarity:voided_skeleton_spawn_egg",
+      "original_model": "stellarity:voided_skeleton_spawn_egg",
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/item/spawn_egg/voided_skeleton.json"
+    },
+    "voided_slime_spawn_egg": {
+      "name": "Voided Slime Spawn Egg",
+      "material": "minecraft:ender_dragon_spawn_egg",
+      "model": "stellarity:voided_slime_spawn_egg",
+      "original_model": "stellarity:voided_slime_spawn_egg",
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/item/spawn_egg/voided_slime.json"
+    },
+    "voided_zombie_spawn_egg": {
+      "name": "Voided Zombie Spawn Egg",
+      "material": "minecraft:ender_dragon_spawn_egg",
+      "model": "stellarity:voided_zombie_spawn_egg",
+      "original_model": "stellarity:voided_zombie_spawn_egg",
+      "group": "materials",
+      "description": [
+        "Material, bloque u objeto de exploracion del End. Su obtencion depende del botin y la progresion."
+      ],
+      "source": "data/stellarity/loot_table/item/spawn_egg/voided_zombie.json"
+    },
+    "book_of_conveyance": {
+      "name": "Book of Conveyance",
+      "material": "minecraft:warped_fungus_on_a_stick",
+      "model": "stellarity:book_of_conveyance",
+      "original_model": "stellarity:book_of_conveyance",
+      "group": "books",
+      "description": [
+        "Lanza una chispa guiada con la mirada; te lleva al bloque donde impacta."
+      ],
+      "source": "data/stellarity/loot_table/item/spellbook/book_of_conveyance.json"
+    },
+    "book_of_jinx": {
+      "name": "Book of Jinx",
+      "material": "minecraft:warped_fungus_on_a_stick",
+      "model": "stellarity:book_of_jinx",
+      "original_model": "stellarity:book_of_jinx",
+      "group": "books",
+      "description": [
+        "Crea una nube que baja temporalmente la defensa de los enemigos."
+      ],
+      "source": "data/stellarity/loot_table/item/spellbook/book_of_jinx.json"
+    },
+    "book_of_light": {
+      "name": "Libro de la Luz",
+      "material": "minecraft:warped_fungus_on_a_stick",
+      "model": "stellarity:book_of_light",
+      "original_model": "stellarity:book_of_light",
+      "group": "books",
+      "description": [
+        "Invoca un aura que cura y protege a los jugadores cercanos."
+      ],
+      "source": "data/stellarity/loot_table/item/spellbook/book_of_light.json"
+    },
+    "book_of_obstruct": {
+      "name": "Book of Obstruct",
+      "material": "minecraft:warped_fungus_on_a_stick",
+      "model": "stellarity:book_of_obstruct",
+      "original_model": "stellarity:book_of_obstruct",
+      "group": "books",
+      "description": [
+        "Levanta una pared de shulker para cubrir una retirada."
+      ],
+      "source": "data/stellarity/loot_table/item/spellbook/book_of_obstruct.json"
+    },
+    "book_of_return": {
+      "name": "Book of Return",
+      "material": "minecraft:warped_fungus_on_a_stick",
+      "model": "stellarity:book_of_return",
+      "original_model": "stellarity:book_of_return",
+      "group": "books",
+      "description": [
+        "Te devuelve a tu punto de reaparicion."
+      ],
+      "source": "data/stellarity/loot_table/item/spellbook/book_of_return.json"
+    },
+    "book_of_updraft": {
+      "name": "Libro de corriente ascendente",
+      "material": "minecraft:warped_fungus_on_a_stick",
+      "model": "stellarity:book_of_updraft",
+      "original_model": "stellarity:book_of_updraft",
+      "group": "books",
+      "description": [
+        "Te impulsa hacia arriba y permite planear brevemente."
+      ],
+      "source": "data/stellarity/loot_table/item/spellbook/book_of_updraft.json"
+    },
+    "fisher_of_voids": {
+      "name": "Fisher of Voids",
+      "material": "minecraft:fishing_rod",
+      "model": "stellarity:fisher_of_voids",
+      "original_model": "stellarity:fisher_of_voids",
+      "group": "tools",
+      "description": [
+        "Cana que acorta la espera en la pesca del vacio."
+      ],
+      "source": "data/stellarity/loot_table/item/tool/fisher_of_voids.json"
+    },
+    "shulker_axe": {
+      "name": "Shulker Axe",
+      "material": "minecraft:netherite_axe",
+      "model": "stellarity:shulker_axe",
+      "original_model": "stellarity:shulker_axe",
+      "group": "tools",
+      "description": [
+        "Equipo de shulker. El conjunto de armadura reduce dano y responde con proyectiles.",
+        "Dano: +9.5 (mainhand).",
+        "Velocidad de ataque: -3 (mainhand).",
+        "Block break speed: +20% (mainhand).",
+        "Velocidad de ataque: +10% (mainhand).",
+        "Objeto especial del autor: figurar en el catalogo no garantiza conseguirlo en survival."
+      ],
+      "source": "data/stellarity/loot_table/item/tool/shulker_axe.json"
+    },
+    "shulker_hoe": {
+      "name": "Shulker Hoe",
+      "material": "minecraft:netherite_hoe",
+      "model": "stellarity:shulker_hoe",
+      "original_model": "stellarity:shulker_hoe",
+      "group": "tools",
+      "description": [
+        "Equipo de shulker. El conjunto de armadura reduce dano y responde con proyectiles.",
+        "Dano: +0.5 (mainhand).",
+        "Velocidad de ataque: +0 (mainhand).",
+        "Block break speed: +20% (mainhand).",
+        "Velocidad de ataque: +10% (mainhand).",
+        "Objeto especial del autor: figurar en el catalogo no garantiza conseguirlo en survival."
+      ],
+      "source": "data/stellarity/loot_table/item/tool/shulker_hoe.json"
+    },
+    "shulker_pickaxe": {
+      "name": "Shulker Pickaxe",
+      "material": "minecraft:netherite_pickaxe",
+      "model": "stellarity:shulker_pickaxe",
+      "original_model": "stellarity:shulker_pickaxe",
+      "group": "tools",
+      "description": [
+        "Equipo de shulker. El conjunto de armadura reduce dano y responde con proyectiles.",
+        "Dano: +5.5 (mainhand).",
+        "Velocidad de ataque: -2.8 (mainhand).",
+        "Block break speed: +20% (mainhand).",
+        "Velocidad de ataque: +10% (mainhand).",
+        "Objeto especial del autor: figurar en el catalogo no garantiza conseguirlo en survival."
+      ],
+      "source": "data/stellarity/loot_table/item/tool/shulker_pickaxe.json"
+    },
+    "shulker_shovel": {
+      "name": "Shulker Shovel",
+      "material": "minecraft:netherite_shovel",
+      "model": "stellarity:shulker_shovel",
+      "original_model": "stellarity:shulker_shovel",
+      "group": "tools",
+      "description": [
+        "Equipo de shulker. El conjunto de armadura reduce dano y responde con proyectiles.",
+        "Dano: +6 (mainhand).",
+        "Velocidad de ataque: -3 (mainhand).",
+        "Block break speed: +20% (mainhand).",
+        "Velocidad de ataque: +10% (mainhand).",
+        "Objeto especial del autor: figurar en el catalogo no garantiza conseguirlo en survival."
+      ],
+      "source": "data/stellarity/loot_table/item/tool/shulker_shovel.json"
+    },
+    "shulker_spear": {
+      "name": "Shulker Spear",
+      "material": "minecraft:netherite_spear",
+      "model": "stellarity:shulker_spear",
+      "original_model": "stellarity:shulker_spear",
+      "group": "tools",
+      "description": [
+        "Equipo de shulker. El conjunto de armadura reduce dano y responde con proyectiles.",
+        "Dano: +4.5 (mainhand).",
+        "Velocidad de ataque: -3.13 (mainhand).",
+        "Velocidad de ataque: +10% (mainhand).",
+        "Objeto especial del autor: figurar en el catalogo no garantiza conseguirlo en survival."
+      ],
+      "source": "data/stellarity/loot_table/item/tool/shulker_spear.json"
+    },
+    "shulker_sword": {
+      "name": "Shulker Sword",
+      "material": "minecraft:netherite_sword",
+      "model": "stellarity:shulker_sword",
+      "original_model": "stellarity:shulker_sword",
+      "group": "tools",
+      "description": [
+        "Equipo de shulker. El conjunto de armadura reduce dano y responde con proyectiles.",
+        "Dano: +7.5 (mainhand).",
+        "Velocidad de ataque: -2.4 (mainhand).",
+        "Block break speed: +20% (mainhand).",
+        "Velocidad de ataque: +10% (mainhand).",
+        "Objeto especial del autor: figurar en el catalogo no garantiza conseguirlo en survival."
+      ],
+      "source": "data/stellarity/loot_table/item/tool/shulker_sword.json"
+    },
+    "bell_flower": {
+      "name": "Bell Flower",
+      "material": "minecraft:gold_nugget",
+      "model": null,
+      "original_model": "stellarity:bell_flower",
+      "group": "trinkets",
+      "description": [
+        "Revela entidades cercanas mientras la sostenes.",
+        "Objeto especial del autor: figurar en el catalogo no garantiza conseguirlo en survival."
+      ],
+      "source": "data/stellarity/loot_table/item/trinket/bell_flower.json"
+    },
+    "copper_elektra_shield": {
+      "name": "Copper Elektra Shield",
+      "material": "minecraft:shield",
+      "model": null,
+      "original_model": null,
+      "group": "trinkets",
+      "description": [
+        "Agachate para una embestida electrica. Recarga hasta tres impulsos."
+      ],
+      "source": "data/stellarity/loot_table/item/trinket/copper_elektra_shield.json"
+    },
+    "crest_of_the_end": {
+      "name": "Crest of The End",
+      "material": "minecraft:shield",
+      "model": null,
+      "original_model": null,
+      "group": "trinkets",
+      "description": [
+        "Bloquear carga fuerza extra para el siguiente contraataque.",
+        "Dano: +5% (hand)."
+      ],
+      "source": "data/stellarity/loot_table/item/trinket/crest_of_the_end.json"
+    },
+    "decayed_clover": {
+      "name": "Decayed Clover",
+      "material": "minecraft:popped_chorus_fruit",
+      "model": "stellarity:decayed_clover",
+      "original_model": "stellarity:decayed_clover",
+      "group": "trinkets",
+      "description": [
+        "Mejora el botin y la suerte de pesca del vacio.",
+        "Suerte: +1 (offhand).",
+        "Suerte: +10% (offhand)."
+      ],
+      "source": "data/stellarity/loot_table/item/trinket/decayed_clover.json"
+    },
+    "duskberry": {
+      "name": "Duskberry",
+      "material": "minecraft:sweet_berries",
+      "model": "stellarity:duskberry",
+      "original_model": "stellarity:duskberry",
+      "group": "trinkets",
+      "description": [
+        "Sostenida mejora velocidad, vista y fuerza. Comerla o plantarla es peligroso."
+      ],
+      "source": "data/stellarity/loot_table/item/trinket/duskberry.json"
+    },
+    "endermans_hand": {
+      "name": "Endermans Hand",
+      "material": "minecraft:popped_chorus_fruit",
+      "model": null,
+      "original_model": "stellarity:endermans_hand",
+      "group": "trinkets",
+      "description": [
+        "Sostenida en una mano aumenta en 3 bloques el alcance para interactuar con bloques.",
+        "Block interaction range: +3 (hand)."
+      ],
+      "source": "data/stellarity/loot_table/item/trinket/endermans_hand.json"
+    },
+    "life_crystal": {
+      "name": "Life Crystal",
+      "material": "minecraft:amethyst_shard",
+      "model": "stellarity:life_crystal",
+      "original_model": "stellarity:life_crystal",
+      "group": "trinkets",
+      "description": [
+        "Regenera vida rapidamente mientras te quedas quieto."
+      ],
+      "source": "data/stellarity/loot_table/item/trinket/life_crystal.json"
+    },
+    "prismatic_pearl": {
+      "name": "Prismatic Pearl",
+      "material": "minecraft:ender_pearl",
+      "model": "stellarity:prismatic_pearl",
+      "original_model": "stellarity:prismatic_pearl",
+      "group": "trinkets",
+      "description": [
+        "Perla de teletransporte reutilizable: vuelve al inventario al terminar su espera.",
+        "Espera entre usos: 4.9 s."
+      ],
+      "source": "data/stellarity/loot_table/item/trinket/prismatic_pearl.json"
+    },
+    "satchel_of_voids": {
+      "name": "Satchel of Voids",
+      "material": "minecraft:warped_fungus_on_a_stick",
+      "model": "stellarity:satchel_of_voids",
+      "original_model": "stellarity:satchel_of_voids",
+      "group": "trinkets",
+      "description": [
+        "Dibuja un acceso al Altar Maldito. En un marco vertical permite un altar permanente."
+      ],
+      "source": "data/stellarity/loot_table/item/trinket/satchel_of_voids.json"
+    },
+    "soaring_insignia": {
+      "name": "Soaring Insignia",
+      "material": "minecraft:gold_nugget",
+      "model": "stellarity:soaring_insignia",
+      "original_model": "stellarity:soaring_insignia",
+      "group": "trinkets",
+      "description": [
+        "Permite vuelo continuo con maniobra limitada; agachate y mira arriba o abajo."
+      ],
+      "source": "data/stellarity/loot_table/item/trinket/soaring_insignia.json"
+    },
+    "starstruck_shield": {
+      "name": "Starstruck Shield",
+      "material": "minecraft:shield",
+      "model": null,
+      "original_model": null,
+      "group": "trinkets",
+      "description": [
+        "Hace caer estrellas despues de bloquear dano."
+      ],
+      "source": "data/stellarity/loot_table/item/trinket/starstruck_shield.json"
+    },
+    "void_locket": {
+      "name": "Void Locket",
+      "material": "minecraft:iron_nugget",
+      "model": null,
+      "original_model": "stellarity:void_locket",
+      "group": "trinkets",
+      "description": [
+        "Accesorio con variantes internas de mejora. Este ZIP no aporta una receta accesible para aplicarlas."
+      ],
+      "source": "data/stellarity/loot_table/item/trinket/void_locket.json"
+    },
+    "alpha_wooden_sword": {
+      "name": "Ancient Wooden Sword",
+      "material": "minecraft:wooden_sword",
+      "model": "stellarity:ancient_wooden_sword",
+      "original_model": "stellarity:ancient_wooden_sword",
+      "group": "weapons",
+      "description": [
+        "Espada especial de aspecto antiguo; objeto de coleccion.",
+        "Dano: +3 (mainhand).",
+        "Velocidad de ataque: +2133 (mainhand)."
+      ],
+      "source": "data/stellarity/loot_table/item/weapon/ancient_wooden_sword.json"
+    },
+    "call_of_the_void": {
+      "name": "Call of The Void",
+      "material": "minecraft:bow",
+      "model": "stellarity:call_of_the_void",
+      "original_model": "stellarity:call_of_the_void",
+      "group": "weapons",
+      "description": [
+        "Arco con flechas del vacio que reducen vida y se rompen al impactar."
+      ],
+      "source": "data/stellarity/loot_table/item/weapon/call_of_the_void.json"
+    },
+    "dragonblade": {
+      "name": "Dragonblade",
+      "material": "minecraft:netherite_sword",
+      "model": "stellarity:dragonblade",
+      "original_model": "stellarity:dragonblade",
+      "group": "weapons",
+      "description": [
+        "Espada que empuja con fuerza; aprovecha paredes cercanas.",
+        "Dano: +8 (mainhand).",
+        "Velocidad de ataque: -3 (mainhand).",
+        "Sweeping damage ratio: +0.5 (mainhand).",
+        "Entity interaction range: +0.3 (mainhand)."
+      ],
+      "source": "data/stellarity/loot_table/item/weapon/dragonblade.json"
+    },
+    "fluffy_hammer": {
+      "name": "Fluffy Hammer Of Justice",
+      "material": "minecraft:netherite_axe",
+      "model": "stellarity:fluffy_hammer",
+      "original_model": "stellarity:fluffy_hammer",
+      "group": "weapons",
+      "description": [
+        "Martillo arrojadizo que golpea durante el vuelo y despues vuelve a su dueno.",
+        "Hambre: 0 puntos. Saturacion: 0.",
+        "Dano: +14 (mainhand).",
+        "Velocidad de ataque: -3.8 (mainhand).",
+        "Objeto especial del autor: figurar en el catalogo no garantiza conseguirlo en survival."
+      ],
+      "source": "data/stellarity/loot_table/item/weapon/fluffy_hammer.json"
+    },
+    "harvester": {
+      "name": "Harvester",
+      "material": "minecraft:iron_sword",
+      "model": "stellarity:harvester",
+      "original_model": "stellarity:harvester",
+      "group": "weapons",
+      "description": [
+        "Junta almas; aumenta su tamano y dano y puede ganar habilidades.",
+        "Dano: +3 (mainhand).",
+        "Velocidad de ataque: -3 (mainhand).",
+        "Velocidad: +0% (mainhand).",
+        "Entity interaction range: +0.5 (mainhand).",
+        "Objeto especial del autor: figurar en el catalogo no garantiza conseguirlo en survival."
+      ],
+      "source": "data/stellarity/loot_table/item/weapon/harvester.json"
+    },
+    "kaleidoscope": {
+      "name": "Kaleidoscope",
+      "material": "minecraft:netherite_axe",
+      "model": "stellarity:kaleidoscope",
+      "original_model": "stellarity:kaleidoscope",
+      "group": "weapons",
+      "description": [
+        "Acumula energia y la libera al golpear.",
+        "Dano: +9 (mainhand).",
+        "Velocidad de ataque: -3.2 (mainhand).",
+        "Entity interaction range: +0.3 (mainhand)."
+      ],
+      "source": "data/stellarity/loot_table/item/weapon/kaleidoscope.json"
+    },
+    "prismatic_punch": {
+      "name": "Prismatic Punch",
+      "material": "minecraft:crossbow",
+      "model": "stellarity:prismatic_punch",
+      "original_model": "stellarity:prismatic_punch",
+      "group": "weapons",
+      "description": [
+        "Dispara proyectiles con varias explosiones e incendio prismatico."
+      ],
+      "source": "data/stellarity/loot_table/item/weapon/prismatic_punch.json"
+    },
+    "prismember": {
+      "name": "Prismember",
+      "material": "minecraft:netherite_sword",
+      "model": "stellarity:prismember",
+      "original_model": "stellarity:prismember",
+      "group": "weapons",
+      "description": [
+        "Agachate para cargar un giro que incendia enemigos cercanos.",
+        "Dano: +7 (mainhand).",
+        "Velocidad de ataque: -2.4 (mainhand)."
+      ],
+      "source": "data/stellarity/loot_table/item/weapon/prismember.json"
+    },
+    "sandstorm_trident": {
+      "name": "Sandstorm Trident",
+      "material": "minecraft:trident",
+      "model": "stellarity:sandstorm_trident",
+      "original_model": "stellarity:sandstorm_trident",
+      "group": "weapons",
+      "description": [
+        "Al lanzarlo crea tuneles de viento.",
+        "Dano: +5 (mainhand).",
+        "Velocidad de ataque: -3.1 (mainhand).",
+        "Objeto especial del autor: figurar en el catalogo no garantiza conseguirlo en survival."
+      ],
+      "source": "data/stellarity/loot_table/item/weapon/sandstorm_trident.json"
+    },
+    "sharanga": {
+      "name": "Sharanga",
+      "material": "minecraft:bow",
+      "model": "stellarity:sharanga",
+      "original_model": "stellarity:sharanga",
+      "group": "weapons",
+      "description": [
+        "Mejora las flechas espectrales y las hace viajar en linea recta."
+      ],
+      "source": "data/stellarity/loot_table/item/weapon/sharanga.json"
+    },
+    "slayer_crossbow": {
+      "name": "Slayer Crossbow",
+      "material": "minecraft:crossbow",
+      "model": "stellarity:slayer_crossbow",
+      "original_model": "stellarity:slayer_crossbow",
+      "group": "weapons",
+      "description": [
+        "Rayos de mucho dano que atraviesan enemigos, con alcance limitado."
+      ],
+      "source": "data/stellarity/loot_table/item/weapon/slayer_crossbow.json"
+    },
+    "spectral_fury": {
+      "name": "Spectral Fury",
+      "material": "minecraft:bow",
+      "model": "stellarity:spectral_fury",
+      "original_model": "stellarity:spectral_fury",
+      "group": "weapons",
+      "description": [
+        "Los disparos sobrecargados vuelven las flechas espectrales perseguidores."
+      ],
+      "source": "data/stellarity/loot_table/item/weapon/spectral_fury.json"
+    },
+    "starless_scythe": {
+      "name": "Starless Scythe",
+      "material": "minecraft:wooden_hoe",
+      "model": "stellarity:starless_scythe",
+      "original_model": "stellarity:starless_scythe",
+      "group": "weapons",
+      "description": [
+        "Golpea varios enemigos y devuelve parte del dano como curacion.",
+        "Dano: +9 (mainhand).",
+        "Velocidad de ataque: -3.1 (mainhand).",
+        "Sweeping damage ratio: +0.6 (mainhand).",
+        "Entity interaction range: +0.3 (mainhand)."
+      ],
+      "source": "data/stellarity/loot_table/item/weapon/starless_scythe.json"
+    },
+    "stellar_striker": {
+      "name": "Stellar Striker",
+      "material": "minecraft:netherite_sword",
+      "model": "stellarity:stellar_striker",
+      "original_model": "stellarity:stellar_striker",
+      "group": "weapons",
+      "description": [
+        "Junta estrellas al combatir. Agachate y ataca para lanzarlas juntas.",
+        "Dano: +7 (mainhand).",
+        "Velocidad de ataque: -2.8 (mainhand).",
+        "Entity interaction range: +0.3 (mainhand).",
+        "Objeto especial del autor: figurar en el catalogo no garantiza conseguirlo en survival."
+      ],
+      "source": "data/stellarity/loot_table/item/weapon/stellar_striker.json"
+    },
+    "tamaris": {
+      "name": "Tamaris",
+      "material": "minecraft:netherite_sword",
+      "model": "stellarity:tamaris",
+      "original_model": "stellarity:tamaris",
+      "group": "weapons",
+      "description": [
+        "Al agacharte remata a un enemigo cercano con poca vida.",
+        "Dano: +6 (mainhand).",
+        "Velocidad de ataque: -2.4 (mainhand).",
+        "Objeto especial del autor: figurar en el catalogo no garantiza conseguirlo en survival."
+      ],
+      "source": "data/stellarity/loot_table/item/weapon/tamaris.json"
+    },
+    "spirit_dagger": {
+      "name": "The End",
+      "material": "minecraft:netherite_sword",
+      "model": "stellarity:the_end",
+      "original_model": "stellarity:the_end",
+      "group": "weapons",
+      "description": [
+        "Atrae espiritus al atacar y permite desplazamientos especiales.",
+        "Dano: +4 (mainhand).",
+        "Velocidad: +5% (offhand).",
+        "Velocidad de ataque: -2 (mainhand).",
+        "Entity interaction range: -0.3 (mainhand).",
+        "Objeto especial del autor: figurar en el catalogo no garantiza conseguirlo en survival."
+      ],
+      "source": "data/stellarity/loot_table/item/weapon/the_beginning_and_the_end.json"
+    }
+  },
+  "tags": {
+    "#minecraft:stone_crafting_materials": [
+      "minecraft:cobblestone",
+      "minecraft:blackstone",
+      "minecraft:cobbled_deepslate",
+      "minecraft:end_stone",
+      "minecraft:diorite",
+      "minecraft:andesite",
+      "minecraft:granite"
+    ],
+    "#kohara:glass_blocks": [
+      "glass",
+      "red_stained_glass",
+      "yellow_stained_glass",
+      "orange_stained_glass",
+      "lime_stained_glass",
+      "green_stained_glass",
+      "magenta_stained_glass",
+      "purple_stained_glass",
+      "pink_stained_glass",
+      "blue_stained_glass",
+      "light_blue_stained_glass",
+      "cyan_stained_glass",
+      "gray_stained_glass",
+      "light_gray_stained_glass",
+      "black_stained_glass",
+      "white_stained_glass",
+      "brown_stained_glass"
+    ],
+    "#minecraft:smelts_to_glass": [
+      "minecraft:sand",
+      "minecraft:red_sand"
+    ],
+    "#minecraft:planks": [
+      "minecraft:oak_planks",
+      "minecraft:spruce_planks",
+      "minecraft:birch_planks",
+      "minecraft:jungle_planks",
+      "minecraft:acacia_planks",
+      "minecraft:dark_oak_planks",
+      "minecraft:mangrove_planks",
+      "minecraft:cherry_planks",
+      "minecraft:pale_oak_planks",
+      "minecraft:bamboo_planks",
+      "minecraft:crimson_planks",
+      "minecraft:warped_planks"
+    ]
+  },
+  "vanilla_names": {
+    "minecraft:chorus_fruit": "Fruta chorus",
+    "minecraft:chorus_plant": "Planta de chorus",
+    "minecraft:chorus_flower": "Flor de chorus",
+    "minecraft:end_stone": "Piedra del End",
+    "minecraft:blaze_powder": "Polvo de blaze",
+    "minecraft:glass": "Vidrio",
+    "minecraft:gunpowder": "Polvora",
+    "minecraft:popped_chorus_fruit": "Fruta chorus horneada",
+    "minecraft:leather": "Cuero",
+    "minecraft:phantom_membrane": "Membrana de phantom",
+    "minecraft:paper": "Papel",
+    "minecraft:water_bucket": "Balde de agua",
+    "minecraft:sugar": "Azucar",
+    "minecraft:bowl": "Cuenco",
+    "minecraft:ender_eye": "Ojo de ender",
+    "minecraft:iron_ingot": "Lingote de hierro",
+    "minecraft:gold_block": "Bloque de oro",
+    "minecraft:netherite_ingot": "Lingote de netherite",
+    "minecraft:netherite_helmet": "Casco de netherite",
+    "minecraft:netherite_chestplate": "Pechera de netherite",
+    "minecraft:netherite_leggings": "Pantalones de netherite",
+    "minecraft:netherite_boots": "Botas de netherite",
+    "minecraft:red_mushroom": "Hongo rojo",
+    "minecraft:brown_mushroom": "Hongo marron",
+    "minecraft:glass_bottle": "Botella de vidrio",
+    "minecraft:nether_wart": "Verruga del Nether",
+    "minecraft:redstone": "Redstone",
+    "minecraft:glowstone_dust": "Polvo de piedra luminosa"
+  },
+  "mobs": [
+    [
+      "NETHER_STAR",
+      "Empress of Light",
+      "Empress of Light: Altar Sagrado + Starlight Soot. Botin posible: Prismatic Punch, Prismember, Starstruck Shield y Prismatic Pearl; de dia tambien Soaring Insignia y Kaleidoscope. Dificultad y premios cambian segun la pelea."
+    ],
+    [
+      "DRAGON_HEAD",
+      "Ender Dragon",
+      "Jefe original del End, retirado por Astral: su botin no se promete disponible. Botin posible: life crystal, minecraft:dragon head, minecraft:phantom membrane, dragon wings. No todos los premios son garantizados."
+    ],
+    [
+      "ZOMBIE_HEAD",
+      "Flesh Piglin",
+      "Criatura de las zonas de carne del End. Botin posible: minecraft:rotten flesh, minecraft:nether wart block, minecraft:nether wart, minecraft:crimson fungus, minecraft:crimson roots. No todos los premios son garantizados."
+    ],
+    [
+      "ZOMBIE_HEAD",
+      "Frosted Stray",
+      "Esqueleto de las zonas heladas del End. Botin posible: minecraft:arrow, minecraft:tipped arrow, minecraft:bone, minecraft:ice, minecraft:snowball. No todos los premios son garantizados."
+    ],
+    [
+      "ZOMBIE_HEAD",
+      "Kohara",
+      "Entidad especial del autor; no se promete aparicion natural. Botin posible: golden chorus fruit. No todos los premios son garantizados."
+    ],
+    [
+      "ZOMBIE_HEAD",
+      "Phantom Buffed",
+      "Phantom modificado del End. Botin posible: minecraft:string, minecraft:gunpowder, minecraft:phantom membrane. No todos los premios son garantizados."
+    ],
+    [
+      "ZOMBIE_HEAD",
+      "Pixie",
+      "Criatura de las zonas Hallow. Botin posible: starlight soot, minecraft:structure void. No todos los premios son garantizados."
+    ],
+    [
+      "SHULKER_SHELL",
+      "Shulking",
+      "Ofrenda Cuerpo de Shulker en el Altar Sagrado. Botin posible: book of obstruct, golden chorus fruit, purpur block, shulker pickaxe, shulker axe, shulker sword, shulker spear, shulker shovel, shulker hoe, boots, chestplate, leggings. No todos los premios son garantizados."
+    ],
+    [
+      "ZOMBIE_HEAD",
+      "Stronghold - Evoker",
+      "Habitante de las fortalezas renovadas. Botin posible: minecraft:totem of undying, minecraft:emerald. No todos los premios son garantizados."
+    ],
+    [
+      "ZOMBIE_HEAD",
+      "Stronghold - Illusioner",
+      "Habitante de las fortalezas renovadas. Botin posible: minecraft:emerald, minecraft:book, minecraft:paper, sharanga, minecraft:spectral arrow. No todos los premios son garantizados."
+    ],
+    [
+      "ZOMBIE_HEAD",
+      "Stronghold - Pillager",
+      "Habitante de las fortalezas renovadas. Botin posible: minecraft:emerald, minecraft:arrow. No todos los premios son garantizados."
+    ],
+    [
+      "ZOMBIE_HEAD",
+      "Stronghold - Vindicator",
+      "Habitante de las fortalezas renovadas. Botin posible: minecraft:emerald. No todos los premios son garantizados."
+    ],
+    [
+      "ZOMBIE_HEAD",
+      "Stronghold - Witch",
+      "Habitante de las fortalezas renovadas. Botin posible: random potion. No todos los premios son garantizados."
+    ],
+    [
+      "ZOMBIE_HEAD",
+      "Voided Silverfish",
+      "Lepisma del vacio. Botin posible: minecraft:ender pearl. No todos los premios son garantizados."
+    ],
+    [
+      "ZOMBIE_HEAD",
+      "Voided Skeleton",
+      "Esqueleto del vacio. Botin posible: minecraft:spectral arrow, minecraft:arrow, minecraft:bone. No todos los premios son garantizados."
+    ],
+    [
+      "ZOMBIE_HEAD",
+      "Voided Slime",
+      "Slime del vacio. Botin posible: minecraft:slime ball. No todos los premios son garantizados."
+    ],
+    [
+      "ZOMBIE_HEAD",
+      "Voided Zombie",
+      "Zombi del vacio. Botin posible: minecraft:rotten flesh, minecraft:leather, minecraft:copper ingot, minecraft:sand. No todos los premios son garantizados."
+    ]
+  ]
+}

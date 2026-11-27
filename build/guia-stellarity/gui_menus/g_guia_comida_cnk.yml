@@ -1,0 +1,133 @@
+menu_title: '&f&#ffe9a8Cocina preparada'
+size: 54
+open_requirement:
+  requirements:
+    prueba:
+      type: has permission
+      permission: astral.guia.ampliacion
+    dueno:
+      type: string equals
+      input: '%player_name%'
+      output: 'ByTrainx'
+  deny_commands:
+  - '[message] &eEsta ampliacion esta en prueba con el dueno.'
+items:
+  'c0':
+    material: CAULDRON
+    slot: 1
+    amount: 1
+    display_name: '&bOlla'
+    lore:
+    - '&7Caldero + fogata. Integracion'
+    - '&7pendiente de confirmar en vivo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: KNOWLEDGE_BOOK
+    slot: 2
+    amount: 1
+    display_name: '&bRecetario'
+    lore:
+    - '&7El recetario y los avances propios'
+    - '&7muestran las recetas descubiertas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: WHEAT_SEEDS
+    slot: 3
+    amount: 1
+    display_name: '&bCultivos nuevos'
+    lore:
+    - '&7Hay semillas y cultivos de cocina.'
+    - '&7Cultivalos en survival cuando se'
+    - '&7habilite la integracion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: IRON_SWORD
+    slot: 4
+    amount: 1
+    display_name: '&bTabla y cuchillo'
+    lore:
+    - '&7Permiten cortar ingredientes. Tambien'
+    - '&7hay un bol para mezclas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: MUSHROOM_STEW
+    slot: 5
+    amount: 1
+    display_name: '&bPlatos y bebidas'
+    lore:
+    - '&7Ejemplo: Wellington combina masa,'
+    - '&7hongos y carne en la olla. En la'
+    - '&7tabla, carne de vaca da cortes y masa'
+    - '&7da fideos.'
+    - '&7Incluye sopas, cafe y vinos. Consulta'
+    - '&7el recetario propio al habilitarlo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: LEATHER_HELMET
+    slot: 6
+    amount: 1
+    display_name: '&bGorro de chef'
+    lore:
+    - '&7Mesa: dos lanas blancas en la primera'
+    - '&7fila, otras dos debajo y dos hilos en'
+    - '&7la tercera. Usa las mismas dos'
+    - '&7columnas.'
+    - '&7Solo cuando Crop & Kettle este'
+    - '&7instalado.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_cocina'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

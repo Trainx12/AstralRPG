@@ -1,0 +1,171 @@
+menu_title: '&f&#ffe9a8Crafteos'
+size: 54
+open_requirement:
+  requirements:
+    prueba:
+      type: has permission
+      permission: astral.guia.ampliacion
+    dueno:
+      type: string equals
+      input: '%player_name%'
+      output: 'ByTrainx'
+  deny_commands:
+  - '[message] &eEsta ampliacion esta en prueba con el dueno.'
+items:
+  'c0':
+    material: SMITHING_TABLE
+    slot: 1
+    amount: 1
+    display_name: '&bForja Astral'
+    lore:
+    - '&7Cerca de una mesa de herreria, abri la'
+    - '&7receta en la guia y usa Forjar. Toma'
+    - '&7materiales del inventario y exige los'
+    - '&7niveles del resultado.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_atlas_berserker'
+  'c1':
+    material: CRAFTING_TABLE
+    slot: 2
+    amount: 1
+    display_name: '&bMesa y libro verde'
+    lore:
+    - '&7AstralDecor registra recetas en la'
+    - '&7mesa. Tener un ingrediente desbloquea'
+    - '&7su receta en el libro verde. Exige los'
+    - '&7mismos objetos y niveles. Mas de 9'
+    - '&7unidades: solo Forja.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_atlas_seccion_materiales'
+  'c2':
+    material: ENCHANTING_TABLE
+    slot: 3
+    amount: 1
+    display_name: '&bAstralMesa'
+    lore:
+    - '&7Usa la mesa de encantamientos para'
+    - '&7elegir mejoras compatibles y pagar'
+    - '&7experiencia. Las mejoras del Herrero'
+    - '&7Astral quedan aparte.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: AMETHYST_SHARD
+    slot: 4
+    amount: 1
+    display_name: '&bReforja de gemas'
+    lore:
+    - '&7En el Herrero, entra a Gemas. Las'
+    - '&7ranuras dependen del tier del equipo;'
+    - '&7la reforja no es una receta de mesa.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: CHEST
+    slot: 5
+    amount: 1
+    display_name: '&bMochilas'
+    lore:
+    - '&7Recetas y mejoras conservando el'
+    - '&7contenido. Netherite usa mesa de'
+    - '&7herreria vanilla, no el boton de Forja'
+    - '&7Astral.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_mochilas'
+  'c5':
+    material: DIAMOND_PICKAXE
+    slot: 6
+    amount: 1
+    display_name: '&bTaladros'
+    lore:
+    - '&7Abri cada herramienta para consultar'
+    - '&7sus materiales, niveles y receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_atlas_seccion_taladros'
+  'c6':
+    material: IRON_AXE
+    slot: 7
+    amount: 1
+    display_name: '&bMotosierras'
+    lore:
+    - '&7Consulta las mejoras encadenadas y los'
+    - '&7materiales exactos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_atlas_seccion_motosierras'
+  'c7':
+    material: END_STONE
+    slot: 13
+    amount: 1
+    display_name: '&bStellarity'
+    lore:
+    - '&7Sus altares y caldero son sistemas'
+    - '&7propios. No se fabrican con Forjar de'
+    - '&7Astral.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_atlas_seccion_stellarity'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral_3'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

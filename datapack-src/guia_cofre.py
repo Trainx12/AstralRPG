@@ -40,7 +40,8 @@ SHIFT = {1 << k: chr(0xf240 + k) for k in range(8)}          # espacios +1..+128
 SHORT = {
     'como': ('Inicio', 'nucleo_astral'), 'mercader': ('Goblin', 'peluche_zombie_horse'),
     'consumibles': ('XP/Suerte', 'frasco_xp_gigante'), 'proteccion': ('Terrenos', 'cuero_tratado'),
-    'cocina': ('Cocina', 'manzana_esmeralda'), 'misiones': ('Misiones', 'gema_luminica'),
+    'cocina': ('Comida', 'manzana_esmeralda'), 'misiones': ('Misiones', 'gema_luminica'),
+    'crafteos': ('Crafteos', None), 'stellarity': ('Stellarity', None),
     'materiales': ('Materiales', 'cristal_arcano'), 'berserker': ('Berserker', 'espada_1'),
     'mago': ('Mago', 'baston_1'), 'arquero': ('Arquero', 'arco_1'), 'lanzas': ('Lanzas', 'lanza_1'),
     # 23/11 pedido del dueno: las clases nuevas muestran su arma (antes salia un libro vanilla).
@@ -53,6 +54,7 @@ SHORT = {
     'bestiario/1': ('Bestiario', None), 'drops': ('Drops', None),
 }
 FALLBACK = {'bestiario/1': 'minecraft:zombie_head', 'drops': 'minecraft:chest', 'misiones': 'minecraft:writable_book'}
+FALLBACK.update(crafteos='minecraft:crafting_table', stellarity='minecraft:end_stone')
 NAV_MODELS = {'back': 'astral:mascotas/nav_back', 'next': 'astral:mascotas/nav_next',
               'close': 'astral:mascotas/nav_close', 'info': 'astral:mascotas/nav_info'}
 INFO_MODEL = 'astral:menu/icon_guia'
@@ -127,7 +129,8 @@ def capture(files, recetas, retratos, ilustraciones, index):
 
 
 def load():
-    return json.loads(SOURCE.read_text(encoding='utf-8'))
+    from guia_ampliacion import extend_source
+    return extend_source(json.loads(SOURCE.read_text(encoding='utf-8')))
 
 
 # ---------------------------------------------------------------- texto y items para DeluxeMenus
@@ -422,7 +425,7 @@ INGREDIENTS = [14, 15, 16, 23, 24, 25, 32, 33, 34]
 OUTPUT, FORGE = 20, (39, 40, 41)
 
 
-def receta_panel():
+def receta_panel(method='FORJAR'):
     ov = overlay()
     d = ImageDraw.Draw(ov)
     x0, y0 = slot_xy(10)
@@ -440,7 +443,7 @@ def receta_panel():
         x, y = slot_xy(slot)
         d.rectangle((x, y, x + 17, y + 17), fill='#141d42', outline=CYAN2)
     fx, fy = slot_xy(FORGE[0])
-    ov.alpha_composite(gold_button('FORJAR', 54), (fx, fy))
+    ov.alpha_composite(gold_button(method, 54), (fx, fy))
     d.rectangle((X0 - 1, Y0 + 5 * 18 - 1, X0 + 162, Y0 + 6 * 18), fill='#0d1430')
     for slot in (45, 53):
         x, y = slot_xy(slot)
@@ -485,6 +488,7 @@ def bg_chars(n):
 
 PAGE_CHARS = [bg_chars(n) for n in range(5)]
 BG_CHARS = {'general': bg_chars(5), 'receta': bg_chars(6)}
+BG_CHARS['receta_stellarity'] = bg_chars(7)
 
 
 def tiles(hi, chars, name, files, providers):
@@ -524,6 +528,7 @@ def assets(source=None):
         tiles(index_panel(chunk, page, len(groups)), PAGE_CHARS[page], f'pagina{page}', files, providers)
     tiles(general_panel(), BG_CHARS['general'], 'general', files, providers)
     tiles(receta_panel(), BG_CHARS['receta'], 'receta', files, providers)
+    tiles(receta_panel('METODO'), BG_CHARS['receta_stellarity'], 'receta_stellarity', files, providers)
     providers.append({'type': 'space', 'advances': advances})
     for name in sorted(set(data['ilustraciones'].values())):
         path = GEMINI / (name + '.png')
@@ -981,6 +986,8 @@ def mochila_menus():
 
 def menus(data=None):
     data = load() if data is None else data
+    from guia_ampliacion import extend_source, menus as extension_menus
+    data = extend_source(data)
     out = index_menus(data)
     out.update(dialog_menus(data))
     # Boton "Mochilas" dentro de Terrenos y mochilas (sin tocar el indice: su fondo trae los nombres dibujados).
@@ -989,6 +996,7 @@ def menus(data=None):
     boton['name'] = '&bMochilas: recetas'
     out[sec] += '\n'.join(yaml_item('mochilas', 31, boton, ['[sound] UI_BUTTON_CLICK', f'[openguimenu] {MOCHILAS_MENU}'])) + '\n'
     out.update(mochila_menus())
+    out.update(extension_menus(data))
     return out
 
 

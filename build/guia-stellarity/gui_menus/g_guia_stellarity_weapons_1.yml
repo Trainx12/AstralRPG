@@ -1,0 +1,330 @@
+menu_title: '&f&#ffe9a8Armas 1/1'
+size: 54
+open_requirement:
+  requirements:
+    prueba:
+      type: has permission
+      permission: astral.guia.ampliacion
+    dueno:
+      type: string equals
+      input: '%player_name%'
+      output: 'ByTrainx'
+  deny_commands:
+  - '[message] &eEsta ampliacion esta en prueba con el dueno.'
+items:
+  'c0':
+    material: WOODEN_SWORD
+    slot: 1
+    amount: 1
+    display_name: '&bAncient Wooden Sword'
+    item_model: 'stellarity:ancient_wooden_sword'
+    lore:
+    - '&7Espada especial de aspecto antiguo;'
+    - '&7objeto de coleccion.'
+    - '&7Dano: +3 (mainhand).'
+    - '&7Velocidad de ataque: +2133 (mainhand).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: BOW
+    slot: 2
+    amount: 1
+    display_name: '&bCall of The Void'
+    item_model: 'stellarity:call_of_the_void'
+    lore:
+    - '&7Arco con flechas del vacio que reducen'
+    - '&7vida y se rompen al impactar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: NETHERITE_SWORD
+    slot: 3
+    amount: 1
+    display_name: '&bDragonblade'
+    item_model: 'stellarity:dragonblade'
+    lore:
+    - '&7Espada que empuja con fuerza;'
+    - '&7aprovecha paredes cercanas.'
+    - '&7Dano: +8 (mainhand).'
+    - '&7Velocidad de ataque: -3 (mainhand).'
+    - '&7Sweeping damage ratio: +0.5'
+    - '&7(mainhand).'
+    - '&7Entity interaction range: +0.3'
+    - '&7(mainhand).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: NETHERITE_AXE
+    slot: 4
+    amount: 1
+    display_name: '&bFluffy Hammer Of Justice'
+    item_model: 'stellarity:fluffy_hammer'
+    lore:
+    - '&7Martillo arrojadizo que golpea durante'
+    - '&7el vuelo y despues vuelve a su dueno.'
+    - '&7Hambre: 0 puntos. Saturacion: 0.'
+    - '&7Dano: +14 (mainhand).'
+    - '&7Velocidad de ataque: -3.8 (mainhand).'
+    - '&7Objeto especial del autor: figurar en'
+    - '&7el catalogo no garantiza conseguirlo'
+    - '&7en survival.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: IRON_SWORD
+    slot: 5
+    amount: 1
+    display_name: '&bHarvester'
+    item_model: 'stellarity:harvester'
+    lore:
+    - '&7Junta almas; aumenta su tamano y dano'
+    - '&7y puede ganar habilidades.'
+    - '&7Dano: +3 (mainhand).'
+    - '&7Velocidad de ataque: -3 (mainhand).'
+    - '&7Velocidad: +0% (mainhand).'
+    - '&7Entity interaction range: +0.5'
+    - '&7(mainhand).'
+    - '&7Objeto especial del autor: figurar en'
+    - '&7el catalogo no garantiza conseguirlo'
+    - '&7en survival.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: NETHERITE_AXE
+    slot: 6
+    amount: 1
+    display_name: '&bKaleidoscope'
+    item_model: 'stellarity:kaleidoscope'
+    lore:
+    - '&7Acumula energia y la libera al'
+    - '&7golpear.'
+    - '&7Dano: +9 (mainhand).'
+    - '&7Velocidad de ataque: -3.2 (mainhand).'
+    - '&7Entity interaction range: +0.3'
+    - '&7(mainhand).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c6':
+    material: CROSSBOW
+    slot: 7
+    amount: 1
+    display_name: '&bPrismatic Punch'
+    item_model: 'stellarity:prismatic_punch'
+    lore:
+    - '&7Dispara proyectiles con varias'
+    - '&7explosiones e incendio prismatico.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c7':
+    material: NETHERITE_SWORD
+    slot: 10
+    amount: 1
+    display_name: '&bPrismember'
+    item_model: 'stellarity:prismember'
+    lore:
+    - '&7Agachate para cargar un giro que'
+    - '&7incendia enemigos cercanos.'
+    - '&7Dano: +7 (mainhand).'
+    - '&7Velocidad de ataque: -2.4 (mainhand).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c8':
+    material: TRIDENT
+    slot: 11
+    amount: 1
+    display_name: '&bSandstorm Trident'
+    item_model: 'stellarity:sandstorm_trident'
+    lore:
+    - '&7Al lanzarlo crea tuneles de viento.'
+    - '&7Dano: +5 (mainhand).'
+    - '&7Velocidad de ataque: -3.1 (mainhand).'
+    - '&7Objeto especial del autor: figurar en'
+    - '&7el catalogo no garantiza conseguirlo'
+    - '&7en survival.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_sandstorm_trident'
+  'c9':
+    material: BOW
+    slot: 12
+    amount: 1
+    display_name: '&bSharanga'
+    item_model: 'stellarity:sharanga'
+    lore:
+    - '&7Mejora las flechas espectrales y las'
+    - '&7hace viajar en linea recta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c10':
+    material: CROSSBOW
+    slot: 13
+    amount: 1
+    display_name: '&bSlayer Crossbow'
+    item_model: 'stellarity:slayer_crossbow'
+    lore:
+    - '&7Rayos de mucho dano que atraviesan'
+    - '&7enemigos, con alcance limitado.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c11':
+    material: BOW
+    slot: 14
+    amount: 1
+    display_name: '&bSpectral Fury'
+    item_model: 'stellarity:spectral_fury'
+    lore:
+    - '&7Los disparos sobrecargados vuelven las'
+    - '&7flechas espectrales perseguidores.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_spectral_fury'
+  'c12':
+    material: WOODEN_HOE
+    slot: 15
+    amount: 1
+    display_name: '&bStarless Scythe'
+    item_model: 'stellarity:starless_scythe'
+    lore:
+    - '&7Golpea varios enemigos y devuelve'
+    - '&7parte del dano como curacion.'
+    - '&7Dano: +9 (mainhand).'
+    - '&7Velocidad de ataque: -3.1 (mainhand).'
+    - '&7Sweeping damage ratio: +0.6'
+    - '&7(mainhand).'
+    - '&7Entity interaction range: +0.3'
+    - '&7(mainhand).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c13':
+    material: NETHERITE_SWORD
+    slot: 16
+    amount: 1
+    display_name: '&bStellar Striker'
+    item_model: 'stellarity:stellar_striker'
+    lore:
+    - '&7Junta estrellas al combatir. Agachate'
+    - '&7y ataca para lanzarlas juntas.'
+    - '&7Dano: +7 (mainhand).'
+    - '&7Velocidad de ataque: -2.8 (mainhand).'
+    - '&7Entity interaction range: +0.3'
+    - '&7(mainhand).'
+    - '&7Objeto especial del autor: figurar en'
+    - '&7el catalogo no garantiza conseguirlo'
+    - '&7en survival.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c14':
+    material: NETHERITE_SWORD
+    slot: 21
+    amount: 1
+    display_name: '&bTamaris'
+    item_model: 'stellarity:tamaris'
+    lore:
+    - '&7Al agacharte remata a un enemigo'
+    - '&7cercano con poca vida.'
+    - '&7Dano: +6 (mainhand).'
+    - '&7Velocidad de ataque: -2.4 (mainhand).'
+    - '&7Objeto especial del autor: figurar en'
+    - '&7el catalogo no garantiza conseguirlo'
+    - '&7en survival.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_tamaris'
+  'c15':
+    material: NETHERITE_SWORD
+    slot: 22
+    amount: 1
+    display_name: '&bThe End'
+    item_model: 'stellarity:the_end'
+    lore:
+    - '&7Atrae espiritus al atacar y permite'
+    - '&7desplazamientos especiales.'
+    - '&7Dano: +4 (mainhand).'
+    - '&7Velocidad: +5% (offhand).'
+    - '&7Velocidad de ataque: -2 (mainhand).'
+    - '&7Entity interaction range: -0.3'
+    - '&7(mainhand).'
+    - '&7Objeto especial del autor: figurar en'
+    - '&7el catalogo no garantiza conseguirlo'
+    - '&7en survival.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_stellarity'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

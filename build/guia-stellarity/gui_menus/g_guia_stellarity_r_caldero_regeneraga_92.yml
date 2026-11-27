@@ -1,0 +1,162 @@
+menu_title: '&f&#ffe9a8Regeneraga'
+size: 54
+open_requirement:
+  requirements:
+    prueba:
+      type: has permission
+      permission: astral.guia.ampliacion
+    dueno:
+      type: string equals
+      input: '%player_name%'
+      output: 'ByTrainx'
+  deny_commands:
+  - '[message] &eEsta ampliacion esta en prueba con el dueno.'
+items:
+  'material0':
+    material: POTION
+    slot: 20
+    amount: 1
+    display_name: '&bRegeneraga'
+    lore:
+    - '&7Curacion instantanea 2: 0.05 s.'
+    - '&7Regeneracion 3: 7 s.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: COOKED_COD
+    slot: 14
+    amount: 1
+    display_name: '&bPez tigre carmesí'
+    item_model: 'stellarity:crimson_tigerfish'
+    lore:
+    - '&7Hambre: 1 puntos. Saturacion: 0.2.'
+    - '&7Hambre 1: 30 s.'
+    - '&7Veneno 1: 20 s.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: COOKED_COD
+    slot: 15
+    amount: 1
+    display_name: '&bPrismita'
+    item_model: 'stellarity:prismite'
+    lore:
+    - '&7Hambre: 3 puntos. Saturacion: 1.8.'
+    - '&7Regeneracion 2: 5 s.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material3':
+    material: GLISTERING_MELON_SLICE
+    slot: 16
+    amount: 1
+    display_name: '&bGlistering melon slice'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material4':
+    material: GHAST_TEAR
+    slot: 23
+    amount: 1
+    display_name: '&bGhast tear'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material5':
+    material: NETHER_WART
+    slot: 24
+    amount: 1
+    display_name: '&bVerruga del Nether'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material6':
+    material: GLASS_BOTTLE
+    slot: 25
+    amount: 1
+    display_name: '&bBotella de vidrio'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material7':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: ' '
+    item_model: 'astral:viajes/blank'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material8':
+    material: KNOWLEDGE_BOOK
+    slot: 40
+    amount: 1
+    display_name: '&bCaldero de dragon'
+    lore:
+    - '&7Caldero de dragon'
+    - '&7Caldero con agua y aliento de dragon.'
+    - '&7Tira los ingredientes; sin forma.'
+    - '&7Consume 4 cargas de aliento (7 por'
+    - '&7carga inicial).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material9':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: ' '
+    item_model: 'astral:viajes/blank'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_stellarity_recetas_5'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

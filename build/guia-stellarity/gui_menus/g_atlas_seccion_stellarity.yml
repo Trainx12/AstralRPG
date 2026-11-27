@@ -1,0 +1,241 @@
+menu_title: '&f&#ffe9a8Stellarity - El End'
+size: 54
+open_requirement:
+  requirements:
+    prueba:
+      type: has permission
+      permission: astral.guia.ampliacion
+    dueno:
+      type: string equals
+      input: '%player_name%'
+      output: 'ByTrainx'
+  deny_commands:
+  - '[message] &eEsta ampliacion esta en prueba con el dueno.'
+items:
+  'c0':
+    material: END_PORTAL_FRAME
+    slot: 1
+    amount: 1
+    display_name: '&bExplorar el End'
+    lore:
+    - '&7Entra por el portal de una fortaleza'
+    - '&7del survival.'
+    - '&7En Astral el dragon esta retirado y'
+    - '&7los accesos exteriores estan abiertos.'
+    - '&7Explora sin sustituir ni reiniciar el'
+    - '&7mundo.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: SHIELD
+    slot: 2
+    amount: 1
+    display_name: '&bEquipo y dificultad'
+    lore:
+    - '&7El dano fijo de Stellarity no recibe'
+    - '&7automaticamente la escala Astral x5'
+    - '&7por tier. Puede rendir poco contra'
+    - '&7mobs escalados.'
+    - '&7Alas y vuelo pueden generar avisos de'
+    - '&7GrimAC; no cambies protecciones para'
+    - '&7usarlos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: DIAMOND_SWORD
+    slot: 3
+    amount: 1
+    display_name: '&bArmas'
+    lore:
+    - '&7Objetos, usos y efectos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_weapons_1'
+  'c3':
+    material: ELYTRA
+    slot: 4
+    amount: 1
+    display_name: '&bArmaduras y alas'
+    lore:
+    - '&7Objetos, usos y efectos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_armor_1'
+  'c4':
+    material: ENCHANTED_BOOK
+    slot: 5
+    amount: 1
+    display_name: '&bLibros de hechizos'
+    lore:
+    - '&7Objetos, usos y efectos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_books_1'
+  'c5':
+    material: DIAMOND_PICKAXE
+    slot: 6
+    amount: 1
+    display_name: '&bHerramientas'
+    lore:
+    - '&7Objetos, usos y efectos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_tools_1'
+  'c6':
+    material: AMETHYST_SHARD
+    slot: 7
+    amount: 1
+    display_name: '&bAccesorios'
+    lore:
+    - '&7Objetos, usos y efectos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_trinkets_1'
+  'c7':
+    material: CHORUS_FRUIT
+    slot: 10
+    amount: 1
+    display_name: '&bComidas y peces'
+    lore:
+    - '&7Objetos, usos y efectos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_food_1'
+  'c8':
+    material: POTION
+    slot: 11
+    amount: 1
+    display_name: '&bPociones'
+    lore:
+    - '&7Objetos, usos y efectos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_potions_1'
+  'c9':
+    material: PURPUR_BLOCK
+    slot: 12
+    amount: 1
+    display_name: '&bMateriales y bloques'
+    lore:
+    - '&7Objetos, usos y efectos.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_materials_1'
+  'c10':
+    material: WITHER_SKELETON_SKULL
+    slot: 13
+    amount: 1
+    display_name: '&bJefes y criaturas'
+    lore:
+    - '&7Apariciones y botin del End.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_jefes'
+  'c11':
+    material: END_STONE
+    slot: 14
+    amount: 1
+    display_name: '&bBiomas y estructuras'
+    lore:
+    - '&7Donde explorar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_mundo_1'
+  'c12':
+    material: ENCHANTING_TABLE
+    slot: 15
+    amount: 1
+    display_name: '&bAltares'
+    lore:
+    - '&7Ofrendas y mecanismos propios.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_altares'
+  'c13':
+    material: CRAFTING_TABLE
+    slot: 16
+    amount: 1
+    display_name: '&bTodas las recetas'
+    lore:
+    - '&7Mesa, horno, fogata, altar y caldero.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_recetas_1'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral_3'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

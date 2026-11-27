@@ -1,0 +1,138 @@
+menu_title: '&f&#ffe9a8Floral Chestplate'
+size: 54
+open_requirement:
+  requirements:
+    prueba:
+      type: has permission
+      permission: astral.guia.ampliacion
+    dueno:
+      type: string equals
+      input: '%player_name%'
+      output: 'ByTrainx'
+  deny_commands:
+  - '[message] &eEsta ampliacion esta en prueba con el dueno.'
+items:
+  'material0':
+    material: IRON_CHESTPLATE
+    slot: 20
+    amount: 1
+    display_name: '&bFloral Chestplate'
+    item_model: 'stellarity:floral_chestplate'
+    lore:
+    - '&7El conjunto completo hace florecer'
+    - '&7explosiones al disparar y permite'
+    - '&7camuflarte entre plantas.'
+    - '&7Armadura: +8 (chest).'
+    - '&7Dureza: +3 (chest).'
+    - '&7Resistencia al empuje: +0.1 (chest).'
+    - '&7Dano: -5% (chest).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: JIGSAW
+    slot: 14
+    amount: 1
+    display_name: '&bPlantilla de herrería'
+    item_model: 'stellarity:enderite_smithing_template'
+    lore:
+    - '&7Plantilla para mejoras en el Altar'
+    - '&7Maldito; no se usa en herreria'
+    - '&7vanilla.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: NETHERITE_CHESTPLATE
+    slot: 15
+    amount: 1
+    display_name: '&bPechera de netherite'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material3':
+    material: CHERRY_LEAVES
+    slot: 16
+    amount: 8
+    display_name: '&bCherry leaves'
+    lore:
+    - '&fCantidad exacta: 8'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material4':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: ' '
+    item_model: 'astral:viajes/blank'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material5':
+    material: KNOWLEDGE_BOOK
+    slot: 40
+    amount: 1
+    display_name: '&bAltar Maldito'
+    lore:
+    - '&7Altar Maldito'
+    - '&7Tira los ingredientes juntos sobre el'
+    - '&7altar activado. Sin forma. No usa la'
+    - '&7Forja Astral.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material6':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: ' '
+    item_model: 'astral:viajes/blank'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_stellarity_recetas_2'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'
