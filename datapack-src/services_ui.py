@@ -115,12 +115,15 @@ def bazar_regions(incluir_bazar=False):
 
 
 BAZAR_CARDS=[('comprar','COMPRAR','TIENDA'),('vender','VENDER','VENTA RAPIDA'),
-             ('subastas','SUBASTAS','JUGADORES'),('intercambio','INTERCAMBIO','JUGADORES'),('bazar','BAZAR','ORDENES')]
+             ('subastas','SUBASTAS','JUGADORES'),('intercambio','INTERCAMBIO','JUGADORES'),('bazar','BAZAR','ITEMS ASTRAL')]
 
 
 def bazar_card(key, caption, sub):
     if key != 'bazar':
         return picture_card(caption, sub, 'bazar_' + key)
+    # 27/11: puesto del bazar dibujado con Gemini (sin texto), mismo estilo que las otras tarjetas.
+    if (ROOT / 'pack-source/ref/gemini/bazar_bazar.png').exists():
+        return picture_card(caption, sub, 'bazar_bazar', focus=.5)
     # Arte terminado con texto: 72x36 px, 2:1; admite multiplos HD.
     source = ROOT / 'pack-source/ref/gemini/tarjeta_bazar.png'
     if source.exists():

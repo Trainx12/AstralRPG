@@ -39,7 +39,7 @@ class BazarCardTests(unittest.TestCase):
         root = Path(__file__).resolve().parents[1]
         base = root / 'build/abrir-todo-27-11/gui_menus/bazar.yml'
         old = yaml.safe_load(base.read_text(encoding='utf8') if base.exists() else subprocess.check_output(
-            ['git', 'show', 'HEAD:build/menus/DeluxeMenus/gui_menus/bazar.yml'], cwd=root))
+            ['git', 'show', 'f32b7d1~1:build/menus/DeluxeMenus/gui_menus/bazar.yml'], cwd=root))
         new = yaml.safe_load(menus.bazar_menu())
         for key in list(new['items']):
             if key.startswith('bazar_'):
