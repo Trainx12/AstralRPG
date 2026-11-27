@@ -103,7 +103,23 @@ public final class SupportTierProbe extends JavaPlugin {
             check(runtime.playerTier(p,"sorcery")==2,"Magia 14 es T2 independiente de Combate");
             double base=runtime.getConfig().getDouble("xp.2");
             double mob=runtime.getConfig().getDouble("xp.3");
-            check(Math.abs(mob*runtime.tierXpFactor(p,"fighting",3)-base*5)<1e-7,"T3 con Combate 19 paga T2 x5");
+            check(Math.abs(mob*runtime.tierXpFactor(p,"fighting",3)-base*4)<1e-7,"T3 con Combate 19 paga T2 x4");
+            for(String name:names) {
+                user.setSkillLevel(Skills.valueOf(name.toUpperCase(Locale.ROOT)),19);
+                int own=runtime.playerTier(p,name);
+                double ownXp=runtime.getConfig().getDouble("xp."+own);
+                for(int diff=1;diff<=4;diff++) {
+                    double mobXp=runtime.getConfig().getDouble("xp."+(own+diff));
+                    double expected=ownXp*(diff==1?4:10);
+                    check(Math.abs(mobXp*runtime.tierXpFactor(p,name,own+diff)-expected)<1e-7,name+" bonus +"+diff);
+                }
+                check(runtime.tierXpFactor(p,name,0)==1,name+" tier 0 intacto");
+                check(Math.abs(runtime.tierXpFactor(p,name,own-1)-0.15)<1e-9,name+" penalizacion -1 intacta");
+            }
+            user.setSkillLevel(Skills.FIGHTING,19);
+            attachment.setPermission("astral.xp.tierbonus",false);
+            check(runtime.tierXpFactor(p,"fighting",3)==1,"sin permiso conserva XP normal");
+            attachment.setPermission("astral.xp.tierbonus",true);
             user.setSkillLevel(Skills.FIGHTING,20);
             check(runtime.tierXpFactor(p,"fighting",3)==1,"Combate 20 XP T3 completa");
             user.setSkillLevel(Skills.SORCERY,20);

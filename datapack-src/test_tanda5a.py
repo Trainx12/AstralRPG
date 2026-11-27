@@ -24,6 +24,8 @@ class Tanda5aTests(unittest.TestCase):
             self.assertIs(cfg['tier-penalty-enabled'], True)
             self.assertEqual(cfg['tier-penalty'], {'1': 0.15, '2': 0.03})
             self.assertEqual(cfg['tier-bonus-permission'], 'astral.xp.tierbonus')
+            self.assertEqual(cfg['tier-bonus-multipliers'], {'1': 4, '2': 10})
+            self.assertNotIn('tier-bonus', cfg)
 
     def test_xp_table_and_boss_cap(self):
         self.assertEqual([xp_skill_mob(t) for t in range(6)], [0,84.5,110,148,170,193])

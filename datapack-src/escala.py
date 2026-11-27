@@ -33,9 +33,9 @@ VIDA_REF = {t: round(DANO[t] * GOLPES[t]) for t in DANO}
 XP_MOB = {0: 0, 1: 84.5, 2: 110, 3: 148, 4: 170, 5: 193, 6: 217, 7: 241, 8: 265, 9: 289, 10: 313}
 XP_ELITE = 1.5
 XP_JEFE = 8
-# 24/11 (dueno): mob de mas tier que el jugador (por nivel de skill) paga la XP del tier del jugador x5 por
-# tier de diferencia (lo que sube su vida), tope +2. Permiso astral.xp.tierbonus.
-XP_TIER_ARRIBA = 5
+# 27/11 (dueno): XP del tier de la skill x4 con +1 tier y x10 con +2 o mas.
+# Se conserva el tope +2 y el permiso astral.xp.tierbonus.
+XP_TIER_ARRIBA = {1: 4, 2: 10}
 XP_TIER_ARRIBA_TOPE = 2
 # 26/11 (dueno): para todos, x0,15 a un tier abajo; x0,03 a dos o mas tiers abajo.
 XP_TIER_ABAJO = {1: 0.15, 2: 0.03}

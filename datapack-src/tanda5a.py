@@ -301,7 +301,7 @@ def build(java, server):
         for p in sorted((target/'astral').glob('AstralProgression*.class')):
             z.writestr(zipfile.ZipInfo(p.relative_to(target).as_posix(), (2026,11,11,0,0,0)), p.read_bytes())
         z.writestr(zipfile.ZipInfo('plugin.yml', (2026,11,11,0,0,0)),
-                   "name: AstralProgression\nversion: 1.6.3\nmain: astral.AstralProgression\napi-version: '26.1.2'\ndepend: [AuraSkills, MythicMobs, GriefPrevention]\nsoftdepend: [Vault, LuckPerms, EconomyShopGUI, ExpendableBackpacks, AxGraves, AstralParty]\npermissions:\n  astral.xp.tierbonus:\n    default: false\n  astral.xp.partysplit:\n    default: false\n")
+                   "name: AstralProgression\nversion: 1.6.4\nmain: astral.AstralProgression\napi-version: '26.1.2'\ndepend: [AuraSkills, MythicMobs, GriefPrevention]\nsoftdepend: [Vault, LuckPerms, EconomyShopGUI, ExpendableBackpacks, AxGraves, AstralParty]\npermissions:\n  astral.xp.tierbonus:\n    default: false\n  astral.xp.partysplit:\n    default: false\n")
         z.writestr(zipfile.ZipInfo('config.yml', (2026,11,11,0,0,0)), yaml.safe_dump(config, sort_keys=False))
         from minijuegos import parkour_worlds
         z.writestr('split-excluded-worlds.txt', '\n'.join(parkour_worlds())+'\n')
