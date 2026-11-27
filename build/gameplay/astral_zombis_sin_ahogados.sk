@@ -1,6 +1,9 @@
 # Generado por datapack-src/zombis_sin_ahogados.py; no editar a mano.
 # Evita que la conversion reinicie la vida de un zombi y conserve su tier.
 # Los ahogados naturales y las otras transformaciones siguen funcionando.
+on load:
+    log "Activo: solo se bloquea la conversion de zombi a ahogado." to "astral_zombis_sin_ahogados.log"
+
 on entity transform due to drowning:
     if type of event-entity is zombie:
         cancel event

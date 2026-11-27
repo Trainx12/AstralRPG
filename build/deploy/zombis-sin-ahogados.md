@@ -18,7 +18,10 @@ Paper 26.1.2 + Skript 2.17.1: 16 comprobaciones, 0 fallos; tres conversiones rea
 (zombi normal, T3 y T10 elite), vida maxima/tier conservados y controles de otras transformaciones.
 El plugin ZombieConversionProbe se usa exclusivamente en el ensayo local.
 
-Estado: probado localmente; instalacion y comprobacion remota pendientes.
-Anuncio para Discord cuando quede activo:
+Estado: instalado y recargado en Empower el 27/11/2026. Registro remoto
+`plugins/Skript/logs/astral_zombis_sin_ahogados.log` confirma la carga a las 22:37 UTC
+(19:37 Argentina): "Activo: solo se bloquea la conversion de zombi a ahogado."
+El generador incluye este registro al cargar. No se reinicio el servidor.
+Aviso publicado en Discord (HTTP 204):
 "Corregimos un fallo que permitia convertir zombis en ahogados con muy poca vida.
 Los zombis ya no se transforman al permanecer bajo el agua. Gracias a PepeMega por avisar."
