@@ -31,10 +31,32 @@ public final class AstralProgression extends JavaPlugin implements Listener {
     private static final Set<String> SKILLS = Set.of("fighting", "archery", "sorcery");
     private final Set<UUID> tinySplits = new HashSet<>();
     private final Set<String> splitExcludedWorlds = new HashSet<>();
+    private final Properties worldBossHealth = new Properties();
     private record SplitAttribute(Attribute type, double base,
             List<org.bukkit.attribute.AttributeModifier> modifiers) {}
     private final Map<UUID,List<SplitAttribute>> pendingSplits = new HashMap<>();
     private final Map<UUID,List<SplitAttribute>> dyingSplits = new HashMap<>();
+    @EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=true)
+    public void worldBossSpawn(io.lumine.mythic.bukkit.events.MythicMobSpawnEvent e) {
+        LivingEntity mob=e.getLivingEntity();
+        // Mythic restores its configured base health after onSpawn commands finish (e.g. 1000 x5).
+        // Run once after insertion, using the tier saved on spawn, never on chunk load or a timer.
+        Bukkit.getScheduler().runTaskLater(this,()->{
+            if(!mob.isValid() || mob.isDead() || !mob.getScoreboardTags().contains("ad.boss.scaled") ||
+                mob.getScoreboardTags().stream().noneMatch(t->t.matches("astral\\.jm(?:[1-9]|10)"))) return;
+            for(int t=10;t>=1;t--) if(mob.getScoreboardTags().contains("astral.jm"+t)) {
+                var health=mob.getAttribute(Attribute.MAX_HEALTH);
+                double base=Double.parseDouble(worldBossHealth.getProperty(Integer.toString(t)));
+                // Mythic's stat registry reapplies HEALTH after spawn; update its source of truth too.
+                e.getMob().getStatRegistry().putBaseValue(io.lumine.mythic.core.skills.stats.Stats.HEALTH,base);
+                e.getMob().getStatRegistry().updateDirtyStats();
+                health.setBaseValue(base);
+                mob.setHealth(health.getValue());
+                getLogger().info("Jefe de mundo T"+t+" vida="+health.getValue()+" base="+health.getBaseValue());
+                break;
+            }
+        },2);
+    }
     @EventHandler(priority=EventPriority.LOWEST,ignoreCancelled=true)
     public void splitDeath(EntityDeathEvent e) {
         if(!(e.getEntity() instanceof Slime parent) || parent.getSize()<=1 || !scaledSplit(parent)) return;
@@ -72,6 +94,10 @@ public final class AstralProgression extends JavaPlugin implements Listener {
     }
     public void onEnable() {
         saveDefaultConfig();
+        try(var reader=getTextResource("world-boss-health.txt")) {
+            if(reader==null) throw new IllegalStateException("Falta world-boss-health.txt");
+            worldBossHealth.load(reader);
+        } catch(java.io.IOException ex) {throw new IllegalStateException(ex);}
         try(var reader=getTextResource("split-excluded-worlds.txt")) {
             if(reader==null) throw new IllegalStateException("Falta split-excluded-worlds.txt");
             new java.io.BufferedReader(reader).lines().forEach(splitExcludedWorlds::add);
@@ -106,7 +132,10 @@ public final class AstralProgression extends JavaPlugin implements Listener {
         if(e.getTransformReason()!=EntityTransformEvent.TransformReason.SPLIT ||
             !(e.getEntity() instanceof Slime parent) || !scaledSplit(parent)) return;
         var captured=dyingSplits.remove(parent.getUniqueId());
-        var snapshot=captured!=null?captured:splitAttributes(parent);
+        var original=captured!=null?captured:splitAttributes(parent);
+        // Each generation has half the previous maximum, including elite modifiers.
+        var snapshot=original.stream().map(a -> a.type()==Attribute.MAX_HEALTH
+            ? new SplitAttribute(a.type(),a.base()/2,a.modifiers()) : a).toList();
         for(Entity entity:e.getTransformedEntities()) {
             if(!(entity instanceof Slime child) || child.getType()!=parent.getType() ||
                 child.isInvulnerable() || pet(child)) continue;
@@ -267,6 +296,7 @@ public final class AstralProgression extends JavaPlugin implements Listener {
     public int tier(LivingEntity mob) {
         if(mob instanceof Player || mob.getType()==EntityType.ARMOR_STAND || friendly(mob)) return 0;
         for(int t=10;t>=1;t--) if(mob.getScoreboardTags().contains("astral.mt"+t)) return t;
+        for(int t=10;t>=1;t--) if(mob.getScoreboardTags().contains("astral.jm"+t)) return t;
         String mm=mythic(mob);
         if(!mm.isEmpty()) return getConfig().getInt("mythic."+mm+".tier",0);
         if(!(mob instanceof Monster)) return 0;
@@ -293,14 +323,13 @@ public final class AstralProgression extends JavaPlugin implements Listener {
         int tier=tier(mob);
         if(tier==0) return 0;
         String mm=mythic(mob);
-        if(mob.getScoreboardTags().contains("astral.split"))
-            return getConfig().getDouble("xp."+tier) * getConfig().getDouble("normal-bonus",1);
         boolean boss=getConfig().getBoolean("mythic."+mm+".boss",false);
         boolean elite=getConfig().getBoolean("mythic."+mm+".elite",false) ||
             mob.getScoreboardTags().stream().anyMatch(t->t.startsWith("astral.elite"));
-        return getConfig().getDouble("xp."+tier) * getConfig().getDouble(boss?"boss-bonus":elite?"elite-bonus":"normal-bonus",1);
+        double sizeFactor=mob instanceof Slime slime ? (slime.getSize()==1?0.20:slime.getSize()==2?0.45:1) : 1;
+        return getConfig().getDouble("xp."+tier) * getConfig().getDouble(boss?"boss-bonus":elite?"elite-bonus":"normal-bonus",1) * sizeFactor;
     }
-    // 24/11 (dueno): un mob de mas tier que el jugador paga como su vida: x5 por tier de diferencia, tope +2.
+    // 27/11 (dueno): XP del tier del jugador x4 con +1 tier, x10 con +2 o mas; tope +2.
     // Tier del jugador = requisitos reales del equipo de la skill acreditada.
     // BEGIN GENERATED SKILL TIERS
     // Generado por skill_tiers.py desde items.py/items_t6_10.py.
@@ -333,8 +362,9 @@ public final class AstralProgression extends JavaPlugin implements Listener {
         int diff=Math.min(mobTier-own, getConfig().getInt("tier-bonus-max",2));
         double base=getConfig().getDouble("xp."+own), mob=getConfig().getDouble("xp."+mobTier);
         if(base<=0 || mob<=0) return 1;
-        // Se paga como la XP del tier del jugador x5^dif (nunca menos que lo normal del mob).
-        return Math.max(1, base*Math.pow(getConfig().getDouble("tier-bonus",5),diff)/mob);
+        // Clave nueva: el antiguo tier-bonus: 5 del servidor no debe restaurar x5/x25.
+        double multiplier=getConfig().getDouble("tier-bonus-multipliers."+diff,diff<=0?1:diff==1?4:10);
+        return Math.max(1, base*multiplier/mob);
     }
     @EventHandler(priority=EventPriority.MONITOR) public void death(EntityDeathEvent e) {
         LivingEntity mob=e.getEntity(); Player p=mob.getKiller();

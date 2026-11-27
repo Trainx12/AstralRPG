@@ -114,7 +114,7 @@ PARTY_SPLIT_WORLDS = _party_split_worlds()
 
 def generate():
     config = {'survival-world': 'world', 'xp': {str(t): v for t, v in XP_MOB.items()},
-              'elite-bonus': XP_ELITE, 'boss-bonus': XP_JEFE, 'tier-bonus': XP_TIER_ARRIBA, 'tier-bonus-max': XP_TIER_ARRIBA_TOPE,
+              'elite-bonus': XP_ELITE, 'boss-bonus': XP_JEFE, 'tier-bonus-multipliers': {str(t): v for t, v in XP_TIER_ARRIBA.items()}, 'tier-bonus-max': XP_TIER_ARRIBA_TOPE,
               'tier-bonus-permission': 'astral.xp.tierbonus',
               'tier-penalty-enabled': True, 'tier-penalty': {str(t): v for t, v in XP_TIER_ABAJO.items()},
               # 24/11: XP de mobs repartida en partes iguales con la party del mismo mundo (solo estos mundos).
@@ -301,10 +301,12 @@ def build(java, server):
         for p in sorted((target/'astral').glob('AstralProgression*.class')):
             z.writestr(zipfile.ZipInfo(p.relative_to(target).as_posix(), (2026,11,11,0,0,0)), p.read_bytes())
         z.writestr(zipfile.ZipInfo('plugin.yml', (2026,11,11,0,0,0)),
-                   "name: AstralProgression\nversion: 1.6.2\nmain: astral.AstralProgression\napi-version: '26.1.2'\ndepend: [AuraSkills, MythicMobs, GriefPrevention]\nsoftdepend: [Vault, LuckPerms, EconomyShopGUI, ExpendableBackpacks, AxGraves, AstralParty]\npermissions:\n  astral.xp.tierbonus:\n    default: false\n  astral.xp.partysplit:\n    default: false\n")
+                   "name: AstralProgression\nversion: 1.6.3\nmain: astral.AstralProgression\napi-version: '26.1.2'\ndepend: [AuraSkills, MythicMobs, GriefPrevention]\nsoftdepend: [Vault, LuckPerms, EconomyShopGUI, ExpendableBackpacks, AxGraves, AstralParty]\npermissions:\n  astral.xp.tierbonus:\n    default: false\n  astral.xp.partysplit:\n    default: false\n")
         z.writestr(zipfile.ZipInfo('config.yml', (2026,11,11,0,0,0)), yaml.safe_dump(config, sort_keys=False))
         from minijuegos import parkour_worlds
         z.writestr('split-excluded-worlds.txt', '\n'.join(parkour_worlds())+'\n')
+        from escala import VIDA_REF
+        z.writestr('world-boss-health.txt', ''.join(f'{t}={25*hp}\n' for t,hp in VIDA_REF.items()))
     print(dest)
 
 
