@@ -20,6 +20,8 @@ from misiones import CHAPTERS, DAILIES
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "..", "build", "menus", "DeluxeMenus")
 RULETA_TICKS = 140
+# Abrir solo despues de la prueba del dueno; coordinar publico en AstralBazar.
+BAZAR_PUBLICO = False
 # Puntaje del jugador (expansion 'ScoreboardObjectives' de PlaceholderAPI).
 SCORE = "%objective_score_{{{}}}%"   # con llaves: los nombres llevan guion bajo
 
@@ -370,14 +372,24 @@ def bazar_menu():
         'comprar': ('&a&lComprar en la Tienda', ['&7Selecciona un producto, revisa el precio', '&7y confirma con COMPRAR.'], 'economyshopgui:shop'),
         'vender': ('&6&lVenta rapida', ['&7Coloca el objeto, revisa su importe', '&7y confirma con VENDER.', '&7Cerrar devuelve el objeto.'], 'astralventa'),
         'subastas': ('&e&lSubastas', ['&7Comercio entre jugadores.', '&7Explora, consulta tus ventas y retira objetos.'], 'astralmenu_subastas'),
+        'bazar': ('&6&lBazar', ['&7Compra y vende materiales con otros', '&7jugadores por ordenes, como un mercado.'], 'bazar'),
         'intercambio': ('&b&lIntercambio', ['&7Cambia objetos y oro cara a cara', '&7con otro jugador: &f/trade <jugador>'], None),
     }
     lines=[]
-    for key,cols,rows in bazar_regions():
+    for key,cols,rows in bazar_regions(incluir_bazar=True):
+        if key == 'intercambio' and BAZAR_PUBLICO:
+            continue
         name,lore,command=actions[key]
+        visibility = {}
+        if not BAZAR_PUBLICO and key == 'bazar':
+            visibility = {'priority': 1, 'view_requirement':
+                "\n      requirements:\n        permiso:\n          type: has permission\n          permission: astral.bazar.usar"}
+        elif key == 'intercambio':
+            visibility = {'priority': 2}
         for index,slot in enumerate(row*9+col for row in rows for col in cols):
             lines += item(f'{key}_{index}','PAPER',slot,name,lore,extra={
                 'item_model':q(f'astral:servicios/bazar_{key}_{index}'),
+                **visibility,
                 # DeluxeMenus programa la accion CLOSE al tick siguiente y
                 # closeMenu programa closeInventory OTRO tick mas tarde.
                 # Abrir antes del tercero cierra tambien el menu de destino.
@@ -385,7 +397,7 @@ def bazar_menu():
                     ['[sound] UI_BUTTON_CLICK','[close]','[message] &bIntercambio: &fescribe &e/trade <jugador> &fcerca de el.',
                      '[message] &7Los dos ponen sus objetos u oro y confirman. Nadie pierde nada si se cancela.']})
     lines += item('saldo','GOLD_NUGGET',4,'&6Tu saldo',['&e%vault_eco_balance_formatted%$'],extra={'update':'true'})
-    lines += item('ayuda','WRITABLE_BOOK',8,'&fBazar del Refugio',['&7Comprar y vender: precios del servidor.', '&7Subastas e intercambio: otros jugadores.'])
+    lines += item('ayuda','WRITABLE_BOOK',8,'&fBazar del Refugio',['&7Comprar y vender: precios del servidor.', '&7Subastas e intercambio: otros jugadores.', '&7Intercambio: &f/trade <jugador>'])
     lines += item('volver','ARROW',53,'&fVolver',extra={'click_commands':['[openguimenu] principal']})
     return menu(title('bazar'),'astralmenu_bazar',54,lines,update=True)
 

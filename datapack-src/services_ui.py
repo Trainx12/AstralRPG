@@ -2,7 +2,7 @@
 import io
 import json
 from pathlib import Path
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageOps
 from escape_menu import text
 from items import MEJORAS
 from economia import corto
@@ -108,13 +108,25 @@ def picture_card(caption,sub,name,size=(72,36),focus=.55):
     return im
 
 
-def bazar_regions():
-    return [('comprar',range(0,4),range(1,3)),('vender',range(5,9),range(1,3)),
+def bazar_regions(incluir_bazar=False):
+    regions = [('comprar',range(0,4),range(1,3)),('vender',range(5,9),range(1,3)),
             ('subastas',range(0,4),range(3,5)),('intercambio',range(5,9),range(3,5))]
+    return regions + ([('bazar',range(5,9),range(3,5))] if incluir_bazar else [])
 
 
 BAZAR_CARDS=[('comprar','COMPRAR','TIENDA'),('vender','VENDER','VENTA RAPIDA'),
-             ('subastas','SUBASTAS','JUGADORES'),('intercambio','INTERCAMBIO','JUGADORES')]
+             ('subastas','SUBASTAS','JUGADORES'),('intercambio','INTERCAMBIO','JUGADORES'),('bazar','BAZAR','ORDENES')]
+
+
+def bazar_card(key, caption, sub):
+    if key != 'bazar':
+        return picture_card(caption, sub, 'bazar_' + key)
+    # Arte terminado con texto: 72x36 px, 2:1; admite multiplos HD.
+    source = ROOT / 'pack-source/ref/gemini/tarjeta_bazar.png'
+    if source.exists():
+        with Image.open(source) as art:
+            return ImageOps.fit(art.convert('RGBA'), (72, 36), method=Image.Resampling.LANCZOS)
+    return card(caption, sub, '#4a3216')
 
 
 # Casillas de arriba que de verdad usa cada menu. Las demas se dejan lisas
@@ -281,7 +293,7 @@ def assets():
             advances[REWINDS[kind][n]]=-(part.getbbox()[2]+1)
     providers.append({'type':'space','advances':advances})
     for key,caption,sub in BAZAR_CARDS:
-        tiles('bazar_'+key,picture_card(caption,sub,'bazar_'+key))
+        tiles('bazar_'+key,bazar_card(key,caption,sub))
     from gemas import BOTONES as GEM_BOTONES, BARRAS as GEM_BARRAS
     # Forja (Herrero y Reforja) con el diseno del dueno (19/11): botones con icono, flecha y X propias.
     from ventanas_19_11 import boton_forja

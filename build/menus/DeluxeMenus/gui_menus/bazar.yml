@@ -382,6 +382,7 @@ items:
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_intercambio_0'
+    priority: 2
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
@@ -398,6 +399,7 @@ items:
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_intercambio_1'
+    priority: 2
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
@@ -414,6 +416,7 @@ items:
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_intercambio_2'
+    priority: 2
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
@@ -430,6 +433,7 @@ items:
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_intercambio_3'
+    priority: 2
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
@@ -446,6 +450,7 @@ items:
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_intercambio_4'
+    priority: 2
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
@@ -462,6 +467,7 @@ items:
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_intercambio_5'
+    priority: 2
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
@@ -478,6 +484,7 @@ items:
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_intercambio_6'
+    priority: 2
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
@@ -494,11 +501,180 @@ items:
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:servicios/bazar_intercambio_7'
+    priority: 2
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[close]'
     - '[message] &bIntercambio: &fescribe &e/trade <jugador> &fcerca de el.'
     - '[message] &7Los dos ponen sus objetos u oro y confirman. Nadie pierde nada si se cancela.'
+  'bazar_0':
+    material: PAPER
+    slot: 32
+    amount: 1
+    display_name: '&6&lBazar'
+    lore:
+    - '&7Compra y vende materiales con otros'
+    - '&7jugadores por ordenes, como un mercado.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_bazar_0'
+    priority: 1
+    view_requirement:
+      requirements:
+        permiso:
+          type: has permission
+          permission: astral.bazar.usar
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] bazar<delay=3>'
+  'bazar_1':
+    material: PAPER
+    slot: 33
+    amount: 1
+    display_name: '&6&lBazar'
+    lore:
+    - '&7Compra y vende materiales con otros'
+    - '&7jugadores por ordenes, como un mercado.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_bazar_1'
+    priority: 1
+    view_requirement:
+      requirements:
+        permiso:
+          type: has permission
+          permission: astral.bazar.usar
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] bazar<delay=3>'
+  'bazar_2':
+    material: PAPER
+    slot: 34
+    amount: 1
+    display_name: '&6&lBazar'
+    lore:
+    - '&7Compra y vende materiales con otros'
+    - '&7jugadores por ordenes, como un mercado.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_bazar_2'
+    priority: 1
+    view_requirement:
+      requirements:
+        permiso:
+          type: has permission
+          permission: astral.bazar.usar
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] bazar<delay=3>'
+  'bazar_3':
+    material: PAPER
+    slot: 35
+    amount: 1
+    display_name: '&6&lBazar'
+    lore:
+    - '&7Compra y vende materiales con otros'
+    - '&7jugadores por ordenes, como un mercado.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_bazar_3'
+    priority: 1
+    view_requirement:
+      requirements:
+        permiso:
+          type: has permission
+          permission: astral.bazar.usar
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] bazar<delay=3>'
+  'bazar_4':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lBazar'
+    lore:
+    - '&7Compra y vende materiales con otros'
+    - '&7jugadores por ordenes, como un mercado.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_bazar_4'
+    priority: 1
+    view_requirement:
+      requirements:
+        permiso:
+          type: has permission
+          permission: astral.bazar.usar
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] bazar<delay=3>'
+  'bazar_5':
+    material: PAPER
+    slot: 42
+    amount: 1
+    display_name: '&6&lBazar'
+    lore:
+    - '&7Compra y vende materiales con otros'
+    - '&7jugadores por ordenes, como un mercado.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_bazar_5'
+    priority: 1
+    view_requirement:
+      requirements:
+        permiso:
+          type: has permission
+          permission: astral.bazar.usar
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] bazar<delay=3>'
+  'bazar_6':
+    material: PAPER
+    slot: 43
+    amount: 1
+    display_name: '&6&lBazar'
+    lore:
+    - '&7Compra y vende materiales con otros'
+    - '&7jugadores por ordenes, como un mercado.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_bazar_6'
+    priority: 1
+    view_requirement:
+      requirements:
+        permiso:
+          type: has permission
+          permission: astral.bazar.usar
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] bazar<delay=3>'
+  'bazar_7':
+    material: PAPER
+    slot: 44
+    amount: 1
+    display_name: '&6&lBazar'
+    lore:
+    - '&7Compra y vende materiales con otros'
+    - '&7jugadores por ordenes, como un mercado.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    item_model: 'astral:servicios/bazar_bazar_7'
+    priority: 1
+    view_requirement:
+      requirements:
+        permiso:
+          type: has permission
+          permission: astral.bazar.usar
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] bazar<delay=3>'
   'saldo':
     material: GOLD_NUGGET
     slot: 4
@@ -518,6 +694,7 @@ items:
     lore:
     - '&7Comprar y vender: precios del servidor.'
     - '&7Subastas e intercambio: otros jugadores.'
+    - '&7Intercambio: &f/trade <jugador>'
     item_flags:
     - HIDE_ATTRIBUTES
     item_model: 'astral:boton_ayuda'
