@@ -8,13 +8,11 @@ import zipfile
 import hashlib
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '1.6.2'
+VERSION = '1.6.1'
 STAMP = (2026, 11, 27, 0, 0, 0)
 
 
 def build(java, server):
-    from skill_tiers import generate as generate_skill_tiers
-    generate_skill_tiers()
     from minijuegos import parkour_worlds
     import economia
     target = ROOT / '.local/slimes-classes'

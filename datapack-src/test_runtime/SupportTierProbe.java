@@ -59,7 +59,7 @@ public final class SupportTierProbe extends JavaPlugin {
             io.lumine.mythic.bukkit.MythicBukkit.inst().getPlayerManager().loadProfile(p);
         } else if(args[0].equals("support")) {
             var user=AuraSkillsApi.get().getUser(p.getUniqueId());
-            user.setSkillLevel(Skills.FIGHTING,16);user.setSkillLevel(Skills.SORCERY,42);
+            user.setSkillLevel(Skills.FIGHTING,10);user.setSkillLevel(Skills.SORCERY,42);
             p.getInventory().clear();p.getInventory().setItemInMainHand(item("espada_2"));
             p.getInventory().setItem(9,item(args[1]));p.getInventory().setItemInOffHand(item(args[1]));
             cmd("execute as "+p.getName()+" run function astral:player/lvl");
@@ -81,34 +81,6 @@ public final class SupportTierProbe extends JavaPlugin {
             check(gain>0,held+" otorga XP real: "+gain);
             if(baseline<0) baseline=gain;
             else check(Math.abs(gain-baseline)<0.01,"varita misma XP que sin varita: "+gain+" = "+baseline);
-        } else if(args[0].equals("tiers")) {
-            var user=AuraSkillsApi.get().getUser(p.getUniqueId());
-            String[] names={"fighting","sorcery","archery"};
-            Skills[] skills={Skills.FIGHTING,Skills.SORCERY,Skills.ARCHERY};
-            int[][] requirements={{4,16,20,25,30,35,40,45,50,55},
-                {0,14,20,26,32,37,42,47,52,57},{8,14,20,25,30,35,40,45,50,55}};
-            var attachment=p.addAttachment(this);
-            attachment.setPermission("astral.xp.tierbonus",true);
-            for(int s=0;s<names.length;s++) for(int t=1;t<10;t++) {
-                int level=requirements[s][t];
-                user.setSkillLevel(skills[s],level-1);
-                check(runtime.playerTier(p,names[s])==t,names[s]+" antes T"+(t+1));
-                check(runtime.tierXpFactor(p,names[s],t)==1,names[s]+" sin penalizacion prematura T"+t);
-                user.setSkillLevel(skills[s],level);
-                check(runtime.playerTier(p,names[s])==t+1,names[s]+" alcanza T"+(t+1));
-                check(Math.abs(runtime.tierXpFactor(p,names[s],t)-0.15)<1e-9,names[s]+" penalizacion legitima");
-            }
-            user.setSkillLevel(Skills.FIGHTING,19);user.setSkillLevel(Skills.SORCERY,14);
-            check(runtime.playerTier(p,"fighting")==2,"Combate 19 sigue T2");
-            check(runtime.playerTier(p,"sorcery")==2,"Magia 14 es T2 independiente de Combate");
-            double base=runtime.getConfig().getDouble("xp.2");
-            double mob=runtime.getConfig().getDouble("xp.3");
-            check(Math.abs(mob*runtime.tierXpFactor(p,"fighting",3)-base*5)<1e-7,"T3 con Combate 19 paga T2 x5");
-            user.setSkillLevel(Skills.FIGHTING,20);
-            check(runtime.tierXpFactor(p,"fighting",3)==1,"Combate 20 XP T3 completa");
-            user.setSkillLevel(Skills.SORCERY,20);
-            check(runtime.tierXpFactor(p,"sorcery",3)==1,"Magia 20 XP T3 completa");
-            p.removeAttachment(attachment);
         } else if(args[0].equals("result")) {
             getLogger().info("T5A RESULT failures="+failures);
         }

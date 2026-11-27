@@ -10,7 +10,7 @@ import zipfile
 ROOT=Path(__file__).resolve().parents[1]
 
 
-def run(java, source, progression=None):
+def run(java, source):
     server=ROOT/'.local/tier-soporte-paper/paper'
     server.mkdir(parents=True,exist_ok=True)
     for name in ['libraries','versions','cache']:
@@ -21,7 +21,7 @@ def run(java, source, progression=None):
                       ('mythicmobs.jar',ROOT/'.local/asw-native/server/plugins/mythicmobs.jar'),
                       ('GriefPrevention.jar',ROOT/'.local/tanda5a/GriefPrevention.jar'),
                       ('ExpendableBackpacks.jar',ROOT/'.local/expendable/ExpendableBackpacks-1.2.0.jar'),
-                      ('AstralProgression.jar',progression or ROOT/'build/tier-soporte-27-11/AstralProgression.jar')]:
+                      ('AstralProgression.jar',ROOT/'build/tier-soporte-27-11/AstralProgression.jar')]:
         shutil.copy2(path,plugins/name)
     for name in ['nightcore.jar','excellentenchants.jar','packetevents.jar']:
         shutil.copy2(source/'plugins'/name,plugins/name)
@@ -78,9 +78,7 @@ def run(java, source, progression=None):
                 cases=[('player',8)]
                 for item in ('varita_curacion','talisman_vida_3','talisman_furia_3','talisman_roca_3','talisman_viento_3'):
                     cases += [('support '+item,2),('scores '+item,1)]
-                cases += [('kill sin_varita',3),('xpcheck',1),('kill varita_inventario',3),('xpcheck',1),('kill varita_curacion',3),('xpcheck',1)]
-                if progression: cases += [('tiers',3)]
-                cases += [('result',1)]
+                cases += [('kill sin_varita',3),('xpcheck',1),('kill varita_inventario',3),('xpcheck',1),('kill varita_curacion',3),('xpcheck',1),('result',1)]
                 for c,seconds in cases:
                     command('t5probe '+c);time.sleep(seconds)
             finally:
@@ -93,5 +91,4 @@ def run(java, source, progression=None):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--java',type=Path,required=True);p.add_argument('--source',type=Path,required=True)
-    p.add_argument('--progression',type=Path)
-    args=p.parse_args();run(args.java.resolve(),args.source.resolve(),args.progression.resolve() if args.progression else None)
+    args=p.parse_args();run(args.java.resolve(),args.source.resolve())
