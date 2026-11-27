@@ -29,8 +29,15 @@ public final class AstralProgression extends JavaPlugin implements Listener {
     private final Set<UUID> buying = new HashSet<>();
     private final Map<UUID,Map<Statistic,EntityType>> friendlyDeaths = new HashMap<>();
     private static final Set<String> SKILLS = Set.of("fighting", "archery", "sorcery");
+    private final Set<UUID> tinySplits = new HashSet<>();
+    private final Set<String> splitExcludedWorlds = new HashSet<>();
     public void onEnable() {
         saveDefaultConfig();
+        try(var reader=getTextResource("split-excluded-worlds.txt")) {
+            if(reader==null) throw new IllegalStateException("Falta split-excluded-worlds.txt");
+            new java.io.BufferedReader(reader).lines().forEach(splitExcludedWorlds::add);
+        } catch(java.io.IOException ex) {throw new IllegalStateException(ex);}
+        splitExcludedWorlds.addAll(getConfig().getStringList("split-excluded-worlds"));
         survival = getConfig().getString("survival-world", "world");
         skillKey=new NamespacedKey(this,"skill"); playerKey=new NamespacedKey(this,"player");
         timeKey=new NamespacedKey(this,"time"); placedKey=new NamespacedKey(this,"placed");
@@ -41,7 +48,72 @@ public final class AstralProgression extends JavaPlugin implements Listener {
         Bukkit.getWorlds().forEach(w -> w.getLivingEntities().forEach(this::protectPet));
         Bukkit.getScheduler().runTaskTimer(this, () -> Bukkit.getWorlds().forEach(w ->
             w.getLivingEntities().forEach(this::protectPet)), 1, 20);
+        Bukkit.getWorlds().forEach(w -> w.getLivingEntities().forEach(this::trackSplit));
+        Bukkit.getScheduler().runTaskTimer(this, this::tinySplitAttacks, 1, 10);
         getLogger().info("XP por tier, proteccion 2D y loot aditivo activos; survival="+survival);
+    }
+    private boolean scaledSplit(Slime mob) {
+        return mob.getScoreboardTags().contains("astral.seen") &&
+            mob.getScoreboardTags().stream().anyMatch(t -> t.matches("astral\\.mt(?:[1-9]|10)")) &&
+            !mob.isInvulnerable() && !pet(mob) &&
+            !mob.getScoreboardTags().contains("astral.pet") &&
+            !splitExcludedWorlds.contains(mob.getWorld().getName());
+    }
+    // Paper copies entity tags during conversion, then setSize resets health/damage to the small size.
+    // SPLIT is fired after setSize and before CreatureSpawnEvent: no delay or random tier roll.
+    @EventHandler(priority=EventPriority.HIGHEST,ignoreCancelled=true)
+    public void slimeSplit(EntityTransformEvent e) {
+        if(e.getTransformReason()!=EntityTransformEvent.TransformReason.SPLIT ||
+            !(e.getEntity() instanceof Slime parent) || !scaledSplit(parent)) return;
+        for(Entity entity:e.getTransformedEntities()) {
+            if(!(entity instanceof Slime child) || child.getType()!=parent.getType() ||
+                child.isInvulnerable() || pet(child)) continue;
+            for(Attribute type:List.of(Attribute.MAX_HEALTH,Attribute.ATTACK_DAMAGE,Attribute.MOVEMENT_SPEED,
+                                       Attribute.ARMOR,Attribute.ARMOR_TOUGHNESS,Attribute.KNOCKBACK_RESISTANCE,
+                                       Attribute.FOLLOW_RANGE)) {
+                var from=parent.getAttribute(type); var to=child.getAttribute(type);
+                if(from==null || to==null) continue;
+                for(var modifier:List.copyOf(to.getModifiers())) to.removeModifier(modifier);
+                to.setBaseValue(from.getBaseValue());
+                for(var modifier:from.getModifiers()) to.addModifier(modifier);
+            }
+            for(String tag:parent.getScoreboardTags()) child.addScoreboardTag(tag);
+            child.addScoreboardTag("astral.split");
+            var objective=Bukkit.getScoreboardManager().getMainScoreboard().getObjective("astral.mt");
+            if(objective!=null) {
+                var score=objective.getScore(parent.getUniqueId().toString());
+                if(score.isScoreSet()) objective.getScore(child.getUniqueId().toString()).setScore(score.getScore());
+            }
+            child.setHealth(child.getAttribute(Attribute.MAX_HEALTH).getValue());
+            child.addPotionEffects(parent.getActivePotionEffects());
+            child.customName(parent.customName());
+            child.setCustomNameVisible(parent.isCustomNameVisible());
+            // Refresh the health text after insertion (the parent's death label may contain zero).
+            Bukkit.getScheduler().runTask(this, () -> {
+                if(!child.isValid()) return;
+                trackSplit(child);
+                if(child.getScoreboardTags().contains("astral.hpname"))
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(),"execute as "+child.getUniqueId()+" run function astral:mob/vida");
+            });
+        }
+    }
+    private void trackSplit(LivingEntity entity) {
+        if(entity instanceof Slime slime && !(slime instanceof MagmaCube) && slime.getSize()==1 &&
+            slime.getScoreboardTags().contains("astral.split")) tinySplits.add(slime.getUniqueId());
+    }
+    private void tinySplitAttacks() {
+        // Vanilla tiny slimes never call dealDamage, even with ATTACK_DAMAGE set. Restore contact
+        // attacks only for inherited Astral children; damage events/protections/iframes still apply.
+        tinySplits.removeIf(id -> {
+            Entity entity=Bukkit.getEntity(id);
+            if(!(entity instanceof Slime slime) || !slime.isValid() || slime.isDead()) return true;
+            if(!scaledSplit(slime) || !slime.hasAI() || slime.getSize()!=1) return false;
+            LivingEntity target=slime.getTarget();
+            if(target!=null && !target.isDead() && target.getWorld().equals(slime.getWorld()) &&
+                slime.getBoundingBox().expand(0.1).overlaps(target.getBoundingBox()))
+                target.damage(slime.getAttribute(Attribute.ATTACK_DAMAGE).getValue(),slime);
+            return false;
+        });
     }
     public boolean pet(LivingEntity mob) {
         // 26/11: las invocaciones del Invocador (AstralClases) llevan astral.pet para que hechizos y datapack no las
@@ -81,7 +153,7 @@ public final class AstralProgression extends JavaPlugin implements Listener {
         if(e.getAttacked() instanceof LivingEntity mob && pet(mob)) {protectPet(mob);e.setCancelled(true);}
     }
     @EventHandler public void petLoad(EntitiesLoadEvent e) { e.getEntities().forEach(entity -> {
-        if(entity instanceof LivingEntity mob) protectPet(mob);
+        if(entity instanceof LivingEntity mob) {protectPet(mob);trackSplit(mob);}
     }); }
     @EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=true) public void petSpawn(CreatureSpawnEvent e) {
         Bukkit.getScheduler().runTask(this, () -> { if(e.getEntity().isValid()) protectPet(e.getEntity()); });
@@ -185,6 +257,8 @@ public final class AstralProgression extends JavaPlugin implements Listener {
         int tier=tier(mob);
         if(tier==0) return 0;
         String mm=mythic(mob);
+        if(mob.getScoreboardTags().contains("astral.split"))
+            return getConfig().getDouble("xp."+tier) * getConfig().getDouble("normal-bonus",1);
         boolean boss=getConfig().getBoolean("mythic."+mm+".boss",false);
         boolean elite=getConfig().getBoolean("mythic."+mm+".elite",false) ||
             mob.getScoreboardTags().stream().anyMatch(t->t.startsWith("astral.elite"));

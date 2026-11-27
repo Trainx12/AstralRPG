@@ -522,10 +522,12 @@ command /astralplatamob <text> <text> [<text>]:
 on death:
     victim is not a player
     attacker is a player
-    scoreboard tags of victim contain "ad.vanilla"
+    victim has scoreboard tag "ad.vanilla"
     set {_tm} to {-eco.tiermaz::%name of world of victim%}
     {_tm} is set
-    if scoreboard tags of victim contain "astral.elite":
+    if victim has scoreboard tag "astral.split":
+        astral_eco_repartir(attacker, astral_eco_oleada(attacker, {_tm}))
+    else if victim has scoreboard tag "astral.elite":
         astral_eco_repartir(attacker, astral_eco_oleada(attacker, {_tm}) * {@eliteola})
     else:
         astral_eco_repartir(attacker, astral_eco_oleada(attacker, {_tm}))
@@ -543,8 +545,9 @@ on spawn of living entity:
 on death:
     victim is not a player
     attacker is a player
-    scoreboard tags of victim contain "astral.vpaga"
-    scoreboard tags of victim do not contain "ad.vanilla"
+    victim has scoreboard tag "astral.vpaga"
+    victim does not have scoreboard tag "ad.vanilla"
+    victim does not have scoreboard tag "inf.mob"
     {-eco.tiermaz::%name of world of victim%} is not set
     astral_eco_dar(attacker, astral_eco_vanilla(victim))
 
@@ -554,7 +557,7 @@ on death:
 on death:
     victim is not a player
     attacker is a player
-    scoreboard tags of victim contain "inf.mob"
+    victim has scoreboard tag "inf.mob"
     attacker has permission "{@permmaz}"
     astral_eco_repartir(attacker, astral_eco_vanilla(victim) * __MAZFACTOR__)
 
@@ -562,11 +565,14 @@ function astral_eco_vanilla(e: entity) :: number:
     set {_t} to 1
     loop 10 times:
         set {_tag} to "astral.mt%loop-number%"
-        if scoreboard tags of {_e} contain {_tag}:
+        if {_e} has scoreboard tag {_tag}:
             set {_t} to loop-number
     # max health de Skript va en corazones: x2 = vida real; / multiplicador del tier = vida base vanilla.
     set {_x} to (max health of {_e}) * 2 / ({-eco.vidamob::%{_t}%} ? 1) / __REF__
     set {_x} to min({_x}, __TOPE__)
+    # Hijos de slime: vida heredada, premio de como maximo un mob normal del tier.
+    if {_e} has scoreboard tag "astral.split":
+        set {_x} to min({_x}, 1)
     return {-eco.vanilla::%{_t}%} * {_x}
 
 # ================================================================== perdida al morir

@@ -77,8 +77,10 @@ def build(java, server):
     base=subprocess.check_output(['git','show','HEAD:build/runtime/AstralProgression.jar'],cwd=ROOT)
     import io
     with zipfile.ZipFile(io.BytesIO(base)) as z: files={n:z.read(n) for n in z.namelist() if not n.endswith('.class')}
-    files['plugin.yml']=files['plugin.yml'].replace(b'version: 1.4.1',b'version: 1.5.0')
-    assert b'version: 1.5.0' in files['plugin.yml']
+    import re
+    from minijuegos import parkour_worlds
+    files['plugin.yml']=re.sub(rb'(?m)^version: .*$',b'version: 1.6.0',files['plugin.yml'])
+    files['split-excluded-worlds.txt']=('\n'.join(parkour_worlds())+'\n').encode()
     for p in (target/'astral').glob('AstralProgression*.class'):files[p.relative_to(target).as_posix()]=p.read_bytes()
     with zipfile.ZipFile(OUT/'AstralProgression.jar','w',zipfile.ZIP_DEFLATED) as z:
         for n,b in sorted(files.items()):z.writestr(zipfile.ZipInfo(n,(2026,11,27,0,0,0)),b)
