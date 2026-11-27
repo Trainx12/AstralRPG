@@ -19,7 +19,7 @@ pages:
       blaze_spawner:
         material: SPAWNER
         spawnertype: BLAZE
-        buy: 125000
+        buy: 1000000
         sell: -1
       bogged_spawner:
         material: SPAWNER
@@ -69,7 +69,7 @@ pages:
       enderman_spawner:
         material: SPAWNER
         spawnertype: ENDERMAN
-        buy: 175000
+        buy: 1000000
         sell: -1
       frog_spawner:
         material: SPAWNER
@@ -99,12 +99,12 @@ pages:
       iron_golem_spawner:
         material: SPAWNER
         spawnertype: IRON_GOLEM
-        buy: 1000000
+        buy: 1500000
         sell: -1
       magma_cube_spawner:
         material: SPAWNER
         spawnertype: MAGMA_CUBE
-        buy: 500000
+        buy: 1000000
         sell: -1
       mushroom_cow_spawner:
         material: SPAWNER
@@ -129,7 +129,7 @@ pages:
       piglin_brute_spawner:
         material: SPAWNER
         spawnertype: PIGLIN_BRUTE
-        buy: 500000
+        buy: 1500000
         sell: -1
       rabbit_spawner:
         material: SPAWNER
@@ -147,7 +147,7 @@ pages:
       shulker_spawner:
         material: SPAWNER
         spawnertype: SHULKER
-        buy: 500000
+        buy: 1500000
         sell: -1
       skeleton_spawner:
         material: SPAWNER
@@ -157,7 +157,7 @@ pages:
       slime_spawner:
         material: SPAWNER
         spawnertype: SLIME
-        buy: 550000
+        buy: 1000000
         sell: -1
       sniffer_spawner:
         material: SPAWNER
@@ -182,7 +182,7 @@ pages:
       witch_spawner:
         material: SPAWNER
         spawnertype: WITCH
-        buy: 500000
+        buy: 1000000
         sell: -1
       wolf_spawner:
         material: SPAWNER
@@ -197,6 +197,6 @@ pages:
       zombified_piglin_spawner:
         material: SPAWNER
         spawnertype: ZOMBIFIED_PIGLIN
-        buy: 120000
+        buy: 1000000
         sell: -1
     gui-rows: 6
