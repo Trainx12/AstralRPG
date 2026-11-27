@@ -207,7 +207,7 @@ def vida():
     """Escala de vida (escala.py): mobs con tier pegan DANO_GOLPE; lo demas, en proporcion a la vida."""
     from escala import DANO_MOB, DANO_JEFE, DANO_JEFE_MUNDO, TIER_MAZMORRA
     # Jefes del Survival (astral.jmN, 26/11): su propia escala por tier, antes que la de los mobs con tier.
-    tiers = '\n'.join(f'    if {{_e}} has scoreboard tag "astral.jm{t}":\n        return {DANO_JEFE_MUNDO[t]}'
+    tiers = '\n'.join(f'    if scoreboard tags of {{_e}} contains "astral.jm{t}":\n        return {DANO_JEFE_MUNDO[t]}'
                       for t in range(10, 0, -1)) + '\n' + '\n'.join(f'    if scoreboard tags of {{_e}} contains "astral.mt{t}":\n        return {DANO_MOB[t]}'
                       for t in range(10, 0, -1))
     # Las dimensiones del datapack se llaman world_minecraft_<dim> en Bukkit (el Santuario y sus copias).

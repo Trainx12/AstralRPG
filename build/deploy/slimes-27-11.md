@@ -1,8 +1,5 @@
 # Slimes: herencia al dividirse (27/11)
 
-Entrega historica. El pedido posterior del dueno reemplaza este balance de vida y XP:
-ver [balance-mobs-27-11.md](balance-mobs-27-11.md), AstralProgression 1.6.3.
-
 Preparado, sin desplegar. AstralProgression 1.6.1; abierto a todos por ser un arreglo autorizado.
 
 Paper 26.1.2 copia los tags en ConversionType.convertCommon, incluido astral.seen;
