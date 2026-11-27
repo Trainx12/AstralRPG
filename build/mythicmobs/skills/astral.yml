@@ -607,9 +607,9 @@ AST_MODEL_astral_momia_ancestral:
 AST_MODEL_astral_momia_ancestral_mundo:
   Skills:
   - addtag{tag=astral.seen} @self
-  - model{m=astral_momia;s=2.0} @self
   - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 2.102564"} @self
   - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 1.261538"} @self
+  - model{m=astral_momia;s=2.0} @self
   - delay 2
   - tint{c=FFD24A} @self
 AST_ANCESTRAL_SEVA_astral_momia:
@@ -631,9 +631,9 @@ AST_MODEL_astral_yeti_ancestral:
 AST_MODEL_astral_yeti_ancestral_mundo:
   Skills:
   - addtag{tag=astral.seen} @self
-  - model{m=astral_yeti;s=1.714} @self
   - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 2.726818"} @self
   - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 1.636091"} @self
+  - model{m=astral_yeti;s=1.714} @self
   - delay 2
   - tint{c=9FE8FF} @self
 AST_ANCESTRAL_SEVA_astral_yeti:
@@ -655,9 +655,9 @@ AST_MODEL_astral_golem_forja_ancestral:
 AST_MODEL_astral_golem_forja_ancestral_mundo:
   Skills:
   - addtag{tag=astral.seen} @self
-  - model{m=astral_golem_forja;s=1.739} @self
   - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 2.221804"} @self
   - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 1.333082"} @self
+  - model{m=astral_golem_forja;s=1.739} @self
   - delay 2
   - tint{c=FF6A2A} @self
 AST_ANCESTRAL_SEVA_astral_golem_forja:
@@ -679,9 +679,9 @@ AST_MODEL_astral_cangrejo_ancestral:
 AST_MODEL_astral_cangrejo_ancestral_mundo:
   Skills:
   - addtag{tag=astral.seen} @self
-  - model{m=astral_cangrejo;s=2.0} @self
   - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 3.138889"} @self
   - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 1.883333"} @self
+  - model{m=astral_cangrejo;s=2.0} @self
   - delay 2
   - tint{c=FF9AD0} @self
 AST_ANCESTRAL_SEVA_astral_cangrejo:
@@ -703,9 +703,9 @@ AST_MODEL_astral_chaman_ancestral:
 AST_MODEL_astral_chaman_ancestral_mundo:
   Skills:
   - addtag{tag=astral.seen} @self
-  - model{m=astral_chaman;s=2.0} @self
   - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:scale base set 2.75641"} @self
   - command{c="execute at <caster.uuid> run execute unless predicate astral:in_sanctuary run attribute <caster.uuid> minecraft:step_height base set 1.653846"} @self
+  - model{m=astral_chaman;s=2.0} @self
   - delay 2
   - tint{c=7CFF6A} @self
 AST_ANCESTRAL_SEVA_astral_chaman:

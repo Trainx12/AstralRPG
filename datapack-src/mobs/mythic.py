@@ -610,12 +610,19 @@ def metaskills():
             'AST_MODEL_astral_chaman_bosque:', '  Skills:',
             '  - addtag{tag=astral.seen} @self', '  - model{m=astral_chaman;s=1.4} @self']
     sized=[]
+    ancestral_mundo = False
     for line in out:
-        sized.append(line)
+        if line.endswith(':') and not line.startswith(' '):
+            ancestral_mundo = line.startswith('AST_MODEL_') and line.endswith('_ancestral_mundo:')
         import re
         match=re.fullmatch(r'  - model\{m=([^;}]+)(?:;s=([^}]+))?\} @self',line)
+        attrs = []
         if match and MOBS[match[1]]['kind'] != 'montura':
-            sized += ['  - '+x for x in size_skills(match[1],float(match[2] or 1),MOBS[match[1]]['type'])]
+            attrs = ['  - '+x for x in size_skills(match[1],float(match[2] or 1),MOBS[match[1]]['type'])]
+        # 27/11: BetterModel debe crear TODAS las piezas con la escala definitiva.
+        # Cambiar scale despues de model{} deja piezas quietas con la transformacion
+        # anterior (cabeza flotante). Aplicar tambien en onLoad, antes de recrearlo.
+        sized += attrs + [line] if ancestral_mundo else [line] + attrs
     out=sized
     out += ['AST_YETI_PISOTON:', '  Skills:',
             '  - particles{p=snowflake;amount=100;hS=18;vS=0.2} @self', '  - delay 20',
