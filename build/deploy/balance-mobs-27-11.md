@@ -78,4 +78,19 @@ incorrectamente la firma [Server] del mensaje emitido por el cangrejo; corregido
 Se reprodujo antes el ancestral de 5000, incluso despues de cambiar solo el atributo nativo;
 actualizar HEALTH en el registro de MythicMobs resuelve la regresion.
 
-Preparado y validado; instalacion y activacion remotas pendientes de comprobar.
+Publicado: commit 11e9644ae89b713de5b4d4c5a536c0d3536ff37a, push y rama remota verificados.
+Instalado EN DISCO en Empower el 27/11/2026, aproximadamente 20:46-20:48 AR, desde el navegador.
+Los cuatro archivos fueron descargados desde sus destinos y comparados byte por byte con la entrega:
+plugin en plugins/update, ambos scripts y parche del datapack correctos. El datapack base no se reemplazo.
+Consola consultada: AstralProgression 1.6.2 todavia activo. No se reinicio ni recargo el servidor.
+La activacion de 1.6.3 y la comprobacion en vivo quedan pendientes del reinicio diario autorizado.
+Aternos no fue modificado: servidor activo documentado y verificado es Empower.
+Discord pendiente hasta quedar activo; texto listo arriba. No se promete aviso automatico.
+
+SHA-256 verificados en los destinos remotos:
+
+
+- `build/runtime/AstralProgression.jar`: `a8e4b2b054293a2f4407c097e82a7ab649dcd5a2b6702b219f701aac60d3dea0`
+- `build/gameplay/astral_ancestral.sk`: `bc25b49565f030f90467aa0e8b6a207db2104ef52b9b87307c3fcc7e767df297`
+- `build/balance-mobs/astral_gameplay.sk`: `fc6e17912ad2347f71e87919c6f3064caabc8e7eaacbb539dcf158d5efe0a24b`
+- `build/balance-mobs/zz-AstralRPG-BalanceMobs.zip`: `50f07c92324d5cb8d61df0549a7a16e6fbbf4aca34fa61b5df583ee875e9a753`
