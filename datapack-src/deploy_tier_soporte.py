@@ -69,6 +69,8 @@ def generate():
     (ROOT/'build/deploy/tier-soporte-27-11.md').write_text(DELIVERY,encoding='utf8')
 
 def build(java, server):
+    from skill_tiers import generate as generate_skill_tiers
+    generate_skill_tiers()
     target=ROOT/'.local/tier-soporte-classes';target.mkdir(parents=True,exist_ok=True)
     jars=list((server/'libraries').rglob('*.jar')) + list((server/'versions').rglob('*.jar')) + [ROOT/'.local/asw-native/server/plugins/auraskills.jar',ROOT/'.local/asw-native/server/plugins/mythicmobs.jar',ROOT/'.local/tanda5a/GriefPrevention.jar']
     args=['-encoding','UTF-8','-classpath',os.pathsep.join(map(str,jars)),'-d',str(target),str(ROOT/'datapack-src/runtime/AstralProgression.java')]
@@ -79,7 +81,7 @@ def build(java, server):
     with zipfile.ZipFile(io.BytesIO(base)) as z: files={n:z.read(n) for n in z.namelist() if not n.endswith('.class')}
     import re
     from minijuegos import parkour_worlds
-    files['plugin.yml']=re.sub(rb'(?m)^version: .*$',b'version: 1.6.0',files['plugin.yml'])
+    files['plugin.yml']=re.sub(rb'(?m)^version: .*$',b'version: 1.6.2',files['plugin.yml'])
     files['split-excluded-worlds.txt']=('\n'.join(parkour_worlds())+'\n').encode()
     for p in (target/'astral').glob('AstralProgression*.class'):files[p.relative_to(target).as_posix()]=p.read_bytes()
     with zipfile.ZipFile(OUT/'AstralProgression.jar','w',zipfile.ZIP_DEFLATED) as z:

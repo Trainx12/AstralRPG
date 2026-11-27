@@ -301,14 +301,23 @@ public final class AstralProgression extends JavaPlugin implements Listener {
         return getConfig().getDouble("xp."+tier) * getConfig().getDouble(boss?"boss-bonus":elite?"elite-bonus":"normal-bonus",1);
     }
     // 24/11 (dueno): un mob de mas tier que el jugador paga como su vida: x5 por tier de diferencia, tope +2.
-    // Tier del jugador = nivel de la skill acreditada (mismos cortes que las armas).
-    private static final int[] TIER_LEVELS = {3, 10, 14, 18, 22, 26, 30, 34, 38, 42};
+    // Tier del jugador = requisitos reales del equipo de la skill acreditada.
+    // BEGIN GENERATED SKILL TIERS
+    // Generado por skill_tiers.py desde items.py/items_t6_10.py.
+    private static final Map<String,int[]> SKILL_TIER_LEVELS = Map.of(
+        "fighting", new int[]{4, 16, 20, 25, 30, 35, 40, 45, 50, 55},
+        "sorcery", new int[]{0, 14, 20, 26, 32, 37, 42, 47, 52, 57},
+        "archery", new int[]{8, 14, 20, 25, 30, 35, 40, 45, 50, 55}
+    );
+    // END GENERATED SKILL TIERS
     public int playerTier(Player p, String skill) {
         int level;
         try {level=AuraSkillsApi.get().getUser(p.getUniqueId()).getSkillLevel(Skills.valueOf(skill.toUpperCase(Locale.ROOT)));}
         catch(RuntimeException ex) {return 0;}
+        int[] levels=SKILL_TIER_LEVELS.get(skill);
+        if(levels==null) return 0;
         int tier=1;
-        for(int t=TIER_LEVELS.length;t>=1;t--) if(level>=TIER_LEVELS[t-1]) {tier=t;break;}
+        for(int t=levels.length;t>=1;t--) if(level>=levels[t-1]) {tier=t;break;}
         return tier;
     }
     public double tierXpFactor(Player p, String skill, int mobTier) {
