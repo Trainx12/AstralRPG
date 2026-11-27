@@ -1,0 +1,173 @@
+menu_title: '&f&#ffe9a8Botas del Viento'
+size: 54
+items:
+  'resultado':
+    material: LEATHER_BOOTS
+    slot: 20
+    amount: 1
+    display_name: '&5Botas del Viento'
+    item_model: 'astral:arquero_4_boots'
+    lore:
+    - '&7Arquero IV'
+    - '&7Vida: &c+725'
+    - '&7Defensa: &a+58'
+    - '&7Daño a distancia: &c+6,25%'
+    - '&7Prob. crítica: &9+3,75%'
+    - '&7Velocidad: &f+3,75%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de velocidad.'
+    - '&6Bono de set (4/4)'
+    - '&7Paso de sombra: al matar, Velocidad II y Salto I por &a4&7 s.'
+    - '&7Durabilidad: &f5.525'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: Arqueria 25'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&5&lÉPICA BOTAS'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: LEATHER_BOOTS
+    slot: 14
+    amount: 1
+    display_name: '&f1x Botas del Francotirador'
+    item_model: 'astral:arquero_3_boots'
+    lore:
+    - '&7Arquero III'
+    - '&7Vida: &c+225'
+    - '&7Defensa: &a+35'
+    - '&7Daño a distancia: &c+4,5%'
+    - '&7Prob. crítica: &9+2,5%'
+    - '&7Velocidad: &f+2,5%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de velocidad.'
+    - '&6Bono de set (4/4)'
+    - '&7Paso de sombra: al matar, Velocidad II y Salto I por &a4&7 s.'
+    - '&7Durabilidad: &f3.825'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Arqueria 20'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA BOTAS'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 1
+    display_name: '&f1x Nucleo Eolico'
+    item_model: 'astral:nucleo_eolico'
+    lore:
+    - '&7Movilidad y arqueros.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 2
+    display_name: '&f2x Gema Luminica'
+    item_model: 'astral:gema_luminica'
+    lore:
+    - '&7Se encuentra en cofres del Overworld.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 111'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 111'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 111'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_arquero_4'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

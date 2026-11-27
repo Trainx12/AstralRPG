@@ -20,8 +20,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def run(java, base):
     with zipfile.ZipFile(ROOT / 'build/bazar/AstralBazar.jar') as jar:
-        if 'version: 1.3.1' not in jar.read('plugin.yml').decode():
-            raise SystemExit('Generar AstralBazar 1.3.1 antes de probar.')
+        if 'version: 1.4.0' not in jar.read('plugin.yml').decode():
+            raise SystemExit('Generar AstralBazar 1.4.0 antes de probar.')
     with socket.socket() as sock:
         sock.bind(('127.0.0.1', 0))
         port = sock.getsockname()[1]
@@ -47,7 +47,7 @@ def run(java, base):
         for name in source.namelist():
             if name == 'pack.mcmeta' or '/enchantment/' in name or '/tags/item/' in name or '/tags/enchantment/' in name:
                 dest.writestr(name, source.read(name))
-    deps = list((srv / 'libraries').rglob('*.jar')) + list(plugins.glob('*.jar'))
+    deps = list((srv / 'libraries').rglob('*.jar')) + list((srv / 'versions').rglob('*.jar')) + list(plugins.glob('*.jar'))
     java_exe = str(java / ('java.exe' if os.name == 'nt' else 'java'))
     subprocess.run([java_exe, '-m', 'jdk.compiler/com.sun.tools.javac.Main', '-encoding', 'UTF-8',
                     '-classpath', os.pathsep.join(map(str, deps)), '-d', str(work),
@@ -110,7 +110,7 @@ def run(java, base):
     if not crash_state.is_file():
         raise SystemExit('Falta la prueba de caída y reapertura de JVM.')
     count = int(re.search(r'checks=(\d+)', results[-1])[1])
-    (work / 'resultado.json').write_text(json.dumps({'version': '1.3.1', 'checks': count,
+    (work / 'resultado.json').write_text(json.dumps({'version': '1.4.0', 'checks': count,
         'failures': 0, 'crash_reopen': True, 'players': 2}, indent=2)+'\n', encoding='utf8')
 
 

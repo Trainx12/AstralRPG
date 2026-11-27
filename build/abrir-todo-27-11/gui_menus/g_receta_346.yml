@@ -1,0 +1,171 @@
+menu_title: '&f&#ffe9a8Jubon del Fantasma del Ocaso'
+size: 54
+items:
+  'resultado':
+    material: IRON_CHESTPLATE
+    slot: 20
+    amount: 1
+    display_name: '&#ff5fd2Jubon del Fantasma del Ocaso'
+    item_model: 'astral:asesino_7_chestplate'
+    lore:
+    - '&7Asesino VII'
+    - '&7Vida: &c+6.225'
+    - '&7Bonif. de vida: &c-2,5%'
+    - '&7Defensa: &a+288'
+    - '&7Prob. crítica: &9+6,5%'
+    - '&7Velocidad: &f+3,75%'
+    - ''
+    - '&a+60%&7 dano critico'
+    - '&7Cada pieza da &a1&7/&a4&7 del bonus'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Despues de matar un mob, el proximo golpe con cuchillo pega doble (x&a1,5&7 a jefes)'
+    - '&7Durabilidad: &f15.500'
+    - '&7Tier: 7'
+    - ''
+    - '&cRequiere: Combate 40'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#ff5fd2&lMÍTICA PECHERA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: IRON_CHESTPLATE
+    slot: 14
+    amount: 1
+    display_name: '&f1x Jubon del Encapuchado Dorado'
+    item_model: 'astral:asesino_6_chestplate'
+    lore:
+    - '&7Asesino VI'
+    - '&7Vida: &c+3.725'
+    - '&7Bonif. de vida: &c-2,5%'
+    - '&7Defensa: &a+234'
+    - '&7Prob. crítica: &9+5,5%'
+    - '&7Velocidad: &f+3,25%'
+    - ''
+    - '&a+50%&7 dano critico'
+    - '&7Cada pieza da &a1&7/&a4&7 del bonus'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Despues de matar un mob, el proximo golpe con cuchillo pega doble (x&a1,5&7 a jefes)'
+    - '&7Durabilidad: &f12.000'
+    - '&7Tier: 6'
+    - ''
+    - '&cRequiere: Combate 35'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#ff5fd2&lMÍTICA PECHERA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 4
+    display_name: '&f4x Esquirla de Eclipse'
+    item_model: 'astral:esquirla_eclipse'
+    lore:
+    - '&7Cae de mobs tier 7 o mas.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 2
+    display_name: '&f2x Nucleo Eolico'
+    item_model: 'astral:nucleo_eolico'
+    lore:
+    - '&7Movilidad y arqueros.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 346'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 346'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 346'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_asesino_7'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

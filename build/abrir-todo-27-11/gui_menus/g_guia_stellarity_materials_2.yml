@@ -1,0 +1,210 @@
+menu_title: '&f&#ffe9a8Materiales y bloques 2/2'
+size: 54
+items:
+  'c0':
+    material: JIGSAW
+    slot: 1
+    amount: 1
+    display_name: '&bPlantilla de herrería'
+    item_model: 'stellarity:enderite_smithing_template'
+    lore:
+    - '&7Plantilla para mejoras en el Altar'
+    - '&7Maldito; no se usa en herreria'
+    - '&7vanilla.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_enderite_smithing_template'
+  'c1':
+    material: IRON_INGOT
+    slot: 2
+    amount: 1
+    display_name: '&bLingote Sagrado'
+    item_model: 'stellarity:hallowed_ingot'
+    lore:
+    - '&7El conjunto completo permite esquivar'
+    - '&7golpes y retroceso.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: JIGSAW
+    slot: 3
+    amount: 1
+    display_name: '&bSand Rune'
+    item_model: 'stellarity:sand_rune'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: GLOWSTONE_DUST
+    slot: 4
+    amount: 1
+    display_name: '&bStarlight Soot'
+    item_model: 'stellarity:starlight_soot'
+    lore:
+    - '&7Material para transmutacion en agua y'
+    - '&7ofrenda para Empress of Light.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: MUSIC_DISC_OTHERSIDE
+    slot: 5
+    amount: 1
+    display_name: '&bMusic Disc Deviants Light Music Box'
+    item_model: 'stellarity:music_disc_deviants_light_music_box'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: MUSIC_DISC_OTHERSIDE
+    slot: 6
+    amount: 1
+    display_name: '&bMusic Disc Fires Of Hokkai'
+    item_model: 'stellarity:music_disc_fires_of_hokkai'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c6':
+    material: MUSIC_DISC_PRECIPICE
+    slot: 7
+    amount: 1
+    display_name: '&bMusic Disc Precipice Stereo'
+    item_model: 'stellarity:music_disc_precipice_stereo'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c7':
+    material: HOGLIN_SPAWN_EGG
+    slot: 11
+    amount: 1
+    display_name: '&bFlesh Piglin Spawn Egg'
+    item_model: 'stellarity:flesh_piglin_spawn_egg'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c8':
+    material: ENDER_DRAGON_SPAWN_EGG
+    slot: 12
+    amount: 1
+    display_name: '&bVoided Skeleton Spawn Egg'
+    item_model: 'stellarity:voided_skeleton_spawn_egg'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c9':
+    material: ENDER_DRAGON_SPAWN_EGG
+    slot: 13
+    amount: 1
+    display_name: '&bVoided Slime Spawn Egg'
+    item_model: 'stellarity:voided_slime_spawn_egg'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c10':
+    material: ENDER_DRAGON_SPAWN_EGG
+    slot: 14
+    amount: 1
+    display_name: '&bVoided Zombie Spawn Egg'
+    item_model: 'stellarity:voided_zombie_spawn_egg'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_stellarity'
+  'anterior':
+    material: PAPER
+    slot: 47
+    amount: 1
+    display_name: '&eAnterior'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_stellarity_materials_1'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

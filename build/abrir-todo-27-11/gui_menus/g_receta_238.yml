@@ -1,0 +1,165 @@
+menu_title: '&f&#ffe9a8Lanza Astral'
+size: 54
+items:
+  'resultado':
+    material: NETHERITE_SPEAR
+    slot: 20
+    amount: 1
+    display_name: '&6Lanza Astral'
+    item_model: 'astral:lanza_5'
+    lore:
+    - '&7Lanza de Combate V'
+    - '&7Daño: &c+56.250'
+    - '&7Velocidad de ataque: &f1,1'
+    - ''
+    - '&#5555FFRobo de vida III'
+    - '&a25%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&#5555FFEjecución I'
+    - '&7Ejecuta enemigos con menos del &a15%&7 de vida.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 5'
+    - ''
+    - '&cRequiere: Combate 30'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&6&lLEGENDARIA LANZA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: DIAMOND_SPEAR
+    slot: 14
+    amount: 1
+    display_name: '&f1x Lanza del Vendaval'
+    item_model: 'astral:lanza_4'
+    lore:
+    - '&7Lanza de Combate IV'
+    - '&7Daño: &c+11.250'
+    - '&7Velocidad de ataque: &f1,1'
+    - ''
+    - '&#5555FFRobo de vida II'
+    - '&a15%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: Combate 25'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&5&lÉPICA LANZA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 1
+    display_name: '&f1x Chispa Astral'
+    item_model: 'astral:chispa_astral'
+    lore:
+    - '&7Cae de los mobs Astrales.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&f1x Nucleo Astral'
+    item_model: 'astral:nucleo_astral'
+    lore:
+    - '&7Material endgame universal.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 238'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 238'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 238'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_lanzas'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

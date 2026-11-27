@@ -1,0 +1,174 @@
+menu_title: '&f&#ffe9a8Cuchillos 2/2'
+size: 54
+items:
+  'c0':
+    material: IRON_SWORD
+    slot: 2
+    amount: 1
+    display_name: '&#ff5fd2Cuchillo del Eclipse'
+    item_model: 'astral:cuchillo_7'
+    lore:
+    - '&7Cuchillo de Asesino VII'
+    - '&7Daño: &c+828.125'
+    - '&7Velocidad de ataque: &f3'
+    - ''
+    - '&7Ataque rapido: &a3&7 golpes por segundo'
+    - '&7Por la espalda: &a+50%&7 de dano'
+    - '&7Envenena: &a8%&7 del golpe por segundo, &a3&7 s'
+    - '&7Agachado + clic derecho: invisible &a2&7 s (no en PvP)'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 7'
+    - ''
+    - '&cRequiere: Combate 40'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#ff5fd2&lMÍTICA CUCHILLO'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_153'
+  'c1':
+    material: IRON_SWORD
+    slot: 3
+    amount: 1
+    display_name: '&bCuchillo de Supernova'
+    item_model: 'astral:cuchillo_8'
+    lore:
+    - '&7Cuchillo de Asesino VIII'
+    - '&7Daño: &c+4.140.625'
+    - '&7Velocidad de ataque: &f3'
+    - ''
+    - '&7Ataque rapido: &a3&7 golpes por segundo'
+    - '&7Por la espalda: &a+50%&7 de dano'
+    - '&7Envenena: &a8%&7 del golpe por segundo, &a3&7 s'
+    - '&7Agachado + clic derecho: invisible &a2&7 s (no en PvP)'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 8'
+    - ''
+    - '&cRequiere: Combate 45'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&b&lDIVINA CUCHILLO'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_154'
+  'c2':
+    material: IRON_SWORD
+    slot: 4
+    amount: 1
+    display_name: '&bCuchillo del Vacio'
+    item_model: 'astral:cuchillo_9'
+    lore:
+    - '&7Cuchillo de Asesino IX'
+    - '&7Daño: &c+20.703.125'
+    - '&7Velocidad de ataque: &f3'
+    - ''
+    - '&7Ataque rapido: &a3&7 golpes por segundo'
+    - '&7Por la espalda: &a+50%&7 de dano'
+    - '&7Envenena: &a8%&7 del golpe por segundo, &a3&7 s'
+    - '&7Agachado + clic derecho: invisible &a2&7 s (no en PvP)'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 9'
+    - ''
+    - '&cRequiere: Combate 50'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&b&lDIVINA CUCHILLO'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_155'
+  'c3':
+    material: IRON_SWORD
+    slot: 5
+    amount: 1
+    display_name: '&#b388ffCuchillo del Fin'
+    item_model: 'astral:cuchillo_10'
+    lore:
+    - '&7Cuchillo de Asesino X'
+    - '&7Daño: &c+103.515.625'
+    - '&7Velocidad de ataque: &f3'
+    - ''
+    - '&7Ataque rapido: &a3&7 golpes por segundo'
+    - '&7Por la espalda: &a+50%&7 de dano'
+    - '&7Envenena: &a8%&7 del golpe por segundo, &a3&7 s'
+    - '&7Agachado + clic derecho: invisible &a2&7 s (no en PvP)'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 10'
+    - ''
+    - '&cRequiere: Combate 55'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#b388ff&lASTRAL CUCHILLO'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_156'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_berserker'
+  'anterior':
+    material: PAPER
+    slot: 47
+    amount: 1
+    display_name: '&eAnterior'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_catalogo_cuchillo_1'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

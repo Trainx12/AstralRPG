@@ -1,0 +1,183 @@
+menu_title: '&f&#ffe9a8Necronomicon'
+size: 54
+items:
+  'resultado':
+    material: BOOK
+    slot: 20
+    amount: 1
+    display_name: '&#7b5cffNecronomicon'
+    item_model: 'astral:libro_invocador_9'
+    lore:
+    - '&#7b5cffInvocador IX'
+    - '&7Clic derecho: invoca 3 esqueletos por 20 s'
+    - '&7Cada uno: 16.250 de vida, 11.718.750 de dano por golpe'
+    - '&7Atraen a los mobs: te cubren de los golpes'
+    - '&bCosto: 1100 de mana'
+    - '&aRecarga: 30 s'
+    - '&b+330 de mana en la mano'
+    - '&cRequiere: Hechiceria 52'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: BOOK
+    slot: 14
+    amount: 1
+    display_name: '&f1x Libro de Piel de Dragon'
+    item_model: 'astral:libro_invocador_7'
+    lore:
+    - '&#7b5cffInvocador VII'
+    - '&7Clic derecho: invoca 3 esqueletos por 20 s'
+    - '&7Cada uno: 6.250 de vida, 468.750 de dano por golpe'
+    - '&7Atraen a los mobs: te cubren de los golpes'
+    - '&bCosto: 650 de mana'
+    - '&aRecarga: 30 s'
+    - '&b+270 de mana en la mano'
+    - '&cRequiere: Hechiceria 42'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 6
+    display_name: '&f6x Nucleo de Supernova'
+    item_model: 'astral:nucleo_supernova'
+    lore:
+    - '&7Cae de mobs tier 8 o mas.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 2
+    display_name: '&f2x Esquirla de Eclipse'
+    item_model: 'astral:esquirla_eclipse'
+    lore:
+    - '&7Cae de mobs tier 7 o mas.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material3':
+    material: PAPER
+    slot: 23
+    amount: 4
+    display_name: '&f4x Gema Luminica Perfecta'
+    item_model: 'astral:gema_luminica_perfecta'
+    lore:
+    - '&7Endgame Arquero y Mago.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material4':
+    material: PAPER
+    slot: 24
+    amount: 4
+    display_name: '&f4x Esencia del Vacio'
+    item_model: 'astral:esencia_vacio'
+    lore:
+    - '&7Cae de mobs tier 9 o mas.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 365'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 365'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 365'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_invocador_arma'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

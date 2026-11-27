@@ -527,10 +527,6 @@ def assets(source=None):
         raise ValueError('Mas paginas de indice que fondos reservados')
     for page, chunk in enumerate(groups):
         tiles(index_panel(chunk, page, len(groups)), PAGE_CHARS[page], f'pagina{page}', files, providers)
-    from guia_ampliacion import PRIVATE_SECTIONS
-    public = dict(data, index=[e for e in data['index'] if e.get('dialog') not in PRIVATE_SECTIONS])
-    public_groups = pages(entries(public))
-    tiles(index_panel(public_groups[2], 2, len(public_groups)), PUBLIC_INDEX_CHARS, 'pagina2_publica', files, providers)
     tiles(general_panel(), BG_CHARS['general'], 'general', files, providers)
     tiles(receta_panel(), BG_CHARS['receta'], 'receta', files, providers)
     tiles(receta_panel('METODO'), BG_CHARS['receta_stellarity'], 'receta_stellarity', files, providers)
@@ -1007,16 +1003,6 @@ def menus(data=None):
     boton['name'] = '&bMochilas: recetas'
     out[sec] += '\n'.join(yaml_item('mochilas', 31, boton, ['[sound] UI_BUTTON_CLICK', f'[openguimenu] {MOCHILAS_MENU}'])) + '\n'
     out.update(mochila_menus())
-    out['g_atlas_seccion_cocina_publica'] = out['g_atlas_seccion_cocina']
-    # El fondo dibuja los nombres: el publico necesita tambien el indice sin rotulos nuevos.
-    from guia_ampliacion import PRIVATE_SECTIONS, requirements
-    import yaml
-    public = dict(data, index=[e for e in data['index'] if e.get('dialog') not in PRIVATE_SECTIONS])
-    public_index = index_menus(public)[MENU + '_3']
-    public_index = public_index.replace(title(PAGE_CHARS[2]), title(PUBLIC_INDEX_CHARS), 1)
-    out[MENU + '_3_publica'] = public_index
-    gate = dict(requirements=requirements(), deny_commands=['[openguimenu] ' + MENU + '_3_publica'])
-    out[MENU + '_3'] = out[MENU + '_3'].replace('items:\n', yaml.safe_dump(dict(open_requirement=gate), sort_keys=False) + 'items:\n', 1)
     out.update(extension_menus(data))
     return out
 

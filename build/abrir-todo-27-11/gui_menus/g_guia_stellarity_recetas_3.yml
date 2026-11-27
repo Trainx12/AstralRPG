@@ -1,0 +1,380 @@
+menu_title: '&f&#ffe9a8Recetas del End 3/6'
+size: 54
+items:
+  'c0':
+    material: IRON_INGOT
+    slot: 1
+    amount: 1
+    display_name: '&bChapado de Chorus'
+    item_model: 'stellarity:chorus_plating'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_chorus_plating'
+  'c1':
+    material: JIGSAW
+    slot: 2
+    amount: 2
+    display_name: '&bPlantilla de herrería'
+    item_model: 'stellarity:enderite_smithing_template'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_enderite_smithing_template'
+  'c2':
+    material: WARPED_FUNGUS_ON_A_STICK
+    slot: 3
+    amount: 1
+    display_name: '&bBook of Jinx'
+    item_model: 'stellarity:book_of_jinx'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_book_of_jinx'
+  'c3':
+    material: WARPED_FUNGUS_ON_A_STICK
+    slot: 4
+    amount: 1
+    display_name: '&bBook of Conveyance'
+    item_model: 'stellarity:book_of_conveyance'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_book_of_conveyance'
+  'c4':
+    material: SHIELD
+    slot: 5
+    amount: 1
+    display_name: '&bCrest of The End'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_crest_of_the_end'
+  'c5':
+    material: WARPED_FUNGUS_ON_A_STICK
+    slot: 6
+    amount: 1
+    display_name: '&bSatchel of Voids'
+    item_model: 'stellarity:satchel_of_voids'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_satchel_of_voids'
+  'c6':
+    material: NETHERITE_PICKAXE
+    slot: 7
+    amount: 1
+    display_name: '&bShulker Pickaxe'
+    item_model: 'stellarity:shulker_pickaxe'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_shulker_pickaxe'
+  'c7':
+    material: NETHERITE_AXE
+    slot: 10
+    amount: 1
+    display_name: '&bShulker Axe'
+    item_model: 'stellarity:shulker_axe'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_shulker_axe'
+  'c8':
+    material: NETHERITE_SHOVEL
+    slot: 11
+    amount: 1
+    display_name: '&bShulker Shovel'
+    item_model: 'stellarity:shulker_shovel'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_shulker_shovel'
+  'c9':
+    material: NETHERITE_HOE
+    slot: 12
+    amount: 1
+    display_name: '&bShulker Hoe'
+    item_model: 'stellarity:shulker_hoe'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_shulker_hoe'
+  'c10':
+    material: NETHERITE_SWORD
+    slot: 13
+    amount: 1
+    display_name: '&bShulker Sword'
+    item_model: 'stellarity:shulker_sword'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_shulker_sword'
+  'c11':
+    material: BOW
+    slot: 14
+    amount: 1
+    display_name: '&bSpectral Fury'
+    item_model: 'stellarity:spectral_fury'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_spectral_fury'
+  'c12':
+    material: TRIDENT
+    slot: 15
+    amount: 1
+    display_name: '&bSandstorm Trident'
+    item_model: 'stellarity:sandstorm_trident'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_sandstorm_trident'
+  'c13':
+    material: NETHERITE_SWORD
+    slot: 16
+    amount: 1
+    display_name: '&bTamaris'
+    item_model: 'stellarity:tamaris'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_tamaris'
+  'c14':
+    material: NETHERITE_SPEAR
+    slot: 19
+    amount: 1
+    display_name: '&bShulker Spear'
+    item_model: 'stellarity:shulker_spear'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_shulker_spear'
+  'c15':
+    material: MUSHROOM_STEW
+    slot: 20
+    amount: 1
+    display_name: '&bEstofado de chorus'
+    item_model: 'stellarity:chorus_stew'
+    lore:
+    - '&6Caldero de dragon'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_chorus_stew_57'
+  'c16':
+    material: EXPERIENCE_BOTTLE
+    slot: 21
+    amount: 1
+    display_name: '&bExperience bottle'
+    lore:
+    - '&6Caldero de dragon'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_minecraft_experience_bottle_58'
+  'c17':
+    material: CHORUS_FRUIT
+    slot: 22
+    amount: 1
+    display_name: '&bGolden Chorus Fruit'
+    item_model: 'stellarity:golden_chorus_fruit'
+    lore:
+    - '&6Caldero de dragon'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_golden_chorus_fruit_59'
+  'c18':
+    material: CHORUS_FRUIT
+    slot: 23
+    amount: 1
+    display_name: '&bFruta chorus confitada'
+    item_model: 'stellarity:candied_chorus_fruit'
+    lore:
+    - '&6Caldero de dragon'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_candied_chorus_fruit_60'
+  'c19':
+    material: CHORUS_FRUIT
+    slot: 24
+    amount: 1
+    display_name: '&bFruta chorus frita'
+    item_model: 'stellarity:fried_chorus_fruit'
+    lore:
+    - '&6Caldero de dragon'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_fried_chorus_fruit_61'
+  'c20':
+    material: COOKED_BEEF
+    slot: 25
+    amount: 1
+    display_name: '&bCarne de Enderman a la parrilla'
+    item_model: 'stellarity:grilled_enderman_flesh'
+    lore:
+    - '&6Caldero de dragon'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_grilled_enderman_flesh_62'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_stellarity'
+  'anterior':
+    material: PAPER
+    slot: 47
+    amount: 1
+    display_name: '&eAnterior'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_stellarity_recetas_2'
+  'siguiente':
+    material: PAPER
+    slot: 51
+    amount: 1
+    display_name: '&eSiguiente'
+    item_model: 'astral:mascotas/nav_next'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_stellarity_recetas_4'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

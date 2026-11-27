@@ -19,6 +19,10 @@ public final class BazarStore implements AutoCloseable {
     public record Fill(int qty, long gross, long tax) {}
     final Connection db;
     final Map<String,Product> products;
+    boolean dynamicEnabled=true;
+    public record Range(long min,long max,int lowDirection,int highDirection) {
+        public String arrow(){return (lowDirection>0||highDirection>0?"↑":"")+(lowDirection<0||highDirection<0?"↓":"");}
+    }
     public BazarStore(Path file, Map<String,Product> products) throws Exception {
         this.products = products;
         db = DriverManager.getConnection("jdbc:sqlite:" + file.toAbsolutePath());
@@ -37,6 +41,55 @@ public final class BazarStore implements AutoCloseable {
         sql("CREATE INDEX IF NOT EXISTS history ON trades(product,at)");
         sql("CREATE TABLE IF NOT EXISTS journal(id INTEGER PRIMARY KEY AUTOINCREMENT,owner TEXT,kind TEXT,cents INTEGER,before_balance REAL,claim_id INTEGER,product TEXT,qty INTEGER,item BLOB,basket TEXT,state TEXT NOT NULL DEFAULT 'pending')");
         sql("CREATE TABLE IF NOT EXISTS audit(id INTEGER PRIMARY KEY AUTOINCREMENT,at INTEGER,owner TEXT,action TEXT,detail TEXT)");
+        sql("CREATE TABLE IF NOT EXISTS price_limits(product TEXT PRIMARY KEY,min INTEGER NOT NULL,max INTEGER NOT NULL,low_idle INTEGER NOT NULL DEFAULT 0,high_idle INTEGER NOT NULL DEFAULT 0,day TEXT NOT NULL DEFAULT '',low_dir INTEGER NOT NULL DEFAULT 0,high_dir INTEGER NOT NULL DEFAULT 0)");
+        for(var p:products.values())sql("INSERT OR IGNORE INTO price_limits(product,min,max) VALUES(?,?,?)",p.id,p.min,p.max);
+    }
+    public synchronized Range range(String id)throws SQLException {
+        var p=products.get(id);if(p==null)throw new IllegalArgumentException("Producto desconocido");
+        if(!dynamicEnabled)return new Range(p.min,p.max,0,0);
+        try(var q=db.prepareStatement("SELECT min,max,low_dir,high_dir FROM price_limits WHERE product=?")) {
+            bind(q,id);try(var r=q.executeQuery()){if(r.next())return new Range(r.getLong(1),r.getLong(2),r.getInt(3),r.getInt(4));}
+        }return new Range(p.min,p.max,0,0);
+    }
+    /** Single fixed 24h window, committed once per product/day. Never replay missed days. */
+    public synchronized void adjustRanges(String day,long end,double cap)throws Exception {
+        if(!dynamicEnabled)return;
+        if(!Double.isFinite(cap)||cap<1||cap>100)throw new IllegalArgumentException("Tope dinámico inválido");
+        tx(()->{
+            for(var p:products.values()) {
+                long min,max;int lowIdle,highIdle;
+                try(var q=db.prepareStatement("SELECT * FROM price_limits WHERE product=?")) {
+                    bind(q,p.id);try(var r=q.executeQuery()){
+                        if(!r.next()||r.getString("day").compareTo(day)>=0)continue;
+                        min=r.getLong("min");max=r.getLong("max");lowIdle=r.getInt("low_idle");highIdle=r.getInt("high_idle");
+                    }
+                }
+                long total=0,low=0,high=0;
+                Set<String> lb=new HashSet<>(),ls=new HashSet<>(),hb=new HashSet<>(),hs=new HashSet<>();
+                long edge=(max-min)/20;
+                try(var q=db.prepareStatement("SELECT buyer,seller,qty,price FROM trades WHERE product=? AND at>=? AND at<? AND qty>0 AND buyer<>seller")) {
+                    bind(q,p.id,end-86400000L,end);try(var r=q.executeQuery()){while(r.next()) {
+                        long qty=r.getLong(3),price=r.getLong(4);total+=qty;
+                        if(price>=max-edge){high+=qty;hb.add(r.getString(1));hs.add(r.getString(2));}
+                        if(price<=min+edge){low+=qty;lb.add(r.getString(1));ls.add(r.getString(2));}
+                    }}
+                }
+                boolean up=total>0&&high*2>=total&&hb.size()>=3&&hs.size()>=3;
+                boolean down=total>0&&low*2>=total&&lb.size()>=3&&ls.size()>=3;
+                // Only qualifying diverse activity resets inactivity; one player cannot pin a moved limit.
+                highIdle=up?0:Math.min(3,highIdle+1);lowIdle=down?0:Math.min(3,lowIdle+1);
+                long nextMax=max,nextMin=min;
+                if(up)nextMax=Math.min((long)Math.floor(p.max*cap),Math.max(max+1,Math.round(max*1.05)));
+                else if(highIdle>=3)nextMax=Math.max(p.max,Math.round(max*.95));
+                if(down)nextMin=Math.max(1,Math.min(min-1,Math.round(min*.95)));
+                else if(lowIdle>=3)nextMin=Math.min(p.min,Math.round(min*1.05));
+                nextMax=Math.max(p.max,Math.min((long)Math.floor(p.max*cap),nextMax));
+                nextMin=Math.min(p.min,nextMin);
+                sql("UPDATE price_limits SET min=?,max=?,low_idle=?,high_idle=?,day=?,low_dir=?,high_dir=? WHERE product=?",nextMin,nextMax,lowIdle,highIdle,day,Long.compare(nextMin,min),Long.compare(nextMax,max),p.id);
+                audit("server","price_limits",p.id+" "+day+" "+nextMin+".."+nextMax);
+            }
+            return null;
+        });
     }
     public synchronized void sql(String s, Object... args) throws SQLException {
         try (var q=db.prepareStatement(s)) { bind(q,args); q.execute(); }
@@ -127,7 +180,8 @@ public final class BazarStore implements AutoCloseable {
             if(qty<1||qty>71680)throw new IllegalArgumentException("Cantidad: 1 a 71.680.");
             // Old makers remain executable when reference limits change.
             // Bounds apply to new resting orders; instant prices come from the book.
-            if(price<1||(!instant&&(price<p.min||price>p.max)))throw new IllegalArgumentException("Precio fuera de rango.");
+            var bounds=range(id);
+            if(price<1||(!instant&&(price<bounds.min||price>bounds.max)))throw new IllegalArgumentException("Precio fuera de rango.");
             if(!instant&&scalar("SELECT COUNT(*) FROM orders WHERE owner=? AND remaining>0",owner)>=14)throw new IllegalArgumentException("Tope de 14 órdenes abiertas.");
             if(buy)debit(owner,Math.multiplyExact(price,qty));else consume(owner,id,qty);
             long oid=insert("INSERT INTO orders(owner,product,buy,quantity,remaining,price) VALUES(?,?,?,?,?,?)",owner,id,buy,qty,qty,price);

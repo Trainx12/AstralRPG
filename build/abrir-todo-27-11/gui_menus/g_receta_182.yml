@@ -1,0 +1,166 @@
+menu_title: '&f&#ffe9a8Guadana del Carcelero'
+size: 54
+items:
+  'resultado':
+    material: NETHERITE_HOE
+    slot: 20
+    amount: 1
+    display_name: '&#ff5fd2Guadana del Carcelero'
+    item_model: 'astral:guadana_6'
+    lore:
+    - '&7Guadana del Segador VI'
+    - '&7Daño: &c+292.969'
+    - '&7Velocidad de ataque: &f1,3'
+    - ''
+    - '&#5555FFRobo de vida II, Maldición I, Ejecución Astral I'
+    - '&#5555FFFilo Arcano VI'
+    - ''
+    - '&7Tajo en area: &a60%&7 del golpe a hasta &a8&7 mobs adelante'
+    - '&7Cada baja te cura &a0,5%&7 de vida'
+    - '&7Matar mobs reinicia el enfriamiento de hechizos'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 6'
+    - ''
+    - '&cRequiere: Combate 37'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#ff5fd2&lMÍTICA GUADAÑA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: NETHERITE_HOE
+    slot: 14
+    amount: 1
+    display_name: '&f1x Guadana Astral'
+    item_model: 'astral:guadana_5'
+    lore:
+    - '&7Guadana del Segador V'
+    - '&7Daño: &c+57.292'
+    - '&7Velocidad de ataque: &f1,3'
+    - ''
+    - '&#5555FFRobo de vida II, Maldición I, Ejecución Astral I'
+    - '&#5555FFFilo Arcano V'
+    - ''
+    - '&7Tajo en area: &a60%&7 del golpe a hasta &a8&7 mobs adelante'
+    - '&7Cada baja te cura &a0,5%&7 de vida'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 5'
+    - ''
+    - '&cRequiere: Combate 32'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&6&lLEGENDARIA GUADAÑA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 4
+    display_name: '&f4x Fragmento de Ocaso'
+    item_model: 'astral:fragmento_ocaso'
+    lore:
+    - '&7Cae de mobs tier 6 o mas (y poco de elites y jefes tier 5).'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 2
+    display_name: '&f2x Gema Umbria Perfecta'
+    item_model: 'astral:gema_umbria_perfecta'
+    lore:
+    - '&7Endgame Berserker y Mago.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 182'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 182'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 182'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_segador_arma'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

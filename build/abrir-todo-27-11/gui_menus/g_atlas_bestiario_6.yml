@@ -1,0 +1,163 @@
+menu_title: '&f&#ffe9a8Bestiario 6/7'
+size: 54
+items:
+  'c0':
+    material: BLAZE_SPAWN_EGG
+    slot: 1
+    amount: 1
+    display_name: '&bBlaze'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_criatura_vanilla_blaze'
+  'c1':
+    material: GHAST_SPAWN_EGG
+    slot: 2
+    amount: 1
+    display_name: '&bGhast'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_criatura_vanilla_ghast'
+  'c2':
+    material: MAGMA_CUBE_SPAWN_EGG
+    slot: 3
+    amount: 1
+    display_name: '&bMagma Cube'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_criatura_vanilla_magma_cube'
+  'c3':
+    material: HOGLIN_SPAWN_EGG
+    slot: 4
+    amount: 1
+    display_name: '&bHoglin'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_criatura_vanilla_hoglin'
+  'c4':
+    material: PIGLIN_SPAWN_EGG
+    slot: 5
+    amount: 1
+    display_name: '&bPiglin'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_criatura_vanilla_piglin'
+  'c5':
+    material: ZOMBIFIED_PIGLIN_SPAWN_EGG
+    slot: 6
+    amount: 1
+    display_name: '&bZombified Piglin'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_criatura_vanilla_zombified_piglin'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'anterior':
+    material: PAPER
+    slot: 47
+    amount: 1
+    display_name: '&eAnterior'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_bestiario_5'
+  'siguiente':
+    material: PAPER
+    slot: 51
+    amount: 1
+    display_name: '&eSiguiente'
+    item_model: 'astral:mascotas/nav_next'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_bestiario_7'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

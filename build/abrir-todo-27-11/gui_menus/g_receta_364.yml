@@ -1,0 +1,168 @@
+menu_title: '&f&#ffe9a8Libro de Piel de Dragon'
+size: 54
+items:
+  'resultado':
+    material: BOOK
+    slot: 20
+    amount: 1
+    display_name: '&#7b5cffLibro de Piel de Dragon'
+    item_model: 'astral:libro_invocador_7'
+    lore:
+    - '&#7b5cffInvocador VII'
+    - '&7Clic derecho: invoca 3 esqueletos por 20 s'
+    - '&7Cada uno: 6.250 de vida, 468.750 de dano por golpe'
+    - '&7Atraen a los mobs: te cubren de los golpes'
+    - '&bCosto: 650 de mana'
+    - '&aRecarga: 30 s'
+    - '&b+270 de mana en la mano'
+    - '&cRequiere: Hechiceria 42'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: BOOK
+    slot: 14
+    amount: 1
+    display_name: '&f1x Libro del Evocador'
+    item_model: 'astral:libro_invocador_5'
+    lore:
+    - '&#7b5cffInvocador V'
+    - '&7Clic derecho: invoca 2 esqueletos por 20 s'
+    - '&7Cada uno: 2.000 de vida, 18.750 de dano por golpe'
+    - '&7Atraen a los mobs: te cubren de los golpes'
+    - '&bCosto: 400 de mana'
+    - '&aRecarga: 30 s'
+    - '&b+210 de mana en la mano'
+    - '&cRequiere: Hechiceria 32'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 4
+    display_name: '&f4x Fragmento de Ocaso'
+    item_model: 'astral:fragmento_ocaso'
+    lore:
+    - '&7Cae de mobs tier 6 o mas (y poco de elites y jefes tier 5).'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 2
+    display_name: '&f2x Gema Luminica Perfecta'
+    item_model: 'astral:gema_luminica_perfecta'
+    lore:
+    - '&7Endgame Arquero y Mago.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material3':
+    material: PAPER
+    slot: 23
+    amount: 4
+    display_name: '&f4x Esquirla de Eclipse'
+    item_model: 'astral:esquirla_eclipse'
+    lore:
+    - '&7Cae de mobs tier 7 o mas.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 364'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 364'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 364'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_invocador_arma'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

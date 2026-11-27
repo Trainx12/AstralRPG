@@ -1,0 +1,165 @@
+menu_title: '&f&#ffe9a8Bestiario 4/7'
+size: 54
+items:
+  'c0':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&bEspantapajaros Infernal'
+    item_model: 'astral:atlas_ui/mobchico_astral_espantapajaros_elite'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_criatura_astral_espantapajaros_elite'
+  'c1':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&bArmored Grub Reina'
+    item_model: 'astral:atlas_ui/mobchico_astral_abejorro_elite'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_criatura_astral_abejorro_elite'
+  'c2':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&bArana de Cristal Vivo'
+    item_model: 'astral:atlas_ui/mobchico_astral_arana_elite'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_criatura_astral_arana_elite'
+  'c3':
+    material: PAPER
+    slot: 4
+    amount: 1
+    display_name: '&bCara del Abismo'
+    item_model: 'astral:atlas_ui/mobchico_astral_cara_elite'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_criatura_astral_cara_elite'
+  'c4':
+    material: PAPER
+    slot: 5
+    amount: 1
+    display_name: '&bCangrejo Abisal'
+    item_model: 'astral:atlas_ui/mobchico_astral_cangrejo_elite'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_criatura_astral_cangrejo_elite'
+  'c5':
+    material: PAPER
+    slot: 6
+    amount: 1
+    display_name: '&bFarao Ancestral'
+    item_model: 'astral:atlas_ui/mobchico_astral_momia_ancestral'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_criatura_astral_momia_ancestral'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'anterior':
+    material: PAPER
+    slot: 47
+    amount: 1
+    display_name: '&eAnterior'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_bestiario_3'
+  'siguiente':
+    material: PAPER
+    slot: 51
+    amount: 1
+    display_name: '&eSiguiente'
+    item_model: 'astral:mascotas/nav_next'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_bestiario_5'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

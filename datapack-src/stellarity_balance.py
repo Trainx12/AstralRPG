@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'build/stellarity'
 STAMP = (2026, 11, 26, 0, 0, 0)
 PLUGIN = '''name: AstralStellarity
-version: 1.0.1
+version: 1.1.0
 main: astral.stellarity.AstralStellarity
 api-version: '26.1.2'
 softdepend: [AuraSkills, AstralMesa]

@@ -1,0 +1,514 @@
+menu_title: '&f&#ffe9a8Equipo Carnivora III'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 1
+    amount: 1
+    display_name: '&7Elegi que queres forjar.'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: DIAMOND_SWORD
+    slot: 2
+    amount: 1
+    display_name: '&#5555FFEspada Carnivora'
+    item_model: 'astral:carnivora_espada'
+    lore:
+    - '&7Espada Berserker III'
+    - '&7Daño: &c+2.500'
+    - '&7Velocidad de ataque: &f1,6'
+    - ''
+    - '&#5555FFRobo de vida III'
+    - '&a25%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&#5555FFFuria I'
+    - '&7Hasta &a+15%&7 de daño cuanto menos vida tengas.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 20'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#5555FF&lRARA ESPADA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_244'
+  'c2':
+    material: DIAMOND_AXE
+    slot: 3
+    amount: 1
+    display_name: '&#5555FFHacha Carnivora'
+    item_model: 'astral:carnivora_hacha'
+    lore:
+    - '&7Hacha Berserker III'
+    - '&7Daño: &c+3.600'
+    - '&7Velocidad de ataque: &f1'
+    - ''
+    - '&#5555FFEficiencia III'
+    - '&#5555FFIrrompibilidad II'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 20'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#5555FF&lRARA HACHA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_245'
+  'c3':
+    material: DIAMOND_HOE
+    slot: 4
+    amount: 1
+    display_name: '&#5555FFGuadana Carnivora'
+    item_model: 'astral:carnivora_guadana'
+    lore:
+    - '&7Guadana del Segador III'
+    - '&7Daño: &c+2.286'
+    - '&7Velocidad de ataque: &f1,3'
+    - ''
+    - '&#5555FFRobo de vida I'
+    - '&a10%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&#5555FFMaldición I'
+    - '&7Aplica Lentitud y Debilidad por &a2&7 a &a3&7 s.'
+    - '&#5555FFFilo Arcano III'
+    - '&a+1,8&7 de daño por golpe.'
+    - ''
+    - '&7Tajo en area: &a60%&7 del golpe a hasta &a8&7 mobs adelante'
+    - '&7Cada baja te cura &a0,5%&7 de vida'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 20'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#5555FF&lRARA GUADAÑA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_246'
+  'c4':
+    material: CARROT_ON_A_STICK
+    slot: 5
+    amount: 1
+    display_name: '&#5555FFBaston Carnivoro'
+    item_model: 'astral:carnivora_baston'
+    lore:
+    - '&7Baston de Mago III'
+    - '&7Daño de hechizo: &d+3.540'
+    - '&7Daño mágico: &d+18%'
+    - '&7Maná: &b+250'
+    - '&7Regeneración de maná: &b+5/s'
+    - ''
+    - '&7Hechizos cuestan menos'
+    - ''
+    - '&6Habilidad: Proyectil arcano&e&l  CLIC DERECHO'
+    - '&7Atraviesa hasta &a3&7 enemigos.'
+    - '&7Daño: &a100%&7/&a70%&7/&a70%&7.'
+    - '&7El daño de hechizo sube con la armadura de Mago.'
+    - '&7Costo de maná: &b90'
+    - '&7Recarga: &a1,1s'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Hechiceria 20'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#5555FF&lRARA BASTÓN'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_247'
+  'c5':
+    material: BOW
+    slot: 6
+    amount: 1
+    display_name: '&#5555FFArco Carnivoro'
+    item_model: 'astral:carnivora_arco'
+    lore:
+    - '&7Arco de Arquero III'
+    - '&7Daño: &c+2.957'
+    - '&7Velocidad de carga: &f+45%'
+    - '&7Disparo automático: &acada 0,6s'
+    - ''
+    - '&#5555FFPuntería III'
+    - '&7Flechas con el daño del tier &a3&7 (&a+15%&7 extra).'
+    - ''
+    - '&7Mayor precision'
+    - ''
+    - '&6Habilidad: Disparo automático&e&l  MANTENER CLIC DERECHO'
+    - '&7Dispara solo cada &a0,6&7 s mientras lo mantenés.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Arqueria 20'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#5555FF&lRARA ARCO'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_248'
+  'c6':
+    material: DIAMOND_SPEAR
+    slot: 7
+    amount: 1
+    display_name: '&#5555FFLanza Carnivora'
+    item_model: 'astral:carnivora_lanza'
+    lore:
+    - '&7Lanza de Combate III'
+    - '&7Daño: &c+2.250'
+    - '&7Velocidad de ataque: &f1,1'
+    - ''
+    - '&#5555FFRobo de vida I'
+    - '&a10%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 20'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#5555FF&lRARA LANZA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_249'
+  'c7':
+    material: DIAMOND_AXE
+    slot: 10
+    amount: 1
+    display_name: '&#5555FFMartillo Carnivoro'
+    item_model: 'astral:carnivora_martillo'
+    lore:
+    - '&7Hacha Berserker III'
+    - '&7Daño: &c+3.600'
+    - '&7Velocidad de ataque: &f1'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 20'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#5555FF&lRARA HACHA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_250'
+  'c8':
+    material: DIAMOND_HELMET
+    slot: 11
+    amount: 1
+    display_name: '&#5555FFCasco Carnivora'
+    item_model: 'astral:carnivora_helmet'
+    lore:
+    - '&7Armadura Carnivora III'
+    - '&7Vida: &c+225'
+    - '&7Defensa: &a+32'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Al matar recuperas &a3%&7 de vida maxima.'
+    - '&7Durabilidad: &f2.401'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 20'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#5555FF&lRARA CASCO'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_251'
+  'c9':
+    material: DIAMOND_CHESTPLATE
+    slot: 12
+    amount: 1
+    display_name: '&#5555FFPechera Carnivora'
+    item_model: 'astral:carnivora_chestplate'
+    lore:
+    - '&7Armadura Carnivora III'
+    - '&7Vida: &c+225'
+    - '&7Defensa: &a+84'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Al matar recuperas &a3%&7 de vida maxima.'
+    - '&7Durabilidad: &f2.401'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 20'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#5555FF&lRARA PECHERA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_252'
+  'c10':
+    material: DIAMOND_LEGGINGS
+    slot: 13
+    amount: 1
+    display_name: '&#5555FFGrebas Carnivora'
+    item_model: 'astral:carnivora_leggings'
+    lore:
+    - '&7Armadura Carnivora III'
+    - '&7Vida: &c+225'
+    - '&7Defensa: &a+63'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Al matar recuperas &a3%&7 de vida maxima.'
+    - '&7Durabilidad: &f2.401'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 20'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#5555FF&lRARA GREBAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_253'
+  'c11':
+    material: DIAMOND_BOOTS
+    slot: 14
+    amount: 1
+    display_name: '&#5555FFBotas Carnivora'
+    item_model: 'astral:carnivora_boots'
+    lore:
+    - '&7Armadura Carnivora III'
+    - '&7Vida: &c+225'
+    - '&7Defensa: &a+32'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Al matar recuperas &a3%&7 de vida maxima.'
+    - '&7Durabilidad: &f2.401'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 20'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#5555FF&lRARA BOTAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_254'
+  'c12':
+    material: DIAMOND_PICKAXE
+    slot: 15
+    amount: 1
+    display_name: '&#bff05aPico Carnivoro'
+    item_model: 'astral:carnivora_pico'
+    lore:
+    - '&7Equipo Carnivoro III'
+    - '&7Durabilidad: 7.201'
+    - ''
+    - '&#5555FFEficiencia III'
+    - '&#5555FFIrrompibilidad II'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Mineria 12'
+    - '&#5555FF&lRARA PICO'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_255'
+  'c13':
+    material: DIAMOND_SHOVEL
+    slot: 16
+    amount: 1
+    display_name: '&#bff05aPala Carnivora'
+    item_model: 'astral:carnivora_pala'
+    lore:
+    - '&7Equipo Carnivoro III'
+    - '&7Durabilidad: 7.201'
+    - ''
+    - '&#5555FFEficiencia III'
+    - '&#5555FFIrrompibilidad II'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Mineria 12'
+    - '&#5555FF&lRARA PALA'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_256'
+  'c14':
+    material: DIAMOND_HOE
+    slot: 21
+    amount: 1
+    display_name: '&#bff05aAzada Carnivora'
+    item_model: 'astral:carnivora_azada'
+    lore:
+    - '&7Equipo Carnivoro III'
+    - '&7Durabilidad: 7.201'
+    - ''
+    - '&#5555FFEficiencia III'
+    - '&#5555FFIrrompibilidad II'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 20'
+    - '&#5555FF&lRARA AZADA'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_257'
+  'c15':
+    material: FISHING_ROD
+    slot: 22
+    amount: 1
+    display_name: '&#bff05aCana Carnivora'
+    item_model: 'astral:carnivora_cana'
+    lore:
+    - '&7Equipo Carnivoro III'
+    - '&7Durabilidad: 7.201'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 20'
+    - '&#5555FF&lRARA CAÑA'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_258'
+  'c16':
+    material: SHIELD
+    slot: 23
+    amount: 1
+    display_name: '&#bff05aEscudo Carnivoro'
+    item_model: 'astral:carnivora_escudo'
+    lore:
+    - '&7Equipo Carnivoro III'
+    - '&7Durabilidad: 7.201'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 20'
+    - '&#5555FF&lRARA ESCUDO'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_259'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

@@ -1,0 +1,173 @@
+menu_title: '&f&#ffe9a8Chaqueta del Francotirador'
+size: 54
+items:
+  'resultado':
+    material: LEATHER_CHESTPLATE
+    slot: 20
+    amount: 1
+    display_name: '&#5555FFChaqueta del Francotirador'
+    item_model: 'astral:arquero_3_chestplate'
+    lore:
+    - '&7Arquero III'
+    - '&7Vida: &c+225'
+    - '&7Defensa: &a+85'
+    - '&7Daño a distancia: &c+4,5%'
+    - '&7Prob. crítica: &9+2,5%'
+    - '&7Velocidad: &f+2,5%'
+    - ''
+    - '&#5555FFPuntería del Set III'
+    - '&a+12%&7 de daño con arco.'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de velocidad.'
+    - '&6Bono de set (4/4)'
+    - '&7Paso de sombra: al matar, Velocidad II y Salto I por &a4&7 s.'
+    - '&7Durabilidad: &f4.500'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Arqueria 20'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA PECHERA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: LEATHER_CHESTPLATE
+    slot: 14
+    amount: 1
+    display_name: '&f1x Chaqueta del Explorador'
+    item_model: 'astral:arquero_2_chestplate'
+    lore:
+    - '&7Arquero II'
+    - '&7Vida: &c+112,5'
+    - '&7Defensa: &a+40'
+    - '&7Daño a distancia: &c+2,5%'
+    - '&7Prob. crítica: &9+1,25%'
+    - '&7Velocidad: &f+2%'
+    - ''
+    - '&#5555FFPuntería del Set II'
+    - '&a+8%&7 de daño con arco.'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de velocidad.'
+    - '&6Bono de set (4/4)'
+    - '&7Paso de sombra: al matar, Velocidad II y Salto I por &a4&7 s.'
+    - '&7Durabilidad: &f3.500'
+    - '&7Tier: 2'
+    - ''
+    - '&cRequiere: Arqueria 14'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&a&lPOCO COMÚN PECHERA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 3
+    display_name: '&f3x Madera Estelar'
+    item_model: 'astral:madera_estelar'
+    lore:
+    - '&7Madera de los arboles del End.'
+    - '&8Material de AstralRPG'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&f1x Cristal Arcano Refinado'
+    item_model: 'astral:cristal_refinado'
+    lore:
+    - '&7Crafteos magicos medio-alto.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 105'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 105'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 105'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_arquero_3'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

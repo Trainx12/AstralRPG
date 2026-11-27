@@ -1,0 +1,236 @@
+menu_title: '&f&#ffe9a8Accesorios 1/1'
+size: 54
+items:
+  'c0':
+    material: GOLD_NUGGET
+    slot: 1
+    amount: 1
+    display_name: '&bBell Flower'
+    lore:
+    - '&7Revela entidades cercanas mientras la'
+    - '&7sostenes.'
+    - '&7Objeto especial del autor: figurar en'
+    - '&7el catalogo no garantiza conseguirlo'
+    - '&7en survival.'
+    - '&7Tier: 4'
+    - '&7Requiere: Combate 25'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: SHIELD
+    slot: 2
+    amount: 1
+    display_name: '&bCopper Elektra Shield'
+    lore:
+    - '&7Agachate para una embestida electrica.'
+    - '&7Recarga hasta tres impulsos.'
+    - '&7Tier: 4'
+    - '&7Requiere: Combate 25'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: SHIELD
+    slot: 3
+    amount: 1
+    display_name: '&bCrest of The End'
+    lore:
+    - '&7Bloquear carga fuerza extra para el'
+    - '&7siguiente contraataque.'
+    - '&7Tier: 5'
+    - '&7Requiere: Combate 30'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_crest_of_the_end'
+  'c3':
+    material: POPPED_CHORUS_FRUIT
+    slot: 4
+    amount: 1
+    display_name: '&bDecayed Clover'
+    item_model: 'stellarity:decayed_clover'
+    lore:
+    - '&7Mejora el botin y la suerte de pesca'
+    - '&7del vacio.'
+    - '&7Suerte: +1 (offhand).'
+    - '&7Suerte: +10% (offhand).'
+    - '&7Tier: 4'
+    - '&7Requiere: Combate 25'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: SWEET_BERRIES
+    slot: 5
+    amount: 1
+    display_name: '&bDuskberry'
+    item_model: 'stellarity:duskberry'
+    lore:
+    - '&7Sostenida mejora velocidad, vista y'
+    - '&7fuerza. Comerla o plantarla es'
+    - '&7peligroso.'
+    - '&7Tier: 4'
+    - '&7Requiere: Combate 25'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: POPPED_CHORUS_FRUIT
+    slot: 6
+    amount: 1
+    display_name: '&bEndermans Hand'
+    lore:
+    - '&7Sostenida en una mano aumenta en 3'
+    - '&7bloques el alcance para interactuar'
+    - '&7con bloques.'
+    - '&7Block interaction range: +3 (hand).'
+    - '&7Tier: 4'
+    - '&7Requiere: Combate 25'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c6':
+    material: AMETHYST_SHARD
+    slot: 7
+    amount: 1
+    display_name: '&bLife Crystal'
+    item_model: 'stellarity:life_crystal'
+    lore:
+    - '&7Regenera vida rapidamente mientras te'
+    - '&7quedas quieto.'
+    - '&7Tier: 5'
+    - '&7Requiere: Combate 30'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c7':
+    material: ENDER_PEARL
+    slot: 11
+    amount: 1
+    display_name: '&bPrismatic Pearl'
+    item_model: 'stellarity:prismatic_pearl'
+    lore:
+    - '&7Perla de teletransporte reutilizable:'
+    - '&7vuelve al inventario al terminar su'
+    - '&7espera.'
+    - '&7Espera entre usos: 4.9 s.'
+    - '&7Tier: 6'
+    - '&7Requiere: Combate 35'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c8':
+    material: WARPED_FUNGUS_ON_A_STICK
+    slot: 12
+    amount: 1
+    display_name: '&bSatchel of Voids'
+    item_model: 'stellarity:satchel_of_voids'
+    lore:
+    - '&7Dibuja un acceso al Altar Maldito. En'
+    - '&7un marco vertical permite un altar'
+    - '&7permanente.'
+    - '&7Tier: 5'
+    - '&7Requiere: Combate 30'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_satchel_of_voids'
+  'c9':
+    material: GOLD_NUGGET
+    slot: 13
+    amount: 1
+    display_name: '&bSoaring Insignia'
+    item_model: 'stellarity:soaring_insignia'
+    lore:
+    - '&7Permite vuelo continuo con maniobra'
+    - '&7limitada; agachate y mira arriba o'
+    - '&7abajo.'
+    - '&7Tier: 6'
+    - '&7Requiere: Combate 35'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c10':
+    material: SHIELD
+    slot: 14
+    amount: 1
+    display_name: '&bStarstruck Shield'
+    lore:
+    - '&7Hace caer estrellas despues de'
+    - '&7bloquear dano.'
+    - '&7Tier: 6'
+    - '&7Requiere: Combate 35'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c11':
+    material: IRON_NUGGET
+    slot: 15
+    amount: 1
+    display_name: '&bVoid Locket'
+    lore:
+    - '&7Accesorio con variantes internas de'
+    - '&7mejora. Este ZIP no aporta una receta'
+    - '&7accesible para aplicarlas.'
+    - '&7Tier: 5'
+    - '&7Requiere: Combate 30'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_stellarity'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

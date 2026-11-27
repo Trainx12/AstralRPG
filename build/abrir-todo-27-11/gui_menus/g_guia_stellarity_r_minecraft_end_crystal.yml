@@ -1,0 +1,263 @@
+menu_title: '&f&#ffe9a8End crystal'
+size: 54
+items:
+  'material0':
+    material: END_CRYSTAL
+    slot: 20
+    amount: 1
+    display_name: '&bEnd crystal'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: GLASS
+    slot: 14
+    amount: 1
+    display_name: '&bGlass'
+    lore:
+    - '&7Grupo: #kohara:glass_blocks'
+    - '&7Admite: glass, red_stained_glass,'
+    - '&7yellow_stained_glass,'
+    - '&7orange_stained_glass, lime_stained_glass,'
+    - '&7green_stained_glass,'
+    - '&7magenta_stained_glass,'
+    - '&7purple_stained_glass, pink_stained_glass,'
+    - '&7blue_stained_glass,'
+    - '&7light_blue_stained_glass,'
+    - '&7cyan_stained_glass, gray_stained_glass,'
+    - '&7light_gray_stained_glass,'
+    - '&7black_stained_glass, white_stained_glass,'
+    - '&7brown_stained_glass'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: GLASS
+    slot: 15
+    amount: 1
+    display_name: '&bGlass'
+    lore:
+    - '&7Grupo: #kohara:glass_blocks'
+    - '&7Admite: glass, red_stained_glass,'
+    - '&7yellow_stained_glass,'
+    - '&7orange_stained_glass, lime_stained_glass,'
+    - '&7green_stained_glass,'
+    - '&7magenta_stained_glass,'
+    - '&7purple_stained_glass, pink_stained_glass,'
+    - '&7blue_stained_glass,'
+    - '&7light_blue_stained_glass,'
+    - '&7cyan_stained_glass, gray_stained_glass,'
+    - '&7light_gray_stained_glass,'
+    - '&7black_stained_glass, white_stained_glass,'
+    - '&7brown_stained_glass'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material3':
+    material: GLASS
+    slot: 16
+    amount: 1
+    display_name: '&bGlass'
+    lore:
+    - '&7Grupo: #kohara:glass_blocks'
+    - '&7Admite: glass, red_stained_glass,'
+    - '&7yellow_stained_glass,'
+    - '&7orange_stained_glass, lime_stained_glass,'
+    - '&7green_stained_glass,'
+    - '&7magenta_stained_glass,'
+    - '&7purple_stained_glass, pink_stained_glass,'
+    - '&7blue_stained_glass,'
+    - '&7light_blue_stained_glass,'
+    - '&7cyan_stained_glass, gray_stained_glass,'
+    - '&7light_gray_stained_glass,'
+    - '&7black_stained_glass, white_stained_glass,'
+    - '&7brown_stained_glass'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material4':
+    material: GLASS
+    slot: 23
+    amount: 1
+    display_name: '&bGlass'
+    lore:
+    - '&7Grupo: #kohara:glass_blocks'
+    - '&7Admite: glass, red_stained_glass,'
+    - '&7yellow_stained_glass,'
+    - '&7orange_stained_glass, lime_stained_glass,'
+    - '&7green_stained_glass,'
+    - '&7magenta_stained_glass,'
+    - '&7purple_stained_glass, pink_stained_glass,'
+    - '&7blue_stained_glass,'
+    - '&7light_blue_stained_glass,'
+    - '&7cyan_stained_glass, gray_stained_glass,'
+    - '&7light_gray_stained_glass,'
+    - '&7black_stained_glass, white_stained_glass,'
+    - '&7brown_stained_glass'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material5':
+    material: ENDER_EYE
+    slot: 24
+    amount: 1
+    display_name: '&bOjo de ender'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material6':
+    material: GLASS
+    slot: 25
+    amount: 1
+    display_name: '&bGlass'
+    lore:
+    - '&7Grupo: #kohara:glass_blocks'
+    - '&7Admite: glass, red_stained_glass,'
+    - '&7yellow_stained_glass,'
+    - '&7orange_stained_glass, lime_stained_glass,'
+    - '&7green_stained_glass,'
+    - '&7magenta_stained_glass,'
+    - '&7purple_stained_glass, pink_stained_glass,'
+    - '&7blue_stained_glass,'
+    - '&7light_blue_stained_glass,'
+    - '&7cyan_stained_glass, gray_stained_glass,'
+    - '&7light_gray_stained_glass,'
+    - '&7black_stained_glass, white_stained_glass,'
+    - '&7brown_stained_glass'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material7':
+    material: GLASS
+    slot: 32
+    amount: 1
+    display_name: '&bGlass'
+    lore:
+    - '&7Grupo: #kohara:glass_blocks'
+    - '&7Admite: glass, red_stained_glass,'
+    - '&7yellow_stained_glass,'
+    - '&7orange_stained_glass, lime_stained_glass,'
+    - '&7green_stained_glass,'
+    - '&7magenta_stained_glass,'
+    - '&7purple_stained_glass, pink_stained_glass,'
+    - '&7blue_stained_glass,'
+    - '&7light_blue_stained_glass,'
+    - '&7cyan_stained_glass, gray_stained_glass,'
+    - '&7light_gray_stained_glass,'
+    - '&7black_stained_glass, white_stained_glass,'
+    - '&7brown_stained_glass'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material8':
+    material: OBSIDIAN
+    slot: 33
+    amount: 1
+    display_name: '&bObsidian'
+    lore:
+    - '&7Alternativas: minecraft:obsidian,'
+    - '&7minecraft:crying_obsidian'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material9':
+    material: GLASS
+    slot: 34
+    amount: 1
+    display_name: '&bGlass'
+    lore:
+    - '&7Grupo: #kohara:glass_blocks'
+    - '&7Admite: glass, red_stained_glass,'
+    - '&7yellow_stained_glass,'
+    - '&7orange_stained_glass, lime_stained_glass,'
+    - '&7green_stained_glass,'
+    - '&7magenta_stained_glass,'
+    - '&7purple_stained_glass, pink_stained_glass,'
+    - '&7blue_stained_glass,'
+    - '&7light_blue_stained_glass,'
+    - '&7cyan_stained_glass, gray_stained_glass,'
+    - '&7light_gray_stained_glass,'
+    - '&7black_stained_glass, white_stained_glass,'
+    - '&7brown_stained_glass'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material10':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: ' '
+    item_model: 'astral:viajes/blank'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material11':
+    material: KNOWLEDGE_BOOK
+    slot: 40
+    amount: 1
+    display_name: '&bMesa de crafteo'
+    lore:
+    - '&7Mesa de crafteo'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material12':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: ' '
+    item_model: 'astral:viajes/blank'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_stellarity_recetas_1'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

@@ -1,0 +1,306 @@
+menu_title: '&f&#ffe9a8Taladros (Mineria)'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 1
+    amount: 1
+    display_name: '&7Elegi que queres forjar.'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: NETHERITE_PICKAXE
+    slot: 2
+    amount: 1
+    display_name: '&fTaladro de Diamante'
+    item_model: 'astral:taladro_diamante'
+    lore:
+    - '&7Taladro I'
+    - '&7Velocidad de minado: &6+12'
+    - '&7Área de minado: &61x1'
+    - '&7Durabilidad: &f2.600'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Rompe solo el bloque apuntado.'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: Mineria 5'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&f&lCOMÚN TALADRO'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_208'
+  'c2':
+    material: NETHERITE_PICKAXE
+    slot: 3
+    amount: 1
+    display_name: '&aTaladro de Mitril'
+    item_model: 'astral:taladro_mitril'
+    lore:
+    - '&7Taladro II'
+    - '&7Velocidad de minado: &6+13'
+    - '&7Área de minado: &62x1'
+    - '&7Durabilidad: &f3.600'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Rompe solo el bloque apuntado.'
+    - '&7Tier: 2'
+    - ''
+    - '&cRequiere: Mineria 8'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&a&lPOCO COMÚN TALADRO'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_209'
+  'c3':
+    material: NETHERITE_PICKAXE
+    slot: 4
+    amount: 1
+    display_name: '&aTaladro de Amatista'
+    item_model: 'astral:taladro_amatista'
+    lore:
+    - '&7Taladro III'
+    - '&7Velocidad de minado: &6+15'
+    - '&7Área de minado: &62x1'
+    - '&bIndestructible'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Rompe solo el bloque apuntado.'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Mineria 12'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&a&lPOCO COMÚN TALADRO'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_210'
+  'c4':
+    material: NETHERITE_PICKAXE
+    slot: 5
+    amount: 1
+    display_name: '&#5555FFTaladro de Rubi'
+    item_model: 'astral:taladro_rubi'
+    lore:
+    - '&7Taladro IV'
+    - '&7Velocidad de minado: &6+16'
+    - '&7Área de minado: &62x2'
+    - '&bIndestructible'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Rompe solo el bloque apuntado.'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: Mineria 16'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#5555FF&lRARA TALADRO'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_211'
+  'c5':
+    material: NETHERITE_PICKAXE
+    slot: 6
+    amount: 1
+    display_name: '&#5555FFTaladro de Topacio'
+    item_model: 'astral:taladro_topacio'
+    lore:
+    - '&7Taladro V'
+    - '&7Velocidad de minado: &6+18'
+    - '&7Área de minado: &62x2'
+    - '&bIndestructible'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Rompe solo el bloque apuntado.'
+    - '&7Tier: 5'
+    - ''
+    - '&cRequiere: Mineria 20'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA TALADRO'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_212'
+  'c6':
+    material: NETHERITE_PICKAXE
+    slot: 7
+    amount: 1
+    display_name: '&5Taladro de Titanio'
+    item_model: 'astral:taladro_titanio'
+    lore:
+    - '&7Taladro VI'
+    - '&7Velocidad de minado: &6+20'
+    - '&7Área de minado: &63x3'
+    - '&bIndestructible'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Rompe solo el bloque apuntado.'
+    - '&7Tier: 6'
+    - ''
+    - '&cRequiere: Mineria 25'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&5&lÉPICA TALADRO'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_213'
+  'c7':
+    material: NETHERITE_PICKAXE
+    slot: 12
+    amount: 1
+    display_name: '&5Taladro de Jaspe'
+    item_model: 'astral:taladro_jaspe'
+    lore:
+    - '&7Taladro VII'
+    - '&7Velocidad de minado: &6+23'
+    - '&7Área de minado: &63x3'
+    - '&bIndestructible'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Rompe solo el bloque apuntado.'
+    - '&7Tier: 7'
+    - ''
+    - '&cRequiere: Mineria 30'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&5&lÉPICA TALADRO'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_214'
+  'c8':
+    material: NETHERITE_PICKAXE
+    slot: 13
+    amount: 1
+    display_name: '&6Taladro de Gemas'
+    item_model: 'astral:taladro_gemas'
+    lore:
+    - '&7Taladro VIII'
+    - '&7Velocidad de minado: &6+26'
+    - '&7Área de minado: &64x4'
+    - '&bIndestructible'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Rompe solo el bloque apuntado.'
+    - '&7Tier: 8'
+    - ''
+    - '&cRequiere: Mineria 35'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&6&lLEGENDARIA TALADRO'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_215'
+  'c9':
+    material: NETHERITE_PICKAXE
+    slot: 14
+    amount: 1
+    display_name: '&6Taladro Divan'
+    item_model: 'astral:taladro_divan'
+    lore:
+    - '&7Taladro IX'
+    - '&7Velocidad de minado: &6+30'
+    - '&7Área de minado: &64x4'
+    - '&bIndestructible'
+    - ''
+    - '&#5555FFFortuna III'
+    - '&7Más minerales por bloque (hasta x&a4&7).'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Rompe solo el bloque apuntado.'
+    - '&7Tier: 9'
+    - ''
+    - '&cRequiere: Mineria 40'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&6&lLEGENDARIA TALADRO'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_216'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

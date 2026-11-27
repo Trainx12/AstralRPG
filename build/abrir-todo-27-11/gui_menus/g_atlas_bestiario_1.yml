@@ -1,0 +1,146 @@
+menu_title: '&f&#ffe9a8Bestiario 1/7'
+size: 54
+items:
+  'c0':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&bMapache Rabioso'
+    item_model: 'astral:atlas_ui/mobchico_astral_mapache'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_criatura_astral_mapache'
+  'c1':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&bPinguino de Hielo'
+    item_model: 'astral:atlas_ui/mobchico_astral_pinguino'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_criatura_astral_pinguino'
+  'c2':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&bEspantapajaros Maldito'
+    item_model: 'astral:atlas_ui/mobchico_astral_espantapajaros'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_criatura_astral_espantapajaros'
+  'c3':
+    material: PAPER
+    slot: 4
+    amount: 1
+    display_name: '&bGoblin'
+    item_model: 'astral:atlas_ui/mobchico_astral_goblin'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_criatura_astral_goblin'
+  'c4':
+    material: PAPER
+    slot: 5
+    amount: 1
+    display_name: '&bArmored Grub'
+    item_model: 'astral:atlas_ui/mobchico_astral_abejorro'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_criatura_astral_abejorro'
+  'c5':
+    material: PAPER
+    slot: 6
+    amount: 1
+    display_name: '&bArana Amatista'
+    item_model: 'astral:atlas_ui/mobchico_astral_arana'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_criatura_astral_arana'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral_3'
+  'siguiente':
+    material: PAPER
+    slot: 51
+    amount: 1
+    display_name: '&eSiguiente'
+    item_model: 'astral:mascotas/nav_next'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_bestiario_2'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

@@ -1,0 +1,138 @@
+menu_title: '&f&#ffe9a8Libros de hechizos 1/1'
+size: 54
+items:
+  'c0':
+    material: WARPED_FUNGUS_ON_A_STICK
+    slot: 1
+    amount: 1
+    display_name: '&bBook of Conveyance'
+    item_model: 'stellarity:book_of_conveyance'
+    lore:
+    - '&7Lanza una chispa guiada con la mirada;'
+    - '&7te lleva al bloque donde impacta.'
+    - '&7Tier: 4'
+    - '&7Requiere: Hechiceria 26'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_book_of_conveyance'
+  'c1':
+    material: WARPED_FUNGUS_ON_A_STICK
+    slot: 2
+    amount: 1
+    display_name: '&bBook of Jinx'
+    item_model: 'stellarity:book_of_jinx'
+    lore:
+    - '&7Crea una nube que baja temporalmente'
+    - '&7la defensa de los enemigos.'
+    - '&7Tier: 5'
+    - '&7Requiere: Hechiceria 32'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_book_of_jinx'
+  'c2':
+    material: WARPED_FUNGUS_ON_A_STICK
+    slot: 3
+    amount: 1
+    display_name: '&bLibro de la Luz'
+    item_model: 'stellarity:book_of_light'
+    lore:
+    - '&7Invoca un aura que cura y protege a'
+    - '&7los jugadores cercanos.'
+    - '&7Tier: 6'
+    - '&7Requiere: Hechiceria 37'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: WARPED_FUNGUS_ON_A_STICK
+    slot: 4
+    amount: 1
+    display_name: '&bBook of Obstruct'
+    item_model: 'stellarity:book_of_obstruct'
+    lore:
+    - '&7Levanta una pared de shulker para'
+    - '&7cubrir una retirada.'
+    - '&7Tier: 4'
+    - '&7Requiere: Hechiceria 26'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: WARPED_FUNGUS_ON_A_STICK
+    slot: 5
+    amount: 1
+    display_name: '&bBook of Return'
+    item_model: 'stellarity:book_of_return'
+    lore:
+    - '&7Te devuelve a tu punto de reaparicion.'
+    - '&7Tier: 4'
+    - '&7Requiere: Hechiceria 26'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: WARPED_FUNGUS_ON_A_STICK
+    slot: 6
+    amount: 1
+    display_name: '&bLibro de corriente ascendente'
+    item_model: 'stellarity:book_of_updraft'
+    lore:
+    - '&7Te impulsa hacia arriba y permite'
+    - '&7planear brevemente.'
+    - '&7Tier: 4'
+    - '&7Requiere: Hechiceria 26'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_stellarity'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

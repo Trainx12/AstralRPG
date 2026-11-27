@@ -1,0 +1,135 @@
+menu_title: '&f&#ffe9a8Arana de Cristal Vivo'
+size: 54
+items:
+  'retrato':
+    material: PAPER
+    slot: 4
+    amount: 1
+    display_name: '&fArana de Cristal Vivo'
+    item_model: 'astral:atlas_ui/mob_astral_arana_elite'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 19
+    amount: 1
+    display_name: '&#b01c1c&lAgresivo'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: KNOWLEDGE_BOOK
+    slot: 20
+    amount: 1
+    display_name: '&6world'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7minecraft:dripstone_caves,'
+    - '&7minecraft:lush_caves, minecraft:deep_dark,'
+    - '&7minecraft:dark_forest · Cuevas'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: KNOWLEDGE_BOOK
+    slot: 21
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&#30241bVariante elite · Vida base 65 · Daño base'
+    - '&#30241b8.0 (antes del escalado).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: KNOWLEDGE_BOOK
+    slot: 22
+    amount: 1
+    display_name: '&6Drops vanilla'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7string 1-3 0.9; spider_eye 1 0.5;'
+    - '&7amethyst_shard 1-2 0.5; exp 8; exp 30;'
+    - '&7diamond 1 0.15'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: PAPER
+    slot: 23
+    amount: 1
+    display_name: '&#c9a6ffFragmento de Cristal Arcano'
+    item_model: 'astral:fragmento_cristal'
+    lore:
+    - '&72 forman un Cristal Arcano.'
+    - '&8Material de AstralRPG'
+    - ''
+    - '&#30241b1 × Fragmento de Cristal Arcano · 15%'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: PAPER
+    slot: 24
+    amount: 1
+    display_name: '&#b07cffCristal Arcano'
+    item_model: 'astral:cristal_arcano'
+    lore:
+    - '&74 forman un Cristal Refinado.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - ''
+    - '&#30241b1 × Cristal Arcano · 3%'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_bestiario_4'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

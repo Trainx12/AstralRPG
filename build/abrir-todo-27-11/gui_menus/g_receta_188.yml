@@ -1,0 +1,167 @@
+menu_title: '&f&#ffe9a8Arco del Explorador'
+size: 54
+items:
+  'resultado':
+    material: BOW
+    slot: 20
+    amount: 1
+    display_name: '&aArco del Explorador'
+    item_model: 'astral:arco_2'
+    lore:
+    - '&7Arco de Arquero II'
+    - '&7Daño: &c+686'
+    - '&7Velocidad de carga: &f+25%'
+    - '&7Disparo automático: &acada 0,75s'
+    - ''
+    - '&#5555FFPuntería II'
+    - '&7Flechas con el daño del tier &a2&7 (&a+8%&7 extra).'
+    - ''
+    - '&6Habilidad: Disparo automático&e&l  MANTENER CLIC DERECHO'
+    - '&7Dispara solo cada &a0,75&7 s mientras lo mantenés.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 2'
+    - ''
+    - '&cRequiere: Arqueria 14'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&a&lPOCO COMÚN ARCO'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: BOW
+    slot: 14
+    amount: 1
+    display_name: '&f1x Arco del Rastreador'
+    item_model: 'astral:arco_1'
+    lore:
+    - '&7Arco de Arquero I'
+    - '&7Daño: &c+136'
+    - '&7Velocidad de carga: &f+10%'
+    - '&7Disparo automático: &acada 0,9s'
+    - ''
+    - '&#5555FFPuntería I'
+    - '&7Flechas con el daño del tier &a1&7 (&a+0%&7 extra).'
+    - ''
+    - '&6Habilidad: Disparo automático&e&l  MANTENER CLIC DERECHO'
+    - '&7Dispara solo cada &a0,9&7 s mientras lo mantenés.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: Arqueria 8'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&f&lCOMÚN ARCO'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 3
+    display_name: '&f3x Gema Luminica'
+    item_model: 'astral:gema_luminica'
+    lore:
+    - '&7Se encuentra en cofres del Overworld.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&f1x Cristal Arcano Refinado'
+    item_model: 'astral:cristal_refinado'
+    lore:
+    - '&7Crafteos magicos medio-alto.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 188'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 188'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 188'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_arquero_arco'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

@@ -10,7 +10,7 @@ from stellarity_tiers import rows as balance_rows
 
 CATALOG = Path(__file__).with_name('guia_stellarity.json')
 PERMISSION = 'astral.guia.ampliacion'
-PRIVATE_SECTIONS = {'atlas/seccion/crafteos', 'atlas/seccion/stellarity'}
+PRIVATE_SECTIONS = set()
 
 
 def requirements():
@@ -121,11 +121,20 @@ def catalog():
 def extend_source(source):
     """Copia: no modifica la captura compartida ni los datos del llamador."""
     data = json.loads(json.dumps(source))
+    removed = {'atlas/seccion/crafteos', 'guia/drops'}
+    data['index'] = [e for e in data['index'] if e.get('dialog') not in removed]
+    for key in list(data['dialogs']):
+        if key in removed:
+            del data['dialogs'][key]
+        else:
+            d = data['dialogs'][key]
+            if 'actions' in d:
+                d['actions'] = [a for a in d.get('actions', []) if a.get('action', {}).get('dialog', '').removeprefix('astral:') not in removed]
     for e in data['index']:
         if e.get('dialog') == 'atlas/seccion/cocina':
             e['caption'] = 'Comida'
     existing = {e.get('dialog') for e in data['index']}
-    for key, caption in [('crafteos', 'Crafteos'), ('stellarity', 'Stellarity (El End)')]:
+    for key, caption in [('stellarity', 'Stellarity (El End)')]:
         target = 'atlas/seccion/' + key
         if target not in existing:
             data['index'].append(dict(caption=caption, dialog=target))
@@ -179,7 +188,7 @@ def menus(data):
 
     def page(name, caption, content, parent=None, prev=None, next=None, recipe=False):
         bg = 'receta_stellarity' if recipe else 'general'
-        lines = [f'menu_title: {g.q(g.title(g.BG_CHARS[bg], caption))}', 'size: 54'] + requirement('g_atlas_seccion_cocina_publica' if name == 'g_atlas_seccion_cocina' else None) + ['items:']
+        lines = [f'menu_title: {g.q(g.title(g.BG_CHARS[bg], caption))}', 'size: 54', 'items:']
         if recipe:
             pairs = content
         else:
@@ -221,14 +230,13 @@ def menus(data):
              ('DIAMOND_PICKAXE', 'Taladros', 'Abri cada herramienta para consultar sus materiales, niveles y receta.', 'g_atlas_seccion_taladros'),
              ('IRON_AXE', 'Motosierras', 'Consulta las mejoras encadenadas y los materiales exactos.', 'g_atlas_seccion_motosierras'),
              ('END_STONE', 'Stellarity', 'Sus altares y caldero son sistemas propios. No se fabrican con Forjar de Astral.', end)]
-    page(crafteos, 'Crafteos', [(icon(mat, name, [desc]), link(target) if target else []) for mat, name, desc, target in links])
     groups = [('weapons', 'Armas', 'DIAMOND_SWORD'), ('armor', 'Armaduras y alas', 'ELYTRA'),
               ('books', 'Libros de hechizos', 'ENCHANTED_BOOK'), ('tools', 'Herramientas', 'DIAMOND_PICKAXE'),
               ('trinkets', 'Accesorios', 'AMETHYST_SHARD'), ('food', 'Comidas y peces', 'CHORUS_FRUIT'),
               ('potions', 'Pociones', 'POTION'), ('materials', 'Materiales y bloques', 'PURPUR_BLOCK')]
     page(end, 'Stellarity - El End', [
         (icon('END_PORTAL_FRAME', 'Explorar el End', ['Entra por el portal de una fortaleza del survival.', 'En Astral el dragon esta retirado y los accesos exteriores estan abiertos. Explora sin sustituir ni reiniciar el mundo.']), []),
-        (icon('SHIELD', 'Equipo y dificultad', ['Balance Astral por tiers en prueba privada con ByTrainx. Armas, armaduras y requisitos figuran en sus fichas.', 'Alas y vuelo pueden generar avisos de GrimAC; no cambies protecciones para usarlos.']), []),
+        (icon('SHIELD', 'Equipo y dificultad', ['Equipo adaptado a los tiers Astral. Armas, armaduras y requisitos figuran en sus fichas.']), []),
     ] + [(icon(mat, label, ['Objetos, usos y efectos.']), link('g_guia_stellarity_' + key + '_1')) for key, label, mat in groups] + [
         (icon('WITHER_SKELETON_SKULL', 'Jefes y criaturas', ['Apariciones y botin del End.']), link('g_guia_stellarity_jefes')),
         (icon('END_STONE', 'Biomas y estructuras', ['Donde explorar.']), link('g_guia_stellarity_mundo_1')),

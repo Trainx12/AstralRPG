@@ -1,0 +1,208 @@
+menu_title: '&f&#ffe9a8Tunica Kintsugi'
+size: 54
+items:
+  'resultado':
+    material: IRON_CHESTPLATE
+    slot: 20
+    amount: 1
+    display_name: '&6Tunica Kintsugi'
+    item_model: 'astral:invocador_5_chestplate'
+    lore:
+    - '&7Invocador V'
+    - '&7Vida: &c+1.975'
+    - '&7Bonif. de vida: &c-1,25%'
+    - '&7Defensa: &a+180'
+    - '&7Maná: &b+172,5'
+    - '&7Regeneración de maná: &b+3,86/s'
+    - '&7Enfriamiento de hechizos: &c-1,25%'
+    - ''
+    - '&a+30%&7 vida de invocaciones'
+    - '&a+30%&7 dano de invocaciones'
+    - '&7Cada pieza da &a1&7/&a4&7 del bonus'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Mientras tengas invocaciones vivas recibis &a10%&7 menos de dano'
+    - '&7Durabilidad: &f9.000'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 5'
+    - ''
+    - '&cRequiere: Hechiceria 32'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&6&lLEGENDARIA PECHERA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: IRON_CHESTPLATE
+    slot: 14
+    amount: 1
+    display_name: '&f1x Tunica del Medico de la Peste'
+    item_model: 'astral:invocador_3_chestplate'
+    lore:
+    - '&7Invocador III'
+    - '&7Vida: &c+225'
+    - '&7Bonif. de vida: &c-1,25%'
+    - '&7Defensa: &a+72'
+    - '&7Maná: &b+52,5'
+    - '&7Regeneración de maná: &b+1,1/s'
+    - ''
+    - '&a+20%&7 vida de invocaciones'
+    - '&a+20%&7 dano de invocaciones'
+    - '&7Cada pieza da &a1&7/&a4&7 del bonus'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Mientras tengas invocaciones vivas recibis &a10%&7 menos de dano'
+    - '&7Durabilidad: &f4.500'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Hechiceria 20'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA PECHERA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 3
+    display_name: '&f3x Cristal Arcano Refinado'
+    item_model: 'astral:cristal_refinado'
+    lore:
+    - '&7Crafteos magicos medio-alto.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&f1x Corazon de Shulker'
+    item_model: 'astral:corazon_shulker'
+    lore:
+    - '&7Cae de Shulkers.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material3':
+    material: PAPER
+    slot: 23
+    amount: 1
+    display_name: '&f1x Nucleo Astral'
+    item_model: 'astral:nucleo_astral'
+    lore:
+    - '&7Material endgame universal.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material4':
+    material: PAPER
+    slot: 24
+    amount: 1
+    display_name: '&f1x Gema Luminica Perfecta'
+    item_model: 'astral:gema_luminica_perfecta'
+    lore:
+    - '&7Endgame Arquero y Mago.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 306'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 306'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 306'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_invocador_5'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

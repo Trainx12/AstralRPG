@@ -1,0 +1,98 @@
+menu_title: '&f&#ffe9a8Materiales'
+size: 54
+items:
+  'ilustracion':
+    material: PAPER
+    slot: 4
+    amount: 1
+    display_name: '&fMateriales'
+    item_model: 'astral:atlas_ui/ilus_materiales'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 21
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Materiales que se forjan a partir de'
+    - '&7otros.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: PAPER
+    slot: 22
+    amount: 1
+    display_name: '&bPagina 1'
+    item_model: 'astral:netherita_reforzada'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_materiales_1'
+  'c2':
+    material: PAPER
+    slot: 23
+    amount: 1
+    display_name: '&bPagina 2'
+    item_model: 'astral:gema_umbria'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_materiales_2'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

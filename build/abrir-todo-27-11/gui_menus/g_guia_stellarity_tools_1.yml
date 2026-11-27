@@ -1,0 +1,214 @@
+menu_title: '&f&#ffe9a8Herramientas 1/1'
+size: 54
+items:
+  'c0':
+    material: FISHING_ROD
+    slot: 1
+    amount: 1
+    display_name: '&bFisher of Voids'
+    item_model: 'stellarity:fisher_of_voids'
+    lore:
+    - '&7Cana que acorta la espera en la pesca'
+    - '&7del vacio.'
+    - '&7Tier: 4'
+    - '&7Requiere: Combate 25'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: NETHERITE_AXE
+    slot: 2
+    amount: 1
+    display_name: '&bShulker Axe'
+    item_model: 'stellarity:shulker_axe'
+    lore:
+    - '&7Equipo de shulker. El conjunto de'
+    - '&7armadura reduce dano y responde con'
+    - '&7proyectiles.'
+    - '&7Velocidad de ataque: -3 (mainhand).'
+    - '&7Block break speed: +20% (mainhand).'
+    - '&7Velocidad de ataque: +10% (mainhand).'
+    - '&7Objeto especial del autor: figurar en'
+    - '&7el catalogo no garantiza conseguirlo'
+    - '&7en survival.'
+    - '&7Tier: 4'
+    - '&7Dano: 18.452'
+    - '&7Requiere: Combate 25'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_shulker_axe'
+  'c2':
+    material: NETHERITE_HOE
+    slot: 3
+    amount: 1
+    display_name: '&bShulker Hoe'
+    item_model: 'stellarity:shulker_hoe'
+    lore:
+    - '&7Equipo de shulker. El conjunto de'
+    - '&7armadura reduce dano y responde con'
+    - '&7proyectiles.'
+    - '&7Velocidad de ataque: +0 (mainhand).'
+    - '&7Block break speed: +20% (mainhand).'
+    - '&7Velocidad de ataque: +10% (mainhand).'
+    - '&7Objeto especial del autor: figurar en'
+    - '&7el catalogo no garantiza conseguirlo'
+    - '&7en survival.'
+    - '&7Tier: 4'
+    - '&7Requiere: Combate 25'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_shulker_hoe'
+  'c3':
+    material: NETHERITE_PICKAXE
+    slot: 4
+    amount: 1
+    display_name: '&bShulker Pickaxe'
+    item_model: 'stellarity:shulker_pickaxe'
+    lore:
+    - '&7Equipo de shulker. El conjunto de'
+    - '&7armadura reduce dano y responde con'
+    - '&7proyectiles.'
+    - '&7Velocidad de ataque: -2.8 (mainhand).'
+    - '&7Block break speed: +20% (mainhand).'
+    - '&7Velocidad de ataque: +10% (mainhand).'
+    - '&7Objeto especial del autor: figurar en'
+    - '&7el catalogo no garantiza conseguirlo'
+    - '&7en survival.'
+    - '&7Tier: 4'
+    - '&7Requiere: Mineria 16'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_shulker_pickaxe'
+  'c4':
+    material: NETHERITE_SHOVEL
+    slot: 5
+    amount: 1
+    display_name: '&bShulker Shovel'
+    item_model: 'stellarity:shulker_shovel'
+    lore:
+    - '&7Equipo de shulker. El conjunto de'
+    - '&7armadura reduce dano y responde con'
+    - '&7proyectiles.'
+    - '&7Velocidad de ataque: -3 (mainhand).'
+    - '&7Block break speed: +20% (mainhand).'
+    - '&7Velocidad de ataque: +10% (mainhand).'
+    - '&7Objeto especial del autor: figurar en'
+    - '&7el catalogo no garantiza conseguirlo'
+    - '&7en survival.'
+    - '&7Tier: 4'
+    - '&7Requiere: Mineria 16'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_shulker_shovel'
+  'c5':
+    material: NETHERITE_SPEAR
+    slot: 6
+    amount: 1
+    display_name: '&bShulker Spear'
+    item_model: 'stellarity:shulker_spear'
+    lore:
+    - '&7Equipo de shulker. El conjunto de'
+    - '&7armadura reduce dano y responde con'
+    - '&7proyectiles.'
+    - '&7Velocidad de ataque: -3.13 (mainhand).'
+    - '&7Velocidad de ataque: +10% (mainhand).'
+    - '&7Objeto especial del autor: figurar en'
+    - '&7el catalogo no garantiza conseguirlo'
+    - '&7en survival.'
+    - '&7Tier: 4'
+    - '&7Dano: 11.250'
+    - '&7Requiere: Combate 25'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_shulker_spear'
+  'c6':
+    material: NETHERITE_SWORD
+    slot: 7
+    amount: 1
+    display_name: '&bShulker Sword'
+    item_model: 'stellarity:shulker_sword'
+    lore:
+    - '&7Equipo de shulker. El conjunto de'
+    - '&7armadura reduce dano y responde con'
+    - '&7proyectiles.'
+    - '&7Velocidad de ataque: -2.4 (mainhand).'
+    - '&7Block break speed: +20% (mainhand).'
+    - '&7Velocidad de ataque: +10% (mainhand).'
+    - '&7Objeto especial del autor: figurar en'
+    - '&7el catalogo no garantiza conseguirlo'
+    - '&7en survival.'
+    - '&7Tier: 4'
+    - '&7Dano: 12.500'
+    - '&7Requiere: Combate 25'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_shulker_sword'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_stellarity'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

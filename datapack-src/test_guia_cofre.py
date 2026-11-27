@@ -45,15 +45,17 @@ class GuiaCofreTest(unittest.TestCase):
             if 'file' in p:
                 self.assertIn('assets/astral/textures/' + p['file'].split(':')[1], files)
 
-    def test_ampliacion_protegida_y_recetas_sin_forja_astral(self):
-        from guia_ampliacion import catalog, PERMISSION
+    def test_ampliacion_publica_y_recetas_sin_forja_astral(self):
+        from guia_ampliacion import catalog
         from guia_cofre import INGREDIENTS, OUTPUT, FORGE, text_width, SHORT
-        for key in ('cocina', 'crafteos', 'stellarity'):
+        for key in ('cocina', 'stellarity'):
             name = 'g_atlas_seccion_' + key
             self.assertIn(name, self.menus)
             self.assertLessEqual(text_width(SHORT[key][0]), 53)
-            req = self.menus[name]['open_requirement']['requirements']['prueba']
-            self.assertEqual(req['permission'], PERMISSION)
+        for name, menu in self.menus.items():
+            self.assertNotIn('open_requirement', menu, name)
+            for item in menu['items'].values():
+                self.assertNotIn('view_requirement', item, name)
         for recipe in catalog()['recipes']:
             menu = self.menus['g_guia_stellarity_r_' + recipe['id']]
             self.assertIn(BG_CHARS['receta_stellarity'][0], menu['menu_title'])
@@ -80,49 +82,16 @@ class GuiaCofreTest(unittest.TestCase):
         for text in ('sin confirmar', 'cuando se habilite', 'Solo ByTrainx', '20%', 'preparada'):
             self.assertNotIn(text, lore(comida) + lore(cnk))
 
-    def test_cocina_denegada_abre_publica_original(self):
-        import subprocess
-        original = subprocess.check_output(['git', 'show', '52a04a3:build/menus/DeluxeMenus/gui_menus/g_atlas_seccion_cocina.yml'], cwd=ROOT.parent)
-        public = self.menus['g_atlas_seccion_cocina_publica']
-        self.assertEqual(public, yaml.safe_load(original))
-        self.assertNotIn('open_requirement', public)
-        commands = self.menus['g_atlas_seccion_cocina']['open_requirement']['deny_commands']
-        self.assertEqual(commands, ['[openguimenu] g_atlas_seccion_cocina_publica'])
-        self.assertIn('[openguimenu] guia_astral', public['items']['volver']['click_commands'])
-        for name in ('g_atlas_seccion_crafteos', 'g_atlas_seccion_stellarity', 'g_guia_comida_cnk'):
-            self.assertTrue(self.menus[name]['open_requirement']['deny_commands'][0].startswith('[message]'))
-
-    def test_indice_privado_exige_permiso_y_nombre(self):
-        from guia_ampliacion import requirements
-        expected = requirements()
-        count = 0
-        for menu_name in ('guia_astral', 'guia_astral_3'):
-            for item in self.menus[menu_name]['items'].values():
-                commands = item.get('click_commands', [])
-                if any(cmd in commands for cmd in ('[openguimenu] g_atlas_seccion_crafteos', '[openguimenu] g_atlas_seccion_stellarity')):
-                    self.assertEqual(item['view_requirement']['requirements'], expected)
-                    self.assertNotIn('minimum_requirements', item['view_requirement'])
-                    count += 1
-        self.assertEqual(count, 8)
-        gate = self.menus['guia_astral_3']['open_requirement']
-        self.assertEqual(gate['requirements'], expected)
-        self.assertEqual(gate['deny_commands'], ['[openguimenu] guia_astral_3_publica'])
-        for name, permission, allowed in [('ByTrainx', True, True), ('ByTrainx', False, False), ('Jugador', True, False), ('Jugador', False, False)]:
-            self.assertEqual(permission and name == expected['dueno']['output'], allowed)
-
-    def test_indice_publico_conserva_botones_y_huecos_originales(self):
-        import subprocess
-        from guia_cofre import PUBLIC_INDEX_CHARS
-        for name in ('guia_astral', 'guia_astral_2', 'guia_astral_3'):
-            original = yaml.safe_load(subprocess.check_output(['git', 'show', '52a04a3:build/menus/DeluxeMenus/gui_menus/' + name + '.yml'], cwd=ROOT.parent))
-            public = self.menus[name + '_publica' if name == 'guia_astral_3' else name]
-            self.assertNotIn('open_requirement', public)
-            for item in original['items'].values():
-                if item.get('display_name') == '&bCocina (Crop & Kettle)':
-                    item['display_name'] = '&bComida'
-            self.assertEqual(public['items'], original['items'], name)
-            if name == 'guia_astral_3':
-                self.assertIn(PUBLIC_INDEX_CHARS[0], public['menu_title'])
+    def test_crafteos_y_drops_retirados_sin_enlaces_rotos(self):
+        import re as _re
+        for name in ('g_atlas_seccion_crafteos', 'g_guia_drops', 'guia_astral_3_publica', 'g_atlas_seccion_cocina_publica'):
+            self.assertNotIn(name, self.menus)
+        for name, menu in self.menus.items():
+            for item in menu['items'].values():
+                for cmd in item.get('click_commands', []):
+                    m = _re.match(r'\[openguimenu\] (\S+)', cmd)
+                    if m and m.group(1).startswith(('g_', 'guia_astral')):
+                        self.assertIn(m.group(1), self.menus, (name, cmd))
 
     def test_old_guide_removed_and_no_esc_buttons(self):
         with zipfile.ZipFile(DATAPACK) as z:

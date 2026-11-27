@@ -1,0 +1,147 @@
+menu_title: '&f&#ffe9a8Sandalias del Aprendiz'
+size: 54
+items:
+  'resultado':
+    material: LEATHER_BOOTS
+    slot: 20
+    amount: 1
+    display_name: '&fSandalias del Aprendiz'
+    item_model: 'astral:mago_1_boots'
+    lore:
+    - '&7Mago I'
+    - '&7Vida: &c+50'
+    - '&7Defensa: &a+7'
+    - '&7Maná: &b+25'
+    - '&7Regeneración de maná: &b+0,5/s'
+    - '&7Daño mágico: &d+1,25%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&7Escudo arcano: &a+2&7 de armadura.'
+    - '&6Bono de set (4/4)'
+    - '&7Canalizacion: al matar, Regeneracion I y Velocidad I por &a4&7 s.'
+    - '&7Durabilidad: &f2.550'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&f&lCOMÚN BOTAS'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: LEATHER_BOOTS
+    slot: 14
+    amount: 1
+    display_name: '&f1x Botas de cuero'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 3
+    display_name: '&f3x Cuero Tratado'
+    item_model: 'astral:cuero_tratado'
+    lore:
+    - '&7Base de todas las armaduras.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 2
+    display_name: '&f2x Fragmento de Cristal Arcano'
+    item_model: 'astral:fragmento_cristal'
+    lore:
+    - '&72 forman un Cristal Arcano.'
+    - '&8Material de AstralRPG'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 59'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 59'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 59'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mago_1'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

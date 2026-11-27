@@ -1,0 +1,194 @@
+menu_title: '&f&#ffe9a8Yelmo del Dios de la Guerra'
+size: 54
+items:
+  'resultado':
+    material: NETHERITE_HELMET
+    slot: 20
+    amount: 1
+    display_name: '&6Yelmo del Dios de la Guerra'
+    item_model: 'astral:berserker_5_helmet'
+    lore:
+    - '&7Berserker V'
+    - '&7Vida: &c+1.975'
+    - '&7Bonif. de vida: &c+12,5%'
+    - '&7Defensa: &a+64'
+    - '&7Daño: &c+10%'
+    - '&7Tiempo en llamas: &c-7,5%'
+    - '&7Resistencia al empuje: &a+25%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f7.200'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 5'
+    - ''
+    - '&cRequiere: Combate 30'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&6&lLEGENDARIA CASCO'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: DIAMOND_HELMET
+    slot: 14
+    amount: 1
+    display_name: '&f1x Yelmo del Coloso'
+    item_model: 'astral:berserker_4_helmet'
+    lore:
+    - '&7Berserker IV'
+    - '&7Vida: &c+725'
+    - '&7Bonif. de vida: &c+8,75%'
+    - '&7Defensa: &a+46'
+    - '&7Daño: &c+6,25%'
+    - '&7Tiempo en llamas: &c-7,5%'
+    - '&7Resistencia al empuje: &a+25%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f5.200'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: Combate 25'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&5&lÉPICA CASCO'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 3
+    display_name: '&f3x Netherita Reforzada'
+    item_model: 'astral:netherita_reforzada'
+    lore:
+    - '&7Metal de nivel intermedio-alto.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&f1x Nucleo de Furia Pura'
+    item_model: 'astral:nucleo_furia_pura'
+    lore:
+    - '&7Endgame Berserker.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material3':
+    material: PAPER
+    slot: 23
+    amount: 1
+    display_name: '&f1x Gema Umbria Perfecta'
+    item_model: 'astral:gema_umbria_perfecta'
+    lore:
+    - '&7Endgame Berserker y Mago.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 32'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 32'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 32'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_berserker_5'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

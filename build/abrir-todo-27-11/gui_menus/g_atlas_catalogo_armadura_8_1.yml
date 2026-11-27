@@ -1,0 +1,192 @@
+menu_title: '&f&#ffe9a8Armaduras VIII'
+size: 54
+items:
+  'c0':
+    material: NETHERITE_HELMET
+    slot: 2
+    amount: 1
+    display_name: '&bYelmo de la Embestida'
+    item_model: 'astral:berserker_8_helmet'
+    lore:
+    - '&7Berserker VIII'
+    - '&7Vida: &c+9.975'
+    - '&7Bonif. de vida: &c+20%'
+    - '&7Defensa: &a+128'
+    - '&7Daño: &c+16%'
+    - '&7Tiempo en llamas: &c-12,5%'
+    - '&7Resistencia al empuje: &a+25%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f15.600'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 8'
+    - ''
+    - '&cRequiere: Combate 45'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&b&lDIVINA CASCO'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_44'
+  'c1':
+    material: NETHERITE_CHESTPLATE
+    slot: 3
+    amount: 1
+    display_name: '&bCoraza de la Embestida'
+    item_model: 'astral:berserker_8_chestplate'
+    lore:
+    - '&7Berserker VIII'
+    - '&7Vida: &c+9.975'
+    - '&7Bonif. de vida: &c+20%'
+    - '&7Defensa: &a+340'
+    - '&7Daño: &c+16%'
+    - '&7Tiempo en llamas: &c-12,5%'
+    - '&7Resistencia al empuje: &a+25%'
+    - ''
+    - '&#5555FFRobo de vida IV'
+    - '&a30%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&#5555FFFuria II'
+    - '&a+5%&7 de daño por cada &a10%&7 de vida perdida (hasta &a+45%&7).'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f19.500'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 8'
+    - ''
+    - '&cRequiere: Combate 45'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&b&lDIVINA PECHERA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_45'
+  'c2':
+    material: NETHERITE_LEGGINGS
+    slot: 4
+    amount: 1
+    display_name: '&bGrebas de la Embestida'
+    item_model: 'astral:berserker_8_leggings'
+    lore:
+    - '&7Berserker VIII'
+    - '&7Vida: &c+9.975'
+    - '&7Bonif. de vida: &c+20%'
+    - '&7Defensa: &a+255'
+    - '&7Daño: &c+16%'
+    - '&7Tiempo en llamas: &c-12,5%'
+    - '&7Resistencia al empuje: &a+25%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f18.525'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 8'
+    - ''
+    - '&cRequiere: Combate 45'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&b&lDIVINA GREBAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_46'
+  'c3':
+    material: NETHERITE_BOOTS
+    slot: 5
+    amount: 1
+    display_name: '&bBotas de la Embestida'
+    item_model: 'astral:berserker_8_boots'
+    lore:
+    - '&7Berserker VIII'
+    - '&7Vida: &c+9.975'
+    - '&7Bonif. de vida: &c+20%'
+    - '&7Defensa: &a+128'
+    - '&7Daño: &c+16%'
+    - '&7Tiempo en llamas: &c-12,5%'
+    - '&7Resistencia al empuje: &a+25%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f16.575'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 8'
+    - ''
+    - '&cRequiere: Combate 45'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&b&lDIVINA BOTAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_47'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_berserker'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

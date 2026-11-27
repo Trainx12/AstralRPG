@@ -1,0 +1,182 @@
+menu_title: '&f&#ffe9a8Guadana de Escarcha'
+size: 54
+items:
+  'resultado':
+    material: NETHERITE_HOE
+    slot: 20
+    amount: 1
+    display_name: '&bGuadana de Escarcha'
+    item_model: 'astral:guadana_9'
+    lore:
+    - '&7Guadana del Segador IX'
+    - '&7Daño: &c+38.548.520'
+    - '&7Velocidad de ataque: &f1,3'
+    - ''
+    - '&#5555FFRobo de vida IV, Maldición I, Ejecución Astral I'
+    - '&#5555FFFilo Arcano IX'
+    - ''
+    - '&7Tajo en area: &a60%&7 del golpe a hasta &a8&7 mobs adelante'
+    - '&7Cada baja te cura &a0,5%&7 de vida'
+    - '&7Matar mobs reinicia el enfriamiento de hechizos'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 9'
+    - ''
+    - '&cRequiere: Combate 52'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&b&lDIVINA GUADAÑA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: NETHERITE_HOE
+    slot: 14
+    amount: 1
+    display_name: '&f1x Guadana de Piedra Antigua'
+    item_model: 'astral:guadana_8'
+    lore:
+    - '&7Guadana del Segador VIII'
+    - '&7Daño: &c+7.595.486'
+    - '&7Velocidad de ataque: &f1,3'
+    - ''
+    - '&#5555FFRobo de vida III, Maldición I, Ejecución Astral I'
+    - '&#5555FFFilo Arcano VIII'
+    - ''
+    - '&7Tajo en area: &a60%&7 del golpe a hasta &a8&7 mobs adelante'
+    - '&7Cada baja te cura &a0,5%&7 de vida'
+    - '&7Matar mobs reinicia el enfriamiento de hechizos'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 8'
+    - ''
+    - '&cRequiere: Combate 47'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&b&lDIVINA GUADAÑA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 4
+    display_name: '&f4x Esencia del Vacio'
+    item_model: 'astral:esencia_vacio'
+    lore:
+    - '&7Cae de mobs tier 9 o mas.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 2
+    display_name: '&f2x Nucleo de Supernova'
+    item_model: 'astral:nucleo_supernova'
+    lore:
+    - '&7Cae de mobs tier 8 o mas.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material3':
+    material: PAPER
+    slot: 23
+    amount: 3
+    display_name: '&f3x Gema Umbria Perfecta'
+    item_model: 'astral:gema_umbria_perfecta'
+    lore:
+    - '&7Endgame Berserker y Mago.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 185'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 185'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 185'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_segador_arma'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

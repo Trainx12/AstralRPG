@@ -1,0 +1,159 @@
+menu_title: '&f&#ffe9a8Lanza Carmesi'
+size: 54
+items:
+  'resultado':
+    material: DIAMOND_SPEAR
+    slot: 20
+    amount: 1
+    display_name: '&#5555FFLanza Carmesi'
+    item_model: 'astral:lanza_3'
+    lore:
+    - '&7Lanza de Combate III'
+    - '&7Daño: &c+2.250'
+    - '&7Velocidad de ataque: &f1,1'
+    - ''
+    - '&#5555FFRobo de vida I'
+    - '&a10%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 20'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA LANZA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: IRON_SPEAR
+    slot: 14
+    amount: 1
+    display_name: '&f1x Lanza del Centinela'
+    item_model: 'astral:lanza_2'
+    lore:
+    - '&7Lanza de Combate II'
+    - '&7Daño: &c+450'
+    - '&7Velocidad de ataque: &f1,1'
+    - ''
+    - '&#5555FFRobo de vida I'
+    - '&a10%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 2'
+    - ''
+    - '&cRequiere: Combate 15'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&a&lPOCO COMÚN LANZA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 1
+    display_name: '&f1x Alma Corrupta'
+    item_model: 'astral:alma_corrupta'
+    lore:
+    - '&7Cae de Campeones y Pesadillas.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&f1x Netherita Reforzada'
+    item_model: 'astral:netherita_reforzada'
+    lore:
+    - '&7Metal de nivel intermedio-alto.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 236'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 236'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 236'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_lanzas'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

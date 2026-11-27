@@ -1,0 +1,191 @@
+menu_title: '&f&#ffe9a8Motosierras (Tala)'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 1
+    amount: 1
+    display_name: '&7Elegi que queres forjar.'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: NETHERITE_AXE
+    slot: 2
+    amount: 1
+    display_name: '&fMotosierra Basica'
+    item_model: 'astral:motosierra_basica'
+    lore:
+    - '&7Motosierra I'
+    - '&7Velocidad de tala: &6+12'
+    - '&7Tala por corte: &61 tronco'
+    - '&7Durabilidad: &f2.600'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Corta un solo bloque.'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: Tala 5'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&f&lCOMÚN MOTOSIERRA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_217'
+  'c2':
+    material: NETHERITE_AXE
+    slot: 3
+    amount: 1
+    display_name: '&aMotosierra Avanzada'
+    item_model: 'astral:motosierra_avanzada'
+    lore:
+    - '&7Motosierra II'
+    - '&7Velocidad de tala: &6+14'
+    - '&7Tala por corte: &62 troncos'
+    - '&7Durabilidad: &f3.600'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Corta un solo bloque.'
+    - '&7Tier: 2'
+    - ''
+    - '&cRequiere: Tala 10'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&a&lPOCO COMÚN MOTOSIERRA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_218'
+  'c3':
+    material: NETHERITE_AXE
+    slot: 4
+    amount: 1
+    display_name: '&#5555FFMotosierra Industrial'
+    item_model: 'astral:motosierra_industrial'
+    lore:
+    - '&7Motosierra III'
+    - '&7Velocidad de tala: &6+17'
+    - '&7Tala por corte: &63 troncos'
+    - '&bIndestructible'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Corta un solo bloque.'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Tala 16'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA MOTOSIERRA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_219'
+  'c4':
+    material: NETHERITE_AXE
+    slot: 5
+    amount: 1
+    display_name: '&5Motosierra Infernal'
+    item_model: 'astral:motosierra_infernal'
+    lore:
+    - '&7Motosierra IV'
+    - '&7Velocidad de tala: &6+21'
+    - '&7Tala por corte: &66 troncos'
+    - '&bIndestructible'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Corta un solo bloque.'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: Tala 24'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&5&lÉPICA MOTOSIERRA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_220'
+  'c5':
+    material: NETHERITE_AXE
+    slot: 6
+    amount: 1
+    display_name: '&6Motosierra Astral'
+    item_model: 'astral:motosierra_astral'
+    lore:
+    - '&7Motosierra V'
+    - '&7Velocidad de tala: &6+26'
+    - '&7Tala por corte: &6el árbol entero'
+    - '&bIndestructible'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Corta un solo bloque.'
+    - '&7Tier: 5'
+    - ''
+    - '&cRequiere: Tala 32'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&6&lLEGENDARIA MOTOSIERRA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_221'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral_2'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

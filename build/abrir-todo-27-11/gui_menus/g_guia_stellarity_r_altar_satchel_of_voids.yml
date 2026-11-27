@@ -1,0 +1,151 @@
+menu_title: '&f&#ffe9a8Satchel of Voids'
+size: 54
+items:
+  'material0':
+    material: WARPED_FUNGUS_ON_A_STICK
+    slot: 20
+    amount: 1
+    display_name: '&bSatchel of Voids'
+    item_model: 'stellarity:satchel_of_voids'
+    lore:
+    - '&7Dibuja un acceso al Altar Maldito. En'
+    - '&7un marco vertical permite un altar'
+    - '&7permanente.'
+    - '&7Tier: 5'
+    - '&7Requiere: Combate 30'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: BUNDLE
+    slot: 14
+    amount: 1
+    display_name: '&bBundle'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: GLOWSTONE_DUST
+    slot: 15
+    amount: 64
+    display_name: '&bStarlight Soot'
+    item_model: 'stellarity:starlight_soot'
+    lore:
+    - '&fCantidad exacta: 64'
+    - '&7Material para transmutacion en agua y'
+    - '&7ofrenda para Empress of Light.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material3':
+    material: NETHER_STAR
+    slot: 16
+    amount: 2
+    display_name: '&bNether star'
+    lore:
+    - '&fCantidad exacta: 2'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material4':
+    material: AMETHYST_SHARD
+    slot: 23
+    amount: 64
+    display_name: '&bFragmento de Enderita'
+    item_model: 'stellarity:enderite_shard'
+    lore:
+    - '&fCantidad exacta: 64'
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material5':
+    material: NETHERITE_INGOT
+    slot: 24
+    amount: 4
+    display_name: '&bLingote de netherite'
+    lore:
+    - '&fCantidad exacta: 4'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material6':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: ' '
+    item_model: 'astral:viajes/blank'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material7':
+    material: KNOWLEDGE_BOOK
+    slot: 40
+    amount: 1
+    display_name: '&bAltar Maldito'
+    lore:
+    - '&7Altar Maldito'
+    - '&7Tira los ingredientes juntos sobre el'
+    - '&7altar activado. Sin forma. No usa la'
+    - '&7Forja Astral.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material8':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: ' '
+    item_model: 'astral:viajes/blank'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_stellarity_recetas_3'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

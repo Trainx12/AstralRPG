@@ -1,0 +1,188 @@
+menu_title: '&f&#ffe9a8Arco Enredadera del Eco'
+size: 54
+items:
+  'resultado':
+    material: BOW
+    slot: 20
+    amount: 1
+    display_name: '&bArco Enredadera del Eco'
+    item_model: 'astral:arco_8'
+    lore:
+    - '&7Arco de Arquero VIII'
+    - '&7Daño: &c+7.519.531'
+    - '&7Velocidad de carga: &f+95%'
+    - '&7Disparo automático: &acada 0,25s'
+    - ''
+    - '&#5555FFPuntería VIII'
+    - '&7Flechas con el daño del tier &a8&7 (&a+54%&7 extra).'
+    - ''
+    - '&7Disparo casi instantaneo'
+    - '&7No gasta flechas normales'
+    - ''
+    - '&6Habilidad: Disparo automático&e&l  MANTENER CLIC DERECHO'
+    - '&7Dispara solo cada &a0,25&7 s mientras lo mantenés.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 8'
+    - ''
+    - '&cRequiere: Arqueria 45'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&b&lDIVINA ARCO'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: BOW
+    slot: 14
+    amount: 1
+    display_name: '&f1x Arco del Vendaval Dorado'
+    item_model: 'astral:arco_7'
+    lore:
+    - '&7Arco de Arquero VII'
+    - '&7Daño: &c+1.509.651'
+    - '&7Velocidad de carga: &f+95%'
+    - '&7Disparo automático: &acada 0,3s'
+    - ''
+    - '&#5555FFPuntería VII'
+    - '&7Flechas con el daño del tier &a7&7 (&a+46%&7 extra).'
+    - ''
+    - '&7Disparo casi instantaneo'
+    - '&7No gasta flechas normales'
+    - ''
+    - '&6Habilidad: Disparo automático&e&l  MANTENER CLIC DERECHO'
+    - '&7Dispara solo cada &a0,3&7 s mientras lo mantenés.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 7'
+    - ''
+    - '&cRequiere: Arqueria 40'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#ff5fd2&lMÍTICA ARCO'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 4
+    display_name: '&f4x Nucleo de Supernova'
+    item_model: 'astral:nucleo_supernova'
+    lore:
+    - '&7Cae de mobs tier 8 o mas.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 2
+    display_name: '&f2x Esquirla de Eclipse'
+    item_model: 'astral:esquirla_eclipse'
+    lore:
+    - '&7Cae de mobs tier 7 o mas.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material3':
+    material: PAPER
+    slot: 23
+    amount: 2
+    display_name: '&f2x Gema Luminica Perfecta'
+    item_model: 'astral:gema_luminica_perfecta'
+    lore:
+    - '&7Endgame Arquero y Mago.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 194'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 194'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 194'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_arquero_arco'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

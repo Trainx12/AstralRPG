@@ -1,0 +1,220 @@
+menu_title: '&f&#ffe9a8Manto del Redentor'
+size: 54
+items:
+  'resultado':
+    material: IRON_CHESTPLATE
+    slot: 20
+    amount: 1
+    display_name: '&#b388ffManto del Redentor'
+    item_model: 'astral:segador_10_chestplate'
+    lore:
+    - '&7Segador X'
+    - '&7Vida: &c+24.975'
+    - '&7Bonif. de vida: &c+12,5%'
+    - '&7Defensa: &a+600'
+    - ''
+    - '&a+50%&7 dano con guadana'
+    - '&a+1,5&7 bloques de barrido'
+    - '&a+75%&7 dano del tajo en area'
+    - '&a+40%&7 curacion al matar'
+    - '&7Cada pieza da &a1&7/&a4&7 del bonus'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7El tajo en area pega &a80%&7 del golpe en vez de &a60%'
+    - '&7Durabilidad: &f30.000'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 10'
+    - ''
+    - '&cRequiere: Combate 57'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#b388ff&lASTRAL PECHERA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: IRON_CHESTPLATE
+    slot: 14
+    amount: 1
+    display_name: '&f1x Manto del Verdugo Dorado'
+    item_model: 'astral:segador_7_chestplate'
+    lore:
+    - '&7Segador VII'
+    - '&7Vida: &c+6.225'
+    - '&7Bonif. de vida: &c+8,75%'
+    - '&7Defensa: &a+320'
+    - ''
+    - '&a+35%&7 dano con guadana'
+    - '&a+1,0&7 bloques de barrido'
+    - '&a+50%&7 dano del tajo en area'
+    - '&a+30%&7 curacion al matar'
+    - '&7Cada pieza da &a1&7/&a4&7 del bonus'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7El tajo en area pega &a80%&7 del golpe en vez de &a60%'
+    - '&7Durabilidad: &f15.500'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 7'
+    - ''
+    - '&cRequiere: Combate 42'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#ff5fd2&lMÍTICA PECHERA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 6
+    display_name: '&f6x Nucleo de Supernova'
+    item_model: 'astral:nucleo_supernova'
+    lore:
+    - '&7Cae de mobs tier 8 o mas.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 2
+    display_name: '&f2x Esquirla de Eclipse'
+    item_model: 'astral:esquirla_eclipse'
+    lore:
+    - '&7Cae de mobs tier 7 o mas.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material3':
+    material: PAPER
+    slot: 23
+    amount: 7
+    display_name: '&f7x Nucleo de Furia Pura'
+    item_model: 'astral:nucleo_furia_pura'
+    lore:
+    - '&7Endgame Berserker.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material4':
+    material: PAPER
+    slot: 24
+    amount: 6
+    display_name: '&f6x Esencia del Vacio'
+    item_model: 'astral:esencia_vacio'
+    lore:
+    - '&7Cae de mobs tier 9 o mas.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material5':
+    material: PAPER
+    slot: 25
+    amount: 4
+    display_name: '&f4x Corazon del Fin'
+    item_model: 'astral:corazon_fin'
+    lore:
+    - '&7Cae de mobs tier 10.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 294'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 294'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 294'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_segador_10'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

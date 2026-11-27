@@ -1,0 +1,220 @@
+menu_title: '&f&#ffe9a8Manto de la Guardia de la Niebla'
+size: 54
+items:
+  'resultado':
+    material: IRON_CHESTPLATE
+    slot: 20
+    amount: 1
+    display_name: '&#5555FFManto de la Guardia de la Niebla'
+    item_model: 'astral:segador_3_chestplate'
+    lore:
+    - '&7Segador III'
+    - '&7Vida: &c+225'
+    - '&7Bonif. de vida: &c+3,75%'
+    - '&7Defensa: &a+80'
+    - ''
+    - '&a+15%&7 dano con guadana'
+    - '&a+0,5&7 bloques de barrido'
+    - '&a+20%&7 dano del tajo en area'
+    - '&a+10%&7 curacion al matar'
+    - '&7Cada pieza da &a1&7/&a4&7 del bonus'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7El tajo en area pega &a80%&7 del golpe en vez de &a60%'
+    - '&7Durabilidad: &f4.500'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 20'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#5555FF&lRARA PECHERA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: IRON_CHESTPLATE
+    slot: 14
+    amount: 1
+    display_name: '&f1x Manto del Picaro'
+    item_model: 'astral:segador_1_chestplate'
+    lore:
+    - '&7Segador I'
+    - '&7Vida: &c+50'
+    - '&7Bonif. de vida: &c+1,25%'
+    - '&7Defensa: &a+20'
+    - ''
+    - '&a+5%&7 dano con guadana'
+    - '&a+0,25&7 bloques de barrido'
+    - '&a+10%&7 dano del tajo en area'
+    - '&a+0%&7 curacion al matar'
+    - '&7Cada pieza da &a1&7/&a4&7 del bonus'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7El tajo en area pega &a80%&7 del golpe en vez de &a60%'
+    - '&7Durabilidad: &f3.000'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: Combate 4'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&f&lCOMÚN PECHERA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 7
+    display_name: '&f7x Acero Sombrio'
+    item_model: 'astral:shadowsteel'
+    lore:
+    - '&7Equipamiento de Berserker.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&f1x Netherita Fundida'
+    item_model: 'astral:netherita_fundida'
+    lore:
+    - '&7Netherita fundida en un horno.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material3':
+    material: PAPER
+    slot: 23
+    amount: 1
+    display_name: '&f1x Esencia del Nether'
+    item_model: 'astral:esencia_nether'
+    lore:
+    - '&7Cae de Wither Skeletons.'
+    - '&8Material de AstralRPG'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material4':
+    material: PAPER
+    slot: 24
+    amount: 1
+    display_name: '&f1x Netherita Reforzada'
+    item_model: 'astral:netherita_reforzada'
+    lore:
+    - '&7Metal de nivel intermedio-alto.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material5':
+    material: PAPER
+    slot: 25
+    amount: 1
+    display_name: '&f1x Gema Umbria'
+    item_model: 'astral:gema_umbria'
+    lore:
+    - '&7Armas oscuras y mejoras.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 282'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 282'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 282'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_segador_3'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

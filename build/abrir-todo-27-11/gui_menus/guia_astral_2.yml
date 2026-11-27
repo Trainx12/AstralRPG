@@ -1,0 +1,667 @@
+menu_title: '&f'
+size: 54
+items:
+  'b0_0':
+    material: BOW
+    slot: 0
+    amount: 1
+    display_name: '&bArquero'
+    item_model: 'astral:arco_1'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_arquero'
+  'b0_1':
+    material: PAPER
+    slot: 1
+    amount: 1
+    display_name: '&bArquero'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_arquero'
+  'b0_2':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&bArquero'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_arquero'
+  'b0_3':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&bArquero'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_arquero'
+  'b1_0':
+    material: IRON_HOE
+    slot: 5
+    amount: 1
+    display_name: '&bSegador'
+    item_model: 'astral:guadana_1'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_segador'
+  'b1_1':
+    material: PAPER
+    slot: 6
+    amount: 1
+    display_name: '&bSegador'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_segador'
+  'b1_2':
+    material: PAPER
+    slot: 7
+    amount: 1
+    display_name: '&bSegador'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_segador'
+  'b1_3':
+    material: PAPER
+    slot: 8
+    amount: 1
+    display_name: '&bSegador'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_segador'
+  'b2_0':
+    material: BOOK
+    slot: 9
+    amount: 1
+    display_name: '&bInvocador'
+    item_model: 'astral:libro_invocador_1'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_invocador'
+  'b2_1':
+    material: PAPER
+    slot: 10
+    amount: 1
+    display_name: '&bInvocador'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_invocador'
+  'b2_2':
+    material: PAPER
+    slot: 11
+    amount: 1
+    display_name: '&bInvocador'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_invocador'
+  'b2_3':
+    material: PAPER
+    slot: 12
+    amount: 1
+    display_name: '&bInvocador'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_invocador'
+  'b3_0':
+    material: IRON_SWORD
+    slot: 14
+    amount: 1
+    display_name: '&bAsesino'
+    item_model: 'astral:cuchillo_1'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_asesino'
+  'b3_1':
+    material: PAPER
+    slot: 15
+    amount: 1
+    display_name: '&bAsesino'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_asesino'
+  'b3_2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&bAsesino'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_asesino'
+  'b3_3':
+    material: PAPER
+    slot: 17
+    amount: 1
+    display_name: '&bAsesino'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_asesino'
+  'b4_0':
+    material: IRON_SPEAR
+    slot: 18
+    amount: 1
+    display_name: '&bLanzas'
+    item_model: 'astral:lanza_1'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_lanzas'
+  'b4_1':
+    material: PAPER
+    slot: 19
+    amount: 1
+    display_name: '&bLanzas'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_lanzas'
+  'b4_2':
+    material: PAPER
+    slot: 20
+    amount: 1
+    display_name: '&bLanzas'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_lanzas'
+  'b4_3':
+    material: PAPER
+    slot: 21
+    amount: 1
+    display_name: '&bLanzas'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_lanzas'
+  'b5_0':
+    material: PAPER
+    slot: 23
+    amount: 1
+    display_name: '&bTalismanes'
+    item_model: 'astral:corazon_fin'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_talismanes'
+  'b5_1':
+    material: PAPER
+    slot: 24
+    amount: 1
+    display_name: '&bTalismanes'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_talismanes'
+  'b5_2':
+    material: PAPER
+    slot: 25
+    amount: 1
+    display_name: '&bTalismanes'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_talismanes'
+  'b5_3':
+    material: PAPER
+    slot: 26
+    amount: 1
+    display_name: '&bTalismanes'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_talismanes'
+  'b6_0':
+    material: CARROT_ON_A_STICK
+    slot: 27
+    amount: 1
+    display_name: '&bEspeciales'
+    item_model: 'astral:saltador'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_especiales'
+  'b6_1':
+    material: PAPER
+    slot: 28
+    amount: 1
+    display_name: '&bEspeciales'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_especiales'
+  'b6_2':
+    material: PAPER
+    slot: 29
+    amount: 1
+    display_name: '&bEspeciales'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_especiales'
+  'b6_3':
+    material: PAPER
+    slot: 30
+    amount: 1
+    display_name: '&bEspeciales'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_especiales'
+  'b7_0':
+    material: NETHERITE_PICKAXE
+    slot: 32
+    amount: 1
+    display_name: '&bTaladros'
+    item_model: 'astral:taladro_diamante'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_taladros'
+  'b7_1':
+    material: PAPER
+    slot: 33
+    amount: 1
+    display_name: '&bTaladros'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_taladros'
+  'b7_2':
+    material: PAPER
+    slot: 34
+    amount: 1
+    display_name: '&bTaladros'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_taladros'
+  'b7_3':
+    material: PAPER
+    slot: 35
+    amount: 1
+    display_name: '&bTaladros'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_taladros'
+  'b8_0':
+    material: NETHERITE_AXE
+    slot: 36
+    amount: 1
+    display_name: '&bMotosierras'
+    item_model: 'astral:motosierra_basica'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_motosierras'
+  'b8_1':
+    material: PAPER
+    slot: 37
+    amount: 1
+    display_name: '&bMotosierras'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_motosierras'
+  'b8_2':
+    material: PAPER
+    slot: 38
+    amount: 1
+    display_name: '&bMotosierras'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_motosierras'
+  'b8_3':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&bMotosierras'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_motosierras'
+  'b9_0':
+    material: DIAMOND_SWORD
+    slot: 41
+    amount: 1
+    display_name: '&bCarnivora III'
+    item_model: 'astral:carnivora_espada'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_carnivora'
+  'b9_1':
+    material: PAPER
+    slot: 42
+    amount: 1
+    display_name: '&bCarnivora III'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_carnivora'
+  'b9_2':
+    material: PAPER
+    slot: 43
+    amount: 1
+    display_name: '&bCarnivora III'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_carnivora'
+  'b9_3':
+    material: PAPER
+    slot: 44
+    amount: 1
+    display_name: '&bCarnivora III'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_carnivora'
+  'anterior':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&ePagina anterior'
+    item_model: 'astral:viajes/blank'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'siguiente':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&eSiguiente pagina'
+    item_model: 'astral:viajes/blank'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral_3'
+  'cerrar_0':
+    material: PAPER
+    slot: 48
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:viajes/blank'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'
+  'cerrar_1':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:viajes/blank'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'
+  'cerrar_2':
+    material: PAPER
+    slot: 50
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:viajes/blank'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

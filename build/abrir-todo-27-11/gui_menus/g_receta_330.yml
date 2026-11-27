@@ -1,0 +1,169 @@
+menu_title: '&f&#ffe9a8Jubon del Asesino de Netherita'
+size: 54
+items:
+  'resultado':
+    material: IRON_CHESTPLATE
+    slot: 20
+    amount: 1
+    display_name: '&#5555FFJubon del Asesino de Netherita'
+    item_model: 'astral:asesino_3_chestplate'
+    lore:
+    - '&7Asesino III'
+    - '&7Vida: &c+225'
+    - '&7Bonif. de vida: &c-2,5%'
+    - '&7Defensa: &a+72'
+    - '&7Prob. crítica: &9+2,5%'
+    - '&7Velocidad: &f+1,75%'
+    - ''
+    - '&a+20%&7 dano critico'
+    - '&7Cada pieza da &a1&7/&a4&7 del bonus'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Despues de matar un mob, el proximo golpe con cuchillo pega doble (x&a1,5&7 a jefes)'
+    - '&7Durabilidad: &f4.500'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 20'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA PECHERA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: IRON_CHESTPLATE
+    slot: 14
+    amount: 1
+    display_name: '&f1x Jubon del Encapuchado Verde'
+    item_model: 'astral:asesino_2_chestplate'
+    lore:
+    - '&7Asesino II'
+    - '&7Vida: &c+112,5'
+    - '&7Bonif. de vida: &c-2,5%'
+    - '&7Defensa: &a+36'
+    - '&7Prob. crítica: &9+1,75%'
+    - '&7Velocidad: &f+1,25%'
+    - ''
+    - '&a+15%&7 dano critico'
+    - '&7Cada pieza da &a1&7/&a4&7 del bonus'
+    - ''
+    - '&6Bono de set (4/4)'
+    - '&7Despues de matar un mob, el proximo golpe con cuchillo pega doble (x&a1,5&7 a jefes)'
+    - '&7Durabilidad: &f3.500'
+    - '&7Tier: 2'
+    - ''
+    - '&cRequiere: Combate 16'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&a&lPOCO COMÚN PECHERA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 3
+    display_name: '&f3x Madera Estelar'
+    item_model: 'astral:madera_estelar'
+    lore:
+    - '&7Madera de los arboles del End.'
+    - '&8Material de AstralRPG'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&f1x Cristal Arcano Refinado'
+    item_model: 'astral:cristal_refinado'
+    lore:
+    - '&7Crafteos magicos medio-alto.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 330'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 330'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 330'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_asesino_3'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

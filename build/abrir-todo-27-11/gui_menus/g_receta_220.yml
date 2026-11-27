@@ -1,0 +1,163 @@
+menu_title: '&f&#ffe9a8Motosierra Infernal'
+size: 54
+items:
+  'resultado':
+    material: NETHERITE_AXE
+    slot: 20
+    amount: 1
+    display_name: '&5Motosierra Infernal'
+    item_model: 'astral:motosierra_infernal'
+    lore:
+    - '&7Motosierra IV'
+    - '&7Velocidad de tala: &6+21'
+    - '&7Tala por corte: &66 troncos'
+    - '&bIndestructible'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Corta un solo bloque.'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: Tala 24'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&5&lÉPICA MOTOSIERRA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: NETHERITE_AXE
+    slot: 14
+    amount: 1
+    display_name: '&f1x Motosierra Industrial'
+    item_model: 'astral:motosierra_industrial'
+    lore:
+    - '&7Motosierra III'
+    - '&7Velocidad de tala: &6+17'
+    - '&7Tala por corte: &63 troncos'
+    - '&bIndestructible'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Corta un solo bloque.'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Tala 16'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA MOTOSIERRA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 3
+    display_name: '&f3x Nucleo de Furia'
+    item_model: 'astral:nucleo_furia'
+    lore:
+    - '&7Cae de Piglin Brutes y Wither Skeletons.'
+    - '&8Material de AstralRPG'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 4
+    display_name: '&f4x Esencia del Nether'
+    item_model: 'astral:esencia_nether'
+    lore:
+    - '&7Cae de Wither Skeletons.'
+    - '&8Material de AstralRPG'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material3':
+    material: NETHERITE_INGOT
+    slot: 23
+    amount: 2
+    display_name: '&f2x Lingote de netherita'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 220'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 220'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 220'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_motosierras'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

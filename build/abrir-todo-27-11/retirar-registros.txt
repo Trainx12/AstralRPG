@@ -1,0 +1,4 @@
+g_atlas_seccion_crafteos
+g_guia_drops
+guia_astral_3_publica
+g_atlas_seccion_cocina_publica

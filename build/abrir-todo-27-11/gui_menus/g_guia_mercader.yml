@@ -1,0 +1,72 @@
+menu_title: '&f&#ffe9a8Goblin Mercader'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 3
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Cada 40-60 minutos visita a alguien en'
+    - '&7Survival durante 5 minutos. Clic derecho'
+    - '&7abre su tienda Astral con stock por'
+    - '&7jugador y visita. Si le pegas, se defiende'
+    - '&7solo de vos y se va.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: KNOWLEDGE_BOOK
+    slot: 4
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Golemcitos en Bosque, Minas y Cumbre:'
+    - '&7grupos de 2-4, con XP embotellada segun su'
+    - '&7tier. En Infinita se juntan los tres cada'
+    - '&7diez tandas de aparicion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

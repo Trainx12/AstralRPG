@@ -1,0 +1,177 @@
+menu_title: '&f&#ffe9a8Tunica del Sabio Astral'
+size: 54
+items:
+  'resultado':
+    material: LEATHER_CHESTPLATE
+    slot: 20
+    amount: 1
+    display_name: '&6Tunica del Sabio Astral'
+    item_model: 'astral:mago_5_chestplate'
+    lore:
+    - '&7Mago V'
+    - '&7Vida: &c+1.975'
+    - '&7Defensa: &a+160'
+    - '&7Maná: &b+287,5'
+    - '&7Regeneración de maná: &b+7,19/s'
+    - '&7Daño mágico: &d+10%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&7Escudo arcano: &a+2&7 de armadura.'
+    - '&6Bono de set (4/4)'
+    - '&7Canalizacion: al matar, Regeneracion I y Velocidad I por &a4&7 s.'
+    - '&7Durabilidad: &f9.000'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 5'
+    - ''
+    - '&cRequiere: Hechiceria 32'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&6&lLEGENDARIA PECHERA'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: LEATHER_CHESTPLATE
+    slot: 14
+    amount: 1
+    display_name: '&f1x Tunica del Archimago'
+    item_model: 'astral:mago_4_chestplate'
+    lore:
+    - '&7Mago IV'
+    - '&7Vida: &c+725'
+    - '&7Defensa: &a+140'
+    - '&7Maná: &b+150'
+    - '&7Regeneración de maná: &b+3,45/s'
+    - '&7Daño mágico: &d+6,25%'
+    - '&7Enfriamiento de hechizos: &c-2,5%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&7Escudo arcano: &a+2&7 de armadura.'
+    - '&6Bono de set (4/4)'
+    - '&7Canalizacion: al matar, Regeneracion I y Velocidad I por &a4&7 s.'
+    - '&7Durabilidad: &f6.500'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: Hechiceria 26'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&5&lÉPICA PECHERA'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 1
+    display_name: '&f1x Nucleo Astral'
+    item_model: 'astral:nucleo_astral'
+    lore:
+    - '&7Material endgame universal.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&f1x Gema Luminica Perfecta'
+    item_model: 'astral:gema_luminica_perfecta'
+    lore:
+    - '&7Endgame Arquero y Mago.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 73'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 73'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 73'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mago_5'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

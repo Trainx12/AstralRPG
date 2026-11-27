@@ -32,7 +32,7 @@ final class AstralMounts implements Listener {
     private final Map<UUID,TextDisplay> labels=new HashMap<>();
     private final Set<UUID> controlledFlying=new HashSet<>();
     // Circuito privado: no se concede a otros OP ni a grupos con wildcard.
-    private boolean enabled(Player p) {return p!=null && p.getName().equalsIgnoreCase("ByTrainx");}
+    private boolean enabled(Player p) {return p!=null;}
     private Player owner(Entity e) {
         String value=e.getPersistentDataContainer().get(ownerKey,PersistentDataType.STRING);
         if(value==null && e instanceof Tameable t && t.getOwner()!=null)return Bukkit.getPlayer(t.getOwner().getUniqueId());

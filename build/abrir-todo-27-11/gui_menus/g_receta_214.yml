@@ -1,0 +1,175 @@
+menu_title: '&f&#ffe9a8Taladro de Jaspe'
+size: 54
+items:
+  'resultado':
+    material: NETHERITE_PICKAXE
+    slot: 20
+    amount: 1
+    display_name: '&5Taladro de Jaspe'
+    item_model: 'astral:taladro_jaspe'
+    lore:
+    - '&7Taladro VII'
+    - '&7Velocidad de minado: &6+23'
+    - '&7Área de minado: &63x3'
+    - '&bIndestructible'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Rompe solo el bloque apuntado.'
+    - '&7Tier: 7'
+    - ''
+    - '&cRequiere: Mineria 30'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&5&lÉPICA TALADRO'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: NETHERITE_PICKAXE
+    slot: 14
+    amount: 1
+    display_name: '&f1x Taladro de Titanio'
+    item_model: 'astral:taladro_titanio'
+    lore:
+    - '&7Taladro VI'
+    - '&7Velocidad de minado: &6+20'
+    - '&7Área de minado: &63x3'
+    - '&bIndestructible'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Rompe solo el bloque apuntado.'
+    - '&7Tier: 6'
+    - ''
+    - '&cRequiere: Mineria 25'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&5&lÉPICA TALADRO'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 2
+    display_name: '&f2x Gema Umbria'
+    item_model: 'astral:gema_umbria'
+    lore:
+    - '&7Armas oscuras y mejoras.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&f1x Nucleo de Furia Pura'
+    item_model: 'astral:nucleo_furia_pura'
+    lore:
+    - '&7Endgame Berserker.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material3':
+    material: PAPER
+    slot: 23
+    amount: 2
+    display_name: '&f2x Alma Corrupta'
+    item_model: 'astral:alma_corrupta'
+    lore:
+    - '&7Cae de Campeones y Pesadillas.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 214'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 214'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 214'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_taladros'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

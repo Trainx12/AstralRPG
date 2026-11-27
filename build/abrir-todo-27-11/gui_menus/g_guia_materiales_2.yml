@@ -1,0 +1,198 @@
+menu_title: '&f&#ffe9a8Forja: Materiales (2/2)'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 1
+    amount: 1
+    display_name: '&7Elegi que queres forjar.'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: PAPER
+    slot: 2
+    amount: 1
+    display_name: '&#7d3cffGema Umbria'
+    item_model: 'astral:gema_umbria'
+    lore:
+    - '&7Armas oscuras y mejoras.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_9'
+  'c2':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&#ff1a1aNucleo de Furia Pura'
+    item_model: 'astral:nucleo_furia_pura'
+    lore:
+    - '&7Endgame Berserker.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_10'
+  'c3':
+    material: PAPER
+    slot: 4
+    amount: 2
+    display_name: '&#a8dcffPolvo Astral'
+    item_model: 'astral:polvo_astral'
+    lore:
+    - '&7Material de refinado astral.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_11'
+  'c4':
+    material: PAPER
+    slot: 5
+    amount: 1
+    display_name: '&#4fd1ffNucleo Astral'
+    item_model: 'astral:nucleo_astral'
+    lore:
+    - '&7Material endgame universal.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_12'
+  'c5':
+    material: PAPER
+    slot: 6
+    amount: 1
+    display_name: '&#bff5e6Nucleo Eolico'
+    item_model: 'astral:nucleo_eolico'
+    lore:
+    - '&7Movilidad y arqueros.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_13'
+  'c6':
+    material: PAPER
+    slot: 7
+    amount: 1
+    display_name: '&#fff3a8Gema Luminica Perfecta'
+    item_model: 'astral:gema_luminica_perfecta'
+    lore:
+    - '&7Endgame Arquero y Mago.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_14'
+  'c7':
+    material: PAPER
+    slot: 13
+    amount: 1
+    display_name: '&#a24bffGema Umbria Perfecta'
+    item_model: 'astral:gema_umbria_perfecta'
+    lore:
+    - '&7Endgame Berserker y Mago.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_15'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_materiales'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

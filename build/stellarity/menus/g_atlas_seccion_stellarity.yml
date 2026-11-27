@@ -1,16 +1,5 @@
 menu_title: '&f&#ffe9a8Stellarity - El End'
 size: 54
-open_requirement:
-  requirements:
-    prueba:
-      type: has permission
-      permission: astral.guia.ampliacion
-    dueno:
-      type: string equals
-      input: '%player_name%'
-      output: 'ByTrainx'
-  deny_commands:
-  - '[message] &eEsta ampliacion esta en prueba con el dueno.'
 items:
   'c0':
     material: END_PORTAL_FRAME
@@ -34,12 +23,9 @@ items:
     amount: 1
     display_name: '&bEquipo y dificultad'
     lore:
-    - '&7Balance Astral por tiers en prueba'
-    - '&7privada con ByTrainx. Armas, armaduras'
-    - '&7y requisitos figuran en sus fichas.'
-    - '&7Alas y vuelo pueden generar avisos de'
-    - '&7GrimAC; no cambies protecciones para'
-    - '&7usarlos.'
+    - '&7Equipo adaptado a los tiers Astral.'
+    - '&7Armas, armaduras y requisitos figuran'
+    - '&7en sus fichas.'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS

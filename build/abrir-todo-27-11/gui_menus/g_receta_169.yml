@@ -1,0 +1,177 @@
+menu_title: '&f&#ffe9a8Baston del Invocador'
+size: 54
+items:
+  'resultado':
+    material: CARROT_ON_A_STICK
+    slot: 20
+    amount: 1
+    display_name: '&#5555FFBaston del Invocador'
+    item_model: 'astral:baston_3'
+    lore:
+    - '&7Baston de Mago III'
+    - '&7Daño de hechizo: &d+3.540'
+    - '&7Daño mágico: &d+18%'
+    - '&7Maná: &b+250'
+    - '&7Regeneración de maná: &b+5/s'
+    - ''
+    - '&7Hechizos cuestan menos'
+    - ''
+    - '&6Habilidad: Proyectil arcano&e&l  CLIC DERECHO'
+    - '&7Atraviesa hasta &a3&7 enemigos.'
+    - '&7Daño: &a100%&7/&a70%&7/&a70%&7.'
+    - '&7El daño de hechizo sube con la armadura de Mago.'
+    - '&7Costo de maná: &b90'
+    - '&7Recarga: &a1,1s'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Hechiceria 20'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA BASTÓN'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: CARROT_ON_A_STICK
+    slot: 14
+    amount: 1
+    display_name: '&f1x Baston del Hechicero'
+    item_model: 'astral:baston_2'
+    lore:
+    - '&7Baston de Mago II'
+    - '&7Daño de hechizo: &d+660'
+    - '&7Daño mágico: &d+10%'
+    - '&7Maná: &b+180'
+    - '&7Regeneración de maná: &b+3,78/s'
+    - ''
+    - '&6Habilidad: Proyectil arcano&e&l  CLIC DERECHO'
+    - '&7Atraviesa hasta &a3&7 enemigos.'
+    - '&7Daño: &a100%&7/&a70%&7/&a70%&7.'
+    - '&7El daño de hechizo sube con la armadura de Mago.'
+    - '&7Costo de maná: &b50'
+    - '&7Recarga: &a1,2s'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 2'
+    - ''
+    - '&cRequiere: Hechiceria 14'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&a&lPOCO COMÚN BASTÓN'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 3
+    display_name: '&f3x Cristal Arcano Refinado'
+    item_model: 'astral:cristal_refinado'
+    lore:
+    - '&7Crafteos magicos medio-alto.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&f1x Gema Luminica'
+    item_model: 'astral:gema_luminica'
+    lore:
+    - '&7Se encuentra en cofres del Overworld.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 169'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 169'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 169'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mago_baston'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

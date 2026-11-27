@@ -1,0 +1,178 @@
+menu_title: '&f&#ffe9a8Cuchillo del Vacio'
+size: 54
+items:
+  'resultado':
+    material: IRON_SWORD
+    slot: 20
+    amount: 1
+    display_name: '&bCuchillo del Vacio'
+    item_model: 'astral:cuchillo_9'
+    lore:
+    - '&7Cuchillo de Asesino IX'
+    - '&7Daño: &c+20.703.125'
+    - '&7Velocidad de ataque: &f3'
+    - ''
+    - '&7Ataque rapido: &a3&7 golpes por segundo'
+    - '&7Por la espalda: &a+50%&7 de dano'
+    - '&7Envenena: &a8%&7 del golpe por segundo, &a3&7 s'
+    - '&7Agachado + clic derecho: invisible &a2&7 s (no en PvP)'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 9'
+    - ''
+    - '&cRequiere: Combate 50'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&b&lDIVINA CUCHILLO'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: IRON_SWORD
+    slot: 14
+    amount: 1
+    display_name: '&f1x Cuchillo de Supernova'
+    item_model: 'astral:cuchillo_8'
+    lore:
+    - '&7Cuchillo de Asesino VIII'
+    - '&7Daño: &c+4.140.625'
+    - '&7Velocidad de ataque: &f3'
+    - ''
+    - '&7Ataque rapido: &a3&7 golpes por segundo'
+    - '&7Por la espalda: &a+50%&7 de dano'
+    - '&7Envenena: &a8%&7 del golpe por segundo, &a3&7 s'
+    - '&7Agachado + clic derecho: invisible &a2&7 s (no en PvP)'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 8'
+    - ''
+    - '&cRequiere: Combate 45'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&b&lDIVINA CUCHILLO'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 4
+    display_name: '&f4x Esencia del Vacio'
+    item_model: 'astral:esencia_vacio'
+    lore:
+    - '&7Cae de mobs tier 9 o mas.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 2
+    display_name: '&f2x Nucleo de Supernova'
+    item_model: 'astral:nucleo_supernova'
+    lore:
+    - '&7Cae de mobs tier 8 o mas.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material3':
+    material: PAPER
+    slot: 23
+    amount: 2
+    display_name: '&f2x Nucleo de Furia Pura'
+    item_model: 'astral:nucleo_furia_pura'
+    lore:
+    - '&7Endgame Berserker.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 155'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 155'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 155'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_catalogo_cuchillo_2'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

@@ -1,0 +1,108 @@
+menu_title: '&f&#ffe9a8Chapado de Chorus'
+size: 54
+items:
+  'material0':
+    material: IRON_INGOT
+    slot: 20
+    amount: 1
+    display_name: '&bChapado de Chorus'
+    item_model: 'stellarity:chorus_plating'
+    lore:
+    - '&7Material para mejorar equipo en el'
+    - '&7Altar Maldito.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: IRON_INGOT
+    slot: 14
+    amount: 1
+    display_name: '&bLingote de hierro'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: POPPED_CHORUS_FRUIT
+    slot: 15
+    amount: 2
+    display_name: '&bFruta chorus horneada'
+    lore:
+    - '&fCantidad exacta: 2'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material3':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: ' '
+    item_model: 'astral:viajes/blank'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material4':
+    material: KNOWLEDGE_BOOK
+    slot: 40
+    amount: 1
+    display_name: '&bAltar Maldito'
+    lore:
+    - '&7Altar Maldito'
+    - '&7Tira los ingredientes juntos sobre el'
+    - '&7altar activado. Sin forma. No usa la'
+    - '&7Forja Astral.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material5':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: ' '
+    item_model: 'astral:viajes/blank'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_stellarity_recetas_3'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

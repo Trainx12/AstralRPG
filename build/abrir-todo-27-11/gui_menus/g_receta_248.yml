@@ -1,0 +1,155 @@
+menu_title: '&f&#ffe9a8Arco Carnivoro'
+size: 54
+items:
+  'resultado':
+    material: BOW
+    slot: 20
+    amount: 1
+    display_name: '&#5555FFArco Carnivoro'
+    item_model: 'astral:carnivora_arco'
+    lore:
+    - '&7Arco de Arquero III'
+    - '&7Daño: &c+2.957'
+    - '&7Velocidad de carga: &f+45%'
+    - '&7Disparo automático: &acada 0,6s'
+    - ''
+    - '&#5555FFPuntería III'
+    - '&7Flechas con el daño del tier &a3&7 (&a+15%&7 extra).'
+    - ''
+    - '&7Mayor precision'
+    - ''
+    - '&6Habilidad: Disparo automático&e&l  MANTENER CLIC DERECHO'
+    - '&7Dispara solo cada &a0,6&7 s mientras lo mantenés.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Arqueria 20'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#5555FF&lRARA ARCO'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: PAPER
+    slot: 14
+    amount: 8
+    display_name: '&f8x Colmillo Carnivoro'
+    item_model: 'astral:colmillo_carnivoro'
+    lore:
+    - '&7Material de forja.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 4
+    display_name: '&f4x Acero Sombrio'
+    item_model: 'astral:shadowsteel'
+    lore:
+    - '&7Equipamiento de Berserker.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&f1x Netherita Reforzada'
+    item_model: 'astral:netherita_reforzada'
+    lore:
+    - '&7Metal de nivel intermedio-alto.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 248'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 248'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 248'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_carnivora'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

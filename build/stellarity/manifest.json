@@ -4,7 +4,7 @@
     {
       "local": "build/stellarity/AstralStellarity.jar",
       "destino": "plugins/AstralStellarity.jar",
-      "sha256": "d4d0eb39b7a792cf94c2b68fd5b48082e300688262a486d187e10ace6b621731"
+      "sha256": "e9284ddaa3068a4842a8a634a9d561a9b2aaac1454f8b3d10bfc33c23bc03804"
     },
     {
       "local": "build/mesa/AstralMesa.jar",
@@ -14,7 +14,7 @@
     {
       "local": "build/stellarity/tiers.json",
       "destino": "plugins/AstralStellarity/tiers.json",
-      "sha256": "369a1260941c1b450e5cb19537bfcfc2b7ab6d7c8f5f4fab5baac5311db8bc70"
+      "sha256": "7193d677061c6b8a7aec6a55c77a72afc44b75cdd89706950d5e4b5532ea2996"
     },
     {
       "local": "build/stellarity/config.yml",
@@ -29,692 +29,692 @@
     {
       "local": "build/stellarity/menus/g_atlas_seccion_stellarity.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_atlas_seccion_stellarity.yml",
-      "sha256": "a32b790d28ee961af32b9f7aa74bc4e8407bc387fd2bb42fd8f69d012f642ba8"
+      "sha256": "b5b27b76dcae16f378d213f616c722b82a5325bbde99b17e0b4dcdf6321d8edf"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_altares.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_altares.yml",
-      "sha256": "98fce8e8b78dff1e143fb4f66daa35619a27cb88e03b5667ab700af0a2717baf"
+      "sha256": "6d4d5fc0eee346f2382f7b02edb162ec9a0234de5e10831b7f4d3cfad5ce672e"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_armor_1.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_armor_1.yml",
-      "sha256": "01b3e45b1515f237cd379ea14cb0f70c8e902206fff1c27f8e5188774b43c5e4"
+      "sha256": "8f70cc7e1df90beb2eb76e305824e6e62c22530c162190c2e1a145d498592e16"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_books_1.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_books_1.yml",
-      "sha256": "cbde68f56c26469ea5e6d316b465ebd4735673caa765d1064a153a0414bfc8d3"
+      "sha256": "52b582534479596e77cd92676ac034c3c9e1e2181f291fe4734262852c01833c"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_food_1.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_food_1.yml",
-      "sha256": "fbf151a45398fbd8be74949ea735e9686404627c8666017a4e448ff3ec70879f"
+      "sha256": "3978eac1aa60352a80131ce014a58b91de5d4a56d7043b214c8d3f2f90b1128d"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_food_2.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_food_2.yml",
-      "sha256": "bc4e71c7d60644eec0d27d163f0d4b65dba8d486a8f9e7141f79e658f5e74a6f"
+      "sha256": "a9f3f8b6760e7215c00b8eb0b319031c8c87d87f1f165ab885efdac951e6fa69"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_jefes.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_jefes.yml",
-      "sha256": "9d9571cd0a21a6ab5226f0c9211fe6775af4d9e101c05fd351329bd8e5fa7f36"
+      "sha256": "cc8095622f20495ac4e379888c346ebfd43b9a74fa05d7b5bf24e8dc1a1a7564"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_materials_1.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_materials_1.yml",
-      "sha256": "b449a0aa0073ad3bbf3406ca2dca52a143f26e35f99ec1b09c31d3b21433ce04"
+      "sha256": "3293808a8c5d6ea6bd365ea0155f7ede575a38d27fb2add33efa6f34472ae8f6"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_materials_2.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_materials_2.yml",
-      "sha256": "c27386d160842a84c6e405b70699f8a03103f42ccc19ed69990ee5f54dc41a46"
+      "sha256": "33d728e8f2c9c1252dea11b13a638ce3cbbaa2c86a395868fa21c6343bd47356"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_mundo_1.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_mundo_1.yml",
-      "sha256": "89a958076a45a52a3f6096d20f7ac0cbc6c705c7c0ab3923f2bdbc2167bee59d"
+      "sha256": "e558cbee2a01b8aa89ae25aab89e277178dcaf28ed2f40f9dbb7997cfc59b8b3"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_mundo_2.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_mundo_2.yml",
-      "sha256": "1df81649eff5c39eff4e0e2acc058af100c915c25ad9983a05df97da2385e0b0"
+      "sha256": "98d3aff02a38319980ce2c8b6274b232f8b953528413f5ac1e8f5b41d5352a2b"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_potions_1.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_potions_1.yml",
-      "sha256": "f775771ac35a1c7576f1cd919086466431850ff61b90171b206fb3786626f071"
+      "sha256": "74f2f4da8ca260232fd2b6ce1436e7467287cfa3bb2ae7e30e3a376ef7f38c1f"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_potions_2.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_potions_2.yml",
-      "sha256": "6cecf4a1e6808f464385669ee277c41d5d5b40a0fba9ce7da8112c4bf4cc9c33"
+      "sha256": "419aae93e732af12056330cfb707f284e656824739cba1b8a9233c2a420928e3"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_book_of_conveyance.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_book_of_conveyance.yml",
-      "sha256": "c7e7dbf7f24966894dee6254de29b4586d5ec8c4db1f8a489e7bc92e0f8565f5"
+      "sha256": "ffc63a6b25c9bec7f8f040fd5867de5fce1c175f4dbd78c0c4f52863ea33edee"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_book_of_jinx.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_book_of_jinx.yml",
-      "sha256": "5c4c74318b20f016f7970729e9bac749ba45fce07d1f716a27c09b25438015ec"
+      "sha256": "f777b11d74ccb5d5d15cd88efc93475e9512c452033f3b7a399a036cde3d942c"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_champion_boots.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_champion_boots.yml",
-      "sha256": "160fab649214374b562da5900d5d15f25c5669130671b4377175cd038f6c0be6"
+      "sha256": "48297932f03732705ebbeaa477bdddafc9dc1d87a52a271eddd96dc74ce06e49"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_champion_chestplate.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_champion_chestplate.yml",
-      "sha256": "09b80e8cd0027eafc470acc4b022c3b9015c077f26975272d0fe9e9975f5f49b"
+      "sha256": "ada479f024362f5305cb8e6837cc4e84efffba0cf01105621608ac2652151d38"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_champion_helmet.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_champion_helmet.yml",
-      "sha256": "6842048e80fa642000be12b44df24500fe15ff49e0f7b8e36386dcbaeb79b1bb"
+      "sha256": "e9ad0ecd7dc837e8a501ad4d48d7fbdbe1156d2a8b387d734fd0045209b0ca44"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_champion_leggings.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_champion_leggings.yml",
-      "sha256": "b6f1bac6739eb00b0a3a87b13e14997790ad33b07f84a49a48fcb6faf8b226a7"
+      "sha256": "ed17dccb697660313246ae789e1efe09817a29e558d35837f7f80deb6e9972b4"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_chorus_plating.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_chorus_plating.yml",
-      "sha256": "23f316b8822d01368dde688543b8272f1f27955169f3083296640ac0a2683052"
+      "sha256": "e25ed2f5277e1e3e95f48c842aa2c60e5eaac5ca5904c03aa1d8f60cdbd0d9f7"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_crest_of_the_end.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_crest_of_the_end.yml",
-      "sha256": "f0375cdc46c4079328c41bad9b73ed3a667cf7652f9974aa029df85c6b69009e"
+      "sha256": "2ea7b41fb91d537428e076c54e2b416a0ab12b6d7a09cb9de8d3eb1c9c0ab9a7"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_enderite_smithing_template.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_enderite_smithing_template.yml",
-      "sha256": "4dad43dbce1cf203af8eeaea98a767cf91ac39d2b8520ef37c00771430b7597a"
+      "sha256": "8b458350968d0b9e2cb0cf0c502035565abbd929f3f4e7b7fe272c84d201c243"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_endonomicon.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_endonomicon.yml",
-      "sha256": "16980915497a3c561055097b98dedf5cb7da24cd7b52e326d496161781995a77"
+      "sha256": "e5bf97887603a332e0e72fbdce1d323df978cc78739b0b6b0fe00f427a25f9e1"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_floral_boots.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_floral_boots.yml",
-      "sha256": "f0ccc9ebe1b8e718159fd476ae9a985bd2c5bce97d4ae84cea96c701fc0d2366"
+      "sha256": "f40682d9749fddefb6a3aa97425dd5d49c6adb989c91d5624dcd5fd76cc90e3b"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_floral_chestplate.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_floral_chestplate.yml",
-      "sha256": "1daf105514d2f50b9a855866b06afd616ac9ef851766636133c696ec2cf013ec"
+      "sha256": "987115709da06517af23bbe3556d964e1941cf9f0dcff066b7f33d5e646ab401"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_floral_helmet.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_floral_helmet.yml",
-      "sha256": "6589d1e4a7194a2079fa50ea0239be3e66f5a37ca421461cc0cb0387c0e53009"
+      "sha256": "fcf65ec59dcdfa79962b8433b799737b403678d51c228ff93495b0a59843af53"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_floral_leggings.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_floral_leggings.yml",
-      "sha256": "1c00a5a30eb9cbf9b0ca650d2281e5b7334e2175b56bd8d4cb7390305bb34f8c"
+      "sha256": "c9176fdf711118df5406da710c8067b3edfa9bb61ae75b96eef12f7b14612797"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_hallowed_boots.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_hallowed_boots.yml",
-      "sha256": "3629dcf40c36934f325ffd5c13682f761118c7d29b4b58f77234f975c7591082"
+      "sha256": "3225916660e52b522771e22f4b3d9cbe9f6ff187539cc69488fe9c6c02d98669"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_hallowed_chestplate.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_hallowed_chestplate.yml",
-      "sha256": "750dc1d3edc294b3ea5a8247949fd8c88678ad05e2fd7cdcb44137503995bc0a"
+      "sha256": "dc9a39dad40c451e288e76dcd834c6cc8ab725ddaae1c3541abb070e9a274e5e"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_hallowed_helmet.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_hallowed_helmet.yml",
-      "sha256": "7ddda9228a146a441b74f9f281a4790ac7ed826817e215bf2c1798f19dcfc9e9"
+      "sha256": "e2747cb813d4ae456ceaa2f12749f18ca4b5bf30b6adf3071defb5567c41e8a3"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_hallowed_leggings.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_hallowed_leggings.yml",
-      "sha256": "790142d553ccb0ed81e12893bae6f85bb86ea585b3ead845df7de04878f4b426"
+      "sha256": "d67c41741930167d28ff04e7d72bbecc6ad8c43505aa803a2e82042fad034b20"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_sandstorm_trident.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_sandstorm_trident.yml",
-      "sha256": "958f1935f195566276cbb5b2d0c12e80531120f4f25242ab4d6970e71aba458c"
+      "sha256": "03f69bd27907441681c88e0fb069325af91f6fafcdd6d814b29a3e8aaefa4327"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_satchel_of_voids.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_satchel_of_voids.yml",
-      "sha256": "4746e6ba4fb5f4fcaaeb6919bbe067dacd5d8dce8e37f0aa893c244aee6951fc"
+      "sha256": "716d16da3f6890836825a7d6336ebf035a644524f56749be3bf453cc82aee2b8"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_shulker_axe.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_shulker_axe.yml",
-      "sha256": "06c0eaba850bba975820c47489d0c285540654578cc0aba333056c49c74303d0"
+      "sha256": "36876041abbf394b6201453ade0a1965cd188af68d99d6464663a995cadfa4ee"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_shulker_boots.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_shulker_boots.yml",
-      "sha256": "26efc3f737c0e1fc121ea31d6accd9dd2347580a8494eaff9e503fc6953d2b6d"
+      "sha256": "2a10a91e352430011fd7150843a2dad41d2c63cf3329eedfdd1af040764eac47"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_shulker_chestplate.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_shulker_chestplate.yml",
-      "sha256": "e3b69b19e1fe1e85f2694faa1ba5d9a6eae4f02e8af50c42ff02360c950dca7d"
+      "sha256": "b7ab6c9abc93e7fb869d1babea0a7c55586921b21e8953caa033a02ad3c469b3"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_shulker_helmet.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_shulker_helmet.yml",
-      "sha256": "0a6fa6a17991fa7ae1af70b47809ce3e47d4c9d90eac5d3111462560a794744f"
+      "sha256": "054f7f376d856adb7cb7c966de8d24ef72cb450a78c5f6f37dbe9f586e338684"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_shulker_hoe.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_shulker_hoe.yml",
-      "sha256": "a05d567158fb49a62f7eca85a4524e9748c785fa68222ce2a1b909675bb499f5"
+      "sha256": "5cafb9f56b24c851355ada0dea6c544c20fd8a692d57cea5a31907b8914ea539"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_shulker_leggings.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_shulker_leggings.yml",
-      "sha256": "f7777f301926f810059a7e58964fa76b4233642ce559af28c792d71527584a1f"
+      "sha256": "70ff97b620d75e2eb5f65cb50f349a1ffc5e2f72b040a66fd20573bff2e3ad75"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_shulker_pickaxe.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_shulker_pickaxe.yml",
-      "sha256": "9f366fc43e5452b5dd09c129787a886d7ce2092230c39acabd0f1fa00bbb8b6f"
+      "sha256": "5cfa53bd12f246bae845e316df9ee3b2ed572591232304b1c478b86ce8a48638"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_shulker_shovel.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_shulker_shovel.yml",
-      "sha256": "c65a30470927c29f3bb92cf26bcef3724d5b5450d7c3cde7df215a0cfcb7d72a"
+      "sha256": "5667926ecc374e7c44accea7f6fb3d7817eeca6b1be3c738fae2e6e444f77011"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_shulker_spear.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_shulker_spear.yml",
-      "sha256": "7a141b68bbb3d99f02d2b60f4e98b70aa7981538043a44b4175ca07c2f9018bf"
+      "sha256": "0733be9103495c4d74a42229a0b4767e84943da727add938209672c26fe1e70d"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_shulker_sword.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_shulker_sword.yml",
-      "sha256": "3555cddbcc5421655f14a06d48481117bdd46b02bd0c186f6613745b86132fff"
+      "sha256": "1ab7057de49284d7f933575bd3fe22d9e0bfb0ab4f12ced20750aedf36cd6401"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_spectral_fury.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_spectral_fury.yml",
-      "sha256": "3e57517260c096a3cd740764a1e9f2c26e9496c7d869180b267f6462891ce68d"
+      "sha256": "1b9db29aa402d1c2b27b3a0b7ebf9d8576d35d4d7daad161de396d368f3668f6"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_altar_tamaris.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_altar_tamaris.yml",
-      "sha256": "18964112a178ee015e718670efb9bf9aa72ea31250a6c90967bac7585e1a7cd7"
+      "sha256": "283a0baf61e24df43cc95f0d58e9de94ba1054424edf8e0b881f8848fefa3c53"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_blind_rage_potion_70.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_blind_rage_potion_70.yml",
-      "sha256": "5263c035aa0dc74c6e8df7e83b2c0756265a9e20d0af4abc94396119f257e946"
+      "sha256": "57bc112faf1f7a1b3f5efe03dd5482fbf799b837ee22c9650c9f280e5e2fc289"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_blind_rage_potion_ext_71.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_blind_rage_potion_ext_71.yml",
-      "sha256": "d474d867c090670cb3a598ecbeb176d615b315c6e738be42ff31d06663ad03b7"
+      "sha256": "4e74a6fc9f23fc5705da827fca73893a89a2f5a258873e2a4cb5839afd908ad3"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_candied_chorus_fruit_60.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_candied_chorus_fruit_60.yml",
-      "sha256": "839622ce7505f4979d14e8c486a0ce15e81353e5e2aba2e1ede444831493c3e5"
+      "sha256": "6167264b6177a2eaf6123415a5f5ab7f17dc982775c68bf71d5c1d82fb90ae05"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_chorus_juice_69.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_chorus_juice_69.yml",
-      "sha256": "eee630a741984d3f0326f6e42090f89cc3213a00655f07787751862037d986fe"
+      "sha256": "c013e6665158551bf22db04b7fd37efc28496d2a776c5bfaa0f71d60cb09e55b"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_chorus_pie_64.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_chorus_pie_64.yml",
-      "sha256": "d49ee17847cf9b84368a0649c21f9ea57ea6ae881a095349c863b62e51e643ed"
+      "sha256": "45470f7612e1f9381896be72e29adefb6ee5cc5186a9e74ecf8406e7d339fc37"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_chorus_stew_57.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_chorus_stew_57.yml",
-      "sha256": "cba70908efbe70a7411e102c3319cbc69dba390b383ea94e8044e674d4814f8f"
+      "sha256": "2a4fb4cc53a7df5413bd6e41108a89f4acbf75986c205056ac6eea85cdccb74d"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_ender_dirt_96.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_ender_dirt_96.yml",
-      "sha256": "13680b2de0e9d82d325d7ad5a8a02471671b504b57591cad46668d87f46074a7"
+      "sha256": "9c82bdd12e98cfbfc3a08c9ecf1453536464033aad8ff61225685e1e70d602fa"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_ender_grass_block_98.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_ender_grass_block_98.yml",
-      "sha256": "0db36daf649dc80b20fcdeb64cf856c004dfd8229543e18a225558dc43769d2d"
+      "sha256": "64d1914c4fafcaec4f28670176c9cb1136138b3d55cebf8efae33e4b74eadac8"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_endurance_potion_72.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_endurance_potion_72.yml",
-      "sha256": "667bf2f9461a1d68867efd7b14f7475a03a92f96476b873d477f74607168a779"
+      "sha256": "5fb6b3e0c11f3acbbcdcda6f70362b5a0ef0b802b905e1f3c490d1037f30b643"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_endurance_potion_ext_73.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_endurance_potion_ext_73.yml",
-      "sha256": "6468434b3263ad057069ae98906358a50e055db145412e602aadf6e4e9f5140b"
+      "sha256": "275e7dd1d7944a6525cedf09b10b39e575aecf132ce5c2d917a767d378fa30f5"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_endurance_potion_ii_74.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_endurance_potion_ii_74.yml",
-      "sha256": "c3cd3bcea64a2c740d6895acd4534b7866aa8f9d46e3de66c5b88c6b54ec8616"
+      "sha256": "5bb4ac49d1d856287ba5830307f25281da25113c78b6921ca3852c5434d11045"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_entanglement_potion_75.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_entanglement_potion_75.yml",
-      "sha256": "4e04df8c89dd9c18c91f116ab87ac26207615f51bf7714f3a0d917e07e087506"
+      "sha256": "408e9e60555e74555ba7a1dbdd338ba2cdd28e8d30b205e2f3ed4ca3d5bd2487"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_entanglement_potion_ext_76.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_entanglement_potion_ext_76.yml",
-      "sha256": "5e915ce9b5de081d914660bcea4c20b286325bf2cdec40497bcc98f5f4f34a8f"
+      "sha256": "c0b2ce56f7c4992902745d691f43b798e0e72b9c50e5e5e30552eb55c3a44e10"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_entanglement_potion_ii_77.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_entanglement_potion_ii_77.yml",
-      "sha256": "05923d31403eb4872db3d59ec4a17ba2d7fd0bd3ed375835b02920437d7a47f7"
+      "sha256": "e021acf4704316de2d6dea34eea93df5ae94461d7603905eb968d6a06634a562"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_fried_chorus_fruit_61.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_fried_chorus_fruit_61.yml",
-      "sha256": "ceb72244834c7116fd2af72a4c8f4402a25b8d759a449e6e187ebb3badf7b865"
+      "sha256": "aa5e1929e06f2cbf28556cbda0df124787f98edf8c95b3f24d56d4ed1b744b13"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_frost_cloud_potion_78.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_frost_cloud_potion_78.yml",
-      "sha256": "13d36ffc7e781e5fbe6786a31d235b81e8e43bdb74d8a597f2b8481f87d80cb9"
+      "sha256": "5fb4ec0ffa241b9eeaba23d327acde767c5f8f767e887cc7b75fdcdbc2255476"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_frozen_carpaccio_63.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_frozen_carpaccio_63.yml",
-      "sha256": "285fb10603521dc9d5c4e33edee4e5c6a10987f88815717203958bab3f19d164"
+      "sha256": "f35c9fbd18bc4dd0cce0999d1c2e9063cc75e8f4d9aa018485f75f720ce8495d"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_golden_chorus_fruit_59.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_golden_chorus_fruit_59.yml",
-      "sha256": "89d4174304ae9b2d45d15fe7c6a73bdf16488d209a76acafd123bfca115c5231"
+      "sha256": "da2555cf89280e69463684932932aee6cd3be1315e2aa19cb699c12a0a71012a"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_grilled_enderman_flesh_62.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_grilled_enderman_flesh_62.yml",
-      "sha256": "b49f722dcde61a03e39c0704c51f3bd43e6910b5898eeb5a3238b0229f9b27ce"
+      "sha256": "fd4f85068defcdceec6d7b6b9a75202c259b8d4b8c1a1e134ae768dfdb7b1eaa"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_hellfire_treader_potion_79.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_hellfire_treader_potion_79.yml",
-      "sha256": "343e530057bcd8636f81aaeddddc989850bfeb566ef1aec3e64c8bb94dc1998a"
+      "sha256": "b565e6dde221be3831dba85fa1a70709e51701b7ed418297bdd25651589559f0"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_hellfire_treader_potion_ext_80.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_hellfire_treader_potion_ext_80.yml",
-      "sha256": "8cd925b263e1270ee3bd56708dc9edee223246d258a94a05bde1f7d3a596cb1c"
+      "sha256": "88f2d35ff6a1bb5ab53aede1321a7d0a8f945889ec9477992f5ef135869dcf90"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_hellfire_treader_potion_ii_81.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_hellfire_treader_potion_ii_81.yml",
-      "sha256": "5e62e8241ec69343941b7e4c8b80f3c678612de81aa4fa4957fa6e695f1b04fc"
+      "sha256": "d7b0ebc860d656f115360db5d1ed4d3651908534bf979a53081cefbff556abbf"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_lifeforce_potion_82.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_lifeforce_potion_82.yml",
-      "sha256": "c62d8113324c79b215632779478dbe0d0ab9a41d067e66d2aef0aa53c5c0d5b7"
+      "sha256": "096a212a44ae970bea3d6c18beb781564d1218d917f2e29e9c7048a9277001dc"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_lifeforce_potion_ext_83.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_lifeforce_potion_ext_83.yml",
-      "sha256": "9cc6428b8619e97b1b3dbc480aace837ad2d2c1adcdf2276c81244cde57c1fcd"
+      "sha256": "930e148c6ea2ad871752c1da9422a36cca21e89da81fcc40b0e3cb01ab55403e"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_lifeforce_potion_ii_84.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_lifeforce_potion_ii_84.yml",
-      "sha256": "096ad611bdc545561e6c076988c83612bf55d476040f8d7bc2fda3f8cc8f8e18"
+      "sha256": "55d6e4c1a11d43c20f3828486d6bb7a75cffba136f729a12bbff2fc548032929"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_luck_potion_89.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_luck_potion_89.yml",
-      "sha256": "b0f755ef86a2fa430a81309cb2702965d154485372e3b4699760f840dc7affa7"
+      "sha256": "6ddb48eaa72a38b7bbb7a3a68f8f7ce354d6afb7e3f67383f14c93b522183efe"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_minecraft_experience_bottle_58.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_minecraft_experience_bottle_58.yml",
-      "sha256": "8c1699d8010f445cf6289dccafc84626eb2c8b8af0cf543d3b09e9d86f70d624"
+      "sha256": "c9b0748910e528b42d75457a1b963afb9f6e1e445135a1e90dc6e1d43c3e396e"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_pho_65.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_pho_65.yml",
-      "sha256": "176164e8dab01351d5329b7e2f318940cdcc55a68965ec393d47f455c4046e04"
+      "sha256": "dc61abbd092302b6247539ea39be9800d711342f19390b4cd2309343abf7eae8"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_poseidons_nectar_90.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_poseidons_nectar_90.yml",
-      "sha256": "160671d698b4959ab9de50cf270cc54a96bc6b86d08e29a98eafc23b6acf0683"
+      "sha256": "c69c3cc03b6e14365dacb2188f1bf79b8e1b004a6d76882879a228ce2156ba22"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_prismatic_sushi_68.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_prismatic_sushi_68.yml",
-      "sha256": "13781379b852e06a58742c75ca9e9575fef9d992713ffc89383891cef474afd2"
+      "sha256": "be50dbaa926bb2d51531ae98581bf32a48e5f1ac5da26cd9a3157abad1e12572"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_red_potion_91.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_red_potion_91.yml",
-      "sha256": "a3077436c30e028aa5da0565dc2d5fb28de56bd7fd9d0c6cd71cd4a138e17a74"
+      "sha256": "4f667c691e164b89a977ba8b650c4ccf815be4671350b7644a95fd0c3bcead2f"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_regeneraga_92.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_regeneraga_92.yml",
-      "sha256": "0639bc62ae7f8bcb9f1a5b1cb517b0c33f6b42177832b2bc0ee57a7d9441e763"
+      "sha256": "28e4d8b8552a04864266561c13aa8f681e077ff21181efc5f5560a6f0386af33"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_regeneraga_ii_93.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_regeneraga_ii_93.yml",
-      "sha256": "cb5578a09fad5daa46b91b58565304e1da8fa1850e744690d5d054a372a0390d"
+      "sha256": "f30fb8163584bba7933af55e42c8b7bec1497cc57f9a94588798fdc63e656483"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_rooted_ender_dirt_97.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_rooted_ender_dirt_97.yml",
-      "sha256": "758255fdab51a777506e9c26ae75efc1dfb8f467e36781f903fb92471e6da2e5"
+      "sha256": "95cc45d7d664211a1f0c18b326095bf11ce01142844dac16cc305e751a3e9e40"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_royal_jelly_94.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_royal_jelly_94.yml",
-      "sha256": "45279826a330fbdc3d4961c8a89e0be37ce14418413787f41d73bbf368bfb152"
+      "sha256": "39a353c6e6f9e57f2597f00d719d14e2ae256904a36bc8fa637320713ab3acb4"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_royal_jelly_ii_95.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_royal_jelly_ii_95.yml",
-      "sha256": "73f77b34e17145d19493a2a35b2b1d94c1e565143d22acc555d672c34b8571d7"
+      "sha256": "8da665481c13fbe8db126c508ddcc22c3b04b0d23303e9aa4ba7b93abbf456d5"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_shepherds_pie_66.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_shepherds_pie_66.yml",
-      "sha256": "1c843a4ee985a9dd30f61d14bc2c7c53bcacbba6169a4c54205b36f28c58f225"
+      "sha256": "ccfa0da372480fa64930bb621a177ad7601bded621760029839f38d22862ff95"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_spelunker_potion_85.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_spelunker_potion_85.yml",
-      "sha256": "e65b67a727066aa35c77943650bd206c75903fc7614e300159977c993de9f7fd"
+      "sha256": "d331e3b61ea223737db5f72320b06b355ec1f1ef0c06a1d59a34479fe22a576a"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_spelunker_potion_86.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_spelunker_potion_86.yml",
-      "sha256": "59c018974d7f12105a0371b2910d298958be750157c3b0c4d64a1cf7a367fe8b"
+      "sha256": "c5adb3ae903c7bb793d2c5e18a938c6f2347960e995470dbdde85d01f18e4c1f"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_spelunker_potion_ext_87.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_spelunker_potion_ext_87.yml",
-      "sha256": "eb9ec25c02a404f9339532dc91919fb67cf5b57fda52a228f5f6773c6b941b83"
+      "sha256": "9fd2dc079608c585cc795bbbe2920f5686f5a9ecf82242dbefef05450c890d61"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_spelunker_potion_ii_88.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_spelunker_potion_ii_88.yml",
-      "sha256": "474759cce0ede2a8e1ff40f6459d362e807fb795dd6f9c18d50140f41d49f2d2"
+      "sha256": "de413e6fc2270dedcddb40cf5c0380209f4899efd9cec2a5a6523f9799da7865"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_caldero_sushi_67.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_caldero_sushi_67.yml",
-      "sha256": "15275fb1805a542c094b619323bc679b0add289b688edb41911387d84ff91b9f"
+      "sha256": "8e9143f682bfba361c7759c45cc21df192a56a891f2581ebf1414a068fdb7882"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_elytra_black.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_elytra_black.yml",
-      "sha256": "758e5cc6f03d578db79207b4a3a8b83cb23eddb53753fc57ae5db186712519d2"
+      "sha256": "fe4e07217c8f1ebec1ab46d2938541803db9a25c3da7f5934f7a92ae36c0c3f1"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_elytra_blue.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_elytra_blue.yml",
-      "sha256": "247c8da98a827e4587ca58c592ed1294b8dc1ab8eeacd671283bc193b15cabbd"
+      "sha256": "cb38bd2bb22b24a3a10d3f96b955aa78d001d4bf202fb43d87613bcf2da1a808"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_elytra_brown.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_elytra_brown.yml",
-      "sha256": "f4ca2c1c205c4cea267e091910af8b3af32e27fc87dc9ec22b39e645dceca74f"
+      "sha256": "e955d2b6c0144c6728d79f2e141f99a8f9046d07d27782906e4f2b3e881c56fc"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_elytra_cyan.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_elytra_cyan.yml",
-      "sha256": "2480500e0e574b129b5347a441e2f7c1a45abdd33b86895406b1596e544369a3"
+      "sha256": "42ccd82162f68c30f6e57cdec752b6419e6b308ae43e152f4d286b0611659ae9"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_elytra_gray.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_elytra_gray.yml",
-      "sha256": "911380a090bd68f9abdde1a7094141975a0cb5e1aae2b11eb81baebadc051114"
+      "sha256": "3b2bc1f3dd89082a5ba2f6978c3234d37c6938b6b43935b752f928e0c028bcbb"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_elytra_green.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_elytra_green.yml",
-      "sha256": "94f3e41cd447a4b760079ed4c80f1d6fdd59559fe8b22cc563969a8d6894bfbd"
+      "sha256": "f66af1c63c2583845489bcb2d0b5753ccf67d6722dd96cb123304f1d1e1c91ec"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_elytra_light_blue.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_elytra_light_blue.yml",
-      "sha256": "e05d6a0449d0398fe3734067138393b3002a7d88c6e3723532371d6c75bf1981"
+      "sha256": "a1bb2650156731347479dda165932c11fe69f17fdfdd57413af9e0f09ee625d5"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_elytra_light_gray.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_elytra_light_gray.yml",
-      "sha256": "d38a263cecf006f8a45c94854960808b2bb49927480c32d21dfa63e69ded5f13"
+      "sha256": "63472e057824bbd51e231f58d13f93e655b0958adbe0d71d993c51920b9f6eae"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_elytra_lime.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_elytra_lime.yml",
-      "sha256": "3e7de41bb0f26c10141c6a6fa0922185ccabe8e732d607a10765397ccdd3169a"
+      "sha256": "8f458321e8b481748b1e96d0a4f42115833c4002b3914db28d1eb232a0980c2a"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_elytra_magenta.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_elytra_magenta.yml",
-      "sha256": "394573d2e927b0947368752d35ac307154a99568778bfaa3d7660ec881be1757"
+      "sha256": "8d5523e9cdfd22eeb1968cfc33a85d8278c884e83eb5a9f1551fff0b9a2689bf"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_elytra_orange.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_elytra_orange.yml",
-      "sha256": "9a3ad7e7bdc0b7939098e2184a1070dbaa71157b1d5560751c8344a2619220ed"
+      "sha256": "78a42c0de43dbc1e2ec366a02a345a04653e2cb92f6ef85b4f15e827be6e8a4c"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_elytra_pink.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_elytra_pink.yml",
-      "sha256": "f62b293301d187dad815c89f10bc0ac622c8cd9ec4fa83961cfdf43f1b9e600d"
+      "sha256": "371293f0c5a0313477205ab63f7dced05e594e18f226c7b76124f6d67bba28dd"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_elytra_purple.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_elytra_purple.yml",
-      "sha256": "79ce8d3376d33a4bcd4e1bcfa325f77a9461db1e10f6f88a9fd0dcf823a4c73f"
+      "sha256": "55d8e8316113ed98ef52a7a53e056d9d0d04383ac6167beb442e3355f41a69f2"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_elytra_red.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_elytra_red.yml",
-      "sha256": "d0b606af906a7857593091899926b6fbb2f6b8e1dd53c500b2ea6bf1dc4fd1cb"
+      "sha256": "5acc48932022e671ff0d72d9e41203de471ba8259c9ebe05b00eeb057df1873f"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_elytra_water.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_elytra_water.yml",
-      "sha256": "3a98cbeaa1b26b258297f2bcf161ae98d0b58b2decec00113a9e7c28b2c51a4c"
+      "sha256": "f41cc81cde43f40066c9a1f937574a67a82cba2f8e3f472abd4eae3d9494d58b"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_elytra_white.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_elytra_white.yml",
-      "sha256": "29070e682d6c71bbc3b5ad7950f352fdbce8611cdc132be716b0b2208a160968"
+      "sha256": "06580f10a9ea060bf6f3539342a0a53c68e92ee4e2c714d8795864adc80f334e"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_elytra_yellow.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_elytra_yellow.yml",
-      "sha256": "686eda3fc7a3c964d2119c53470109f2e51068de091f92c0117a2a062bc3bbf8"
+      "sha256": "323f04aa28ecbb4ff4fa3ebdef17b92f312c9fcc2eba944f46386ab3b959b35d"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_minecraft_dispenser.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_minecraft_dispenser.yml",
-      "sha256": "8d34649c70b9471814eb9776613369a28f74a6c223f69bac67e57e968a7a3475"
+      "sha256": "3934b30dcd4ec74c318efe6b2e0dd81622c7c134f4f1c6d22b1ac3700e41a3c3"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_minecraft_dropper.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_minecraft_dropper.yml",
-      "sha256": "a2554dcb8e82840bf1c29d14f7d6b01096a2c02dab626ae27cb9ee1adaa1a364"
+      "sha256": "3401d2af064c42c6cb4716dd3c3fa3ac8722a761d8511d236c350c4cd51290a9"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_minecraft_end_crystal.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_minecraft_end_crystal.yml",
-      "sha256": "48834ad3a756097349671cbe7c43179cf670d4b10a3be278818909db3160733a"
+      "sha256": "88119c62b7ba9031a127738b613e493957ef6110bf5c81e9861445429da11bc1"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_minecraft_end_rod.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_minecraft_end_rod.yml",
-      "sha256": "836358223fe5e4ba0647d5bbfc8ea2cc38631d2c0ded90f1222854ea51f33292"
+      "sha256": "17fb8be8e07210e60ead510dfd5931e23b4a0d7a4e4c332b8929507fd4559c34"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_minecraft_glass.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_minecraft_glass.yml",
-      "sha256": "7c3fa353515acccea5aa3a9e925b370f88354a7cbbde581a86084f1bae534563"
+      "sha256": "c92d5f8a80d9d802913708c3300b39d15bee17ce1a2160d505928c5acae3ec07"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_minecraft_leather.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_minecraft_leather.yml",
-      "sha256": "e9d9f993af4b9aff8f1da0579d818a3eb12198f9ed4acf9a825a05a4c21ca516"
+      "sha256": "27dcae56aef17262ccedb2961cd1d8c72d342d16c939815d5156ffd5d1e014e4"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_minecraft_lever.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_minecraft_lever.yml",
-      "sha256": "4f8d54e90ef7915712f88c1777f4566481599451ab5461752cdee9c33163778f"
+      "sha256": "010d19d0ffdaccb863bf33fba9ecf735f212829dd8b747430725a01561aa46ca"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_minecraft_observer.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_minecraft_observer.yml",
-      "sha256": "de845982b37cee96818353ee76e052b0e1f1355723b13999202846c49db670a3"
+      "sha256": "053510bca02cb40ebda0734f4bb0cc7f0586be12294cfc5a77ef89936e48e963"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_minecraft_piston.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_minecraft_piston.yml",
-      "sha256": "bb270ccbd7dccf5ea8697eb11c2963d3c973648492be23a8e8cb7dd396515da3"
+      "sha256": "4ecaf5ad8f578584097129963f94d388140e6cc3483188ff190a91b055f3de91"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_minecraft_purple_dye.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_minecraft_purple_dye.yml",
-      "sha256": "a195b231bd90f377f179be943824913b1f676e65f057fdb4ad44b69af6d2a7d5"
+      "sha256": "f0b256768713212ebf13e31678effc92c144cde3d2112ac039266eb03af1f7d1"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_minecraft_slime_ball.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_minecraft_slime_ball.yml",
-      "sha256": "92849d4b9955d1d9e38a69298de0e1db356395124d041e8c828e184e7c5f3032"
+      "sha256": "fdf81c35630f6bbe955c8747982c051922b6413d3641f114917647569678679e"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_minecraft_spectral_arrow.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_minecraft_spectral_arrow.yml",
-      "sha256": "b2a78d0aeaf13c686a9169ad18db436f168f46ae3cd638698bbfdd7f2b3d6e98"
+      "sha256": "5d3612fd0c13575e7d33c387889e3d310f25b3ccf164c5bd66b0af27c803e176"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_stellarity_chorus_plant_from_fruit.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_stellarity_chorus_plant_from_fruit.yml",
-      "sha256": "0107078f828f8201da7a1fe4c51b985e30d8a2ef771a219f9f05028855c86356"
+      "sha256": "f9c750c0fc14a2521305155829dceb51ef48ecb34675171f37a3773d62feacc7"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_stellarity_glass_from_end_stone.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_stellarity_glass_from_end_stone.yml",
-      "sha256": "f9f03713e4c580e6939181803d2f2f9588fa61594209d7361134b3959ccd80cc"
+      "sha256": "0494be0620fa6621bf80f7d9485310f7e2ea37c629e2ab4d12a784bcd0a18254"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_stellarity_gunpowder_from_popped_chorus_blasting.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_stellarity_gunpowder_from_popped_chorus_blasting.yml",
-      "sha256": "2e7b4c282ceb06c1181224f87cd65a22092d4e03c5f832bd8dced956d8d518d7"
+      "sha256": "28772babedc3b795043bb879edc2ff8970dc8cb8acf02566c53f02e4f86e4421"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_stellarity_gunpowder_from_popped_chorus_campfire.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_stellarity_gunpowder_from_popped_chorus_campfire.yml",
-      "sha256": "869f8bc2c8536016320379b504c9920205b992fba0836ed6fed0731f567dac5d"
+      "sha256": "c66a5940f406e060f893eecba0fe6a4449dbdd1a19c94c9edd804cfd8e428365"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_stellarity_leather_from_membranes.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_stellarity_leather_from_membranes.yml",
-      "sha256": "f57477b2a10d4343ecac438bbb35e58b9dbc2424560bc24a123f93b960aa9237"
+      "sha256": "46eb7bbd500773795c381722bf24614340c940b5c42549cca5d1ab2c94ec0e35"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_stellarity_papyrus.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_stellarity_papyrus.yml",
-      "sha256": "622cac244f35e902596211267554a42ef67ebd59f0f7f42a6391d6c5dd362f4d"
+      "sha256": "d72817585638efacc54c9868a50a3a490ac82fb87e03ad20ea9a3729dc73e5cb"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_stellarity_purple_dye_from_chorus_flower.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_stellarity_purple_dye_from_chorus_flower.yml",
-      "sha256": "b1c72165262da6352c3844712e3751a853779205214ae5c0b7a62d0989ba5139"
+      "sha256": "33f31123815c6e8240795020d8407afc53eb8b2679e52c81d9cb52e715270517"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_stellarity_slime_ball_from_ender_eye.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_stellarity_slime_ball_from_ender_eye.yml",
-      "sha256": "1e057cc6f9193a63ce1e2483263211153cfd42ab45afb71c2fb41be3177e3016"
+      "sha256": "c5e6ab63f1bc161247a132c039ce19d5b902397c92dad7647c9561e582f22cb8"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_stellarity_spectral_arrow_alt.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_stellarity_spectral_arrow_alt.yml",
-      "sha256": "cd59d8836df76f2799810e5ebebedd54ec51581b57211599f6bf8fa0434680b2"
+      "sha256": "1f8d976da6ed7f0ed29e56bd9330e47907941ba1536a2304eba66fc9f5dcaa25"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_stellarity_sugar_from_chorus_fruit.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_stellarity_sugar_from_chorus_fruit.yml",
-      "sha256": "c559c643acca4708e71d1f29e2d26d1953c40443771dccccb1fedf985c387d7e"
+      "sha256": "10f7c5d9a5d5709e647d18ea54a7d1ea88ca1b876997f025b56035d4f8faec8a"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_stellarity_suspicious_stew_from_chorus_fruit.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_stellarity_suspicious_stew_from_chorus_fruit.yml",
-      "sha256": "7cd3c55bb28639cac1563cd604652441e6c7cdda24ed310a85e8e0c460f876b6"
+      "sha256": "410111d2308899cc6463026177fe14917255252f17d2ea8935ca25d013921305"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_stellarity_suspicious_stew_from_pink_petals.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_stellarity_suspicious_stew_from_pink_petals.yml",
-      "sha256": "61e51041874b7ff9682c33be280a6c3d59a8ab7c93662144ad412a71901f9489"
+      "sha256": "3b4bab55e040f274fd50b35289381938c1cc088cc2d06be6040770b6401220ef"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_r_stellarity_suspicious_stew_from_pitcher_pod.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_r_stellarity_suspicious_stew_from_pitcher_pod.yml",
-      "sha256": "8151e58df51ef0cff2a55bca59e6b70dca8727d502ec0201e5214a74f305044a"
+      "sha256": "e6f53890b6c8e63275615097692ca7d18ef6c78d0a269171329e7de34e487e4c"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_recetas_1.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_recetas_1.yml",
-      "sha256": "cd065bee7e632fe8c1d877c24fc64affd5c66f100ff30d024b01553369f93fd2"
+      "sha256": "9fc61b8982e043a9259259415b599f7905195b7f5d01d8f62f7432975a3463a5"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_recetas_2.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_recetas_2.yml",
-      "sha256": "75d29d9c1bcabe508045dadec2dcc9c6fbb89c38d003ae8d36200d43d85c7272"
+      "sha256": "3f287df990b3e79e5d32ec45187d398d262a3e2b29bfc04f67ae1d0df6f9d9e5"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_recetas_3.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_recetas_3.yml",
-      "sha256": "2cee5f8a5570830be165f4ebcba2b9791ceaefbd0c51926e32a4eb6e638426db"
+      "sha256": "b24b44798cb36c89a27a6811cb07eff329c139878904af67b5bcaa0d961f36e4"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_recetas_4.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_recetas_4.yml",
-      "sha256": "2459b2e991d63566ee49a3483083a67dd75ac1ef40d60e64ceef2dbed870b5bf"
+      "sha256": "ebadb7a27c1a841cf5800ef08c36019e7deac34bfb6649683e8e4698903a3c68"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_recetas_5.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_recetas_5.yml",
-      "sha256": "e199285860423a6e3b7e14f2ac9cd78b7a77d4744db4ff8c3ef03f8fbea32d1f"
+      "sha256": "56a9d7112cd2391d7ebac719d46b13eca5b12e67fbb4ebc78eea11cdc06caf24"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_recetas_6.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_recetas_6.yml",
-      "sha256": "2ac6786b811733257b161785c46529232492b9d0414d4c56cf70a56b1419ae86"
+      "sha256": "6faa5b61754a4f8684565cec530febf7ae4ab2383754f48ff82c64cb8a80ea87"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_tools_1.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_tools_1.yml",
-      "sha256": "10e48d4cc7a7160a019d4f639d8d78502d596117ccf97f31b53709c5d4826f94"
+      "sha256": "c1b99d9ed36ade463aa0a2b5d1371f5f914037a919a9bd1dc5794f869725e9c7"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_trinkets_1.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_trinkets_1.yml",
-      "sha256": "462d62543fdd570450b8af5eb10c6c1e6cab51746b82aa43bc2779b622e7d99e"
+      "sha256": "1c12f7ba981f2ae721d120d7dbc801665782495f9d0de9cedf05b3593e5cca6f"
     },
     {
       "local": "build/stellarity/menus/g_guia_stellarity_weapons_1.yml",
       "destino": "plugins/DeluxeMenus/gui_menus/g_guia_stellarity_weapons_1.yml",
-      "sha256": "f23386a25f877543eb10d72e38f09248051246d554b200247c60466cee6c6cee"
+      "sha256": "e0e1a7d143d604a18d51566c831b66215a5d38582abde074a5f51a614987b130"
     }
   ]
 }

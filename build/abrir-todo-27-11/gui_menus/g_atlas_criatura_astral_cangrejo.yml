@@ -1,0 +1,167 @@
+menu_title: '&f&#ffe9a8Cangrejo Ermitano Gigante'
+size: 54
+items:
+  'retrato':
+    material: PAPER
+    slot: 4
+    amount: 1
+    display_name: '&fCangrejo Ermitano Gigante'
+    item_model: 'astral:atlas_ui/mob_astral_cangrejo'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 19
+    amount: 1
+    display_name: '&#8a4500&lJefe'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: KNOWLEDGE_BOOK
+    slot: 20
+    amount: 1
+    display_name: '&6world'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7minecraft:beach, minecraft:stony_shore,'
+    - '&7minecraft:warm_ocean'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: KNOWLEDGE_BOOK
+    slot: 21
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&#30241bBase · Vida base 260 · Daño base 9 (antes'
+    - '&#30241bdel escalado).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: KNOWLEDGE_BOOK
+    slot: 22
+    amount: 1
+    display_name: '&6Drops vanilla'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7nautilus_shell 1 0.6; prismarine_shard 2-5'
+    - '&71; exp 100'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: KNOWLEDGE_BOOK
+    slot: 23
+    amount: 1
+    display_name: '&6Jefe de mundo I–X · Vida'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&71: 12,500; 2: 60,000; 3: 287,500; 4:'
+    - '&71,375,000; 5: 6,562,500; 6: 31,250,000; 7:'
+    - '&7148,437,500; 8: 703,125,000; 9:'
+    - '&73,320,312,500; 10: 15,625,000,000. Daño de'
+    - '&7skills segun su definicion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: PAPER
+    slot: 24
+    amount: 1
+    display_name: '&#c04fffAlma Corrupta'
+    item_model: 'astral:alma_corrupta'
+    lore:
+    - '&7Cae de Campeones y Pesadillas.'
+    - '&8Material de AstralRPG'
+    - ''
+    - '&#30241b1 × Alma Corrupta · 80%'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c6':
+    material: PAPER
+    slot: 25
+    amount: 1
+    display_name: '&#c58cffCorazon de Shulker'
+    item_model: 'astral:corazon_shulker'
+    lore:
+    - '&7Cae de Shulkers.'
+    - '&8Material de AstralRPG'
+    - ''
+    - '&#30241b1 × Corazon de Shulker · 30%'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c7':
+    material: PAPER
+    slot: 31
+    amount: 1
+    display_name: '&#7fe0a0Esencia de Elite'
+    item_model: 'astral:esencia_elite'
+    lore:
+    - '&7Cae de mobs elite.'
+    - '&8Material de AstralRPG'
+    - ''
+    - '&#30241b2 × Esencia de Elite · 100%'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_bestiario_3'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

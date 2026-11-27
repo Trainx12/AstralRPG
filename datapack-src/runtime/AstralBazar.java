@@ -55,6 +55,7 @@ public final class AstralBazar extends JavaPlugin implements Listener {
             Map<String,BazarStore.Product> definitions=new HashMap<>();
             products.forEach((id,p)->definitions.put(id,new BazarStore.Product(id,p.min,p.max)));
             store=new BazarStore(getDataFolder().toPath().resolve("bazar.sqlite"),definitions);
+            store.dynamicEnabled=getConfig().getBoolean("limites-dinamicos.activo",true);
             paused=getConfig().getBoolean("pausado",false);
             // A basket belongs to a window, not a permanent lock; after restart all return.
             store.sql("UPDATE claims SET basket='' WHERE basket<>''");
@@ -113,7 +114,22 @@ public final class AstralBazar extends JavaPlugin implements Listener {
         return "";
     }
 
-    Product product(ItemStack item){if(item==null)return null;for(var p:products.values())if(p.item.isSimilar(item))return p;return null;}
+    ItemStack fungible(ItemStack item){
+        if(item==null||item.getType().isAir())return item;
+        var n=org.bukkit.craftbukkit.inventory.CraftItemStack.asNMSCopy(item);
+        var custom=n.get(net.minecraft.core.component.DataComponents.CUSTOM_DATA);
+        if(custom==null)return item;
+        var tag=custom.copyTag();var astral=tag.getCompoundOrEmpty("astral");
+        if(!astral.contains("id")||!astral.contains("type"))return item;
+        // Only presentation and schema version may differ. All other components,
+        // PDC, custom names, enchantments and extra upgrade data remain exact.
+        astral.remove("v");tag.put("astral",astral);
+        n.set(net.minecraft.core.component.DataComponents.CUSTOM_DATA,net.minecraft.world.item.component.CustomData.of(tag));
+        var out=org.bukkit.craftbukkit.inventory.CraftItemStack.asBukkitCopy(n);
+        var meta=out.getItemMeta();meta.lore(null);out.setItemMeta(meta);return out;
+    }
+    boolean matches(Product p,ItemStack item){return item!=null&&p.item.getType()==item.getType()&&fungible(p.item).isSimilar(fungible(item));}
+    Product product(ItemStack item){if(item==null)return null;for(var p:products.values())if(matches(p,item))return p;return null;}
     Equipment gear(ItemStack item){String ident=identity(item);if(ident.isEmpty())return null;for(var e:equipment)if(e.item.getType()==item.getType()&&e.identity.equals(ident))return e;return null;}
     boolean improved(ItemStack item,Equipment e){return !item.isSimilar(e.item);}
     String owner(Player p){return p.getUniqueId().toString();}
@@ -141,7 +157,7 @@ public final class AstralBazar extends JavaPlugin implements Listener {
                 switch(sub){
                     case "pausar"->{paused=true;getConfig().set("pausado",true);saveConfig();say(sender,"Pausado.");}
                     case "reanudar"->{if(!healthy||!store.pending().isEmpty())throw new IllegalArgumentException("Hay transferencias sin resolver; revisar journal y recibos antes de reanudar.");paused=false;getConfig().set("pausado",false);saveConfig();say(sender,"Reanudado (se conserva el acceso privado).");}
-                    case "recargar"->{reloadConfig();loadTitles();paused=getConfig().getBoolean("pausado")||!healthy;say(sender,"Config recargada. Cambios de catálogo requieren reinicio para preservar órdenes.");}
+                    case "recargar"->{reloadConfig();store.dynamicEnabled=getConfig().getBoolean("limites-dinamicos.activo",true);loadTitles();paused=getConfig().getBoolean("pausado")||!healthy;say(sender,"Config recargada. Cambios de catálogo requieren reinicio para preservar órdenes.");}
                     case "ver"->{if(args.length<3)throw new IllegalArgumentException("/bazar admin ver <jugador>");var op=Bukkit.getOfflinePlayer(args[2]);String id=op.getUniqueId().toString();say(sender,"UUID "+id+" saldo "+money(store.wallet(id))+"; órdenes "+store.orders(id)+"; retiros "+store.claims(id).size());}
                     case "cancelar"->{if(args.length<3)throw new IllegalArgumentException("/bazar admin cancelar <orden>");long id=Long.parseLong(args[2]);store.cancel(store.find(id).owner(),id);say(sender,"Cancelada; devolución para retirar.");}
                     default->say(sender,"/bazar admin pausar|reanudar|ver <jugador>|cancelar <orden>|recargar");
@@ -230,6 +246,7 @@ public final class AstralBazar extends JavaPlugin implements Listener {
         var lines=new ArrayList<String>();var book=store.book(x.id,side);
         lines.add(book.isEmpty()?(side?"Sin órdenes de compra.":"Sin ofertas de venta."):"Mejor precio: "+money(book.getFirst().price())+" c/u");
         for(var l:book)lines.add(money(l.price())+" × "+l.qty()+" ("+l.orders()+" órdenes)");
+        var range=store.range(x.id);lines.add("Rango de hoy: "+money(range.min())+" - "+money(range.max())+" "+range.arrow());
         lines.add("Tenés "+count(p,x)+" en el inventario.");lines.add("Impuesto de venta: 1,25%.");lines.add("Clic para "+click+".");return lines.toArray(String[]::new);
     }
     void detail(Player p,Product x){checked(()->{
@@ -241,9 +258,9 @@ public final class AstralBazar extends JavaPlugin implements Listener {
         hit(s,s.artwork?at(32,33,34,35,41,42,43,44):at(32,33,41,42),Material.WRITABLE_BOOK,"Crear oferta de venta",()->amount(p,x,false,false),marketLore(p,x,false,"crear una oferta de venta"));
         hit(s,s.artwork?at(45,46,47):at(45),Material.ARROW,"Volver",()->home(p));hit(s,s.artwork?at(51,52,53):at(49),Material.BOOK,"Mis órdenes",()->orders(p,0));open(p,s);
     });}
-    int count(Player p,Product x){int n=0;for(var it:p.getInventory().getStorageContents())if(it!=null&&x.item.isSimilar(it))n+=it.getAmount();return n;}
+    int count(Player p,Product x){int n=0;for(var it:p.getInventory().getStorageContents())if(matches(x,it))n+=it.getAmount();return n;}
     int capacity(Player p,Product x){int n=0,max=x.item.getMaxStackSize();for(var it:p.getInventory().getStorageContents())if(it==null||it.getType().isAir())n+=max;else if(x.item.isSimilar(it))n+=Math.max(0,max-it.getAmount());return n;}
-    long best(Product x,boolean buy)throws Exception {var b=store.book(x.id,buy);return b.isEmpty()?(buy?x.min:x.max):b.getFirst().price();}
+    long best(Product x,boolean buy)throws Exception {var b=store.book(x.id,buy);var r=store.range(x.id);return b.isEmpty()?(buy?r.min():r.max()):b.getFirst().price();}
     void amount(Player p,Product x,boolean buy,boolean instant){
         // 26/11 diseno Gemini: una ventana por caso (las tarjetas traen el numero dibujado).
         Screen s=screen(p,"cantidad_"+(instant?"i":"o")+(buy?"c":"v"),"Bazar - Cantidad",5);
@@ -272,13 +289,14 @@ public final class AstralBazar extends JavaPlugin implements Listener {
     }
     void choosePrice(Player p,Product x,boolean buy,boolean instant,int qty){
         if(qty<1||qty>71680)throw new IllegalArgumentException("Cantidad: 1 a 71.680; puede no haber liquidez.");
-        if(instant){confirm(p,x,buy,true,qty,buy?x.max:x.min);return;}
+        if(instant){checked(()->{var range=store.range(x.id);confirm(p,x,buy,true,qty,buy?range.max():range.min());});return;}
         checked(()->{
             long b=best(x,buy);Screen s=screen(p,"precio","Bazar - Precio",5);
             boolean a=s.artwork;
             hit(s,a?at(9,10,18,19,27,28):at(10),Material.GOLD_NUGGET,"Igual a la mejor: "+money(b),()->confirm(p,x,buy,false,qty,b));
             long better=buy?b+10:b-10;
-            hit(s,a?at(11,12,20,21,29,30):at(12),Material.GOLD_INGOT,(buy?"Mejor +$0,10: ":"Mejor -$0,10: ")+money(Math.max(0,better)),better>=x.min&&better<=x.max?()->confirm(p,x,buy,false,qty,better):null);
+            var range=store.range(x.id);
+            hit(s,a?at(11,12,20,21,29,30):at(12),Material.GOLD_INGOT,(buy?"Mejor +$0,10: ":"Mejor -$0,10: ")+money(Math.max(0,better)),better>=range.min()&&better<=range.max()?()->confirm(p,x,buy,false,qty,better):null);
             long spread=marginPrice(x,buy);
             hit(s,a?at(14,15,23,24,32,33):at(14),Material.EMERALD,"5% del margen",spread>0?()->confirm(p,x,buy,false,qty,spread):null,spread>0?"Precio: "+money(spread):"Necesitás compra y venta con margen positivo.");
             hit(s,a?at(16,17,25,26,34,35):at(16),Material.NAME_TAG,"A mano",()->ask(p,"Precio por unidad",text->confirm(p,x,buy,false,qty,price(text))));
@@ -290,10 +308,10 @@ public final class AstralBazar extends JavaPlugin implements Listener {
         if(bids.isEmpty()||asks.isEmpty())return 0;
         long low=bids.getFirst().price(),high=asks.getFirst().price();if(high<=low)return 0;
         long step=Math.max(1,Math.round((high-low)*0.05));long value=buy?low+step:high-step;
-        return value>=x.min&&value<=x.max?value:0;
+        var range=store.range(x.id);return value>=range.min()&&value<=range.max()?value:0;
     }
     void confirm(Player p,Product x,boolean buy,boolean instant,int qty,long price){
-        if(price<x.min||price>x.max)throw new IllegalArgumentException("Precio fuera de rango: "+money(x.min)+" - "+money(x.max));
+        try{var range=store.range(x.id);if(!instant&&(price<range.min()||price>range.max()))throw new IllegalArgumentException("Precio fuera de rango: "+money(range.min())+" - "+money(range.max()));}catch(java.sql.SQLException ex){throw new IllegalStateException(ex);}
         Screen s=screen(p,"confirmar_orden","Bazar - Confirmar orden",5);
         String action=(buy?"Comprar":"Vender")+(instant?" al instante":" mediante orden");
         long estimate;
@@ -441,7 +459,7 @@ public final class AstralBazar extends JavaPlugin implements Listener {
     }
     void depositProduct(Player p,Product x,int amount)throws Exception {
         if(count(p,x)<amount)throw new IllegalArgumentException("No tenés suficientes productos idénticos; no se aceptan vanilla, renombrados ni mejorados.");
-        for(int slot=0;slot<36&&amount>0;slot++){var it=p.getInventory().getItem(slot);if(it!=null&&x.item.isSimilar(it)){int n=Math.min(amount,it.getAmount());deposit(p,slot,n,x.id,"");amount-=n;}}
+        for(int slot=0;slot<36&&amount>0;slot++){var it=p.getInventory().getItem(slot);if(matches(x,it)){int n=Math.min(amount,it.getAmount());deposit(p,slot,n,x.id,"");amount-=n;}}
     }
     void deposit(Player p,int slot,int qty,String product,String basket)throws Exception {
         ItemStack it=p.getInventory().getItem(slot);if(it==null||qty<1||qty>it.getAmount())throw new IllegalArgumentException("El ítem ya no está.");
@@ -493,6 +511,11 @@ public final class AstralBazar extends JavaPlugin implements Listener {
         try{
             ZoneId zone=ZoneId.of(getConfig().getString("respaldo-zona","America/Argentina/Buenos_Aires"));var now=ZonedDateTime.now(zone);
             String day=now.toLocalDate().toString();LocalTime at=LocalTime.parse(getConfig().getString("respaldo-hora","04:45"));
+            store.dynamicEnabled=getConfig().getBoolean("limites-dinamicos.activo",true);
+            if(store.dynamicEnabled&&!now.toLocalTime().isBefore(LocalTime.parse(getConfig().getString("limites-dinamicos.hora","05:10")))) {
+                long end=now.toLocalDate().atTime(LocalTime.parse(getConfig().getString("limites-dinamicos.hora","05:10"))).atZone(zone).toInstant().toEpochMilli();
+                store.adjustRanges(day,end,getConfig().getDouble("limites-dinamicos.tope-maximo",3));
+            }
             if(!day.equals(lastBackup)&&!now.toLocalTime().isBefore(at)){
                 Path dir=getDataFolder().toPath().resolve("backups");Files.createDirectories(dir);Path dest=dir.resolve(day+".sqlite");
                 if(!Files.exists(dest))Bukkit.getScheduler().runTaskAsynchronously(this,()->{try{store.backup(dest);}catch(Exception e){getLogger().log(java.util.logging.Level.SEVERE,"Fallo respaldo Bazar",e);}});

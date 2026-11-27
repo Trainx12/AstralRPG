@@ -1,0 +1,113 @@
+menu_title: '&f&#ffe9a8Gran Ave'
+size: 54
+items:
+  'retrato':
+    material: PAPER
+    slot: 4
+    amount: 1
+    display_name: '&fGran Ave'
+    item_model: 'astral:atlas_ui/mob_astral_ave'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 20
+    amount: 1
+    display_name: '&#00727a&lMontura'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: KNOWLEDGE_BOOK
+    slot: 21
+    amount: 1
+    display_name: '&6world'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7minecraft:windswept_hills,'
+    - '&7minecraft:stony_peaks,'
+    - '&7minecraft:jagged_peaks, minecraft:meadow'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: KNOWLEDGE_BOOK
+    slot: 22
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&#30241bBase · Vida base 40 · Daño base 0 (antes'
+    - '&#30241bdel escalado).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: KNOWLEDGE_BOOK
+    slot: 23
+    amount: 1
+    display_name: '&6Drops vanilla'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7feather 3-6 1; exp 6'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: KNOWLEDGE_BOOK
+    slot: 24
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&#30241bMontura voladora BetterModel; consultar'
+    - '&#30241blos controles de vuelo del servidor.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_bestiario_2'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

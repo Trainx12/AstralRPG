@@ -1,0 +1,385 @@
+menu_title: '&f&#ffe9a8Pociones 1/2'
+size: 54
+items:
+  'c0':
+    material: POTION
+    slot: 1
+    amount: 1
+    display_name: '&bAmarene'
+    lore:
+    - '&7Velocidad 2: 48 s.'
+    - '&7Regeneracion 1: 48 s.'
+    - '&7Debilidad 1: 48 s.'
+    - '&7Saturation 4: 0.05 s.'
+    - '&7Suerte 1: 240 s.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: POTION
+    slot: 2
+    amount: 1
+    display_name: '&bBlind Rage Potion'
+    lore:
+    - '&7Fuerza 3: 15 s.'
+    - '&7Darkness 1: 15 s.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_blind_rage_potion_70'
+  'c2':
+    material: POTION
+    slot: 3
+    amount: 1
+    display_name: '&bBlind Rage Potion'
+    lore:
+    - '&7Fuerza 3: 22.5 s.'
+    - '&7Darkness 1: 22.5 s.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_blind_rage_potion_ext_71'
+  'c3':
+    material: POTION
+    slot: 4
+    amount: 1
+    display_name: '&bEndurance Potion'
+    lore:
+    - '&7Resistencia 1: 120 s.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_endurance_potion_72'
+  'c4':
+    material: POTION
+    slot: 5
+    amount: 1
+    display_name: '&bEndurance Potion'
+    lore:
+    - '&7Resistencia 1: 240 s.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_endurance_potion_ext_73'
+  'c5':
+    material: POTION
+    slot: 6
+    amount: 1
+    display_name: '&bEndurance Potion'
+    lore:
+    - '&7Resistencia 2: 60 s.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_endurance_potion_ii_74'
+  'c6':
+    material: SPLASH_POTION
+    slot: 7
+    amount: 1
+    display_name: '&bEntanglement Potion'
+    lore:
+    - '&7Lentitud 5: 11 s.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_entanglement_potion_75'
+  'c7':
+    material: SPLASH_POTION
+    slot: 10
+    amount: 1
+    display_name: '&bEntanglement Potion'
+    lore:
+    - '&7Lentitud 5: 14 s.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_entanglement_potion_ext_76'
+  'c8':
+    material: SPLASH_POTION
+    slot: 11
+    amount: 1
+    display_name: '&bEntanglement Potion'
+    lore:
+    - '&7Lentitud 6: 8 s.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_entanglement_potion_ii_77'
+  'c9':
+    material: LINGERING_POTION
+    slot: 12
+    amount: 1
+    display_name: '&bFrost Cloud Potion'
+    lore:
+    - '&7Lentitud 100: 6 s.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_frost_cloud_potion_78'
+  'c10':
+    material: POTION
+    slot: 13
+    amount: 1
+    display_name: '&bHellfire Treader Potion'
+    lore:
+    - '&7Velocidad 1: 240 s.'
+    - '&7Resistencia al fuego 1: 240 s.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_hellfire_treader_potion_79'
+  'c11':
+    material: POTION
+    slot: 14
+    amount: 1
+    display_name: '&bHellfire Treader Potion'
+    lore:
+    - '&7Velocidad 1: 480 s.'
+    - '&7Resistencia al fuego 1: 480 s.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_hellfire_treader_potion_ext_80'
+  'c12':
+    material: POTION
+    slot: 15
+    amount: 1
+    display_name: '&bHellfire Treader Potion'
+    lore:
+    - '&7Velocidad 2: 120 s.'
+    - '&7Resistencia al fuego 1: 120 s.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_hellfire_treader_potion_ii_81'
+  'c13':
+    material: POTION
+    slot: 16
+    amount: 1
+    display_name: '&bLifeforce Potion'
+    lore:
+    - '&7Vida extra 1: 180 s.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_lifeforce_potion_82'
+  'c14':
+    material: POTION
+    slot: 19
+    amount: 1
+    display_name: '&bLifeforce Potion'
+    lore:
+    - '&7Vida extra 1: 360 s.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_lifeforce_potion_ext_83'
+  'c15':
+    material: POTION
+    slot: 20
+    amount: 1
+    display_name: '&bLifeforce Potion'
+    lore:
+    - '&7Vida extra 2: 90 s.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_lifeforce_potion_ii_84'
+  'c16':
+    material: POTION
+    slot: 21
+    amount: 1
+    display_name: '&bLuck Potion'
+    lore:
+    - '&7Pocion del recetario del End.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_luck_potion_89'
+  'c17':
+    material: POTION
+    slot: 22
+    amount: 1
+    display_name: '&bPoseidon''s Nectar'
+    lore:
+    - '&7Conduit power 1: 390 s.'
+    - '&7Absorcion 1: 390 s.'
+    - '&7Gracia del delfin 1: 390 s.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_poseidons_nectar_90'
+  'c18':
+    material: POTION
+    slot: 23
+    amount: 1
+    display_name: '&bRed Potion'
+    lore:
+    - '&7Darkness 10: -0.05 s.'
+    - '&7Lentitud 10: -0.05 s.'
+    - '&7Fatiga al minar 10: -0.05 s.'
+    - '&7Nauseas 1: -0.05 s.'
+    - '&7Ceguera 1: -0.05 s.'
+    - '&7Hambre 10: -0.05 s.'
+    - '&7Debilidad 10: -0.05 s.'
+    - '&7Veneno 10: -0.05 s.'
+    - '&7Wither 10: -0.05 s.'
+    - '&7Brillo 1: -0.05 s.'
+    - '&7Unluck 10: -0.05 s.'
+    - '&7Bad omen 10: 60 s.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_red_potion_91'
+  'c19':
+    material: POTION
+    slot: 24
+    amount: 1
+    display_name: '&bRegeneraga'
+    lore:
+    - '&7Curacion instantanea 2: 0.05 s.'
+    - '&7Regeneracion 3: 7 s.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_regeneraga_92'
+  'c20':
+    material: POTION
+    slot: 25
+    amount: 1
+    display_name: '&bRegeneraga'
+    lore:
+    - '&7Curacion instantanea 2: 0.05 s.'
+    - '&7Regeneracion 3: 10.5 s.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_stellarity'
+  'siguiente':
+    material: PAPER
+    slot: 51
+    amount: 1
+    display_name: '&eSiguiente'
+    item_model: 'astral:mascotas/nav_next'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_stellarity_potions_2'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

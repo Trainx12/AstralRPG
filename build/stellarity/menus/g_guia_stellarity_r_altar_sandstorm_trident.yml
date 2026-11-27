@@ -1,16 +1,5 @@
 menu_title: '&f&#ffe9a8Sandstorm Trident'
 size: 54
-open_requirement:
-  requirements:
-    prueba:
-      type: has permission
-      permission: astral.guia.ampliacion
-    dueno:
-      type: string equals
-      input: '%player_name%'
-      output: 'ByTrainx'
-  deny_commands:
-  - '[message] &eEsta ampliacion esta en prueba con el dueno.'
 items:
   'material0':
     material: TRIDENT

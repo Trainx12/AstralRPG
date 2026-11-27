@@ -1,0 +1,348 @@
+menu_title: '&f&#ffe9a8Recetas del End 1/6'
+size: 54
+items:
+  'c0':
+    material: DISPENSER
+    slot: 1
+    amount: 1
+    display_name: '&bDispenser'
+    lore:
+    - '&6Mesa de crafteo'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_minecraft_dispenser'
+  'c1':
+    material: DROPPER
+    slot: 2
+    amount: 1
+    display_name: '&bDropper'
+    lore:
+    - '&6Mesa de crafteo'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_minecraft_dropper'
+  'c2':
+    material: END_CRYSTAL
+    slot: 3
+    amount: 1
+    display_name: '&bEnd crystal'
+    lore:
+    - '&6Mesa de crafteo'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_minecraft_end_crystal'
+  'c3':
+    material: END_ROD
+    slot: 4
+    amount: 6
+    display_name: '&bEnd rod'
+    lore:
+    - '&6Mesa de crafteo'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_minecraft_end_rod'
+  'c4':
+    material: GLASS
+    slot: 5
+    amount: 1
+    display_name: '&bVidrio'
+    lore:
+    - '&6Horno'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_minecraft_glass'
+  'c5':
+    material: LEATHER
+    slot: 6
+    amount: 1
+    display_name: '&bCuero'
+    lore:
+    - '&6Mesa de crafteo'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_minecraft_leather'
+  'c6':
+    material: LEVER
+    slot: 7
+    amount: 1
+    display_name: '&bLever'
+    lore:
+    - '&6Mesa de crafteo'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_minecraft_lever'
+  'c7':
+    material: OBSERVER
+    slot: 10
+    amount: 1
+    display_name: '&bObserver'
+    lore:
+    - '&6Mesa de crafteo'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_minecraft_observer'
+  'c8':
+    material: PISTON
+    slot: 11
+    amount: 1
+    display_name: '&bPiston'
+    lore:
+    - '&6Mesa de crafteo'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_minecraft_piston'
+  'c9':
+    material: PURPLE_DYE
+    slot: 12
+    amount: 2
+    display_name: '&bPurple dye'
+    lore:
+    - '&6Mesa sin forma'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_minecraft_purple_dye'
+  'c10':
+    material: SLIME_BALL
+    slot: 13
+    amount: 9
+    display_name: '&bSlime ball'
+    lore:
+    - '&6Mesa sin forma'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_minecraft_slime_ball'
+  'c11':
+    material: SPECTRAL_ARROW
+    slot: 14
+    amount: 2
+    display_name: '&bSpectral arrow'
+    lore:
+    - '&6Mesa sin forma'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_minecraft_spectral_arrow'
+  'c12':
+    material: CHORUS_PLANT
+    slot: 15
+    amount: 4
+    display_name: '&bPlanta de chorus'
+    lore:
+    - '&6Mesa de crafteo'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_stellarity_chorus_plant_from_fruit'
+  'c13':
+    material: GLASS
+    slot: 16
+    amount: 3
+    display_name: '&bVidrio'
+    lore:
+    - '&6Mesa sin forma'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_stellarity_glass_from_end_stone'
+  'c14':
+    material: GUNPOWDER
+    slot: 19
+    amount: 1
+    display_name: '&bPolvora'
+    lore:
+    - '&6Alto horno'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_stellarity_gunpowder_from_popped_chorus_blasting'
+  'c15':
+    material: GUNPOWDER
+    slot: 20
+    amount: 1
+    display_name: '&bPolvora'
+    lore:
+    - '&6Fogata'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_stellarity_gunpowder_from_popped_chorus_campfire'
+  'c16':
+    material: LEATHER
+    slot: 21
+    amount: 2
+    display_name: '&bCuero'
+    lore:
+    - '&6Mesa de crafteo'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_stellarity_leather_from_membranes'
+  'c17':
+    material: PAPER
+    slot: 22
+    amount: 6
+    display_name: '&bPapel'
+    lore:
+    - '&6Mesa sin forma'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_stellarity_papyrus'
+  'c18':
+    material: PURPLE_DYE
+    slot: 23
+    amount: 2
+    display_name: '&bPurple dye'
+    lore:
+    - '&6Mesa sin forma'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_stellarity_purple_dye_from_chorus_flower'
+  'c19':
+    material: SLIME_BALL
+    slot: 24
+    amount: 3
+    display_name: '&bSlime ball'
+    lore:
+    - '&6Mesa sin forma'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_stellarity_slime_ball_from_ender_eye'
+  'c20':
+    material: SPECTRAL_ARROW
+    slot: 25
+    amount: 4
+    display_name: '&bSpectral arrow'
+    lore:
+    - '&6Mesa sin forma'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_stellarity_spectral_arrow_alt'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_stellarity'
+  'siguiente':
+    material: PAPER
+    slot: 51
+    amount: 1
+    display_name: '&eSiguiente'
+    item_model: 'astral:mascotas/nav_next'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_stellarity_recetas_2'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

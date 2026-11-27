@@ -1,0 +1,364 @@
+menu_title: '&f&#ffe9a8Recetas del End 5/6'
+size: 54
+items:
+  'c0':
+    material: POTION
+    slot: 1
+    amount: 1
+    display_name: '&bLifeforce Potion'
+    lore:
+    - '&6Caldero de dragon'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_lifeforce_potion_ii_84'
+  'c1':
+    material: POTION
+    slot: 2
+    amount: 1
+    display_name: '&bSpelunker Potion'
+    lore:
+    - '&6Caldero de dragon'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_spelunker_potion_85'
+  'c2':
+    material: POTION
+    slot: 3
+    amount: 1
+    display_name: '&bSpelunker Potion'
+    lore:
+    - '&6Caldero de dragon'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_spelunker_potion_86'
+  'c3':
+    material: POTION
+    slot: 4
+    amount: 1
+    display_name: '&bSpelunker Potion'
+    lore:
+    - '&6Caldero de dragon'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_spelunker_potion_ext_87'
+  'c4':
+    material: POTION
+    slot: 5
+    amount: 1
+    display_name: '&bSpelunker Potion'
+    lore:
+    - '&6Caldero de dragon'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_spelunker_potion_ii_88'
+  'c5':
+    material: POTION
+    slot: 6
+    amount: 1
+    display_name: '&bLuck Potion'
+    lore:
+    - '&6Caldero de dragon'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_luck_potion_89'
+  'c6':
+    material: POTION
+    slot: 7
+    amount: 1
+    display_name: '&bPoseidon''s Nectar'
+    lore:
+    - '&6Caldero de dragon'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_poseidons_nectar_90'
+  'c7':
+    material: POTION
+    slot: 10
+    amount: 1
+    display_name: '&bRed Potion'
+    lore:
+    - '&6Caldero de dragon'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_red_potion_91'
+  'c8':
+    material: POTION
+    slot: 11
+    amount: 1
+    display_name: '&bRegeneraga'
+    lore:
+    - '&6Caldero de dragon'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_regeneraga_92'
+  'c9':
+    material: POTION
+    slot: 12
+    amount: 1
+    display_name: '&bRegeneraga'
+    lore:
+    - '&6Caldero de dragon'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_regeneraga_ii_93'
+  'c10':
+    material: HONEY_BOTTLE
+    slot: 13
+    amount: 1
+    display_name: '&bRoyal Jelly'
+    lore:
+    - '&6Caldero de dragon'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_royal_jelly_94'
+  'c11':
+    material: HONEY_BOTTLE
+    slot: 14
+    amount: 1
+    display_name: '&bRoyal Jelly'
+    lore:
+    - '&6Caldero de dragon'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_royal_jelly_ii_95'
+  'c12':
+    material: GLOW_ITEM_FRAME
+    slot: 15
+    amount: 1
+    display_name: '&bEnder Dirt'
+    item_model: 'stellarity:ender_dirt'
+    lore:
+    - '&6Caldero de dragon'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_ender_dirt_96'
+  'c13':
+    material: GLOW_ITEM_FRAME
+    slot: 16
+    amount: 1
+    display_name: '&bRooted Ender Dirt'
+    item_model: 'stellarity:rooted_ender_dirt'
+    lore:
+    - '&6Caldero de dragon'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_rooted_ender_dirt_97'
+  'c14':
+    material: GLOW_ITEM_FRAME
+    slot: 19
+    amount: 1
+    display_name: '&bEnder Grass Block'
+    item_model: 'stellarity:ender_grass_block'
+    lore:
+    - '&6Caldero de dragon'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_ender_grass_block_98'
+  'c15':
+    material: ELYTRA
+    slot: 20
+    amount: 1
+    display_name: '&bElytra'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_elytra_white'
+  'c16':
+    material: ELYTRA
+    slot: 21
+    amount: 1
+    display_name: '&bElytra'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_elytra_light_gray'
+  'c17':
+    material: ELYTRA
+    slot: 22
+    amount: 1
+    display_name: '&bElytra'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_elytra_gray'
+  'c18':
+    material: ELYTRA
+    slot: 23
+    amount: 1
+    display_name: '&bElytra'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_elytra_black'
+  'c19':
+    material: ELYTRA
+    slot: 24
+    amount: 1
+    display_name: '&bElytra'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_elytra_brown'
+  'c20':
+    material: ELYTRA
+    slot: 25
+    amount: 1
+    display_name: '&bElytra'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_elytra_red'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_stellarity'
+  'anterior':
+    material: PAPER
+    slot: 47
+    amount: 1
+    display_name: '&eAnterior'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_stellarity_recetas_4'
+  'siguiente':
+    material: PAPER
+    slot: 51
+    amount: 1
+    display_name: '&eSiguiente'
+    item_model: 'astral:mascotas/nav_next'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_stellarity_recetas_6'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

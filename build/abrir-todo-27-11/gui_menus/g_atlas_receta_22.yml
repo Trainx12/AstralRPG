@@ -1,0 +1,183 @@
+menu_title: '&f&#ffe9a8Grebas del Carnicero'
+size: 54
+items:
+  'resultado':
+    material: IRON_LEGGINGS
+    slot: 20
+    amount: 1
+    display_name: '&aGrebas del Carnicero'
+    item_model: 'astral:berserker_2_leggings'
+    lore:
+    - '&7Berserker II'
+    - '&7Vida: &c+112,5'
+    - '&7Bonif. de vida: &c+4,5%'
+    - '&7Defensa: &a+28'
+    - '&7Daño: &c+2,5%'
+    - '&7Tiempo en llamas: &c-7,5%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f3.325'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 2'
+    - ''
+    - '&cRequiere: Combate 16'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&a&lPOCO COMÚN GREBAS'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: CHAINMAIL_LEGGINGS
+    slot: 14
+    amount: 1
+    display_name: '&f1x Grebas del Saqueador'
+    item_model: 'astral:berserker_1_leggings'
+    lore:
+    - '&7Berserker I'
+    - '&7Vida: &c+50'
+    - '&7Bonif. de vida: &c+2,5%'
+    - '&7Defensa: &a+14'
+    - '&7Daño: &c+1,25%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&a+5%&7 de dano cuerpo a cuerpo.'
+    - '&6Bono de set (4/4)'
+    - '&7Sed de sangre: al matar, Fuerza I por &a5&7 s.'
+    - '&7Durabilidad: &f2.850'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: Combate 4'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&f&lCOMÚN GREBAS'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 3
+    display_name: '&f3x Acero Sombrio'
+    item_model: 'astral:shadowsteel'
+    lore:
+    - '&7Equipamiento de Berserker.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&f1x Netherita Fundida'
+    item_model: 'astral:netherita_fundida'
+    lore:
+    - '&7Netherita fundida en un horno.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material3':
+    material: PAPER
+    slot: 23
+    amount: 1
+    display_name: '&f1x Esencia del Nether'
+    item_model: 'astral:esencia_nether'
+    lore:
+    - '&7Cae de Wither Skeletons.'
+    - '&8Material de AstralRPG'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 22'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 22'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 22'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_catalogo_armadura_2_1'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

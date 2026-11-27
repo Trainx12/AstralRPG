@@ -1,0 +1,173 @@
+menu_title: '&f&#ffe9a8Motosierra Astral'
+size: 54
+items:
+  'resultado':
+    material: NETHERITE_AXE
+    slot: 20
+    amount: 1
+    display_name: '&6Motosierra Astral'
+    item_model: 'astral:motosierra_astral'
+    lore:
+    - '&7Motosierra V'
+    - '&7Velocidad de tala: &6+26'
+    - '&7Tala por corte: &6el árbol entero'
+    - '&bIndestructible'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Corta un solo bloque.'
+    - '&7Tier: 5'
+    - ''
+    - '&cRequiere: Tala 32'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&6&lLEGENDARIA MOTOSIERRA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: NETHERITE_AXE
+    slot: 14
+    amount: 1
+    display_name: '&f1x Motosierra Infernal'
+    item_model: 'astral:motosierra_infernal'
+    lore:
+    - '&7Motosierra IV'
+    - '&7Velocidad de tala: &6+21'
+    - '&7Tala por corte: &66 troncos'
+    - '&bIndestructible'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Corta un solo bloque.'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: Tala 24'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&5&lÉPICA MOTOSIERRA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 8
+    display_name: '&f8x Madera Estelar'
+    item_model: 'astral:madera_estelar'
+    lore:
+    - '&7Madera de los arboles del End.'
+    - '&8Material de AstralRPG'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&f1x Nucleo Astral'
+    item_model: 'astral:nucleo_astral'
+    lore:
+    - '&7Material endgame universal.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material3':
+    material: PAPER
+    slot: 23
+    amount: 4
+    display_name: '&f4x Polvo Astral'
+    item_model: 'astral:polvo_astral'
+    lore:
+    - '&7Material de refinado astral.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 221'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 221'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 221'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_motosierras'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

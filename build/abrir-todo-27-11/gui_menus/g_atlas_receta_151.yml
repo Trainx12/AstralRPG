@@ -1,0 +1,164 @@
+menu_title: '&f&#ffe9a8Cuchillo Celeste'
+size: 54
+items:
+  'resultado':
+    material: IRON_SWORD
+    slot: 20
+    amount: 1
+    display_name: '&6Cuchillo Celeste'
+    item_model: 'astral:cuchillo_5'
+    lore:
+    - '&7Cuchillo de Asesino V'
+    - '&7Daño: &c+33.125'
+    - '&7Velocidad de ataque: &f3'
+    - ''
+    - '&7Ataque rapido: &a3&7 golpes por segundo'
+    - '&7Por la espalda: &a+50%&7 de dano'
+    - '&7Envenena: &a8%&7 del golpe por segundo, &a3&7 s'
+    - '&7Agachado + clic derecho: invisible &a2&7 s (no en PvP)'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 5'
+    - ''
+    - '&cRequiere: Combate 30'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&6&lLEGENDARIA CUCHILLO'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: IRON_SWORD
+    slot: 14
+    amount: 1
+    display_name: '&f1x Cuchillo del Nether'
+    item_model: 'astral:cuchillo_4'
+    lore:
+    - '&7Cuchillo de Asesino IV'
+    - '&7Daño: &c+6.625'
+    - '&7Velocidad de ataque: &f3'
+    - ''
+    - '&7Ataque rapido: &a3&7 golpes por segundo'
+    - '&7Por la espalda: &a+50%&7 de dano'
+    - '&7Envenena: &a8%&7 del golpe por segundo, &a3&7 s'
+    - '&7Agachado + clic derecho: invisible &a2&7 s (no en PvP)'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: Combate 25'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&5&lÉPICA CUCHILLO'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 2
+    display_name: '&f2x Netherita Reforzada'
+    item_model: 'astral:netherita_reforzada'
+    lore:
+    - '&7Metal de nivel intermedio-alto.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&f1x Nucleo de Furia Pura'
+    item_model: 'astral:nucleo_furia_pura'
+    lore:
+    - '&7Endgame Berserker.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 151'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 151'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 151'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_catalogo_cuchillo_1'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

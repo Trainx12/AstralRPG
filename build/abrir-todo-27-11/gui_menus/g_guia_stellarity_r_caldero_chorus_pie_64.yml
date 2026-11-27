@@ -1,0 +1,120 @@
+menu_title: '&f&#ffe9a8Tarta de chorus'
+size: 54
+items:
+  'material0':
+    material: PUMPKIN_PIE
+    slot: 20
+    amount: 1
+    display_name: '&bTarta de chorus'
+    item_model: 'stellarity:chorus_pie'
+    lore:
+    - '&7Hambre: 8 puntos. Saturacion: 4.8.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: CHORUS_FRUIT
+    slot: 14
+    amount: 1
+    display_name: '&bFruta chorus'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: SUGAR
+    slot: 15
+    amount: 1
+    display_name: '&bAzucar'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material3':
+    material: SNOWBALL
+    slot: 16
+    amount: 1
+    display_name: '&bEnder Egg'
+    item_model: 'stellarity:ender_egg'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material4':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: ' '
+    item_model: 'astral:viajes/blank'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material5':
+    material: KNOWLEDGE_BOOK
+    slot: 40
+    amount: 1
+    display_name: '&bCaldero de dragon'
+    lore:
+    - '&7Caldero de dragon'
+    - '&7Caldero con agua y aliento de dragon.'
+    - '&7Tira los ingredientes; sin forma.'
+    - '&7Consume 2 cargas de aliento (7 por'
+    - '&7carga inicial).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material6':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: ' '
+    item_model: 'astral:viajes/blank'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_stellarity_recetas_4'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

@@ -1,0 +1,166 @@
+menu_title: '&f&#ffe9a8Tridente del Inframundo'
+size: 54
+items:
+  'resultado':
+    material: NETHERITE_SPEAR
+    slot: 20
+    amount: 1
+    display_name: '&#ff5fd2Tridente del Inframundo'
+    item_model: 'astral:lanza_7'
+    lore:
+    - '&7Lanza de Combate VII'
+    - '&7Daño: &c+1.406.250'
+    - '&7Velocidad de ataque: &f1,1'
+    - ''
+    - '&#5555FFRobo de vida III'
+    - '&a25%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&#5555FFEjecución I'
+    - '&7Ejecuta enemigos con menos del &a15%&7 de vida.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 7'
+    - ''
+    - '&cRequiere: Combate 40'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#ff5fd2&lMÍTICA LANZA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: NETHERITE_SPEAR
+    slot: 14
+    amount: 1
+    display_name: '&f1x Lanza de la Fortuna'
+    item_model: 'astral:lanza_6'
+    lore:
+    - '&7Lanza de Combate VI'
+    - '&7Daño: &c+281.250'
+    - '&7Velocidad de ataque: &f1,1'
+    - ''
+    - '&#5555FFRobo de vida III'
+    - '&a25%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&#5555FFEjecución I'
+    - '&7Ejecuta enemigos con menos del &a15%&7 de vida.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 6'
+    - ''
+    - '&cRequiere: Combate 35'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#ff5fd2&lMÍTICA LANZA'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 4
+    display_name: '&f4x Esquirla de Eclipse'
+    item_model: 'astral:esquirla_eclipse'
+    lore:
+    - '&7Cae de mobs tier 7 o mas.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&f1x Chispa Astral'
+    item_model: 'astral:chispa_astral'
+    lore:
+    - '&7Cae de los mobs Astrales.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 240'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 240'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 240'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_lanzas'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

@@ -1,0 +1,199 @@
+menu_title: '&f&#ffe9a8Mago: armadura III'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 2
+    amount: 1
+    display_name: '&7Elegi que queres forjar.'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: LEATHER_HELMET
+    slot: 3
+    amount: 1
+    display_name: '&#5555FFCapucha del Invocador'
+    item_model: 'astral:mago_3_helmet'
+    lore:
+    - '&7Mago III'
+    - '&7Vida: &c+225'
+    - '&7Bonif. de vida: &c-2,5%'
+    - '&7Defensa: &a+30'
+    - '&7Maná: &b+87,5'
+    - '&7Regeneración de maná: &b+1,93/s'
+    - '&7Daño mágico: &d+4,5%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&7Escudo arcano: &a+2&7 de armadura.'
+    - '&6Bono de set (4/4)'
+    - '&7Canalizacion: al matar, Regeneracion I y Velocidad I por &a4&7 s.'
+    - '&7Durabilidad: &f3.600'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Hechiceria 20'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA CASCO'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_64'
+  'c2':
+    material: LEATHER_CHESTPLATE
+    slot: 4
+    amount: 1
+    display_name: '&#5555FFTunica del Invocador'
+    item_model: 'astral:mago_3_chestplate'
+    lore:
+    - '&7Mago III'
+    - '&7Vida: &c+225'
+    - '&7Bonif. de vida: &c-2,5%'
+    - '&7Defensa: &a+80'
+    - '&7Maná: &b+87,5'
+    - '&7Regeneración de maná: &b+1,93/s'
+    - '&7Daño mágico: &d+4,5%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&7Escudo arcano: &a+2&7 de armadura.'
+    - '&6Bono de set (4/4)'
+    - '&7Canalizacion: al matar, Regeneracion I y Velocidad I por &a4&7 s.'
+    - '&7Durabilidad: &f4.500'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Hechiceria 20'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA PECHERA'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_65'
+  'c3':
+    material: LEATHER_LEGGINGS
+    slot: 5
+    amount: 1
+    display_name: '&#5555FFFaldones del Invocador'
+    item_model: 'astral:mago_3_leggings'
+    lore:
+    - '&7Mago III'
+    - '&7Vida: &c+225'
+    - '&7Bonif. de vida: &c-2,5%'
+    - '&7Defensa: &a+60'
+    - '&7Maná: &b+87,5'
+    - '&7Regeneración de maná: &b+1,93/s'
+    - '&7Daño mágico: &d+4,5%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&7Escudo arcano: &a+2&7 de armadura.'
+    - '&6Bono de set (4/4)'
+    - '&7Canalizacion: al matar, Regeneracion I y Velocidad I por &a4&7 s.'
+    - '&7Durabilidad: &f4.275'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Hechiceria 20'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA GREBAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_66'
+  'c4':
+    material: LEATHER_BOOTS
+    slot: 6
+    amount: 1
+    display_name: '&#5555FFSandalias del Invocador'
+    item_model: 'astral:mago_3_boots'
+    lore:
+    - '&7Mago III'
+    - '&7Vida: &c+225'
+    - '&7Bonif. de vida: &c-2,5%'
+    - '&7Defensa: &a+30'
+    - '&7Maná: &b+87,5'
+    - '&7Regeneración de maná: &b+1,93/s'
+    - '&7Daño mágico: &d+4,5%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&7Escudo arcano: &a+2&7 de armadura.'
+    - '&6Bono de set (4/4)'
+    - '&7Canalizacion: al matar, Regeneracion I y Velocidad I por &a4&7 s.'
+    - '&7Durabilidad: &f3.825'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Hechiceria 20'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA BOTAS'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_67'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mago'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

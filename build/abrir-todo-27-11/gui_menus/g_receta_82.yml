@@ -1,0 +1,177 @@
+menu_title: '&f&#ffe9a8Faldones Escarlata'
+size: 54
+items:
+  'resultado':
+    material: LEATHER_LEGGINGS
+    slot: 20
+    amount: 1
+    display_name: '&#ff5fd2Faldones Escarlata'
+    item_model: 'astral:mago_7_leggings'
+    lore:
+    - '&7Mago VII'
+    - '&7Vida: &c+6.225'
+    - '&7Defensa: &a+192'
+    - '&7Maná: &b+550'
+    - '&7Regeneración de maná: &b+14,85/s'
+    - '&7Daño mágico: &d+14%'
+    - '&7Enfriamiento de hechizos: &c-3,75%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&7Escudo arcano: &a+2&7 de armadura.'
+    - '&6Bono de set (4/4)'
+    - '&7Canalizacion: al matar, Regeneracion I y Velocidad I por &a4&7 s.'
+    - '&7Durabilidad: &f14.725'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 7'
+    - ''
+    - '&cRequiere: Hechiceria 42'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#ff5fd2&lMÍTICA GREBAS'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: LEATHER_LEGGINGS
+    slot: 14
+    amount: 1
+    display_name: '&f1x Faldones del Glaciar'
+    item_model: 'astral:mago_6_leggings'
+    lore:
+    - '&7Mago VI'
+    - '&7Vida: &c+3.725'
+    - '&7Defensa: &a+156'
+    - '&7Maná: &b+400'
+    - '&7Regeneración de maná: &b+10,4/s'
+    - '&7Daño mágico: &d+12%'
+    - '&7Enfriamiento de hechizos: &c-2,5%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&7Escudo arcano: &a+2&7 de armadura.'
+    - '&6Bono de set (4/4)'
+    - '&7Canalizacion: al matar, Regeneracion I y Velocidad I por &a4&7 s.'
+    - '&7Durabilidad: &f11.400'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 6'
+    - ''
+    - '&cRequiere: Hechiceria 37'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#ff5fd2&lMÍTICA GREBAS'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 4
+    display_name: '&f4x Esquirla de Eclipse'
+    item_model: 'astral:esquirla_eclipse'
+    lore:
+    - '&7Cae de mobs tier 7 o mas.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 1
+    display_name: '&f1x Gema Luminica Perfecta'
+    item_model: 'astral:gema_luminica_perfecta'
+    lore:
+    - '&7Endgame Arquero y Mago.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 82'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 82'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 82'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mago_7'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

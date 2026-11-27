@@ -1,0 +1,137 @@
+menu_title: '&f&#ffe9a8Como se juega'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 1
+    amount: 1
+    display_name: '&6&lMesa Y Libro De Recetas'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Las recetas que entran en 3x3 tambien se'
+    - '&7hacen en una mesa normal. El libro verde'
+    - '&7las desbloquea al conseguir uno de sus'
+    - '&7materiales; hace clic para autollenar. Usa'
+    - '&7materiales Astral exactos. La mesa exige'
+    - '&7el nivel de AuraSkills del resultado. Las'
+    - '&7recetas grandes siguen en la Forja.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: KNOWLEDGE_BOOK
+    slot: 2
+    amount: 1
+    display_name: '&6&lAcceso Rapido A La Guia'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Opciones -> Controles -> Acciones rapidas:'
+    - '&7asigna una tecla para abrir la Guia'
+    - '&7Astral.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: KNOWLEDGE_BOOK
+    slot: 3
+    amount: 1
+    display_name: '&6&lForja Astral'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Pone una Mesa de Herreria, abri esta guia'
+    - '&7al lado y apreta Forjar en lo que quieras'
+    - '&7hacer. Los materiales se sacan solos de tu'
+    - '&7inventario.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: KNOWLEDGE_BOOK
+    slot: 4
+    amount: 1
+    display_name: '&6&lClases'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Berserker (Forja), Mago (Hechiceria) y'
+    - '&7Arquero (Arqueria) tienen 5 tiers de'
+    - '&7armadura y armas. Cada objeto pide un'
+    - '&7nivel de AuraSkills para usarlo: /skills'
+    - '&7para ver tus niveles.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: KNOWLEDGE_BOOK
+    slot: 5
+    amount: 1
+    display_name: '&6&lArmas Especiales'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Bastones: click derecho lanza un proyectil'
+    - '&7arcano. Atraviesa hasta 3 enemigos (dano'
+    - '&7100%/70%/70%). Arcos: mantene click'
+    - '&7derecho y disparan solos. Saltador: click'
+    - '&7derecho para impulsarte. Gancho: lanzalo a'
+    - '&7un bloque y volve a pulsar para tirarte.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: KNOWLEDGE_BOOK
+    slot: 6
+    amount: 1
+    display_name: '&6&lMobs Elite'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Cuanto mejor es tu equipo y mas dias'
+    - '&7pasan, aparecen mas mobs elite (Veterano,'
+    - '&7Elite, Campeon, Pesadilla y Astral). Son'
+    - '&7mas fuertes y sueltan materiales para'
+    - '&7Talismanes y Lanzas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

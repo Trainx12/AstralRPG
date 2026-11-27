@@ -1,0 +1,135 @@
+menu_title: '&f&#ffe9a8Talisman de Roca'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 2
+    amount: 1
+    display_name: '&7Elegi que queres forjar.'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: PAPER
+    slot: 3
+    amount: 1
+    display_name: '&fTalisman de Roca I'
+    item_model: 'astral:talisman_roca_1'
+    lore:
+    - '&7Llevalo en la mano secundaria'
+    - '&7Defensa: &a+5%'
+    - ''
+    - '&a+5%&7 de Defensa Astral y armadura'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&f&lCOMÚN TALISMÁN'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_231'
+  'c2':
+    material: PAPER
+    slot: 4
+    amount: 1
+    display_name: '&aTalisman de Roca II'
+    item_model: 'astral:talisman_roca_2'
+    lore:
+    - '&7Llevalo en la mano secundaria'
+    - '&7Defensa: &a+10%'
+    - ''
+    - '&a+10%&7 de Defensa Astral y armadura'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 2'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&a&lPOCO COMÚN TALISMÁN'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_232'
+  'c3':
+    material: PAPER
+    slot: 5
+    amount: 1
+    display_name: '&#5555FFTalisman de Roca III'
+    item_model: 'astral:talisman_roca_3'
+    lore:
+    - '&7Llevalo en la mano secundaria'
+    - '&7Defensa: &a+20%'
+    - ''
+    - '&a+20%&7 de Defensa Astral y armadura'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: sin nivel'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA TALISMÁN'
+    - ''
+    - '&e» Clic: ver la receta'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_233'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_talismanes'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

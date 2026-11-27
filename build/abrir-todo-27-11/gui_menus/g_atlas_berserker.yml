@@ -1,0 +1,262 @@
+menu_title: '&f&#ffe9a8Berserker I-X'
+size: 54
+items:
+  'ilustracion':
+    material: PAPER
+    slot: 4
+    amount: 1
+    display_name: '&fBerserker I–X'
+    item_model: 'astral:atlas_ui/ilus_berserker'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c0':
+    material: CHAINMAIL_HELMET
+    slot: 19
+    amount: 1
+    display_name: '&bArmadura 1'
+    item_model: 'astral:berserker_1_helmet'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_catalogo_armadura_1_1'
+  'c1':
+    material: IRON_HELMET
+    slot: 20
+    amount: 1
+    display_name: '&bArmadura 2'
+    item_model: 'astral:berserker_2_helmet'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_catalogo_armadura_2_1'
+  'c2':
+    material: IRON_HELMET
+    slot: 21
+    amount: 1
+    display_name: '&bArmadura 3'
+    item_model: 'astral:berserker_3_helmet'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_catalogo_armadura_3_1'
+  'c3':
+    material: DIAMOND_HELMET
+    slot: 22
+    amount: 1
+    display_name: '&bArmadura 4'
+    item_model: 'astral:berserker_4_helmet'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_catalogo_armadura_4_1'
+  'c4':
+    material: NETHERITE_HELMET
+    slot: 23
+    amount: 1
+    display_name: '&bArmadura 5'
+    item_model: 'astral:berserker_5_helmet'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_catalogo_armadura_5_1'
+  'c5':
+    material: NETHERITE_HELMET
+    slot: 24
+    amount: 1
+    display_name: '&bArmadura 6'
+    item_model: 'astral:berserker_6_helmet'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_catalogo_armadura_6_1'
+  'c6':
+    material: NETHERITE_HELMET
+    slot: 25
+    amount: 1
+    display_name: '&bArmadura 7'
+    item_model: 'astral:berserker_7_helmet'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_catalogo_armadura_7_1'
+  'c7':
+    material: NETHERITE_HELMET
+    slot: 28
+    amount: 1
+    display_name: '&bArmadura 8'
+    item_model: 'astral:berserker_8_helmet'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_catalogo_armadura_8_1'
+  'c8':
+    material: NETHERITE_HELMET
+    slot: 29
+    amount: 1
+    display_name: '&bArmadura 9'
+    item_model: 'astral:berserker_9_helmet'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_catalogo_armadura_9_1'
+  'c9':
+    material: NETHERITE_HELMET
+    slot: 30
+    amount: 1
+    display_name: '&bArmadura 10'
+    item_model: 'astral:berserker_10_helmet'
+    lore:
+    - '&7Clic para abrir'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_catalogo_armadura_10_1'
+  'c10':
+    material: IRON_SWORD
+    slot: 31
+    amount: 1
+    display_name: '&bEspadas'
+    item_model: 'astral:espada_1'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_catalogo_espada_1'
+  'c11':
+    material: IRON_AXE
+    slot: 32
+    amount: 1
+    display_name: '&bHachas'
+    item_model: 'astral:hacha_1'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_catalogo_hacha_1'
+  'c12':
+    material: IRON_SWORD
+    slot: 33
+    amount: 1
+    display_name: '&bCuchillos'
+    item_model: 'astral:cuchillo_1'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_catalogo_cuchillo_1'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

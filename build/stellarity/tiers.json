@@ -7,11 +7,90 @@
     "skill": "archery",
     "level": 20,
     "factor": 285.7142857142857,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 3",
       "Dano: 2.957",
       "Requiere: Arqueria 20"
+    ],
+    "item_name": {
+      "text": "Sharanga",
+      "color": "#5555FF",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Arco de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Daño: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+2.957",
+            "color": "red",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Mejora las flechas espectrales y las hace viajar",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "en linea recta.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 3",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Arqueria 20",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "RARA ARCO",
+        "color": "#5555FF",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "shulker_sword": {
@@ -23,11 +102,138 @@
     "level": 25,
     "max_attack_speed": 1.6,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Dano: 12.500",
       "Requiere: Combate 25"
+    ],
+    "item_name": {
+      "text": "Shulker Sword",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Espada de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Daño: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+12.500",
+            "color": "red",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Velocidad de ataque: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "$ATTACK_SPEED",
+            "color": "white",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Equipo de shulker.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto de armadura reduce dano y responde",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "con proyectiles.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Objeto especial del autor: figurar en el",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "catalogo no garantiza conseguirlo en survival.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 25",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA ESPADA",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "shulker_axe": {
@@ -39,11 +245,138 @@
     "level": 25,
     "max_attack_speed": 1.0,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Dano: 18.452",
       "Requiere: Combate 25"
+    ],
+    "item_name": {
+      "text": "Shulker Axe",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Hacha de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Daño: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+18.452",
+            "color": "red",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Velocidad de ataque: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "$ATTACK_SPEED",
+            "color": "white",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Equipo de shulker.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto de armadura reduce dano y responde",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "con proyectiles.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Objeto especial del autor: figurar en el",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "catalogo no garantiza conseguirlo en survival.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 25",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA HACHA",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "shulker_spear": {
@@ -55,11 +388,138 @@
     "level": 25,
     "max_attack_speed": 1.1,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Dano: 11.250",
       "Requiere: Combate 25"
+    ],
+    "item_name": {
+      "text": "Shulker Spear",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Lanza de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Daño: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+11.250",
+            "color": "red",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Velocidad de ataque: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "$ATTACK_SPEED",
+            "color": "white",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Equipo de shulker.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto de armadura reduce dano y responde",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "con proyectiles.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Objeto especial del autor: figurar en el",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "catalogo no garantiza conseguirlo en survival.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 25",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA LANZA",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "sandstorm_trident": {
@@ -71,11 +531,90 @@
     "level": 25,
     "max_attack_speed": 1.1,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Dano: 11.250",
       "Requiere: Combate 25"
+    ],
+    "item_name": {
+      "text": "Sandstorm Trident",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Lanza de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Daño: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+11.250",
+            "color": "red",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Velocidad de ataque: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "$ATTACK_SPEED",
+            "color": "white",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Al lanzarlo crea tuneles de viento.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 25",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA LANZA",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "dragonblade": {
@@ -87,11 +626,102 @@
     "level": 30,
     "max_attack_speed": 1.6,
     "factor": 5208.333333333333,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 5",
       "Dano: 62.500",
       "Requiere: Combate 30"
+    ],
+    "item_name": {
+      "text": "Dragonblade",
+      "color": "gold",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Espada de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Daño: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+62.500",
+            "color": "red",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Velocidad de ataque: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "$ATTACK_SPEED",
+            "color": "white",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Espada que empuja con fuerza; aprovecha paredes",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "cercanas.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 5",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 30",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "LEGENDARIA ESPADA",
+        "color": "gold",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "tamaris": {
@@ -103,11 +733,102 @@
     "level": 30,
     "max_attack_speed": 1.6,
     "factor": 5208.333333333333,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 5",
       "Dano: 62.500",
       "Requiere: Combate 30"
+    ],
+    "item_name": {
+      "text": "Tamaris",
+      "color": "gold",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Espada de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Daño: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+62.500",
+            "color": "red",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Velocidad de ataque: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "$ATTACK_SPEED",
+            "color": "white",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Al agacharte remata a un enemigo cercano con",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "poca vida.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 5",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 30",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "LEGENDARIA ESPADA",
+        "color": "gold",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "spectral_fury": {
@@ -118,11 +839,90 @@
     "skill": "archery",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 5",
       "Dano: 60.938",
       "Requiere: Arqueria 30"
+    ],
+    "item_name": {
+      "text": "Spectral Fury",
+      "color": "gold",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Arco de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Daño: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+60.938",
+            "color": "red",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Los disparos sobrecargados vuelven las flechas",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "espectrales perseguidores.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 5",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Arqueria 30",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "LEGENDARIA ARCO",
+        "color": "gold",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "call_of_the_void": {
@@ -133,11 +933,90 @@
     "skill": "archery",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 5",
       "Dano: 60.938",
       "Requiere: Arqueria 30"
+    ],
+    "item_name": {
+      "text": "Call of The Void",
+      "color": "gold",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Arco de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Daño: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+60.938",
+            "color": "red",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Arco con flechas del vacio que reducen vida y se",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "rompen al impactar.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 5",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Arqueria 30",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "LEGENDARIA ARCO",
+        "color": "gold",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "slayer_crossbow": {
@@ -148,11 +1027,90 @@
     "skill": "archery",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 5",
       "Dano: 60.938",
       "Requiere: Arqueria 30"
+    ],
+    "item_name": {
+      "text": "Slayer Crossbow",
+      "color": "gold",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Ballesta de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Daño: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+60.938",
+            "color": "red",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Rayos de mucho dano que atraviesan enemigos, con",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "alcance limitado.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 5",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Arqueria 30",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "LEGENDARIA BALLESTA",
+        "color": "gold",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "kaleidoscope": {
@@ -164,11 +1122,90 @@
     "level": 35,
     "max_attack_speed": 1.6,
     "factor": 24414.0625,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 6",
       "Dano: 312.500",
       "Requiere: Combate 35"
+    ],
+    "item_name": {
+      "text": "Kaleidoscope",
+      "color": "#ff5fd2",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Espada de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Daño: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+312.500",
+            "color": "red",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Velocidad de ataque: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "$ATTACK_SPEED",
+            "color": "white",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Acumula energia y la libera al golpear.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 6",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 35",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "MÍTICA ESPADA",
+        "color": "#ff5fd2",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "prismember": {
@@ -180,11 +1217,102 @@
     "level": 35,
     "max_attack_speed": 1.6,
     "factor": 24414.0625,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 6",
       "Dano: 312.500",
       "Requiere: Combate 35"
+    ],
+    "item_name": {
+      "text": "Prismember",
+      "color": "#ff5fd2",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Espada de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Daño: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+312.500",
+            "color": "red",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Velocidad de ataque: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "$ATTACK_SPEED",
+            "color": "white",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Agachate para cargar un giro que incendia",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "enemigos cercanos.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 6",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 35",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "MÍTICA ESPADA",
+        "color": "#ff5fd2",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "prismatic_punch": {
@@ -195,11 +1323,90 @@
     "skill": "archery",
     "level": 35,
     "factor": 24414.0625,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 6",
       "Dano: 303.223",
       "Requiere: Arqueria 35"
+    ],
+    "item_name": {
+      "text": "Prismatic Punch",
+      "color": "#ff5fd2",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Ballesta de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Daño: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+303.223",
+            "color": "red",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Dispara proyectiles con varias explosiones e",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "incendio prismatico.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 6",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Arqueria 35",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "MÍTICA BALLESTA",
+        "color": "#ff5fd2",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "starless_scythe": {
@@ -211,11 +1418,102 @@
     "level": 37,
     "max_attack_speed": 1.3,
     "factor": 24414.0625,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 6",
       "Dano: 292.969",
       "Requiere: Combate 37"
+    ],
+    "item_name": {
+      "text": "Starless Scythe",
+      "color": "#ff5fd2",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Guadaña de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Daño: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+292.969",
+            "color": "red",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Velocidad de ataque: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "$ATTACK_SPEED",
+            "color": "white",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Golpea varios enemigos y devuelve parte del dano",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "como curacion.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 6",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 37",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "MÍTICA GUADAÑA",
+        "color": "#ff5fd2",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "stellar_striker": {
@@ -227,11 +1525,102 @@
     "level": 35,
     "max_attack_speed": 1.6,
     "factor": 24414.0625,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 6",
       "Dano: 312.500",
       "Requiere: Combate 35"
+    ],
+    "item_name": {
+      "text": "Stellar Striker",
+      "color": "#ff5fd2",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Espada de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Daño: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+312.500",
+            "color": "red",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Velocidad de ataque: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "$ATTACK_SPEED",
+            "color": "white",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Junta estrellas al combatir. Agachate y ataca",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "para lanzarlas juntas.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 6",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 35",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "MÍTICA ESPADA",
+        "color": "#ff5fd2",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "harvester": {
@@ -243,11 +1632,102 @@
     "level": 37,
     "max_attack_speed": 1.3,
     "factor": 24414.0625,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 6",
       "Dano: 292.969",
       "Requiere: Combate 37"
+    ],
+    "item_name": {
+      "text": "Harvester",
+      "color": "#ff5fd2",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Guadaña de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Daño: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+292.969",
+            "color": "red",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Velocidad de ataque: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "$ATTACK_SPEED",
+            "color": "white",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Junta almas; aumenta su tamano y dano y puede",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "ganar habilidades.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 6",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 37",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "MÍTICA GUADAÑA",
+        "color": "#ff5fd2",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "fluffy_hammer": {
@@ -259,11 +1739,102 @@
     "level": 40,
     "max_attack_speed": 1.0,
     "factor": 114889.70588235295,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 7",
       "Dano: 2.355.239",
       "Requiere: Combate 40"
+    ],
+    "item_name": {
+      "text": "Fluffy Hammer Of Justice",
+      "color": "#ff5fd2",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Hacha de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Daño: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+2.355.239",
+            "color": "red",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Velocidad de ataque: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "$ATTACK_SPEED",
+            "color": "white",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Martillo arrojadizo que golpea durante el vuelo",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "y despues vuelve a su dueno.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 7",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 40",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "MÍTICA HACHA",
+        "color": "#ff5fd2",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "spirit_dagger": {
@@ -275,11 +1846,102 @@
     "level": 40,
     "max_attack_speed": 1.6,
     "factor": 114889.70588235295,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 7",
       "Dano: 1.562.500",
       "Requiere: Combate 40"
+    ],
+    "item_name": {
+      "text": "The End",
+      "color": "#ff5fd2",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Espada de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Daño: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+1.562.500",
+            "color": "red",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Velocidad de ataque: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "$ATTACK_SPEED",
+            "color": "white",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Atrae espiritus al atacar y permite",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "desplazamientos especiales.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 7",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 40",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "MÍTICA ESPADA",
+        "color": "#ff5fd2",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "alpha_wooden_sword": {
@@ -291,11 +1953,102 @@
     "level": 40,
     "max_attack_speed": 1.6,
     "factor": 114889.70588235295,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 7",
       "Dano: 1.562.500",
       "Requiere: Combate 40"
+    ],
+    "item_name": {
+      "text": "Ancient Wooden Sword",
+      "color": "#ff5fd2",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Espada de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Daño: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+1.562.500",
+            "color": "red",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Velocidad de ataque: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "$ATTACK_SPEED",
+            "color": "white",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Espada especial de aspecto antiguo; objeto de",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "coleccion.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 7",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 40",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "MÍTICA ESPADA",
+        "color": "#ff5fd2",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "floral_helmet": {
@@ -307,12 +2060,103 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Defensa: 52",
       "Vida: +725",
       "Requiere: Combate 25"
+    ],
+    "item_name": {
+      "text": "Floral Hood",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Casco de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Defensa: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+52",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Vida: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+725",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Bono de set",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto completo hace florecer explosiones",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "al disparar y permite camuflarte entre plantas.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 25",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA CASCO",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "floral_chestplate": {
@@ -324,12 +2168,103 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Defensa: 140",
       "Vida: +725",
       "Requiere: Combate 25"
+    ],
+    "item_name": {
+      "text": "Floral Chestplate",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Pechera de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Defensa: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+140",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Vida: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+725",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Bono de set",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto completo hace florecer explosiones",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "al disparar y permite camuflarte entre plantas.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 25",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA PECHERA",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "floral_leggings": {
@@ -341,12 +2276,103 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Defensa: 105",
       "Vida: +725",
       "Requiere: Combate 25"
+    ],
+    "item_name": {
+      "text": "Floral Leggings",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Grebas de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Defensa: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+105",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Vida: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+725",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Bono de set",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto completo hace florecer explosiones",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "al disparar y permite camuflarte entre plantas.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 25",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA GREBAS",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "floral_boots": {
@@ -358,12 +2384,103 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Defensa: 52",
       "Vida: +725",
       "Requiere: Combate 25"
+    ],
+    "item_name": {
+      "text": "Floral Boots",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Botas de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Defensa: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+52",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Vida: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+725",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Bono de set",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto completo hace florecer explosiones",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "al disparar y permite camuflarte entre plantas.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 25",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA BOTAS",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "champion_helmet": {
@@ -375,12 +2492,103 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Defensa: 52",
       "Vida: +725",
       "Requiere: Combate 25"
+    ],
+    "item_name": {
+      "text": "Champion Helmet",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Casco de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Defensa: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+52",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Vida: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+725",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Bono de set",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto completo aumenta el dano al",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "encadenar ataques.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 25",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA CASCO",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "champion_chestplate": {
@@ -392,12 +2600,103 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Defensa: 140",
       "Vida: +725",
       "Requiere: Combate 25"
+    ],
+    "item_name": {
+      "text": "Chorus Champion Chestplate",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Pechera de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Defensa: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+140",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Vida: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+725",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Bono de set",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto completo aumenta el dano al",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "encadenar ataques.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 25",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA PECHERA",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "champion_leggings": {
@@ -409,12 +2708,103 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Defensa: 105",
       "Vida: +725",
       "Requiere: Combate 25"
+    ],
+    "item_name": {
+      "text": "Champion Leggings",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Grebas de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Defensa: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+105",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Vida: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+725",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Bono de set",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto completo aumenta el dano al",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "encadenar ataques.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 25",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA GREBAS",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "champion_boots": {
@@ -426,12 +2816,103 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Defensa: 52",
       "Vida: +725",
       "Requiere: Combate 25"
+    ],
+    "item_name": {
+      "text": "Champion Boots",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Botas de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Defensa: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+52",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Vida: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+725",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Bono de set",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto completo aumenta el dano al",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "encadenar ataques.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 25",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA BOTAS",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "shulker_helmet": {
@@ -443,12 +2924,115 @@
     "skill": "fighting",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 5",
       "Defensa: 75",
       "Vida: +1.975",
       "Requiere: Combate 30"
+    ],
+    "item_name": {
+      "text": "Casco de Shulker",
+      "color": "gold",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Casco de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Defensa: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+75",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Vida: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+1.975",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Bono de set",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Equipo de shulker.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto de armadura reduce dano y responde",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "con proyectiles.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 5",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 30",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "LEGENDARIA CASCO",
+        "color": "gold",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "shulker_chestplate": {
@@ -460,12 +3044,115 @@
     "skill": "fighting",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 5",
       "Defensa: 200",
       "Vida: +1.975",
       "Requiere: Combate 30"
+    ],
+    "item_name": {
+      "text": "Pechera de Shulker",
+      "color": "gold",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Pechera de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Defensa: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+200",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Vida: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+1.975",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Bono de set",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Equipo de shulker.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto de armadura reduce dano y responde",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "con proyectiles.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 5",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 30",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "LEGENDARIA PECHERA",
+        "color": "gold",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "shulker_leggings": {
@@ -477,12 +3164,115 @@
     "skill": "fighting",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 5",
       "Defensa: 150",
       "Vida: +1.975",
       "Requiere: Combate 30"
+    ],
+    "item_name": {
+      "text": "Pantalones de Shulker",
+      "color": "gold",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Grebas de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Defensa: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+150",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Vida: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+1.975",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Bono de set",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Equipo de shulker.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto de armadura reduce dano y responde",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "con proyectiles.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 5",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 30",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "LEGENDARIA GREBAS",
+        "color": "gold",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "shulker_boots": {
@@ -494,12 +3284,115 @@
     "skill": "fighting",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 5",
       "Defensa: 75",
       "Vida: +1.975",
       "Requiere: Combate 30"
+    ],
+    "item_name": {
+      "text": "Botas de Shulker",
+      "color": "gold",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Botas de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Defensa: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+75",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Vida: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+1.975",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Bono de set",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Equipo de shulker.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto de armadura reduce dano y responde",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "con proyectiles.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 5",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 30",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "LEGENDARIA BOTAS",
+        "color": "gold",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "hallowed_helmet": {
@@ -511,12 +3404,103 @@
     "skill": "fighting",
     "level": 35,
     "factor": 24414.0625,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 6",
       "Defensa: 98",
       "Vida: +3.725",
       "Requiere: Combate 35"
+    ],
+    "item_name": {
+      "text": "Máscara Sagrada",
+      "color": "#ff5fd2",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Casco de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Defensa: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+98",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Vida: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+3.725",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Bono de set",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto completo permite esquivar golpes y",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "retroceso.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 6",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 35",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "MÍTICA CASCO",
+        "color": "#ff5fd2",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "hallowed_chestplate": {
@@ -528,12 +3512,103 @@
     "skill": "fighting",
     "level": 35,
     "factor": 24414.0625,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 6",
       "Defensa: 260",
       "Vida: +3.725",
       "Requiere: Combate 35"
+    ],
+    "item_name": {
+      "text": "Pechera Sagrada",
+      "color": "#ff5fd2",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Pechera de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Defensa: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+260",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Vida: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+3.725",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Bono de set",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto completo permite esquivar golpes y",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "retroceso.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 6",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 35",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "MÍTICA PECHERA",
+        "color": "#ff5fd2",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "hallowed_leggings": {
@@ -545,12 +3620,103 @@
     "skill": "fighting",
     "level": 35,
     "factor": 24414.0625,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 6",
       "Defensa: 195",
       "Vida: +3.725",
       "Requiere: Combate 35"
+    ],
+    "item_name": {
+      "text": "Mallas Sagradas",
+      "color": "#ff5fd2",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Grebas de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Defensa: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+195",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Vida: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+3.725",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Bono de set",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto completo permite esquivar golpes y",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "retroceso.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 6",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 35",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "MÍTICA GREBAS",
+        "color": "#ff5fd2",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "hallowed_boots": {
@@ -562,12 +3728,103 @@
     "skill": "fighting",
     "level": 35,
     "factor": 24414.0625,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 6",
       "Defensa: 98",
       "Vida: +3.725",
       "Requiere: Combate 35"
+    ],
+    "item_name": {
+      "text": "Botas Sagradas",
+      "color": "#ff5fd2",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Botas de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Defensa: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+98",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Vida: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+3.725",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Bono de set",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto completo permite esquivar golpes y",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "retroceso.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 6",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 35",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "MÍTICA BOTAS",
+        "color": "#ff5fd2",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "phantom_wings": {
@@ -579,12 +3836,91 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Defensa: 84",
       "Vida: +435",
       "Requiere: Combate 25"
+    ],
+    "item_name": {
+      "text": "Phantom Wings",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Pechera de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Defensa: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+84",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Vida: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+435",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Alas de phantom; equipo de vuelo del End.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 25",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA PECHERA",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "dragon_wings": {
@@ -596,12 +3932,103 @@
     "skill": "fighting",
     "level": 35,
     "factor": 24414.0625,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 6",
       "Defensa: 156",
       "Vida: +2.235",
       "Requiere: Combate 35"
+    ],
+    "item_name": {
+      "text": "Dragon Wings",
+      "color": "#ff5fd2",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Pechera de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Defensa: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+156",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Vida: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+2.235",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Alas con proteccion a cambio de menor velocidad",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "de vuelo.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 6",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 35",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "MÍTICA PECHERA",
+        "color": "#ff5fd2",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "empress_wings": {
@@ -613,12 +4040,91 @@
     "skill": "fighting",
     "level": 35,
     "factor": 24414.0625,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 6",
       "Defensa: 156",
       "Vida: +2.235",
       "Requiere: Combate 35"
+    ],
+    "item_name": {
+      "text": "Empress Wings",
+      "color": "#ff5fd2",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Pechera de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Defensa: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+156",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Vida: ",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "+2.235",
+            "color": "green",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Alas rapidas y agiles, con estela de colores.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 6",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 35",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "MÍTICA PECHERA",
+        "color": "#ff5fd2",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "shulker_pickaxe": {
@@ -627,10 +4133,113 @@
     "skill": "mining",
     "level": 16,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Requiere: Mineria 16"
+    ],
+    "item_name": {
+      "text": "Shulker Pickaxe",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Pico de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Equipo de shulker.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto de armadura reduce dano y responde",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "con proyectiles.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Objeto especial del autor: figurar en el",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "catalogo no garantiza conseguirlo en survival.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Mineria 16",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA PICO",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "shulker_shovel": {
@@ -639,10 +4248,113 @@
     "skill": "mining",
     "level": 16,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Requiere: Mineria 16"
+    ],
+    "item_name": {
+      "text": "Shulker Shovel",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Pala de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Equipo de shulker.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto de armadura reduce dano y responde",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "con proyectiles.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Objeto especial del autor: figurar en el",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "catalogo no garantiza conseguirlo en survival.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Mineria 16",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA PALA",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "shulker_hoe": {
@@ -651,10 +4363,113 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Requiere: Combate 25"
+    ],
+    "item_name": {
+      "text": "Shulker Hoe",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Azada de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Equipo de shulker.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "El conjunto de armadura reduce dano y responde",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "con proyectiles.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Objeto especial del autor: figurar en el",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "catalogo no garantiza conseguirlo en survival.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 25",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA AZADA",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "copper_elektra_shield": {
@@ -663,10 +4478,77 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Requiere: Combate 25"
+    ],
+    "item_name": {
+      "text": "Copper Elektra Shield",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Escudo de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Agachate para una embestida electrica. Recarga",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "hasta tres impulsos.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 25",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA ESCUDO",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "crest_of_the_end": {
@@ -675,10 +4557,77 @@
     "skill": "fighting",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 5",
       "Requiere: Combate 30"
+    ],
+    "item_name": {
+      "text": "Crest of The End",
+      "color": "gold",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Accesorio de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Bloquear carga fuerza extra para el siguiente",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "contraataque.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 5",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 30",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "LEGENDARIA ACCESORIO",
+        "color": "gold",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "starstruck_shield": {
@@ -687,10 +4636,65 @@
     "skill": "fighting",
     "level": 35,
     "factor": 24414.0625,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 6",
       "Requiere: Combate 35"
+    ],
+    "item_name": {
+      "text": "Starstruck Shield",
+      "color": "#ff5fd2",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Escudo de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Hace caer estrellas despues de bloquear dano.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 6",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 35",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "MÍTICA ESCUDO",
+        "color": "#ff5fd2",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "prismatic_pearl": {
@@ -699,10 +4703,77 @@
     "skill": "fighting",
     "level": 35,
     "factor": 24414.0625,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 6",
       "Requiere: Combate 35"
+    ],
+    "item_name": {
+      "text": "Prismatic Pearl",
+      "color": "#ff5fd2",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Accesorio de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Perla de teletransporte reutilizable: vuelve al",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "inventario al terminar su espera.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 6",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 35",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "MÍTICA ACCESORIO",
+        "color": "#ff5fd2",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "life_crystal": {
@@ -711,10 +4782,77 @@
     "skill": "fighting",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 5",
       "Requiere: Combate 30"
+    ],
+    "item_name": {
+      "text": "Life Crystal",
+      "color": "gold",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Accesorio de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Regenera vida rapidamente mientras te quedas",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "quieto.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 5",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 30",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "LEGENDARIA ACCESORIO",
+        "color": "gold",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "soaring_insignia": {
@@ -723,10 +4861,77 @@
     "skill": "fighting",
     "level": 35,
     "factor": 24414.0625,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 6",
       "Requiere: Combate 35"
+    ],
+    "item_name": {
+      "text": "Soaring Insignia",
+      "color": "#ff5fd2",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Accesorio de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Permite vuelo continuo con maniobra limitada;",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "agachate y mira arriba o abajo.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 6",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 35",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "MÍTICA ACCESORIO",
+        "color": "#ff5fd2",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "endermans_hand": {
@@ -735,10 +4940,87 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Requiere: Combate 25"
+    ],
+    "item_name": {
+      "text": "Endermans Hand",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Accesorio de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Sostenida en una mano aumenta en ",
+            "color": "gray",
+            "italic": false
+          },
+          {
+            "text": "3",
+            "color": "green",
+            "italic": false
+          },
+          {
+            "text": " bloques el",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "alcance para interactuar con bloques.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 25",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA ACCESORIO",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "decayed_clover": {
@@ -747,10 +5029,65 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Requiere: Combate 25"
+    ],
+    "item_name": {
+      "text": "Decayed Clover",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Accesorio de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Mejora el botin y la suerte de pesca del vacio.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 25",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA ACCESORIO",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "fisher_of_voids": {
@@ -759,10 +5096,65 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Requiere: Combate 25"
+    ],
+    "item_name": {
+      "text": "Fisher of Voids",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Accesorio de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Cana que acorta la espera en la pesca del vacio.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 25",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA ACCESORIO",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "satchel_of_voids": {
@@ -771,10 +5163,77 @@
     "skill": "fighting",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 5",
       "Requiere: Combate 30"
+    ],
+    "item_name": {
+      "text": "Satchel of Voids",
+      "color": "gold",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Accesorio de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Dibuja un acceso al Altar Maldito. En un marco",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "vertical permite un altar permanente.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 5",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 30",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "LEGENDARIA ACCESORIO",
+        "color": "gold",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "void_locket": {
@@ -783,10 +5242,89 @@
     "skill": "fighting",
     "level": 30,
     "factor": 5208.333333333333,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 5",
       "Requiere: Combate 30"
+    ],
+    "item_name": {
+      "text": "Void Locket",
+      "color": "gold",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Accesorio de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Accesorio con variantes internas de mejora. Este",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "ZIP no aporta una receta accesible para",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "aplicarlas.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 5",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 30",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "LEGENDARIA ACCESORIO",
+        "color": "gold",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "bell_flower": {
@@ -795,10 +5333,65 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Requiere: Combate 25"
+    ],
+    "item_name": {
+      "text": "Bell Flower",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Accesorio de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Revela entidades cercanas mientras la sostenes.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 25",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA ACCESORIO",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "duskberry": {
@@ -807,10 +5400,77 @@
     "skill": "fighting",
     "level": 25,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Requiere: Combate 25"
+    ],
+    "item_name": {
+      "text": "Duskberry",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Accesorio de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Sostenida mejora velocidad, vista y fuerza.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Comerla o plantarla es peligroso.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Combate 25",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA ACCESORIO",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "book_of_conveyance": {
@@ -819,10 +5479,77 @@
     "skill": "sorcery",
     "level": 26,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Requiere: Hechiceria 26"
+    ],
+    "item_name": {
+      "text": "Book of Conveyance",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Libro de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Lanza una chispa guiada con la mirada; te lleva",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "al bloque donde impacta.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Hechiceria 26",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA LIBRO",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "book_of_obstruct": {
@@ -831,10 +5558,77 @@
     "skill": "sorcery",
     "level": 26,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Requiere: Hechiceria 26"
+    ],
+    "item_name": {
+      "text": "Book of Obstruct",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Libro de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Levanta una pared de shulker para cubrir una",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "retirada.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Hechiceria 26",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA LIBRO",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "book_of_return": {
@@ -843,10 +5637,65 @@
     "skill": "sorcery",
     "level": 26,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Requiere: Hechiceria 26"
+    ],
+    "item_name": {
+      "text": "Book of Return",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Libro de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Te devuelve a tu punto de reaparicion.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Hechiceria 26",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA LIBRO",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "book_of_updraft": {
@@ -855,10 +5704,77 @@
     "skill": "sorcery",
     "level": 26,
     "factor": 1322.751322751323,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 4",
       "Requiere: Hechiceria 26"
+    ],
+    "item_name": {
+      "text": "Libro de corriente ascendente",
+      "color": "dark_purple",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Libro de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Te impulsa hacia arriba y permite planear",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "brevemente.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 4",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Hechiceria 26",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "ÉPICA LIBRO",
+        "color": "dark_purple",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "book_of_jinx": {
@@ -867,10 +5783,77 @@
     "skill": "sorcery",
     "level": 32,
     "factor": 5208.333333333333,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 5",
       "Requiere: Hechiceria 32"
+    ],
+    "item_name": {
+      "text": "Book of Jinx",
+      "color": "gold",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Libro de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Crea una nube que baja temporalmente la defensa",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "de los enemigos.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 5",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Hechiceria 32",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "LEGENDARIA LIBRO",
+        "color": "gold",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "book_of_light": {
@@ -879,17 +5862,84 @@
     "skill": "sorcery",
     "level": 37,
     "factor": 24414.0625,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 6",
       "Requiere: Hechiceria 37"
+    ],
+    "item_name": {
+      "text": "Libro de la Luz",
+      "color": "#ff5fd2",
+      "italic": false
+    },
+    "ficha": [
+      {
+        "text": "Libro de Stellarity",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Habilidad propia",
+        "color": "gold",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "Invoca un aura que cura y protege a los",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false,
+        "extra": [
+          {
+            "text": "jugadores cercanos.",
+            "color": "gray",
+            "italic": false
+          }
+        ]
+      },
+      {
+        "text": "Tier: 6",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "",
+        "color": "gray",
+        "italic": false
+      },
+      {
+        "text": "Requiere: Hechiceria 37",
+        "color": "red",
+        "italic": false
+      },
+      {
+        "text": "MÍTICA LIBRO",
+        "color": "#ff5fd2",
+        "italic": false,
+        "bold": true
+      }
     ]
   },
   "reinforced_horse_armor": {
     "tier": 5,
     "kind": "horse",
     "factor": 5208.333333333333,
-    "version": 2,
+    "version": 4,
     "lore": [
       "Tier: 5"
     ]
@@ -899,7 +5949,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "ashen_froglight": {
@@ -907,7 +5957,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "enderite_block": {
@@ -915,7 +5965,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "ender_dirt": {
@@ -923,7 +5973,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "ender_dirt_path": {
@@ -931,7 +5981,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "ender_grass_block": {
@@ -939,7 +5989,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "phantom_item_frame": {
@@ -947,7 +5997,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "rooted_ender_dirt": {
@@ -955,7 +6005,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "endonomicon": {
@@ -963,7 +6013,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "chapel_of_light": {
@@ -971,7 +6021,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "end_city": {
@@ -979,7 +6029,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "floating_treasure": {
@@ -987,7 +6037,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "village": {
@@ -995,7 +6045,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "candied_chorus_fruit": {
@@ -1003,7 +6053,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "chorus_juice": {
@@ -1011,7 +6061,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "chorus_pie": {
@@ -1019,7 +6069,7 @@
     "kind": "fixed",
     "price": 10000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "chorus_stew": {
@@ -1027,7 +6077,7 @@
     "kind": "fixed",
     "price": 10000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "enderman_flesh": {
@@ -1035,7 +6085,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "amethyst_budfish": {
@@ -1043,7 +6093,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "bubblefish": {
@@ -1051,7 +6101,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "crimson_tigerfish": {
@@ -1059,7 +6109,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "crystal_heartfish": {
@@ -1067,7 +6117,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "ender_koi": {
@@ -1075,7 +6125,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "flarefin_koi": {
@@ -1083,7 +6133,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "fleshy_piranha": {
@@ -1091,7 +6141,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "frost_minnow": {
@@ -1099,7 +6149,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "goosh": {
@@ -1107,7 +6157,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "overgrown_cod": {
@@ -1115,7 +6165,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "prismite": {
@@ -1123,7 +6173,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "pufferfish": {
@@ -1131,7 +6181,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "fried_chorus_fruit": {
@@ -1139,7 +6189,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "frozen_carpaccio": {
@@ -1147,7 +6197,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "golden_chorus_fruit": {
@@ -1155,7 +6205,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "grilled_enderman_flesh": {
@@ -1163,7 +6213,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "loaf_of_plenty": {
@@ -1171,7 +6221,7 @@
     "kind": "fixed",
     "price": 50000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "pho": {
@@ -1179,7 +6229,7 @@
     "kind": "fixed",
     "price": 30000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "prismatic_sushi": {
@@ -1187,7 +6237,7 @@
     "kind": "fixed",
     "price": 50000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "shepherds_pie": {
@@ -1195,7 +6245,7 @@
     "kind": "fixed",
     "price": 30000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "shulker_body": {
@@ -1203,7 +6253,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "sushi": {
@@ -1211,7 +6261,7 @@
     "kind": "fixed",
     "price": 10000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "absorption": {
@@ -1219,7 +6269,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "levitation": {
@@ -1227,7 +6277,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "strength": {
@@ -1235,7 +6285,7 @@
     "kind": "fixed",
     "price": 2000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "ender_egg": {
@@ -1243,7 +6293,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "gilded_purpur_key": {
@@ -1251,7 +6301,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "purpur_key": {
@@ -1259,7 +6309,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "winged_key": {
@@ -1267,7 +6317,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "chorus_petal": {
@@ -1275,7 +6325,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "chorus_plating": {
@@ -1283,7 +6333,7 @@
     "kind": "fixed",
     "price": 50000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "empty_enchanted_book": {
@@ -1291,7 +6341,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "enderite_shard": {
@@ -1299,7 +6349,7 @@
     "kind": "fixed",
     "price": 250000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "enderite_smithing_template": {
@@ -1307,7 +6357,7 @@
     "kind": "fixed",
     "price": 500000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "hallowed_ingot": {
@@ -1315,7 +6365,7 @@
     "kind": "fixed",
     "price": 1000000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "sand_rune": {
@@ -1323,7 +6373,7 @@
     "kind": "fixed",
     "price": 50000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "starlight_soot": {
@@ -1331,7 +6381,7 @@
     "kind": "fixed",
     "price": 100000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "music_disc_deviants_light_music_box": {
@@ -1339,7 +6389,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "music_disc_fires_of_hokkai": {
@@ -1347,7 +6397,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "music_disc_precipice_stereo": {
@@ -1355,7 +6405,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "amarene": {
@@ -1363,7 +6413,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "blind_rage_potion": {
@@ -1371,7 +6421,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "blind_rage_potion_ext": {
@@ -1379,7 +6429,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "endurance_potion": {
@@ -1387,7 +6437,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "endurance_potion_ext": {
@@ -1395,7 +6445,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "endurance_potion_ii": {
@@ -1403,7 +6453,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "entanglement_potion": {
@@ -1411,7 +6461,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "entanglement_potion_ext": {
@@ -1419,7 +6469,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "entanglement_potion_ii": {
@@ -1427,7 +6477,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "frost_cloud_potion": {
@@ -1435,7 +6485,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "hellfire_treader_potion": {
@@ -1443,7 +6493,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "hellfire_treader_potion_ext": {
@@ -1451,7 +6501,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "hellfire_treader_potion_ii": {
@@ -1459,7 +6509,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "lifeforce_potion": {
@@ -1467,7 +6517,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "lifeforce_potion_ext": {
@@ -1475,7 +6525,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "lifeforce_potion_ii": {
@@ -1483,7 +6533,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "luck_potion": {
@@ -1491,7 +6541,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "poseidons_nectar": {
@@ -1499,7 +6549,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "red_potion": {
@@ -1507,7 +6557,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "regeneraga": {
@@ -1515,7 +6565,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "regeneraga_ext": {
@@ -1523,7 +6573,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "regeneraga_ii": {
@@ -1531,7 +6581,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "royal_jelly": {
@@ -1539,7 +6589,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "royal_jelly_ii": {
@@ -1547,7 +6597,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "spelunker_potion": {
@@ -1555,7 +6605,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "spelunker_potion_ext": {
@@ -1563,7 +6613,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "spelunker_potion_ii": {
@@ -1571,7 +6621,7 @@
     "kind": "fixed",
     "price": 20000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "flesh_piglin_spawn_egg": {
@@ -1579,7 +6629,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "voided_skeleton_spawn_egg": {
@@ -1587,7 +6637,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "voided_slime_spawn_egg": {
@@ -1595,7 +6645,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   },
   "voided_zombie_spawn_egg": {
@@ -1603,7 +6653,7 @@
     "kind": "fixed",
     "price": 5000,
     "factor": 1.0,
-    "version": 2,
+    "version": 4,
     "lore": []
   }
 }

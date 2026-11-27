@@ -1,0 +1,165 @@
+menu_title: '&f&#ffe9a8Mascotas (1/3)'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 1
+    amount: 1
+    display_name: '&6Fenix'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Gacha de Monturas (legendario)Nv. 1: Te'
+    - '&7salva con poca vida (cada 10 min); +10:'
+    - '&7cada 7 min; +20: cada 5 min'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: KNOWLEDGE_BOOK
+    slot: 2
+    amount: 1
+    display_name: '&6Ghastito de Nube'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Gacha de MonturasNv. 1: Caida lenta; +10:'
+    - '&7+ Regeneracion I; +20: + Suerte'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: KNOWLEDGE_BOOK
+    slot: 3
+    amount: 1
+    display_name: '&6Bombardero Musgoso'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Gacha de MonturasNv. 1: Resistencia I;'
+    - '&7+10: + Fuerza I; +20: + Prisa I'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: KNOWLEDGE_BOOK
+    slot: 4
+    amount: 1
+    display_name: '&6Canonero de Bolsillo'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Gacha de MonturasNv. 1: Fuerza I; +10: +'
+    - '&7Prisa I; +20: + Suerte'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: KNOWLEDGE_BOOK
+    slot: 5
+    amount: 1
+    display_name: '&6Zorro Encapuchado'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Gacha de MonturasNv. 1: Velocidad I; +10:'
+    - '&7+ Vision nocturna; +20: + Fuerza I'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: KNOWLEDGE_BOOK
+    slot: 6
+    amount: 1
+    display_name: '&6Llamita Viajera'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Gacha de MonturasNv. 1: Salto I; +10: +'
+    - '&7Suerte; +20: + Resistencia I'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c6':
+    material: BOOK
+    slot: 7
+    amount: 1
+    display_name: '&bVer pagina 2'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mascotas_2'
+  'c7':
+    material: BOOK
+    slot: 12
+    amount: 1
+    display_name: '&bVer pagina 3'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mascotas_3'
+  'c8':
+    material: BOOK
+    slot: 13
+    amount: 1
+    display_name: '&bAbrir /mascotas'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Clic para abrir'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[player] mascotas'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral_3'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

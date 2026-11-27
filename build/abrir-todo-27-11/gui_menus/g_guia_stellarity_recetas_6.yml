@@ -1,0 +1,208 @@
+menu_title: '&f&#ffe9a8Recetas del End 6/6'
+size: 54
+items:
+  'c0':
+    material: ELYTRA
+    slot: 1
+    amount: 1
+    display_name: '&bElytra'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_elytra_orange'
+  'c1':
+    material: ELYTRA
+    slot: 2
+    amount: 1
+    display_name: '&bElytra'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_elytra_yellow'
+  'c2':
+    material: ELYTRA
+    slot: 3
+    amount: 1
+    display_name: '&bElytra'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_elytra_lime'
+  'c3':
+    material: ELYTRA
+    slot: 4
+    amount: 1
+    display_name: '&bElytra'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_elytra_green'
+  'c4':
+    material: ELYTRA
+    slot: 5
+    amount: 1
+    display_name: '&bElytra'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_elytra_cyan'
+  'c5':
+    material: ELYTRA
+    slot: 6
+    amount: 1
+    display_name: '&bElytra'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_elytra_light_blue'
+  'c6':
+    material: ELYTRA
+    slot: 7
+    amount: 1
+    display_name: '&bElytra'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_elytra_blue'
+  'c7':
+    material: ELYTRA
+    slot: 11
+    amount: 1
+    display_name: '&bElytra'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_elytra_purple'
+  'c8':
+    material: ELYTRA
+    slot: 12
+    amount: 1
+    display_name: '&bElytra'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_elytra_magenta'
+  'c9':
+    material: ELYTRA
+    slot: 13
+    amount: 1
+    display_name: '&bElytra'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_elytra_pink'
+  'c10':
+    material: ELYTRA
+    slot: 14
+    amount: 1
+    display_name: '&bElytra'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_elytra_water'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_stellarity'
+  'anterior':
+    material: PAPER
+    slot: 47
+    amount: 1
+    display_name: '&eAnterior'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_stellarity_recetas_5'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

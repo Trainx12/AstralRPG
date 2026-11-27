@@ -1,0 +1,85 @@
+menu_title: '&f&#ffe9a8Equipo Asura IV'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 3
+    amount: 1
+    display_name: '&7Elegi que queres forjar.'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: DIAMOND_SWORD
+    slot: 4
+    amount: 1
+    display_name: '&5Espada Asura'
+    item_model: 'astral:asura_espada'
+    lore:
+    - '&7Espada Berserker IV'
+    - '&7Daño: &c+13.750'
+    - '&7Velocidad de ataque: &f1,6'
+    - '&7Resistencia al empuje: &a+100%'
+    - ''
+    - '&#5555FFRobo de vida IV'
+    - '&a30%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - ''
+    - '&7Inmune al empuje mientras la empunas'
+    - ''
+    - '&6Habilidad: Furia de Asura&e&l  PASIVA'
+    - '&7Cada &a4&7 golpes directos al mismo enemigo en &a5&7 s: &a+50%&7 de daño y cura &a5%&7 de vida máxima.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: Combate 25'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&5&lÉPICA ESPADA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_260'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

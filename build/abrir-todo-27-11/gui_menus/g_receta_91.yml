@@ -1,0 +1,192 @@
+menu_title: '&f&#ffe9a8Sandalias de la Nebulosa'
+size: 54
+items:
+  'resultado':
+    material: LEATHER_BOOTS
+    slot: 20
+    amount: 1
+    display_name: '&bSandalias de la Nebulosa'
+    item_model: 'astral:mago_9_boots'
+    lore:
+    - '&7Mago IX'
+    - '&7Vida: &c+16.225'
+    - '&7Defensa: &a+150'
+    - '&7Maná: &b+1.000'
+    - '&7Regeneración de maná: &b+29/s'
+    - '&7Daño mágico: &d+18%'
+    - '&7Enfriamiento de hechizos: &c-6,25%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&7Escudo arcano: &a+2&7 de armadura.'
+    - '&6Bono de set (4/4)'
+    - '&7Canalizacion: al matar, Regeneracion I y Velocidad I por &a4&7 s.'
+    - '&7Durabilidad: &f20.825'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 9'
+    - ''
+    - '&cRequiere: Hechiceria 52'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&b&lDIVINA BOTAS'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: LEATHER_BOOTS
+    slot: 14
+    amount: 1
+    display_name: '&f1x Sandalias de la Escarcha'
+    item_model: 'astral:mago_8_boots'
+    lore:
+    - '&7Mago VIII'
+    - '&7Vida: &c+9.975'
+    - '&7Defensa: &a+120'
+    - '&7Maná: &b+750'
+    - '&7Regeneración de maná: &b+21/s'
+    - '&7Daño mágico: &d+16%'
+    - '&7Enfriamiento de hechizos: &c-5%'
+    - ''
+    - '&6Bono de set (2/4)'
+    - '&7Escudo arcano: &a+2&7 de armadura.'
+    - '&6Bono de set (4/4)'
+    - '&7Canalizacion: al matar, Regeneracion I y Velocidad I por &a4&7 s.'
+    - '&7Durabilidad: &f16.575'
+    - '&7Velocidad: sin modificación'
+    - '&7Tier: 8'
+    - ''
+    - '&cRequiere: Hechiceria 47'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&b&lDIVINA BOTAS'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: PAPER
+    slot: 15
+    amount: 4
+    display_name: '&f4x Esencia del Vacio'
+    item_model: 'astral:esencia_vacio'
+    lore:
+    - '&7Cae de mobs tier 9 o mas.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 2
+    display_name: '&f2x Nucleo de Supernova'
+    item_model: 'astral:nucleo_supernova'
+    lore:
+    - '&7Cae de mobs tier 8 o mas.'
+    - '&8Material de AstralRPG'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material3':
+    material: PAPER
+    slot: 23
+    amount: 2
+    display_name: '&f2x Gema Luminica Perfecta'
+    item_model: 'astral:gema_luminica_perfecta'
+    lore:
+    - '&7Endgame Arquero y Mago.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 91'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 91'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 91'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_mago_9'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

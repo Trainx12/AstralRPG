@@ -1,0 +1,354 @@
+menu_title: '&f&#ffe9a8Lanzas (Combate)'
+size: 54
+items:
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 1
+    amount: 1
+    display_name: '&7Elegi que queres forjar.'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: IRON_SPEAR
+    slot: 2
+    amount: 1
+    display_name: '&fLanza del Recluta'
+    item_model: 'astral:lanza_1'
+    lore:
+    - '&7Lanza de Combate I'
+    - '&7Daño: &c+90'
+    - '&7Velocidad de ataque: &f1,1'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 1'
+    - ''
+    - '&cRequiere: Combate 4'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&f&lCOMÚN LANZA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_234'
+  'c2':
+    material: IRON_SPEAR
+    slot: 3
+    amount: 1
+    display_name: '&aLanza del Centinela'
+    item_model: 'astral:lanza_2'
+    lore:
+    - '&7Lanza de Combate II'
+    - '&7Daño: &c+450'
+    - '&7Velocidad de ataque: &f1,1'
+    - ''
+    - '&#5555FFRobo de vida I'
+    - '&a10%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 2'
+    - ''
+    - '&cRequiere: Combate 15'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&a&lPOCO COMÚN LANZA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_235'
+  'c3':
+    material: DIAMOND_SPEAR
+    slot: 4
+    amount: 1
+    display_name: '&#5555FFLanza Carmesi'
+    item_model: 'astral:lanza_3'
+    lore:
+    - '&7Lanza de Combate III'
+    - '&7Daño: &c+2.250'
+    - '&7Velocidad de ataque: &f1,1'
+    - ''
+    - '&#5555FFRobo de vida I'
+    - '&a10%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Combate 20'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#5555FF&lRARA LANZA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_236'
+  'c4':
+    material: DIAMOND_SPEAR
+    slot: 5
+    amount: 1
+    display_name: '&5Lanza del Vendaval'
+    item_model: 'astral:lanza_4'
+    lore:
+    - '&7Lanza de Combate IV'
+    - '&7Daño: &c+11.250'
+    - '&7Velocidad de ataque: &f1,1'
+    - ''
+    - '&#5555FFRobo de vida II'
+    - '&a15%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 4'
+    - ''
+    - '&cRequiere: Combate 25'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&5&lÉPICA LANZA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_237'
+  'c5':
+    material: NETHERITE_SPEAR
+    slot: 6
+    amount: 1
+    display_name: '&6Lanza Astral'
+    item_model: 'astral:lanza_5'
+    lore:
+    - '&7Lanza de Combate V'
+    - '&7Daño: &c+56.250'
+    - '&7Velocidad de ataque: &f1,1'
+    - ''
+    - '&#5555FFRobo de vida III'
+    - '&a25%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&#5555FFEjecución I'
+    - '&7Ejecuta enemigos con menos del &a15%&7 de vida.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 5'
+    - ''
+    - '&cRequiere: Combate 30'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&6&lLEGENDARIA LANZA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_238'
+  'c6':
+    material: NETHERITE_SPEAR
+    slot: 7
+    amount: 1
+    display_name: '&#ff5fd2Lanza de la Fortuna'
+    item_model: 'astral:lanza_6'
+    lore:
+    - '&7Lanza de Combate VI'
+    - '&7Daño: &c+281.250'
+    - '&7Velocidad de ataque: &f1,1'
+    - ''
+    - '&#5555FFRobo de vida III'
+    - '&a25%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&#5555FFEjecución I'
+    - '&7Ejecuta enemigos con menos del &a15%&7 de vida.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 6'
+    - ''
+    - '&cRequiere: Combate 35'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#ff5fd2&lMÍTICA LANZA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_239'
+  'c7':
+    material: NETHERITE_SPEAR
+    slot: 11
+    amount: 1
+    display_name: '&#ff5fd2Tridente del Inframundo'
+    item_model: 'astral:lanza_7'
+    lore:
+    - '&7Lanza de Combate VII'
+    - '&7Daño: &c+1.406.250'
+    - '&7Velocidad de ataque: &f1,1'
+    - ''
+    - '&#5555FFRobo de vida III'
+    - '&a25%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&#5555FFEjecución I'
+    - '&7Ejecuta enemigos con menos del &a15%&7 de vida.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 7'
+    - ''
+    - '&cRequiere: Combate 40'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#ff5fd2&lMÍTICA LANZA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_240'
+  'c8':
+    material: NETHERITE_SPEAR
+    slot: 12
+    amount: 1
+    display_name: '&bLanza del Principe Errante'
+    item_model: 'astral:lanza_8'
+    lore:
+    - '&7Lanza de Combate VIII'
+    - '&7Daño: &c+7.031.250'
+    - '&7Velocidad de ataque: &f1,1'
+    - ''
+    - '&#5555FFRobo de vida III'
+    - '&a25%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&#5555FFEjecución I'
+    - '&7Ejecuta enemigos con menos del &a15%&7 de vida.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 8'
+    - ''
+    - '&cRequiere: Combate 45'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&b&lDIVINA LANZA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_241'
+  'c9':
+    material: NETHERITE_SPEAR
+    slot: 13
+    amount: 1
+    display_name: '&bLanza del Heroe Dorado'
+    item_model: 'astral:lanza_9'
+    lore:
+    - '&7Lanza de Combate IX'
+    - '&7Daño: &c+35.156.250'
+    - '&7Velocidad de ataque: &f1,1'
+    - ''
+    - '&#5555FFRobo de vida III'
+    - '&a25%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&#5555FFEjecución I'
+    - '&7Ejecuta enemigos con menos del &a15%&7 de vida.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 9'
+    - ''
+    - '&cRequiere: Combate 50'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&b&lDIVINA LANZA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_242'
+  'c10':
+    material: NETHERITE_SPEAR
+    slot: 14
+    amount: 1
+    display_name: '&#b388ffGuja del Dragon Verde'
+    item_model: 'astral:lanza_10'
+    lore:
+    - '&7Lanza de Combate X'
+    - '&7Daño: &c+175.781.250'
+    - '&7Velocidad de ataque: &f1,1'
+    - ''
+    - '&#5555FFRobo de vida III'
+    - '&a25%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&#5555FFEjecución I'
+    - '&7Ejecuta enemigos con menos del &a15%&7 de vida.'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 10'
+    - ''
+    - '&cRequiere: Combate 55'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#b388ff&lASTRAL LANZA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_receta_243'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral_2'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

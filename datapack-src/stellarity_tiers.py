@@ -7,7 +7,7 @@ from items_t6_10 import PUNTERIA, BALLESTAS
 from tools import DRILLS
 from balance_equipo import LANZA_DANO, LANZA_VELOCIDAD
 
-VERSION = 2
+VERSION = 4
 CATALOG = json.loads(Path(__file__).with_name('guia_stellarity.json').read_text(encoding='utf8'))['items']
 # id de catalogo -> (tier, familia); los ids reales se resuelven por custom_data, nunca por nombre traducido.
 WEAPONS = {
@@ -77,7 +77,42 @@ def rows():
         row['factor'] = FACTOR_ARMA.get(row['tier'], 1)
         row['version'] = VERSION
         row['lore'] = lore(row)
+        if row['tier'] and row['kind'] != 'horse':
+            row.update(ficha(key, row))
     return out
+
+
+def ficha(key, row):
+    from ficha import txt, stat, rareza, TIPOS, highlighted
+    from guia_ampliacion import DESCRIPTIONS
+    import textwrap
+    kind = row.get('family', row.get('piece', ''))
+    if not kind:
+        kind = next((p for p in ('pickaxe', 'shovel', 'hoe', 'shield') if p in key), 'accessory')
+    label = TIPOS.get(kind, 'LIBRO' if key.startswith('book_') else 'ACCESORIO')
+    rarity, color = rareza(row['tier'], kind)
+    lines = [txt(label.capitalize() + ' de Stellarity')]
+    if row.get('damage'):
+        lines.append(stat('Daño', '+' + fmt(row['damage']), 'red'))
+    if row.get('max_attack_speed'):
+        lines.append(stat('Velocidad de ataque', '$ATTACK_SPEED', 'white'))
+    if row.get('defense'):
+        lines += [stat('Defensa', '+' + fmt(row['defense']), 'green'), stat('Vida', '+' + fmt(row['health']), 'green')]
+    desc = DESCRIPTIONS.get(key)
+    import re
+    # Solo frases explicativas: fuera los renglones de atributos vanilla ("Dureza: +4 (chest).").
+    def explicativa(s):
+        return not re.match(r'^[^.:]{1,40}: [+-]?[0-9]', s) and not re.search(r'\((?:chest|head|legs|feet|mainhand|offhand|hand|body)\)', s)
+    pieces = [p.strip() + ('' if p.strip().endswith('.') else '.') for d in CATALOG[key]['description'] for p in re.split(r'(?<=\.)\s+', d) if p.strip()]
+    descriptions = [desc] if desc else [s for s in pieces if explicativa(s)]
+    if descriptions:
+        lines += [txt(''), txt('Bono de set' if key in ARMOR else 'Habilidad propia', 'gold')]
+        for s in descriptions:
+            lines += [highlighted(part) for part in textwrap.wrap(s, 48)]
+    lines += [txt('Tier: ' + str(row['tier'])), txt(''),
+              txt(f"Requiere: {SKILLS[row['skill']]} {row['level']}", 'red'),
+              txt(rarity + ' ' + label, color, bold=True)]
+    return dict(item_name=txt(CATALOG[key]['name'], color), ficha=lines)
 
 
 def lore(row):

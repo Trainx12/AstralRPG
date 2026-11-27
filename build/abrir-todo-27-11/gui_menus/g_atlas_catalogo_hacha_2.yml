@@ -1,0 +1,186 @@
+menu_title: '&f&#ffe9a8Hachas 2/2'
+size: 54
+items:
+  'c0':
+    material: NETHERITE_AXE
+    slot: 2
+    amount: 1
+    display_name: '&#ff5fd2Hacha del Torbellino'
+    item_model: 'astral:hacha_7'
+    lore:
+    - '&7Hacha Berserker VII'
+    - '&7Daño: &c+2.355.239'
+    - '&7Velocidad de ataque: &f1'
+    - ''
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&#5555FFEjecución I'
+    - '&7Ejecuta enemigos con menos del &a15%&7 de vida.'
+    - '&#5555FFRobo de vida II'
+    - '&a15%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 7'
+    - ''
+    - '&cRequiere: Combate 40'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - '&#ff5fd2&lMÍTICA HACHA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_163'
+  'c1':
+    material: NETHERITE_AXE
+    slot: 3
+    amount: 1
+    display_name: '&bHacha Doble Aurea'
+    item_model: 'astral:hacha_8'
+    lore:
+    - '&7Hacha Berserker VIII'
+    - '&7Daño: &c+11.935.764'
+    - '&7Velocidad de ataque: &f1,05'
+    - ''
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&#5555FFEjecución I'
+    - '&7Ejecuta enemigos con menos del &a15%&7 de vida.'
+    - '&#5555FFRobo de vida III'
+    - '&a25%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 8'
+    - ''
+    - '&cRequiere: Combate 45'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&b&lDIVINA HACHA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_164'
+  'c2':
+    material: NETHERITE_AXE
+    slot: 4
+    amount: 1
+    display_name: '&bHacha Marca de Fuego'
+    item_model: 'astral:hacha_9'
+    lore:
+    - '&7Hacha Berserker IX'
+    - '&7Daño: &c+60.392.681'
+    - '&7Velocidad de ataque: &f1,05'
+    - ''
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&#5555FFEjecución Astral I'
+    - '&7Ejecuta enemigos con menos del &a20%&7 de vida.'
+    - '&#5555FFRobo de vida III'
+    - '&a25%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - ''
+    - '&7Ejecuta enemigos con menos del &a20%&7 de vida'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 9'
+    - ''
+    - '&cRequiere: Combate 50'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&b&lDIVINA HACHA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_165'
+  'c3':
+    material: NETHERITE_AXE
+    slot: 5
+    amount: 1
+    display_name: '&#b388ffGran Hacha del Verdugo'
+    item_model: 'astral:hacha_10'
+    lore:
+    - '&7Hacha Berserker X'
+    - '&7Daño: &c+305.175.781'
+    - '&7Velocidad de ataque: &f1,1'
+    - ''
+    - '&#5555FFHendidura I'
+    - '&7También golpea a los enemigos a &a2,5&7 bloques.'
+    - '&#5555FFEjecución Astral I'
+    - '&7Ejecuta enemigos con menos del &a20%&7 de vida.'
+    - '&#5555FFRobo de vida IV'
+    - '&a30%&7 de curarte al golpear (Regeneración III, &a2&7 s).'
+    - ''
+    - '&7Ejecuta enemigos con menos del &a20%&7 de vida'
+    - '&7Durabilidad: &f7.201'
+    - '&7Tier: 10'
+    - ''
+    - '&cRequiere: Combate 55'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&#b388ff&lASTRAL HACHA'
+    - ''
+    - '&e» Clic: ver la receta'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_receta_166'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_berserker'
+  'anterior':
+    material: PAPER
+    slot: 47
+    amount: 1
+    display_name: '&eAnterior'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_catalogo_hacha_1'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

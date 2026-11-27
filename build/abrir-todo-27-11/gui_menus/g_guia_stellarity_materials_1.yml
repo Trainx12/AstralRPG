@@ -1,0 +1,356 @@
+menu_title: '&f&#ffe9a8Materiales y bloques 1/2'
+size: 54
+items:
+  'c0':
+    material: CHISELED_QUARTZ_BLOCK
+    slot: 1
+    amount: 1
+    display_name: '&bAltar of The Sacred'
+    item_model: 'stellarity:altar_of_the_sacred'
+    lore:
+    - '&7Altar Sagrado: cambia minerales por'
+    - '&7bendiciones e invoca jefes con'
+    - '&7ofrendas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: GLOW_ITEM_FRAME
+    slot: 2
+    amount: 1
+    display_name: '&bAshen Froglight'
+    item_model: 'stellarity:ashen_froglight'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: GLOW_ITEM_FRAME
+    slot: 3
+    amount: 1
+    display_name: '&bBlock of Enderite'
+    item_model: 'stellarity:enderite_block'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: GLOW_ITEM_FRAME
+    slot: 4
+    amount: 1
+    display_name: '&bEnder Dirt'
+    item_model: 'stellarity:ender_dirt'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_ender_dirt_96'
+  'c4':
+    material: GLOW_ITEM_FRAME
+    slot: 5
+    amount: 1
+    display_name: '&bEnder Dirt Path'
+    item_model: 'stellarity:ender_dirt_path'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: GLOW_ITEM_FRAME
+    slot: 6
+    amount: 1
+    display_name: '&bEnder Grass Block'
+    item_model: 'stellarity:ender_grass_block'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_ender_grass_block_98'
+  'c6':
+    material: ITEM_FRAME
+    slot: 7
+    amount: 1
+    display_name: '&bPhantom Item Frame'
+    item_model: 'stellarity:phantom_item_frame'
+    lore:
+    - '&7Se vuelve invisible cuando colocas un'
+    - '&7objeto dentro.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c7':
+    material: GLOW_ITEM_FRAME
+    slot: 10
+    amount: 1
+    display_name: '&bRooted Ender Dirt'
+    item_model: 'stellarity:rooted_ender_dirt'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_rooted_ender_dirt_97'
+  'c8':
+    material: WARPED_FUNGUS_ON_A_STICK
+    slot: 11
+    amount: 1
+    display_name: '&bEndonomicon'
+    item_model: 'stellarity:endonomicon'
+    lore:
+    - '&7Libro de consulta de Stellarity. La'
+    - '&7disponibilidad de sus paginas depende'
+    - '&7de esta version.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_endonomicon'
+  'c9':
+    material: MAP
+    slot: 12
+    amount: 1
+    display_name: '&bChapel Of Light'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c10':
+    material: MAP
+    slot: 13
+    amount: 1
+    display_name: '&bEnd City'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c11':
+    material: MAP
+    slot: 14
+    amount: 1
+    display_name: '&bFloating Treasure'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c12':
+    material: MAP
+    slot: 15
+    amount: 1
+    display_name: '&bVillage'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c13':
+    material: SNOWBALL
+    slot: 16
+    amount: 1
+    display_name: '&bEnder Egg'
+    item_model: 'stellarity:ender_egg'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c14':
+    material: OMINOUS_TRIAL_KEY
+    slot: 19
+    amount: 1
+    display_name: '&bGilded Purpur Key'
+    item_model: 'stellarity:gilded_purpur_key'
+    lore:
+    - '&7Abre bovedas ominosas de las ciudades'
+    - '&7del End.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c15':
+    material: TRIAL_KEY
+    slot: 20
+    amount: 1
+    display_name: '&bPurpur Key'
+    item_model: 'stellarity:purpur_key'
+    lore:
+    - '&7Abre bovedas de las ciudades del End.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c16':
+    material: OMINOUS_TRIAL_KEY
+    slot: 21
+    amount: 1
+    display_name: '&bWinged Key'
+    item_model: 'stellarity:winged_key'
+    lore:
+    - '&7Abre la boveda de elytras de los'
+    - '&7barcos del End.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c17':
+    material: POPPED_CHORUS_FRUIT
+    slot: 22
+    amount: 1
+    display_name: '&bChorus Petal'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c18':
+    material: IRON_INGOT
+    slot: 23
+    amount: 1
+    display_name: '&bChapado de Chorus'
+    item_model: 'stellarity:chorus_plating'
+    lore:
+    - '&7Material para mejorar equipo en el'
+    - '&7Altar Maldito.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_chorus_plating'
+  'c19':
+    material: ENCHANTED_BOOK
+    slot: 24
+    amount: 1
+    display_name: '&bEmpty Enchanted Book'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c20':
+    material: AMETHYST_SHARD
+    slot: 25
+    amount: 1
+    display_name: '&bFragmento de Enderita'
+    item_model: 'stellarity:enderite_shard'
+    lore:
+    - '&7Material, bloque u objeto de'
+    - '&7exploracion del End. Su obtencion'
+    - '&7depende del botin y la progresion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_stellarity'
+  'siguiente':
+    material: PAPER
+    slot: 51
+    amount: 1
+    display_name: '&eSiguiente'
+    item_model: 'astral:mascotas/nav_next'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_stellarity_materials_2'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

@@ -1,0 +1,179 @@
+menu_title: '&f&#ffe9a8Mochilas'
+size: 54
+items:
+  'info':
+    material: KNOWLEDGE_BOOK
+    slot: 13
+    amount: 1
+    display_name: '&6&lMochilas'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7Una mochila es un objeto: tenela en la'
+    - '&7mano y hace clic derecho para abrirla.'
+    - '&7Se fabrica la de Cuero en la Mesa de'
+    - '&7Crafteo y se mejora nivel por nivel.'
+    - '&7Tambien se compran en /shop -> Mochilas.'
+    - '&7Si moris, cae a tu tumba con todo lo que'
+    - '&7tiene adentro. Solo la Mochila de Ender'
+    - '&7puede guardar otras mochilas.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'm0':
+    material: PLAYER_HEAD
+    slot: 21
+    amount: 1
+    display_name: '&6Mochila de Cuero'
+    item_model: 'astral:mochila_leather'
+    lore:
+    - '&79 espacios'
+    - ''
+    - '&e» Clic: ver como se fabrica'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_mochila_leather'
+  'm1':
+    material: PLAYER_HEAD
+    slot: 22
+    amount: 1
+    display_name: '&#e0804aMochila de Cobre'
+    item_model: 'astral:mochila_copper'
+    lore:
+    - '&718 espacios'
+    - ''
+    - '&e» Clic: ver como se fabrica'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_mochila_copper'
+  'm2':
+    material: PLAYER_HEAD
+    slot: 23
+    amount: 1
+    display_name: '&fMochila de Hierro'
+    item_model: 'astral:mochila_iron'
+    lore:
+    - '&727 espacios'
+    - ''
+    - '&e» Clic: ver como se fabrica'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_mochila_iron'
+  'm3':
+    material: PLAYER_HEAD
+    slot: 30
+    amount: 1
+    display_name: '&eMochila de Oro'
+    item_model: 'astral:mochila_gold'
+    lore:
+    - '&736 espacios'
+    - ''
+    - '&e» Clic: ver como se fabrica'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_mochila_gold'
+  'm4':
+    material: PLAYER_HEAD
+    slot: 31
+    amount: 1
+    display_name: '&bMochila de Diamante'
+    item_model: 'astral:mochila_diamond'
+    lore:
+    - '&745 espacios'
+    - ''
+    - '&e» Clic: ver como se fabrica'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_mochila_diamond'
+  'm5':
+    material: PLAYER_HEAD
+    slot: 32
+    amount: 1
+    display_name: '&8Mochila de Netherite'
+    item_model: 'astral:mochila_netherite'
+    lore:
+    - '&754 espacios'
+    - ''
+    - '&e» Clic: ver como se fabrica'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_mochila_netherite'
+  'm6':
+    material: PLAYER_HEAD
+    slot: 40
+    amount: 1
+    display_name: '&3Mochila de Ender'
+    item_model: 'astral:mochila_ender'
+    lore:
+    - '&727 espacios'
+    - ''
+    - '&e» Clic: ver como se fabrica'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_mochila_ender'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_proteccion'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

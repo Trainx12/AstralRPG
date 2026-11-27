@@ -22,6 +22,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.*;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
+import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer;
+import io.papermc.paper.datacomponent.DataComponentTypes;
+import io.papermc.paper.datacomponent.item.TooltipDisplay;
 
 /** Paper 26.1.2 / Java 25. Datos generados; los componentes stellarity:* nunca se reemplazan. */
 public final class AstralStellarity extends JavaPlugin implements Listener {
@@ -100,10 +103,15 @@ public final class AstralStellarity extends JavaPlugin implements Listener {
                 var modifiers = bm.getAttributeModifiers(a);
                 if (modifiers != null) modifiers.forEach(x -> meta.addAttributeModifier(a,x));
             }
-            cleanLore(meta);
+            meta.lore(bm.lore());
+            meta.itemName(bm.itemName());
             meta.getPersistentDataContainer().remove(original);
             for (String kind : List.of("item", "armor")) meta.getPersistentDataContainer().remove(NamespacedKey.fromString("auraskills:"+kind+"_requirements"));
             ItemStack result=it.clone(); result.setItemMeta(meta);
+            var restored=CraftItemStack.asNMSCopy(result);
+            var display=CraftItemStack.asNMSCopy(base).get(DataComponents.TOOLTIP_DISPLAY);
+            if(display==null) restored.remove(DataComponents.TOOLTIP_DISPLAY); else restored.set(DataComponents.TOOLTIP_DISPLAY,display);
+            result=CraftItemStack.asBukkitCopy(restored);
             return data(result,null);
         }
         // Validacion estructural, no solo version: el datapack puede reescribir atributos/lore de Harvester.
@@ -136,10 +144,21 @@ public final class AstralStellarity extends JavaPlugin implements Listener {
         var req = meta.getPersistentDataContainer().getAdapterContext().newPersistentDataContainer();
         req.set(NamespacedKey.fromString("auraskills:"+str(r,"skill")),PersistentDataType.INTEGER,num(r,"level"));
         meta.getPersistentDataContainer().set(NamespacedKey.fromString("auraskills:"+(str(r,"kind").equals("armor")?"armor":"item")+"_requirements"),PersistentDataType.TAG_CONTAINER,req);
-        var lore = meta.lore()==null ? new ArrayList<Component>() : new ArrayList<>(meta.lore());
-        for (var line:r.getAsJsonArray("lore")) lore.add(Component.text("Astral | "+line.getAsString(),NamedTextColor.GOLD).decoration(TextDecoration.ITALIC,false));
-        meta.lore(lore); out.setItemMeta(meta);
+        meta.itemName(GsonComponentSerializer.gson().deserialize(r.get("item_name").toString()));
+        out.setItemMeta(meta);
+        var decoratedMeta=out.getItemMeta();decoratedMeta.lore(fichaLore(out,r));out.setItemMeta(decoratedMeta);
+        var display=out.getData(DataComponentTypes.TOOLTIP_DISPLAY);
+        var hidden=new HashSet<io.papermc.paper.datacomponent.DataComponentType>();
+        if(display!=null) hidden.addAll(display.hiddenComponents());
+        hidden.add(DataComponentTypes.ATTRIBUTE_MODIFIERS);
+        out.setData(DataComponentTypes.TOOLTIP_DISPLAY,TooltipDisplay.tooltipDisplay().hiddenComponents(hidden).build());
         return data(out,r);
+    }
+    List<Component> fichaLore(ItemStack it, JsonObject r) {
+        var lines=new ArrayList<Component>();
+        String speed=java.math.BigDecimal.valueOf(attackSpeed(it)).setScale(3,java.math.RoundingMode.HALF_UP).stripTrailingZeros().toPlainString().replace('.',',');
+        for(var line:r.getAsJsonArray("ficha")) lines.add(GsonComponentSerializer.gson().deserialize(line.toString().replace("$ATTACK_SPEED",speed)));
+        return lines;
     }
     void cleanLore(ItemMeta m) {
         if (m.lore()!=null) m.lore(m.lore().stream().filter(c -> !PlainTextComponentSerializer.plainText().serialize(c).startsWith("Astral | ")).toList());
@@ -150,7 +169,10 @@ public final class AstralStellarity extends JavaPlugin implements Listener {
         var a=n.copyTag().getCompoundOrEmpty("astral");
         if(a.getIntOr("stellarity",0)!=num(r,"version")) return false;
         var m=it.getItemMeta();
-        if(m.lore()==null || m.lore().stream().noneMatch(c -> PlainTextComponentSerializer.plainText().serialize(c).equals("Astral | Tier: "+num(r,"tier")))) return false;
+        if(!Objects.equals(m.lore(),fichaLore(it,r))) return false;
+        if(!Objects.equals(m.itemName(),GsonComponentSerializer.gson().deserialize(r.get("item_name").toString()))) return false;
+        var display=it.getData(DataComponentTypes.TOOLTIP_DISPLAY);
+        if(display==null || !display.hiddenComponents().contains(DataComponentTypes.ATTRIBUTE_MODIFIERS)) return false;
         if(str(r,"kind").equals("weapon") && !List.of("bow","crossbow").contains(str(r,"family"))) {
             if(attackSpeed(it)>val(r,"max_attack_speed")+.000001) return false;
             var mods=m.getAttributeModifiers(Attribute.ATTACK_DAMAGE);

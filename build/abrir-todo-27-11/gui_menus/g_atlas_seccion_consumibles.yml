@@ -1,0 +1,141 @@
+menu_title: '&f&#ffe9a8Experiencia y suerte'
+size: 54
+items:
+  'ilustracion':
+    material: PAPER
+    slot: 4
+    amount: 1
+    display_name: '&fExperiencia y suerte'
+    item_model: 'astral:atlas_ui/ilus_consumibles'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c0':
+    material: PAPER
+    slot: 20
+    amount: 1
+    display_name: '&aFrasco de Experiencia Pequeno'
+    item_model: 'astral:frasco_xp_pequeno'
+    lore:
+    - '&7Clic derecho: +60 puntos de XP vanilla.'
+    - '&7Shift + clic: consume todo el stack de esa mano.'
+    - ''
+    - '&#30241bFrasco de Experiencia Pequeno · 60 puntos'
+    - '&#30241bde XP vanilla.'
+    - '&#30241bClic: uno. Shift + clic: stack de la mano.'
+    - '&#30241bMaximo 16.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: PAPER
+    slot: 21
+    amount: 1
+    display_name: '&aFrasco de Experiencia Grande'
+    item_model: 'astral:frasco_xp_grande'
+    lore:
+    - '&7Clic derecho: +200 puntos de XP vanilla.'
+    - '&7Shift + clic: consume todo el stack de esa mano.'
+    - ''
+    - '&#30241bFrasco de Experiencia Grande · 200 puntos'
+    - '&#30241bde XP vanilla.'
+    - '&#30241bClic: uno. Shift + clic: stack de la mano.'
+    - '&#30241bMaximo 16.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: PAPER
+    slot: 22
+    amount: 1
+    display_name: '&aFrasco de Experiencia Gigante'
+    item_model: 'astral:frasco_xp_gigante'
+    lore:
+    - '&7Clic derecho: +550 puntos de XP vanilla.'
+    - '&7Shift + clic: consume todo el stack de esa mano.'
+    - ''
+    - '&#30241bFrasco de Experiencia Gigante · 550 puntos'
+    - '&#30241bde XP vanilla.'
+    - '&#30241bClic: uno. Shift + clic: stack de la mano.'
+    - '&#30241bMaximo 16.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: PAPER
+    slot: 23
+    amount: 1
+    display_name: '&aBarril de Experiencia'
+    item_model: 'astral:barril_xp'
+    lore:
+    - '&7Clic derecho: +5500 puntos de XP vanilla.'
+    - '&7Shift + clic: consume todo el stack de esa mano.'
+    - ''
+    - '&#30241bBarril de Experiencia · 5,500 puntos de XP'
+    - '&#30241bvanilla.'
+    - '&#30241bClic: uno. Shift + clic: stack de la mano.'
+    - '&#30241bMaximo 16.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: APPLE
+    slot: 24
+    amount: 1
+    display_name: '&aManzana de la Suerte'
+    item_model: 'astral:manzana_esmeralda'
+    lore:
+    - '&7Raro, Epico y Legendario x1,5 durante 5 minutos.'
+    - '&7Cada manzana suma 5 minutos.'
+    - ''
+    - '&#30241bManzana de la Suerte · +5 minutos'
+    - '&#30241bacumulables por manzana.'
+    - '&#30241bRaro, Epico y Legendario ×1.5; no'
+    - '&#30241bgarantiza premios.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

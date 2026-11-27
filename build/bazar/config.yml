@@ -14,5 +14,10 @@
     "8": 400000,
     "9": 800000,
     "10": 1600000
+  },
+  "limites-dinamicos": {
+    "activo": true,
+    "hora": "05:10",
+    "tope-maximo": 3
   }
 }

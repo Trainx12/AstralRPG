@@ -1,0 +1,126 @@
+menu_title: '&f&#ffe9a8Comida'
+size: 54
+items:
+  'c0':
+    material: COOKED_BEEF
+    slot: 1
+    amount: 1
+    display_name: '&bComida y curacion'
+    lore:
+    - '&7Comer cura poco por si solo; para'
+    - '&7curarte rapido usa las manzanas de tu'
+    - '&7tier o espera fuera de pelea.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: CAULDRON
+    slot: 2
+    amount: 1
+    display_name: '&bCrop & Kettle 1.3.12'
+    lore:
+    - '&7Disponible en el Survival: cultivos'
+    - '&7nuevos, platos y bebidas.'
+    - '&7Olla = caldero + fogata; recetario y'
+    - '&7avances para empezar.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_comida_cnk'
+  'c2':
+    material: APPLE
+    slot: 3
+    amount: 1
+    display_name: '&bManzanas de mazmorra'
+    lore:
+    - '&7T2 a T10: curan 45% de la vida del set'
+    - '&7de su tier. Mitad al comer y mitad en'
+    - '&75 s. Espera compartida: 20 s.'
+    - '&7Caen de mobs de mazmorra del mismo'
+    - '&7tier: comunes 3%, elites 12%.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: GOLDEN_APPLE
+    slot: 4
+    amount: 1
+    display_name: '&bXP y Suerte Astral'
+    lore:
+    - '&7Manzana de la Suerte y frascos de'
+    - '&7experiencia: ver Consumibles.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_atlas_seccion_consumibles'
+  'c4':
+    material: CHORUS_FRUIT
+    slot: 5
+    amount: 1
+    display_name: '&bComida del End'
+    lore:
+    - '&7Platos, peces y sus recetas de'
+    - '&7Stellarity.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_food_1'
+  'c5':
+    material: GOLDEN_CARROT
+    slot: 6
+    amount: 1
+    display_name: '&bFuera de pelea'
+    lore:
+    - '&7Tras 20 s sin recibir dano, curas 4%'
+    - '&7de tu vida maxima por segundo, sin'
+    - '&7gastar comida.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

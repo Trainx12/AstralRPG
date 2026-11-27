@@ -1,0 +1,114 @@
+menu_title: '&f&#ffe9a8Altares del End'
+size: 54
+items:
+  'c0':
+    material: END_PORTAL_FRAME
+    slot: 2
+    amount: 1
+    display_name: '&bAltar Maldito'
+    lore:
+    - '&7Se activa por la progresion del'
+    - '&7dragon. Tira cantidades exactas'
+    - '&7juntas; sirve para mejoras, libros y'
+    - '&7colores de elytra.'
+    - '&7Astral retira al dragon: verificar que'
+    - '&7el altar este activo antes de prometer'
+    - '&7que todas las mejoras se pueden'
+    - '&7obtener.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: ENCHANTING_TABLE
+    slot: 3
+    amount: 1
+    display_name: '&bAltar Sagrado'
+    lore:
+    - '&7Ofrendas: hierro = Resistencia; oro ='
+    - '&7Prisa; esmeralda = Heroe de la aldea;'
+    - '&7diamante = Velocidad; netherite ='
+    - '&7Resistencia al fuego.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: GLOWSTONE_DUST
+    slot: 4
+    amount: 1
+    display_name: '&bEmpress of Light'
+    lore:
+    - '&7Ofrenda Starlight Soot al Altar'
+    - '&7Sagrado. No en Pacifico ni con otra'
+    - '&7Empress activa.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: SHULKER_SHELL
+    slot: 5
+    amount: 1
+    display_name: '&bShulking'
+    lore:
+    - '&7Ofrenda Cuerpo de Shulker al Altar'
+    - '&7Sagrado. No en Pacifico ni con otro'
+    - '&7Shulking cerca.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: DRAGON_BREATH
+    slot: 6
+    amount: 1
+    display_name: '&bCaldero de dragon'
+    lore:
+    - '&7Caldero con agua + aliento de dragon:'
+    - '&77 cargas. Cada receta consume cargas.'
+    - '&7No es la olla de Crop & Kettle.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_recetas_1'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_stellarity'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

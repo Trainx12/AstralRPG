@@ -1,0 +1,280 @@
+menu_title: '&f&#ffe9a8Yeti Ancestral'
+size: 54
+items:
+  'retrato':
+    material: PAPER
+    slot: 4
+    amount: 1
+    display_name: '&fYeti Ancestral'
+    item_model: 'astral:atlas_ui/mob_astral_yeti_ancestral'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c0':
+    material: KNOWLEDGE_BOOK
+    slot: 19
+    amount: 1
+    display_name: '&#8a4500&lJefe'
+    item_model: 'astral:menu/icon_guia'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: KNOWLEDGE_BOOK
+    slot: 20
+    amount: 1
+    display_name: '&6world'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7minecraft:frozen_peaks,'
+    - '&7minecraft:snowy_slopes,'
+    - '&7minecraft:ice_spikes'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: KNOWLEDGE_BOOK
+    slot: 21
+    amount: 1
+    display_name: '&6Informacion'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&#30241bVariante ancestral · Vida base 1000 · Daño'
+    - '&#30241bbase 22.4 (antes del escalado).'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: KNOWLEDGE_BOOK
+    slot: 22
+    amount: 1
+    display_name: '&6Drops vanilla'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&7snow_block 4-10 1; leather 4-8 1; exp 150;'
+    - '&7exp 30; diamond 1 0.15'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: KNOWLEDGE_BOOK
+    slot: 23
+    amount: 1
+    display_name: '&6Jefe de mundo I–X · Vida'
+    item_model: 'astral:menu/icon_guia'
+    lore:
+    - '&71: 12,500; 2: 60,000; 3: 287,500; 4:'
+    - '&71,375,000; 5: 6,562,500; 6: 31,250,000; 7:'
+    - '&7148,437,500; 8: 703,125,000; 9:'
+    - '&73,320,312,500; 10: 15,625,000,000. Daño de'
+    - '&7skills segun su definicion.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: PAPER
+    slot: 24
+    amount: 1
+    display_name: '&#c04fffAlma Corrupta'
+    item_model: 'astral:alma_corrupta'
+    lore:
+    - '&7Cae de Campeones y Pesadillas.'
+    - '&8Material de AstralRPG'
+    - ''
+    - '&#30241b2 × Alma Corrupta · 100%'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c6':
+    material: PAPER
+    slot: 25
+    amount: 1
+    display_name: '&#ffe24dChispa Astral'
+    item_model: 'astral:chispa_astral'
+    lore:
+    - '&7Cae de los mobs Astrales.'
+    - '&8Material de AstralRPG'
+    - ''
+    - '&#30241b1 × Chispa Astral · 45%'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c7':
+    material: PAPER
+    slot: 28
+    amount: 1
+    display_name: '&#d9b8ffCristal Arcano Refinado'
+    item_model: 'astral:cristal_refinado'
+    lore:
+    - '&7Crafteos magicos medio-alto.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    - ''
+    - '&#30241b1 × Cristal Arcano Refinado · 80%'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c8':
+    material: PAPER
+    slot: 29
+    amount: 1
+    display_name: '&#7fe0a0Esencia de Elite'
+    item_model: 'astral:esencia_elite'
+    lore:
+    - '&7Cae de mobs elite.'
+    - '&8Material de AstralRPG'
+    - ''
+    - '&#30241b3 × Esencia de Elite · 100%'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c9':
+    material: PAPER
+    slot: 30
+    amount: 1
+    display_name: '&aFrasco de Experiencia Pequeno'
+    item_model: 'astral:frasco_xp_pequeno'
+    lore:
+    - '&7Clic derecho: +60 puntos de XP vanilla.'
+    - '&7Shift + clic: consume todo el stack de esa mano.'
+    - ''
+    - '&#30241b1 × Frasco de Experiencia Pequeno · 65%'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c10':
+    material: PAPER
+    slot: 31
+    amount: 1
+    display_name: '&aFrasco de Experiencia Grande'
+    item_model: 'astral:frasco_xp_grande'
+    lore:
+    - '&7Clic derecho: +200 puntos de XP vanilla.'
+    - '&7Shift + clic: consume todo el stack de esa mano.'
+    - ''
+    - '&#30241b1 × Frasco de Experiencia Grande · 35%'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c11':
+    material: PAPER
+    slot: 32
+    amount: 1
+    display_name: '&aFrasco de Experiencia Gigante'
+    item_model: 'astral:frasco_xp_gigante'
+    lore:
+    - '&7Clic derecho: +550 puntos de XP vanilla.'
+    - '&7Shift + clic: consume todo el stack de esa mano.'
+    - ''
+    - '&#30241b1 × Frasco de Experiencia Gigante · 20%'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c12':
+    material: PAPER
+    slot: 33
+    amount: 1
+    display_name: '&aBarril de Experiencia'
+    item_model: 'astral:barril_xp'
+    lore:
+    - '&7Clic derecho: +5500 puntos de XP vanilla.'
+    - '&7Shift + clic: consume todo el stack de esa mano.'
+    - ''
+    - '&#30241b1 × Barril de Experiencia · 2%'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c13':
+    material: PAPER
+    slot: 34
+    amount: 1
+    display_name: '&#ffe24dChispa Astral'
+    item_model: 'astral:chispa_astral'
+    lore:
+    - '&7Cae de los mobs Astrales.'
+    - '&8Material de AstralRPG'
+    - ''
+    - '&#30241b2 × Chispa Astral · 100%'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c14':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&#c04fffAlma Corrupta'
+    item_model: 'astral:alma_corrupta'
+    lore:
+    - '&7Cae de Campeones y Pesadillas.'
+    - '&8Material de AstralRPG'
+    - ''
+    - '&#30241b2 × Alma Corrupta · 100%'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_bestiario_5'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

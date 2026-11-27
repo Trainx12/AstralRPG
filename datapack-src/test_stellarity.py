@@ -7,7 +7,7 @@ class StellarityTests(unittest.TestCase):
     def test_attack_speed_caps(self):
         for key, (tier, family) in WEAPONS.items():
             row = rows()[key]
-            self.assertEqual(row['version'], 2)
+            self.assertEqual(row['version'], VERSION)
             if family in ('bow', 'crossbow'):
                 self.assertNotIn('max_attack_speed', row)
             else:

@@ -226,7 +226,7 @@ def recategorizar():
 
 
 PLUGIN = """name: AstralBazar
-version: 1.3.1
+version: 1.4.0
 main: astral.AstralBazar
 api-version: '26.1.2'
 depend: [Vault]
@@ -253,7 +253,7 @@ def build(jdk, server):
     ventanas_yml()
     classes = ROOT / '.local/bazar-classes'
     classes.mkdir(parents=True, exist_ok=True)
-    jars = list(Path(server).joinpath('libraries').rglob('*.jar')) + [Path(server) / 'plugins/Vault.jar']
+    jars = list(Path(server).joinpath('libraries').rglob('*.jar')) + list(Path(server).joinpath('versions').rglob('*.jar')) + [Path(server) / 'plugins/Vault.jar']
     java = Path(jdk) / ('java.exe' if os.name == 'nt' else 'java')
     subprocess.run([str(java), '-m', 'jdk.compiler/com.sun.tools.javac.Main', '-encoding', 'UTF-8',
                     '-classpath', os.pathsep.join(map(str, jars)), '-d', str(classes),

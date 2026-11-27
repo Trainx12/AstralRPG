@@ -1,0 +1,166 @@
+menu_title: '&f&#ffe9a8Taladro de Amatista'
+size: 54
+items:
+  'resultado':
+    material: NETHERITE_PICKAXE
+    slot: 20
+    amount: 1
+    display_name: '&aTaladro de Amatista'
+    item_model: 'astral:taladro_amatista'
+    lore:
+    - '&7Taladro III'
+    - '&7Velocidad de minado: &6+15'
+    - '&7Área de minado: &62x1'
+    - '&bIndestructible'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Rompe solo el bloque apuntado.'
+    - '&7Tier: 3'
+    - ''
+    - '&cRequiere: Mineria 12'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&a&lPOCO COMÚN TALADRO'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material0':
+    material: NETHERITE_PICKAXE
+    slot: 14
+    amount: 1
+    display_name: '&f1x Taladro de Mitril'
+    item_model: 'astral:taladro_mitril'
+    lore:
+    - '&7Taladro II'
+    - '&7Velocidad de minado: &6+13'
+    - '&7Área de minado: &62x1'
+    - '&7Durabilidad: &f3.600'
+    - ''
+    - '&6Habilidad: Precisión&e&l  SHIFT'
+    - '&7Rompe solo el bloque apuntado.'
+    - '&7Tier: 2'
+    - ''
+    - '&cRequiere: Mineria 8'
+    - '&7Se fabrica solo en la Forja (supera 3x3)'
+    - '&a&lPOCO COMÚN TALADRO'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material1':
+    material: AMETHYST_BLOCK
+    slot: 15
+    amount: 8
+    display_name: '&f8x Bloque de amatista'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material2':
+    material: PAPER
+    slot: 16
+    amount: 4
+    display_name: '&f4x Fragmento de Cristal Arcano'
+    item_model: 'astral:fragmento_cristal'
+    lore:
+    - '&72 forman un Cristal Arcano.'
+    - '&8Material de AstralRPG'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'material3':
+    material: PAPER
+    slot: 23
+    amount: 3
+    display_name: '&f3x Netherita Reforzada'
+    item_model: 'astral:netherita_reforzada'
+    lore:
+    - '&7Metal de nivel intermedio-alto.'
+    - '&8Material de AstralRPG'
+    - '&7Se fabrica en la mesa de crafteo o en la Forja'
+    enchantments:
+    - 'unbreaking;1'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'forjar0':
+    material: PAPER
+    slot: 39
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 210'
+  'forjar1':
+    material: PAPER
+    slot: 40
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 210'
+  'forjar2':
+    material: PAPER
+    slot: 41
+    amount: 1
+    display_name: '&6&lForjar'
+    item_model: 'astral:viajes/blank'
+    lore:
+    - '&7Sacas los materiales de tu inventario.'
+    - '&7Tenes que estar al lado de una'
+    - '&7Mesa de Herreria.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[close]'
+    - '[player] trigger astral.forja set 210'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_taladros'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

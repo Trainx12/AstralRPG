@@ -1,0 +1,293 @@
+menu_title: '&f&#ffe9a8Jefes y criaturas'
+size: 54
+items:
+  'c0':
+    material: NETHER_STAR
+    slot: 1
+    amount: 1
+    display_name: '&bEmpress of Light'
+    lore:
+    - '&7Empress of Light: Altar Sagrado +'
+    - '&7Starlight Soot. Botin posible:'
+    - '&7Prismatic Punch, Prismember,'
+    - '&7Starstruck Shield y Prismatic Pearl;'
+    - '&7de dia tambien Soaring Insignia y'
+    - '&7Kaleidoscope. Dificultad y premios'
+    - '&7cambian segun la pelea.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: DRAGON_HEAD
+    slot: 2
+    amount: 1
+    display_name: '&bEnder Dragon'
+    lore:
+    - '&7Jefe original del End, retirado por'
+    - '&7Astral: su botin no se promete'
+    - '&7disponible. Botin posible: life'
+    - '&7crystal, minecraft:dragon head,'
+    - '&7minecraft:phantom membrane, dragon'
+    - '&7wings. No todos los premios son'
+    - '&7garantizados.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c2':
+    material: ZOMBIE_HEAD
+    slot: 3
+    amount: 1
+    display_name: '&bFlesh Piglin'
+    lore:
+    - '&7Criatura de las zonas de carne del'
+    - '&7End. Botin posible: minecraft:rotten'
+    - '&7flesh, minecraft:nether wart block,'
+    - '&7minecraft:nether wart,'
+    - '&7minecraft:crimson fungus,'
+    - '&7minecraft:crimson roots. No todos los'
+    - '&7premios son garantizados.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c3':
+    material: ZOMBIE_HEAD
+    slot: 4
+    amount: 1
+    display_name: '&bFrosted Stray'
+    lore:
+    - '&7Esqueleto de las zonas heladas del'
+    - '&7End. Botin posible: minecraft:arrow,'
+    - '&7minecraft:tipped arrow,'
+    - '&7minecraft:bone, minecraft:ice,'
+    - '&7minecraft:snowball. No todos los'
+    - '&7premios son garantizados.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c4':
+    material: ZOMBIE_HEAD
+    slot: 5
+    amount: 1
+    display_name: '&bKohara'
+    lore:
+    - '&7Entidad especial del autor; no se'
+    - '&7promete aparicion natural. Botin'
+    - '&7posible: golden chorus fruit. No todos'
+    - '&7los premios son garantizados.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: ZOMBIE_HEAD
+    slot: 6
+    amount: 1
+    display_name: '&bPhantom Buffed'
+    lore:
+    - '&7Phantom modificado del End. Botin'
+    - '&7posible: minecraft:string,'
+    - '&7minecraft:gunpowder, minecraft:phantom'
+    - '&7membrane. No todos los premios son'
+    - '&7garantizados.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c6':
+    material: ZOMBIE_HEAD
+    slot: 7
+    amount: 1
+    display_name: '&bPixie'
+    lore:
+    - '&7Criatura de las zonas Hallow. Botin'
+    - '&7posible: starlight soot,'
+    - '&7minecraft:structure void. No todos los'
+    - '&7premios son garantizados.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c7':
+    material: SHULKER_SHELL
+    slot: 10
+    amount: 1
+    display_name: '&bShulking'
+    lore:
+    - '&7Ofrenda Cuerpo de Shulker en el Altar'
+    - '&7Sagrado. Botin posible: book of'
+    - '&7obstruct, golden chorus fruit, purpur'
+    - '&7block, shulker pickaxe, shulker axe,'
+    - '&7shulker sword, shulker spear, shulker'
+    - '&7shovel, shulker hoe, boots,'
+    - '&7chestplate, leggings. No todos los'
+    - '&7premios son garantizados.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c8':
+    material: ZOMBIE_HEAD
+    slot: 11
+    amount: 1
+    display_name: '&bStronghold - Evoker'
+    lore:
+    - '&7Habitante de las fortalezas renovadas.'
+    - '&7Botin posible: minecraft:totem of'
+    - '&7undying, minecraft:emerald. No todos'
+    - '&7los premios son garantizados.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c9':
+    material: ZOMBIE_HEAD
+    slot: 12
+    amount: 1
+    display_name: '&bStronghold - Illusioner'
+    lore:
+    - '&7Habitante de las fortalezas renovadas.'
+    - '&7Botin posible: minecraft:emerald,'
+    - '&7minecraft:book, minecraft:paper,'
+    - '&7sharanga, minecraft:spectral arrow. No'
+    - '&7todos los premios son garantizados.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c10':
+    material: ZOMBIE_HEAD
+    slot: 13
+    amount: 1
+    display_name: '&bStronghold - Pillager'
+    lore:
+    - '&7Habitante de las fortalezas renovadas.'
+    - '&7Botin posible: minecraft:emerald,'
+    - '&7minecraft:arrow. No todos los premios'
+    - '&7son garantizados.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c11':
+    material: ZOMBIE_HEAD
+    slot: 14
+    amount: 1
+    display_name: '&bStronghold - Vindicator'
+    lore:
+    - '&7Habitante de las fortalezas renovadas.'
+    - '&7Botin posible: minecraft:emerald. No'
+    - '&7todos los premios son garantizados.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c12':
+    material: ZOMBIE_HEAD
+    slot: 15
+    amount: 1
+    display_name: '&bStronghold - Witch'
+    lore:
+    - '&7Habitante de las fortalezas renovadas.'
+    - '&7Botin posible: random potion. No todos'
+    - '&7los premios son garantizados.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c13':
+    material: ZOMBIE_HEAD
+    slot: 16
+    amount: 1
+    display_name: '&bVoided Silverfish'
+    lore:
+    - '&7Lepisma del vacio. Botin posible:'
+    - '&7minecraft:ender pearl. No todos los'
+    - '&7premios son garantizados.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c14':
+    material: ZOMBIE_HEAD
+    slot: 21
+    amount: 1
+    display_name: '&bVoided Skeleton'
+    lore:
+    - '&7Esqueleto del vacio. Botin posible:'
+    - '&7minecraft:spectral arrow,'
+    - '&7minecraft:arrow, minecraft:bone. No'
+    - '&7todos los premios son garantizados.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c15':
+    material: ZOMBIE_HEAD
+    slot: 22
+    amount: 1
+    display_name: '&bVoided Slime'
+    lore:
+    - '&7Slime del vacio. Botin posible:'
+    - '&7minecraft:slime ball. No todos los'
+    - '&7premios son garantizados.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c16':
+    material: ZOMBIE_HEAD
+    slot: 23
+    amount: 1
+    display_name: '&bVoided Zombie'
+    lore:
+    - '&7Zombi del vacio. Botin posible:'
+    - '&7minecraft:rotten flesh,'
+    - '&7minecraft:leather, minecraft:copper'
+    - '&7ingot, minecraft:sand. No todos los'
+    - '&7premios son garantizados.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_stellarity'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'
