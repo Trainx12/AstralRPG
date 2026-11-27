@@ -1,0 +1,1595 @@
+{
+  "sharanga": {
+    "tier": 3,
+    "kind": "weapon",
+    "family": "bow",
+    "damage": 2957,
+    "skill": "archery",
+    "level": 20,
+    "factor": 285.7142857142857,
+    "version": 1,
+    "lore": [
+      "Tier: 3",
+      "Dano: 2.957",
+      "Requiere: Arqueria 20"
+    ]
+  },
+  "shulker_sword": {
+    "tier": 4,
+    "kind": "weapon",
+    "family": "sword",
+    "damage": 12500.0,
+    "skill": "fighting",
+    "level": 25,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Dano: 12.500",
+      "Requiere: Combate 25"
+    ]
+  },
+  "shulker_axe": {
+    "tier": 4,
+    "kind": "weapon",
+    "family": "axe",
+    "damage": 18452.381,
+    "skill": "fighting",
+    "level": 25,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Dano: 18.452",
+      "Requiere: Combate 25"
+    ]
+  },
+  "shulker_spear": {
+    "tier": 4,
+    "kind": "weapon",
+    "family": "spear",
+    "damage": 11250.0,
+    "skill": "fighting",
+    "level": 25,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Dano: 11.250",
+      "Requiere: Combate 25"
+    ]
+  },
+  "sandstorm_trident": {
+    "tier": 4,
+    "kind": "weapon",
+    "family": "spear",
+    "damage": 11250.0,
+    "skill": "fighting",
+    "level": 25,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Dano: 11.250",
+      "Requiere: Combate 25"
+    ]
+  },
+  "dragonblade": {
+    "tier": 5,
+    "kind": "weapon",
+    "family": "sword",
+    "damage": 62500.0,
+    "skill": "fighting",
+    "level": 30,
+    "factor": 5208.333333333333,
+    "version": 1,
+    "lore": [
+      "Tier: 5",
+      "Dano: 62.500",
+      "Requiere: Combate 30"
+    ]
+  },
+  "tamaris": {
+    "tier": 5,
+    "kind": "weapon",
+    "family": "sword",
+    "damage": 62500.0,
+    "skill": "fighting",
+    "level": 30,
+    "factor": 5208.333333333333,
+    "version": 1,
+    "lore": [
+      "Tier: 5",
+      "Dano: 62.500",
+      "Requiere: Combate 30"
+    ]
+  },
+  "spectral_fury": {
+    "tier": 5,
+    "kind": "weapon",
+    "family": "bow",
+    "damage": 60938,
+    "skill": "archery",
+    "level": 30,
+    "factor": 5208.333333333333,
+    "version": 1,
+    "lore": [
+      "Tier: 5",
+      "Dano: 60.938",
+      "Requiere: Arqueria 30"
+    ]
+  },
+  "call_of_the_void": {
+    "tier": 5,
+    "kind": "weapon",
+    "family": "bow",
+    "damage": 60938,
+    "skill": "archery",
+    "level": 30,
+    "factor": 5208.333333333333,
+    "version": 1,
+    "lore": [
+      "Tier: 5",
+      "Dano: 60.938",
+      "Requiere: Arqueria 30"
+    ]
+  },
+  "slayer_crossbow": {
+    "tier": 5,
+    "kind": "weapon",
+    "family": "crossbow",
+    "damage": 60938,
+    "skill": "archery",
+    "level": 30,
+    "factor": 5208.333333333333,
+    "version": 1,
+    "lore": [
+      "Tier: 5",
+      "Dano: 60.938",
+      "Requiere: Arqueria 30"
+    ]
+  },
+  "kaleidoscope": {
+    "tier": 6,
+    "kind": "weapon",
+    "family": "sword",
+    "damage": 312500.0,
+    "skill": "fighting",
+    "level": 35,
+    "factor": 24414.0625,
+    "version": 1,
+    "lore": [
+      "Tier: 6",
+      "Dano: 312.500",
+      "Requiere: Combate 35"
+    ]
+  },
+  "prismember": {
+    "tier": 6,
+    "kind": "weapon",
+    "family": "sword",
+    "damage": 312500.0,
+    "skill": "fighting",
+    "level": 35,
+    "factor": 24414.0625,
+    "version": 1,
+    "lore": [
+      "Tier: 6",
+      "Dano: 312.500",
+      "Requiere: Combate 35"
+    ]
+  },
+  "prismatic_punch": {
+    "tier": 6,
+    "kind": "weapon",
+    "family": "crossbow",
+    "damage": 303223,
+    "skill": "archery",
+    "level": 35,
+    "factor": 24414.0625,
+    "version": 1,
+    "lore": [
+      "Tier: 6",
+      "Dano: 303.223",
+      "Requiere: Arqueria 35"
+    ]
+  },
+  "starless_scythe": {
+    "tier": 6,
+    "kind": "weapon",
+    "family": "scythe",
+    "damage": 292968.75,
+    "skill": "fighting",
+    "level": 37,
+    "factor": 24414.0625,
+    "version": 1,
+    "lore": [
+      "Tier: 6",
+      "Dano: 292.969",
+      "Requiere: Combate 37"
+    ]
+  },
+  "stellar_striker": {
+    "tier": 6,
+    "kind": "weapon",
+    "family": "sword",
+    "damage": 312500.0,
+    "skill": "fighting",
+    "level": 35,
+    "factor": 24414.0625,
+    "version": 1,
+    "lore": [
+      "Tier: 6",
+      "Dano: 312.500",
+      "Requiere: Combate 35"
+    ]
+  },
+  "harvester": {
+    "tier": 6,
+    "kind": "weapon",
+    "family": "scythe",
+    "damage": 292968.75,
+    "skill": "fighting",
+    "level": 37,
+    "factor": 24414.0625,
+    "version": 1,
+    "lore": [
+      "Tier: 6",
+      "Dano: 292.969",
+      "Requiere: Combate 37"
+    ]
+  },
+  "fluffy_hammer": {
+    "tier": 7,
+    "kind": "weapon",
+    "family": "axe",
+    "damage": 2355238.971,
+    "skill": "fighting",
+    "level": 40,
+    "factor": 114889.70588235295,
+    "version": 1,
+    "lore": [
+      "Tier: 7",
+      "Dano: 2.355.239",
+      "Requiere: Combate 40"
+    ]
+  },
+  "spirit_dagger": {
+    "tier": 7,
+    "kind": "weapon",
+    "family": "sword",
+    "damage": 1562500.0,
+    "skill": "fighting",
+    "level": 40,
+    "factor": 114889.70588235295,
+    "version": 1,
+    "lore": [
+      "Tier: 7",
+      "Dano: 1.562.500",
+      "Requiere: Combate 40"
+    ]
+  },
+  "alpha_wooden_sword": {
+    "tier": 7,
+    "kind": "weapon",
+    "family": "sword",
+    "damage": 1562500.0,
+    "skill": "fighting",
+    "level": 40,
+    "factor": 114889.70588235295,
+    "version": 1,
+    "lore": [
+      "Tier: 7",
+      "Dano: 1.562.500",
+      "Requiere: Combate 40"
+    ]
+  },
+  "floral_helmet": {
+    "tier": 4,
+    "kind": "armor",
+    "piece": "helmet",
+    "defense": 52,
+    "health": 725.0,
+    "skill": "fighting",
+    "level": 25,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Defensa: 52",
+      "Vida: +725",
+      "Requiere: Combate 25"
+    ]
+  },
+  "floral_chestplate": {
+    "tier": 4,
+    "kind": "armor",
+    "piece": "chestplate",
+    "defense": 140,
+    "health": 725.0,
+    "skill": "fighting",
+    "level": 25,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Defensa: 140",
+      "Vida: +725",
+      "Requiere: Combate 25"
+    ]
+  },
+  "floral_leggings": {
+    "tier": 4,
+    "kind": "armor",
+    "piece": "leggings",
+    "defense": 105,
+    "health": 725.0,
+    "skill": "fighting",
+    "level": 25,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Defensa: 105",
+      "Vida: +725",
+      "Requiere: Combate 25"
+    ]
+  },
+  "floral_boots": {
+    "tier": 4,
+    "kind": "armor",
+    "piece": "boots",
+    "defense": 52,
+    "health": 725.0,
+    "skill": "fighting",
+    "level": 25,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Defensa: 52",
+      "Vida: +725",
+      "Requiere: Combate 25"
+    ]
+  },
+  "champion_helmet": {
+    "tier": 4,
+    "kind": "armor",
+    "piece": "helmet",
+    "defense": 52,
+    "health": 725.0,
+    "skill": "fighting",
+    "level": 25,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Defensa: 52",
+      "Vida: +725",
+      "Requiere: Combate 25"
+    ]
+  },
+  "champion_chestplate": {
+    "tier": 4,
+    "kind": "armor",
+    "piece": "chestplate",
+    "defense": 140,
+    "health": 725.0,
+    "skill": "fighting",
+    "level": 25,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Defensa: 140",
+      "Vida: +725",
+      "Requiere: Combate 25"
+    ]
+  },
+  "champion_leggings": {
+    "tier": 4,
+    "kind": "armor",
+    "piece": "leggings",
+    "defense": 105,
+    "health": 725.0,
+    "skill": "fighting",
+    "level": 25,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Defensa: 105",
+      "Vida: +725",
+      "Requiere: Combate 25"
+    ]
+  },
+  "champion_boots": {
+    "tier": 4,
+    "kind": "armor",
+    "piece": "boots",
+    "defense": 52,
+    "health": 725.0,
+    "skill": "fighting",
+    "level": 25,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Defensa: 52",
+      "Vida: +725",
+      "Requiere: Combate 25"
+    ]
+  },
+  "shulker_helmet": {
+    "tier": 5,
+    "kind": "armor",
+    "piece": "helmet",
+    "defense": 75,
+    "health": 1975.0,
+    "skill": "fighting",
+    "level": 30,
+    "factor": 5208.333333333333,
+    "version": 1,
+    "lore": [
+      "Tier: 5",
+      "Defensa: 75",
+      "Vida: +1.975",
+      "Requiere: Combate 30"
+    ]
+  },
+  "shulker_chestplate": {
+    "tier": 5,
+    "kind": "armor",
+    "piece": "chestplate",
+    "defense": 200,
+    "health": 1975.0,
+    "skill": "fighting",
+    "level": 30,
+    "factor": 5208.333333333333,
+    "version": 1,
+    "lore": [
+      "Tier: 5",
+      "Defensa: 200",
+      "Vida: +1.975",
+      "Requiere: Combate 30"
+    ]
+  },
+  "shulker_leggings": {
+    "tier": 5,
+    "kind": "armor",
+    "piece": "leggings",
+    "defense": 150,
+    "health": 1975.0,
+    "skill": "fighting",
+    "level": 30,
+    "factor": 5208.333333333333,
+    "version": 1,
+    "lore": [
+      "Tier: 5",
+      "Defensa: 150",
+      "Vida: +1.975",
+      "Requiere: Combate 30"
+    ]
+  },
+  "shulker_boots": {
+    "tier": 5,
+    "kind": "armor",
+    "piece": "boots",
+    "defense": 75,
+    "health": 1975.0,
+    "skill": "fighting",
+    "level": 30,
+    "factor": 5208.333333333333,
+    "version": 1,
+    "lore": [
+      "Tier: 5",
+      "Defensa: 75",
+      "Vida: +1.975",
+      "Requiere: Combate 30"
+    ]
+  },
+  "hallowed_helmet": {
+    "tier": 6,
+    "kind": "armor",
+    "piece": "helmet",
+    "defense": 98,
+    "health": 3725.0,
+    "skill": "fighting",
+    "level": 35,
+    "factor": 24414.0625,
+    "version": 1,
+    "lore": [
+      "Tier: 6",
+      "Defensa: 98",
+      "Vida: +3.725",
+      "Requiere: Combate 35"
+    ]
+  },
+  "hallowed_chestplate": {
+    "tier": 6,
+    "kind": "armor",
+    "piece": "chestplate",
+    "defense": 260,
+    "health": 3725.0,
+    "skill": "fighting",
+    "level": 35,
+    "factor": 24414.0625,
+    "version": 1,
+    "lore": [
+      "Tier: 6",
+      "Defensa: 260",
+      "Vida: +3.725",
+      "Requiere: Combate 35"
+    ]
+  },
+  "hallowed_leggings": {
+    "tier": 6,
+    "kind": "armor",
+    "piece": "leggings",
+    "defense": 195,
+    "health": 3725.0,
+    "skill": "fighting",
+    "level": 35,
+    "factor": 24414.0625,
+    "version": 1,
+    "lore": [
+      "Tier: 6",
+      "Defensa: 195",
+      "Vida: +3.725",
+      "Requiere: Combate 35"
+    ]
+  },
+  "hallowed_boots": {
+    "tier": 6,
+    "kind": "armor",
+    "piece": "boots",
+    "defense": 98,
+    "health": 3725.0,
+    "skill": "fighting",
+    "level": 35,
+    "factor": 24414.0625,
+    "version": 1,
+    "lore": [
+      "Tier: 6",
+      "Defensa: 98",
+      "Vida: +3.725",
+      "Requiere: Combate 35"
+    ]
+  },
+  "phantom_wings": {
+    "tier": 4,
+    "kind": "armor",
+    "piece": "chestplate",
+    "defense": 84,
+    "health": 435.0,
+    "skill": "fighting",
+    "level": 25,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Defensa: 84",
+      "Vida: +435",
+      "Requiere: Combate 25"
+    ]
+  },
+  "dragon_wings": {
+    "tier": 6,
+    "kind": "armor",
+    "piece": "chestplate",
+    "defense": 156,
+    "health": 2235.0,
+    "skill": "fighting",
+    "level": 35,
+    "factor": 24414.0625,
+    "version": 1,
+    "lore": [
+      "Tier: 6",
+      "Defensa: 156",
+      "Vida: +2.235",
+      "Requiere: Combate 35"
+    ]
+  },
+  "empress_wings": {
+    "tier": 6,
+    "kind": "armor",
+    "piece": "chestplate",
+    "defense": 156,
+    "health": 2235.0,
+    "skill": "fighting",
+    "level": 35,
+    "factor": 24414.0625,
+    "version": 1,
+    "lore": [
+      "Tier: 6",
+      "Defensa: 156",
+      "Vida: +2.235",
+      "Requiere: Combate 35"
+    ]
+  },
+  "shulker_pickaxe": {
+    "tier": 4,
+    "kind": "utility",
+    "skill": "mining",
+    "level": 16,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Requiere: Mineria 16"
+    ]
+  },
+  "shulker_shovel": {
+    "tier": 4,
+    "kind": "utility",
+    "skill": "mining",
+    "level": 16,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Requiere: Mineria 16"
+    ]
+  },
+  "shulker_hoe": {
+    "tier": 4,
+    "kind": "utility",
+    "skill": "fighting",
+    "level": 25,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Requiere: Combate 25"
+    ]
+  },
+  "copper_elektra_shield": {
+    "tier": 4,
+    "kind": "utility",
+    "skill": "fighting",
+    "level": 25,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Requiere: Combate 25"
+    ]
+  },
+  "crest_of_the_end": {
+    "tier": 5,
+    "kind": "utility",
+    "skill": "fighting",
+    "level": 30,
+    "factor": 5208.333333333333,
+    "version": 1,
+    "lore": [
+      "Tier: 5",
+      "Requiere: Combate 30"
+    ]
+  },
+  "starstruck_shield": {
+    "tier": 6,
+    "kind": "utility",
+    "skill": "fighting",
+    "level": 35,
+    "factor": 24414.0625,
+    "version": 1,
+    "lore": [
+      "Tier: 6",
+      "Requiere: Combate 35"
+    ]
+  },
+  "prismatic_pearl": {
+    "tier": 6,
+    "kind": "utility",
+    "skill": "fighting",
+    "level": 35,
+    "factor": 24414.0625,
+    "version": 1,
+    "lore": [
+      "Tier: 6",
+      "Requiere: Combate 35"
+    ]
+  },
+  "life_crystal": {
+    "tier": 5,
+    "kind": "utility",
+    "skill": "fighting",
+    "level": 30,
+    "factor": 5208.333333333333,
+    "version": 1,
+    "lore": [
+      "Tier: 5",
+      "Requiere: Combate 30"
+    ]
+  },
+  "soaring_insignia": {
+    "tier": 6,
+    "kind": "utility",
+    "skill": "fighting",
+    "level": 35,
+    "factor": 24414.0625,
+    "version": 1,
+    "lore": [
+      "Tier: 6",
+      "Requiere: Combate 35"
+    ]
+  },
+  "endermans_hand": {
+    "tier": 4,
+    "kind": "utility",
+    "skill": "fighting",
+    "level": 25,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Requiere: Combate 25"
+    ]
+  },
+  "decayed_clover": {
+    "tier": 4,
+    "kind": "utility",
+    "skill": "fighting",
+    "level": 25,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Requiere: Combate 25"
+    ]
+  },
+  "fisher_of_voids": {
+    "tier": 4,
+    "kind": "utility",
+    "skill": "fighting",
+    "level": 25,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Requiere: Combate 25"
+    ]
+  },
+  "satchel_of_voids": {
+    "tier": 5,
+    "kind": "utility",
+    "skill": "fighting",
+    "level": 30,
+    "factor": 5208.333333333333,
+    "version": 1,
+    "lore": [
+      "Tier: 5",
+      "Requiere: Combate 30"
+    ]
+  },
+  "void_locket": {
+    "tier": 5,
+    "kind": "utility",
+    "skill": "fighting",
+    "level": 30,
+    "factor": 5208.333333333333,
+    "version": 1,
+    "lore": [
+      "Tier: 5",
+      "Requiere: Combate 30"
+    ]
+  },
+  "bell_flower": {
+    "tier": 4,
+    "kind": "utility",
+    "skill": "fighting",
+    "level": 25,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Requiere: Combate 25"
+    ]
+  },
+  "duskberry": {
+    "tier": 4,
+    "kind": "utility",
+    "skill": "fighting",
+    "level": 25,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Requiere: Combate 25"
+    ]
+  },
+  "book_of_conveyance": {
+    "tier": 4,
+    "kind": "utility",
+    "skill": "sorcery",
+    "level": 26,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Requiere: Hechiceria 26"
+    ]
+  },
+  "book_of_obstruct": {
+    "tier": 4,
+    "kind": "utility",
+    "skill": "sorcery",
+    "level": 26,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Requiere: Hechiceria 26"
+    ]
+  },
+  "book_of_return": {
+    "tier": 4,
+    "kind": "utility",
+    "skill": "sorcery",
+    "level": 26,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Requiere: Hechiceria 26"
+    ]
+  },
+  "book_of_updraft": {
+    "tier": 4,
+    "kind": "utility",
+    "skill": "sorcery",
+    "level": 26,
+    "factor": 1322.751322751323,
+    "version": 1,
+    "lore": [
+      "Tier: 4",
+      "Requiere: Hechiceria 26"
+    ]
+  },
+  "book_of_jinx": {
+    "tier": 5,
+    "kind": "utility",
+    "skill": "sorcery",
+    "level": 32,
+    "factor": 5208.333333333333,
+    "version": 1,
+    "lore": [
+      "Tier: 5",
+      "Requiere: Hechiceria 32"
+    ]
+  },
+  "book_of_light": {
+    "tier": 6,
+    "kind": "utility",
+    "skill": "sorcery",
+    "level": 37,
+    "factor": 24414.0625,
+    "version": 1,
+    "lore": [
+      "Tier: 6",
+      "Requiere: Hechiceria 37"
+    ]
+  },
+  "reinforced_horse_armor": {
+    "tier": 5,
+    "kind": "horse",
+    "factor": 5208.333333333333,
+    "version": 1,
+    "lore": [
+      "Tier: 5"
+    ]
+  },
+  "altar_of_the_sacred": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "ashen_froglight": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "enderite_block": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "ender_dirt": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "ender_dirt_path": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "ender_grass_block": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "phantom_item_frame": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "rooted_ender_dirt": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "endonomicon": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "chapel_of_light": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "end_city": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "floating_treasure": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "village": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "candied_chorus_fruit": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "chorus_juice": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "chorus_pie": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 10000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "chorus_stew": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 10000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "enderman_flesh": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "amethyst_budfish": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "bubblefish": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "crimson_tigerfish": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "crystal_heartfish": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "ender_koi": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "flarefin_koi": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "fleshy_piranha": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "frost_minnow": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "goosh": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "overgrown_cod": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "prismite": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "pufferfish": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "fried_chorus_fruit": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "frozen_carpaccio": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "golden_chorus_fruit": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "grilled_enderman_flesh": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "loaf_of_plenty": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 50000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "pho": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 30000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "prismatic_sushi": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 50000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "shepherds_pie": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 30000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "shulker_body": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "sushi": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 10000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "absorption": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "levitation": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "strength": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 2000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "ender_egg": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "gilded_purpur_key": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "purpur_key": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "winged_key": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "chorus_petal": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "chorus_plating": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 50000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "empty_enchanted_book": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "enderite_shard": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 250000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "enderite_smithing_template": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 500000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "hallowed_ingot": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 1000000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "sand_rune": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 50000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "starlight_soot": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 100000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "music_disc_deviants_light_music_box": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "music_disc_fires_of_hokkai": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "music_disc_precipice_stereo": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "amarene": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "blind_rage_potion": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "blind_rage_potion_ext": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "endurance_potion": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "endurance_potion_ext": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "endurance_potion_ii": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "entanglement_potion": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "entanglement_potion_ext": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "entanglement_potion_ii": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "frost_cloud_potion": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "hellfire_treader_potion": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "hellfire_treader_potion_ext": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "hellfire_treader_potion_ii": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "lifeforce_potion": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "lifeforce_potion_ext": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "lifeforce_potion_ii": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "luck_potion": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "poseidons_nectar": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "red_potion": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "regeneraga": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "regeneraga_ext": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "regeneraga_ii": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "royal_jelly": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "royal_jelly_ii": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "spelunker_potion": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "spelunker_potion_ext": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "spelunker_potion_ii": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 20000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "flesh_piglin_spawn_egg": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "voided_skeleton_spawn_egg": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "voided_slime_spawn_egg": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  },
+  "voided_zombie_spawn_egg": {
+    "tier": 0,
+    "kind": "fixed",
+    "price": 5000,
+    "factor": 1.0,
+    "version": 1,
+    "lore": []
+  }
+}

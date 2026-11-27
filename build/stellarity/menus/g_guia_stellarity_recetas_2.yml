@@ -1,0 +1,389 @@
+menu_title: '&f&#ffe9a8Recetas del End 2/6'
+size: 54
+open_requirement:
+  requirements:
+    prueba:
+      type: has permission
+      permission: astral.guia.ampliacion
+    dueno:
+      type: string equals
+      input: '%player_name%'
+      output: 'ByTrainx'
+  deny_commands:
+  - '[message] &eEsta ampliacion esta en prueba con el dueno.'
+items:
+  'c0':
+    material: SUGAR
+    slot: 1
+    amount: 1
+    display_name: '&bAzucar'
+    lore:
+    - '&6Mesa sin forma'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_stellarity_sugar_from_chorus_fruit'
+  'c1':
+    material: SUSPICIOUS_STEW
+    slot: 2
+    amount: 1
+    display_name: '&bSuspicious stew'
+    lore:
+    - '&6Mesa sin forma'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_stellarity_suspicious_stew_from_chorus_fruit'
+  'c2':
+    material: SUSPICIOUS_STEW
+    slot: 3
+    amount: 1
+    display_name: '&bSuspicious stew'
+    lore:
+    - '&6Mesa sin forma'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_stellarity_suspicious_stew_from_pink_petals'
+  'c3':
+    material: SUSPICIOUS_STEW
+    slot: 4
+    amount: 1
+    display_name: '&bSuspicious stew'
+    lore:
+    - '&6Mesa sin forma'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_stellarity_suspicious_stew_from_pitcher_pod'
+  'c4':
+    material: IRON_HELMET
+    slot: 5
+    amount: 1
+    display_name: '&bMáscara Sagrada'
+    item_model: 'stellarity:hallowed_helmet'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_hallowed_helmet'
+  'c5':
+    material: IRON_CHESTPLATE
+    slot: 6
+    amount: 1
+    display_name: '&bPechera Sagrada'
+    item_model: 'stellarity:hallowed_chestplate'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_hallowed_chestplate'
+  'c6':
+    material: IRON_LEGGINGS
+    slot: 7
+    amount: 1
+    display_name: '&bMallas Sagradas'
+    item_model: 'stellarity:hallowed_leggings'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_hallowed_leggings'
+  'c7':
+    material: IRON_BOOTS
+    slot: 10
+    amount: 1
+    display_name: '&bBotas Sagradas'
+    item_model: 'stellarity:hallowed_boots'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_hallowed_boots'
+  'c8':
+    material: IRON_HELMET
+    slot: 11
+    amount: 1
+    display_name: '&bChampion Helmet'
+    item_model: 'stellarity:champion_helmet'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_champion_helmet'
+  'c9':
+    material: IRON_CHESTPLATE
+    slot: 12
+    amount: 1
+    display_name: '&bChorus Champion Chestplate'
+    item_model: 'stellarity:champion_chestplate'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_champion_chestplate'
+  'c10':
+    material: IRON_LEGGINGS
+    slot: 13
+    amount: 1
+    display_name: '&bChampion Leggings'
+    item_model: 'stellarity:champion_leggings'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_champion_leggings'
+  'c11':
+    material: IRON_BOOTS
+    slot: 14
+    amount: 1
+    display_name: '&bChampion Boots'
+    item_model: 'stellarity:champion_boots'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_champion_boots'
+  'c12':
+    material: IRON_HELMET
+    slot: 15
+    amount: 1
+    display_name: '&bCasco de Shulker'
+    item_model: 'stellarity:shulker_helmet'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_shulker_helmet'
+  'c13':
+    material: IRON_CHESTPLATE
+    slot: 16
+    amount: 1
+    display_name: '&bPechera de Shulker'
+    item_model: 'stellarity:shulker_chestplate'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_shulker_chestplate'
+  'c14':
+    material: IRON_LEGGINGS
+    slot: 19
+    amount: 1
+    display_name: '&bPantalones de Shulker'
+    item_model: 'stellarity:shulker_leggings'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_shulker_leggings'
+  'c15':
+    material: IRON_BOOTS
+    slot: 20
+    amount: 1
+    display_name: '&bBotas de Shulker'
+    item_model: 'stellarity:shulker_boots'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_shulker_boots'
+  'c16':
+    material: IRON_HELMET
+    slot: 21
+    amount: 1
+    display_name: '&bFloral Hood'
+    item_model: 'stellarity:floral_helmet'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_floral_helmet'
+  'c17':
+    material: IRON_CHESTPLATE
+    slot: 22
+    amount: 1
+    display_name: '&bFloral Chestplate'
+    item_model: 'stellarity:floral_chestplate'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_floral_chestplate'
+  'c18':
+    material: IRON_LEGGINGS
+    slot: 23
+    amount: 1
+    display_name: '&bFloral Leggings'
+    item_model: 'stellarity:floral_leggings'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_floral_leggings'
+  'c19':
+    material: IRON_BOOTS
+    slot: 24
+    amount: 1
+    display_name: '&bFloral Boots'
+    item_model: 'stellarity:floral_boots'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_floral_boots'
+  'c20':
+    material: WARPED_FUNGUS_ON_A_STICK
+    slot: 25
+    amount: 1
+    display_name: '&bEndonomicon'
+    item_model: 'stellarity:endonomicon'
+    lore:
+    - '&6Altar Maldito'
+    - '&eClic: ingredientes y cantidades'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_altar_endonomicon'
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_stellarity'
+  'anterior':
+    material: PAPER
+    slot: 47
+    amount: 1
+    display_name: '&eAnterior'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_stellarity_recetas_1'
+  'siguiente':
+    material: PAPER
+    slot: 51
+    amount: 1
+    display_name: '&eSiguiente'
+    item_model: 'astral:mascotas/nav_next'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_stellarity_recetas_3'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

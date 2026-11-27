@@ -35,7 +35,11 @@ def put(path, content):
 
 
 def fn(name, lines):
-    put(f"data/{NS}/function/{name}.mcfunction", "\n".join(lines) + "\n")
+    text = "\n".join(lines) + "\n"
+    if name == "player/def":
+        from stellarity_balance import defense_patch
+        text = defense_patch(text)
+    put(f"data/{NS}/function/{name}.mcfunction", text)
 
 
 def txt(text, color="gray", **kw):

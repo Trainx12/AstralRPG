@@ -6,6 +6,8 @@ prueba con astral.guia.ampliacion hasta la aprobacion del dueno.
 import json
 from pathlib import Path
 
+from stellarity_tiers import rows as balance_rows
+
 CATALOG = Path(__file__).with_name('guia_stellarity.json')
 PERMISSION = 'astral.guia.ampliacion'
 PRIVATE_SECTIONS = {'atlas/seccion/crafteos', 'atlas/seccion/stellarity'}
@@ -153,7 +155,9 @@ def menus(data):
             key = key.split(':', 1)[1]
         row = cat['items'].get(key)
         if row:
-            it = icon(row['material'].split(':')[-1].upper(), row['name'], row['description'], row.get('model'))
+            balanced = balance_rows().get(key, {})
+            descriptions = [d for d in row['description'] if not (balanced.get('tier') and d.startswith(('Dano:', 'Armadura:')))]
+            it = icon(row['material'].split(':')[-1].upper(), row['name'], descriptions + balanced.get('lore', []), row.get('model'))
         else:
             if key.startswith('#'):
                 tag = key
@@ -224,7 +228,7 @@ def menus(data):
               ('potions', 'Pociones', 'POTION'), ('materials', 'Materiales y bloques', 'PURPUR_BLOCK')]
     page(end, 'Stellarity - El End', [
         (icon('END_PORTAL_FRAME', 'Explorar el End', ['Entra por el portal de una fortaleza del survival.', 'En Astral el dragon esta retirado y los accesos exteriores estan abiertos. Explora sin sustituir ni reiniciar el mundo.']), []),
-        (icon('SHIELD', 'Equipo y dificultad', ['El dano fijo de Stellarity no recibe automaticamente la escala Astral x5 por tier. Puede rendir poco contra mobs escalados.', 'Alas y vuelo pueden generar avisos de GrimAC; no cambies protecciones para usarlos.']), []),
+        (icon('SHIELD', 'Equipo y dificultad', ['Balance Astral por tiers en prueba privada con ByTrainx. Armas, armaduras y requisitos figuran en sus fichas.', 'Alas y vuelo pueden generar avisos de GrimAC; no cambies protecciones para usarlos.']), []),
     ] + [(icon(mat, label, ['Objetos, usos y efectos.']), link('g_guia_stellarity_' + key + '_1')) for key, label, mat in groups] + [
         (icon('WITHER_SKELETON_SKULL', 'Jefes y criaturas', ['Apariciones y botin del End.']), link('g_guia_stellarity_jefes')),
         (icon('END_STONE', 'Biomas y estructuras', ['Donde explorar.']), link('g_guia_stellarity_mundo_1')),

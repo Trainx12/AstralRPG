@@ -1,0 +1,207 @@
+menu_title: '&f&#ffe9a8Comidas y peces 2/2'
+size: 54
+open_requirement:
+  requirements:
+    prueba:
+      type: has permission
+      permission: astral.guia.ampliacion
+    dueno:
+      type: string equals
+      input: '%player_name%'
+      output: 'ByTrainx'
+  deny_commands:
+  - '[message] &eEsta ampliacion esta en prueba con el dueno.'
+items:
+  'c0':
+    material: BREAD
+    slot: 1
+    amount: 1
+    display_name: '&bLoaf of Plenty'
+    item_model: 'stellarity:loaf_of_plenty'
+    lore:
+    - '&7Pan que vuelve a tu mano despues de'
+    - '&7comerlo; espera de 10 segundos entre'
+    - '&7usos.'
+    - '&7Hambre: 5 puntos. Saturacion: 6.'
+    - '&7Espera entre usos: 10 s.'
+    - '&7Objeto especial del autor: figurar en'
+    - '&7el catalogo no garantiza conseguirlo'
+    - '&7en survival.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c1':
+    material: MUSHROOM_STEW
+    slot: 2
+    amount: 1
+    display_name: '&bPho'
+    item_model: 'stellarity:pho'
+    lore:
+    - '&7Hambre: 13 puntos. Saturacion: 20.'
+    - '&7Regeneracion 1: 32 s.'
+    - '&7Fuerza 1: 150 s.'
+    - '&7Absorcion 1: 150 s.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_pho_65'
+  'c2':
+    material: TROPICAL_FISH
+    slot: 3
+    amount: 1
+    display_name: '&bSushi prismático'
+    item_model: 'stellarity:prismatic_sushi'
+    lore:
+    - '&7Hambre: 4 puntos. Saturacion: 2.4.'
+    - '&7Vida extra 1: 40 s.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_prismatic_sushi_68'
+  'c3':
+    material: PUMPKIN_PIE
+    slot: 4
+    amount: 1
+    display_name: '&bShepherds Pie'
+    lore:
+    - '&7Hambre: 20 puntos. Saturacion: 20.'
+    - '&7Curacion instantanea 3: 0.05 s.'
+    - '&7Regeneracion 2: 64 s.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_shepherds_pie_66'
+  'c4':
+    material: CHORUS_FRUIT
+    slot: 5
+    amount: 1
+    display_name: '&bCuerpo de Shulker'
+    item_model: 'stellarity:shulker_body'
+    lore:
+    - '&7Equipo de shulker. El conjunto de'
+    - '&7armadura reduce dano y responde con'
+    - '&7proyectiles.'
+    - '&7Hambre: 4 puntos. Saturacion: 0.8.'
+    - '&7Teletransporte aleatorio: diametro 16'
+    - '&7bloques.'
+    - '&7Hambre 1: 40 s.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c5':
+    material: TROPICAL_FISH
+    slot: 6
+    amount: 1
+    display_name: '&bSushi'
+    item_model: 'stellarity:sushi'
+    lore:
+    - '&7Hambre: 4 puntos. Saturacion: 2.4.'
+    - ''
+    - '&eClic para ver su receta.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[openguimenu] g_guia_stellarity_r_caldero_sushi_67'
+  'c6':
+    material: SUSPICIOUS_STEW
+    slot: 7
+    amount: 1
+    display_name: '&bAbsorption'
+    lore:
+    - '&7Pez o comida del End. Tambien puede'
+    - '&7usarse como ingrediente.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c7':
+    material: SUSPICIOUS_STEW
+    slot: 12
+    amount: 1
+    display_name: '&bLevitation'
+    lore:
+    - '&7Pez o comida del End. Tambien puede'
+    - '&7usarse como ingrediente.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'c8':
+    material: SUSPICIOUS_STEW
+    slot: 13
+    amount: 1
+    display_name: '&bStrength'
+    lore:
+    - '&7Pez o comida del End. Tambien puede'
+    - '&7usarse como ingrediente.'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+  'volver':
+    material: PAPER
+    slot: 45
+    amount: 1
+    display_name: '&eVolver'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_atlas_seccion_stellarity'
+  'anterior':
+    material: PAPER
+    slot: 47
+    amount: 1
+    display_name: '&eAnterior'
+    item_model: 'astral:mascotas/nav_back'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] g_guia_stellarity_food_1'
+  'indice':
+    material: PAPER
+    slot: 49
+    amount: 1
+    display_name: '&bIndice de la Guia'
+    item_model: 'astral:mascotas/nav_info'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[sound] UI_BUTTON_CLICK'
+    - '[openguimenu] guia_astral'
+  'cerrar':
+    material: PAPER
+    slot: 53
+    amount: 1
+    display_name: '&cCerrar'
+    item_model: 'astral:mascotas/nav_close'
+    item_flags:
+    - HIDE_ATTRIBUTES
+    - HIDE_ENCHANTS
+    - HIDE_DYE
+    click_commands:
+    - '[close]'

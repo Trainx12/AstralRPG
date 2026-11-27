@@ -358,7 +358,7 @@ def dano_real():
 
 
 PLUGIN_YML = """name: AstralMesa
-version: 1.5.2
+version: 1.5.3
 main: astral.AstralMesa
 api-version: '26.1.2'
 description: Mesa de encantamientos con todos los encantamientos (vanilla y de plugins) salvo las mejoras del Herrero

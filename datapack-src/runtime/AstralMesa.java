@@ -210,6 +210,8 @@ public final class AstralMesa extends JavaPlugin implements Listener {
 
     /** Arma, baston o armadura Astral (custom_data astral:{id, type, tier}); null si no es. */
     public static InfoAstral infoAstral(ItemMeta meta) {
+        var stellar = stellarInfo(meta);
+        if (stellar != null) return stellar;
         String s = meta.getAsComponentString();
         var ini = P_ASTRAL.matcher(s);
         if (!ini.find()) return null;
@@ -220,9 +222,29 @@ public final class AstralMesa extends JavaPlugin implements Listener {
         return new InfoAstral(id.group(1), t.group(1), tier);
     }
 
+    static Object stellarCall(String method, Class<?> type, Object arg) {
+        var plugin = Bukkit.getPluginManager().getPlugin("AstralStellarity");
+        if (plugin == null || !plugin.isEnabled()) return null;
+        try { return plugin.getClass().getMethod(method, type).invoke(plugin, arg); }
+        catch (ReflectiveOperationException e) { return null; }
+    }
+    static InfoAstral stellarInfo(ItemMeta meta) {
+        Object result = stellarCall("priceInfo", ItemMeta.class, meta);
+        if (!(result instanceof String[] a)) return null;
+        return new InfoAstral(a[0], a[1], Integer.parseInt(a[2]));
+    }
+    static boolean verStellarity(Player p) {
+        return Boolean.TRUE.equals(stellarCall("allowed", Player.class, p));
+    }
+
     /** Precio sugerido: base del tier + encantamientos + mejoras del Herrero + gemas engarzadas. */
     public long sugerido(ItemMeta meta, InfoAstral info) {
-        long base = (info.tipo().equals("armor") ? baseArmadura : baseArma)[info.tier()];
+        if (info.tipo().equals("stellarity_fixed")) {
+            Object price = stellarCall("fixedPrice", String.class, info.id());
+            return price instanceof Long v ? v : 0;
+        }
+        long base = (Set.of("armor", "stellarity_armor", "stellarity_horse").contains(info.tipo()) ? baseArmadura : baseArma)[info.tier()];
+        if (info.tipo().equals("stellarity_utility")) base /= 2;
         double extra = 0;
         long gemas = 0;
         for (var en : meta.getEnchants().entrySet()) {
@@ -520,7 +542,8 @@ public final class AstralMesa extends JavaPlugin implements Listener {
             .decoration(TextDecoration.ITALIC, false);
     }
 
-    public ItemStack decorar(ItemStack it, boolean conPrecio, boolean filo) {
+    public ItemStack decorar(ItemStack it, boolean conPrecio, boolean filo) { return decorar(it, conPrecio, filo, true); }
+    public ItemStack decorar(ItemStack it, boolean conPrecio, boolean filo, boolean stellar) {
         if (it == null || it.getType().isAir() || !it.hasItemMeta()) return null;
         ItemMeta meta = it.getItemMeta();
         var pdc = meta.getPersistentDataContainer();
@@ -536,7 +559,7 @@ public final class AstralMesa extends JavaPlugin implements Listener {
             ench.forEach((e, l) -> { if (!(oculto && e.getKey().getNamespace().equals("astral") && !AstralMesaMagia.IDS.contains(e.getKey().getKey()))) visibles.put(e, l); });
             lineas = bloque(visibles);
         }
-        List<Component> abajo = conPrecio && !libro ? lineasPrecio(meta) : List.of();
+        List<Component> abajo = conPrecio && !libro && (stellar || stellarInfo(meta) == null) ? lineasPrecio(meta) : List.of();
         // Linea "Daño:" de la ficha recalculada (indice en el lore original y la linea original, para limpiar).
         var propio = meta.lore() == null ? new ArrayList<Component>() : new ArrayList<>(meta.lore());
         Component dano = danoActivo && filo && !libro ? lineaDano(meta) : null;
@@ -860,47 +883,47 @@ final class AstralMesaPaquetes implements com.github.retrooper.packetevents.even
     }
 
     com.github.retrooper.packetevents.protocol.item.ItemStack pasar(com.github.retrooper.packetevents.protocol.item.ItemStack pe, boolean decorar) {
-        return pasar(pe, decorar, false, false);
+        return pasar(pe, decorar, false, false, false);
     }
-    com.github.retrooper.packetevents.protocol.item.ItemStack pasar(com.github.retrooper.packetevents.protocol.item.ItemStack pe, boolean decorar, boolean precio, boolean filo) {
+    com.github.retrooper.packetevents.protocol.item.ItemStack pasar(com.github.retrooper.packetevents.protocol.item.ItemStack pe, boolean decorar, boolean precio, boolean filo, boolean stellar) {
         if (pe == null || pe.isEmpty()) return null;
         try {
             var b = io.github.retrooper.packetevents.util.SpigotConversionUtil.toBukkitItemStack(pe);
-            var r = decorar ? mesa.decorar(b, precio, filo) : mesa.limpiar(b);
+            var r = decorar ? mesa.decorar(b, precio, filo, stellar) : mesa.limpiar(b);
             return r == null ? null : io.github.retrooper.packetevents.util.SpigotConversionUtil.fromBukkitItemStack(r);
         } catch (Throwable t) { return null; }
     }
 
     @Override public void onPacketSend(com.github.retrooper.packetevents.event.PacketSendEvent e) {
         var t = e.getPacketType();
-        boolean precio, filo;
-        try { Object o = e.getPlayer(); precio = o instanceof Player p && mesa.verPrecio(p); filo = o instanceof Player q && AstralMesa.verFilo(q); }
-        catch (Throwable x) { precio = false; filo = false; }
+        boolean precio, filo, stellar;
+        try { Object o = e.getPlayer(); precio = o instanceof Player p && mesa.verPrecio(p); filo = o instanceof Player q && AstralMesa.verFilo(q); stellar = o instanceof Player r && AstralMesa.verStellarity(r); }
+        catch (Throwable x) { precio = false; filo = false; stellar = false; }
         if (t == com.github.retrooper.packetevents.protocol.packettype.PacketType.Play.Server.SET_SLOT) {
             var w = new com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerSetSlot(e);
-            var n = pasar(w.getItem(), true, precio, filo);
+            var n = pasar(w.getItem(), true, precio, filo, stellar);
             if (n != null) { w.setItem(n); e.markForReEncode(true); }
         } else if (t == com.github.retrooper.packetevents.protocol.packettype.PacketType.Play.Server.WINDOW_ITEMS) {
             var w = new com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerWindowItems(e);
             var items = new ArrayList<>(w.getItems());
             boolean cambio = false;
             for (int i = 0; i < items.size(); i++) {
-                var n = pasar(items.get(i), true, precio, filo);
+                var n = pasar(items.get(i), true, precio, filo, stellar);
                 if (n != null) { items.set(i, n); cambio = true; }
             }
             var carried = w.getCarriedItem();
             if (carried.isPresent()) {
-                var n = pasar(carried.get(), true, precio, filo);
+                var n = pasar(carried.get(), true, precio, filo, stellar);
                 if (n != null) { w.setCarriedItem(n); cambio = true; }
             }
             if (cambio) { w.setItems(items); e.markForReEncode(true); }
         } else if (t == com.github.retrooper.packetevents.protocol.packettype.PacketType.Play.Server.SET_CURSOR_ITEM) {
             var w = new com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerSetCursorItem(e);
-            var n = pasar(w.getStack(), true, precio, filo);
+            var n = pasar(w.getStack(), true, precio, filo, stellar);
             if (n != null) { w.setStack(n); e.markForReEncode(true); }
         } else if (t == com.github.retrooper.packetevents.protocol.packettype.PacketType.Play.Server.SET_PLAYER_INVENTORY) {
             var w = new com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerSetPlayerInventory(e);
-            var n = pasar(w.getStack(), true, precio, filo);
+            var n = pasar(w.getStack(), true, precio, filo, stellar);
             if (n != null) { w.setStack(n); e.markForReEncode(true); }
         }
     }
