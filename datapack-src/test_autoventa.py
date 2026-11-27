@@ -18,7 +18,8 @@ class Autoventa(unittest.TestCase):
             self.assertEqual(entry['name'], 'minecraft:heart_of_the_sea')
             self.assertEqual(comp['minecraft:max_stack_size'], 1)
             self.assertTrue(comp['minecraft:enchantment_glint_override'])
-            self.assertNotIn('minecraft:item_model', comp)
+            self.assertEqual(comp['minecraft:item_model'], 'astral:autoventa')
+            self.assertIn('Shift + clic derecho: prender / apagar.', json.dumps(comp['minecraft:lore']))
             self.assertIn('"auraskills:item_requirements":{"auraskills:mining":100}', comp['minecraft:custom_data'])
             for path in z.namelist():
                 if '/guia' in path or '/recipe/' in path or '/forge/' in path or '/atlas/' in path:
@@ -26,6 +27,8 @@ class Autoventa(unittest.TestCase):
             identify = z.read('data/astral/function/autoventa/identify.mcfunction').decode()
             for slot in ('hotbar.*', 'inventory.*', 'weapon.offhand'):
                 self.assertIn(slot, identify)
+            self.assertIn('weapon.mainhand', identify)
+            self.assertIn('tag @s remove astral.autoventa.mano', identify)
 
     def test_receta_reservada(self):
         from items import MATERIALS
@@ -45,6 +48,13 @@ class Autoventa(unittest.TestCase):
                          '< 2 seconds', '%%auraskills_mining%%', 'if {_nivel} is not set:',
                          'if {_nivel} < 100:', 'am_sell_value({_p}, true)', "add {_total} to {_p}'s balance"):
             self.assertIn(expected, body)
+        self.assertIn('{am.autoventa.off::%{_u}%} is true', body)
+        self.assertLess(body.index('{am.autoventa.off::'), body.index('am_sell_value'))
+        toggle = text.split('on right click:', 1)[1].split('function am_autoventa(', 1)[0]
+        for expected in ('player is not sneaking', 'astral.autoventa.mano', 'cancel event',
+                         '{am.autoventa.publico} is not true', '0.3 seconds',
+                         'set {am.autoventa.off::', 'delete {am.autoventa.off::', 'ENCENDIDO', 'APAGADO'):
+            self.assertIn(expected, toggle)
         self.assertLess(body.index('is not "ByTrainx"'), body.index('am_sell_value'))
         self.assertIn('command /autoventa <text>:\n    permission: op', text)
         give = text.split('function am_give(', 1)[1].split('# 25/11 (dueno): cartel', 1)[0]
@@ -58,8 +68,11 @@ class Autoventa(unittest.TestCase):
         end = generated.index('\n# 25/11 (dueno): cartel', start)
         old = generated[:start] + OLD_GIVE + generated[end:]
         self.assertEqual(patch_script(old), generated)
+        self.assertEqual(patch_script(generated), generated)
+        # Conserva byte por byte el resto de una copia remota con cambios propios.
+        self.assertEqual(patch_script('REMOTO\n' + generated + '\nFIN'), 'REMOTO\n' + generated + '\nFIN')
         with self.assertRaises(ValueError):
-            patch_script(generated)
+            patch_script(generated.replace('function am_give(', 'function rota('))
         with zipfile.ZipFile(ROOT / 'build/autoventa/AstralRPG-Autoventa.zip') as z:
             self.assertEqual(set(z.namelist()), {'pack.mcmeta',
                 'data/astral/loot_table/item/autoventa.json',

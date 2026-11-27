@@ -49,6 +49,8 @@ command /avtest <player> <text>:
             set metadata value "avquote" of arg-1 to am_sell_value(arg-1, false)
         if arg-2 is "give":
             am_give(arg-1, (64 coal))
+        if arg-2 is "gesture":
+            delete {-am.autoventa.toggle::%uuid of arg-1%}
 ''', encoding='utf8')
     packs = server / 'world/datapacks'
     packs.mkdir(parents=True, exist_ok=True)
@@ -88,9 +90,31 @@ command /avtest <player> <text>:
             if process.poll() is None:
                 command('stop')
                 process.wait(timeout=60)
+    # Segundo arranque real: la variable persistente debe seguir apagada.
+    with log.open('a', encoding='utf8') as out:
+        process = subprocess.Popen([str(java), '-Xms512M', '-Xmx1536M', '-jar', 'paper.jar', '--nogui'], cwd=server,
+                                   stdin=subprocess.PIPE, stdout=out, stderr=subprocess.STDOUT, text=True)
+        try:
+            for _ in range(180):
+                if log.read_text('utf8', errors='replace').count('Done (') >= 2:
+                    break
+                if process.poll() is not None:
+                    raise RuntimeError('Paper termino en el segundo arranque: ' + str(log))
+                time.sleep(1)
+            else:
+                raise TimeoutError('Segundo arranque de Paper')
+            command('autoventaprobe start')
+            time.sleep(8)
+            command('autoventaprobe persisted')
+            until('AUTOVENTA PERSIST failures=')
+        finally:
+            if process.poll() is None:
+                command('stop')
+                process.wait(timeout=60)
     content = log.read_text('utf8', errors='replace')
     print('\n'.join(l for l in content.splitlines() if 'AUTOVENTA' in l or 'Encountered' in l), flush=True)
     assert 'AUTOVENTA RESULT failures=0' in content
+    assert 'AUTOVENTA PERSIST failures=0' in content
     assert all(s not in content for s in ('AUTOVENTA FAIL', 'Encountered', 'Failed to load', 'Error loading'))
 
 

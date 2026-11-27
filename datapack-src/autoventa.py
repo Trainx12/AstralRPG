@@ -1,4 +1,4 @@
-"""Nucleo privado: item sin arte y receta reservada, desactivada por defecto."""
+"""Nucleo privado: icono propio y receta reservada, desactivada por defecto."""
 import json
 from pathlib import Path
 
@@ -22,13 +22,17 @@ def register(add_item, txt, aura_pdc, req_line, fn):
              [txt("Cuando se te llena el inventario en las Minas Astrales,"),
               txt("vende solo tus minerales al precio de la Venta rapida."),
               txt("Funciona llevandolo en el inventario."),
+              txt("Shift + clic derecho: prender / apagar.", "yellow"),
               txt("El equipo y los objetos con nombre no se venden."),
               req_line("mining", 100)], {"type": "utility"},
-             extra={"minecraft:max_stack_size": 1},
+             extra={"minecraft:max_stack_size": 1}, model="astral:autoventa",
              pdc=aura_pdc("item", "mining", 100), glint=True)
     pred = '*[minecraft:custom_data~{astral:{id:"autoventa"}}]'
     fn("autoventa/identify", [
         "tag @s remove astral.autoventa",
+        "tag @s remove astral.autoventa.mano",
+        *[f"execute if items entity @s {slot} {pred} run tag @s add astral.autoventa.mano"
+          for slot in ("weapon.mainhand", "weapon.offhand")],
         *[f"execute if items entity @s {slot} {pred} run tag @s add astral.autoventa"
           for slot in ("hotbar.*", "inventory.*", "weapon.offhand")]])
     target = Path(__file__).resolve().parents[1] / "build/autoventa/receta-desactivada.json"

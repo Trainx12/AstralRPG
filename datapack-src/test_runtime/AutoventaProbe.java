@@ -46,6 +46,24 @@ public final class AutoventaProbe extends JavaPlugin {
         } catch(Exception e){throw new RuntimeException(e);}
     }
     void measure(){cmd("avtest "+player.getName()+" quote");}
+    boolean off(){return Boolean.TRUE.equals(ch.njol.skript.variables.Variables.getVariable("am.autoventa.off::"+player.getUniqueId(),null,false));}
+    void click(boolean shift, EquipmentSlot hand, boolean fresh){
+        if(fresh){
+            cmd("avtest "+player.getName()+" gesture");
+            // Los gestos de este ensayo se ejecutan en un tick; simular el nuevo tick
+            // que normalmente limpia el filtro de eventos de Skript.
+            try {
+                var tracker=ch.njol.skript.events.EvtClick.interactTracker;
+                var field=tracker.getClass().getDeclaredField("firstEvents");field.setAccessible(true);
+                ((Map)field.get(tracker)).remove(player.getUniqueId());
+            }catch(Exception e){throw new RuntimeException(e);}
+        }
+        player.setSneaking(shift);
+        Bukkit.getPluginManager().callEvent(new org.bukkit.event.player.PlayerInteractEvent(player,
+            org.bukkit.event.block.Action.RIGHT_CLICK_AIR,player.getInventory().getItem(hand),null,
+            org.bukkit.block.BlockFace.UP,hand));
+        player.setSneaking(false);
+    }
     void prepare(int slot){
         cmd("avtest "+player.getName()+" reset");player.getInventory().clear();
         for(int i=0;i<36;i++)player.getInventory().setItem(i,new ItemStack(Material.DIRT,64));
@@ -77,11 +95,34 @@ public final class AutoventaProbe extends JavaPlugin {
             if(args[0].equals("test")){
                 Bukkit.getScheduler().runTask(this, () -> { try { runTests(); } catch(Throwable e) { failures++; e.printStackTrace(); getLogger().info("AUTOVENTA RESULT failures="+failures); } });
             }
+            if(args[0].equals("persisted")){
+                Bukkit.getScheduler().runTask(this, () -> {
+                check(off(),"APAGADO persiste tras reinicio real");
+                level=100;prepare(0);double before=balance();give();
+                check(balance()==before,"reinicio conserva bloqueo de venta");
+                click(true,EquipmentSlot.HAND,true);check(!off(),"enciende despues de reiniciar");
+                prepare(0);before=balance();give();check(balance()>before,"encendido vende tras reinicio");
+                getLogger().info("AUTOVENTA PERSIST failures="+failures);
+                });
+            }
         }catch(Throwable e){failures++;e.printStackTrace();getLogger().info("AUTOVENTA RESULT failures="+failures);}
         return true;
     }
     void runTests() throws Exception {
                 cmd("autoventa privado");
+                check(!off(),"ENCENDIDO por defecto");
+                prepare(0);click(false,EquipmentSlot.HAND,true);check(!off(),"clic sin Shift no alterna");
+                click(true,EquipmentSlot.HAND,true);check(off(),"Shift principal apaga");
+                click(true,EquipmentSlot.OFF_HAND,false);check(off(),"doble evento no vuelve a encender");
+                double disabledBefore=balance();give();check(balance()==disabledBefore,"apagado no vende");
+                check(Boolean.TRUE.equals(ch.njol.skript.variables.Variables.getVariable("-am.lleno::"+player.getUniqueId(),null,false)),"apagado conserva aviso de inventario lleno");
+                click(true,EquipmentSlot.HAND,true);check(!off(),"dos gestos restauran ENCENDIDO");
+                prepare(40);click(true,EquipmentSlot.OFF_HAND,true);check(off(),"Shift secundaria apaga");
+                click(true,EquipmentSlot.OFF_HAND,true);check(!off(),"Shift secundaria enciende");
+                prepare(10);click(true,EquipmentSlot.HAND,true);check(!off(),"Nucleo solo en inventario no alterna");
+                var mine=player.getLocation();player.teleport(Bukkit.getWorlds().getFirst().getSpawnLocation());
+                prepare(0);click(true,EquipmentSlot.HAND,true);check(off(),"alterna fuera de Minas");
+                click(true,EquipmentSlot.HAND,true);player.teleport(mine);
                 for(int slot:new int[]{0,10,35,40}){
                     level=100;prepare(slot);double before=balance();double quote=player.getMetadata("avquote").getFirst().asDouble();
                     var old=player.getWorld().dropItem(player.getLocation(),new ItemStack(Material.DIAMOND,3));
@@ -98,8 +139,11 @@ public final class AutoventaProbe extends JavaPlugin {
                 prepare(10);player.getInventory().setItem(1,new ItemStack(Material.DIRT,64));before=balance();give();measure();check(balance()==before,"sin minerales vendibles no cobra ni consume equipo");
                 prepare(10);var spoof=new ItemStack(Material.HEART_OF_THE_SEA);var meta=spoof.getItemMeta();meta.setDisplayName("Nucleo de Venta Automatica");spoof.setItemMeta(meta);player.getInventory().setItem(10,spoof);before=balance();give();measure();check(balance()==before,"item renombrado no activa");
                 player=fake("Visitante",player.getWorld());prepare(10);before=balance();give();measure();check(balance()==before,"Visitante privado bloqueado");
+                prepare(0);click(true,EquipmentSlot.HAND,true);check(!off(),"Visitante privado no alterna");
                 cmd("autoventa publico");prepare(10);before=balance();give();measure();check(balance()>before,"Visitante publico permitido");
                 player.teleport(Bukkit.getWorlds().getFirst().getSpawnLocation());prepare(10);before=balance();give();measure();check(balance()==before,"fuera de Minas bloqueado");
+                cmd("autoventa privado");player=Bukkit.getPlayerExact("ByTrainx");prepare(0);
+                click(true,EquipmentSlot.HAND,true);check(off(),"guarda APAGADO antes del reinicio");
                 getLogger().info("AUTOVENTA RESULT failures="+failures);
     }
 

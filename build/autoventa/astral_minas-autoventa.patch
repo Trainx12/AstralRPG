@@ -1,6 +1,6 @@
 --- astral_minas.sk
 +++ astral_minas.sk
-@@ -1526,0 +1527,55 @@
+@@ -1526,0 +1527,82 @@
 +command /am_autoventa_nivel <player> <number>:
 +    executable by: console
 +    trigger:
@@ -18,6 +18,31 @@
 +        else:
 +            send "&7/autoventa publico | privado" to sender
 +
++on right click:
++    if player is not sneaking:
++        stop
++    if name of player is not "ByTrainx":
++        if {am.autoventa.publico} is not true:
++            stop
++    execute console command "execute as %name of player% run function astral:autoventa/identify"
++    if scoreboard tags of player does not contain "astral.autoventa.mano":
++        stop
++    cancel event
++    set {_u} to uuid of player
++    # Bukkit puede enviar el mismo gesto por las dos manos.
++    if {-am.autoventa.toggle::%{_u}%} is set:
++        if difference between now and {-am.autoventa.toggle::%{_u}%} < 0.3 seconds:
++            stop
++    set {-am.autoventa.toggle::%{_u}%} to now
++    if {am.autoventa.off::%{_u}%} is true:
++        delete {am.autoventa.off::%{_u}%}
++        send action bar "&6Nucleo de Venta: &a&lENCENDIDO" to player
++        play sound "ui.button.click" with volume 0.5 and pitch 1.4 to player
++    else:
++        set {am.autoventa.off::%{_u}%} to true
++        send action bar "&6Nucleo de Venta: &c&lAPAGADO" to player
++        play sound "ui.button.click" with volume 0.5 and pitch 0.7 to player
++
 +function am_autoventa(p: player) :: number:
 +    if name of world of {_p} is not "astral_minas":
 +        return 0
@@ -25,6 +50,8 @@
 +        if {am.autoventa.publico} is not true:
 +            return 0
 +    set {_u} to uuid of {_p}
++    if {am.autoventa.off::%{_u}%} is true:
++        return 0
 +    if {-am.autoventa.uso::%{_u}%} is set:
 +        if difference between now and {-am.autoventa.uso::%{_u}%} < 2 seconds:
 +            return 0
@@ -56,7 +83,7 @@
 +        play sound "entity.experience_orb.pickup" with volume 0.3 and pitch 1.4 to {_p}
 +    return {_total}
 +
-@@ -1535,2 +1590,13 @@
+@@ -1535,2 +1617,13 @@
 -    if size of {_despues::*} > size of {_antes::*}:
 -        am_aviso_lleno({_p})
 +    loop {_despues::*}:
