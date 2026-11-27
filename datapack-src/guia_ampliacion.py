@@ -8,6 +8,12 @@ from pathlib import Path
 
 CATALOG = Path(__file__).with_name('guia_stellarity.json')
 PERMISSION = 'astral.guia.ampliacion'
+PRIVATE_SECTIONS = {'atlas/seccion/crafteos', 'atlas/seccion/stellarity'}
+
+
+def requirements():
+    return dict(prueba={'type': 'has permission', 'permission': PERMISSION},
+                dueno={'type': 'string equals', 'input': '%player_name%', 'output': 'ByTrainx'})
 
 DESCRIPTIONS = {
     'book_of_conveyance': 'Lanza una chispa guiada con la mirada; te lleva al bloque donde impacta.',
@@ -161,15 +167,15 @@ def menus(data):
             it['lore'].insert(0, f'&fCantidad exacta: {count}')
         return it
 
-    def requirement():
+    def requirement(fallback=None):
         return ['open_requirement:', '  requirements:', '    prueba:', '      type: has permission',
                 '      permission: ' + PERMISSION, '    dueno:', '      type: string equals',
                 "      input: '%player_name%'", "      output: 'ByTrainx'", '  deny_commands:',
-                "  - '[message] &eEsta ampliacion esta en prueba con el dueno.'"]
+                "  - '" + ("[openguimenu] " + fallback if fallback else "[message] &eEsta ampliacion esta en prueba con el dueno.") + "'"]
 
     def page(name, caption, content, parent=None, prev=None, next=None, recipe=False):
         bg = 'receta_stellarity' if recipe else 'general'
-        lines = [f'menu_title: {g.q(g.title(g.BG_CHARS[bg], caption))}', 'size: 54'] + requirement() + ['items:']
+        lines = [f'menu_title: {g.q(g.title(g.BG_CHARS[bg], caption))}', 'size: 54'] + requirement('g_atlas_seccion_cocina_publica' if name == 'g_atlas_seccion_cocina' else None) + ['items:']
         if recipe:
             pairs = content
         else:
@@ -188,20 +194,20 @@ def menus(data):
     crafteos = 'g_atlas_seccion_crafteos'
     end = 'g_atlas_seccion_stellarity'
     page(comida, 'Comida', [
-        (icon('COOKED_BEEF', 'Comida y curacion', ['La comida llena hambre y saturacion. La curacion natural rinde 20% del ajuste Astral anterior; no reemplaza las manzanas de tu tier.']), []),
-        (icon('CAULDRON', 'Crop & Kettle 1.3.12', ['Integracion preparada: despliegue actual sin confirmar. No se promete disponible.', 'Cuando se habilite: olla = caldero + fogata; recetario y avances para empezar.']), link('g_guia_comida_cnk')),
+        (icon('COOKED_BEEF', 'Comida y curacion', ['Comer cura poco por si solo; para curarte rapido usa las manzanas de tu tier o espera fuera de pelea.']), []),
+        (icon('CAULDRON', 'Crop & Kettle 1.3.12', ['Disponible en el Survival: cultivos nuevos, platos y bebidas.', 'Olla = caldero + fogata; recetario y avances para empezar.']), link('g_guia_comida_cnk')),
         (icon('APPLE', 'Manzanas de mazmorra', ['T2 a T10: curan 45% de la vida del set de su tier. Mitad al comer y mitad en 5 s. Espera compartida: 20 s.', 'Caen de mobs de mazmorra del mismo tier: comunes 3%, elites 12%.']), []),
         (icon('GOLDEN_APPLE', 'XP y Suerte Astral', ['Manzana de la Suerte y frascos de experiencia: ver Consumibles.']), link('g_atlas_seccion_consumibles')),
         (icon('CHORUS_FRUIT', 'Comida del End', ['Platos, peces y sus recetas de Stellarity.']), link('g_guia_stellarity_food_1')),
-        (icon('GOLDEN_CARROT', 'Fuera de pelea', ['Sistema preparado en prueba: tras 20 s sin combatir, cura 4% de vida maxima por segundo sin gastar comida.', 'Solo ByTrainx hasta que el dueno lo abra; no se promete activo para todos.']), []),
+        (icon('GOLDEN_CARROT', 'Fuera de pelea', ['Tras 20 s sin recibir dano, curas 4% de tu vida maxima por segundo, sin gastar comida.']), []),
     ])
-    page('g_guia_comida_cnk', 'Cocina preparada', [
-        (icon('CAULDRON', 'Olla', ['Caldero + fogata. Integracion pendiente de confirmar en vivo.']), []),
+    page('g_guia_comida_cnk', 'Crop & Kettle', [
+        (icon('CAULDRON', 'Olla', ['Caldero + fogata. Disponible en el Survival.']), []),
         (icon('KNOWLEDGE_BOOK', 'Recetario', ['El recetario y los avances propios muestran las recetas descubiertas.']), []),
-        (icon('WHEAT_SEEDS', 'Cultivos nuevos', ['Hay semillas y cultivos de cocina. Cultivalos en survival cuando se habilite la integracion.']), []),
+        (icon('WHEAT_SEEDS', 'Cultivos nuevos', ['Hay semillas y cultivos de cocina. Cultivalos en el Survival.']), []),
         (icon('IRON_SWORD', 'Tabla y cuchillo', ['Permiten cortar ingredientes. Tambien hay un bol para mezclas.']), []),
-        (icon('MUSHROOM_STEW', 'Platos y bebidas', ['Ejemplo: Wellington combina masa, hongos y carne en la olla. En la tabla, carne de vaca da cortes y masa da fideos.', 'Incluye sopas, cafe y vinos. Consulta el recetario propio al habilitarlo.']), []),
-        (icon('LEATHER_HELMET', 'Gorro de chef', ['Mesa: dos lanas blancas en la primera fila, otras dos debajo y dos hilos en la tercera. Usa las mismas dos columnas.', 'Solo cuando Crop & Kettle este instalado.']), []),
+        (icon('MUSHROOM_STEW', 'Platos y bebidas', ['Ejemplo: Wellington combina masa, hongos y carne en la olla. En la tabla, carne de vaca da cortes y masa da fideos.', 'Incluye sopas, cafe y vinos. Consulta el recetario propio.']), []),
+        (icon('LEATHER_HELMET', 'Gorro de chef', ['Mesa: dos lanas blancas en la primera fila, otras dos debajo y dos hilos en la tercera. Usa las mismas dos columnas.']), []),
     ], comida)
     links = [('SMITHING_TABLE', 'Forja Astral', 'Cerca de una mesa de herreria, abri la receta en la guia y usa Forjar. Toma materiales del inventario y exige los niveles del resultado.', 'g_atlas_berserker'),
              ('CRAFTING_TABLE', 'Mesa y libro verde', 'AstralDecor registra recetas en la mesa. Tener un ingrediente desbloquea su receta en el libro verde. Exige los mismos objetos y niveles. Mas de 9 unidades: solo Forja.', 'g_atlas_seccion_materiales'),

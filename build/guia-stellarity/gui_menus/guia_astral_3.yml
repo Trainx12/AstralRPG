@@ -1,5 +1,16 @@
 menu_title: '&f'
 size: 54
+open_requirement:
+  requirements:
+    prueba:
+      type: has permission
+      permission: astral.guia.ampliacion
+    dueno:
+      type: string equals
+      input: '%player_name%'
+      output: ByTrainx
+  deny_commands:
+  - '[openguimenu] guia_astral_3_publica'
 items:
   'b0_0':
     material: DIAMOND_SWORD
@@ -375,6 +386,15 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_seccion_crafteos'
+    view_requirement:
+      requirements:
+        prueba:
+          type: has permission
+          permission: astral.guia.ampliacion
+        dueno:
+          type: string equals
+          input: '%player_name%'
+          output: ByTrainx
   'b6_1':
     material: PAPER
     slot: 28
@@ -390,6 +410,15 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_seccion_crafteos'
+    view_requirement:
+      requirements:
+        prueba:
+          type: has permission
+          permission: astral.guia.ampliacion
+        dueno:
+          type: string equals
+          input: '%player_name%'
+          output: ByTrainx
   'b6_2':
     material: PAPER
     slot: 29
@@ -405,6 +434,15 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_seccion_crafteos'
+    view_requirement:
+      requirements:
+        prueba:
+          type: has permission
+          permission: astral.guia.ampliacion
+        dueno:
+          type: string equals
+          input: '%player_name%'
+          output: ByTrainx
   'b6_3':
     material: PAPER
     slot: 30
@@ -420,6 +458,15 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_seccion_crafteos'
+    view_requirement:
+      requirements:
+        prueba:
+          type: has permission
+          permission: astral.guia.ampliacion
+        dueno:
+          type: string equals
+          input: '%player_name%'
+          output: ByTrainx
   'b7_0':
     material: END_STONE
     slot: 32
@@ -434,6 +481,15 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_seccion_stellarity'
+    view_requirement:
+      requirements:
+        prueba:
+          type: has permission
+          permission: astral.guia.ampliacion
+        dueno:
+          type: string equals
+          input: '%player_name%'
+          output: ByTrainx
   'b7_1':
     material: PAPER
     slot: 33
@@ -449,6 +505,15 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_seccion_stellarity'
+    view_requirement:
+      requirements:
+        prueba:
+          type: has permission
+          permission: astral.guia.ampliacion
+        dueno:
+          type: string equals
+          input: '%player_name%'
+          output: ByTrainx
   'b7_2':
     material: PAPER
     slot: 34
@@ -464,6 +529,15 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_seccion_stellarity'
+    view_requirement:
+      requirements:
+        prueba:
+          type: has permission
+          permission: astral.guia.ampliacion
+        dueno:
+          type: string equals
+          input: '%player_name%'
+          output: ByTrainx
   'b7_3':
     material: PAPER
     slot: 35
@@ -479,6 +553,15 @@ items:
     click_commands:
     - '[sound] UI_BUTTON_CLICK'
     - '[openguimenu] g_atlas_seccion_stellarity'
+    view_requirement:
+      requirements:
+        prueba:
+          type: has permission
+          permission: astral.guia.ampliacion
+        dueno:
+          type: string equals
+          input: '%player_name%'
+          output: ByTrainx
   'anterior':
     material: PAPER
     slot: 45

@@ -1,4 +1,4 @@
-menu_title: '&f&#ffe9a8Cocina preparada'
+menu_title: '&f&#ffe9a8Crop & Kettle'
 size: 54
 open_requirement:
   requirements:
@@ -18,8 +18,8 @@ items:
     amount: 1
     display_name: '&bOlla'
     lore:
-    - '&7Caldero + fogata. Integracion'
-    - '&7pendiente de confirmar en vivo.'
+    - '&7Caldero + fogata. Disponible en el'
+    - '&7Survival.'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS
@@ -43,8 +43,7 @@ items:
     display_name: '&bCultivos nuevos'
     lore:
     - '&7Hay semillas y cultivos de cocina.'
-    - '&7Cultivalos en survival cuando se'
-    - '&7habilite la integracion.'
+    - '&7Cultivalos en el Survival.'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS
@@ -72,7 +71,7 @@ items:
     - '&7tabla, carne de vaca da cortes y masa'
     - '&7da fideos.'
     - '&7Incluye sopas, cafe y vinos. Consulta'
-    - '&7el recetario propio al habilitarlo.'
+    - '&7el recetario propio.'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS
@@ -87,8 +86,6 @@ items:
     - '&7fila, otras dos debajo y dos hilos en'
     - '&7la tercera. Usa las mismas dos'
     - '&7columnas.'
-    - '&7Solo cuando Crop & Kettle este'
-    - '&7instalado.'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS

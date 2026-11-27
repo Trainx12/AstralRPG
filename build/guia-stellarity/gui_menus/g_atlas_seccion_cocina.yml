@@ -10,7 +10,7 @@ open_requirement:
       input: '%player_name%'
       output: 'ByTrainx'
   deny_commands:
-  - '[message] &eEsta ampliacion esta en prueba con el dueno.'
+  - '[openguimenu] g_atlas_seccion_cocina_publica'
 items:
   'c0':
     material: COOKED_BEEF
@@ -18,10 +18,9 @@ items:
     amount: 1
     display_name: '&bComida y curacion'
     lore:
-    - '&7La comida llena hambre y saturacion.'
-    - '&7La curacion natural rinde 20% del'
-    - '&7ajuste Astral anterior; no reemplaza'
-    - '&7las manzanas de tu tier.'
+    - '&7Comer cura poco por si solo; para'
+    - '&7curarte rapido usa las manzanas de tu'
+    - '&7tier o espera fuera de pelea.'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS
@@ -32,12 +31,10 @@ items:
     amount: 1
     display_name: '&bCrop & Kettle 1.3.12'
     lore:
-    - '&7Integracion preparada: despliegue'
-    - '&7actual sin confirmar. No se promete'
-    - '&7disponible.'
-    - '&7Cuando se habilite: olla = caldero +'
-    - '&7fogata; recetario y avances para'
-    - '&7empezar.'
+    - '&7Disponible en el Survival: cultivos'
+    - '&7nuevos, platos y bebidas.'
+    - '&7Olla = caldero + fogata; recetario y'
+    - '&7avances para empezar.'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS
@@ -93,11 +90,9 @@ items:
     amount: 1
     display_name: '&bFuera de pelea'
     lore:
-    - '&7Sistema preparado en prueba: tras 20 s'
-    - '&7sin combatir, cura 4% de vida maxima'
-    - '&7por segundo sin gastar comida.'
-    - '&7Solo ByTrainx hasta que el dueno lo'
-    - '&7abra; no se promete activo para todos.'
+    - '&7Tras 20 s sin recibir dano, curas 4%'
+    - '&7de tu vida maxima por segundo, sin'
+    - '&7gastar comida.'
     item_flags:
     - HIDE_ATTRIBUTES
     - HIDE_ENCHANTS

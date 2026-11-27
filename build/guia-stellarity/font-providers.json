@@ -541,6 +541,186 @@
   },
   {
     "type": "bitmap",
+    "file": "astral:font/guia_astral/pagina2_publica_0_0.png",
+    "height": 64,
+    "ascent": 53,
+    "chars": [
+      ""
+    ]
+  },
+  {
+    "type": "bitmap",
+    "file": "astral:font/guia_astral/pagina2_publica_0_1.png",
+    "height": 64,
+    "ascent": 53,
+    "chars": [
+      ""
+    ]
+  },
+  {
+    "type": "bitmap",
+    "file": "astral:font/guia_astral/pagina2_publica_0_2.png",
+    "height": 64,
+    "ascent": 53,
+    "chars": [
+      ""
+    ]
+  },
+  {
+    "type": "bitmap",
+    "file": "astral:font/guia_astral/pagina2_publica_0_3.png",
+    "height": 64,
+    "ascent": 53,
+    "chars": [
+      ""
+    ]
+  },
+  {
+    "type": "bitmap",
+    "file": "astral:font/guia_astral/pagina2_publica_1_0.png",
+    "height": 64,
+    "ascent": -11,
+    "chars": [
+      ""
+    ]
+  },
+  {
+    "type": "bitmap",
+    "file": "astral:font/guia_astral/pagina2_publica_1_1.png",
+    "height": 64,
+    "ascent": -11,
+    "chars": [
+      ""
+    ]
+  },
+  {
+    "type": "bitmap",
+    "file": "astral:font/guia_astral/pagina2_publica_1_2.png",
+    "height": 64,
+    "ascent": -11,
+    "chars": [
+      ""
+    ]
+  },
+  {
+    "type": "bitmap",
+    "file": "astral:font/guia_astral/pagina2_publica_1_3.png",
+    "height": 64,
+    "ascent": -11,
+    "chars": [
+      ""
+    ]
+  },
+  {
+    "type": "bitmap",
+    "file": "astral:font/guia_astral/pagina2_publica_2_0.png",
+    "height": 64,
+    "ascent": -75,
+    "chars": [
+      ""
+    ]
+  },
+  {
+    "type": "bitmap",
+    "file": "astral:font/guia_astral/pagina2_publica_2_1.png",
+    "height": 64,
+    "ascent": -75,
+    "chars": [
+      ""
+    ]
+  },
+  {
+    "type": "bitmap",
+    "file": "astral:font/guia_astral/pagina2_publica_2_2.png",
+    "height": 64,
+    "ascent": -75,
+    "chars": [
+      ""
+    ]
+  },
+  {
+    "type": "bitmap",
+    "file": "astral:font/guia_astral/pagina2_publica_2_3.png",
+    "height": 64,
+    "ascent": -75,
+    "chars": [
+      ""
+    ]
+  },
+  {
+    "type": "bitmap",
+    "file": "astral:font/guia_astral/pagina2_publica_3_0.png",
+    "height": 64,
+    "ascent": -139,
+    "chars": [
+      ""
+    ]
+  },
+  {
+    "type": "bitmap",
+    "file": "astral:font/guia_astral/pagina2_publica_3_1.png",
+    "height": 64,
+    "ascent": -139,
+    "chars": [
+      ""
+    ]
+  },
+  {
+    "type": "bitmap",
+    "file": "astral:font/guia_astral/pagina2_publica_3_2.png",
+    "height": 64,
+    "ascent": -139,
+    "chars": [
+      ""
+    ]
+  },
+  {
+    "type": "bitmap",
+    "file": "astral:font/guia_astral/pagina2_publica_3_3.png",
+    "height": 64,
+    "ascent": -139,
+    "chars": [
+      ""
+    ]
+  },
+  {
+    "type": "bitmap",
+    "file": "astral:font/guia_astral/pagina2_publica_4_0.png",
+    "height": 24,
+    "ascent": -203,
+    "chars": [
+      ""
+    ]
+  },
+  {
+    "type": "bitmap",
+    "file": "astral:font/guia_astral/pagina2_publica_4_1.png",
+    "height": 24,
+    "ascent": -203,
+    "chars": [
+      ""
+    ]
+  },
+  {
+    "type": "bitmap",
+    "file": "astral:font/guia_astral/pagina2_publica_4_2.png",
+    "height": 24,
+    "ascent": -203,
+    "chars": [
+      ""
+    ]
+  },
+  {
+    "type": "bitmap",
+    "file": "astral:font/guia_astral/pagina2_publica_4_3.png",
+    "height": 24,
+    "ascent": -203,
+    "chars": [
+      ""
+    ]
+  },
+  {
+    "type": "bitmap",
     "file": "astral:font/guia_astral/general_0_0.png",
     "height": 64,
     "ascent": 53,

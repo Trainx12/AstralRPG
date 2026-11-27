@@ -5,6 +5,10 @@
     file: guia_astral_3.yml
   g_atlas_seccion_cocina:
     file: g_atlas_seccion_cocina.yml
+  g_atlas_seccion_cocina_publica:
+    file: g_atlas_seccion_cocina_publica.yml
+  guia_astral_3_publica:
+    file: guia_astral_3_publica.yml
   g_guia_comida_cnk:
     file: g_guia_comida_cnk.yml
   g_atlas_seccion_crafteos:

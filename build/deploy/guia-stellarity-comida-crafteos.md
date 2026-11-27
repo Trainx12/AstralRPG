@@ -1,15 +1,15 @@
 # Guia Astral: Stellarity, Comida y Crafteos
 
 Preparado, sin instalacion remota verificada. Empower, Paper 26.1.2 / Java 25.
-Stellarity 5.4.2; no instalar 6.0.1. CNK 1.3.12 se describe como preparado,
-sin confirmar su presencia actual. No se instala ni modifica Stellarity o CNK.
+Stellarity 5.4.2; no instalar 6.0.1. Crop & Kettle 1.3.12 esta instalado en
+el Survival, confirmado por Claude en world/datapacks/CropAndKettle-Astral.zip. No se instala ni modifica Stellarity o CNK.
 
 ## Version y conservacion
 
 Base descargada del R2 publico, SHA-1 `e2eafeb55caddd8cb4661a2e1b05a61e4f44f516`. Esto comprueba la version
 publicada del pack; no certifica el SHA-1 actual en server.properties remoto.
 FINAL privado: `.local/terceros/AstralRPG-privado/build/entregas/guia-stellarity-comida-crafteos/AstralRPG-Textures.zip`.
-SHA-1 nuevo: `d994958669b02a57b95fd7a1c5c985b820a024b7`.
+SHA-1 del FINAL: `6fe11d1968fb35cb64931609e72f7037b8fe7798`.
 Estado de R2: **Subido a R2 y descarga publica verificada por tools/subir_pack_r2.py.**
 Conserva 22420 entradas de la base fuera del delta de fuentes y fondos de Guia.
 No incluye texturas locales de gomera/bazar/renacer ni otras tareas sin publicar.
@@ -26,18 +26,35 @@ La captura usada fue HEAD:build/runtime/guia_fuente.json; solo cambia la ampliac
 | FINAL privado indicado arriba | R2, mediante tools/subir_pack_r2.py; no subir el ZIP publico de assets como pack completo |
 | SHA-1 indicado arriba | resource-pack-sha1 en server.properties, solo tras verificar descarga publica |
 
-Son 143 YAML (140 nuevos) y el fragmento de registro.
+Son 145 YAML (142 nuevos) y el fragmento de registro.
 build/guia-stellarity/GuiaAstral-Assets.zip y font-providers.json son insumos publicos
 del generador, no packs completos ni archivos para plugins.
 No se necesita subir datapack a world/datapacks, JAR, Skript, mapas ni mundos:
 esta tarea agrega consultas a DeluxeMenus y fondos al resource pack.
+
+## Correccion del 26/11 y acceso publico
+
+Cocina publica se conserva integra en g_atlas_seccion_cocina_publica, sin requisito.
+La nueva Comida exige permiso y nombre ByTrainx; si falla, abre esa Cocina publica.
+Crafteos y Stellarity tienen view_requirement con el mismo permiso Y nombre.
+Como sus nombres estan dibujados en el pack, guia_astral_3 tambien deriva al
+indice guia_astral_3_publica para los demas jugadores: mismas casillas y fondo
+anterior sin los dos rotulos nuevos. Esto agrega un YAML de indice y un fondo
+propio; requiere publicar el FINAL nuevo, no alcanza con ocultar items.
+Respecto al FINAL anterior d994958669b02a57b95fd7a1c5c985b820a024b7, se agregan
+solo 20 tiles propios y sus proveedores; los fondos existentes no cambian.
+Crop & Kettle se presenta instalado y la curacion fuera de pelea ya es publica:
+tras 20 s sin recibir dano, curas 4% de tu vida maxima por segundo, sin gastar comida.
+Comer cura poco por si solo; para curarte rapido usa las manzanas de tu tier o
+espera fuera de pelea. No se modifica ninguna mecanica de juego en esta tarea.
 
 ## Instalacion y prueba reservada
 
 1. Comprobar que el resource-pack remoto corresponda a la base. Si el pack publicado
    cambio, volver a generar con `python datapack-src/deploy_guia_stellarity.py --download-base`.
    No usar un FINAL local mas nuevo de otra tarea por su fecha.
-2. Subir el FINAL con `python tools/subir_pack_r2.py ".local/terceros/AstralRPG-privado/build/entregas/guia-stellarity-comida-crafteos/AstralRPG-Textures.zip"`.
+2. Si el estado de R2 figura verificado arriba, no repetir la subida. Si falta,
+   subir el FINAL con `python tools/subir_pack_r2.py ".local/terceros/AstralRPG-privado/build/entregas/guia-stellarity-comida-crafteos/AstralRPG-Textures.zip"`.
    El comando compara el SHA-1 de la descarga publica. Registrar el resultado antes
    de actualizar server.properties desde el panel.
 3. Instalar los YAML listados y fusionar config-guia.yml. Conservar el resto de menus.
@@ -51,9 +68,12 @@ esta tarea agrega consultas a DeluxeMenus y fondos al resource pack.
 6. ByTrainx: `/modo admin`, `/sala`, abrir `/guiaastral`, Comida (pagina 1),
    Crafteos y Stellarity (pagina 3). Probar volver/anterior/siguiente/cerrar,
    cantidades, textos al pasar el cursor y colores del fondo. Otro jugador debe
-   recibir el aviso de prueba al intentar abrir estas ventanas.
+   llegar a Cocina publica al abrir Comida, sin aviso de prueba. En la pagina 3
+   no debe ver Crafteos ni Stellarity, tampoco sus rotulos en el fondo.
+   Las ventanas completamente nuevas conservan el aviso de prueba.
 7. Abrir al publico requiere OK del dueno y cambiar el generador que construye
-   open_requirement; regenerar la entrega. No quitar requisitos a mano en build.
+   open_requirement, view_requirement y la derivacion al indice publico; regenerar
+   la entrega. No quitar requisitos a mano en build.
 
 No reiniciar ni recargar el servidor desde esta tarea. No usar Worlds > Upload,
 no reemplazar mundos y no ejecutar /reload de Bukkit para cambiar datapacks.
@@ -64,7 +84,7 @@ No se usa API privada de Aternos ni se eluden restricciones.
 
 ## Verificacion y limites
 
-20 pruebas de test_guia_cofre.py y test_guia_atlas.py: ingredientes, enlaces,
+23 pruebas de test_guia_cofre.py y test_guia_atlas.py: ingredientes, enlaces,
 indexado, forma, cantidades, modelos, fuente sin mutacion y recetas sin boton Forja.
 Verificar tambien el manifiesto y la auditoria tools/verificar_terceros.py antes del commit.
 No se ejecuto el antiguo ensayo Paper de dialogos: el datapack no cambia y ese
@@ -88,8 +108,8 @@ recetas se leen del datapack, no se infieren de esas traducciones.
 🆕 La Guia Astral suma Comida, Crafteos y Stellarity.
 Ahora podes consultar para que sirve cada sistema y ver las recetas del End,
 sus materiales y donde se preparan. Tambien vas a encontrar armas, armaduras,
-libros, peces y jefes. La cocina Crop & Kettle aparece como preparada hasta
-confirmar que este habilitada. Abrilo desde la Guia del Menu Astral.
+libros, peces y jefes. Crop & Kettle esta disponible en el Survival: olla,
+recetario, cultivos nuevos, tabla y cuchillo, y gorro de chef. Abrilo desde la Guia del Menu Astral.
 
 No publicado en Discord: la ampliacion sigue reservada al dueno.
 
@@ -98,6 +118,7 @@ No publicado en Discord: la ampliacion sigue reservada al dueno.
 Cada ruta local siguiente se copia a plugins/DeluxeMenus/gui_menus/ con su mismo nombre:
 
 - `build/guia-stellarity/gui_menus/g_atlas_seccion_cocina.yml`
+- `build/guia-stellarity/gui_menus/g_atlas_seccion_cocina_publica.yml`
 - `build/guia-stellarity/gui_menus/g_atlas_seccion_crafteos.yml`
 - `build/guia-stellarity/gui_menus/g_atlas_seccion_stellarity.yml`
 - `build/guia-stellarity/gui_menus/g_guia_comida_cnk.yml`
@@ -240,3 +261,4 @@ Cada ruta local siguiente se copia a plugins/DeluxeMenus/gui_menus/ con su mismo
 - `build/guia-stellarity/gui_menus/g_guia_stellarity_weapons_1.yml`
 - `build/guia-stellarity/gui_menus/guia_astral.yml`
 - `build/guia-stellarity/gui_menus/guia_astral_3.yml`
+- `build/guia-stellarity/gui_menus/guia_astral_3_publica.yml`

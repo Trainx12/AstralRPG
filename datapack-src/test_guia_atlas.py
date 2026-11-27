@@ -67,6 +67,14 @@ class AtlasTest(unittest.TestCase):
         self.assertEqual(entries['atlas/seccion/crafteos'], 'Crafteos')
         self.assertEqual(entries['atlas/seccion/stellarity'], 'Stellarity (El End)')
         self.assertEqual(catalog()['version'], '5.4.2')
+        self.assertEqual(data['dialogs']['atlas/seccion/cocina'], raw['dialogs']['atlas/seccion/cocina'])
+        from guia_ampliacion import PRIVATE_SECTIONS
+        public = [e for e in data['index'] if e.get('dialog') not in PRIVATE_SECTIONS]
+        original = json.loads(json.dumps(raw['index']))
+        for entry in original:
+            if entry.get('dialog') == 'atlas/seccion/cocina':
+                entry['caption'] = 'Comida'
+        self.assertEqual(public, original)
 
     def test_catalogo_cubre_las_recetas_del_original_local(self):
         import sys
