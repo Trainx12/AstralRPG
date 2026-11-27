@@ -318,6 +318,25 @@ public final class AstralProgression extends JavaPlugin implements Listener {
         if(e instanceof EntityXpGainEvent entity && SKILLS.contains(e.getSkill().getId().getKey()) &&
             tier(entity.getAttacked())>0 && !creditedSkill(entity.getAttacked(),e.getUser().getUuid()).isEmpty())
             e.setCancelled(true);
+        else if(e instanceof EntityXpGainEvent entity)
+            e.setAmount(e.getAmount()*spawnerSkillFactor(entity.getAttacked(),e.getSkill().getId().getKey()));
+    }
+    private boolean fromSpawner(Entity mob) {
+        return switch(mob.getEntitySpawnReason()) {
+            case SPAWNER, TRIAL_SPAWNER -> true;
+            default -> mob.getPersistentDataContainer().has(
+                new NamespacedKey("astralspawnerxp","spawner_origin"),PersistentDataType.BYTE);
+        };
+    }
+    // Keep origin through conversions and every generation of slime/magma splits.
+    @EventHandler(priority=EventPriority.MONITOR,ignoreCancelled=true)
+    public void spawnerTransform(EntityTransformEvent e) {
+        if(!fromSpawner(e.getEntity())) return;
+        for(Entity child:e.getTransformedEntities()) child.getPersistentDataContainer().set(
+            new NamespacedKey("astralspawnerxp","spawner_origin"),PersistentDataType.BYTE,(byte)1);
+    }
+    public double spawnerSkillFactor(LivingEntity mob,String skill) {
+        return "fighting".equals(skill) && fromSpawner(mob) ? 0.5 : 1;
     }
     public double reward(LivingEntity mob) {
         int tier=tier(mob);
@@ -386,7 +405,7 @@ public final class AstralProgression extends JavaPlugin implements Listener {
         double each=xp/share.size();
         for(Player m:share) {
             String s=m.equals(p)?skill:lastSkill.getOrDefault(m.getUniqueId(),skill);
-            giveXp(m,s,each*tierXpFactor(m,s,mobTier));
+            giveXp(m,s,each*tierXpFactor(m,s,mobTier)*spawnerSkillFactor(mob,s));
         }
     }
     private final Map<UUID,String> lastSkill = new HashMap<>();

@@ -27,6 +27,21 @@ import com.mojang.authlib.GameProfile;
 public final class SupportTierProbe extends JavaPlugin {
     Player p; int failures; double before,baseline=-1; LivingEntity target; String held;
     AstralProgression runtime;
+    void spawnerKill(int tier,int sp,double[] gains) {
+        if(tier>5) return;
+        var user=AuraSkillsApi.get().getUser(p.getUniqueId());
+        Zombie z=p.getWorld().spawn(p.getLocation().add(2,0,0),Zombie.class,
+            sp==1?CreatureSpawnEvent.SpawnReason.SPAWNER:CreatureSpawnEvent.SpawnReason.CUSTOM);
+        z.setAI(false);z.addScoreboardTag("astral.mt"+tier);
+        double start=user.getSkillXp(Skills.FIGHTING);
+        z.damage(100000,p);
+        Bukkit.getScheduler().runTaskLater(this,()->{
+            gains[sp]=user.getSkillXp(Skills.FIGHTING)-start;
+            if(sp==1) check(gains[0]>0 && Math.abs(gains[1]*2-gains[0])<0.02,
+                "spawner mitad XP real T"+tier+" normal="+gains[0]+" spawner="+gains[1]);
+            spawnerKill(sp==0?tier:tier+1,1-sp,gains);
+        },2);
+    }
     void check(boolean ok,String msg) { if(!ok) failures++; getLogger().info("T5A "+(ok?"PASS ":"FAIL ")+msg); }
     ItemStack item(String id) {
         var table=Bukkit.getLootTable(NamespacedKey.fromString("astral:item/"+id));
@@ -125,6 +140,29 @@ public final class SupportTierProbe extends JavaPlugin {
             user.setSkillLevel(Skills.SORCERY,20);
             check(runtime.tierXpFactor(p,"sorcery",3)==1,"Magia 20 XP T3 completa");
             p.removeAttachment(attachment);
+        } else if(args[0].equals("spawners")) {
+            var user=AuraSkillsApi.get().getUser(p.getUniqueId());
+            user.setSkillLevel(Skills.FIGHTING,16);
+            p.getInventory().clear();p.getInventory().setItemInMainHand(new ItemStack(Material.IRON_SWORD));
+            var permission=p.addAttachment(this);permission.setPermission("astral.xp.tierbonus",true);
+            spawnerKill(2,0,new double[2]);
+            Zombie z=p.getWorld().spawn(p.getLocation().add(2,0,0),Zombie.class,CreatureSpawnEvent.SpawnReason.TRIAL_SPAWNER);
+            check(runtime.spawnerSkillFactor(z,"fighting")==0.5,"trial spawner mitad Combate");
+            for(String skill:List.of("sorcery","archery","mining"))
+                check(runtime.spawnerSkillFactor(z,skill)==1,"spawner conserva "+skill);
+            Zombie child=p.getWorld().spawn(p.getLocation().add(3,0,0),Zombie.class);
+            runtime.spawnerTransform(new EntityTransformEvent(z,List.of(child),EntityTransformEvent.TransformReason.DROWNED));
+            check(runtime.spawnerSkillFactor(child,"fighting")==0.5,"conversion hereda origen");
+            Zombie grandchild=p.getWorld().spawn(p.getLocation().add(4,0,0),Zombie.class);
+            runtime.spawnerTransform(new EntityTransformEvent(child,List.of(grandchild),EntityTransformEvent.TransformReason.SPLIT));
+            check(runtime.spawnerSkillFactor(grandchild,"fighting")==0.5,"segunda generacion hereda origen");
+            for(Skills skill:List.of(Skills.FIGHTING,Skills.ARCHERY,Skills.SORCERY)) {
+                var event=new dev.aurelium.auraskills.api.event.skill.EntityXpGainEvent(p,user,skill,null,7,z,p,null);
+                runtime.vanillaXp(event);
+                check(!event.isCancelled() && event.getAmount()==(skill==Skills.FIGHTING?3.5:7),"tier 0 fuente nativa "+skill);
+            }
+            z.remove();child.remove();grandchild.remove();
+            Bukkit.getScheduler().runTaskLater(this,()->p.removeAttachment(permission),40);
         } else if(args[0].equals("result")) {
             getLogger().info("T5A RESULT failures="+failures);
         }

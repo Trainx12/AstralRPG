@@ -88,7 +88,7 @@ def run(java, source, progression=None):
                 for item in ('varita_curacion','talisman_vida_3','talisman_furia_3','talisman_roca_3','talisman_viento_3'):
                     cases += [('support '+item,2),('scores '+item,1)]
                 cases += [('kill sin_varita',3),('xpcheck',1),('kill varita_inventario',3),('xpcheck',1),('kill varita_curacion',3),('xpcheck',1)]
-                if progression: cases += [('tiers',3)]
+                if progression: cases += [('tiers',3),('spawners',3)]
                 cases += [('result',1)]
                 for c,seconds in cases:
                     command('t5probe '+c);time.sleep(seconds)
