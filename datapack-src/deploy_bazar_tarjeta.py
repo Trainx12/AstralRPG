@@ -74,7 +74,7 @@ Preparado localmente. Sin instalar en servidor, sin R2 y sin Discord.
   `resource-pack-sha1` en `server.properties` con el SHA-1 del FINAL realmente publicado.
   Esto requiere reinicio completo coordinado con el dueno o el reinicio diario;
   no reiniciar ahora. Los clientes deben cargar el pack nuevo.
-- Sin el pack actualizado puede verse el item de reserva (PAPER); el comando sigue funcionando.
+- Sin los recursos del cartel, el cliente muestra la textura faltante morada y negra.
 - No subir mundos, no sustituir `world` ni usar Worlds > Upload.
 - El principal documentado es Empower; confirmar el destino remoto antes de instalar.
 

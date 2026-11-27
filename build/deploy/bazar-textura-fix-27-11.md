@@ -1,6 +1,8 @@
 # Tarjeta Bazar privada - 27/11/2026
 
-Preparado localmente. Sin instalar en servidor, sin R2 y sin Discord.
+Publicado en GitHub y R2, con SHA-1 instalado en Empower. Activacion en el
+reinicio diario del 28/11/2026 a las 05:00 Argentina; no se envio reinicio manual.
+Prueba visual en Minecraft pendiente despues del reinicio. Sin Discord por ser privado.
 
 ## Archivo de servidor
 
@@ -30,7 +32,7 @@ Preparado localmente. Sin instalar en servidor, sin R2 y sin Discord.
   `resource-pack-sha1` en `server.properties` con el SHA-1 del FINAL realmente publicado.
   Esto requiere reinicio completo coordinado con el dueno o el reinicio diario;
   no reiniciar ahora. Los clientes deben cargar el pack nuevo.
-- Sin el pack actualizado puede verse el item de reserva (PAPER); el comando sigue funcionando.
+- Sin los recursos del cartel, el cliente muestra la textura faltante morada y negra.
 - No subir mundos, no sustituir `world` ni usar Worlds > Upload.
 - El principal documentado es Empower; confirmar el destino remoto antes de instalar.
 
@@ -56,7 +58,7 @@ El armado FINAL sigue el patron privado de delta sobre el ultimo FINAL;
 no recompone los assets privados de BetterModel ni los copia al pack publico.
 Antes del commit publico, desde raiz: `python tools/verificar_terceros.py`.
 
-Pendientes: prueba visual del dueno, R2, instalacion y consola remota.
+Pendientes: carga del SHA-1 nuevo con el reinicio diario y prueba visual del dueno.
 No anunciar en Discord mientras siga privado.
 
 ## Diagnostico y verificacion de esta correccion
@@ -78,3 +80,13 @@ Comando aislado desde la raiz:
 ```text
 python datapack-src/deploy_bazar_tarjeta.py --base .local/bazar-textura/pack-instalado.zip --output .local/terceros/AstralRPG-privado/build/entregas/bazar-textura-fix-27-11 --note build/deploy/bazar-textura-fix-27-11.md
 ```
+
+## Despliegue comprobado
+
+- R2 actualizado; descarga publica verificada con SHA-1 `4ea7ae310735ffafc1e2086830cce2eb7289b31d`.
+- `server.properties` releido: solo cambio `resource-pack-sha1` al mismo valor.
+- Copia anterior de propiedades guardada exclusivamente en `.local/bazar-textura/`.
+- Servidor Running; consola consultada sin avisos relacionados con Bazar, DeluxeMenus o el pack en las ultimas 120 lineas.
+- Reinicio diario comprobado en la API: aviso a las 04:50 Argentina y reinicio diez minutos despues (05:00).
+- No se enviaron comandos, recargas ni reinicios; no se tocaron permisos, plugins ni mundos.
+- No se despliega en Aternos: la instancia activa comprobada es Empower.
