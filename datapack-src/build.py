@@ -1586,17 +1586,19 @@ fn("mine/log", [f"scoreboard players reset @s {o}" for (o, _) in log_objs] + [
 put(f"data/{NS}/tags/entity_type/hostile.json", {"values": HOSTILE})
 
 # Nivel de equipo del jugador (0-5): el mejor tier Astral que lleva puesto o en la mano (sin taladros ni motosierras)
+TIER_EXCLUSIONS = (f',!minecraft:custom_data~{{{NS}:{{id:"varita_curacion"}}}}'
+                   f',!minecraft:custom_data~{{{NS}:{{type:"talisman"}}}}')
 lvl = ["scoreboard players set @s astral.lvl 0"]
 for t in range(1, TIER_MAX + 1):
     for slot in ("armor.head", "armor.chest", "armor.legs", "armor.feet", "weapon.mainhand", "weapon.offhand"):
         lvl.append(f"execute if score @s astral.lvl matches ..{t - 1} if items entity @s {slot} "
-                   f"*[minecraft:custom_data~{{{NS}:{{tier:{t}}}}},!minecraft:custom_data~{{{NS}:{{type:\"tool\"}}}}] "
+                   f"*[minecraft:custom_data~{{{NS}:{{tier:{t}}}}},!minecraft:custom_data~{{{NS}:{{type:\"tool\"}}}}{TIER_EXCLUSIONS}] "
                    f"run scoreboard players set @s astral.lvl {t}")
 # Escala por tier (escala.py):
 #   astral.ht = tier del arma en la mano; astral.wt = mejor arma Astral del inventario
 #   (los mobs se adaptan a esta); astral.at = mejor armadura puesta (vida mostrada).
-ARMA_TIER = lambda t: (f"*[minecraft:custom_data~{{{NS}:{{type:\"weapon\",tier:{t}}}}}]",
-                       f"*[minecraft:custom_data~{{{NS}:{{type:\"staff\",tier:{t}}}}}]")
+ARMA_TIER = lambda t: (f"*[minecraft:custom_data~{{{NS}:{{type:\"weapon\",tier:{t}}}}}{TIER_EXCLUSIONS}]",
+                       f"*[minecraft:custom_data~{{{NS}:{{type:\"staff\",tier:{t}}}}}{TIER_EXCLUSIONS}]")
 lvl += ["scoreboard players set @s astral.ht 0", "scoreboard players set @s astral.wt 0",
         "scoreboard players set @s astral.at 0"]
 for t in range(1, TIER_MAX + 1):
@@ -1611,10 +1613,10 @@ for t in range(1, TIER_MAX + 1):
     for kind in ("armor",):
         for slot in ("container.*", "armor.*", "weapon.offhand"):
             lvl.append(f"execute if score @s astral.wt matches ..{t - 1} if items entity @s {slot} "
-                       f"*[minecraft:custom_data~{{{NS}:{{type:\"{kind}\",tier:{t}}}}}] run scoreboard players set @s astral.wt {t}")
+                       f"*[minecraft:custom_data~{{{NS}:{{type:\"{kind}\",tier:{t}}}}}{TIER_EXCLUSIONS}] run scoreboard players set @s astral.wt {t}")
     for slot in ("armor.head", "armor.chest", "armor.legs", "armor.feet"):
         lvl.append(f"execute if score @s astral.at matches ..{t - 1} if items entity @s {slot} "
-                   f"*[minecraft:custom_data~{{{NS}:{{type:\"armor\",tier:{t}}}}}] run scoreboard players set @s astral.at {t}")
+                   f"*[minecraft:custom_data~{{{NS}:{{type:\"armor\",tier:{t}}}}}{TIER_EXCLUSIONS}] run scoreboard players set @s astral.at {t}")
 # Etiquetas para Skript (PvP en la arena divide el dano segun el arma del atacante)
 lvl += [f"tag @s remove astral.ht{t}" for t in range(TIER_MAX + 1)]
 lvl += [f"execute if score @s astral.ht matches {t} run tag @s add astral.ht{t}" for t in range(TIER_MAX + 1)]

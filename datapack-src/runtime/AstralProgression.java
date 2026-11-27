@@ -107,6 +107,8 @@ public final class AstralProgression extends JavaPlugin implements Listener {
         var meta=item.getItemMeta();
         var model=meta.getItemModel();
         if(model==null || !model.getNamespace().equals("astral")) return "";
+        // Soporte: ignorar incluso requisitos heredados de versiones anteriores.
+        if(model.getKey().equals("varita_curacion") || model.getKey().startsWith("talisman_")) return "";
         var req=meta.getPersistentDataContainer().get(NamespacedKey.fromString("auraskills:item_requirements"),PersistentDataType.TAG_CONTAINER);
         if(req==null) return "";
         for(String s:List.of("sorcery","archery","fighting"))
