@@ -21,7 +21,7 @@ Destino: plugins/update/AstralProgression.jar en Empower (servidor activo).
 Conservar plugins/AstralProgression/config.yml. No requiere cambiar datapack,
 resource pack ni mundos. Carga al proximo reinicio; no reiniciar por cuenta propia.
 
-Validado con JDK25, 3 pruebas unitarias y 165 comprobaciones Paper sin fallos.
+Validado con JDK25, 3 pruebas unitarias y 171 comprobaciones Paper sin fallos.
 XP real (incluye bonus nativo del jugador de prueba): normal/spawner
 143/71.5 (mismo tier), 572/286 (+1), 1430/715 (+2 y +3).
 Tambien se verificaron fuentes nativas sin tier, otras habilidades y herencia
@@ -30,6 +30,10 @@ comprobar actualizaciones, sin impedir la prueba. Auditoria de archivos de esta
 tarea: sin arte privado ni credenciales.
 
 SHA-256: e4f72b8ab45c34158126ec16e7499c4df9ba154387668485214cdd1bd622b882.
-Estado de instalacion: pendiente de subida.
+Instalado en plugins/update/AstralProgression.jar de Empower por la herramienta
+del proyecto (no habia navegador conectado). Descarga posterior con SHA-256
+identico al local. El registro actual muestra AstralProgression 1.6.2 activo;
+1.6.5 queda preparado para el siguiente reinicio. No se reinicio ni se recargo.
+Pendientes: comprobar carga de 1.6.5 y anunciar en Discord cuando entre en vivo.
 Aviso listo para cuando cargue: Los mobs de spawners ahora dan la mitad de XP
 de Combate. Los bonus x4 y x10 se mantienen sobre esa nueva recompensa.
