@@ -42,3 +42,19 @@ probar una baja de spawner y una natural en el servidor real.
 Aviso para publicar cuando se confirme la carga: Los mobs de generadores
 ya no dan experiencia de Minecraft para encantar. Siguen dando experiencia
 de habilidades. Los mobs que aparecen normalmente conservan su experiencia.
+
+## Despliegue verificado el 28/11/2026
+
+Publicado el codigo y el JAR en GitHub (533c575f). Subido unicamente
+`plugins/AstralSpawnerXp.jar` en Empower y descargado de nuevo para verificar
+el SHA-256 identico. `plugins/update` estaba vacio antes del reinicio.
+Se reinicio el servidor para cargar el plugin nuevo; no se cambiaron mundos,
+datapacks, resource pack ni otros plugins.
+
+Registro remoto: `Enabling AstralSpawnerXp v1.0.0`, seguido de
+`Done (280.399s)!`, sin errores de AstralSpawnerXp. Los horarios del registro
+son 13:58:37 y 14:00:07 (UTC), respectivamente. Aviso publicado en el canal
+de novedades de Discord (HTTP 204).
+
+La validacion de bajas y orbes fue en Paper local; falta la comprobacion
+jugando del dueno en el servidor real. El plugin ya esta cargado y activo.
