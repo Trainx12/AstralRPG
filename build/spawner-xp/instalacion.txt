@@ -1,0 +1,9 @@
+AstralSpawnerXp 1.0.0 - Solo orbes de experiencia vanilla
+Subir AstralSpawnerXp.jar a /plugins/AstralSpawnerXp.jar.
+Plugin nuevo: carga en el siguiente reinicio completo autorizado.
+No usar /reload ni carga dinamica de plugins. No modificar mundos.
+Verificar consola: Enabling AstralSpawnerXp v1.0.0 sin errores.
+SPAWNER y TRIAL_SPAWNER: cero XP vanilla; XP de skills segun
+AstralProgression/AuraSkills actuales (no cambia sus multiplicadores).
+Conversiones y divisiones sucesivas conservan el origen.
+Otros origenes y drops de items no se modifican.
